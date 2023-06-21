@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es2020: true
+    es2020: true,
+    node: true
   },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended', 'plugin:storybook/recommended'],
   parser: '@typescript-eslint/parser',
@@ -11,6 +12,10 @@ module.exports = {
   },
   plugins: ['react-refresh'],
   rules: {
-    'react-refresh/only-export-components': 'warn'
+    'react-refresh/only-export-components': 'warn',
+   
+  },
+  settings: {
+    'import/external-module-folders' : ['.yarn'],
   }
 };
