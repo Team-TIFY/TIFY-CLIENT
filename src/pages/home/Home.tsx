@@ -1,9 +1,14 @@
+import styled from '@emotion/styled';
 const Home = () => {
     return (
-        <div>
+        <Wrapper>
             메인페이지입니다.
-        </div>
+        </Wrapper>
     );
 };
 
 export default Home;
+
+const Wrapper = styled.div`
+    color:#fff
+`
