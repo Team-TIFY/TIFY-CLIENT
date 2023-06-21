@@ -16,14 +16,23 @@ const config: StorybookConfig = {
       )
     ),
   ],
-  framework: {
-    name: path.dirname(
-      require.resolve(path.join("@storybook/react-vite", "package.json"))
-    ),
-    options: {},
+  core: {
+    builder: '@storybook/builder-vite', 
   },
+  framework :'@storybook/react-vite',
   docs: {
     autodocs: "tag",
   },
 };
 export default config;
+
+
+
+
+
+  // framework: {
+  //   name: path.dirname(
+  //     require.resolve(path.join("@storybook/react-vite", "package.json"))
+  //   ),
+  //   options: {},
+  // },
