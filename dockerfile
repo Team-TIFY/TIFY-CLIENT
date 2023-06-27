@@ -1,0 +1,35 @@
+FROM node:16 AS builder
+# set working directory
+# install app dependencies
+#copies package.json and package-lock.json to Docker environment
+# COPY package-lock.json ./
+COPY package.json ./
+COPY yarn.lock ./
+# Installs all node packages
+# RUN npm ci 
+RUN npm install yarn --global --force
+RUN yarn install --immutable --immutable-cache --check-cache
+
+
+# Copies everything over to Docker environment
+COPY . ./
+RUN yarn install --immutable
+# RUN npm run build
+RUN yarn vite build
+
+#Stage 2
+#######################################
+#pull the official nginx:1.19.0 base image
+FROM nginx:1.19.0
+#copies React to the container directory
+# Set working directory to nginx resources directory
+# WORKDIR /usr/share/nginx/html
+COPY ./nginx/nginx.conf ./nginx/etc/
+#/etc/nginx/conf.d/default.conf
+# Remove default nginx static resources
+RUN rm -rf ./usr/share/nginx/html/*
+# Copies static resources from builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html/
+# Containers run nginx with global directives and daemon off
+EXPOSE 3100
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
