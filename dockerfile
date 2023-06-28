@@ -1,7 +1,6 @@
 FROM node:16 AS builder
 # set working directory
 # install app dependencies
-RUN mkdir /app
 WORKDIR /app
 #copies package.json and package-lock.json to Docker environment
 # COPY package-lock.json ./
@@ -24,23 +23,22 @@ RUN yarn vite build
 #pull the official nginx:1.19.0 base image
 FROM nginx:latest
 #copies React to the container directory
-WORKDIR /app
-RUN mkdir /dist
-COPY dist /dist
+
 # Set working directory to nginx resources directory
 # WORKDIR /usr/share/nginx/html
 #COPY ./nginx/nginx.conf ./nginx/etc/
 #/etc/nginx/conf.d/default.conf
 # Remove default nginx static resources
 # nginx 의 default.conf 를 삭제
-RUN rm /etc/nginx/conf.d/default.conf
+#RUN rm /etc/nginx/conf.d/default.conf
  
 # host pc 의 default.conf 를 아래 경로에 복사
-COPY ./nginx/default.conf /etc/nginx/conf.d
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
  
-#RUN rm -rf ./usr/share/nginx/html/*
+RUN rm -rf ./usr/share/nginx/html/*
 # Copies static resources from builder stage
 #COPY --from=builder /app/dist /usr/share/nginx/html/
 # Containers run nginx with global directives and daemon off
+COPY --from=builder app/dist /usr/share/nginx/html/
 EXPOSE 3100
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
