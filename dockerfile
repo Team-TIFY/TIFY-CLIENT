@@ -1,6 +1,7 @@
 FROM node:16 AS builder
 # set working directory
 # install app dependencies
+RUN mkdir /app
 WORKDIR /app
 #copies package.json and package-lock.json to Docker environment
 # COPY package-lock.json ./
@@ -25,7 +26,7 @@ FROM nginx:latest
 #copies React to the container directory
 WORKDIR /app
 RUN mkdir ./dist
-COPY ./dist ./dist
+ADD ./dist ./dist
 # Set working directory to nginx resources directory
 # WORKDIR /usr/share/nginx/html
 #COPY ./nginx/nginx.conf ./nginx/etc/
