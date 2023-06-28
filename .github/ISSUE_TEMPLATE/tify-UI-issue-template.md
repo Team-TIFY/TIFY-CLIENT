@@ -1,7 +1,7 @@
 ---
 name: TIFY UI issue template
 about: 'make UI Component'
-title: "💄 [refactor] "
+title: "💄 [UI] "
 labels: UI
 assignees: ''
 

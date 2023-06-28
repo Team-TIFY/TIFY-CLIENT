@@ -1,7 +1,7 @@
 ---
 name: TIFY bug issue template
 about: 'about need to fix bug'
-title: "🐛 [bug] "
+title: "🐛 [Bug] "
 labels: Bug
 assignees: ''
 

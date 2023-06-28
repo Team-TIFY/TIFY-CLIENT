@@ -1,7 +1,7 @@
 ---
 name: TIFY refactor issue template
 about: 'about need to refactor '
-title: "\U0001F6E0️ [refactor] "
+title: "\U0001F6E0️ [Refactor] "
 labels: Refactor
 assignees: ''
 
