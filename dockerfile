@@ -18,6 +18,7 @@ COPY . .
 RUN yarn install --immutable
 # RUN npm run build
 RUN yarn vite build
+CMD ["yarn", "vite", "build"]
 
 #Stage 2
 #######################################
