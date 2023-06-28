@@ -18,7 +18,6 @@ COPY . .
 RUN yarn install --immutable
 # RUN npm run build
 RUN yarn vite build
-CMD ["yarn", "vite", "build"]
 
 #Stage 2
 #######################################
@@ -27,7 +26,7 @@ FROM nginx:latest
 #copies React to the container directory
 WORKDIR /app
 RUN mkdir ./dist
-ADD ./dist ./dist
+ADD dist ./dist
 # Set working directory to nginx resources directory
 # WORKDIR /usr/share/nginx/html
 #COPY ./nginx/nginx.conf ./nginx/etc/
