@@ -1,4 +1,5 @@
 import path from "path";
+//Todo : require.resolve문 사용하지 말고 그냥 import 문으로 바꾸어볼것 
 
 import type { StorybookConfig } from "@storybook/react-vite";
 const config: StorybookConfig = {
