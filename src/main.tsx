@@ -6,15 +6,17 @@ import { css, Global, ThemeProvider } from '@emotion/react';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
+import { globalStyle } from '@styles/theme/global';
+import { theme } from './styles/theme/theme';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter basename="/">
-    <Global>
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
-    </Global>
+    <Global styles={globalStyle}/>
+      <ThemeProvider theme = {theme}>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </ThemeProvider>
   </BrowserRouter>
   ,
 )
