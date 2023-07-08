@@ -1,3 +1,4 @@
+
 export const palette = {
     gray_100: '#E4E4E5',
     gray_200: '#C3C3C6',

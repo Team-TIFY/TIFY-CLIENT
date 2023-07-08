@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 import { media } from './theme';
+import { palette } from './palette';
 
 export const globalStyle = css`
     ${emotionReset}
@@ -44,14 +45,16 @@ export const globalStyle = css`
         system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
         'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', sans-serif !important;
-        box-sizing: border-box;
+        box-sizing: border-box;import { palette } from './palette';
+
 
         -webkit-tap-highlight-color: transparent;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
         ${media.mobile} {
-        -ms-overflow-style: none;
-        }
+            -ms-overflow-style: none;
+        },
+        background-color: ${palette.background};
     }
     button {
         background: inherit;

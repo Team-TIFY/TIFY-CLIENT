@@ -7,11 +7,14 @@ import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter basename="/">
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
+    <Global>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </Global>
   </BrowserRouter>
   ,
 )
