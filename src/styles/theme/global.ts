@@ -50,11 +50,9 @@ export const globalStyle = css`
 
         -webkit-tap-highlight-color: transparent;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
         ${media.mobile} {
             -ms-overflow-style: none;
-        },
-        background-color: ${palette.background};
+        }
     }
     button {
         background: inherit;

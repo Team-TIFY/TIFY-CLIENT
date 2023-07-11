@@ -1,13 +1,12 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { css, Global, ThemeProvider } from '@emotion/react';
+import { Global, ThemeProvider } from '@emotion/react';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { globalStyle } from '@styles/theme/global';
-import { theme } from './styles/theme/theme';
+import { theme } from '@styles/index';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter basename="/">
@@ -18,5 +17,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </RecoilRoot>
       </ThemeProvider>
   </BrowserRouter>
-  ,
 )
