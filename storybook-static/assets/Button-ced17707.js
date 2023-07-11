@@ -1,0 +1,10 @@
+import{r as d}from"./index-8db94870.js";var i={exports:{}},l={};/**
+ * @license React
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var m=d,c=Symbol.for("react.element"),y=Symbol.for("react.fragment"),f=Object.prototype.hasOwnProperty,_=m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,b={key:!0,ref:!0,__self:!0,__source:!0};function p(t,e,a){var r,o={},n=null,u=null;a!==void 0&&(n=""+a),e.key!==void 0&&(n=""+e.key),e.ref!==void 0&&(u=e.ref);for(r in e)f.call(e,r)&&!b.hasOwnProperty(r)&&(o[r]=e[r]);if(t&&t.defaultProps)for(r in e=t.defaultProps,e)o[r]===void 0&&(o[r]=e[r]);return{$$typeof:c,type:t,key:n,ref:u,props:o,_owner:_.current}}l.Fragment=y;l.jsx=p;l.jsxs=p;i.exports=l;var v=i.exports;const s=({primary:t=!1,size:e="medium",backgroundColor:a,label:r,...o})=>{const n=t?"storybook-button--primary":"storybook-button--secondary";return v.jsx("button",{type:"button",className:["storybook-button",`storybook-button--${e}`,n].join(" "),style:{backgroundColor:a},...o,children:r})};try{s.displayName="Button",s.__docgenInfo={description:"Primary UI component for user interaction",displayName:"Button",props:{primary:{defaultValue:{value:"false"},description:"",name:"primary",required:!1,type:{name:"boolean"}},backgroundColor:{defaultValue:null,description:"What background color to use",name:"backgroundColor",required:!1,type:{name:"string"}},size:{defaultValue:{value:"medium"},description:"How large should the button be?",name:"size",required:!1,type:{name:"enum",value:[{value:'"small"'},{value:'"medium"'},{value:'"large"'}]}},label:{defaultValue:null,description:"Button contents",name:"label",required:!0,type:{name:"string"}},onClick:{defaultValue:null,description:"Optional click handler",name:"onClick",required:!1,type:{name:"(() => void)"}}}}}catch{}export{s as B,v as j};
+//# sourceMappingURL=Button-ced17707.js.map

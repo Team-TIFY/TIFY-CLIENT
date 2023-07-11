@@ -5358,6 +5358,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chromatic@npm:^6.19.9":
+  version: 6.19.9
+  resolution: "chromatic@npm:6.19.9"
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 50552c3043d96e7badb0d16ddd1839c0601d0f5e0c2c573acda5d6b0d0fad96067f0c659ad0a2b278d8b28b46670549b4bcedfd2d350a9077975aff203c29193
+  languageName: node
+  linkType: hard
+
 "ci-info@npm:^3.2.0":
   version: 3.8.0
   resolution: "ci-info@npm:3.8.0"
@@ -10933,6 +10944,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.59.0
     "@typescript-eslint/parser": ^5.60.0
     "@vitejs/plugin-react": ^4.0.0
+    chromatic: ^6.19.9
     emotion-reset: ^3.0.1
     eslint: ^8.43.0
     eslint-config-prettier: ^8.8.0
