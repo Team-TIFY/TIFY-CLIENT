@@ -27,5 +27,6 @@ export const palette = {
     dim_500:'rgba(32, 32, 39, 0.5)',
     dim_800:'rgba(32, 32, 39, 0.2)',
     background: '#17171C',
+    white: '#FFFFFF',
   } as const;
   
