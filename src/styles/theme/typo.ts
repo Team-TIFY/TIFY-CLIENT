@@ -48,11 +48,11 @@ export const typo = {
         font-weight: 400;
         letter-spacing: -1.1%;
     `,
-    Caption_12: css`
+    Caption_12M: css`
         font-family: 'SpoqaHanSansNeo';
         font-size: ${calcRem(12)};
         line-height: 20px;
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: -1.1%;
     `,
     Caption_10: css`
