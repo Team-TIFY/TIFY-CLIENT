@@ -15,3 +15,7 @@ jobs:
         run : yarn chromatic
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: comment PR  
+        uses: thollander/actions-comment-pull-request@v2  
+        with:  
+          message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}"  
