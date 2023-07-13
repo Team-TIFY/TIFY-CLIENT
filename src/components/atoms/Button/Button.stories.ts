@@ -1,11 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Children } from 'react';
-
 import { Button } from '.';
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'Example/Button',
+  title: 'Atom/Button',
   component: Button,
   tags: ['autodocs'],
 } satisfies Meta<typeof Button>;
@@ -13,29 +10,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const MediumRound: Story = {
   args: {
-    variant:'mediumRound'
+    variant:'mediumRound',
+    children: '버튼 이름'
   },
 };
 
-// export const Secondary: Story = {
-//   args: {
-//     label: 'Button',
-//   },
-// };
+export const MediumSquare: Story = {
+  args: {
+    variant:'mediumSquare',
+    children: '버튼 이름'
+  },
+};
 
-// export const Large: Story = {
-//   args: {
-//     size: 'large',
-//     label: 'Button',
-//   },
-// };
+export const SmallRound: Story = {
+  args: {
+    variant: 'smallRound',
+    children: '답변 안한 친구 찌르러 가기 👉'
+  },
+};
 
-// export const Small: Story = {
-//   args: {
-//     size: 'small',
-//     label: 'Button',
-//   },
-// };
+export const Circle: Story = {
+  args: {
+    variant: 'circle',
+    children: '+'
+  },
+};

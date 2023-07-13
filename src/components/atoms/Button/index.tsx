@@ -1,4 +1,4 @@
-import './button.css';
+
 import { ButtonHTMLAttributes } from 'react';
 import { KeyOfTypo, theme } from '@styles/theme';
 import styled from '@emotion/styled';
@@ -9,7 +9,7 @@ type ButtonVariant =
 | 'smallRound'
 | 'circle'
 
-const BUTTON_COLOR_TYPE = {
+const BUTTON_COLOR_TYPE = { 
   default: {
     'mediumRound': `${theme.palette.purple_500}`,
     'mediumSquare': `${theme.palette.gray_900}`,
@@ -57,6 +57,7 @@ type ButtonShapeType = {
     typo: KeyOfTypo;
     width: number;
     height: number;
+    padding: [number, number]
   }
 }
 
@@ -65,25 +66,29 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
     radius: 24,
     typo :'Subhead_16',
     width : 126,
-    height: 48
+    height: 48,
+    padding: [12, 32]
   },
   mediumSquare: {
     radius: 12,
     typo : 'Body_14',
     width: 158,
-    height: 40
+    height: 40,
+    padding: [10, 48]
   },
   smallRound: {
     radius: 18,
     typo:'Subhead_14',
     width : 156,
-    height: 20
+    height: 36,
+    padding: [8, 20]
   },
   circle: {
     radius: 50,
     typo: 'Subhead_16',
     width: 32,
-    height: 32
+    height: 32,
+    padding: [0, 0]
   }
 }
 
@@ -105,16 +110,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 type Props = Partial<ButtonProps>;
 
 export const Button = ({
-  children,
+  children, 
   variant = 'mediumRound',
-  fullWidth=true,
+  fullWidth= false,
   width,
   isLoading,
   ...props
 }: Props) => {
   return (
     <StyledButton 
-      width = { width } 
+      width = {width} 
       variant = {variant} 
       fullWidth = {fullWidth}
       {...props}
@@ -135,8 +140,9 @@ const StyledButton = styled.button<{
   width?: number;
   fullWidth?: boolean;  
 }>`
-  border: none;
-  width: ${({ width, fullWidth }) => fullWidth ? '100%' : `${width}px`};
+  padding: ${({variant}) => `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
+  border: ${({variant}) => variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none'};
+  min-width: ${({ variant, fullWidth, width }) => fullWidth ? '100%' : (width ? `${width}px` : `${BUTTON_SHAPE_TYPE[variant].width}px`)};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};

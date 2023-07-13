@@ -12,7 +12,7 @@
     "build-storybook": "storybook build",
     "deploy-storybook": "storybook-to-ghpages",
     "chromatic": "npx chromatic --project-token=chpt_4252c44a2b838c7 --storybook-build-dir storybook-static"
-},
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
