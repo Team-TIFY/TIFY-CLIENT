@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 import { media } from './theme';
-import { palette } from './palette';
 
 export const globalStyle = css`
     ${emotionReset}
@@ -78,4 +77,4 @@ export const globalStyle = css`
             display: none;
         }
     }
-`
+`;
