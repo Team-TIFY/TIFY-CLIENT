@@ -1,6 +1,6 @@
 name: Build & Deploy TIFY
 on:
-  push:
+  pull\_request:
     branches: [deploy]
 jobs:
   build:
