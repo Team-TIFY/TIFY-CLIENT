@@ -99,6 +99,7 @@ const InstText = styled.div <{
   height: 20px;
   margin-bottom: 8px;
   ${theme.typo.Caption_12};
+  color: ${theme.palette.gray_200};
 ` 
 
 const TextAreaWrapper = styled.div<{ count: boolean }>`
