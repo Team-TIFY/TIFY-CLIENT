@@ -3,15 +3,15 @@ on:
   push:
     branches: [dev]
     paths: ['src/components/atoms/**']
+
 jobs:
-  build-and-deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install and Build 🔧
-        # This needs an Acces Token stored as "GH_TOKEN" 👇
-        run: |
-          npm install
-          npm run deploy-storybook -- --ci
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - uses: actions/checkout@v1
+      - run: yarn
+      - uses: chromaui/action@v1
+        with:
+          #👇 Chromatic projectToken, see https://storybook.js.org/tutorials/intro-to-storybook/react/ko/deploy/ to obtain it
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }
