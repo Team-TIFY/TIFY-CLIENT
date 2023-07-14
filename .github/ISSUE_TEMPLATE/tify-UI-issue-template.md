@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-# ✨ 어떤 작업인가요?
+## ✨ 어떤 작업인가요?
 
-# ☑ Refactoring TODO
+## ☑ TODO
 - [ ]
