@@ -1,0 +1,2 @@
+import{r as s,R as e}from"./index-570b25c1.js";var r=function(a){return a()},t=e["useInsertionEffect"]?e["useInsertionEffect"]:!1,n=t||r,o=t||s.useLayoutEffect;const l=Object.freeze(Object.defineProperty({__proto__:null,useInsertionEffectAlwaysWithSyncFallback:n,useInsertionEffectWithLayoutFallback:o},Symbol.toStringTag,{value:"Module"}));export{o as a,l as e,n as u};
+//# sourceMappingURL=emotion-use-insertion-effect-with-fallbacks.browser.esm-3ca6a58f.js.map
