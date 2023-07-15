@@ -36,9 +36,9 @@ interface TagProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const Tag = ({ variant, color, children, ...props }: TagProps) => {
+export const Tag = ({ variant, color, children }: TagProps) => {
   return (
-    <Wrapper variant={variant} color={color} {...props}>
+    <Wrapper variant={variant} color={color}>
       {children}
     </Wrapper>
   )
