@@ -22,9 +22,9 @@ const TEXT_COLOR_TYPE = {
   'dayAfter': `${theme.palette.gray_500}`,
 }
 
-export const Day = ({ children, variant, leftDown, ...props }: DayPropsType) => {
+export const Day = ({ children, variant, leftDown }: DayPropsType) => {
   return (
-    <StyledDay variant={variant} {...props}>
+    <StyledDay variant={variant}>
       <img
         src={
           variant === 'dayBefore'
