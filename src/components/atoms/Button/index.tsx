@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import { KeyOfTypo, theme } from '@styles/theme';
 import styled from '@emotion/styled';
+import { Text } from '../Text';
 
 type ButtonVariant = 
 | 'mediumRound'
@@ -126,9 +127,9 @@ export const Button = ({
       {isLoading ? (
         <p>로딩중입니다</p>
       ) : (
-        <>
-        {children}
-        </>
+        <Text typo ={`${BUTTON_SHAPE_TYPE[variant].typo}`} as ={'span'}>
+          {children}
+        </Text>
       )}
     </StyledButton>
   );
@@ -145,7 +146,6 @@ const StyledButton = styled.button<{
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
-  ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].typo}`};
   color: ${({ variant }) => `${TEXT_COLOR_TYPE.default[variant]}`};
 
   &:hover {
