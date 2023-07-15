@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client'
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Global, ThemeProvider } from '@emotion/react';
@@ -11,8 +10,11 @@ import { theme } from '@styles/index';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter basename="/">
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
-  </BrowserRouter>,
-);
+    <Global styles={globalStyle}/>
+      <ThemeProvider theme = {theme}>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </ThemeProvider>
+  </BrowserRouter>
+)

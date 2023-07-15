@@ -1,31 +1,19 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { TextArea } from '.';
-
-// export default {
-//   title: 'TextArea',
-//   component: TextArea,
-//   argTypes: {},
-// } as Meta<typeof TextArea>;
+import { Input } from '.';
 
 const meta = {
-  title: 'TextArea',
-  component: TextArea,
+  title: 'Input',
+  component: Input,
   tags: ['autodocs'],
-} satisfies Meta<typeof TextArea>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DefaultInput: Story = {
+export const TextInput: Story = {
   args: {
     variant: 'default',
-    children: ''
+    explanation:"",
   },
 };
 
-export const WithInstInput: Story = {
-  args: {
-    variant: 'withInst',
-    children:'설명 문구'
-  },
-}
