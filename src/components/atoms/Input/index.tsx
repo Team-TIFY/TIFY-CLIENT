@@ -101,7 +101,7 @@ const InstText = styled.div <{
   width: 280px;
   height: 20px;
   margin-bottom: 8px;
-  ${theme.typo.Caption_12};
+  ${theme.typo.Caption_12M};
   color: ${theme.palette.gray_200};
 ` 
 
@@ -138,5 +138,5 @@ const TextAreaWrapper = styled.div<{ count: boolean }>`
     height:20px;
     padding: 8px 14px;
     color:${theme.palette.red_500};
-    ${theme.typo.Caption_12};
+    ${theme.typo.Caption_12M};
   `
