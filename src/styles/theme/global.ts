@@ -45,7 +45,7 @@ export const globalStyle = css`
         system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
         'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', sans-serif !important;
-        box-sizing: border-box;import { palette } from './palette';
+        box-sizing: border-box;
 
 
         -webkit-tap-highlight-color: transparent;
@@ -78,4 +78,4 @@ export const globalStyle = css`
             display: none;
         }
     }
-`
+`;
