@@ -1,19 +1,20 @@
 import styled from "@emotion/styled";
 import { theme } from "@styles/theme";
 
-import dayLeftDownDayAfterImgUrl from "../../../assets/day_leftdown_dayafter.svg";
-import dayLeftDownDayBeforeImgUrl from "../../../assets/day_leftdown_daybefore.svg";
-import dayLeftDownSelectedImgUrl from "../../../assets/day_leftdown_selected.svg";
-import dayRightUpDayBeforeImgUrl from "../../../assets/day_rightup_daybefore.svg";
-import dayRightUpSelectedImgUrl from "../../../assets/day_rightup_selected.svg";
-import dayRightUpDayAfterImgUrl from "../../../assets/day_rightup_dayafter.svg";
+import { DaysKeyType } from "../WeekGroup/Week";
 
-export type DaysKeyType = 'M' | 'T' | 'W' | 'T' | 'F' | 'S' | 'S';
+import dayLeftDownDayAfterImgUrl from "../../../../assets/day_leftdown_dayafter.svg";
+import dayLeftDownDayBeforeImgUrl from "../../../../assets/day_leftdown_daybefore.svg";
+import dayLeftDownSelectedImgUrl from "../../../../assets/day_leftdown_selected.svg";
+import dayRightUpDayBeforeImgUrl from "../../../../assets/day_rightup_daybefore.svg";
+import dayRightUpSelectedImgUrl from "../../../../assets/day_rightup_selected.svg";
+import dayRightUpDayAfterImgUrl from "../../../../assets/day_rightup_dayafter.svg";
 
 interface DayPropsType {
   children: DaysKeyType;
   variant: 'dayBefore' | 'selected' | 'dayAfter';
   leftDown: boolean;
+  onClick: () => void;
 }
 
 const TEXT_COLOR_TYPE = {
@@ -22,9 +23,15 @@ const TEXT_COLOR_TYPE = {
   'dayAfter': `${theme.palette.gray_500}`,
 }
 
-export const Day = ({ children, variant, leftDown }: DayPropsType) => {
+export const Day = ({ children, variant, leftDown, onClick }: DayPropsType) => {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  }
+
   return (
-    <StyledDay variant={variant}>
+    <StyledDay variant={variant} onClick={handleClick}>
       <img
         src={
           variant === 'dayBefore'
@@ -56,6 +63,7 @@ const StyledDay = styled.div<{
   position: relative;
   width: 32px;
   height: 32px;
+  cursor: pointer;
 `;
 
 const StyledDayChild = styled.div`
