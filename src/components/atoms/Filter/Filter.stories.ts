@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Filter } from '.';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Filter } from ".";
 
 const meta = {
-  title: 'Atom/Filter',
+  title: "Atom/Filter",
   component: Filter,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof Filter>;
 
 export default meta;
