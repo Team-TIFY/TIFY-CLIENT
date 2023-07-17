@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
+import { TextareaHTMLAttributes, useRef, useState } from 'react';
 import { theme } from '@styles/theme';
 
 
 type InputVariant = 
-| 'withInst'
 | 'default'
+| 'withInst'
 
 type InputVariantType = {
   [key in InputVariant]: {
@@ -14,23 +14,25 @@ type InputVariantType = {
 }
 
 const INPUT_TYPE: InputVariantType = {
-  withInst: {
-    display: 'block'
-  },
   default: {
     display: 'none'
+  },
+  withInst: {
+    display: 'block'
   }
 }
 
-interface InputProps extends React.ComponentProps<'div'>{
+interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement>{
   variant: InputVariant;
+  explanation: string;
 }
 type Props = Partial<InputProps>;
 
 
-export const Input = (
+export const Input= (
   { variant,
-    children
+    explanation,
+    ...props
   }: Props) => {
   const [line, setLine] = useState("");
   const [count, setCount] = useState(true); //2줄 넘지 않으면 true
@@ -63,7 +65,7 @@ export const Input = (
 
   return (
     <Wrapper>
-      <InstText variant={variant!}>{children}</InstText>
+      <InstText variant={variant!}>{explanation}</InstText>
       <TextAreaWrapper count={count}>
       <StyledTextArea
         rows={1}
@@ -73,6 +75,7 @@ export const Input = (
         spellCheck="false"
         onInput={handleResizeHeight}
         onChange={countLength}
+        {...props}
       />
       </TextAreaWrapper>
       {
@@ -107,7 +110,8 @@ const TextAreaWrapper = styled.div<{ count: boolean }>`
     padding: 14px;
     background: ${theme.palette.gray_900};
     width: 284px;
-
+    display: flex;
+    align-items: center;
     &:focus-within {
       border: 2px solid;
       border-color: ${(props) => props.count ? `${theme.palette.purple_300}` : `${theme.palette.red_300}`}};

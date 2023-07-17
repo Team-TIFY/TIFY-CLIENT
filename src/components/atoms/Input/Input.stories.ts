@@ -10,16 +10,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DefaultInput: Story = {
+export const TextInput: Story = {
   args: {
     variant: 'default',
-    children: ''
+    explanation:"",
   },
 };
 
-export const WithInstInput: Story = {
-  args: {
-    variant: 'withInst',
-    children:'설명 문구'
-  },
-}
