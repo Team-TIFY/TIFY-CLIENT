@@ -3,12 +3,12 @@ import { theme } from "@styles/theme";
 
 import { DaysKeyType } from "../WeekGroup/Week";
 
-import dayLeftDownDayAfterImgUrl from "../../../../assets/icons/day_leftdown_dayafter.svg";
-import dayLeftDownDayBeforeImgUrl from "../../../../assets/icons/day_leftdown_daybefore.svg";
-import dayLeftDownSelectedImgUrl from "../../../../assets/icons/day_leftdown_selected.svg";
-import dayRightUpDayBeforeImgUrl from "../../../../assets/icons/day_rightup_daybefore.svg";
-import dayRightUpSelectedImgUrl from "../../../../assets/icons/day_rightup_selected.svg";
-import dayRightUpDayAfterImgUrl from "../../../../assets/icons/day_rightup_dayafter.svg";
+import dayLeftDownDayAfterImgUrl from "../../../../assets/image/day_leftdown_dayafter.svg";
+import dayLeftDownDayBeforeImgUrl from "../../../../assets/image/day_leftdown_daybefore.svg";
+import dayLeftDownSelectedImgUrl from "../../../../assets/image/day_leftdown_selected.svg";
+import dayRightUpDayBeforeImgUrl from "../../../../assets/image/day_rightup_daybefore.svg";
+import dayRightUpSelectedImgUrl from "../../../../assets/image/day_rightup_selected.svg";
+import dayRightUpDayAfterImgUrl from "../../../../assets/image/day_rightup_dayafter.svg";
 
 interface DayPropsType {
   children: DaysKeyType;
