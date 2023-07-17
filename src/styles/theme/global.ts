@@ -54,6 +54,9 @@ export const globalStyle = css`
             -ms-overflow-style: none;
         }
     }
+    div{
+        box-sizing: border-box;
+    }
     button {
         background: inherit;
         border: none;
