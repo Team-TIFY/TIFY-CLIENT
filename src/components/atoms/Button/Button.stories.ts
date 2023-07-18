@@ -37,3 +37,10 @@ export const Circle: Story = {
     children: '+'
   },
 };
+
+export const Kakao: Story = {
+  args: {
+    variant: 'kakao',
+    children: '카카오로 로그인하기'
+  },
+};

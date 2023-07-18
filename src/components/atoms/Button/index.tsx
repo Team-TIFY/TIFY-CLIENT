@@ -8,25 +8,29 @@ type ButtonVariant =
 | 'mediumSquare'
 | 'smallRound'
 | 'circle'
+| 'kakao'
 
 const BUTTON_COLOR_TYPE = { 
   default: {
     'mediumRound': `${theme.palette.purple_500}`,
     'mediumSquare': `${theme.palette.gray_900}`,
     'smallRound' : `${theme.palette.background}`,
-    'circle' : `${theme.palette.gray_900}`
+    'circle' : `${theme.palette.gray_900}`,
+    'kakao': `${theme.palette.kakao}`
   },
   disabled: {
     'mediumRound': `${theme.palette.gray_700}`,
     'mediumSquare': `${theme.palette.gray_900}`,
     'smallRound': `${theme.palette.background}`,
     'circle': `${theme.palette.gray_700}`,
+    'kakao': `${theme.palette.kakao}`
   },
   hover: {
     'mediumRound': `${theme.palette.purple_600}`,
     'mediumSquare': `${theme.palette.gray_800}`,
     'smallRound': `${theme.palette.gray_800}`,
-    'circle' : `${theme.palette.gray_900}`
+    'circle' : `${theme.palette.gray_900}`,
+    'kakao': `${theme.palette.kakao}`
   }
 }
 
@@ -35,19 +39,22 @@ const TEXT_COLOR_TYPE = {
     'mediumRound': `${theme.palette.white}`,
     'mediumSquare': `${theme.palette.gray_200}`,
     'smallRound' : `${theme.palette.gray_100}`,
-    'circle' : `${theme.palette.gray_100}`
+    'circle' : `${theme.palette.gray_100}`,
+    'kakao': `${theme.palette.gray_900}`
   },
   disabled: {
     'mediumRound': `${theme.palette.gray_500}`,
     'mediumSquare': `${theme.palette.gray_200}`,
     'smallRound': `${theme.palette.gray_100}`,
     'circle': `${theme.palette.gray_500}`,
+    'kakao': `${theme.palette.gray_900}`
   },
   hover: {
     'mediumRound': `${theme.palette.white}`,
     'mediumSquare': `${theme.palette.gray_100}`,
     'smallRound': `${theme.palette.gray_100}`,
-    'circle' : `${theme.palette.gray_100}`
+    'circle' : `${theme.palette.gray_100}`,
+    'kakao': `${theme.palette.gray_900}`
   }
 }
 
@@ -89,6 +96,13 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
     width: 32,
     height: 32,
     padding: [0, 0]
+  },
+  kakao:{
+    radius: 12,
+    typo: 'Subhead_14',
+    width: 156,
+    height: 36,
+    padding: [8,20]
   }
 }
 
