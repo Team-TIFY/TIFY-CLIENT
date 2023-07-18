@@ -25,42 +25,42 @@ export const typo = {
         font-size: ${calcRem(16)};
         line-height: 24px;
         font-weight: 500; 
-        letter-spacing: -1.1%;
+        letter-spacing: -0.011em;
     `,
     Subhead_14: css`
         font-family: 'SpoqaHanSansNeo';
         font-size: ${calcRem(14)};
         line-height: 20px;
         font-weight: 500;
-        letter-spacing: -1.1%;
+        letter-spacing: -0.011em;
     `,
     Body_16: css`
         font-family: 'SpoqaHanSansNeo';
         font-size: ${calcRem(16)};
         line-height: 24px;
         font-weight: 400;
-        letter-spacing: -1.1%;
+        letter-spacing: -0.011em;
     `,
     Body_14: css`
         font-family: 'SpoqaHanSansNeo';
         font-size: ${calcRem(14)};
         line-height: 20px;
         font-weight: 400;
-        letter-spacing: -1.1%;
+        letter-spacing: -0.011em;
     `,
     Caption_12M: css`
         font-family: 'SpoqaHanSansNeo';
         font-size: ${calcRem(12)};
         line-height: 20px;
         font-weight: 500;
-        letter-spacing: -1.1%;
+        letter-spacing: -0.011em;
     `,
     Caption_10: css`
         font-family: 'SpoqaHanSansNeo';
         font-size: ${calcRem(10)};
         line-height: 16px;
         font-weight: 500;
-        letter-spacing: -1.1%;
+        letter-spacing: -0.011em;
     `,
     Mont_Caption_12SB: css`
         font-family: 'Montserrat';
