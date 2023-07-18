@@ -1,18 +1,44 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppBar } from '.';
 
 const meta = {
   title: 'Atom/AppBar',
   component: AppBar,
   tags: ['autodocs'],
+  argTypes: { onClickOption: {action: 'clicked'}},
+  decorators: [
+    (Story) => (
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<Story/>}/>
+          </Routes>
+        </BrowserRouter>
+      </>
+    ),
+  ],
 } satisfies Meta<typeof AppBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const AlarmWithMenu: Story = {
+export const LogoWithAlarm: Story = {
   args: {
     variant:'logoWithAlarm',
-    label: '안녕하쇼'
+  },
+};
+
+export const BackPushWithMenu: Story = {
+  args: {
+    variant:'backPushWithMenu',
+    label: '데일리 질문',
+  },
+};
+
+export const backPush: Story = {
+  args: {
+    variant:'backPush',
+    label: '친구 목록 편집',
   },
 };

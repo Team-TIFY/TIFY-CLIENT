@@ -1,6 +1,5 @@
 import { Preview } from '@storybook/react';
-import { globalStyle } from '../src/styles/theme/global'
-import { withThemeFromJSXProvider } from '@storybook/addon-styling';
+import { BrowserRouter } from 'react-router-dom';
 import './style.css';
 
 const customViewports = {
@@ -22,12 +21,10 @@ const customViewports = {
   },
 }
 
-
-
 const preview: Preview = {
   parameters: {
     layout: 'fullscreen',
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: { argTypesRegex: '^on.*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
