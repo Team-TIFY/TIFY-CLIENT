@@ -9,13 +9,11 @@ const meta = {
   argTypes: { onClickOption: {action: 'clicked'}},
   decorators: [
     (Story) => (
-      <>
         <BrowserRouter>
           <Routes>
             <Route path="*" element={<Story/>}/>
           </Routes>
         </BrowserRouter>
-      </>
     ),
   ],
 } satisfies Meta<typeof AppBar>;

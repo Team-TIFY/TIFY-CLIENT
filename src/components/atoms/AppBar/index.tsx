@@ -10,6 +10,13 @@ import { useNavigate } from "react-router-dom";
 
 type AppBarType = 'logoWithAlarm' | 'backPush' | 'backPushWithMenu'
 
+/**
+ * @param variant AppBar의 type을 나타냄 'logoWithAlarm' | 'backPush' | 'backPushWithMenu'
+ * @param label 'backPush' | 'backPushWithMenu' 사용 시 Appbar에 나타날 문구
+ * @param beforeUrl (optional) BackArrow를 통하여 이동할 url (기본값은 뒤로가기)
+ * @param onClickOption 두번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
+ */
+
 interface AppBarProps {
     variant : AppBarType;
     label?: string;
@@ -25,9 +32,7 @@ export const AppBar = ({
 }: AppBarProps) => {
     const navigate = useNavigate();
     const onClickBackBar = () => {
-        beforeUrl ? navigate(beforeUrl, {
-            state: { direction : 'navigate-pop'}
-        }) : navigate(-1)
+        beforeUrl ? navigate(beforeUrl) : navigate(-1)
     }
     const onClickLogo = () => {
         navigate('/')
