@@ -26,14 +26,3 @@ const config: StorybookConfig = {
   },
 };
 export default config;
-
-
-
-
-
-  // framework: {
-  //   name: path.dirname(
-  //     require.resolve(path.join("@storybook/react-vite", "package.json"))
-  //   ),
-  //   options: {},
-  // },
