@@ -4,25 +4,21 @@ import { theme } from "@styles/theme";
 import { FilterIcon } from "@assets/image/FilterIcon";
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  selectedProps: {
+    id: number;
+    active: boolean;
+    value: string;
+  }[];
 }
-type Props = Partial<FilterProps>;
+type Props = FilterProps & Partial<FilterProps>;
 
 export const Filter = ({
+  selectedProps,
   ...props
 } : Props) => {
 
-  const [selected, setSelected] = useState([
-    { id: 1, active: false, value: "메이크업" },
-    { id: 2, active: false, value: "프레그런스" },
-    { id: 3, active: false, value: "의류" },
-    { id: 4, active: false, value: "잡화" },
-    { id: 5, active: false, value: "액세사리" },
-    { id: 6, active: false, value: "요리" },
-    { id: 7, active: false, value: "운동"},
-    { id: 8, active: false, value: "여행" },
-    { id: 9, active: false, value: "문화생활" },
-  ]);
-
+  const [selected, setSelected] = useState(selectedProps);
+  
   const handleClick = (id: number) => {
     const updatedBtn = selected.map((item) => {
       if (item.id === id) {
@@ -34,13 +30,12 @@ export const Filter = ({
     console.log(selected);
   };
   
-  const handleCancel = () => {
-    const updatedButtons = selected.map((item) => ({
+  const handleCancel = () => {  //전체 취소 버튼
+    const updatedBtn = selected.map((item) => ({
       ...item,
       active: false,
     }));
-    setSelected(updatedButtons);
-    console.log(selected);
+    setSelected(updatedBtn);
   }
 
   return (
