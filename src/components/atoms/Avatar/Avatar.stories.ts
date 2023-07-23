@@ -13,20 +13,26 @@ type Story = StoryObj<typeof meta>;
 export const Xsmall: Story = {
   args: {
     variant: "xsmall",
-    color: "purple"
+    color: "purple",
+    imageUrl: "kitty",
+    isVisible: "visible",
   }
 };
 
 export const Small: Story = {
   args: {
     variant: "small",
-    color: "purple"
+    color: "purple",
+    imageUrl: "kitty",
+    isVisible:"visible",
   }
 };
 
 export const Medium: Story = {
   args: {
     variant: "medium",
-    color: "purple"
+    color: "purple",
+    imageUrl: "kitty",
+    isVisible: "visible",
   }
 };
