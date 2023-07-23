@@ -113,8 +113,8 @@ const Dimmed = styled.div<{
   variant: AvatarVariant;
   isVisible: VisibleVariant;
 }>`
-  position: fixed;
   border-radius: 50%;
+  position: absolute;
   width: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
   height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
   background-color: ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].bgColor}`};
