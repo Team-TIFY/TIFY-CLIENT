@@ -1,15 +1,13 @@
 import styled from "@emotion/styled";
-import ProfileImage from "@assets/image/ProfileImage";
 import { theme } from '@styles/theme';
+import Kitty from "../../../assets/image/kitty_profile.svg";
+import Monkey from "../../../assets/image/monkey_profile.svg"
 
-type AvatarVariant = 
-| "xsmall" 
-|  "small" 
-| "medium"
+type AvatarVariant = "xsmall" | "small" | "medium";
 
-type ColorVariant = 
-| "purple"
-| "light"
+type ColorVariant = "purple" | "light";
+
+type ProfileVariant = "kitty" | "monkey";
 
 type AvatarShapeType = {
   [key in AvatarVariant]: {
@@ -24,10 +22,18 @@ type AvatarColorType = {
   }
 }
 
+type ProfileImgType = {
+  [key in ProfileVariant]: {
+    imageUrl: string;
+  }
+}
+
 interface AvatarProps{
   variant: AvatarVariant;
   color: ColorVariant;
+  imageUrl: ProfileVariant;
 }
+
 
 const AVATAR_SIZE_TYPE: AvatarShapeType = {
   xsmall: {
@@ -53,16 +59,24 @@ const AVATAR_COLOR_TYPE: AvatarColorType = {
   }
 }
 
+const PROFILE_IMAGE_TYPE: ProfileImgType = {
+  kitty: {
+    imageUrl: Kitty,
+  },
+  monkey: {
+    imageUrl: Monkey,
+  },
+}
 
 export const Avatar = ({
   variant,
-  color
-}: AvatarProps) => {
+  color,
+  imageUrl
+}: AvatarProps,) => {
   return (
     <Wrapper>
       <AvatarCircle variant={variant} color={color}>
-        <ProfileImage
-          size={AVATAR_SIZE_TYPE[variant].profileSize}
+        <ProfileImages  variant={variant} imageUrl={imageUrl}
         />
       </AvatarCircle>
     </Wrapper>
@@ -83,4 +97,14 @@ const AvatarCircle = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+const ProfileImages = styled.image<{
+  variant: AvatarVariant;
+  imageUrl: ProfileVariant;
+}>`
+  width: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].profileSize}px`};
+  height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].profileSize}px`};
+  background-image: url(${({ imageUrl }) => `${PROFILE_IMAGE_TYPE[imageUrl].imageUrl}`});
+  background-size: cover;
 `
