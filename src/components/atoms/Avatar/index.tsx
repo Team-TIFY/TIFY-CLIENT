@@ -4,10 +4,10 @@ import Kitty from "../../../assets/image/kitty_profile.svg";
 import Monkey from "../../../assets/image/monkey_profile.svg"
 
 type AvatarVariant = "xsmall" | "small" | "medium";
-
 type ColorVariant = "purple" | "light";
-
 type ProfileVariant = "kitty" | "monkey";
+type VisibleVariant = "visible" | "invisible";
+
 
 type AvatarShapeType = {
   [key in AvatarVariant]: {
@@ -28,10 +28,20 @@ type ProfileImgType = {
   }
 }
 
+type VisibleType = {
+  [key in VisibleVariant]: {
+    display: string;
+    bgColor: string;
+  }
+}
+
+
+
 interface AvatarProps{
   variant: AvatarVariant;
   color: ColorVariant;
   imageUrl: ProfileVariant;
+  isVisible: VisibleVariant;
 }
 
 
@@ -68,13 +78,26 @@ const PROFILE_IMAGE_TYPE: ProfileImgType = {
   },
 }
 
+const VISIBLE_TYPE: VisibleType = {
+  visible: {
+    bgColor: "transparent",
+    display: "none",
+  },
+  invisible: {
+    bgColor: `${theme.palette.dim_500}`,
+    display: "block",
+  }
+}
+
 export const Avatar = ({
   variant,
   color,
-  imageUrl
+  imageUrl,
+  isVisible
 }: AvatarProps,) => {
   return (
     <Wrapper>
+      <Dimmed variant={variant} isVisible={isVisible}/>
       <AvatarCircle variant={variant} color={color}>
         <ProfileImages  variant={variant} imageUrl={imageUrl}
         />
@@ -83,7 +106,19 @@ export const Avatar = ({
   )
 }
 
-const Wrapper = styled.div` 
+const Wrapper = styled.div`
+`
+
+const Dimmed = styled.div<{
+  variant: AvatarVariant;
+  isVisible: VisibleVariant;
+}>`
+  position: fixed;
+  border-radius: 50%;
+  width: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
+  height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
+  background-color: ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].bgColor}`};
+  display:  ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].display}`};
 `
 
 const AvatarCircle = styled.div<{

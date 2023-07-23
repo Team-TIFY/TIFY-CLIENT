@@ -15,6 +15,7 @@ export const Xsmall: Story = {
     variant: "xsmall",
     color: "purple",
     imageUrl: "kitty",
+    isVisible: "visible",
   }
 };
 
@@ -22,7 +23,8 @@ export const Small: Story = {
   args: {
     variant: "small",
     color: "purple",
-        imageUrl: "kitty",
+    imageUrl: "kitty",
+    isVisible:"visible",
   }
 };
 
@@ -30,6 +32,7 @@ export const Medium: Story = {
   args: {
     variant: "medium",
     color: "purple",
-        imageUrl: "kitty",
+    imageUrl: "kitty",
+    isVisible: "visible",
   }
 };
