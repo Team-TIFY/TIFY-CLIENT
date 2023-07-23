@@ -12,9 +12,10 @@ type Story = StoryObj<typeof meta>;
 
 export const New: Story = {
     args: {
-        variant: "new",
-    nickname: "닉네임",
-      reply: "답변 내용"
+      variant: "new",
+      nickname: "닉네임",
+      reply: "답변 내용",
+      imageUrl: "kitty",
     }
 };
 
@@ -22,7 +23,8 @@ export const Old: Story = {
     args: {
     variant: "old",
     nickname: "닉네임",
-      reply: "답변 내용"
+    reply: "답변 내용",
+    imageUrl: "kitty",
     }
 };
 
@@ -30,6 +32,7 @@ export const Older: Story = {
     args: {
     variant: "older",     
     nickname: "닉네임",
-    reply: "..."
+    reply: "...",
+    imageUrl: "kitty",
     }
 };

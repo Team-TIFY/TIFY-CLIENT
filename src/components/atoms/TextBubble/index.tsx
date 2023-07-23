@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { KeyOfPalette, theme } from "@styles/theme";
-import { Avatar } from "../Avatar";
+import { Avatar, ProfileVariant } from "../Avatar";
 import { Text } from "../Text";
 
 type BubbleVariant =
@@ -38,19 +38,27 @@ type BubbleProps = {
   variant: BubbleVariant;
   nickname: string;
   reply: string;
+  imageUrl: ProfileVariant;
 }
 
 export const TextBubble = ({
   variant,
   nickname,
   reply,
-}: BubbleProps) => {
+  imageUrl
+}: BubbleProps
+) => {
 
   return (
     <Wrapper>
       <Bubble variant={variant}>
         <BubbleWrapper>
-          <Avatar variant="xsmall" color="light" />     
+          <Avatar
+            variant="xsmall"
+            color="light"
+            imageUrl={imageUrl}
+            isVisible="visible"
+          />     
           <InfWrapper>
             <Text
               children={nickname}
