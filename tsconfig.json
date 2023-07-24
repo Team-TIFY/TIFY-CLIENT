@@ -25,7 +25,7 @@
     "paths": {
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
-      "@lib/*": ["src/lib/*"],
+      "@libs/*": ["src/libs/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*" : ["src/utils/*"],

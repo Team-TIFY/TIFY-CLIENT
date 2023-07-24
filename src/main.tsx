@@ -8,12 +8,16 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { globalStyle } from '@styles/theme/global';
 import { theme } from '@styles/index';
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter basename="/">
     <Global styles={globalStyle}/>
       <ThemeProvider theme = {theme}>
         <RecoilRoot>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </RecoilRoot>
       </ThemeProvider>
   </BrowserRouter>

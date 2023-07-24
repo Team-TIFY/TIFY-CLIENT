@@ -4,7 +4,7 @@ import { Button } from "@components/atoms/Button";
 const Login = () => {
     const kakaoLogin = async () => {
         const data = await AuthApi.KAKAO_LINK();
-        window.location.href = data.string
+        window.location.href = data.link;
     }
     return (
         <div>

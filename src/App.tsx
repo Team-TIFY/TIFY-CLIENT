@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '@pages/home/Home';
 import Layout from '@components/layouts/Layout';
 import Login from '@pages/home/Login';
+import { Redirect } from '@pages/home/Redirect';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />}/>
+        <Route path="/kakao/callback" element={<Redirect/>}/>
       </Route>
     </Routes>
   );
