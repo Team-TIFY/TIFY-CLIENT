@@ -3,12 +3,12 @@ import { theme } from "@styles/theme";
 
 import { DaysKeyType } from "../WeekGroup/Week";
 
-import dayLeftDownDayAfterImgUrl from "../../../../assets/image/day_leftdown_dayafter.svg";
-import dayLeftDownDayBeforeImgUrl from "../../../../assets/image/day_leftdown_daybefore.svg";
-import dayLeftDownSelectedImgUrl from "../../../../assets/image/day_leftdown_selected.svg";
-import dayRightUpDayBeforeImgUrl from "../../../../assets/image/day_rightup_daybefore.svg";
-import dayRightUpSelectedImgUrl from "../../../../assets/image/day_rightup_selected.svg";
-import dayRightUpDayAfterImgUrl from "../../../../assets/image/day_rightup_dayafter.svg";
+import dayAfterLeftDown from "../../../../assets/icons/dayAfterLeftDown.svg";
+import dayBeforeLeftDown from "../../../../assets/icons/dayBeforeLeftDown.svg";
+import daySelectedLeftDown from "../../../../assets/icons/daySelectedLeftDown.svg";
+import dayBeforeRightUp from "../../../../assets/icons/dayBeforeRightUp.svg";
+import daySelectedRightUp from "../../../../assets/icons/daySelectedRightUp.svg";
+import dayAfterRightUp from "../../../../assets/icons/dayAfterRightUp.svg";
 
 interface DayPropsType {
   children: DaysKeyType;
@@ -36,15 +36,15 @@ export const Day = ({ children, variant, leftDown, onClick }: DayPropsType) => {
         src={
           variant === 'dayBefore'
             ? leftDown
-              ? dayLeftDownDayBeforeImgUrl
-              : dayRightUpDayBeforeImgUrl
+              ? dayBeforeLeftDown
+              : dayBeforeRightUp
             : variant === 'selected'
             ? leftDown
-              ? dayLeftDownSelectedImgUrl
-              : dayRightUpSelectedImgUrl
+              ? daySelectedLeftDown
+              : daySelectedRightUp
             : leftDown
-            ? dayLeftDownDayAfterImgUrl
-            : dayRightUpDayAfterImgUrl
+            ? dayAfterLeftDown
+            : dayAfterRightUp
         }
       />
       <StyledDayChild>{children}</StyledDayChild>
