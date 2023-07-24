@@ -55,6 +55,13 @@ export const typo = {
         font-weight: 500;
         letter-spacing: -0.011em;
     `,
+    Caption_12R: css`
+        font-family: 'SpoqaHanSansNeo';
+        font-size: ${calcRem(12)};
+        line-height: 20px;
+        font-weight: 400;
+        letter-spacing: -1.1%;
+    `,
     Caption_10: css`
         font-family: 'SpoqaHanSansNeo';
         font-size: ${calcRem(10)};
