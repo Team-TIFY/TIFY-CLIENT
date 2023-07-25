@@ -61,7 +61,6 @@ export const Filter = ({
           ))}
         </FilterContainer>      
       </DivContainer>
-
     </Wrapper>
   )
 }
@@ -75,12 +74,10 @@ const Wrapper = styled.div`
 const DivContainer = styled.div`
   display: inline-flex;
 `
-
 const FilterContainer = styled.div``
 
 
 const CancelBtn = styled.button`
-  min-width: 32px;
   width: 32px;
   height: 32px;
   border-radius:50%;
