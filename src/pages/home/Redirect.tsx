@@ -4,29 +4,43 @@ import { useMutation } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 import { AuthApi } from "@utils/apis/auth/AuthApi";
 import { Text } from "@components/atoms/Text";
+import useAuthMutate from "@libs/hooks/useAuthMutate";
+import { UserInfo } from "@libs/types/UserTypes";
+import { UserApi } from "@utils/apis/user/UserApi";
+import { authState } from "@libs/store/auth";
 
+import { useRecoilState } from "recoil";
 export const Redirect = () => {
     const [token, setToken] = useState<KakaoCodeResponse>({
         accessToken: '',
         idToken: '',
         refreshToken: '',
     });
+    const [auth, setAuth] = useRecoilState(authState);
     const query = useLocation().search
     const code = new URLSearchParams(query).get('code');
+
     const kakaoTokenMutation = useMutation(AuthApi.KAKAO_TOKEN, {
         onSuccess: (data: KakaoCodeResponse) => {
           setToken(data);
         },
     });
+    
+    const { ouathValidMutation } = useAuthMutate(token)
+
     useEffect(() => {
         if (code) {
             kakaoTokenMutation.mutate(code);
         }
     }, [code]);
-    console.log(token);
+    useEffect(() => {
+        if(token.idToken.length > 0){
+            ouathValidMutation.mutate(token.idToken)
+        }
+    }, [token])
     return(
         <>
-            <Text typo={'Body_16'}>로딩중입니다</Text>
+            <Text typo={'Body_16'} color={'white'}>로딩중입니다</Text>
         </>
     )
 }

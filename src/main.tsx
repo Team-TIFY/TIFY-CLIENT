@@ -16,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <ThemeProvider theme = {theme}>
         <RecoilRoot>
           <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
             <App />
           </QueryClientProvider>
         </RecoilRoot>

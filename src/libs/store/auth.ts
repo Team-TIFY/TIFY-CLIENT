@@ -3,22 +3,14 @@ export interface AuthStateType {
     isAuthenticated: boolean;
     callbackUrl: string;
     accessToken: string;
-    userProfile: {
-      id: number;
-      profileImage: string;
-      name: string;
-    } | null;
+    userId: number;
 }
 
 const initialState: AuthStateType = {
     isAuthenticated: false,
     callbackUrl: '/',
     accessToken: '',
-    userProfile: {
-      id: 0,
-      profileImage: '',
-      name: '',
-    },
+    userId: 0
   };
 
 export const authState = atom<AuthStateType>({
