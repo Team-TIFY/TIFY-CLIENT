@@ -71,6 +71,7 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
+
 const DivContainer = styled.div`
   display: inline-flex;
 `
