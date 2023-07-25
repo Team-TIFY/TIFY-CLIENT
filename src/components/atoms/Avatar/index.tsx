@@ -5,6 +5,7 @@ import Monkey from "../../../assets/image/monkey_profile.svg"
 
 type AvatarVariant = "xsmall" | "small" | "medium";
 type ColorVariant = "purple" | "light";
+
 export type ProfileVariant = "kitty" | "monkey";
 type VisibleVariant = "visible" | "invisible";
 
@@ -33,6 +34,7 @@ type VisibleType = {
     bgColor: string;
   }
 }
+
 
 export interface AvatarProps{
   variant: AvatarVariant;
