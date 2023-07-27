@@ -5,8 +5,6 @@ import { useLocation } from "react-router-dom";
 import { AuthApi } from "@utils/apis/auth/AuthApi";
 import { Text } from "@components/atoms/Text";
 import useAuthMutate from "@libs/hooks/useAuthMutate";
-import { UserInfo } from "@libs/types/UserTypes";
-import { UserApi } from "@utils/apis/user/UserApi";
 import { authState } from "@libs/store/auth";
 
 import { useRecoilState } from "recoil";

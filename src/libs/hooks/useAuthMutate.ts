@@ -7,7 +7,7 @@ import { AuthApi } from "@utils/apis/auth/AuthApi";
 import { axiosApi } from "@utils/apis/axios";
 import { setCookie } from "@utils/cookies";
 
-const useAuthMutate = ({idToken, accessToken}: KakaoCodeResponse) => {
+const useAuthMutate = ({idToken}: KakaoCodeResponse) => {
     const [auth, setAuth] = useRecoilState(authState);
     const navigate = useNavigate();
 
@@ -30,14 +30,18 @@ const useAuthMutate = ({idToken, accessToken}: KakaoCodeResponse) => {
     //회원가입 여부 검증 
     const ouathValidMutation = useMutation(AuthApi.KAKAO_VALID, {
         onSuccess: (data: { canRegister : boolean }) => {
+            console.log(data.canRegister)
             //그냥 로그인 하셈 
-            if (data.canRegister === false){
+            if (data.canRegister){
+                ouathKakaoRegisterMutation.mutate({idToken, payload:{
+                    email:"abc:@example.com",
+                    profileImage:"http://aaa",
+                    name:"김예시",
+                    phoneNumber:"010-123-456"
+                }})
+            } else {
                 ouathKakaoLoginMutation.mutate(idToken)
-            } 
-            // else {
-            //     //회원가입 절차 진행
-            //     //ouathKakaoRegisterMutation.mutate(idToken)
-            // }
+            }
         }
     })
 
