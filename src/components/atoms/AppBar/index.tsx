@@ -58,15 +58,12 @@ export const AppBar = ({
 const Wrapper = styled(FlexBox)`
     height: 80px;
     width: 100%;
+    position: sticky;
     justify-content: space-between;
     top: 0;
     padding: 40px 16px 16px 16px;
     background-color: ${theme.palette.background};
-    position: fixed;
     z-index: 1;
-    ${media.pc} {
-        position: sticky;
-    }
 `
 
 const FirstElement = styled(FlexBox)`

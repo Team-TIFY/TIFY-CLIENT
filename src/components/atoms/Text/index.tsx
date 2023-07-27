@@ -20,7 +20,7 @@ export type TextPropsKey = 'typo' | 'color';
 export const Text = ({
   typo = 'Body_14',
   as = 'h1',
-  color = 'white',
+  color,
   children,
   ...props
 }: TextProps) => {

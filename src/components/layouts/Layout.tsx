@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import { Outlet } from 'react-router-dom';
 import { theme } from '@styles/theme';
+import { AppBar } from '@components/atoms/AppBar';
 
 const Layout = () => {
     return(
         <MainContainer>
+          <AppBar variant='logoWithAlarm'/>
           <Outlet/>
         </MainContainer>
     )
