@@ -5,16 +5,13 @@ import { useLocation } from "react-router-dom";
 import { AuthApi } from "@utils/apis/auth/AuthApi";
 import { Text } from "@components/atoms/Text";
 import useAuthMutate from "@libs/hooks/useAuthMutate";
-import { authState } from "@libs/store/auth";
 
-import { useRecoilState } from "recoil";
 export const Redirect = () => {
     const [token, setToken] = useState<KakaoCodeResponse>({
         accessToken: '',
         idToken: '',
         refreshToken: '',
     });
-    const [auth, setAuth] = useRecoilState(authState);
     const query = useLocation().search
     const code = new URLSearchParams(query).get('code');
 
@@ -31,6 +28,7 @@ export const Redirect = () => {
             kakaoTokenMutation.mutate(code);
         }
     }, [code]);
+    
     useEffect(() => {
         if(token.idToken.length > 0){
             ouathValidMutation.mutate(token.idToken)

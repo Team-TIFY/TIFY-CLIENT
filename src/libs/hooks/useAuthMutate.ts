@@ -30,7 +30,6 @@ const useAuthMutate = ({idToken}: KakaoCodeResponse) => {
     //회원가입 여부 검증 
     const ouathValidMutation = useMutation(AuthApi.KAKAO_VALID, {
         onSuccess: (data: { canRegister : boolean }) => {
-            console.log(data.canRegister)
             //그냥 로그인 하셈 
             if (data.canRegister){
                 ouathKakaoRegisterMutation.mutate({idToken, payload:{

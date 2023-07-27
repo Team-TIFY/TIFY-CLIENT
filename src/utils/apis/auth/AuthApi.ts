@@ -12,7 +12,6 @@ export const AuthApi = {
     },
     KAKAO_LOGIN: async(idToken: string): Promise<KakaoLoginResponse> => {
         const response = await axiosApi.post(`/auth/oauth/kakao/login?idToken=${idToken}`)
-        console.log(response)
         return response.data.data
     },
     KAKAO_REGISTER: async({idToken, payload} : {
