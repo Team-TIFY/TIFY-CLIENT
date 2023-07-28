@@ -4,12 +4,17 @@ import Layout from '@components/layouts/Layout';
 import Login from '@pages/home/Login';
 import { Redirect } from '@pages/home/Redirect';
 import { CheckUserAuth } from '@components/auth/CheckUserAuth';
+import RequireAuth from '@components/auth/RequireAuth';
+import { MyProfile } from '@pages/myprofile';
 
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
+        <Route element = {<RequireAuth/>}>
+          <Route path="/" element={<Home />} />
+          <Route path="/myprofile" element={<MyProfile/>}></Route>
+      </Route>
         <Route element={<CheckUserAuth/>}>
           <Route path="/login" element={<Login />}/>
         </Route>

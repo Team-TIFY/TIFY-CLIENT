@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 export interface AuthStateType {
     isAuthenticated: boolean;
     callbackUrl: string;
@@ -16,5 +19,6 @@ const initialState: AuthStateType = {
 export const authState = atom<AuthStateType>({
     key: 'authState',
     default: initialState,
+    effects_UNSTABLE: [persistAtom],
 });
   

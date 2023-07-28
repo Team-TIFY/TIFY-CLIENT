@@ -71,6 +71,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:18.2.0"],\
             ["react-router-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:6.14.1"],\
             ["recoil", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:0.7.7"],\
+            ["recoil-persist", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0"],\
             ["storybook", "npm:7.0.18"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"],\
             ["vite", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.3.9"]\
@@ -14834,6 +14835,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["recoil-persist", [\
+        ["npm:5.1.0", {\
+          "packageLocation": "./.yarn/cache/recoil-persist-npm-5.1.0-6c9c3d1452-03ee8417b9.zip/node_modules/recoil-persist/",\
+          "packageDependencies": [\
+            ["recoil-persist", "npm:5.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/recoil-persist-virtual-d14d32ad50/0/cache/recoil-persist-npm-5.1.0-6c9c3d1452-03ee8417b9.zip/node_modules/recoil-persist/",\
+          "packageDependencies": [\
+            ["recoil-persist", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0"],\
+            ["@types/recoil", null],\
+            ["recoil", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:0.7.7"]\
+          ],\
+          "packagePeers": [\
+            "@types/recoil",\
+            "recoil"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["regenerate", [\
         ["npm:1.4.2", {\
           "packageLocation": "./.yarn/cache/regenerate-npm-1.4.2-b296c5b63a-3317a09b2f.zip/node_modules/regenerate/",\
@@ -15985,6 +16008,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:18.2.0"],\
             ["react-router-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:6.14.1"],\
             ["recoil", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:0.7.7"],\
+            ["recoil-persist", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0"],\
             ["storybook", "npm:7.0.18"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"],\
             ["vite", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.3.9"]\

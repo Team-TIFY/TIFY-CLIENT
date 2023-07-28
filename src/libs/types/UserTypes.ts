@@ -6,3 +6,13 @@ export interface UserInfo {
     job: string;
     gender: string;
 }
+
+export interface UserInfoToken {
+    userId: number;
+    userName: string;
+    imageUrl: string;
+    birth: string;
+    job: string;
+    createdAt: Date;
+    gender: string;
+}

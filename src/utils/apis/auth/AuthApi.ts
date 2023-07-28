@@ -12,6 +12,7 @@ export const AuthApi = {
     },
     KAKAO_LOGIN: async(idToken: string): Promise<KakaoLoginResponse> => {
         const response = await axiosApi.post(`/auth/oauth/kakao/login?idToken=${idToken}`)
+        console.log(response.data.data)
         return response.data.data
     },
     KAKAO_REGISTER: async({idToken, payload} : {
@@ -28,7 +29,11 @@ export const AuthApi = {
         return response.data.data
     },
     REFRESH: async (refreshToken: string): Promise<KakaoLoginResponse> => {
-        const response = await axiosApi.get(`/auth/token/refresh?refresh-token=${refreshToken}`)
+        axiosApi.interceptors.request.use(function(config) {
+            config.headers.set('refresh-token', refreshToken)
+            return config
+        })
+        const response = await axiosApi.get(`/auth/token/refresh`)
         return response.data.data
     }
 }

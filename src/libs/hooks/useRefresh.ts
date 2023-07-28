@@ -22,7 +22,7 @@ const useRefresh = () => {
         removeCookie('refreshToken');
         removeCookie('accessToken');
         setCookie('refreshToken', data.refreshToken, {
-          maxAge:  2592000,
+          maxAge:  96000000,
           path: '/',
         });
         setCookie('accessToken', data.accessToken, {
