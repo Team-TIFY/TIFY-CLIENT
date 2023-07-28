@@ -20,7 +20,7 @@ export const AuthApi = {
             payload: KakaoRegisterResponse
         }): Promise<KakaoLoginResponse> => {
         const response = await axiosApi.post(
-            `/auth/ouath/kakao/register?id_token=${idToken}`,
+            `/auth/oauth/kakao/register?id_token=${idToken}`,
             payload)
         return response.data.data
     },

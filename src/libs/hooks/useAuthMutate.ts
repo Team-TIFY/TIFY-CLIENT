@@ -33,10 +33,10 @@ const useAuthMutate = ({idToken}: KakaoCodeResponse) => {
             //그냥 로그인 하셈 
             if (data.canRegister){
                 ouathKakaoRegisterMutation.mutate({idToken, payload:{
-                    email:"abc:@example.com",
-                    profileImage:"http://aaa",
-                    name:"김예시",
-                    phoneNumber:"010-123-456"
+                    email:"abcd@example.com",
+                    profileImage:"http://aaab",
+                    name:"김미미",
+                    phoneNumber:"010-1234-456"
                 }})
             } else {
                 ouathKakaoLoginMutation.mutate(idToken)
