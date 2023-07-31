@@ -1,9 +1,14 @@
-import React from 'react';
+import { AuthApi } from "@utils/apis/auth/AuthApi";
+import { Button } from "@components/atoms/Button";
 
 const Login = () => {
+    const kakaoLogin = async () => {
+        const data = await AuthApi.KAKAO_LINK();
+        window.location.href = data.link;
+    }
     return (
         <div>
-
+            <Button variant="kakao" onClick={kakaoLogin}>카카오로 로그인하기</Button>
         </div>
     );
 };

@@ -40,25 +40,27 @@ export const Filter = ({
 
   return (
     <Wrapper>
-      <>
-        {selected.some((item) => item.active) && (
-          <CancelBtn onClick={() => handleCancel()}>
-            <FilterIcon />
-          </CancelBtn>
-        )}
-      </>
-      <FilterContainer>
-        {selected.map((item) => (
-          <SelectBtn
-            key={item.id}
-            active={item.active}
-            onClick={() => handleClick(item.id)}
-            {...props}
-          >
-            {item.value}
-          </SelectBtn>
-        ))}
-      </FilterContainer>
+      <DivContainer>
+        <>
+          {selected.some((item) => item.active) && (
+            <CancelBtn onClick={() => handleCancel()}>
+              <FilterIcon />
+            </CancelBtn>
+          )}
+        </>
+        <FilterContainer>
+          {selected.map((item) => (
+            <SelectBtn
+              key={item.id}
+              active={item.active}
+              onClick={() => handleClick(item.id)}
+              {...props}
+            >
+              {item.value}
+            </SelectBtn>
+          ))}
+        </FilterContainer>      
+      </DivContainer>
     </Wrapper>
   )
 }
@@ -69,6 +71,10 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
+
+const DivContainer = styled.div`
+  display: inline-flex;
+`
 const FilterContainer = styled.div``
 
 

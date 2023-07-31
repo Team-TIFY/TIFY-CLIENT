@@ -35,8 +35,7 @@ type VisibleType = {
 }
 
 
-
-interface AvatarProps{
+export interface AvatarProps{
   variant: AvatarVariant;
   color: ColorVariant;
   imageUrl: ProfileVariant;

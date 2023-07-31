@@ -34,5 +34,6 @@ export const palette = {
     aqua_500: '#4F85F7',
     background: '#17171C',
     white: '#FFFFFF',
+    kakao: '#FAE64D'
   } as const;
   

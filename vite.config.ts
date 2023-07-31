@@ -10,9 +10,10 @@ export default defineConfig({
     alias: [
       { find: '@pages', replacement: '/src/pages' },
       { find: '@components', replacement: '/src/components' },
-      { find: '@lib', replacement: '/src/lib' },
+      { find: '@libs', replacement: '/src/libs' },
       { find: '@assets', replacement: '/src/assets' },
       { find: '@styles', replacement: '/src/styles'},
+      { find: '@utils', replacement: '/src/utils'},
     ],
   },
 })
