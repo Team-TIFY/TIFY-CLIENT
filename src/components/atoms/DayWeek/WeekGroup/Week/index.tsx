@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Day } from "../../Day";
 import { TodayKeyType } from "..";
@@ -14,11 +14,12 @@ interface WeekPropsType {
 export const Week = ({ today }: WeekPropsType ) => {
   const week: DaysKeyType[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   const [selectedDay, setSelectedDay] = useState(today);
-
   const handleDayClick = (index: TodayKeyType) => {
     setSelectedDay(index);
   };
-
+  useEffect(() => {
+    setSelectedDay(today)
+  },[today])
   return (
     <Container>
       <Wrapper>

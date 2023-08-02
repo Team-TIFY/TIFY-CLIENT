@@ -9,7 +9,6 @@ import { useEffect } from "react";
 
 export const MyProfile = () => {
     const [auth, setAuth] = useRecoilState(authState);
-    console.log(auth.userId)
     const { data, isSuccess } = useQuery(['userProfile', auth.userId], () =>
         UserApi.GET_USER_INFO(auth.userId),
     );
