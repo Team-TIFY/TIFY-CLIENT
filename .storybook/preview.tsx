@@ -1,4 +1,5 @@
 import { Preview } from '@storybook/react';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './style.css';
 
@@ -36,6 +37,15 @@ const preview: Preview = {
       defaultViewport: 'iPhone13'
     },
   },
+  decorators: [
+    (Story) => (
+      <BrowserRouter>
+      <div>
+        <Story/>
+      </div>
+      </BrowserRouter>
+    )
+  ]
 };
 
 
