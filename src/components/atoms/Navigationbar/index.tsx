@@ -4,11 +4,11 @@ import Rocket from "@assets/icons/rocket.svg"
 import Cherry from "@assets/icons/cherry.svg"
 import Flying from "@assets/icons/flying.svg"
 import { useNavigate } from "react-router-dom"
-import { ButtonHTMLAttributes, useState } from "react"
-import { useRef } from "react"
+import { useState, useRef } from "react"
 import { Text } from "../Text"
 
 export const Navigationbar = () => {
+    const navigate = useNavigate();
     const [select, setSelect] = useState<number>(1);
     const navRef = useRef<any>([]);
     const handleClick = (index: number)=> {
@@ -22,15 +22,15 @@ export const Navigationbar = () => {
         <NavContainer>
             <Wrapper>
                 <NavBorder select={select}/>
-                <NavBtn className={select === 0 ? 'active' : ''} onClick={() => handleClick(0)} ref={elem => (navRef.current[0] = elem)}>
+                <NavBtn className={select === 0 ? 'active' : ''} onClick={() => {handleClick(0); navigate('/friends')}} ref={elem => (navRef.current[0] = elem)}>
                     <img src={Rocket}/>
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>프렌즈</Text>
                 </NavBtn>
-                <NavBtn className={select === 1 ? 'active' : ''} onClick={() => handleClick(1)} ref={elem => (navRef.current[1] = elem)}>
+                <NavBtn className={select === 1 ? 'active' : ''} onClick={() => {handleClick(1); navigate('/weekly')}} ref={elem => (navRef.current[1] = elem)}>
                     <img src={Cherry}/>
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>위클리</Text>
                 </NavBtn>
-                <NavBtn className={select === 2 ? 'active' : ''} onClick={() => handleClick(2)} ref={elem => (navRef.current[2] = elem)}>
+                <NavBtn className={select === 2 ? 'active' : ''} onClick={() => {handleClick(2); navigate('/myprofile')}} ref={elem => (navRef.current[2] = elem)}>
                     <img src={Flying} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>마이</Text>
                 </NavBtn>
