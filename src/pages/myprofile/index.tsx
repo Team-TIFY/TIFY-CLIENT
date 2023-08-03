@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
-import dotsIconImgUrl from "../../assets/icons/dots.svg";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 import { UserApi } from "@utils/apis/user/UserApi";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { authState } from "@libs/store/auth";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { Text } from "@components/atoms/Text";
 import { AppBar } from "@components/atoms/AppBar";
 import { Spacing } from "@components/atoms/Spacing";
@@ -16,25 +14,53 @@ import { Category } from "@components/atoms/Category";
 import { Filter } from "@components/atoms/Filter";
 import { Tag } from "@components/atoms/Tag";
 import { FlexBox } from "@components/layouts/FlexBox";
+import { SelectedProps, SelectedTag } from "@libs/types/UserTypes";
+import Dots from "@assets/icons/Dots";
+
+const selectedProps: SelectedProps = [
+  { id: 1, active: false, name: "메이크업", value: "MAKEUP" },
+  { id: 2, active: false, name: "프레그런스", value: "PERFUME" },
+  { id: 3, active: false, name: "의류", value: "CLOTHES" },
+  { id: 4, active: false, name: "잡화", value: "FASHIONSTUFF" },
+  { id: 5, active: false, name: "액세사리", value: "ACCESSORY" },
+  { id: 6, active: false, name: "요리", value: "COOKING" },
+  { id: 7, active: false, name: "운동", value: "SPORTS" },
+  { id: 8, active: false, name: "여행", value: "TRIP" },
+  { id: 9, active: false, name: "문화생활", value: "CULTURALLIFE" },
+];
 
 export const MyProfile = () => {
-  const [auth, setAuth] = useRecoilState(authState);
+  const auth = useRecoilValue(authState);
 
-  console.log(auth.userId);
+  const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([]);
 
-  const { data, isSuccess } = useQuery(['userProfile', auth.userId], () =>
-    UserApi.GET_USER_INFO(auth.userId),
+  const { data: userData } = useQuery(["userProfile", auth.userId], () =>
+    UserApi.GET_USER_INFO(auth.userId)
   );
 
-  useEffect(() => {
-    if (isSuccess) {
-      console.log(data);
+  const { data: userTagData = [] } = useQuery(["userTag", auth.userId], () =>
+    UserApi.GET_USER_TAG(auth.userId)
+  );
+
+  const getFilteredData = (selectedTags: SelectedTag[]) => {
+    const promises = selectedTags.map((tag) =>
+      UserApi.GET_FILTERED_USER_TAG(auth.userId, tag.value)
+    );
+
+    return Promise.all(promises);
+  };
+
+  const { data: filteredUserTagData = [] } = useQuery(
+    ["filteredUserTag", selectedTags, auth.userId],
+    () => getFilteredData(selectedTags),
+    {
+      enabled: selectedTags.length > 0,
     }
-  });
+  );
 
   return (
     <>
-      <AppBar variant={"backPush"} label={"@example_kim"} />
+      <AppBar variant={"backPush"} label={"@" + userData?.email} />
       <ImageWrapper />
       <Spacing />
       <Padding size={[0, 16]}>
@@ -51,13 +77,13 @@ export const MyProfile = () => {
             <Spacing height={12} />
             <UserInfo>
               <FlexBox justify="space-between">
-                <Text typo={"Headline_20"} color={'white'} children={"김예시"} />
-                <img src={dotsIconImgUrl} />
+                <Text typo={"Headline_20"} color={"white"} children={userData?.userName} />
+                <Dots />
               </FlexBox>
               <Text
                 typo={"Mont_Caption_12M"}
                 color={"gray_200"}
-                children={"August 21 | 바다에서 서핑 중 🏄‍♂️"}
+                children={userData?.birth + " | 바다에서 서핑 중 🏄‍♂️"}
               />
             </UserInfo>
             <Spacing height={20} />
@@ -71,44 +97,43 @@ export const MyProfile = () => {
           <Spacing height={32} />
           <FilterWrapper>
             <Filter
-              selectedProps={[
-                { id: 1, active: false, value: "메이크업" },
-                { id: 2, active: false, value: "프레그런스" },
-                { id: 3, active: false, value: "의류" },
-                { id: 4, active: false, value: "잡화" },
-                { id: 5, active: false, value: "액세사리" },
-                { id: 6, active: false, value: "요리" },
-                { id: 7, active: false, value: "운동" },
-                { id: 8, active: false, value: "여행" },
-                { id: 9, active: false, value: "문화생활" },
-              ]}
+              selectedTags={selectedTags}
+              setSelectedTags={setSelectedTags}
+              selectedProps={selectedProps}
             />
           </FilterWrapper>
           <Spacing height={20} />
           <CategoryWrapper>
             <FlexBox direction="column" gap={20}>
-              <Category
-                categoryName="메이크업"
-                children={[
-                  <Tag variant={"main"} color={"purple"} children={"여름쿨톤"} />,
-                  <Tag variant={"main"} color={"pink"} children={"글로시 립"} />,
-                  <Tag variant={"dark"} color={"purple"} children={"페리페라"} />,
-                  <Tag variant={"dark"} color={"pink"} children={"페리페라"} />,
-                  <Tag variant={"main"} color={"purple"} children={"페리페라"} />,
-                  <Tag variant={"dark"} color={"purple"} children={"페리페라"} />,
-                ]}
-              />
-              <Category
-                categoryName="의류"
-                children={[
-                  <Tag variant={"main"} color={"purple"} children={"여름쿨톤"} />,
-                  <Tag variant={"main"} color={"pink"} children={"글로시 립"} />,
-                  <Tag variant={"dark"} color={"purple"} children={"페리페라"} />,
-                  <Tag variant={"dark"} color={"pink"} children={"페리페라"} />,
-                  <Tag variant={"main"} color={"purple"} children={"페리페라"} />,
-                  <Tag variant={"dark"} color={"purple"} children={"페리페라"} />,
-                ]}
-              />
+              {selectedTags.length > 0
+                ? filteredUserTagData.map((tag, idx) => (
+                    <Category
+                      key={idx}
+                      categoryName={selectedTags[idx].name}
+                      children={tag.map((tagData) => (
+                        <Tag
+                          key={tagData.userFavorId}
+                          variant={"main"}
+                          color={"purple"}
+                          children={tagData.smallCategory}
+                        />
+                      ))}
+                    />
+                  ))
+                : userTagData.map((category) => (
+                    <Category
+                      key={category.userTagId}
+                      categoryName={category.largeCategory}
+                      children={category.favors.map((tag) => (
+                        <Tag
+                          key={tag.userFavorId}
+                          variant={"main"}
+                          color={"purple"}
+                          children={tag.smallCategory}
+                        />
+                      ))}
+                    />
+                  ))}
             </FlexBox>
             <Spacing height={32} />
           </CategoryWrapper>

@@ -1,33 +1,47 @@
 import styled from "@emotion/styled";
-import { ButtonHTMLAttributes, useState } from "react";
+import { ButtonHTMLAttributes, useEffect, useState } from "react";
 import { theme } from "@styles/theme";
 import { FilterIcon } from "@assets/image/FilterIcon";
+import { SelectedProps, SelectedTag } from "@libs/types/UserTypes";
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  selectedProps: {
-    id: number;
-    active: boolean;
-    value: string;
-  }[];
+  selectedProps: SelectedProps,
+  selectedTags: SelectedTag[],
+  setSelectedTags: React.Dispatch<React.SetStateAction<SelectedTag[]>>;
 }
 type Props = FilterProps & Partial<FilterProps>;
 
 export const Filter = ({
   selectedProps,
+  setSelectedTags,
+  selectedTags,
   ...props
 } : Props) => {
 
   const [selected, setSelected] = useState(selectedProps);
+
+  useEffect(() => {
+    const updatedTags = selected
+      .filter((item) => item.active)
+      .reduce((acc, item) => {
+        if (!acc.some((tag) => tag.value === item.value)) {
+          acc.push({ name: item.name, value: item.value });
+        }
+        return acc;
+      }, [] as SelectedTag[]);
   
+    setSelectedTags(updatedTags);
+  }, [selected]);
+
   const handleClick = (id: number) => {
     const updatedBtn = selected.map((item) => {
       if (item.id === id) {
         return { ...item, active: !item.active };
       }
+
       return item;
     });
     setSelected(updatedBtn);
-    console.log(selected);
   };
   
   const handleCancel = () => {  //전체 취소 버튼
@@ -56,7 +70,7 @@ export const Filter = ({
               onClick={() => handleClick(item.id)}
               {...props}
             >
-              {item.value}
+              {item.name}
             </SelectBtn>
           ))}
         </FilterContainer>      
@@ -71,12 +85,10 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-
 const DivContainer = styled.div`
   display: inline-flex;
 `
 const FilterContainer = styled.div``
-
 
 const CancelBtn = styled.button`
   width: 32px;
@@ -90,7 +102,6 @@ const CancelBtn = styled.button`
   background-color:${theme.palette.gray_800};
   cursor: pointer;
 `
-
 
 const SelectBtn = styled.button<{ active:boolean }>`
   background-color: ${(props) => props.active ? `${theme.palette.purple_300}` : `${theme.palette.gray_900}`};
