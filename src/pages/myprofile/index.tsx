@@ -4,18 +4,14 @@ import { UserApi } from "@utils/apis/user/UserApi";
 import { useRecoilValue } from "recoil";
 import { authState } from "@libs/store/auth";
 import { useQuery } from "@tanstack/react-query";
-import { Text } from "@components/atoms/Text";
 import { AppBar } from "@components/atoms/AppBar";
 import { Spacing } from "@components/atoms/Spacing";
 import { Padding } from "@components/layouts/Padding";
-import { Avatar } from "@components/atoms/Avatar";
-import { Button } from "@components/atoms/Button";
-import { Category } from "@components/atoms/Category";
 import { Filter } from "@components/atoms/Filter";
-import { Tag } from "@components/atoms/Tag";
-import { FlexBox } from "@components/layouts/FlexBox";
-import { SelectedProps, SelectedTag } from "@libs/types/UserTypes";
-import Dots from "@assets/icons/Dots";
+import { SelectedProps, SelectedTag, UserInfo } from "@libs/types/UserTypes";
+import { ProfileImage } from "@components/mypage/ProfileImage";
+import { UserTagData } from "@components/mypage/UserTagData";
+import { ProfileHeader } from "@components/mypage/ProfileHeader";
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: "메이크업", value: "MAKEUP" },
@@ -34,7 +30,7 @@ export const MyProfile = () => {
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([]);
 
-  const { data: userData } = useQuery(["userProfile", auth.userId], () =>
+  const { data: userData = {} as UserInfo } = useQuery(["userProfile", auth.userId], () =>
     UserApi.GET_USER_INFO(auth.userId)
   );
 
@@ -61,39 +57,11 @@ export const MyProfile = () => {
   return (
     <>
       <AppBar variant={"backPush"} label={"@" + userData?.email} />
-      <ImageWrapper />
+      <ProfileImage />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>
-          <ProfileHeader>
-            <AvatarWrapper>
-              <Avatar
-                variant={"medium"}
-                color={"purple"}
-                imageUrl={"monkey"}
-                isVisible={"visible"}
-              />
-            </AvatarWrapper>
-            <Spacing height={12} />
-            <UserInfo>
-              <FlexBox justify="space-between">
-                <Text typo={"Headline_20"} color={"white"} children={userData?.userName} />
-                <Dots />
-              </FlexBox>
-              <Text
-                typo={"Mont_Caption_12M"}
-                color={"gray_200"}
-                children={userData?.birth + " | 바다에서 서핑 중 🏄‍♂️"}
-              />
-            </UserInfo>
-            <Spacing height={20} />
-            <ButtonWrapper>
-              <FlexBox justify="space-between">
-                <Button variant={"mediumSquare"} children={"지난 데일리"} />
-                <Button variant={"mediumSquare"} children={"새로운 관심사 답변"} />
-              </FlexBox>
-            </ButtonWrapper>
-          </ProfileHeader>
+          <ProfileHeader userData={userData} />
           <Spacing height={32} />
           <FilterWrapper>
             <Filter
@@ -103,61 +71,18 @@ export const MyProfile = () => {
             />
           </FilterWrapper>
           <Spacing height={20} />
-          <CategoryWrapper>
-            <FlexBox direction="column" gap={20}>
-              {selectedTags.length > 0
-                ? filteredUserTagData.map((tag, idx) => (
-                    <Category
-                      key={idx}
-                      categoryName={selectedTags[idx].name}
-                      children={tag.map((tagData) => (
-                        <Tag
-                          key={tagData.userFavorId}
-                          variant={"main"}
-                          color={"purple"}
-                          children={tagData.smallCategory}
-                        />
-                      ))}
-                    />
-                  ))
-                : userTagData.map((category) => (
-                    <Category
-                      key={category.userTagId}
-                      categoryName={category.largeCategory}
-                      children={category.favors.map((tag) => (
-                        <Tag
-                          key={tag.userFavorId}
-                          variant={"main"}
-                          color={"purple"}
-                          children={tag.smallCategory}
-                        />
-                      ))}
-                    />
-                  ))}
-            </FlexBox>
-            <Spacing height={32} />
-          </CategoryWrapper>
+          <UserTagData
+            selectedTags={selectedTags}
+            filteredUserTagData={filteredUserTagData}
+            userTagData={userTagData}
+          />
         </ProfileWrapper>
       </Padding>
     </>
   );
 };
 
-const ImageWrapper = styled.div`
-  border: 1px solid red;
-  width: 100%;
-  height: 336px;
-`;
-
 const ProfileWrapper = styled.div``;
-
-const ProfileHeader = styled.div``;
-
-const AvatarWrapper = styled.div``;
-
-const UserInfo = styled.div`
-  height: 52px;
-`;
 
 const FilterWrapper = styled.div`
   width: 100%;
@@ -170,7 +95,3 @@ const FilterWrapper = styled.div`
     display: none; /* Chrome, Safari, Opera */
   }
 `;
-
-const ButtonWrapper = styled.div``;
-
-const CategoryWrapper = styled.div``;

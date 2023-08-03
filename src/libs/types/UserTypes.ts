@@ -28,6 +28,11 @@ export interface UserTag {
     ]
 }
 
+export interface FilteredUserTag {
+  userFavorId: number;
+  smallCategory: string;
+}
+
 export interface SelectedTag {
   name: TagNameKey,
   value: TagValueKey
