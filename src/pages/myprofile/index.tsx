@@ -4,7 +4,6 @@ import { UserApi } from "@utils/apis/user/UserApi";
 import { useRecoilValue } from "recoil";
 import { authState } from "@libs/store/auth";
 import { useQuery } from "@tanstack/react-query";
-import { AppBar } from "@components/atoms/AppBar";
 import { Spacing } from "@components/atoms/Spacing";
 import { Padding } from "@components/layouts/Padding";
 import { Filter } from "@components/atoms/Filter";
@@ -56,8 +55,7 @@ export const MyProfile = () => {
 
   return (
     <>
-      <AppBar variant={"backPush"} label={"@" + userData?.email} />
-      <ProfileImage />
+      <ProfileImage isTagSelected={selectedTags.length ? true : false} />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>

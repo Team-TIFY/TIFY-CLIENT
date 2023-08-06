@@ -1,15 +1,19 @@
 import styled from "@emotion/styled";
 
-export const ProfileImage = () => {
+interface ProfileImagePropsInterface {
+  isTagSelected: boolean;
+}
+
+export const ProfileImage = ({ isTagSelected }: ProfileImagePropsInterface) => {
   return (
-    <ImageWrapper>
+    <ImageWrapper isTagSelected={isTagSelected}>
       
     </ImageWrapper>
   );
 };
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.div<{ isTagSelected: boolean }>`
   border: 1px solid red;
   width: 100%;
-  height: 336px;
+  height: ${({ isTagSelected }) => isTagSelected ? '86px' : '336px'};
 `;

@@ -1,15 +1,17 @@
 import styled from '@emotion/styled';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { theme } from '@styles/theme';
 import { AppBar } from '@components/atoms/AppBar';
 
 const Layout = () => {
-    return(
-        <MainContainer>
-          <AppBar variant='logoWithAlarm'/>
-          <Outlet/>
-        </MainContainer>
-    )
+  const location = useLocation();
+  
+  return(
+    <MainContainer>
+      <AppBar variant={location.pathname === '/myprofile' ? 'backPushWithMenu' : 'logoWithAlarm'} />
+      <Outlet/>
+    </MainContainer>
+  )
 }
 
 export default Layout
