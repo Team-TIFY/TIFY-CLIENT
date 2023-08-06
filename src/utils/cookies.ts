@@ -1,4 +1,4 @@
-import {Cookies} from 'react-cookie';
+import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 

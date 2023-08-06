@@ -10,7 +10,7 @@ export const WeekGroup = () => {
     <Wrapper>
       <WeekWrapper>
         {todayList.map((today) => (
-          <Week key={today} today={today} />
+          <Week key={today} today={today}/>
         ))}
       </WeekWrapper>
     </Wrapper>

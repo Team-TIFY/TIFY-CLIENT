@@ -11,11 +11,12 @@ export const WeeklyQuestion = () => {
     const { getTodayDate } = useGetDate()
     useEffect(() => {
         setDate(getTodayDate)
-    },[date[1]])
+    },[])
+    console.log(date)
     return (
         <WeekContainer>
             <Spacing variant='default' height={48}/>
-            <Week today={date[1]}/>
+            <Week today={date[1]} getNewDate={setDate}/>
             <Text typo={'Body_14'} color="white">데일리 질문</Text>
         </WeekContainer>
     )
