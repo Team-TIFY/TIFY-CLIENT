@@ -98,8 +98,7 @@ export const Avatar = ({
     <Wrapper>
       <Dimmed variant={variant} isVisible={isVisible}/>
       <AvatarCircle variant={variant} color={color}>
-        <ProfileImages  variant={variant} imageUrl={imageUrl}
-        />
+        <ProfileImages  variant={variant} imageUrl={imageUrl}/>
       </AvatarCircle>
     </Wrapper>
   )
@@ -133,7 +132,7 @@ const AvatarCircle = styled.div<{
   align-items: center;
 `
 
-const ProfileImages = styled.image<{
+const ProfileImages = styled.img<{
   variant: AvatarVariant;
   imageUrl: ProfileVariant;
 }>`
