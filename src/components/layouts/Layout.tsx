@@ -4,6 +4,7 @@ import { theme } from '@styles/theme';
 import { AppBar } from '@components/atoms/AppBar';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@libs/store/user';
+import { Navigationbar } from '@components/atoms/Navigationbar';
 
 const Layout = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const Layout = () => {
         variant={location.pathname === '/myprofile' ? 'backPushWithMenu' : 'logoWithAlarm'}
         label={location.pathname === '/myprofile' ? userData.userName : ''}
       />
+      <Navigationbar/>
       <Outlet/>
     </MainContainer>
   )
