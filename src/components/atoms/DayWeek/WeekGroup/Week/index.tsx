@@ -1,40 +1,34 @@
 import styled from "@emotion/styled";
 import useGetDate from "@libs/hooks/useGetDate";
-import { useState, useEffect } from 'react';
 import { Day } from "../../Day";
-import { Dispatch, SetStateAction } from "react";
+import { dateState } from "@libs/store/date"
+import { useRecoilState } from "recoil"
 import { TodayKeyType } from "..";
 
 export type DaysKeyType = 'M' | 'T' | 'W' | 'T' | 'F' | 'S' | 'S';
 
 interface WeekPropsType {
   today: TodayKeyType;
-  getNewDate?: Dispatch<SetStateAction<[string, TodayKeyType]>>
+  getNewDate?: () => void;
 }
 
-export const Week = ({ today, getNewDate }: WeekPropsType ) => {
-  const week: DaysKeyType[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-  const [selectedDay, setSelectedDay] = useState(today);
+export const Week = ({ today }: WeekPropsType ) => {
+  const [date, setDate] = useRecoilState(dateState)
   const { setNewDate } = useGetDate()
+  const week: DaysKeyType[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   const handleDayClick = (index: TodayKeyType) => {
-    if(index > today) return
-    setSelectedDay(index);
-    const calDate = today - index
-    const newDate = setNewDate(calDate)
-    if(getNewDate)
-      getNewDate(newDate)
+    if(index > date.today) return
+    const calDate = date.today - index
+    setNewDate(calDate)
   };
-  useEffect(() => {
-    setSelectedDay(today)
-  },[today])
   return (
     <Container>
-      <Wrapper>
+      <Wrapper> 
         {week.map((day, idx) =>
           <Day
             key={idx}
             children={day}
-            variant={selectedDay === idx ? 'selected' : selectedDay > idx ? 'dayBefore' : 'dayAfter'}
+            variant={date.selectedDate === idx ? 'selected' : today >= idx ? 'dayBefore' : 'dayAfter'}
             leftDown={idx % 2 === 1}
             onClick={() => {handleDayClick(idx as TodayKeyType); }}
           />

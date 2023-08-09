@@ -1,7 +1,9 @@
 import { TodayKeyType } from "@components/atoms/DayWeek/WeekGroup"
-import { useState } from "react"
+import { dateState } from "@libs/store/date"
+import { useRecoilState } from "recoil"
 
 const useGetDate = () => {
+    const [date, setDate] = useRecoilState(dateState)
     const getTodayWeek = (date: string):TodayKeyType => {
         const dayOfWeek = new Date(date).getDay() as TodayKeyType
         return dayOfWeek
@@ -20,6 +22,11 @@ const useGetDate = () => {
         const dateString = parseDate(today)
         let todayKey = getTodayWeek(dateString) - 1 as TodayKeyType
         if(todayKey === -1) todayKey = 0 
+        setDate({
+            selectedDate: todayKey,
+            today: todayKey,
+            dateString: dateString,
+        })
         return [dateString, todayKey]
     }
 
@@ -28,7 +35,11 @@ const useGetDate = () => {
         const newDate = new Date(stateDate.setDate(stateDate.getDate() - daydiffer))
         const dateString = parseDate(newDate)
         let todayKey = getTodayWeek(dateString) - 1 as TodayKeyType
-        return [dateString, todayKey] as [string, TodayKeyType]
+        setDate({
+            ...date,
+            selectedDate: todayKey,
+            dateString: dateString
+        })
     }
 
     return { getTodayDate, setNewDate }
