@@ -63,7 +63,7 @@ const Wrapper = styled(FlexBox)`
     top: 0;
     padding: 40px 16px 16px 16px;
     background-color: ${theme.palette.background};
-    z-index: 1;
+    z-index: 100;
 `
 
 const FirstElement = styled(FlexBox)`

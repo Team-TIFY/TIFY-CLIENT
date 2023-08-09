@@ -45,6 +45,7 @@ const NavContainer = styled.nav`
     bottom: 40px;
     transform: translate(-50%, 0);
     box-sizing: border-box;
+    z-index: 100;
 `
 
 
@@ -93,5 +94,4 @@ const NavBorder = styled.div<{select : number}>`
     left: 27px;
     left: ${({select}) => 25 + select * 52.5}px;
     top: -12px;
-
 `
