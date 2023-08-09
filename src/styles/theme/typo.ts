@@ -3,11 +3,17 @@ import { css } from '@emotion/react';
 export const calcRem = (px: number) => `${px / 16}rem`;
 export const typo = {
     SCD_Headline_24: css`
-        font-family:'S-CoreDream-3';
+        font-family:'S-CoreDream';
         font-size: ${calcRem(24)};
         line-height: 32px;
         font-weight: 500;
     `,
+    SCD_Headline_20: css`
+    font-family:'S-CoreDream';
+    font-size: ${calcRem(20)};
+    line-height: 30px;
+    font-weight: 500;
+`,
     Headline_20: css`
         font-family:'SpoqaHanSansNeo';
         font-size: ${calcRem(20)};

@@ -4,12 +4,11 @@ import { media } from './theme';
 
 export const globalStyle = css`
     ${emotionReset}
-
     @font-face {
-        font-family: 'S-CoreDream-3';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Medium.woff') format('woff');
+        font-family: 'S-CoreDream';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+        font-weight:500;
         font-style: normal;
-        font-weight: 500;
     }
 
     @font-face {

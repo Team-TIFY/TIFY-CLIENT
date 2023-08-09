@@ -6,6 +6,7 @@ import { Redirect } from '@pages/home/Redirect';
 import { CheckUserAuth } from '@components/auth/CheckUserAuth';
 import RequireAuth from '@components/auth/RequireAuth';
 import { MyProfile } from '@pages/myprofile';
+import Onboarding from "@pages/onboarding/Onboarding";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Route element={<Layout />}>
         <Route element = {<RequireAuth/>}>
           <Route path="/" element={<Home />} />
-          <Route path="/myprofile" element={<MyProfile/>}></Route>
+          <Route path="/myprofile" element={<MyProfile />}></Route>
+          <Route path="/onboarding" element={<Onboarding />}></Route>
       </Route>
         <Route element={<CheckUserAuth/>}>
           <Route path="/login" element={<Login />}/>
