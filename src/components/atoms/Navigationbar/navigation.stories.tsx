@@ -1,11 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { BrowserRouter, Routes } from 'react-router-dom';
 import { Navigationbar } from '.';
-
+import { Routes, Route } from 'react-router-dom';
 const meta =  {
   title: 'Atom/Navigationbar',
   component: Navigationbar,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Routes>
+        <Route path="*" element={<Story/>}/>
+      </Routes>
+    )
+  ]
 } satisfies Meta<typeof Navigationbar>;
 
 export default meta;

@@ -19,7 +19,6 @@ const Layout = () => {
     </MainContainer>
   )
 }
-
 export default Layout
 
 const MainContainer = styled.main`
