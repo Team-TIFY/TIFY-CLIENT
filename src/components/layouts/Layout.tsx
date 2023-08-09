@@ -2,11 +2,13 @@ import styled from '@emotion/styled';
 import { Outlet } from 'react-router-dom';
 import { theme } from '@styles/theme';
 import { AppBar } from '@components/atoms/AppBar';
+import { Navigationbar } from '@components/atoms/Navigationbar';
 
 const Layout = () => {
     return(
         <MainContainer>
           <AppBar variant='logoWithAlarm'/>
+          <Navigationbar/>
           <Outlet/>
         </MainContainer>
     )
