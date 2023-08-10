@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ButtonHTMLAttributes, useState } from "react";
 import { theme } from "@styles/theme";
-import { FilterIcon } from "@assets/image/FilterIcon";
+import { FilterIcon } from "@assets/icons/FilterIcon";
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selectedProps: {

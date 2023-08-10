@@ -8,7 +8,7 @@ const Layout = () => {
     return(
         <MainContainer>
           <AppBar variant='logoWithAlarm'/>
-          <Navigationbar/>
+          {/* <Navigationbar/> */}
           <Outlet/>
         </MainContainer>
     )

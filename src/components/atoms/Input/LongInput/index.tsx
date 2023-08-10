@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { TextareaHTMLAttributes, useRef, useState } from 'react';
 import { theme } from '@styles/theme';
 
-
 type InputVariant = 
 | 'default'
 | 'withInst'
@@ -29,7 +28,7 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement>{
 type Props = Partial<InputProps>;
 
 
-export const Input= (
+export const LongInput= (
   { variant,
     explanation,
     ...props

@@ -25,7 +25,7 @@ export function Checkbox({
         checked={checked}
         onChange={onChange}
       />
-      <Text style={{width: '248px', marginLeft:'12px'}} children={children} typo={"Body_16"} color={"gray_200"} />
+      <Text style={{width: '248px', margin:'0px 12px'}} children={children} typo={"Body_16"} color={"gray_200"} />
     </Label>
   )
 }
@@ -34,7 +34,7 @@ const Label = styled.label<{
   border: boolean,
   padding: number,
 }>`
-  width: 312px;
+  width: 300px;
   display: flex;
   align-items: center;
   padding: ${({ padding }) => `${padding}px`} 0px;

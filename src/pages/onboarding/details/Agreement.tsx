@@ -4,6 +4,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { Checkbox } from "./Checkbox";
 import { Button } from "./../../../components/atoms/Button/index";
 import { Text } from "../../../components/atoms/Text";
+import { Vector } from "../../../assets/icons/Vector";
 
 export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([]);
@@ -47,7 +48,7 @@ export function Agreement() {
   };
 
   return (
-    <Wrapper>
+    <>
       <TextArea>
         <TextWrap>
           <Text
@@ -66,6 +67,8 @@ export function Agreement() {
           border= {true}
           padding={16}
         />
+        <Vector visible="hidden"
+        />
       </CheckDiv>
       <CheckDiv>
         <Checkbox
@@ -73,6 +76,8 @@ export function Agreement() {
           name="age"
           onChange={check}
           checked={checkList.includes("age") ? true : false}
+        />
+        <Vector visible="hidden"
         />
       </CheckDiv>
       <CheckDiv>
@@ -82,6 +87,9 @@ export function Agreement() {
           onChange={check}
           checked={checkList.includes("service") ? true : false}
         />
+        <Vector
+          linkUrl="9e75acf1487c481a9fe818754198b73a"
+        />
       </CheckDiv>
       <CheckDiv>
       <Checkbox
@@ -89,7 +97,10 @@ export function Agreement() {
         name="handlePrivacy"
         onChange={check}
         checked={checkList.includes("handlePrivacy") ? true : false}
-      />
+        />
+        <Vector
+          linkUrl="9e75acf1487c481a9fe818754198b73a"
+        />
       </CheckDiv>
       <CheckDiv>
         <Checkbox
@@ -97,6 +108,9 @@ export function Agreement() {
           name="collectPrivacy"
           onChange={check}
           checked={checkList.includes("collectPrivacy") ? true : false}
+        />
+        <Vector
+          linkUrl="9e75acf1487c481a9fe818754198b73a"
         />
       </CheckDiv>
       <CheckDiv>
@@ -106,6 +120,9 @@ export function Agreement() {
           onChange={check}
           checked={checkList.includes("marketing") ? true : false}
         />
+        <Vector
+          linkUrl="9e75acf1487c481a9fe818754198b73a"
+        />
       </CheckDiv>
       <BtnDiv>
         <Button
@@ -113,12 +130,9 @@ export function Agreement() {
           onClick={gotoReg} disabled={!btnColor}
         />        
       </BtnDiv>
-    </Wrapper>
+    </>
   )
 }
-
-const Wrapper = styled.div`
-`
 
 const TextArea = styled.div`
 display: flex;
@@ -136,7 +150,7 @@ const CheckDiv = styled.label`
 `
 
 const BtnDiv = styled.div`
-  margin-top: 150px; //228
+  margin-top: 228px;
   padding-bottom: 32px;
   text-align: center;
 `

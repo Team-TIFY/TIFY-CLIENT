@@ -1,16 +1,16 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Input } from '.';
+import { LongInput } from ".";
 
 const meta = {
-  title: 'Atom/Input',
-  component: Input,
+  title: 'Atom/LongInput',
+  component: LongInput,
   tags: ['autodocs'],
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof LongInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const TextInput: Story = {
+export const LongTextInput: Story = {
   args: {
     variant: 'default',
     explanation:"",
