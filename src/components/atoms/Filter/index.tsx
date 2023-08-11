@@ -27,7 +27,6 @@ export const Filter = ({
       return item;
     });
     setSelected(updatedBtn);
-    console.log(selected);
   };
   
   const handleCancel = () => {  //전체 취소 버튼

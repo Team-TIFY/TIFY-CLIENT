@@ -13,10 +13,12 @@ type Story = StoryObj<typeof meta>;
 export const ShortTextInput: Story = {
   args: {
     searchVariant: 'default',
+    maxText: 0,
     explanation: "",
     width: 312,
     placeholder: "",
     error: false,
     warning: "",
+    content:"",
   },
 };

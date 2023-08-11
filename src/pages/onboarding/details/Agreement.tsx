@@ -5,10 +5,13 @@ import { Checkbox } from "./Checkbox";
 import { Button } from "./../../../components/atoms/Button/index";
 import { Text } from "../../../components/atoms/Text";
 import { Vector } from "../../../assets/icons/Vector";
+import { useRecoilState } from "recoil";
+import { onboardingPageState } from "../../../libs/store/onboard";
+import { FlexBox } from "./../../../components/layouts/FlexBox";
 
 export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([]);
-  const [goNext, setGoNext] = useState<boolean>(false);
+  const [goNext, setGoNext] = useRecoilState(onboardingPageState);
   const [btnColor, setBtnColor] = useState<boolean>(false);
 
   const checkAll = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +24,6 @@ export function Agreement() {
     e.target.checked
       ? setCheckList([...checkList, e.target.name])
       : setCheckList(checkList.filter((choice) => choice !== e.target.name));
-    console.log(checkList);
   }
 
   useEffect(() => {
@@ -41,15 +43,15 @@ export function Agreement() {
     if (
       btnColor === true
     ) {
-      setGoNext(true);
+      setGoNext({ ...goNext, agreement: true});
     } else {
-      setGoNext(false);
+      setGoNext({...goNext, agreement: false});
     }
   };
 
   return (
     <>
-      <TextArea>
+      <FlexBox>
         <TextWrap>
           <Text
             children="TIFY 이용약관에 동의해 주세요"
@@ -57,7 +59,7 @@ export function Agreement() {
             color={"gray_100"}
           />     
         </TextWrap>        
-      </TextArea>
+      </FlexBox>
       <CheckDiv>
         <Checkbox
           children="약관 전체 동의"
@@ -134,11 +136,6 @@ export function Agreement() {
   )
 }
 
-const TextArea = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-`
 const TextWrap = styled.div`
   margin: 32px;
   width: 312px;

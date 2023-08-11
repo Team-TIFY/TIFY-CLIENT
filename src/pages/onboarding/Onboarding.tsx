@@ -1,11 +1,23 @@
 import styled from '@emotion/styled';
+import { onboardingPageState } from "@libs/store/onboard";
+import { useRecoilValue } from "recoil";
 import { Agreement } from "./details/Agreement";
+import { HalfSuccess } from "./details/HalfSuccess";
+import { SignUp } from "./details/SignUp";
 
 
 const Onboarding = () => {
+
+  const onboardPage = useRecoilValue(onboardingPageState);
+
   return (
     <Wrapper>
-      <Agreement/>
+      {
+        onboardPage.interestStart ? <HalfSuccess /> : (
+          onboardPage.agreement ? <SignUp/> : <Agreement/>
+          )
+      }
+      
     </Wrapper>
   );
 };
