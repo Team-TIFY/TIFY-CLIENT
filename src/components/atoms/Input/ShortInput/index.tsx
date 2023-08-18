@@ -81,6 +81,14 @@ export const ShortInput= (
     setFocus(prev => !prev);
   }
 
+  const handleEnter = (e: ChangeEvent<HTMLTextAreaElement>, content: string) => {
+    const filteredText = e.target.value.replace(/[\r\n]/g, '');
+    setInfo({
+      ...info,
+      [content]: filteredText,
+    })
+  }
+
   return (
     <FlexBox>
       <Wrapper>
@@ -96,6 +104,7 @@ export const ShortInput= (
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
                 onChange(e);
                 textHandler(e, content);
+                handleEnter(e, content);
               }}
               maxLength={maxText}
               onFocus={focusInput}
@@ -122,7 +131,7 @@ const InstText = styled.div`
   height: 20px;
   margin-bottom: 8px;
   ${theme.typo.Caption_12M};
-  color: ${theme.palette.gray_200};
+  color: ${theme.palette.gray_300};
 ` 
 
 const TextAreaWrapper = styled.div<{

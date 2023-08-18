@@ -12,11 +12,11 @@ export function UserId() {
 
   const handleName = (e: ChangeEvent<HTMLTextAreaElement>) => {
 
-    const regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9.-_-]+$/; //정규식 - 한글과 영어만
+    const regex = /^[a-zA-Z0-9.-_-\n\r]+$/; //정규식
 
     if (!regex.test(e.target.value) && e.target.value.length > 0) {
       setError(true);
-      setErrorMsg("한글과 알파벳만 사용해 주세요.");
+      setErrorMsg("알파벳 (a-z, A-Z), 숫자, 밑줄 (-, _) 및 마침표만 사용해 주세요.");
     } else if (regex.test(e.target.value) && e.target.value.length >= 15) {
       setError(true);
       setErrorMsg("15글자 이내로 부탁해요!");
@@ -33,6 +33,7 @@ export function UserId() {
       setBtnColor(false);
     }
   }
+
 
   return (
     <>

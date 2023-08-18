@@ -11,21 +11,24 @@ import { Birth } from "./signup/Birth";
 import { Gender } from "./signup/Gender";
 
 export function SignUp() {
-
   const [infoPage, setInfoPage] = useRecoilState(onboardingPageState);
-  const info = useRecoilValue(onboardingState);
   const [page, setPage] = useState<string>("name");
-  const btnColor = useRecoilValue(isBtnColorState);
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState);
 
     useEffect(() => {
       if (infoPage.info.name) {
         setPage("userId");
-      } else if (infoPage.info.userId) {
+      } if (infoPage.info.userId) {
         setPage("birth");
-      } else if (infoPage.info.birth) {
+      } if (infoPage.info.birth) {
         setPage("gender");
+      } if (infoPage.info.gender) {
+        setInfoPage({
+          ...infoPage,
+          interestStart: true,
+        })
       }
-    }, []);
+    }, [infoPage.info]);
 
     const gotoReg = (content: string) => {
     if (btnColor === true) {
@@ -38,34 +41,86 @@ export function SignUp() {
       });
     } else {
       setInfoPage({ ...infoPage });
-    }
+      }
   }
 
-  // const goBack = (content: string) => {
-  //   if (content=="birth")
-  // }
-
+  const gotoBack = (content: string) => {
+    if (content == "gender") {
+      setInfoPage({
+        ...infoPage,
+        info: {
+          ...infoPage.info,
+          [content]: false,
+        }
+      });
+      setPage("gender");
+    }
+    else if (content == "birth") {
+      setInfoPage({
+        ...infoPage,
+        info: {
+          ...infoPage.info,
+          birth: false,
+          gender: false,
+        }
+      });
+      setPage("birth");
+    }
+    else if (content == "userId") {
+      setInfoPage({
+        ...infoPage,
+        info: {
+          ...infoPage.info,
+          birth: false,
+          gender: false,
+          userId: false,
+        }
+      });
+      setPage("userId");
+    }
+    else if (content == "name") {
+      setInfoPage({
+        ...infoPage,
+        info: {
+          ...infoPage.info,
+          birth: false,
+          gender: false,
+          userId: false,
+          name: false,
+        }
+      });
+    }
+    setPage("name");
+  }
+  
 
   return (
     <>
       <StartMent/>
-      <StepDiv step={infoPage.info.birth}>
+      <StepDiv step={infoPage.info.birth} onClick={()=>gotoBack("gender")}>
         <Gender />
         <Spacing height={48}/>
       </StepDiv>
-      <StepDiv step={infoPage.info.userId}>
+      <StepDiv step={infoPage.info.userId} onClick={()=>gotoBack("birth")}>
         <Birth />
         <Spacing height={48}/>
       </StepDiv>
-      <StepDiv step={infoPage.info.name}>
+      <StepDiv step={infoPage.info.name} onClick={()=>gotoBack("userId")}>
         <UserId />     
         <Spacing height={48}/>
       </StepDiv>
-      <Name />
+      <div onClick={() => gotoBack("name")}>
+        <Name />        
+      </div>
       <BtnDiv>
         <Button
           variant="mediumRound" width={312} children="다음"
-          onClick={()=>gotoReg(page)} disabled={!btnColor}
+          onClick={
+            () => {
+              gotoReg(page)
+              setBtnColor(() => false)
+            }
+          } disabled={!btnColor}
         />
       </BtnDiv>
     </>

@@ -11,7 +11,7 @@ export function Name() {
 
   const handleName = (e: ChangeEvent<HTMLTextAreaElement>) => {
 
-    const regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/; //정규식 - 한글과 영어만
+    const regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\n\r]+$/; //정규식 - 한글과 영어만
 
     if (!regex.test(e.target.value) && e.target.value.length > 0) {
       setError(true);

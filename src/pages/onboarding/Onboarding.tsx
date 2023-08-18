@@ -17,7 +17,6 @@ const Onboarding = () => {
           onboardPage.agreement ? <SignUp/> : <Agreement/>
           )
       }
-      
     </Wrapper>
   );
 };
