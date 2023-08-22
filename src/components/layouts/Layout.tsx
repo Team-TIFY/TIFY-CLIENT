@@ -12,11 +12,11 @@ const Layout = () => {
   
   return(
     <MainContainer>
-      <AppBar
+      {/* <AppBar
         variant={location.pathname === '/myprofile' ? 'backPushWithMenu' : 'logoWithAlarm'}
         label={location.pathname === '/myprofile' ? userData.userName : ''}
-      />
-      <Navigationbar/>
+      /> */}
+      {/* <Navigationbar/> */}
       <Outlet/>
     </MainContainer>
   )

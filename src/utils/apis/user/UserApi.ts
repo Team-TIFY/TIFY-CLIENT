@@ -1,7 +1,5 @@
 import { FilteredUserTag, TagValueKey, UserInfo, UserInfoToken, UserTag } from "@libs/types/UserTypes";
 import { axiosApi } from "../axios";
-import { useRecoilState } from "recoil";
-import { authState } from "../../../libs/store/auth";
 
 export const UserApi = {
   GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {
