@@ -62,10 +62,12 @@ const AnswerDailyQuestion = () => {
                 </FlexBox>
                 )
             }
-            <Input ref={inputRef} onClick={handleToggleInput} 
-                customEvent = {handleButtonDisabled}
-                fullWidth = {true} variant={toggled ? 'withInst' : 'default'}
-                explanation="입력하면 친구들의 답변을 볼 수 있어요!"/>
+            <InputSticker isBottom={toggled}>
+                <Input className={toggled ? 'bottomInput' : undefined} ref={inputRef} onClick={handleToggleInput} 
+                    customEvent = {handleButtonDisabled}
+                    fullWidth = {true} variant={toggled ? 'withInst' : 'default'}
+                    explanation="입력하면 친구들의 답변을 볼 수 있어요!"/>
+            </InputSticker>
             <BottomSticker>
                 {!toggled && ( <Button disabled={disabled} variant="mediumRound">답변 완료</Button> )}
             </BottomSticker>
@@ -75,7 +77,7 @@ const AnswerDailyQuestion = () => {
 
 export default AnswerDailyQuestion
 
-const BottomSticker = styled.div<{}>`
+const BottomSticker = styled.div`
     position: absolute;
     width: 100%;
     text-align: center;
@@ -89,4 +91,10 @@ const AnswerDailyQuestionContainer = styled.div`
     position: relative;
     height: calc(var(--vh, 1vh) * 100 - 80px);
     background-color: ${theme.palette.background};
+`
+
+const InputSticker = styled.div<{isBottom: boolean}>`
+    width : 100%;
+    position : ${({ isBottom }) => isBottom ? 'absolute' : 'relative' };
+    bottom : ${({ isBottom }) => isBottom ? '64px' : undefined };
 `
