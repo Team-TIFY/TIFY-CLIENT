@@ -78,7 +78,7 @@ const DailyQuestionBox = () => {
                     {day}의 질문
                 </Text>
                 <Text typo={'SCD_Headline_24'} color="white">{question.content}</Text>
-                <Spacing variant="default" height={48}/>
+                <Spacing variant="default" height={64}/>
             </FlexBox>
         </>
     )
