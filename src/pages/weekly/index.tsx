@@ -1,6 +1,7 @@
-import { WeeklyMainQuestion } from './WeeklyMain';
+import WeeklyMainQuestion from './WeeklyMainQuestion';
 import { Route, Routes } from 'react-router-dom';
 import AppBarTemplate from '@components/layouts/AppBarTemplate';
+import AnswerDailyQuestion from './AnswerDailyQuestion';
 const WeeklyRouter = () =>{
   return (
     <Routes>
@@ -9,9 +10,9 @@ const WeeklyRouter = () =>{
             <WeeklyMainQuestion />
         </AppBarTemplate>
       } />
-    <Route path="/abc" element={
+    <Route path="/answer" element={
         <AppBarTemplate variant='backPushWithMenu' hasNav={false}>
-            엥티비
+            <AnswerDailyQuestion/>
         </AppBarTemplate>
     } />
     </Routes>

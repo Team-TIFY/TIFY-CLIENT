@@ -5,4 +5,4 @@ export interface DailyQuestionInfo {
     loadingData: string
 }
 
-type categoryType = [ 'PERFUME', 'MAKEUP', 'CLOTHES', 'FASHIONSTUFF', 'ACCESSORY', 'COOKING', 'SPORTS', 'TRIP','CULTURALLIFE', 'MUSIC' ]
+type categoryType = 'PERFUME'| 'MAKEUP'| 'CLOTHES'| 'FASHIONSTUFF' | 'ACCESSORY'| 'COOKING'| 'SPORTS'| 'TRIP'|'CULTURALLIFE'| 'MUSIC' 
