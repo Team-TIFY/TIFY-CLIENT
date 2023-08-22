@@ -5,7 +5,7 @@ import Login from '@pages/home/Login';
 import { Redirect } from '@pages/home/Redirect';
 import { CheckUserAuth } from '@components/auth/CheckUserAuth';
 import RequireAuth from '@components/auth/RequireAuth';
-import { MyProfile } from '@pages/myprofile';
+import MyProfileRouter from '@pages/myprofile';
 import WeeklyRouter from '@pages/weekly';
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Route element={<Layout />}>
         <Route element = {<RequireAuth/>}>
           <Route path="/" element={<Home />} />
-          <Route path="/myprofile" element={<MyProfile/>}></Route>
+          <Route path="/myprofile" element={<MyProfileRouter/>}></Route>
           <Route path="/weekly/*" element={<WeeklyRouter/>}></Route>
       </Route>
         <Route element={<CheckUserAuth/>}>

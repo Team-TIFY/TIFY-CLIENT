@@ -69,7 +69,12 @@ const AnswerDailyQuestion = () => {
                     explanation="입력하면 친구들의 답변을 볼 수 있어요!"/>
             </InputSticker>
             <BottomSticker>
-                {!toggled && ( <Button disabled={disabled} variant="mediumRound">답변 완료</Button> )}
+                {!toggled && ( 
+                    <Button disabled={disabled} 
+                        onClick={() => {console.log(inputRef.current!.value)}}
+                        variant="mediumRound">답변 완료</Button> 
+                    )
+                }
             </BottomSticker>
         </AnswerDailyQuestionContainer>
     )
