@@ -27,6 +27,7 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement>{
   variant: InputVariant;
   explanation: string;
   fullWidth : boolean;
+  customEvent?: (e: any) => void;
 }
 type Props = Partial<InputProps>;
 
@@ -35,6 +36,7 @@ export const Input = forwardRef<HTMLTextAreaElement, Props>(
   ({ variant,
     explanation,
     fullWidth = false,
+    customEvent,
     ...props
   }: Props, inputRef ) => {
   const [line, setLine] = useState("");
@@ -48,6 +50,8 @@ export const Input = forwardRef<HTMLTextAreaElement, Props>(
 
   const countLength = (e: React.ChangeEvent<HTMLTextAreaElement>) => { //입력 줄 수 제한
     const textValue = e.target.value;
+    if(customEvent)
+      customEvent(e)
     if (inputRef && (typeof inputRef !== "function")) {
       const textHeight = inputRef.current && (inputRef.current.scrollHeight);
       var maxNum = 0;
