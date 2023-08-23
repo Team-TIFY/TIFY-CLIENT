@@ -34,10 +34,13 @@ const useGetDate = () => {
         const stateDate = new Date()
         const newDate = new Date(stateDate.setDate(stateDate.getDate() - daydiffer))
         const dateString = parseDate(newDate)
-        let todayKey = getTodayWeek(dateString) - 1 as TodayKeyType
+        let selectedKey = getTodayWeek(dateString) - 1 as TodayKeyType
+        const todayString = parseDate(new Date())
+        let todayKey = getTodayWeek(todayString) - 1 as TodayKeyType
+        if(todayKey === -1) todayKey = 0 
         setDate({
-            ...date,
-            selectedDate: todayKey,
+            today: todayKey,
+            selectedDate: selectedKey,
             dateString: dateString
         })
     }

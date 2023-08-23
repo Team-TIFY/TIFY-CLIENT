@@ -13,8 +13,9 @@ export interface UserInfoToken {
     imageUrl: string;
     birth: string;
     job: string;
-    createdAt: Date;
+    createdAt: string,
     gender: string;
+    onBoardingStatus: string
 }
 
 export interface UserTag {
