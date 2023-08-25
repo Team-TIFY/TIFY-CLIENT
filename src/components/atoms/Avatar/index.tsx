@@ -83,14 +83,14 @@ export const Avatar = ({
 
 const Wrapper = styled.div``;
 
-const CircleBaseStyle = styled.div<{
+const BaseStyle = styled.div<{
   variant: AvatarVariant;
 }>`
   width: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
   height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
 `;
 
-const Dimmed = styled(CircleBaseStyle)<{
+const Dimmed = styled(BaseStyle)<{
   variant: AvatarVariant;
   isVisible: VisibleVariant;
 }>`
@@ -101,7 +101,7 @@ const Dimmed = styled(CircleBaseStyle)<{
   display:  ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].display}`};
 `;
 
-const AvatarCircle = styled(CircleBaseStyle)<{
+const AvatarCircle = styled(BaseStyle)<{
   variant: AvatarVariant;
 }>`
   border-radius: 50%;
