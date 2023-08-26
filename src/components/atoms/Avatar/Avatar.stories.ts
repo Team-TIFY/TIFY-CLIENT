@@ -42,34 +42,34 @@ export const Pink4: Story = {
   }
 };
 
-export const Transparent1: Story = {
+export const Purple1: Story = {
   args: {
     variant: "xsmall",
-    imageUrl: "transparent1",
+    imageUrl: "purple1",
     isVisible: "visible",
   }
 };
 
-export const Transparent2: Story = {
+export const Purple2: Story = {
   args: {
     variant: "xsmall",
-    imageUrl: "transparent2",
+    imageUrl: "purple2",
     isVisible: "visible",
   }
 };
 
-export const Transparent3: Story = {
+export const Purple3: Story = {
   args: {
     variant: "xsmall",
-    imageUrl: "transparent3",
+    imageUrl: "purple3",
     isVisible: "visible",
   }
 };
 
-export const Transparent4: Story = {
+export const Purple4: Story = {
   args: {
     variant: "xsmall",
-    imageUrl: "transparent4",
+    imageUrl: "purple4",
     isVisible: "visible",
   }
 };

@@ -4,10 +4,10 @@ import Pink1 from "@assets/icons/Pink1";
 import Pink2 from "@assets/icons/Pink2";
 import Pink3 from "@assets/icons/Pink2";
 import Pink4 from "@assets/icons/Pink4";
-import Transparent1 from "@assets/icons/Transparent1";
-import Transparent2 from "@assets/icons/Transparent2";
-import Transparent3 from "@assets/icons/Transparent3";
-import Transparent4 from "@assets/icons/Transparent4";
+import Purple1 from "@assets/icons/Purple1";
+import Purple2 from "@assets/icons/Purple2";
+import Purple3 from "@assets/icons/Purple3";
+import Purple4 from "@assets/icons/Purple4";
 import White1 from "@assets/icons/White1";
 import White2 from "@assets/icons/White2";
 import White3 from "@assets/icons/White3";
@@ -20,10 +20,10 @@ export type ProfileVariant =
   | "pink2"
   | "pink3"
   | "pink4"
-  | "transparent1"
-  | "transparent2"
-  | "transparent3"
-  | "transparent4"
+  | "purple1"
+  | "purple2"
+  | "purple3"
+  | "purple4"
   | "white1"
   | "white2"
   | "white3"
@@ -66,10 +66,10 @@ const PROFILE_IMAGE_TYPE: Record<ProfileVariant, React.ReactNode> = {
   pink2: <Pink2 />,
   pink3: <Pink3 />,
   pink4: <Pink4 />,
-  transparent1: <Transparent1 />,
-  transparent2: <Transparent2 />,
-  transparent3: <Transparent3 />,
-  transparent4: <Transparent4 />,
+  purple1: <Purple1 />,
+  purple2: <Purple2 />,
+  purple3: <Purple3 />,
+  purple4: <Purple4 />,
   white1: <White1 />,
   white2: <White2 />,
   white3: <White3 />,
