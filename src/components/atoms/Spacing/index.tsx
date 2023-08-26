@@ -11,7 +11,6 @@ export const Spacing = ({
   width = 16,
   height = 24,
   variant = "default",
-  ...props
 }: SpacingProps) => {
   return (
     <div

@@ -14,7 +14,7 @@ export const visibleFriendsList: Story = {
   args: {
     name: '김수빈',
     nickName: 'beenie',
-    avatarImgUrl: 'kitty',
+    avatarImgUrl: 'pink1',
   },
 };
 
@@ -23,6 +23,6 @@ export const invisibleFriendsList: Story = {
     variant: 'invisible',
     name: '김수빈',
     nickName: 'beenie',
-    avatarImgUrl: 'kitty',
+    avatarImgUrl: 'pink1',
   },
 };

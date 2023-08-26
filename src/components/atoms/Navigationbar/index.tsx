@@ -1,11 +1,12 @@
 import styled from "@emotion/styled"
 import { theme } from "@styles/theme"
-import Rocket from "@assets/icons/rocket.svg"
-import Cherry from "@assets/icons/cherry.svg"
-import Flying from "@assets/icons/flying.svg"
 import { useNavigate } from "react-router-dom"
 import { useState, useRef } from "react"
 import { Text } from "../Text"
+import Cherry from "@assets/icons/Cherry"
+import Flying from "@assets/icons/Flying"
+import Rocket from "@assets/icons/Rocket"
+import Svg from "../Svg"
 
 export const Navigationbar = () => {
     const navigate = useNavigate();
@@ -23,15 +24,15 @@ export const Navigationbar = () => {
             <Wrapper>
                 <NavBorder select={select}/>
                 <NavBtn className={select === 0 ? 'active' : ''} onClick={() => {handleClick(0); navigate('/friends')}} ref={elem => (navRef.current[0] = elem)}>
-                    <img src={Rocket}/>
+                    <Svg children={<Rocket />}/>
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>프렌즈</Text>
                 </NavBtn>
                 <NavBtn className={select === 1 ? 'active' : ''} onClick={() => {handleClick(1); navigate('/weekly')}} ref={elem => (navRef.current[1] = elem)}>
-                    <img src={Cherry}/>
+                    <Svg children={<Cherry />}/>
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>위클리</Text>
                 </NavBtn>
                 <NavBtn className={select === 2 ? 'active' : ''} onClick={() => {handleClick(2); navigate('/myprofile')}} ref={elem => (navRef.current[2] = elem)}>
-                    <img src={Flying} />
+                    <Svg children={<Flying />} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>마이</Text>
                 </NavBtn>
             </Wrapper>
