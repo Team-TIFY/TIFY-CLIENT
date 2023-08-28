@@ -5,10 +5,16 @@ import { userState } from "@libs/store/user";
 import OnBoardGift from "@assets/image/OnBoardGift";
 import styled from "@emotion/styled";
 import { Button } from "@components/atoms/Button";
+import { useNavigate } from "react-router-dom";
 
 export function HalfSuccess() {
 
   const user = useRecoilValue(userState);
+  const navigate = useNavigate();
+
+  const goToNext = () => {
+    navigate("/onboarding/after");
+  }
 
   return (
     <>
@@ -26,6 +32,7 @@ export function HalfSuccess() {
         <BtnDiv>
           <Button
             variant="mediumRound" width={312} children="시작"
+            onClick={goToNext}
           />
         </BtnDiv>
       </ImgWrapper>

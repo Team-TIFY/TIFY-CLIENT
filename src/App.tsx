@@ -8,6 +8,7 @@ import RequireAuth from '@components/auth/RequireAuth';
 import { MyProfile } from '@pages/myprofile';
 import Onboarding from "@pages/onboarding/Onboarding";
 import { WeeklyQuestion } from '@pages/weekly';
+import { DetailInfo } from '@pages/onboarding/details/selectInfo/DetailInfo';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/myprofile" element={<MyProfile />}></Route>
           <Route path="/onboarding" element={<Onboarding />}></Route>
+          <Route path="/onboarding/after" element={<DetailInfo/>}></Route>
           <Route path="/weekly" element={<WeeklyQuestion/>}></Route>
       </Route>
         <Route element={<CheckUserAuth/>}>
