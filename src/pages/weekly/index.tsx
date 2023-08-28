@@ -1,7 +1,22 @@
-import { Text } from "@components/atoms/Text"
-
-export const WeeklyQuestion = () => {
-    return (
-        <Text typo={'Body_14'} color="white">데일리 질문</Text>
-    )
+import WeeklyMainQuestion from './WeeklyMainQuestion';
+import { Route, Routes } from 'react-router-dom';
+import AppBarTemplate from '@components/layouts/AppBarTemplate';
+import AnswerDailyQuestion from './AnswerDailyQuestion';
+const WeeklyRouter = () =>{
+  return (
+    <Routes>
+      <Route path="/" element={
+        <AppBarTemplate variant='logoWithAlarm' hasNav={true}>
+            <WeeklyMainQuestion />
+        </AppBarTemplate>
+      } />
+    <Route path="/answer" element={
+        <AppBarTemplate variant='backPushWithMenu' label={'투데이 질문'} hasNav={false}>
+            <AnswerDailyQuestion/>
+        </AppBarTemplate>
+    } />
+    </Routes>
+  );
 }
+
+export default WeeklyRouter;

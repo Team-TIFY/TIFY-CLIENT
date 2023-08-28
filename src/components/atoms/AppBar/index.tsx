@@ -8,7 +8,7 @@ import alert_icon from '../../../assets/icons/alert.svg';
 import left_arrow from '../../../assets/icons/left_arrow.svg';
 import { useNavigate } from "react-router-dom";
 
-type AppBarType = 'logoWithAlarm' | 'backPush' | 'backPushWithMenu'
+export type AppBarType = 'logoWithAlarm' | 'backPush' | 'backPushWithMenu'
 
 /**
  * @param variant AppBar의 type을 나타냄 'logoWithAlarm' | 'backPush' | 'backPushWithMenu'
@@ -63,7 +63,7 @@ const Wrapper = styled(FlexBox)`
     top: 0;
     padding: 40px 16px 16px 16px;
     background-color: ${theme.palette.background};
-    z-index: 1;
+    z-index: 100;
 `
 
 const FirstElement = styled(FlexBox)`
