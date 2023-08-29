@@ -3,6 +3,7 @@ import { onboardingPageState } from "@libs/store/onboard";
 import { useRecoilValue } from "recoil";
 import { Agreement } from "./details/Agreement";
 import { HalfSuccess } from "./details/HalfSuccess";
+import { DetailInfo } from './details/selectInfo/DetailInfo';
 import { SignUp } from "./details/SignUp";
 
 
@@ -13,9 +14,10 @@ const Onboarding = () => {
   return (
     <Wrapper>
       {
-        onboardPage.interestStart ? <HalfSuccess /> : (
+        onboardPage.onboardStatus ? <DetailInfo /> : (onboardPage.interestStart ?
+          <HalfSuccess /> : (
           onboardPage.agreement ? <SignUp/> : <Agreement/>
-          )
+          ))
       }
     </Wrapper>
   );

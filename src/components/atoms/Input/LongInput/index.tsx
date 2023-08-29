@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
-import { TextareaHTMLAttributes, useRef, useState } from 'react';
+import { TextareaHTMLAttributes, useEffect, useRef, useState } from 'react';
 import { theme } from '@styles/theme';
+import React from 'react';
+import { forwardRef, InputHTMLAttributes } from 'react';
 
 type InputVariant = 
 | 'default'
@@ -24,52 +26,60 @@ const INPUT_TYPE: InputVariantType = {
 interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement>{
   variant: InputVariant;
   explanation: string;
+  fullWidth : boolean;
+  customEvent?: (e: any) => void;
 }
 type Props = Partial<InputProps>;
 
 
-export const LongInput= (
-  { variant,
+export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
+  ({ variant,
     explanation,
+    fullWidth = false,
+    customEvent,
     ...props
-  }: Props) => {
+  }: Props, inputRef ) => {
   const [line, setLine] = useState("");
   const [count, setCount] = useState(true); //2줄 넘지 않으면 true
-  const ref = useRef<HTMLTextAreaElement>(null);
-
   const handleResizeHeight = () => { //줄 바뀌면 자동 높이 조절
-    ref.current && (ref.current.style.height = '0px');
-    ref.current && (ref.current.style.height = ref.current.scrollHeight + 'px');
+    if (inputRef && (typeof inputRef !== "function")) {
+      inputRef.current && (inputRef.current.style.height = '0px');
+      inputRef.current && (inputRef.current.style.height = inputRef.current.scrollHeight + 'px');
+    }
   };
 
   const countLength = (e: React.ChangeEvent<HTMLTextAreaElement>) => { //입력 줄 수 제한
     const textValue = e.target.value;
-    const textHeight = ref.current && (ref.current.scrollHeight);
-
-    var maxNum = 0;
+    if(customEvent)
+      customEvent(e)
+    if (inputRef && (typeof inputRef !== "function")) {
+      const textHeight = inputRef.current && (inputRef.current.scrollHeight);
+      var maxNum = 0;
       for (var i = 0; (i < textValue.length); i++){
         maxNum++;
         }
 
-    if (textHeight && (textHeight == 40)) {
-      setLine(textValue.substring(0, maxNum)); //2줄 제한(넘으면 입력 x)
-      setCount(true);
-    } else if (textHeight && textHeight < 40) {
-      setLine(textValue);
-      setCount(true);
-    } else if (textHeight && (textHeight > 40 )) {
-      setCount(false);
+      if (textHeight && (textHeight == 40)) {
+        setLine(textValue.substring(0, maxNum)); //2줄 제한(넘으면 입력 x)
+        setCount(true);
+      } else if (textHeight && textHeight < 40) {
+        setLine(textValue);
+        setCount(true);
+      } else if (textHeight && (textHeight > 40 )) {
+        setCount(false);
     }
+    }
+
   };
 
   return (
     <Wrapper>
       <InstText variant={variant!}>{explanation}</InstText>
-      <TextAreaWrapper count={count}>
+      <TextAreaWrapper fullWidth ={fullWidth} count={count}>
       <StyledTextArea
         rows={1}
         value={line}
-        ref={ref}
+        ref={inputRef}
         placeholder="답변을 입력해 주세요."
         spellCheck="false"
         onInput={handleResizeHeight}
@@ -82,7 +92,7 @@ export const LongInput= (
       }
     </Wrapper>
   );
-};
+});
 
 
 const Wrapper = styled.div`
@@ -90,6 +100,8 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100%; 
+  padding: 0px 24px;
 `
 
 const InstText = styled.div <{
@@ -97,18 +109,21 @@ const InstText = styled.div <{
 }>`
   display: ${({variant})=>INPUT_TYPE[variant].display};
   text-align: center;
-  width: 280px;
+  width:'280px';
   height: 20px;
   margin-bottom: 8px;
   ${theme.typo.Caption_12M};
   color: ${theme.palette.gray_200};
 ` 
 
-const TextAreaWrapper = styled.div<{ count: boolean }>`
+const TextAreaWrapper = styled.div<{ 
+  count: boolean;
+  fullWidth: boolean;
+  }>`
     border-radius: 12px;
     padding: 14px;
     background: ${theme.palette.gray_900};
-    width: 284px;
+     width: ${({fullWidth}) => fullWidth ? '100%' : '284px'};
     display: flex;
     align-items: center;
     &:focus-within {

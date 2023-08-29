@@ -96,23 +96,25 @@ export function SignUp() {
 
   return (
     <>
-      <StartMent/>
-      <StepDiv step={infoPage.info.birth} onClick={()=>gotoBack("gender")}>
-        <Gender />
-        <Spacing height={48}/>
-      </StepDiv>
-      <StepDiv step={infoPage.info.userId} onClick={()=>gotoBack("birth")}>
-        <Birth />
-        <Spacing height={48}/>
-      </StepDiv>
-      <StepDiv step={infoPage.info.name} onClick={()=>gotoBack("userId")}>
-        <UserId />     
-        <Spacing height={48}/>
-      </StepDiv>
-      <div onClick={() => gotoBack("name")}>
-        <Name />        
-      </div>
-      <BtnDiv>
+      <SignUpDiv>
+        <StartMent/>
+        <StepDiv step={infoPage.info.birth} onClick={()=>gotoBack("gender")}>
+          <Gender />
+          <Spacing height={48}/>
+        </StepDiv>
+        <StepDiv step={infoPage.info.userId} onClick={()=>gotoBack("birth")}>
+          <Birth />
+          <Spacing height={48}/>
+        </StepDiv>
+        <StepDiv step={infoPage.info.name} onClick={()=>gotoBack("userId")}>
+          <UserId />     
+          <Spacing height={48}/>
+        </StepDiv>
+        <div onClick={() => gotoBack("name")}>
+          <Name />        
+        </div>        
+      </SignUpDiv>
+      <BottomSticker>
         <Button
           variant="mediumRound" width={312} children="다음"
           onClick={
@@ -122,11 +124,15 @@ export function SignUp() {
             }
           } disabled={!btnColor}
         />
-      </BtnDiv>
+      </BottomSticker>
     </>
   )
 }
 
+const SignUpDiv = styled.div`
+  min-height: 550px;
+  padding-bottom: 100px;
+`
 
 const StepDiv = styled.div<{
   step: boolean;
@@ -134,8 +140,13 @@ const StepDiv = styled.div<{
  display: ${({ step }) => step ? "block" : "none"};
 `
 
-const BtnDiv = styled.div`
-  margin-top: 228px;
-  padding-bottom: 32px;
-  text-align: center;
+const BottomSticker = styled.div`
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `

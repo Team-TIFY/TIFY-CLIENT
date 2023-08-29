@@ -9,6 +9,7 @@ import Onboarding from "@pages/onboarding/Onboarding";
 import { DetailInfo } from '@pages/onboarding/details/selectInfo/DetailInfo';
 import MyProfileRouter from '@pages/myprofile';
 import WeeklyRouter from '@pages/weekly';
+import OnboardingRouter from '@pages/onboarding';
 
 function App(){
 
@@ -19,9 +20,7 @@ function App(){
           <Route path="/" element={<Home />} />
           <Route path="/myprofile" element={<MyProfileRouter/>}></Route>
           <Route path="/weekly/*" element={<WeeklyRouter />}></Route>
-          <Route path="/onboarding" element={<Onboarding />}></Route>
-          <Route path="/onboarding/after" element={<DetailInfo/>}></Route>
-      </Route>
+          <Route path="/onboarding" element={<OnboardingRouter />}></Route>      </Route>
         <Route element={<CheckUserAuth/>}>
           <Route path="/login" element={<Login />}/>
         </Route>

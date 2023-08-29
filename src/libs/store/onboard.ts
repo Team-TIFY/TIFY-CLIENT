@@ -38,6 +38,8 @@ export interface OnboardingPageType {
     gender: boolean,
   },
   interestStart: boolean,
+  onboardStatus: boolean,
+  favor: boolean,
 }
 
 const initialPageState: OnboardingPageType = {
@@ -48,7 +50,9 @@ const initialPageState: OnboardingPageType = {
     birth: false,
     gender: false,      
   },
-  interestStart: false,
+  interestStart:false,
+  onboardStatus: false,
+  favor:false,
 }
 
 export const onboardingPageState = atom<OnboardingPageType>({
@@ -60,4 +64,14 @@ export const onboardingPageState = atom<OnboardingPageType>({
 export const isBtnColorState = atom({
   key: 'isBtnColorState',
   default: false,
+})
+
+export const isSearchInputState = atom({
+  key: 'isSearchInputState',
+  default:'',
+})
+
+export const isSearchActiveBtn = atom({
+  key: 'isSearchActiveBtn',
+  default:-1,
 })

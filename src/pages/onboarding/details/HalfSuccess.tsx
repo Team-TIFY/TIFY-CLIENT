@@ -1,19 +1,21 @@
 import { Spacing } from "@components/atoms/Spacing";
 import { Text } from "@components/atoms/Text";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "@libs/store/user";
 import OnBoardGift from "@assets/image/OnBoardGift";
 import styled from "@emotion/styled";
 import { Button } from "@components/atoms/Button";
 import { useNavigate } from "react-router-dom";
+import { onboardingPageState } from "@libs/store/onboard";
 
 export function HalfSuccess() {
 
   const user = useRecoilValue(userState);
-  const navigate = useNavigate();
+    const [goNext, setGoNext] = useRecoilState(onboardingPageState);
 
   const goToNext = () => {
-    navigate("/onboarding/after");
+    setGoNext({ ...goNext, onboardStatus: true });
+    console.log(goNext);
   }
 
   return (
@@ -29,14 +31,13 @@ export function HalfSuccess() {
       <Spacing height={48} />
       <ImgWrapper>
         <OnBoardGift />
-        <BtnDiv>
-          <Button
-            variant="mediumRound" width={312} children="시작"
-            onClick={goToNext}
-          />
-        </BtnDiv>
       </ImgWrapper>
-      <Spacing height={32}/>
+      <BottomSticker>
+        <Button
+          variant="mediumRound" width={312} children="시작"
+          onClick={goToNext}
+        />
+      </BottomSticker>
     </>
   )
 }
@@ -47,10 +48,15 @@ const TextDiv = styled.div`
 `
 
 const ImgWrapper = styled.div`
-  margin-top: 79px;
 `
 
-const BtnDiv = styled.div`
-  margin-top: 228px;
-  text-align: center;
+const BottomSticker = styled.div`
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `

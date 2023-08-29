@@ -1,12 +1,11 @@
 import DailyQuestionBox from "@components/WeeklyQuestion/DailyQuestionBox"
-import { Input } from "@components/atoms/Input"
+import { LongInput } from "@components/atoms/Input/LongInput"
 import { FlexBox } from "@components/layouts/FlexBox"
 import { Spacing } from "@components/atoms/Spacing"
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@components/atoms/Button"
 import styled from "@emotion/styled"
 import { theme } from "@styles/theme"
-import { text } from "@components/atoms/Text/text.stories"
 
 const AnswerDailyQuestion = () => {
     const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -63,7 +62,7 @@ const AnswerDailyQuestion = () => {
                 )
             }
             <InputSticker isBottom={toggled}>
-                <Input className={toggled ? 'bottomInput' : undefined} ref={inputRef} onClick={handleToggleInput} 
+                <LongInput className={toggled ? 'bottomInput' : undefined} ref={inputRef} onClick={handleToggleInput} 
                     customEvent = {handleButtonDisabled}
                     fullWidth = {true} variant={toggled ? 'withInst' : 'default'}
                     explanation="입력하면 친구들의 답변을 볼 수 있어요!"/>

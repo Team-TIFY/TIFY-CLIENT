@@ -50,7 +50,7 @@ export function Agreement() {
   };
 
   return (
-    <>
+    <div style={{minHeight:'550px'}}>
       <FlexBox>
         <TextWrap>
           <Text
@@ -126,13 +126,13 @@ export function Agreement() {
           linkUrl="9e75acf1487c481a9fe818754198b73a"
         />
       </CheckDiv>
-      <BtnDiv>
+      <BottomSticker>
         <Button
           variant="mediumRound" width={312} children="다음"
           onClick={gotoReg} disabled={!btnColor}
         />        
-      </BtnDiv>
-    </>
+      </BottomSticker>
+    </div>
   )
 }
 
@@ -146,8 +146,13 @@ const CheckDiv = styled.label`
   justify-content: center;
 `
 
-const BtnDiv = styled.div`
-  margin-top: 228px;
-  padding-bottom: 32px;
-  text-align: center;
+const BottomSticker = styled.div`
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
