@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi';
 import { Spacing } from '@components/atoms/Spacing';
 import { ChangeStatus } from '@assets/icons/ChangeStatus';
+import { theme } from '@styles/theme';
 
 interface SearchResultItem {
   name: string;
@@ -125,8 +126,7 @@ export function DetailInfo() {
             }}
           >
             <Text children={item.name}
-              typo={"Subhead_16"}
-            color={"gray_100"}/>
+              typo={"Subhead_16"}/>
           </RandomItem>
         ))}
       </RandomItemList>
@@ -172,7 +172,9 @@ const RandomItem = styled.div<{ isSelected: boolean }>`
   height: 48px;
   border-radius: 6px;
   background-color: ${({ isSelected }) =>
-    isSelected ? "#007BFF" : "#333"};
+  isSelected ? `${theme.palette.white}` : `${theme.palette.gray_800}`};
+  color: ${({ isSelected }) =>
+    isSelected ? `${theme.palette.gray_800}` : `${theme.palette.gray_100}`};
   cursor: pointer;
 `;
 
