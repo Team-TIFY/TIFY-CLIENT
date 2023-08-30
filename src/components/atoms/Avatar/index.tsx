@@ -15,7 +15,7 @@ import white3 from "../../../assets/icons/white3.svg";
 import white4 from "../../../assets/icons/white4.svg";
 
 type AvatarVariant = "xsmall" | "small" | "medium";
-type ProfileVariant = "pink1" | "pink2" | "pink3" | "pink4" | "transparent1" | "transparent2" | "transparent3" | "transparent4" | "white1" | "white2" | "white3" | "white4";
+export type ProfileVariant = "pink1" | "pink2" | "pink3" | "pink4" | "transparent1" | "transparent2" | "transparent3" | "transparent4" | "white1" | "white2" | "white3" | "white4";
 type VisibleVariant = "visible" | "invisible";
 
 type AvatarShapeType = {
@@ -50,7 +50,7 @@ const AVATAR_SIZE_TYPE: AvatarShapeType = {
 };
 
 const PROFILE_IMAGE_TYPE: Record<ProfileVariant, string> = {
-  pink1, pink2, pink3, pink4, 
+  pink1, pink2, pink3, pink4,
   transparent1, transparent2, transparent3, transparent4,
   white1, white2, white3, white4
 };
@@ -90,7 +90,7 @@ const CircleBaseStyle = styled.div<{
   height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
 `;
 
-const Dimmed = styled(CircleBaseStyle)<{
+const Dimmed = styled(CircleBaseStyle) <{
   variant: AvatarVariant;
   isVisible: VisibleVariant;
 }>`
@@ -101,7 +101,7 @@ const Dimmed = styled(CircleBaseStyle)<{
   display:  ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].display}`};
 `;
 
-const AvatarCircle = styled(CircleBaseStyle)<{
+const AvatarCircle = styled(CircleBaseStyle) <{
   variant: AvatarVariant;
 }>`
   border-radius: 50%;

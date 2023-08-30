@@ -3,7 +3,7 @@ import { Input } from "@components/atoms/Input"
 import { FlexBox } from "@components/layouts/FlexBox"
 import { Spacing } from "@components/atoms/Spacing"
 import { useEffect, useRef, useState } from "react"
-import { Button } from "@components/atoms/Button"
+import { RoundButton } from "@components/atoms/RoundButton"
 import styled from "@emotion/styled"
 import { theme } from "@styles/theme"
 import { axiosApi } from "@utils/apis/axios"
@@ -19,7 +19,7 @@ const AnswerDailyQuestion = () => {
     const divRef = useRef<HTMLDivElement>(null)
     let initialState = false
     const handleToggleInput = () => {
-        if(!initialState) {
+        if (!initialState) {
             initialState = true
             setToggle(false)
         }
@@ -40,7 +40,7 @@ const AnswerDailyQuestion = () => {
     const handleButtonDisabled = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         //TODO: debounce 이벤트 훅 걸어두기! 꼭!
         let textValue = e.target.value;
-        if(textValue.length > 0){
+        if (textValue.length > 0) {
             setDisabled(false)
         } else {
             setDisabled(true)
@@ -50,39 +50,40 @@ const AnswerDailyQuestion = () => {
     useEffect(() => {
         const handleVisualViewPortResize = () => {
             const currentVisualViewport = Number(window.visualViewport?.height)
-            if(divRef){
+            if (divRef) {
                 divRef.current!.style.height = `${currentVisualViewport - 30}px`
                 window.scrollTo(0, 40)
             }
         }
-        if (window.visualViewport){
+        if (window.visualViewport) {
             window.visualViewport.onresize = handleVisualViewPortResize;
         }
- 
+
     }, [])
 
     return (
         <AnswerDailyQuestionContainer ref={divRef}>
-            <DailyQuestionBox/>
+            <DailyQuestionBox />
             {toggled && (
                 <FlexBox direction={"column"} fullWidth={true}>
-                    <div 
-                        style={{background:'rgb(255, 153, 207, 0.3)', cursor: 'pointer',
-                        height:'240px', width: '100%', color: 'white', textAlign:'center'   
-                    }}
-                    onClick={() => setToggle(false)}
+                    <div
+                        style={{
+                            background: 'rgb(255, 153, 207, 0.3)', cursor: 'pointer',
+                            height: '240px', width: '100%', color: 'white', textAlign: 'center'
+                        }}
+                        onClick={() => setToggle(false)}
                     >
                         이미지 영역
                     </div>
-                    <Spacing variant="default" height={64}/>
+                    <Spacing variant="default" height={64} />
                 </FlexBox>
-                )
+            )
             }
             <InputSticker isBottom={toggled}>
-                <Input className={toggled ? 'bottomInput' : undefined} ref={inputRef} onClick={handleToggleInput} 
-                    customEvent = {handleButtonDisabled}
-                    fullWidth = {true} variant={toggled ? 'withInst' : 'default'}
-                    explanation="입력하면 친구들의 답변을 볼 수 있어요!"/>
+                <Input className={toggled ? 'bottomInput' : undefined} ref={inputRef} onClick={handleToggleInput}
+                    customEvent={handleButtonDisabled}
+                    fullWidth={true} variant={toggled ? 'withInst' : 'default'}
+                    explanation="입력하면 친구들의 답변을 볼 수 있어요!" />
             </InputSticker>
             <BottomSticker>
                 {!toggled && ( 
@@ -114,8 +115,8 @@ const AnswerDailyQuestionContainer = styled.div`
     background-color: ${theme.palette.background};
 `
 
-const InputSticker = styled.div<{isBottom: boolean}>`
+const InputSticker = styled.div<{ isBottom: boolean }>`
     width : 100%;
-    position : ${({ isBottom }) => isBottom ? 'absolute' : 'relative' };
-    bottom : ${({ isBottom }) => isBottom ? '64px' : undefined };
+    position : ${({ isBottom }) => isBottom ? 'absolute' : 'relative'};
+    bottom : ${({ isBottom }) => isBottom ? '64px' : undefined};
 `
