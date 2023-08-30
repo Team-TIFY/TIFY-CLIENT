@@ -9,7 +9,6 @@ export type DaysKeyType = 'M' | 'T' | 'W' | 'T' | 'F' | 'S' | 'S';
 
 interface WeekPropsType {
   today: TodayKeyType;
-  getNewDate?: () => void;
 }
 
 export const Week = ({ today }: WeekPropsType ) => {

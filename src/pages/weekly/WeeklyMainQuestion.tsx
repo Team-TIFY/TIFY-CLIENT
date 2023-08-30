@@ -15,9 +15,8 @@ const WeeklyMainQuestion = () => {
 
     useEffect(() => {
         getTodayDate()
-        localStorage.setItem('date', '0')
     },[])
-    
+
     return (
         <WeekContainer>
             <BackgroundImg/>

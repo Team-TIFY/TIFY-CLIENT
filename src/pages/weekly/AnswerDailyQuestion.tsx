@@ -6,10 +6,14 @@ import { useEffect, useRef, useState } from "react"
 import { Button } from "@components/atoms/Button"
 import styled from "@emotion/styled"
 import { theme } from "@styles/theme"
-import { text } from "@components/atoms/Text/text.stories"
+import { axiosApi } from "@utils/apis/axios"
+import { useRecoilState } from "recoil"
+import { questionState } from "@libs/store/question"
+import { WeeklyApi } from "@utils/apis/weekly/WeeklyApi"
 
 const AnswerDailyQuestion = () => {
     const inputRef = useRef<HTMLTextAreaElement>(null)
+    const [question, setQuestion] = useRecoilState(questionState)
     const [toggled, setToggle] = useState<boolean>(true)
     const [disabled, setDisabled] = useState<boolean>(true)
     const divRef = useRef<HTMLDivElement>(null)
@@ -19,6 +23,18 @@ const AnswerDailyQuestion = () => {
             initialState = true
             setToggle(false)
         }
+    }
+
+    const submitAnswer = async() => {
+        // const response = await axiosApi.post(`/daily-questions/${question.questionId}/answers`, {
+        //     answer: inputRef.current!.value
+        // })
+        // console.log(response)
+        const data = await WeeklyApi.ANSWER_QUESTION({
+            questionId : question.questionId, 
+            answer: inputRef.current!.value
+        })
+        console.log(data)
     }
 
     const handleButtonDisabled = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -71,7 +87,7 @@ const AnswerDailyQuestion = () => {
             <BottomSticker>
                 {!toggled && ( 
                     <Button disabled={disabled} 
-                        onClick={() => {console.log(inputRef.current!.value)}}
+                        onClick={submitAnswer}
                         variant="mediumRound">답변 완료</Button> 
                     )
                 }
