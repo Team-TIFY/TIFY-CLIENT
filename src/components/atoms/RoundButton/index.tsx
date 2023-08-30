@@ -3,19 +3,19 @@ import { KeyOfTypo, theme } from '@styles/theme';
 import styled from '@emotion/styled';
 import { Text } from '../Text';
 
-type ButtonVariant = 
-| 'mediumRound'
-| 'mediumSquare'
-| 'smallRound'
-| 'circle'
-| 'kakao'
+type ButtonVariant =
+  | 'mediumRound'
+  | 'mediumSquare'
+  | 'smallRound'
+  | 'circle'
+  | 'kakao'
 
-const BUTTON_COLOR_TYPE = { 
+const BUTTON_COLOR_TYPE = {
   default: {
     'mediumRound': `${theme.palette.purple_500}`,
     'mediumSquare': `${theme.palette.gray_900}`,
-    'smallRound' : `${theme.palette.background}`,
-    'circle' : `${theme.palette.gray_900}`,
+    'smallRound': `${theme.palette.background}`,
+    'circle': `${theme.palette.gray_800}`,
     'kakao': `${theme.palette.kakao}`
   },
   disabled: {
@@ -29,7 +29,7 @@ const BUTTON_COLOR_TYPE = {
     'mediumRound': `${theme.palette.purple_600}`,
     'mediumSquare': `${theme.palette.gray_800}`,
     'smallRound': `${theme.palette.gray_800}`,
-    'circle' : `${theme.palette.gray_900}`,
+    'circle': `${theme.palette.gray_700}`,
     'kakao': `${theme.palette.kakao}`
   }
 }
@@ -38,8 +38,8 @@ const TEXT_COLOR_TYPE = {
   default: {
     'mediumRound': `${theme.palette.white}`,
     'mediumSquare': `${theme.palette.gray_200}`,
-    'smallRound' : `${theme.palette.gray_100}`,
-    'circle' : `${theme.palette.gray_100}`,
+    'smallRound': `${theme.palette.gray_100}`,
+    'circle': `${theme.palette.gray_100}`,
     'kakao': `${theme.palette.gray_900}`
   },
   disabled: {
@@ -53,13 +53,13 @@ const TEXT_COLOR_TYPE = {
     'mediumRound': `${theme.palette.white}`,
     'mediumSquare': `${theme.palette.gray_100}`,
     'smallRound': `${theme.palette.gray_100}`,
-    'circle' : `${theme.palette.gray_100}`,
+    'circle': `${theme.palette.gray_200}`,
     'kakao': `${theme.palette.gray_900}`
   }
 }
 
 type ButtonShapeType = {
-  [key in ButtonVariant]:{
+  [key in ButtonVariant]: {
     radius: number;
     typo: KeyOfTypo;
     width: number;
@@ -71,22 +71,22 @@ type ButtonShapeType = {
 const BUTTON_SHAPE_TYPE: ButtonShapeType = {
   mediumRound: {
     radius: 24,
-    typo :'Subhead_16',
-    width : 126,
+    typo: 'Subhead_16',
+    width: 126,
     height: 48,
     padding: [12, 32]
   },
   mediumSquare: {
     radius: 12,
-    typo : 'Body_14',
+    typo: 'Body_14',
     width: 158,
     height: 40,
     padding: [10, 48]
   },
   smallRound: {
     radius: 18,
-    typo:'Subhead_14',
-    width : 156,
+    typo: 'Subhead_14',
+    width: 156,
     height: 36,
     padding: [8, 20]
   },
@@ -97,12 +97,12 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
     height: 32,
     padding: [0, 0]
   },
-  kakao:{
+  kakao: {
     radius: 12,
     typo: 'Subhead_14',
     width: 156,
     height: 36,
-    padding: [8,20]
+    padding: [8, 20]
   }
 }
 
@@ -114,7 +114,7 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
  * @param onClick 버튼을 클릭할 때 발생하는 event 명시 (optional)
  */
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant;
   fullWidth?: boolean;
   width?: number;
@@ -123,25 +123,25 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 type Props = Partial<ButtonProps>;
 
-export const Button = ({
-  children, 
+export const RoundButton = ({
+  children,
   variant = 'mediumRound',
-  fullWidth= false,
+  fullWidth = false,
   width,
   isLoading,
   ...props
 }: Props) => {
   return (
-    <StyledButton 
-      width = {width} 
-      variant = {variant} 
-      fullWidth = {fullWidth}
+    <StyledButton
+      width={width}
+      variant={variant}
+      fullWidth={fullWidth}
       {...props}
     >
       {isLoading ? (
         <p>로딩중입니다</p>
       ) : (
-        <Text typo ={`${BUTTON_SHAPE_TYPE[variant].typo}`} as ={'span'}>
+        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as={'span'}>
           {children}
         </Text>
       )}
@@ -150,12 +150,13 @@ export const Button = ({
 };
 
 const StyledButton = styled.button<{
-  variant : ButtonVariant;
+  variant: ButtonVariant;
   width?: number;
-  fullWidth?: boolean;  
+  fullWidth?: boolean;
 }>`
-  padding: ${({variant}) => `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
-  border: ${({variant}) => variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none'};
+  padding: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
+  border: ${({ variant }) => variant === 'circle' ? `1px solid ${theme.palette.gray_400}` : 'none'};
+  //border: ${({ variant }) => variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none'};
   min-width: ${({ variant, fullWidth, width }) => fullWidth ? '100%' : (width ? `${width}px` : `${BUTTON_SHAPE_TYPE[variant].width}px`)};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
@@ -164,11 +165,12 @@ const StyledButton = styled.button<{
 
   &:hover {
     background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.hover[variant]}`};
-    color: ${({variant}) => `${TEXT_COLOR_TYPE.hover[variant]}`}
+    color: ${({ variant }) => `${TEXT_COLOR_TYPE.hover[variant]}`};
+    border: none;
   }
 
   &:disabled {
     background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.disabled[variant]}`};
-    color: ${({variant}) => `${TEXT_COLOR_TYPE.disabled[variant]}`}
+    color: ${({ variant }) => `${TEXT_COLOR_TYPE.disabled[variant]}`}
   }
 `
