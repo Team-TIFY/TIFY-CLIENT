@@ -12,11 +12,11 @@ export const Navigationbar = () => {
     const navigate = useNavigate();
     const [select, setSelect] = useState<number>(1);
     const navRef = useRef<any>([]);
-    const handleClick = (index: number)=> {
-        if(select === index) return;
+    const handleClick = (index: number) => {
+        if (select === index) return;
         navRef.current[select].classList.remove('active')
-        setSelect(index)
         navRef.current[select].classList.add('active')
+        setSelect(index)
     }
 
     return (
@@ -84,7 +84,7 @@ const NavBtn = styled.button`
     }
 `
 
-const NavBorder = styled.div<{select : number}>`
+const NavBorder = styled.div<{ select: number }>`
     position: absolute;    
     width: 45px;
     height: 35px;
@@ -93,6 +93,6 @@ const NavBorder = styled.div<{select : number}>`
     border-top: 1px solid ${theme.palette.gray_800};
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.24));
     left: 27px;
-    left: ${({select}) => 25 + select * 52.5}px;
+    left: ${({ select }) => 25 + select * 52.5}px;
     top: -12px;
 `

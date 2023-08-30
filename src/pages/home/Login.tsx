@@ -1,5 +1,5 @@
 import { AuthApi } from "@utils/apis/auth/AuthApi";
-import { Button } from "@components/atoms/Button";
+import { RoundButton } from "@components/atoms/RoundButton";
 
 const Login = () => {
     const kakaoLogin = async () => {
@@ -8,7 +8,7 @@ const Login = () => {
     }
     return (
         <div>
-            <Button variant="kakao" onClick={kakaoLogin}>카카오로 로그인하기</Button>
+            <RoundButton variant="kakao" onClick={kakaoLogin}>카카오로 로그인하기</RoundButton>
         </div>
     );
 };

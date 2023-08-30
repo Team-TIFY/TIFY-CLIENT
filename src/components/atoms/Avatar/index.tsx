@@ -15,6 +15,7 @@ import White4 from "@assets/icons/White4";
 import Svg from "../Svg";
 
 type AvatarVariant = "xsmall" | "small" | "medium";
+
 export type ProfileVariant =
   | "pink1"
   | "pink2"
@@ -28,6 +29,7 @@ export type ProfileVariant =
   | "white2"
   | "white3"
   | "white4";
+        
 type VisibleVariant = "visible" | "invisible";
 
 type AvatarShapeType = {

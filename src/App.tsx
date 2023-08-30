@@ -11,15 +11,14 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route element = {<RequireAuth/>}>
-          <Route path="/" element={<Home />} />
-          <Route path="/myprofile" element={<MyProfileRouter/>}></Route>
-          <Route path="/weekly/*" element={<WeeklyRouter/>}></Route>
-      </Route>
-        <Route element={<CheckUserAuth/>}>
-          <Route path="/login" element={<Login />}/>
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<WeeklyRouter />} />
+          <Route path="/myprofile" element={<MyProfileRouter />}></Route>
         </Route>
-        <Route path="/kakao/callback" element={<Redirect/>}/>
+        <Route element={<CheckUserAuth />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route path="/kakao/callback" element={<Redirect />} />
       </Route>
     </Routes>
   );

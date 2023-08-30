@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { theme } from "@styles/theme";
+
 import SmallRightChevron from "@assets/icons/SmallRightChevron";
-import { Button } from "../Button";
+import { RoundButton } from "../RoundButton";
+
 import { Text } from "../Text";
 import Svg from "../Svg";
 
@@ -22,7 +24,7 @@ export const Category = ({
     <Wrapper>
       <Heading>
         <Text children={categoryName} typo={"Headline_16"} color={"white"} as={"div"} />
-        <Button variant={"circle"} children={"+"} onClick={onPlusButtonClick} />
+        <RoundButton variant={"circle"} children={"+"} onClick={onPlusButtonClick} />
       </Heading>
       <TagWrapper>
         {children.map((child, index) => (
