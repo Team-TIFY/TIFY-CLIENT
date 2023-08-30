@@ -93,8 +93,8 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
   circle: {
     radius: 50,
     typo: 'Subhead_16',
-    width: 32,
-    height: 32,
+    width: 24,
+    height: 24,
     padding: [0, 0]
   },
   kakao: {
@@ -154,6 +154,7 @@ const StyledButton = styled.button<{
   width?: number;
   fullWidth?: boolean;
 }>`
+  box-sizing: border-box;
   padding: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
   border: ${({ variant }) => variant === 'circle' ? `1px solid ${theme.palette.gray_400}` : 'none'};
   //border: ${({ variant }) => variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none'};

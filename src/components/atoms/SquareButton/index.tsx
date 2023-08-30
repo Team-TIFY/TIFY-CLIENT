@@ -1,3 +1,10 @@
+type ButtonVariant =
+  | 'mediumRound'
+  | 'mediumSquare'
+  | 'smallRound'
+  | 'circle'
+  | 'kakao'
+
 const SquareButton = () => {
 
 }
