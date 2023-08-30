@@ -33,7 +33,7 @@ interface TagProps {
   variant: TagVariant;
   color: ColorVariant;
   children: string;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: () => void;
 }
 
 export const Tag = ({ variant, color, children }: TagProps) => {

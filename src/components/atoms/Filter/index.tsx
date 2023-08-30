@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { ButtonHTMLAttributes, useEffect, useState } from "react";
 import { theme } from "@styles/theme";
-import { FilterIcon } from "@assets/image/FilterIcon";
 import { SelectedProps, SelectedTag } from "@libs/types/UserTypes";
+import { FilterIcon } from "@assets/image/FilterIcon";
+import Svg from "../Svg";
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selectedProps: SelectedProps,
@@ -58,7 +59,7 @@ export const Filter = ({
         <>
           {selected.some((item) => item.active) && (
             <CancelBtn onClick={() => handleCancel()}>
-              <FilterIcon />
+              <Svg children={<FilterIcon />} />
             </CancelBtn>
           )}
         </>

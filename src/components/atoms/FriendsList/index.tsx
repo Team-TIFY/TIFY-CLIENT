@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 import { theme } from "@styles/theme";
-
 import { Text } from "../Text";
-import { Avatar } from "../Avatar";
-
-import openEyeIconImgUrl from "../../../assets/icons/openEye.svg";
-import closeEyeIconImgUrl from "../../../assets/icons/closeEye.svg";
-import orderingIconImgUrl from "../../../assets/icons/ordering.svg";
+import { Avatar, ProfileVariant } from "../Avatar";
+import Svg from "../Svg";
+import OpenEye from "@assets/icons/OpenEye";
+import CloseEye from "@assets/icons/CloseEye";
+import Ordering from "@assets/icons/Ordering";
 
 type FriendsListVariant = 'visible' | 'invisible';
 
@@ -14,21 +13,21 @@ interface FriendsListProps {
   variant?: FriendsListVariant;
   name: string;
   nickName: string;
-  avatarImgUrl: "kitty" | "monkey";
+  avatarImgUrl: ProfileVariant;
   onClick?: () => void;
 }
 
 export const FriendsList = ({ variant = 'visible', name, nickName, avatarImgUrl, onClick }: FriendsListProps) => {
   return (
     <Wrapper variant={variant}>
-      <Avatar variant="small" color="purple" imageUrl={`${avatarImgUrl}`} isVisible={`${variant}`} />
+      <Avatar variant="small" imageUrl={`${avatarImgUrl}`} isVisible={`${variant}`} />
       <NameWrapper>
         {variant === 'visible' ? <Text children={name} typo='Subhead_16' /> : <Text children={name} typo='Subhead_16' color='gray_400' />}
         <Text children={'@' + nickName} typo='Caption_12M' color='gray_300' />
       </NameWrapper>
       <IconWrapper>
-        {variant === 'visible' ? <img src={openEyeIconImgUrl} /> : <img src={closeEyeIconImgUrl} />}
-        <img src={orderingIconImgUrl} onClick={onClick} />
+        {variant === 'visible' ? <Svg children={<OpenEye />} /> : <Svg children={<CloseEye />} />}
+        <Svg children={<Ordering />} onClick={onClick} />
       </IconWrapper>
     </Wrapper>
   );

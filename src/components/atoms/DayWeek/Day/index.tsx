@@ -1,14 +1,13 @@
 import styled from "@emotion/styled";
 import { theme } from "@styles/theme";
-
 import { DaysKeyType } from "../WeekGroup/Week";
-
-import dayAfterLeftDown from "../../../../assets/icons/dayAfterLeftDown.svg";
-import dayBeforeLeftDown from "../../../../assets/icons/dayBeforeLeftDown.svg";
-import daySelectedLeftDown from "../../../../assets/icons/daySelectedLeftDown.svg";
-import dayBeforeRightUp from "../../../../assets/icons/dayBeforeRightUp.svg";
-import daySelectedRightUp from "../../../../assets/icons/daySelectedRightUp.svg";
-import dayAfterRightUp from "../../../../assets/icons/dayAfterRightUp.svg";
+import DayAfterLeftDown from "@assets/icons/DayAfterLeftDown";
+import DayAfterRightUp from "@assets/icons/DayAfterRightUp";
+import DayBeforeLeftDown from "@assets/icons/DayBeforeLeftDown";
+import DayBeforeRightUp from "@assets/icons/DayBeforeRightUp";
+import DaySelectedLeftDown from "@assets/icons/DaySelectedLeftDown";
+import DaySelectedRightUp from "@assets/icons/DaySelectedRightUp";
+import Svg from "@components/atoms/Svg";
 
 interface DayPropsType {
   children: DaysKeyType;
@@ -33,21 +32,19 @@ export const Day = ({ children, variant, leftDown, onClick }: DayPropsType) => {
 
   return (
     <StyledDay variant={variant} onClick={handleClick}>
-      <img
-        src={
-          variant === 'dayBefore'
-            ? leftDown
-              ? dayBeforeLeftDown
-              : dayBeforeRightUp
-            : variant === 'selected'
-            ? leftDown
-              ? daySelectedLeftDown
-              : daySelectedRightUp
-            : leftDown
-            ? dayAfterLeftDown
-            : dayAfterRightUp
-        }
-      />
+      <Svg children={
+        variant === 'dayBefore'
+        ? leftDown
+          ? <DayBeforeLeftDown />
+          : <DayBeforeRightUp />
+        : variant === 'selected'
+          ? leftDown
+            ? <DaySelectedLeftDown />
+            : <DaySelectedRightUp />
+          : leftDown
+            ? <DayAfterLeftDown />
+            : <DayAfterRightUp />
+      } />
       <StyledDayChild>{children}</StyledDayChild>
     </StyledDay>
   );

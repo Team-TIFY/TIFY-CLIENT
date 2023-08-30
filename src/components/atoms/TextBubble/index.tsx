@@ -55,7 +55,6 @@ export const TextBubble = ({
         <BubbleWrapper>
           <Avatar
             variant="xsmall"
-            color="light"
             imageUrl={imageUrl}
             isVisible="visible"
           />     

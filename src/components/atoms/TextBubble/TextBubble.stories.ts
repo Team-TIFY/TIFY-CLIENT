@@ -15,7 +15,7 @@ export const New: Story = {
       variant: "new",
       nickname: "닉네임",
       reply: "답변 내용",
-      imageUrl: "kitty",
+      imageUrl: "pink1",
     }
 };
 
@@ -24,7 +24,7 @@ export const Old: Story = {
     variant: "old",
     nickname: "닉네임",
     reply: "답변 내용",
-    imageUrl: "kitty",
+    imageUrl: "pink1",
     }
 };
 
@@ -33,6 +33,6 @@ export const Older: Story = {
     variant: "older",     
     nickname: "닉네임",
     reply: "...",
-    imageUrl: "kitty",
+    imageUrl: "pink1",
     }
 };
