@@ -5,7 +5,6 @@ import { Text } from '../Text';
 
 type ButtonVariant =
   | 'mediumRound'
-  | 'mediumSquare'
   | 'smallRound'
   | 'circle'
   | 'kakao'
@@ -13,21 +12,18 @@ type ButtonVariant =
 const BUTTON_COLOR_TYPE = {
   default: {
     'mediumRound': `${theme.palette.purple_500}`,
-    'mediumSquare': `${theme.palette.gray_900}`,
     'smallRound': `${theme.palette.background}`,
     'circle': `${theme.palette.gray_800}`,
     'kakao': `${theme.palette.kakao}`
   },
   disabled: {
     'mediumRound': `${theme.palette.gray_700}`,
-    'mediumSquare': `${theme.palette.gray_900}`,
     'smallRound': `${theme.palette.background}`,
     'circle': `${theme.palette.gray_700}`,
     'kakao': `${theme.palette.kakao}`
   },
   hover: {
     'mediumRound': `${theme.palette.purple_600}`,
-    'mediumSquare': `${theme.palette.gray_800}`,
     'smallRound': `${theme.palette.gray_800}`,
     'circle': `${theme.palette.gray_700}`,
     'kakao': `${theme.palette.kakao}`
@@ -75,13 +71,6 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
     width: 126,
     height: 48,
     padding: [12, 32]
-  },
-  mediumSquare: {
-    radius: 12,
-    typo: 'Body_14',
-    width: 158,
-    height: 40,
-    padding: [10, 48]
   },
   smallRound: {
     radius: 18,
@@ -157,7 +146,6 @@ const StyledButton = styled.button<{
   box-sizing: border-box;
   padding: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
   border: ${({ variant }) => variant === 'circle' ? `1px solid ${theme.palette.gray_400}` : 'none'};
-  //border: ${({ variant }) => variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none'};
   min-width: ${({ variant, fullWidth, width }) => fullWidth ? '100%' : (width ? `${width}px` : `${BUTTON_SHAPE_TYPE[variant].width}px`)};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
