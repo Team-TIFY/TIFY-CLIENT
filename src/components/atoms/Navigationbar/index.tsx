@@ -11,26 +11,26 @@ export const Navigationbar = () => {
     const navigate = useNavigate();
     const [select, setSelect] = useState<number>(1);
     const navRef = useRef<any>([]);
-    const handleClick = (index: number)=> {
-        if(select === index) return;
+    const handleClick = (index: number) => {
+        if (select === index) return;
         navRef.current[select].classList.remove('active')
-        setSelect(index)
         navRef.current[select].classList.add('active')
+        setSelect(index)
     }
 
     return (
         <NavContainer>
             <Wrapper>
-                <NavBorder select={select}/>
-                <NavBtn className={select === 0 ? 'active' : ''} onClick={() => {handleClick(0); navigate('/friends')}} ref={elem => (navRef.current[0] = elem)}>
-                    <img src={Rocket}/>
+                <NavBorder select={select} />
+                <NavBtn className={select === 0 ? 'active' : ''} onClick={() => { handleClick(0); navigate('/friends') }} ref={elem => (navRef.current[0] = elem)}>
+                    <img src={Rocket} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>프렌즈</Text>
                 </NavBtn>
-                <NavBtn className={select === 1 ? 'active' : ''} onClick={() => {handleClick(1); navigate('/weekly')}} ref={elem => (navRef.current[1] = elem)}>
-                    <img src={Cherry}/>
+                <NavBtn className={select === 1 ? 'active' : ''} onClick={() => { handleClick(1); navigate('/') }} ref={elem => (navRef.current[1] = elem)}>
+                    <img src={Cherry} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>위클리</Text>
                 </NavBtn>
-                <NavBtn className={select === 2 ? 'active' : ''} onClick={() => {handleClick(2); navigate('/myprofile')}} ref={elem => (navRef.current[2] = elem)}>
+                <NavBtn className={select === 2 ? 'active' : ''} onClick={() => { handleClick(2); navigate('/myprofile') }} ref={elem => (navRef.current[2] = elem)}>
                     <img src={Flying} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>마이</Text>
                 </NavBtn>
@@ -83,7 +83,7 @@ const NavBtn = styled.button`
     }
 `
 
-const NavBorder = styled.div<{select : number}>`
+const NavBorder = styled.div<{ select: number }>`
     position: absolute;    
     width: 45px;
     height: 35px;
@@ -92,6 +92,6 @@ const NavBorder = styled.div<{select : number}>`
     border-top: 1px solid ${theme.palette.gray_800};
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.24));
     left: 27px;
-    left: ${({select}) => 25 + select * 52.5}px;
+    left: ${({ select }) => 25 + select * 52.5}px;
     top: -12px;
 `
