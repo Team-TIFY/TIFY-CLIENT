@@ -4,6 +4,7 @@ import { WeeklyApi } from "@utils/apis/weekly/WeeklyApi"
 import { DailyQuestionInfo } from "@libs/types/questionType"
 import { useRecoilState } from "recoil"
 import { questionState } from "@libs/store/question"
+import { Suspense } from "react"
 import { dateState } from "@libs/store/date"
 import useGetDate from "@libs/hooks/useGetDate"
 import { Outlet } from "react-router-dom"
@@ -35,7 +36,9 @@ const CheckTodayDate = () => {
     if (date.dateString.length > 0)
       getQuestionMutation.mutate(date.dateString)
   }, [date.dateString])
-  return <Outlet />
+  return (
+    <Outlet />
+  )
 }
 
 export default CheckTodayDate

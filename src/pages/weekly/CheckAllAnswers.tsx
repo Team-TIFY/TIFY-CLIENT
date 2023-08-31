@@ -21,9 +21,10 @@ const CheckAllAnswers = () => {
     }
 
     useEffect(() => {
-        countQuestionMutation.mutate(question.questionId)
-    }, [])
-    console.log(count)
+        if (question.questionId)
+            countQuestionMutation.mutate(question.questionId)
+    }, [question.questionId])
+
     return (
         <WeekAnswersContainer>
             <DailyQuestionBox />
