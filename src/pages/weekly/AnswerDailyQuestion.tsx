@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react"
 import { RoundButton } from "@components/atoms/RoundButton"
 import styled from "@emotion/styled"
 import { theme } from "@styles/theme"
-import { axiosApi } from "@utils/apis/axios"
 import { useRecoilState } from "recoil"
 import { questionState } from "@libs/store/question"
 import { WeeklyApi } from "@utils/apis/weekly/WeeklyApi"
@@ -25,16 +24,11 @@ const AnswerDailyQuestion = () => {
         }
     }
 
-    const submitAnswer = async() => {
-        // const response = await axiosApi.post(`/daily-questions/${question.questionId}/answers`, {
-        //     answer: inputRef.current!.value
-        // })
-        // console.log(response)
+    const submitAnswer = async () => {
         const data = await WeeklyApi.ANSWER_QUESTION({
-            questionId : question.questionId, 
+            questionId: question.questionId,
             answer: inputRef.current!.value
         })
-        console.log(data)
     }
 
     const handleButtonDisabled = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -86,11 +80,11 @@ const AnswerDailyQuestion = () => {
                     explanation="입력하면 친구들의 답변을 볼 수 있어요!" />
             </InputSticker>
             <BottomSticker>
-                {!toggled && ( 
-                    <Button disabled={disabled} 
+                {!toggled && (
+                    <RoundButton disabled={disabled}
                         onClick={submitAnswer}
-                        variant="mediumRound">답변 완료</Button> 
-                    )
+                        variant="mediumRound">답변 완료</RoundButton>
+                )
                 }
             </BottomSticker>
         </AnswerDailyQuestionContainer>

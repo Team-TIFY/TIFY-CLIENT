@@ -12,40 +12,41 @@ import useGetDate from "@libs/hooks/useGetDate"
 
 const DailyQuestionBox = () => {
     const [date, setDate] = useRecoilState(dateState)
-    const { getTodayDate, setNewDate } = useGetDate()
+    // const { getTodayDate, setNewDate } = useGetDate()
     const [question, setQuestion] = useRecoilState(questionState)
     const [day, setDay] = useState<string>('')
-    const getQuestionMutation = useMutation(WeeklyApi.GET_QUESTIONS, {
-        onSuccess: (data: DailyQuestionInfo) => {
-            setQuestion({
-                questionId: data.questionId,
-                content: data.content,
-                category: data.category,
-                loadingData: data.loadingData
-            })
-        }
-    })
-    useEffect(() => {
-        if(localStorage.getItem('date') && (localStorage.getItem('date') !== '0')){
-            const dateIdx = parseInt(localStorage.getItem('date')!, 10)
-            setNewDate(dateIdx)
-        } else {
-            getTodayDate()
-        }
-    }, [])
+    // const getQuestionMutation = useMutation(WeeklyApi.GET_QUESTIONS, {
+    //     onSuccess: (data: DailyQuestionInfo) => {
+    //         setQuestion({
+    //             questionId: data.questionId,
+    //             content: data.content,
+    //             category: data.category,
+    //             loadingData: data.loadingData
+    //         })
+    //     }
+    // })
+    // useEffect(() => {
+    //     if (localStorage.getItem('date') && (localStorage.getItem('date') !== '0')) {
+    //         const dateIdx = parseInt(localStorage.getItem('date')!, 10)
+    //         setNewDate(dateIdx)
+    //     } else {
+    //         getTodayDate()
+    //     }
+    // }, [])
 
     useEffect(() => {
-        if(date.dateString.length > 0)
-            getQuestionMutation.mutate(date.dateString)
-            getDayWeek(date.selectedDate)
-        }, [date.dateString])
-    
-    const getDayWeek = (day : number) => {
-        if(date.selectedDate === date.today){
+        // if (date.dateString.length > 0)
+        //     getQuestionMutation.mutate(date.dateString)
+        getDayWeek(date.selectedDate)
+        console.log(date)
+    }, [date.dateString])
+
+    const getDayWeek = (day: number) => {
+        if (date.selectedDate === date.today) {
             setDay('오늘')
             return
         }
-        switch (day){
+        switch (day) {
             case 0:
                 setDay('월요일')
                 break;
@@ -72,13 +73,13 @@ const DailyQuestionBox = () => {
 
     return (
         <>
-            <Spacing variant='default' height={48}/>
+            <Spacing variant='default' height={48} />
             <FlexBox direction={'column'} gap={8}>
                 <Text as={'div'} typo={'Caption_12R'} color="gray_200">
                     {day}의 질문
                 </Text>
                 <Text typo={'SCD_Headline_24'} color="white">{question.content}</Text>
-                <Spacing variant="default" height={64}/>
+                <Spacing variant="default" height={64} />
             </FlexBox>
         </>
     )
