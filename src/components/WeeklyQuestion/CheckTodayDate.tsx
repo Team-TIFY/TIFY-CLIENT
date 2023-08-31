@@ -23,7 +23,6 @@ const CheckTodayDate = () => {
     }
   })
   useEffect(() => {
-    //localStorage.setItem('date', '0')
     if (localStorage.getItem('date') && (localStorage.getItem('date') !== '0')) {
       const dateIdx = parseInt(localStorage.getItem('date')!, 10)
       setNewDate(dateIdx)
@@ -33,7 +32,6 @@ const CheckTodayDate = () => {
   }, [])
 
   useEffect(() => {
-    console.log('좋아해!')
     if (date.dateString.length > 0)
       getQuestionMutation.mutate(date.dateString)
   }, [date.dateString])

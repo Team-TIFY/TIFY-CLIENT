@@ -16,7 +16,7 @@ export const WeeklyApi = {
     },
     ALREADY_ANSWERED: async(questionId: number): Promise<boolean> => {
         const response = await axiosApi.get(`/daily-questions/${questionId}/user/answers/exists`)
-        return response.data
+        return response.data.data
     },
     COUNT_ANSWER: async(questionId: number): Promise<CountDailyQuestion> => {
         const response = await axiosApi.get(`/${questionId}/answers/counts`)

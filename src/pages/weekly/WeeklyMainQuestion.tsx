@@ -1,10 +1,7 @@
 import { Spacing } from "@components/atoms/Spacing"
 import { Week } from "@components/atoms/DayWeek/WeekGroup/Week"
 import styled from "@emotion/styled"
-import useGetDate from "@libs/hooks/useGetDate"
-import { useEffect } from "react"
 import { dateState } from "@libs/store/date"
-import { useMutation } from "@tanstack/react-query"
 import { WeeklyApi } from "@utils/apis/weekly/WeeklyApi"
 import { useRecoilState } from "recoil"
 import DailyQuestionBox from "@components/WeeklyQuestion/DailyQuestionBox"
@@ -14,7 +11,6 @@ import { useNavigate } from "react-router-dom"
 const WeeklyMainQuestion = () => {
     const [date, setDate] = useRecoilState(dateState)
     const [question, setQuestion] = useRecoilState(questionState)
-    const { getTodayDate } = useGetDate()
     const navigate = useNavigate()
 
     const handleAnswerQuestion = async () => {

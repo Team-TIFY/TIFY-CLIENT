@@ -25,7 +25,7 @@ const AnswerDailyQuestion = () => {
     }
 
     const submitAnswer = async () => {
-        const data = await WeeklyApi.ANSWER_QUESTION({
+        await WeeklyApi.ANSWER_QUESTION({
             questionId: question.questionId,
             answer: inputRef.current!.value
         })
