@@ -62,15 +62,15 @@ const TAG_COLOR_TYPE: Record<0 | 1 | 2 | 3 | 4 | 5, { variant: TagVariant, color
 }
 
 interface TagProps {
-  idx: 0 | 1 | 2 | 3 | 4 | 5 
+  index: 0 | 1 | 2 | 3 | 4 | 5 
   children: string;
   onClick?: () => void;
 }
 
-export const Tag = ({ idx, children }: TagProps) => {
+export const Tag = ({ index, children }: TagProps) => {
   return (
-    <Wrapper variant={TAG_COLOR_TYPE[idx].variant} color={TAG_COLOR_TYPE[idx].color}>
-      {TAG_COLOR_TYPE[idx].variant === "main" && <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[idx].color]}`} />}
+    <Wrapper variant={TAG_COLOR_TYPE[index].variant} color={TAG_COLOR_TYPE[index].color}>
+      {TAG_COLOR_TYPE[index].variant === "main" && <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[index].color]}`} />}
       {children}
     </Wrapper>
   )

@@ -13,13 +13,13 @@ type Story = StoryObj<typeof meta>;
 export const Main: Story = {
   args: {
     children: "여름쿨톤",
-    idx: 1
+    index: 1
   }
 }
 
 export const Dark: Story = {
   args: {
     children: "웨이크메이크",
-    idx: 3
+    index: 3
   }
 }
