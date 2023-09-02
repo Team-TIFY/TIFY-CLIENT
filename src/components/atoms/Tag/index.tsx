@@ -13,7 +13,7 @@ const TAG_BG_COLOR_TYPE = {
   },
   dark: {
     purple: `${theme.palette.purple_500}`,
-    pink: `${theme.palette.pink_500}`,
+    pink: `${theme.palette.pink_300}`,
     aqua: `${theme.palette.aqua_500}`,
   }
 }
@@ -34,17 +34,43 @@ const TAG_PADDING_TYPE = {
   dark: '6px 10px',
 }
 
+const TAG_COLOR_TYPE: Record<0 | 1 | 2 | 3 | 4 | 5, { variant: TagVariant, color: ColorVariant }> = {
+  0: {
+    variant: "main",
+    color: "purple"
+  },
+  1: {
+    variant: "main",
+    color: "pink"
+  },
+  2: {
+    variant: "dark",
+    color: "aqua"
+  },
+  3: {
+    variant: "dark",
+    color: "pink"
+  },
+  4: {
+    variant: "main",
+    color: "aqua"
+  },
+  5: {
+    variant: "dark",
+    color: "purple"
+  },
+}
+
 interface TagProps {
-  variant: TagVariant;
-  color: ColorVariant;
+  idx: 0 | 1 | 2 | 3 | 4 | 5 
   children: string;
   onClick?: () => void;
 }
 
-export const Tag = ({ variant, color, children }: TagProps) => {
+export const Tag = ({ idx, children }: TagProps) => {
   return (
-    <Wrapper variant={variant} color={color}>
-      {variant === "main" && <TagIcon stroke={`${TAG_IMG_TYPE[color]}`} />}
+    <Wrapper variant={TAG_COLOR_TYPE[idx].variant} color={TAG_COLOR_TYPE[idx].color}>
+      {TAG_COLOR_TYPE[idx].variant === "main" && <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[idx].color]}`} />}
       {children}
     </Wrapper>
   )

@@ -13,15 +13,13 @@ type Story = StoryObj<typeof meta>;
 export const Main: Story = {
   args: {
     children: "여름쿨톤",
-    variant: "main",
-    color: "purple"
+    idx: 1
   }
 }
 
 export const Dark: Story = {
   args: {
     children: "웨이크메이크",
-    variant: "dark",
-    color: "purple"
+    idx: 3
   }
 }
