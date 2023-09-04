@@ -1,9 +1,11 @@
-import SmallRightChevron from "@assets/icons/SmallRightChevron";
 import styled from "@emotion/styled";
 import { theme } from "@styles/theme";
 
+import SmallRightChevron from "@assets/icons/SmallRightChevron";
 import { RoundButton } from "../RoundButton";
+
 import { Text } from "../Text";
+import Svg from "../Svg";
 
 type CategoryPropsType = {
   categoryName: string;
@@ -31,7 +33,7 @@ export const Category = ({
       </TagWrapper>
       <MorePreferencesContainer>
         <Text children={"취향 더보기"} typo={"Caption_12R"} color={"gray_300"} as={"div"} />
-        <SmallRightChevron stroke={theme.palette.gray_300} onClick={onShowMorePreferencesClick} />
+        <Svg children={<SmallRightChevron stroke={theme.palette.gray_300} />} onClick={onShowMorePreferencesClick} />
       </MorePreferencesContainer>
     </Wrapper>
   );

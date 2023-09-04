@@ -1,58 +1,72 @@
 import styled from "@emotion/styled";
-import { theme } from '@styles/theme';
+import { KeyOfPalette, theme } from "@styles/theme";
+import Pink1 from "@assets/icons/Pink1";
+import Pink2 from "@assets/icons/Pink2";
+import Pink3 from "@assets/icons/Pink2";
+import Pink4 from "@assets/icons/Pink4";
+import Purple1 from "@assets/icons/Purple1";
+import Purple2 from "@assets/icons/Purple2";
+import Purple3 from "@assets/icons/Purple3";
+import Purple4 from "@assets/icons/Purple4";
+import White1 from "@assets/icons/White1";
+import White2 from "@assets/icons/White2";
+import White3 from "@assets/icons/White3";
+import White4 from "@assets/icons/White4";
+import Svg from "../Svg";
 
-import pink1 from "../../../assets/icons/pink1.svg";
-import pink2 from "../../../assets/icons/pink2.svg";
-import pink3 from "../../../assets/icons/pink3.svg";
-import pink4 from "../../../assets/icons/pink4.svg";
-import transparent1 from "../../../assets/icons/transparent1.svg";
-import transparent2 from "../../../assets/icons/transparent2.svg";
-import transparent3 from "../../../assets/icons/transparent3.svg";
-import transparent4 from "../../../assets/icons/transparent4.svg";
-import white1 from "../../../assets/icons/white1.svg";
-import white2 from "../../../assets/icons/white2.svg";
-import white3 from "../../../assets/icons/white3.svg";
-import white4 from "../../../assets/icons/white4.svg";
+const profileVariants = [
+  <Pink1 />,
+  <Pink2 />,
+  <Pink3 />,
+  <Pink4 />,
+  <Purple1 />,
+  <Purple2 />,
+  <Purple3 />,
+  <Purple4 />,
+  <White1 />,
+  <White2 />,
+  <White3 />,
+  <White4 />,
+];
 
 type AvatarVariant = "xsmall" | "small" | "medium";
-export type ProfileVariant = "pink1" | "pink2" | "pink3" | "pink4" | "transparent1" | "transparent2" | "transparent3" | "transparent4" | "white1" | "white2" | "white3" | "white4";
+        
 type VisibleVariant = "visible" | "invisible";
 
 type AvatarShapeType = {
   [key in AvatarVariant]: {
     size: number;
-  }
+  };
 };
 
 type VisibleType = {
   [key in VisibleVariant]: {
-    display: string;
+    display: "none" | "block";
     bgColor: string;
-  }
+  };
 };
 
 export interface AvatarProps {
   variant: AvatarVariant;
-  imageUrl: ProfileVariant;
-  isVisible: VisibleVariant;
+  isVisible?: VisibleVariant;
+}
+
+const getRandomProfileImage = () => {
+  const randomIndex = Math.floor(Math.random() * profileVariants.length);
+  
+  return profileVariants[randomIndex];
 }
 
 const AVATAR_SIZE_TYPE: AvatarShapeType = {
   xsmall: {
-    size: 36
+    size: 36,
   },
   small: {
-    size: 48
+    size: 48,
   },
   medium: {
-    size: 60
-  }
-};
-
-const PROFILE_IMAGE_TYPE: Record<ProfileVariant, string> = {
-  pink1, pink2, pink3, pink4,
-  transparent1, transparent2, transparent3, transparent4,
-  white1, white2, white3, white4
+    size: 60,
+  },
 };
 
 const VISIBLE_TYPE: VisibleType = {
@@ -63,19 +77,22 @@ const VISIBLE_TYPE: VisibleType = {
   invisible: {
     bgColor: `${theme.palette.dim_500}`,
     display: "block",
-  }
+  },
 };
 
 export const Avatar = ({
   variant,
-  imageUrl,
-  isVisible
+  isVisible = "visible",
 }: AvatarProps) => {
   return (
     <Wrapper>
       <Dimmed variant={variant} isVisible={isVisible} />
       <AvatarCircle variant={variant}>
-        <ProfileImages src={PROFILE_IMAGE_TYPE[imageUrl]} variant={variant} />
+        <Svg
+          children={getRandomProfileImage()}
+          width={AVATAR_SIZE_TYPE[variant].size}
+          height={AVATAR_SIZE_TYPE[variant].size}
+        />
       </AvatarCircle>
     </Wrapper>
   );
@@ -83,37 +100,32 @@ export const Avatar = ({
 
 const Wrapper = styled.div``;
 
-const CircleBaseStyle = styled.div<{
+const BaseStyle = styled.div<{
   variant: AvatarVariant;
 }>`
   width: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
   height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
 `;
 
-const Dimmed = styled(CircleBaseStyle) <{
+const Dimmed = styled(BaseStyle)<{
   variant: AvatarVariant;
   isVisible: VisibleVariant;
 }>`
-  display: ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].display}`};
+  display: ${({ isVisible }) =>
+    `${VISIBLE_TYPE[isVisible].display}`};
   border-radius: 50%;
   position: absolute;
-  background-color: ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].bgColor}`};
-  display:  ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].display}`};
+  background-color: ${({ isVisible }) =>
+    `${VISIBLE_TYPE[isVisible].bgColor}`};
+  display: ${({ isVisible }) =>
+    `${VISIBLE_TYPE[isVisible].display}`};
 `;
 
-const AvatarCircle = styled(CircleBaseStyle) <{
+const AvatarCircle = styled(BaseStyle)<{
   variant: AvatarVariant;
 }>`
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const ProfileImages = styled.img<{
-  variant: AvatarVariant;
-}>`
-  width: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
-  height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
-  border-radius: 50%;
 `;
