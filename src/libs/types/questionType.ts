@@ -20,12 +20,4 @@ export interface DailyAnswerContentInfo {
     answerInfo: DailyAnswerInfo;
     isMine: boolean;
 }
-
-export interface DailyAnswerList {
-    content: DailyAnswerContentInfo[];
-    page: number;
-    size: number;
-    hasNext: boolean;
-}
-
 type categoryType = 'PERFUME'| 'MAKEUP'| 'CLOTHES'| 'FASHIONSTUFF' | 'ACCESSORY'| 'COOKING'| 'SPORTS'| 'TRIP'|'CULTURALLIFE'| 'MUSIC' 

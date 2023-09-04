@@ -1,4 +1,5 @@
-import { CountDailyQuestion, DailyAnswerList, DailyQuestionInfo } from "@libs/types/questionType";
+import { InfiniteRequest, InfiniteResponse } from "@libs/hooks";
+import { CountDailyQuestion, DailyAnswerInfo, DailyQuestionInfo } from "@libs/types/questionType";
 import { axiosApi } from "../axios";
 export const WeeklyApi = {
     GET_QUESTIONS: async(date: string) : Promise<DailyQuestionInfo> => {
@@ -22,9 +23,17 @@ export const WeeklyApi = {
         const response = await axiosApi.get(`/${questionId}/answers/counts`)
         return response.data.data
     },
-    GET_ANSWERS: async(questionId: number): Promise<DailyAnswerList> => {
-        const response = await axiosApi.get(`/${questionId}/answers`)
+    GET_ANSWERS: async({questionId = 0,
+        page = 0,
+        size = 3,
+        sort='asc'}: InfiniteRequest): Promise<InfiniteResponse<DailyAnswerInfo>> => {
+        const response = await axiosApi.get(`/${questionId}/answers`, {
+            params: {
+                page: page,
+                size: size,
+                sort: sort
+            }
+        })
         return response.data.data
     }
-
 }

@@ -9,24 +9,35 @@ import { questionState } from "@libs/store/question";
 import { RoundButton } from "@components/atoms/RoundButton";
 import Poke from "@assets/icons/Poke";
 import { FlexBox } from "@components/layouts/FlexBox";
+import { useInfiniteQueries } from "@libs/hooks";
+import AnswerList from "@components/WeeklyQuestion/AnswerList";
 const CheckAllAnswers = () => {
-    const [count, setCount] = useState<number>(0)
     const [question, setQuestion] = useRecoilState(questionState)
+    const [count, setCount] = useState<number>(0)
+    const { infiniteListElement, isEmpty } = useInfiniteQueries(
+        ['answerList', question.questionId],
+        ({ page = 0 }) =>
+            WeeklyApi.GET_ANSWERS({
+                questionId: 9,
+                page
+            }),
+        AnswerList,
+        { refetchInterval: 2000 }
+    )
     const countQuestionMutation = useMutation(WeeklyApi.COUNT_ANSWER, {
         onSuccess: (data: CountDailyQuestion) => {
             setCount(data.answerCount)
         },
     });
 
-    const fetchAnswers = () => {
-
-    }
 
     useEffect(() => {
         if (question.questionId)
-            countQuestionMutation.mutate(question.questionId)
+            countQuestionMutation.mutate(9)
+        //TODO: Mock데이터가 온전히 채워진 경우 경우에 맞는 questionId로 변경할 것
+        //countQuestionMutation.mutate(question.questionId)
+        console.log(question.questionId)
     }, [question.questionId])
-
     return (
         <WeekAnswersContainer>
             <DailyQuestionBox />
@@ -44,7 +55,11 @@ const CheckAllAnswers = () => {
                 </FlexBox>
             </RoundButton>
             <AnswerListContainer>
-
+                {isEmpty ? (
+                    <>아무것도 없어요</>
+                ) : <>
+                    {infiniteListElement}
+                </>}
             </AnswerListContainer>
         </WeekAnswersContainer>
     )
