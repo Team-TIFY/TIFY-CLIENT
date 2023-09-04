@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { theme } from "@styles/theme";
+import { KeyOfPalette, theme } from "@styles/theme";
 import Pink1 from "@assets/icons/Pink1";
 import Pink2 from "@assets/icons/Pink2";
 import Pink3 from "@assets/icons/Pink2";
@@ -14,21 +14,22 @@ import White3 from "@assets/icons/White3";
 import White4 from "@assets/icons/White4";
 import Svg from "../Svg";
 
-type AvatarVariant = "xsmall" | "small" | "medium";
+const profileVariants = [
+  <Pink1 />,
+  <Pink2 />,
+  <Pink3 />,
+  <Pink4 />,
+  <Purple1 />,
+  <Purple2 />,
+  <Purple3 />,
+  <Purple4 />,
+  <White1 />,
+  <White2 />,
+  <White3 />,
+  <White4 />,
+];
 
-export type ProfileVariant =
-  | "pink1"
-  | "pink2"
-  | "pink3"
-  | "pink4"
-  | "purple1"
-  | "purple2"
-  | "purple3"
-  | "purple4"
-  | "white1"
-  | "white2"
-  | "white3"
-  | "white4";
+type AvatarVariant = "xsmall" | "small" | "medium";
         
 type VisibleVariant = "visible" | "invisible";
 
@@ -40,15 +41,20 @@ type AvatarShapeType = {
 
 type VisibleType = {
   [key in VisibleVariant]: {
-    display: string;
+    display: "none" | "block";
     bgColor: string;
   };
 };
 
 export interface AvatarProps {
   variant: AvatarVariant;
-  imageUrl: ProfileVariant;
-  isVisible: VisibleVariant;
+  isVisible?: VisibleVariant;
+}
+
+const getRandomProfileImage = () => {
+  const randomIndex = Math.floor(Math.random() * profileVariants.length);
+  
+  return profileVariants[randomIndex];
 }
 
 const AVATAR_SIZE_TYPE: AvatarShapeType = {
@@ -61,21 +67,6 @@ const AVATAR_SIZE_TYPE: AvatarShapeType = {
   medium: {
     size: 60,
   },
-};
-
-const PROFILE_IMAGE_TYPE: Record<ProfileVariant, React.ReactNode> = {
-  pink1: <Pink1 />,
-  pink2: <Pink2 />,
-  pink3: <Pink3 />,
-  pink4: <Pink4 />,
-  purple1: <Purple1 />,
-  purple2: <Purple2 />,
-  purple3: <Purple3 />,
-  purple4: <Purple4 />,
-  white1: <White1 />,
-  white2: <White2 />,
-  white3: <White3 />,
-  white4: <White4 />,
 };
 
 const VISIBLE_TYPE: VisibleType = {
@@ -91,15 +82,14 @@ const VISIBLE_TYPE: VisibleType = {
 
 export const Avatar = ({
   variant,
-  imageUrl,
-  isVisible,
+  isVisible = "visible",
 }: AvatarProps) => {
   return (
     <Wrapper>
       <Dimmed variant={variant} isVisible={isVisible} />
       <AvatarCircle variant={variant}>
         <Svg
-          children={PROFILE_IMAGE_TYPE[imageUrl]}
+          children={getRandomProfileImage()}
           width={AVATAR_SIZE_TYPE[variant].size}
           height={AVATAR_SIZE_TYPE[variant].size}
         />
