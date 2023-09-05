@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from '@pages/home/Home';
 import Layout from '@components/layouts/Layout';
 import Login from '@pages/home/Login';
 import { Redirect } from '@pages/home/Redirect';
@@ -12,7 +11,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route element={<RequireAuth />}>
-          <Route path="/" element={<WeeklyRouter />} />
+          <Route path="*" element={<WeeklyRouter />} />
           <Route path="/myprofile" element={<MyProfileRouter />}></Route>
         </Route>
         <Route element={<CheckUserAuth />}>

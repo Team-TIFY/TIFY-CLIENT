@@ -7,7 +7,7 @@ export const globalStyle = css`
 
     @font-face {
         font-family: 'S-CoreDream-3';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Medium.woff') format('woff');
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
         font-style: normal;
         font-weight: 500;
     }
