@@ -1,8 +1,9 @@
 import { DailyAnswerContentInfo } from "@libs/types/questionType"
+import { TextBubble } from "@components/atoms/TextBubble"
 const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
   return (
     <>
-      <div style={{ color: 'white', width: '100%', height: '100px' }}>{answerInfo.content}</div>
+      <TextBubble variant="new" nickname="유징이" reply={answerInfo.content} />
     </>
   )
 }

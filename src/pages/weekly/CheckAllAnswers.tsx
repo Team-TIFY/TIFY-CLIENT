@@ -11,6 +11,8 @@ import Poke from "@assets/icons/Poke";
 import { FlexBox } from "@components/layouts/FlexBox";
 import { useInfiniteQueries } from "@libs/hooks";
 import AnswerList from "@components/WeeklyQuestion/AnswerList";
+import { Spacing } from "@components/atoms/Spacing";
+
 const CheckAllAnswers = () => {
     const [question, setQuestion] = useRecoilState(questionState)
     const [count, setCount] = useState<number>(0)
@@ -44,7 +46,7 @@ const CheckAllAnswers = () => {
             <div
                 style={{
                     background: 'rgb(255, 153, 207, 0.3)', cursor: 'pointer', width: '100%',
-                    height: '242px', margin: '60px 0px', color: 'white', textAlign: 'center'
+                    minHeight: '242px', margin: '60px 0px', color: 'white', textAlign: 'center'
                 }}>
                 이미지 영역
             </div>
@@ -54,6 +56,7 @@ const CheckAllAnswers = () => {
                     <Poke />
                 </FlexBox>
             </RoundButton>
+            <Spacing variant="default" height={24} />
             <AnswerListContainer>
                 {isEmpty ? (
                     <>아무것도 없어요</>
@@ -72,10 +75,14 @@ const WeekAnswersContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: calc(100vh - 80px);
+    // height: calc(100vh - 80px + 10px);
     position: relative;
+    overflow: scroll;
 `
 
 const AnswerListContainer = styled.div`
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 `

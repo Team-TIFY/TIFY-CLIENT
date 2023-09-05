@@ -39,7 +39,7 @@ export const useInfiniteQueries = <T,>(
     content.map((item, idx) => <ListItem {...item} key={`item-${idx}`} />),
   );
   const observer = (
-    <div className="observer" ref={ref} style={{ height: '2px' }} />
+    <div className="observer" ref={ref} style={{ width: '100%', height: '10px' }} />
   );
 
   const isEmpty = data?.pages[0].content.length === 0;
