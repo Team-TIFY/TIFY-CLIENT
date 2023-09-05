@@ -23,8 +23,8 @@ export const WeeklyApi = {
         const response = await axiosApi.get(`/${questionId}/answers/counts`)
         return response.data.data
     },
-    GET_ANSWERS: async({questionId = 0,
-        pageParam = 0,
+    GET_ANSWERS: async({questionId,
+        pageParam,
         size = 4,
         sort='asc'}: InfiniteRequest): Promise<InfiniteResponse<DailyAnswerInfo>> => {
         const response = await axiosApi.get(`/${questionId}/answers`, {
