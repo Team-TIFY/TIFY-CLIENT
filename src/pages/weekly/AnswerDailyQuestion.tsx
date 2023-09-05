@@ -9,9 +9,11 @@ import { theme } from "@styles/theme"
 import { useRecoilState } from "recoil"
 import { questionState } from "@libs/store/question"
 import { WeeklyApi } from "@utils/apis/weekly/WeeklyApi"
+import { useNavigate } from "react-router-dom"
 
 const AnswerDailyQuestion = () => {
     const inputRef = useRef<HTMLTextAreaElement>(null)
+    const navigate = useNavigate()
     const [question, setQuestion] = useRecoilState(questionState)
     const [toggled, setToggle] = useState<boolean>(true)
     const [disabled, setDisabled] = useState<boolean>(true)
@@ -29,6 +31,7 @@ const AnswerDailyQuestion = () => {
             questionId: question.questionId,
             answer: inputRef.current!.value
         })
+        navigate('/answers')
     }
 
     const handleButtonDisabled = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
