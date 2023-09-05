@@ -18,10 +18,11 @@ const CheckAllAnswers = () => {
     const [count, setCount] = useState<number>(0)
     const { infiniteListElement, isEmpty } = useInfiniteQueries(
         ['answerList', question.questionId],
-        ({ page = 0 }) =>
+        ({ pageParam = 0 }) =>
             WeeklyApi.GET_ANSWERS({
+                //TODO: questionId 목업이 갖춰지면 진짜 id로 바꿔줄 것
                 questionId: 9,
-                page
+                pageParam: pageParam
             }),
         AnswerList,
         { refetchInterval: 2000 }
@@ -38,7 +39,6 @@ const CheckAllAnswers = () => {
             countQuestionMutation.mutate(9)
         //TODO: Mock데이터가 온전히 채워진 경우 경우에 맞는 questionId로 변경할 것
         //countQuestionMutation.mutate(question.questionId)
-        console.log(question.questionId)
     }, [question.questionId])
     return (
         <WeekAnswersContainer>
@@ -75,7 +75,6 @@ const WeekAnswersContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    // height: calc(100vh - 80px + 10px);
     position: relative;
     overflow: scroll;
 `

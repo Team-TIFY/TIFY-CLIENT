@@ -23,7 +23,7 @@ const BUBBLE_COLOR_TYPE: ButtonColor = {
     reply: "white",
   },
   old: {
-    background: `${theme.palette.gray_500}`,
+    background: `${theme.palette.gray_700}`,
     nickname: "gray_100",
     reply: "white",
   },

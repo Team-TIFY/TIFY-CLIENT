@@ -3,7 +3,7 @@ import { TextBubble } from "@components/atoms/TextBubble"
 const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
   return (
     <>
-      <TextBubble variant="new" nickname="유징이" reply={answerInfo.content} />
+      <TextBubble variant={isMine ? 'new' : 'old'} nickname="유징이" reply={answerInfo.content} />
     </>
   )
 }

@@ -39,7 +39,7 @@ export const useInfiniteQueries = <T,>(
     content.map((item, idx) => <ListItem {...item} key={`item-${idx}`} />),
   );
   const observer = (
-    <div className="observer" ref={ref} style={{ width: '100%', height: '10px' }} />
+    <div className="observer" ref={ref} style={{ width: '100%', height: '2px' }} />
   );
 
   const isEmpty = data?.pages[0].content.length === 0;
@@ -64,7 +64,7 @@ export interface InfiniteResponse<T> {
 
 export interface InfiniteRequest {
   questionId: number;
-  page?: number;
+  pageParam?: number;
   size?: number;
   sort?: 'asc' | 'desc';
 }

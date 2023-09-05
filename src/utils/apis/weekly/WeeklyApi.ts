@@ -24,12 +24,12 @@ export const WeeklyApi = {
         return response.data.data
     },
     GET_ANSWERS: async({questionId = 0,
-        page = 0,
+        pageParam = 0,
         size = 4,
         sort='asc'}: InfiniteRequest): Promise<InfiniteResponse<DailyAnswerInfo>> => {
         const response = await axiosApi.get(`/${questionId}/answers`, {
             params: {
-                page: page,
+                page: pageParam,
                 size: size,
                 sort: sort
             }
