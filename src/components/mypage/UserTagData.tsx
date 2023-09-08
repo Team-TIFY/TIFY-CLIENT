@@ -3,7 +3,7 @@ import { Category } from "@components/atoms/Category";
 import { Spacing } from "@components/atoms/Spacing";
 import { Tag } from "@components/atoms/Tag";
 import { FlexBox } from "@components/layouts/FlexBox";
-import { FilteredUserTag, SelectedTag, UserTag } from "@libs/types/UserTypes";
+import { FilteredUserTag, SelectedTag, UserTag } from "@libs/types/UserType";
 
 export interface UserTagDataProps {
   selectedTags: SelectedTag[];

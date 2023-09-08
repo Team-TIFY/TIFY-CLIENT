@@ -12,7 +12,7 @@ function App() {
       <Route element={<Layout />}>
         <Route element={<RequireAuth />}>
           <Route path="*" element={<WeeklyRouter />} />
-          <Route path="/myprofile" element={<MyProfileRouter />}></Route>
+          <Route path="/myprofile/*" element={<MyProfileRouter />}></Route>
         </Route>
         <Route element={<CheckUserAuth />}>
           <Route path="/login" element={<Login />} />

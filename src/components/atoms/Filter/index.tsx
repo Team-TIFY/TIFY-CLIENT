@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ButtonHTMLAttributes, useEffect, useState } from "react";
 import { theme } from "@styles/theme";
-import { SelectedProps, SelectedTag } from "@libs/types/UserTypes";
+import { SelectedProps, SelectedTag } from "@libs/types/UserType";
 import { FilterIcon } from "@assets/icons/FilterIcon";
 import Svg from "../Svg";
 
@@ -104,7 +104,7 @@ const CancelBtn = styled.button`
   cursor: pointer;
 `
 
-const SelectBtn = styled.button<{ active:boolean }>`
+const SelectBtn = styled.button<{ active: boolean }>` 
   background-color: ${(props) => props.active ? `${theme.palette.purple_300}` : `${theme.palette.gray_900}`};
   color: ${(props) => props.active ? `${theme.palette.purple_800}` : `${theme.palette.gray_100}`};
   padding: 6px 18px;

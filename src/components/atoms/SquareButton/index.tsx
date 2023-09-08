@@ -122,6 +122,7 @@ const SquareButton = ({
     <StyledButton
       variant={variant}
       fullWidth={fullWidth}
+      onClick={onClick}
       {...props}
     >
       {isLoading ? (

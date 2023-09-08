@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import Dots from "@assets/icons/Dots";
 import { Avatar } from "@components/atoms/Avatar";
 import { Spacing } from "@components/atoms/Spacing";
 import { FlexBox } from "@components/layouts/FlexBox";
 import { Text } from "@components/atoms/Text";
-import { UserInfo } from "@libs/types/UserTypes";
+import { UserInfo } from "@libs/types/UserType";
+import ThreeDots from "@assets/icons/ThreeDots";
+import Svg from "@components/atoms/Svg";
 
 export interface UserDetailProps {
   userData: UserInfo;
@@ -16,8 +17,6 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
       <AvatarWrapper>
         <Avatar
           variant={"medium"}
-          color={"purple"}
-          imageUrl={"monkey"}
           isVisible={"visible"}
         />
       </AvatarWrapper>
@@ -25,7 +24,7 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
       <UserInfoWrapper>
         <FlexBox justify="space-between">
           <Text typo={"Headline_20"} color={"white"} children={userData?.userName} />
-          <Dots />
+          <Svg children={<ThreeDots />} style={{ cursor: 'pointer' }} />
         </FlexBox>
         <Text
           typo={"Mont_Caption_12M"}
