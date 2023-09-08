@@ -6,10 +6,15 @@ import { useEffect, useRef, useState } from "react"
 import { RoundButton } from "@components/atoms/RoundButton"
 import styled from "@emotion/styled"
 import { theme } from "@styles/theme"
-import { text } from "@components/atoms/Text/text.stories"
+import { useRecoilState } from "recoil"
+import { questionState } from "@libs/store/question"
+import { WeeklyApi } from "@utils/apis/weekly/WeeklyApi"
+import { useNavigate } from "react-router-dom"
 
 const AnswerDailyQuestion = () => {
     const inputRef = useRef<HTMLTextAreaElement>(null)
+    const navigate = useNavigate()
+    const [question, setQuestion] = useRecoilState(questionState)
     const [toggled, setToggle] = useState<boolean>(true)
     const [disabled, setDisabled] = useState<boolean>(true)
     const divRef = useRef<HTMLDivElement>(null)
@@ -19,6 +24,14 @@ const AnswerDailyQuestion = () => {
             initialState = true
             setToggle(false)
         }
+    }
+
+    const submitAnswer = async () => {
+        await WeeklyApi.ANSWER_QUESTION({
+            questionId: question.questionId,
+            answer: inputRef.current!.value
+        })
+        navigate('/answers')
     }
 
     const handleButtonDisabled = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -72,7 +85,7 @@ const AnswerDailyQuestion = () => {
             <BottomSticker>
                 {!toggled && (
                     <RoundButton disabled={disabled}
-                        onClick={() => { console.log(inputRef.current!.value) }}
+                        onClick={submitAnswer}
                         variant="mediumRound">답변 완료</RoundButton>
                 )
                 }

@@ -104,7 +104,7 @@ const CancelBtn = styled.button`
   cursor: pointer;
 `
 
-const SelectBtn = styled.button<{ active:boolean }>`
+const SelectBtn = styled.button<{ active: boolean }>` 
   background-color: ${(props) => props.active ? `${theme.palette.purple_300}` : `${theme.palette.gray_900}`};
   color: ${(props) => props.active ? `${theme.palette.purple_800}` : `${theme.palette.gray_100}`};
   padding: 6px 18px;

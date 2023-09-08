@@ -1,13 +1,14 @@
 import { css } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 import { media } from './theme';
+import { theme } from './theme'
 
 export const globalStyle = css`
     ${emotionReset}
 
     @font-face {
         font-family: 'S-CoreDream-3';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Medium.woff') format('woff');
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
         font-style: normal;
         font-weight: 500;
     }
@@ -45,7 +46,7 @@ export const globalStyle = css`
         'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', sans-serif !important;
         box-sizing: border-box;
-
+        background-color: ${theme.palette.background};
 
         -webkit-tap-highlight-color: transparent;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

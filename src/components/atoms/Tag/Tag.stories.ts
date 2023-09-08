@@ -2,26 +2,24 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Tag } from ".";
 
 const meta = {
-    title: 'Atom/Tag',
-    component: Tag,
-    tags: ['autodocs'],
+  title: 'Atom/Tag',
+  component: Tag,
+  tags: ['autodocs'],
 } satisfies Meta<typeof Tag>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const main: Story = {
-    args: {
-        children: "여름쿨톤",
-        variant: "main",
-        color: "purple"
-    }
+export const Main: Story = {
+  args: {
+    children: "여름쿨톤",
+    index: 1
+  }
 }
 
-export const dark: Story = {
-    args: {
-        children: "웨이크메이크",
-        variant: "dark",
-        color: "purple"
-    }
+export const Dark: Story = {
+  args: {
+    children: "웨이크메이크",
+    index: 3
+  }
 }
