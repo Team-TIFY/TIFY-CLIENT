@@ -8,6 +8,12 @@ export const typo = {
         line-height: 32px;
         font-weight: 500;
     `,
+    SCD_Headline_20: css`
+        font-family:'S-CoreDream-3';
+        font-size: ${calcRem(20)};
+        line-height: 30px;
+        font-weight: 500;
+    `,
     Headline_20: css`
         font-family:'SpoqaHanSansNeo';
         font-size: ${calcRem(20)};

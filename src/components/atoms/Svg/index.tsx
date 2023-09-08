@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { HTMLAttributes } from 'react';
 
-interface SvgProps {
+interface SvgProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   onClick?: () => void;
   width?: "fit-content" | number;
   height?: "fit-content" | number;
 }
 
-const Svg = ({ children, onClick, width="fit-content", height="fit-content" }: SvgProps) => {
+const Svg = ({ children, onClick, width="fit-content", height="fit-content", ...props }: SvgProps) => {
   return (
-    <SvgWrapper onClick={onClick} width={width} height={height}>
+    <SvgWrapper onClick={onClick} width={width} height={height} {...props}>
       {children}
     </SvgWrapper>
   );

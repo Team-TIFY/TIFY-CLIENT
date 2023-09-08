@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 import { theme } from "@styles/theme";
-import Svg from "../Svg";
 import { Text } from "../Text";
 
 export type cubeButtonVariant = "unSelected" | "selected" | "disabled";
 
 interface CubeButtonProps {
   variant: cubeButtonVariant;
-  img: React.ReactNode;
+  img: string;
   text: string;
   onClick?: () => void
 }
@@ -15,8 +14,8 @@ interface CubeButtonProps {
 const CubeButton = ({ variant, img, text, onClick }: CubeButtonProps) => {
   return (
     <StyledButton variant={variant} onClick={onClick}>
-      <TextWrapper>
-        <Svg children={img} width={40} height={40} />
+      <TextWrapper variant={variant}>
+        <img src={img} width={40} height={40} />
         <Text
           typo="Caption_12M"
           as="div"
@@ -48,7 +47,7 @@ const StyledButton = styled.button<{ variant: cubeButtonVariant }>`
   cursor: pointer;
 `;
 
-const TextWrapper = styled.div`
+const TextWrapper = styled.div<{ variant: cubeButtonVariant }>`
   width: 80px;
   height: 64px;
   margin: auto;
@@ -56,6 +55,10 @@ const TextWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  img {
+    opacity: ${({variant}) => variant === "disabled" && `40%`};
+  }
 `;
 
 export default CubeButton;
