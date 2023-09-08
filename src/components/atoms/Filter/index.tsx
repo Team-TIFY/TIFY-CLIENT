@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { ButtonHTMLAttributes, useEffect, useState } from "react";
 import { theme } from "@styles/theme";
 import { SelectedProps, SelectedTag } from "@libs/types/UserTypes";
-import { FilterIcon } from "@assets/image/FilterIcon";
+import { FilterIcon } from "@assets/icons/FilterIcon";
 import Svg from "../Svg";
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
