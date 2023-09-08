@@ -1,32 +1,31 @@
 import styled from "@emotion/styled";
-import { KeyOfPalette, theme } from "@styles/theme";
-import Pink1 from "@assets/icons/Pink1";
-import Pink2 from "@assets/icons/Pink2";
-import Pink3 from "@assets/icons/Pink2";
-import Pink4 from "@assets/icons/Pink4";
-import Purple1 from "@assets/icons/Purple1";
-import Purple2 from "@assets/icons/Purple2";
-import Purple3 from "@assets/icons/Purple3";
-import Purple4 from "@assets/icons/Purple4";
-import White1 from "@assets/icons/White1";
-import White2 from "@assets/icons/White2";
-import White3 from "@assets/icons/White3";
-import White4 from "@assets/icons/White4";
-import Svg from "../Svg";
+import { theme } from "@styles/theme";
+import Pink1 from "/images/pink1.png";
+import Pink2 from "/images/pink2.png";
+import Pink3 from "/images/pink3.png";
+import Pink4 from "/images/pink4.png";
+import Purple1 from "/images/purple1.png";
+import Purple2 from "/images/purple2.png";
+import Purple3 from "/images/purple3.png";
+import Purple4 from "/images/purple4.png";
+import White1 from "/images/white1.png";
+import White2 from "/images/white2.png";
+import White3 from "/images/white3.png";
+import White4 from "/images/white4.png";
 
 const profileVariants = [
-  <Pink1 />,
-  <Pink2 />,
-  <Pink3 />,
-  <Pink4 />,
-  <Purple1 />,
-  <Purple2 />,
-  <Purple3 />,
-  <Purple4 />,
-  <White1 />,
-  <White2 />,
-  <White3 />,
-  <White4 />,
+  Pink1,
+  Pink2,
+  Pink3,
+  Pink4,
+  Purple1,
+  Purple2,
+  Purple3,
+  Purple4,
+  White1,
+  White2,
+  White3,
+  White4,
 ];
 
 type AvatarVariant = "xsmall" | "small" | "medium";
@@ -88,10 +87,12 @@ export const Avatar = ({
     <Wrapper>
       <Dimmed variant={variant} isVisible={isVisible} />
       <AvatarCircle variant={variant}>
-        <Svg
-          children={getRandomProfileImage()}
-          width={AVATAR_SIZE_TYPE[variant].size}
-          height={AVATAR_SIZE_TYPE[variant].size}
+        <img
+          src={getRandomProfileImage()}
+          style={{
+            width: '100%',
+            height: '100%'
+          }}
         />
       </AvatarCircle>
     </Wrapper>
