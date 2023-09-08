@@ -3,7 +3,6 @@ import { Spacing } from "@components/atoms/Spacing";
 import { FlexBox } from "@components/layouts/FlexBox";
 import { UserInfo } from "@libs/types/UserType";
 import { UserDetail } from "./UserDetail";
-import { useNavigate } from "react-router-dom";
 import SquareButton from "@components/atoms/SquareButton";
 
 interface ProfileHeaderProps {
@@ -11,11 +10,9 @@ interface ProfileHeaderProps {
 }
 
 export const ProfileHeader = ({ userData }: ProfileHeaderProps) => {
-  const navigate = useNavigate();
-
   const handleClickPastDaily = () => {console.log("지난 데일리 버튼 클릭")};
 
-  const handleClickNewTaste = () => { navigate("/myprofile/newTaste")};
+  const handleClickNewTaste = () => { window.location.href = "/myprofile/newTaste"};
   
   return (
     <ProfileHeaderWrapper>
