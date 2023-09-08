@@ -3,10 +3,10 @@ import { theme } from "@styles/theme"
 import { useNavigate } from "react-router-dom"
 import { useState, useRef } from "react"
 import { Text } from "../Text"
-import Cherry from "@assets/icons/Cherry"
-import Flying from "@assets/icons/Flying"
-import Rocket from "@assets/icons/Rocket"
 import Svg from "../Svg"
+import NavigationMy from "@assets/icons/NavigationMy"
+import NavigationToday from "@assets/icons/NavigationToday"
+import NavigationFriends from "@assets/icons/NavigationFriends"
 
 export const Navigationbar = () => {
     const navigate = useNavigate();
@@ -22,17 +22,17 @@ export const Navigationbar = () => {
     return (
         <NavContainer>
             <Wrapper>
-                <NavBorder select={select}/>
-                <NavBtn className={select === 0 ? 'active' : ''} onClick={() => {handleClick(0); navigate('/friends')}} ref={elem => (navRef.current[0] = elem)}>
-                    <Svg children={<Rocket />}/>
+                <NavBorder select={select} />
+                <NavBtn className={select === 0 ? 'active' : ''} onClick={() => { handleClick(0); navigate('/friends') }} ref={elem => (navRef.current[0] = elem)}>
+                    <Svg children={<NavigationFriends />} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>프렌즈</Text>
                 </NavBtn>
-                <NavBtn className={select === 1 ? 'active' : ''} onClick={() => {handleClick(1); navigate('/weekly')}} ref={elem => (navRef.current[1] = elem)}>
-                    <Svg children={<Cherry />}/>
+                <NavBtn className={select === 1 ? 'active' : ''} onClick={() => { handleClick(1); navigate('/') }} ref={elem => (navRef.current[1] = elem)}>
+                    <Svg children={<NavigationToday />} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>위클리</Text>
                 </NavBtn>
-                <NavBtn className={select === 2 ? 'active' : ''} onClick={() => {handleClick(2); navigate('/myprofile')}} ref={elem => (navRef.current[2] = elem)}>
-                    <Svg children={<Flying />} />
+                <NavBtn className={select === 2 ? 'active' : ''} onClick={() => { handleClick(2); navigate('/myprofile') }} ref={elem => (navRef.current[2] = elem)}>
+                    <Svg children={<NavigationMy />} />
                     <Text className="text" typo={'Caption_10'} color={'purple_200'}>마이</Text>
                 </NavBtn>
             </Wrapper>

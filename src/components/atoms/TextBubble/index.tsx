@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import { KeyOfPalette, theme } from "@styles/theme";
-import { Avatar, ProfileVariant } from "../Avatar";
+import { Avatar } from "../Avatar";
 import { Text } from "../Text";
 
 type BubbleVariant =
-| "new"
-| "old"
-| "older"
+  | "new"
+  | "old"
+  | "older"
 
 type ButtonColor = {
   [key in BubbleVariant]: {
@@ -23,7 +23,7 @@ const BUBBLE_COLOR_TYPE: ButtonColor = {
     reply: "white",
   },
   old: {
-    background: `${theme.palette.gray_500}`,
+    background: `${theme.palette.gray_700}`,
     nickname: "gray_100",
     reply: "white",
   },
@@ -38,14 +38,12 @@ type BubbleProps = {
   variant: BubbleVariant;
   nickname: string;
   reply: string;
-  imageUrl: ProfileVariant;
 }
 
 export const TextBubble = ({
   variant,
   nickname,
   reply,
-  imageUrl
 }: BubbleProps
 ) => {
 
@@ -55,9 +53,8 @@ export const TextBubble = ({
         <BubbleWrapper>
           <Avatar
             variant="xsmall"
-            imageUrl={imageUrl}
             isVisible="visible"
-          />     
+          />
           <InfWrapper>
             <Text
               children={nickname}
@@ -69,7 +66,7 @@ export const TextBubble = ({
               children={reply}
               typo={"Body_14"}
               color={`${BUBBLE_COLOR_TYPE[variant].reply}`}
-            as={"div"}/>
+              as={"div"} />
           </InfWrapper>
         </BubbleWrapper>
       </Bubble>
