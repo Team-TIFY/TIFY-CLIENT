@@ -18,13 +18,6 @@ export const MediumRound: Story = {
   },
 };
 
-export const MediumSquare: Story = {
-  args: {
-    variant:'mediumSquare',
-    children: '버튼 이름'
-  },
-};
-
 export const SmallRound: Story = {
   args: {
     variant: 'smallRound',

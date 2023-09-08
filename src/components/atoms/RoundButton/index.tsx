@@ -33,21 +33,18 @@ const BUTTON_COLOR_TYPE = {
 const TEXT_COLOR_TYPE = {
   default: {
     'mediumRound': `${theme.palette.white}`,
-    'mediumSquare': `${theme.palette.gray_200}`,
     'smallRound': `${theme.palette.gray_100}`,
     'circle': `${theme.palette.gray_100}`,
     'kakao': `${theme.palette.gray_900}`
   },
   disabled: {
     'mediumRound': `${theme.palette.gray_500}`,
-    'mediumSquare': `${theme.palette.gray_200}`,
     'smallRound': `${theme.palette.gray_100}`,
     'circle': `${theme.palette.gray_500}`,
     'kakao': `${theme.palette.gray_900}`
   },
   hover: {
     'mediumRound': `${theme.palette.white}`,
-    'mediumSquare': `${theme.palette.gray_100}`,
     'smallRound': `${theme.palette.gray_100}`,
     'circle': `${theme.palette.gray_200}`,
     'kakao': `${theme.palette.gray_900}`
@@ -146,7 +143,7 @@ const StyledButton = styled.button<{
   box-sizing: border-box;
   padding: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
   border: ${({ variant }) => variant === 'circle' ? `1px solid ${theme.palette.gray_400}` : 'none'};
-  min-width: ${({ variant, fullWidth, width }) => fullWidth ? '100%' : (width ? `${width}px` : `${BUTTON_SHAPE_TYPE[variant].width}px`)};
+  width: ${({ variant, fullWidth, width }) => fullWidth ? '100%' : (width ? `${width}px` : `${BUTTON_SHAPE_TYPE[variant].width}px`)};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
