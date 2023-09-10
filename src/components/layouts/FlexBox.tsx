@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { CSSProperties } from '@emotion/serialize';
-import { HTMLAttributes, ReactNode } from 'react';
+import { css } from '@emotion/react'
+import { CSSProperties } from '@emotion/serialize'
+import { HTMLAttributes, ReactNode } from 'react'
 
 export interface FlexBoxProps extends HTMLAttributes<HTMLDivElement> {
-  align?: CSSProperties['alignItems'];
-  justify?: CSSProperties['justifyContent'];
-  direction?: CSSProperties['flexDirection'];
-  gap?: CSSProperties['gap'];
-  children: ReactNode;
-  fullWidth?: boolean;
+  align?: CSSProperties['alignItems']
+  justify?: CSSProperties['justifyContent']
+  direction?: CSSProperties['flexDirection']
+  gap?: CSSProperties['gap']
+  children: ReactNode
+  fullWidth?: boolean
 }
 
-export type flexboxPropsKey = 'align' | 'justify' | 'direction' | 'gap';
+export type flexboxPropsKey = 'align' | 'justify' | 'direction' | 'gap'
 /**
  *
  * @param align : align-items 속성 (기본값 : center)
@@ -43,5 +43,5 @@ export const FlexBox = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}

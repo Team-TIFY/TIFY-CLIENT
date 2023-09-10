@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
-const SmallRightChevron = ({ stroke = "#E4E4E5" }: { stroke?: string; }) => {
+const SmallRightChevron = ({ stroke = '#E4E4E5' }: { stroke?: string }) => {
   return (
     <Wrapper>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,11 +14,11 @@ const SmallRightChevron = ({ stroke = "#E4E4E5" }: { stroke?: string; }) => {
         </defs>
       </svg>
     </Wrapper>
-  );
-};
+  )
+}
 
 const Wrapper = styled.div`
   cursor: pointer;
-`;
+`
 
-export default SmallRightChevron;
+export default SmallRightChevron

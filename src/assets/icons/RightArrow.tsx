@@ -15,4 +15,4 @@ const RightArrow = () => {
   )
 }
 
-export default RightArrow;
+export default RightArrow

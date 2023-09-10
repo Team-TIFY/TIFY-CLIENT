@@ -1,17 +1,15 @@
+/* eslint-disable prettier/prettier */
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { HTMLAttributes, ReactNode } from 'react';
+import { css } from '@emotion/react'
+import { HTMLAttributes, ReactNode } from 'react'
 
 interface PaddingProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-  size?: PaddingSize;
-  fill?: boolean;
+  children: ReactNode
+  size?: PaddingSize
+  fill?: boolean
 }
 
-export type PaddingSize =
-  | number
-  | [number, number]
-  | [number, number, number, number];
+export type PaddingSize = number | [number, number] | [number, number, number, number]
 
 /**
  *
@@ -21,20 +19,15 @@ export type PaddingSize =
  * [number,number,number,number] : 상, 우, 하, 좌
  * @param fill true: width100%
  */
-export const Padding = ({
-  children,
-  size = [0, 24],
-  fill = false,
-  ...props
-}: PaddingProps) => {
+export const Padding = ({ children, size = [0, 24], fill = false, ...props }: PaddingProps) => {
   return (
     <div
       css={css`
         padding: ${typeof size === 'number'
           ? `${size}px`
           : size.length === 2
-          ? `${size[0]}px ${size[1]}px`
-          : `${size[0]}px ${size[1]}px ${size[2]}px ${size[3]}px`};
+            ? `${size[0]}px ${size[1]}px`
+            : `${size[0]}px ${size[1]}px ${size[2]}px ${size[3]}px`};
         ${fill && 'width : 100%;'}
         box-sizing:border-box;
       `}
@@ -42,5 +35,5 @@ export const Padding = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
-import { ButtonHTMLAttributes } from "react"
-import styled from "@emotion/styled";
-import { theme, KeyOfTypo } from "@styles/theme";
-import { Text } from "../Text";
+import { ButtonHTMLAttributes } from 'react'
+import styled from '@emotion/styled'
+import { theme, KeyOfTypo } from '@styles/theme'
+import { Text } from '../Text'
 
 type ButtonVariant =
   | 'mediumSquare'
@@ -13,54 +13,54 @@ type ButtonVariant =
 
 const BUTTON_COLOR_TYPE = {
   default: {
-    'mediumSquare': `${theme.palette.background}`,
-    'medium2Square': `${theme.palette.gray_800}`,
-    'medium3Square': `${theme.palette.gray_800}`,
-    'smallSquare': `${theme.palette.gray_500}`,
-    'xsmallSquareP': `${theme.palette.purple_400}`,
-    'xsmallSquareS': `${theme.palette.gray_800}`,
+    mediumSquare: `${theme.palette.background}`,
+    medium2Square: `${theme.palette.gray_800}`,
+    medium3Square: `${theme.palette.gray_800}`,
+    smallSquare: `${theme.palette.gray_500}`,
+    xsmallSquareP: `${theme.palette.purple_400}`,
+    xsmallSquareS: `${theme.palette.gray_800}`,
   },
   hover: {
-    'mediumSquare': `${theme.palette.gray_900}`,
-    'medium2Square': `${theme.palette.gray_800}`,
-    'medium3Square': `${theme.palette.gray_800}`,
-    'smallSquare': `${theme.palette.gray_800}`,
-    'xsmallSquareP': `${theme.palette.purple_400}`,
-    'xsmallSquareS': `${theme.palette.gray_800}`,
+    mediumSquare: `${theme.palette.gray_900}`,
+    medium2Square: `${theme.palette.gray_800}`,
+    medium3Square: `${theme.palette.gray_800}`,
+    smallSquare: `${theme.palette.gray_800}`,
+    xsmallSquareP: `${theme.palette.purple_400}`,
+    xsmallSquareS: `${theme.palette.gray_800}`,
   },
   selected: {
-    'mediumDefault': `${theme.palette.white}`,
-  }
+    mediumDefault: `${theme.palette.white}`,
+  },
 }
 
 const TEXT_COLOR_TYPE = {
   default: {
-    'mediumSquare': `${theme.palette.gray_200}`,
-    'medium2Square': `${theme.palette.gray_100}`,
-    'medium3Square': `${theme.palette.gray_100}`,
-    'smallSquare': `${theme.palette.gray_100}`,
-    'xsmallSquareP': `${theme.palette.gray_900}`,
-    'xsmallSquareS': `${theme.palette.gray_200}`,
+    mediumSquare: `${theme.palette.gray_200}`,
+    medium2Square: `${theme.palette.gray_100}`,
+    medium3Square: `${theme.palette.gray_100}`,
+    smallSquare: `${theme.palette.gray_100}`,
+    xsmallSquareP: `${theme.palette.gray_900}`,
+    xsmallSquareS: `${theme.palette.gray_200}`,
   },
   hover: {
-    'mediumSquare': `${theme.palette.gray_100}`,
-    'medium2Square': `${theme.palette.gray_100}`,
-    'medium3Square': `${theme.palette.gray_100}`,
-    'smallSquare': `${theme.palette.gray_100}`,
-    'xsmallSquareP': `${theme.palette.gray_900}`,
-    'xsmallSquareS': `${theme.palette.gray_200}`,
+    mediumSquare: `${theme.palette.gray_100}`,
+    medium2Square: `${theme.palette.gray_100}`,
+    medium3Square: `${theme.palette.gray_100}`,
+    smallSquare: `${theme.palette.gray_100}`,
+    xsmallSquareP: `${theme.palette.gray_900}`,
+    xsmallSquareS: `${theme.palette.gray_200}`,
   },
   selected: {
-    'mediumDefualt': `${theme.palette.gray_800}`,
-  }
+    mediumDefualt: `${theme.palette.gray_800}`,
+  },
 }
 
 type ButtonShapeType = {
   [key in ButtonVariant]: {
-    radius: number;
-    typo: KeyOfTypo;
-    width: number;
-    height: number;
+    radius: number
+    typo: KeyOfTypo
+    width: number
+    height: number
   }
 }
 
@@ -100,35 +100,23 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
     typo: 'Caption_12M',
     width: 64,
     height: 32,
-  }
+  },
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: ButtonVariant;
-  fullWidth?: boolean;
-  isLoading?: boolean;
-  onClick?: () => void;
+  variant: ButtonVariant
+  fullWidth?: boolean
+  isLoading?: boolean
+  onClick?: () => void
 }
 
-const SquareButton = ({
-  children,
-  variant,
-  fullWidth,
-  isLoading,
-  onClick,
-  ...props
-}: ButtonProps) => {
+const SquareButton = ({ children, variant, fullWidth, isLoading, onClick, ...props }: ButtonProps) => {
   return (
-    <StyledButton
-      variant={variant}
-      fullWidth={fullWidth}
-      onClick={onClick}
-      {...props}
-    >
+    <StyledButton variant={variant} fullWidth={fullWidth} onClick={onClick} {...props}>
       {isLoading ? (
         <p>로딩중입니다</p>
       ) : (
-        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as={'span'}>
+        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
           {children}
         </Text>
       )}
@@ -139,15 +127,15 @@ const SquareButton = ({
 export default SquareButton
 
 export const StyledButton = styled.button<{
-  variant: ButtonVariant;
-  fullWidth?: boolean;
+  variant: ButtonVariant
+  fullWidth?: boolean
 }>`
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: ${({ variant }) => variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none'};
-  width: ${({ variant, fullWidth }) => fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};
+  border: ${({ variant }) => (variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none')};
+  width: ${({ variant, fullWidth }) => (fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`)};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
