@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Category } from "@components/atoms/Category";
 import { Spacing } from "@components/atoms/Spacing";
-import { Tag } from "@components/atoms/Tag";
+import { indexVariant, Tag } from "@components/atoms/Tag";
 import { FlexBox } from "@components/layouts/FlexBox";
 import { FilteredUserTag, SelectedTag, UserTag } from "@libs/types/UserType";
 
@@ -24,11 +24,10 @@ export const UserTagData = ({
               <Category
                 key={idx}
                 categoryName={selectedTags[idx].name}
-                children={tag.map((tagData) => (
+                children={tag.map((tagData, index) => (
                   <Tag
                     key={tagData.userFavorId}
-                    variant={"main"}
-                    color={"purple"}
+                    index={index as indexVariant}
                     children={tagData.smallCategory}
                   />
                 ))}
@@ -38,11 +37,10 @@ export const UserTagData = ({
               <Category
                 key={category.userTagId}
                 categoryName={category.largeCategory}
-                children={category.favors.map((tag) => (
+                children={category.favors.map((tag, index) => (
                   <Tag
                     key={tag.userFavorId}
-                    variant={"main"}
-                    color={"purple"}
+                    index={index as indexVariant}
                     children={tag.smallCategory}
                   />
                 ))}

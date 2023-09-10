@@ -5,6 +5,8 @@ import { theme } from '@styles/theme';
 type TagVariant = 'main' | 'dark';
 type ColorVariant = 'purple' | 'pink' | 'aqua';
 
+export type indexVariant = 0 | 1 | 2 | 3 | 4 | 5;
+
 const TAG_BG_COLOR_TYPE = {
   main: {
     purple: `${theme.palette.purple_100}`,
@@ -34,7 +36,7 @@ const TAG_PADDING_TYPE = {
   dark: '6px 10px',
 }
 
-const TAG_COLOR_TYPE: Record<0 | 1 | 2 | 3 | 4 | 5, { variant: TagVariant, color: ColorVariant }> = {
+const TAG_COLOR_TYPE: Record<indexVariant, { variant: TagVariant, color: ColorVariant }> = {
   0: {
     variant: "main",
     color: "purple"
