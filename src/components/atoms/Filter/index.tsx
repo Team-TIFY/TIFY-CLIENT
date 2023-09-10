@@ -1,56 +1,51 @@
-import styled from "@emotion/styled";
-import { ButtonHTMLAttributes, useEffect, useState } from "react";
-import { theme } from "@styles/theme";
-import { SelectedProps, SelectedTag } from "@libs/types/UserType";
-import { FilterIcon } from "@assets/icons/FilterIcon";
-import Svg from "../Svg";
+import styled from '@emotion/styled'
+import { ButtonHTMLAttributes, useEffect, useState } from 'react'
+import { theme } from '@styles/theme'
+import { SelectedProps, SelectedTag } from '@libs/types/UserType'
+import { FilterIcon } from '@assets/icons/FilterIcon'
+import Svg from '../Svg'
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  selectedProps: SelectedProps,
-  selectedTags: SelectedTag[],
-  setSelectedTags: React.Dispatch<React.SetStateAction<SelectedTag[]>>;
+  selectedProps: SelectedProps
+  selectedTags: SelectedTag[]
+  setSelectedTags: React.Dispatch<React.SetStateAction<SelectedTag[]>>
 }
-type Props = FilterProps & Partial<FilterProps>;
+type Props = FilterProps & Partial<FilterProps>
 
-export const Filter = ({
-  selectedProps,
-  setSelectedTags,
-  selectedTags,
-  ...props
-} : Props) => {
-
-  const [selected, setSelected] = useState(selectedProps);
+export const Filter = ({ selectedProps, setSelectedTags, selectedTags, ...props }: Props) => {
+  const [selected, setSelected] = useState(selectedProps)
 
   useEffect(() => {
     const updatedTags = selected
       .filter((item) => item.active)
       .reduce((acc, item) => {
         if (!acc.some((tag) => tag.value === item.value)) {
-          acc.push({ name: item.name, value: item.value });
+          acc.push({ name: item.name, value: item.value })
         }
-        return acc;
-      }, [] as SelectedTag[]);
-  
-    setSelectedTags(updatedTags);
-  }, [selected]);
+        return acc
+      }, [] as SelectedTag[])
+
+    setSelectedTags(updatedTags)
+  }, [selected])
 
   const handleClick = (id: number) => {
     const updatedBtn = selected.map((item) => {
       if (item.id === id) {
-        return { ...item, active: !item.active };
+        return { ...item, active: !item.active }
       }
 
-      return item;
-    });
-    setSelected(updatedBtn);
-  };
-  
-  const handleCancel = () => {  //전체 취소 버튼
+      return item
+    })
+    setSelected(updatedBtn)
+  }
+
+  const handleCancel = () => {
+    //전체 취소 버튼
     const updatedBtn = selected.map((item) => ({
       ...item,
       active: false,
-    }));
-    setSelected(updatedBtn);
+    }))
+    setSelected(updatedBtn)
   }
 
   return (
@@ -65,16 +60,11 @@ export const Filter = ({
         </>
         <FilterContainer>
           {selected.map((item) => (
-            <SelectBtn
-              key={item.id}
-              active={item.active}
-              onClick={() => handleClick(item.id)}
-              {...props}
-            >
+            <SelectBtn key={item.id} active={item.active} onClick={() => handleClick(item.id)} {...props}>
               {item.name}
             </SelectBtn>
           ))}
-        </FilterContainer>      
+        </FilterContainer>
       </DivContainer>
     </Wrapper>
   )
@@ -94,19 +84,19 @@ const FilterContainer = styled.div``
 const CancelBtn = styled.button`
   width: 32px;
   height: 32px;
-  border-radius:50%;
+  border-radius: 50%;
   border: none;
   margin: 4px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color:${theme.palette.gray_800};
+  background-color: ${theme.palette.gray_800};
   cursor: pointer;
 `
 
-const SelectBtn = styled.button<{ active: boolean }>` 
-  background-color: ${(props) => props.active ? `${theme.palette.purple_300}` : `${theme.palette.gray_900}`};
-  color: ${(props) => props.active ? `${theme.palette.purple_800}` : `${theme.palette.gray_100}`};
+const SelectBtn = styled.button<{ active: boolean }>`
+  background-color: ${(props) => (props.active ? `${theme.palette.purple_300}` : `${theme.palette.gray_900}`)};
+  color: ${(props) => (props.active ? `${theme.palette.purple_800}` : `${theme.palette.gray_100}`)};
   padding: 6px 18px;
   border-radius: 18px;
   ${theme.typo.Caption_12M};
@@ -116,4 +106,4 @@ const SelectBtn = styled.button<{ active: boolean }>`
   margin: 4px;
   min-width: 60px;
   height: 32px;
-  `
+`

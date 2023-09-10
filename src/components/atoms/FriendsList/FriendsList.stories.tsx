@@ -1,21 +1,21 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { FriendsList } from ".";
+import { Meta, StoryObj } from '@storybook/react'
+import { FriendsList } from '.'
 
 const meta: Meta<typeof FriendsList> = {
   title: 'Atom/FriendsList',
   component: FriendsList,
   tags: ['autodocs'],
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const visibleFriendsList: Story = {
   args: {
     name: '김수빈',
     nickName: 'beenie',
   },
-};
+}
 
 export const invisibleFriendsList: Story = {
   args: {
@@ -23,4 +23,4 @@ export const invisibleFriendsList: Story = {
     name: '김수빈',
     nickName: 'beenie',
   },
-};
+}

@@ -1,21 +1,21 @@
-import { DailyAnswerContentInfo } from "@libs/types/questionType"
-import { TextBubble } from "@components/atoms/TextBubble"
-import { useEffect, useState } from "react"
-import { UserApi } from "@utils/apis/user/UserApi"
+import { DailyAnswerContentInfo } from '@libs/types/questionType'
+import { TextBubble } from '@components/atoms/TextBubble'
+import { useEffect, useState } from 'react'
+import { UserApi } from '@utils/apis/user/UserApi'
 const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
   interface BubbleProfile {
-    profileImg: string;
-    nickname: string;
+    profileImg: string
+    nickname: string
   }
   const [profile, setProfile] = useState<BubbleProfile>({
     profileImg: '',
-    nickname: ''
+    nickname: '',
   })
   const getUserInfo = async () => {
     const data = await UserApi.GET_USER_INFO(answerInfo.userId)
     setProfile({
       profileImg: data.thumbnail,
-      nickname: data.userName
+      nickname: data.userName,
     })
   }
   useEffect(() => {

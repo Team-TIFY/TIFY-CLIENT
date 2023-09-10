@@ -1,11 +1,11 @@
-import { Routes, Route } from 'react-router-dom';
-import Layout from '@components/layouts/Layout';
-import Login from '@pages/home/Login';
-import { Redirect } from '@pages/home/Redirect';
-import { CheckUserAuth } from '@components/auth/CheckUserAuth';
-import RequireAuth from '@components/auth/RequireAuth';
-import MyProfileRouter from '@pages/myprofile';
-import WeeklyRouter from '@pages/weekly';
+import { Routes, Route } from 'react-router-dom'
+import Layout from '@components/layouts/Layout'
+import Login from '@pages/home/Login'
+import { Redirect } from '@pages/home/Redirect'
+import { CheckUserAuth } from '@components/auth/CheckUserAuth'
+import RequireAuth from '@components/auth/RequireAuth'
+import MyProfileRouter from '@pages/myprofile'
+import WeeklyRouter from '@pages/weekly'
 function App() {
   return (
     <Routes>
@@ -20,7 +20,7 @@ function App() {
         <Route path="/kakao/callback" element={<Redirect />} />
       </Route>
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App

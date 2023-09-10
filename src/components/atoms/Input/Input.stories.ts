@@ -1,19 +1,18 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { Input } from '.';
+import { Meta, StoryObj } from '@storybook/react'
+import { Input } from '.'
 
 const meta = {
   title: 'Atom/Input',
   component: Input,
   tags: ['autodocs'],
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Input>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const TextInput: Story = {
   args: {
     variant: 'default',
-    explanation:"",
+    explanation: '',
   },
-};
-
+}

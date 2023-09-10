@@ -1,13 +1,13 @@
-import { atom } from "recoil";
-import { DailyQuestionInfo } from "@libs/types/questionType";
+import { atom } from 'recoil'
+import { DailyQuestionInfo } from '@libs/types/questionType'
 const initialState: DailyQuestionInfo = {
-    questionId: 0,
-    content: '',
-    category: 'PERFUME',
-    loadingData: ''
+  questionId: 0,
+  content: '',
+  category: 'PERFUME',
+  loadingData: '',
 }
 
 export const questionState = atom<DailyQuestionInfo>({
-    key: 'dailyQuestion',
-    default: initialState
+  key: 'dailyQuestion',
+  default: initialState,
 })

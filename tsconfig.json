@@ -32,6 +32,6 @@
     }
   },
   "include": ["src"],
-  "exclude": ["**/node_modules", "**/.*/", ".yarn"],
+  "exclude": ["node_modules", "**/.*/", ".yarn" , "storybook-static"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

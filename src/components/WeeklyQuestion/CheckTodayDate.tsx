@@ -1,13 +1,12 @@
-import { useEffect } from "react"
-import { useMutation } from "@tanstack/react-query"
-import { WeeklyApi } from "@utils/apis/weekly/WeeklyApi"
-import { DailyQuestionInfo } from "@libs/types/questionType"
-import { useRecoilState } from "recoil"
-import { questionState } from "@libs/store/question"
-import { Suspense } from "react"
-import { dateState } from "@libs/store/date"
-import useGetDate from "@libs/hooks/useGetDate"
-import { Outlet } from "react-router-dom"
+import { useEffect } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
+import { DailyQuestionInfo } from '@libs/types/questionType'
+import { useRecoilState } from 'recoil'
+import { questionState } from '@libs/store/question'
+import { dateState } from '@libs/store/date'
+import useGetDate from '@libs/hooks/useGetDate'
+import { Outlet } from 'react-router-dom'
 
 const CheckTodayDate = () => {
   const [date, setDate] = useRecoilState(dateState)
@@ -19,12 +18,12 @@ const CheckTodayDate = () => {
         questionId: data.questionId,
         content: data.content,
         category: data.category,
-        loadingData: data.loadingData
+        loadingData: data.loadingData,
       })
-    }
+    },
   })
   useEffect(() => {
-    if (localStorage.getItem('date') && (localStorage.getItem('date') !== '0')) {
+    if (localStorage.getItem('date') && localStorage.getItem('date') !== '0') {
       const dateIdx = parseInt(localStorage.getItem('date')!, 10)
       setNewDate(dateIdx)
     } else {
@@ -33,12 +32,9 @@ const CheckTodayDate = () => {
   }, [])
 
   useEffect(() => {
-    if (date.dateString.length > 0)
-      getQuestionMutation.mutate(date.dateString)
+    if (date.dateString.length > 0) getQuestionMutation.mutate(date.dateString)
   }, [date.dateString])
-  return (
-    <Outlet />
-  )
+  return <Outlet />
 }
 
 export default CheckTodayDate
