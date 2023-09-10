@@ -9,10 +9,8 @@ import { theme } from '@styles/theme'
 import { useQuery } from '@tanstack/react-query'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { useRecoilValue } from 'recoil'
-
 const NewTaste = () => {
   const auth = useRecoilValue(authState)
-
   const { data: isAnsweredQuestion } = useQuery(['newTasteCategory', auth.userId], () =>
     UserApi.GET_ISANSWERED_QUESTION(),
   )

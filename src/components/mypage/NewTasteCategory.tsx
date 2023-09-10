@@ -5,6 +5,8 @@ import styled from '@emotion/styled'
 import { subCategoryState } from '@libs/store/user'
 import { subCategoryName, subCategoryType, UserNewTasteCategory } from '@libs/types/UserType'
 import { useRecoilState } from 'recoil'
+import { useNavigate } from 'react-router-dom'
+import parseTotasteQuestion from '@utils/parseTotasteQuestion'
 
 interface NewTasteCategoryProps {
   subCategoryList: UserNewTasteCategory[]
@@ -55,12 +57,17 @@ const subCategoryTitle: Record<subCategoryType, { title: subCategoryName; img: s
 
 const NewTasteCategory = ({ subCategoryList }: NewTasteCategoryProps) => {
   const [subCategory, setSubCategory] = useRecoilState(subCategoryState)
+  const navigate = useNavigate()
 
   const handleClickSubCategory = (category: UserNewTasteCategory) => {
+    console.log(category)
     if (category.isAnswered === true) {
       return
     } else {
       setSubCategory(category.smallCategory)
+      const routerName = parseTotasteQuestion(category.smallCategory)
+      if (routerName)
+        navigate(routerName)
     }
   }
 
