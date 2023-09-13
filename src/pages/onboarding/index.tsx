@@ -8,7 +8,6 @@ const OnboardingRouter = () => {
   const onboardPage = useRecoilValue(onboardingPageState);
   const appLabel = (onboardPage.agreement ? "" : "약관동의" );
 
-
   return (
     <Routes>
       <Route path="/" element={

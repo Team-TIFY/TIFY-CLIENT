@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { FlexBox } from "@components/layouts/FlexBox";
 import { Text } from '@components/atoms/Text';
 import { SearchInput } from '@components/atoms/Input/SearchInput';
-import { Button } from '@components/atoms/Button';
+import { RoundButton } from '@components/atoms/RoundButton';
 import { useRecoilState } from 'recoil';
 import { isCancelState, isSearchActiveBtn, isSearchInputState, onboardingPageState, onboardingState } from '@libs/store/onboard';
 import { ChangeEvent, useEffect, useState } from 'react';
@@ -150,7 +150,7 @@ export function DetailInfo() {
         ))}
       </RandomItemList>
       <BottomSticker>
-        <Button
+        <RoundButton
           variant="mediumRound"
           width={312}
           children="다음"

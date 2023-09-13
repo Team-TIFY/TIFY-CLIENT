@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "@libs/store/user";
 import OnBoardGift from "@assets/image/OnBoardGift";
 import styled from "@emotion/styled";
-import { Button } from "@components/atoms/Button";
+import { RoundButton } from "@components/atoms/RoundButton";
 import { useNavigate } from "react-router-dom";
 import { onboardingPageState } from "@libs/store/onboard";
 
@@ -33,7 +33,7 @@ export function HalfSuccess() {
         <OnBoardGift />
       </ImgWrapper>
       <BottomSticker>
-        <Button
+        <RoundButton
           variant="mediumRound" width={312} children="시작"
           onClick={goToNext}
         />

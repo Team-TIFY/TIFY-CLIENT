@@ -6,7 +6,7 @@ import { CheckUserAuth } from '@components/auth/CheckUserAuth'
 import RequireAuth from '@components/auth/RequireAuth'
 import MyProfileRouter from '@pages/myprofile'
 import WeeklyRouter from '@pages/weekly'
-import { OnboardingRouter } from "@pages/onboarding";
+import OnboardingRouter from "@pages/onboarding";
 
 function App() {
   return (

@@ -1,5 +1,4 @@
 import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
-import { Input } from '@components/atoms/Input'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { useEffect, useRef, useState } from 'react'
@@ -10,6 +9,7 @@ import { useRecoilState } from 'recoil'
 import { questionState } from '@libs/store/question'
 import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
 import { useNavigate } from 'react-router-dom'
+import { LongInput } from '@components/atoms/Input/LongInput'
 
 const AnswerDailyQuestion = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -79,7 +79,7 @@ const AnswerDailyQuestion = () => {
         </FlexBox>
       )}
       <InputSticker isBottom={toggled}>
-        <Input
+        <LongInput
           className={toggled ? 'bottomInput' : undefined}
           ref={inputRef}
           onClick={handleToggleInput}

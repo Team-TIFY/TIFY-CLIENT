@@ -2,12 +2,12 @@ import React from "react";
 import styled from '@emotion/styled';
 import { ChangeEvent, useEffect, useState } from "react";
 import { Checkbox } from "./Checkbox";
-import { Button } from "./../../../components/atoms/Button/index";
 import { Text } from "../../../components/atoms/Text";
 import { Vector } from "../../../assets/icons/Vector";
 import { useRecoilState } from "recoil";
 import { onboardingPageState } from "../../../libs/store/onboard";
 import { FlexBox } from "./../../../components/layouts/FlexBox";
+import { RoundButton } from "./../../../components/atoms/RoundButton/index";
 
 export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([]);
@@ -127,7 +127,7 @@ export function Agreement() {
         />
       </CheckDiv>
       <BottomSticker>
-        <Button
+        <RoundButton
           variant="mediumRound" width={312} children="다음"
           onClick={gotoReg} disabled={!btnColor}
         />        

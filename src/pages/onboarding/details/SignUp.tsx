@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue} from "recoil";
 import { isBtnColorState, onboardingPageState, onboardingState } from "@libs/store/onboard";
 import { StartMent } from "./signup/StartMent";
-import { Button } from "@components/atoms/Button";
+import { RoundButton } from "@components/atoms/RoundButton";
 import { Spacing } from "@components/atoms/Spacing";
 import { Name } from "./signup/Name";
 import { UserId } from "./signup/UserId";
@@ -115,7 +115,7 @@ export function SignUp() {
         </div>        
       </SignUpDiv>
       <BottomSticker>
-        <Button
+        <RoundButton
           variant="mediumRound" width={312} children="다음"
           onClick={
             () => {
