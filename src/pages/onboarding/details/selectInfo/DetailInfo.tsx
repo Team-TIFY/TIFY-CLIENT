@@ -4,7 +4,7 @@ import { Text } from '@components/atoms/Text';
 import { SearchInput } from '@components/atoms/Input/SearchInput';
 import { Button } from '@components/atoms/Button';
 import { useRecoilState } from 'recoil';
-import { isSearchActiveBtn, isSearchInputState, onboardingPageState, onboardingState } from '@libs/store/onboard';
+import { isCancelState, isSearchActiveBtn, isSearchInputState, onboardingPageState, onboardingState } from '@libs/store/onboard';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi';
@@ -25,6 +25,8 @@ export function DetailInfo() {
   const [randomItems, setRandomItems] = useState<SearchResultItem[]>([]);
   const [selectedItemName, setSelectedItemName] = useState<string>("");
   const [selectedIndex, setSelectedIndex] = useRecoilState(isSearchActiveBtn);
+  const [isSelectedBtn, setIsSelectedBtn] = useState<boolean>(false);
+  const [isCancel, setIsCancel] = useRecoilState(isCancelState);
 
   const gotoReg = () => {
     if (btnColor === true) {
@@ -32,6 +34,7 @@ export function DetailInfo() {
     } else {
       setGoNext({ ...goNext, favor: false });
     }
+    console.log(goNext);
   };
   
   const searchStatus = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -60,7 +63,7 @@ export function DetailInfo() {
     setRandomItems(selectedItems);
     } else {
     setRandomItems([]);
-  }
+    }
   };
 
   const selectItem = (index: number) => {
@@ -73,13 +76,28 @@ export function DetailInfo() {
     setSelectedItemName("");
   };
 
-  
+  console.log(selectedItemName);
   useEffect(() => {
     if (searchResult) {
       updateRandomItems();
     }
   }, [searchResult]);  
-  
+
+  useEffect(() => {
+    if (selectedItemName !== "") {
+      setBtnColor(true);
+    } else {
+      setBtnColor(false);
+    }
+  }, [selectedItemName]);
+
+  useEffect(() => {
+    if (isCancel) {
+      setBtnColor(false);  
+    }
+    setIsCancel(false);
+  });
+
 
   return (
     <>
@@ -123,6 +141,7 @@ export function DetailInfo() {
               } else {
                 selectItem(index);
               }
+              setIsSelectedBtn(true);
             }}
           >
             <Text children={item.name}

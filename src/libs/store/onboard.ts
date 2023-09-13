@@ -75,3 +75,8 @@ export const isSearchActiveBtn = atom({
   key: 'isSearchActiveBtn',
   default:-1,
 })
+
+export const isCancelState = atom({
+  key: 'isCancelState',
+  default:false,
+})

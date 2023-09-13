@@ -4,7 +4,7 @@ import { theme } from '@styles/theme';
 import { FlexBox } from "@components/layouts/FlexBox";
 import { SearchIcon } from "@assets/icons/SearchIcon";
 import { useRecoilState } from "recoil";
-import { isBtnColorState, isSearchActiveBtn, isSearchInputState, onboardingState } from "@libs/store/onboard";
+import { isBtnColorState, isCancelState, isSearchActiveBtn, isSearchInputState, onboardingState } from "@libs/store/onboard";
 
 
 interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement>{
@@ -27,10 +27,12 @@ export const SearchInput= (
   const [content, setContent] = useState<string>("");
   const [searchText, setSearchText] = useRecoilState(isSearchInputState);
   const [selectedIndex, setSelectedIndex] = useRecoilState(isSearchActiveBtn);
+  const [isCancel, setIsCancel] = useRecoilState(isCancelState);
 
   const textHandler = (e: ChangeEvent<HTMLTextAreaElement> ) => {
     const inputText = e.target.value;
     setContent(inputText);
+    setIsCancel(false);
   }
   
     const cancelClick = () => {
@@ -38,6 +40,7 @@ export const SearchInput= (
       setBtnColor(false);
       setSearchText("");
       setSelectedIndex(-1);
+      setIsCancel(true);
   }
 
   const inputFocus = () => {
