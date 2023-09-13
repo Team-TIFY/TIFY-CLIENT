@@ -1,60 +1,65 @@
-import styled from "@emotion/styled";
-import { theme } from "@styles/theme";
-
-import { DaysKeyType } from "../WeekGroup/Week";
-
-import dayAfterLeftDown from "../../../../assets/icons/dayAfterLeftDown.svg";
-import dayBeforeLeftDown from "../../../../assets/icons/dayBeforeLeftDown.svg";
-import daySelectedLeftDown from "../../../../assets/icons/daySelectedLeftDown.svg";
-import dayBeforeRightUp from "../../../../assets/icons/dayBeforeRightUp.svg";
-import daySelectedRightUp from "../../../../assets/icons/daySelectedRightUp.svg";
-import dayAfterRightUp from "../../../../assets/icons/dayAfterRightUp.svg";
+import styled from '@emotion/styled'
+import { theme } from '@styles/theme'
+import { DaysKeyType } from '../WeekGroup/Week'
+import DayAfterLeftDown from '@assets/icons/DayAfterLeftDown'
+import DayAfterRightUp from '@assets/icons/DayAfterRightUp'
+import DayBeforeLeftDown from '@assets/icons/DayBeforeLeftDown'
+import DayBeforeRightUp from '@assets/icons/DayBeforeRightUp'
+import DaySelectedLeftDown from '@assets/icons/DaySelectedLeftDown'
+import DaySelectedRightUp from '@assets/icons/DaySelectedRightUp'
+import Svg from '@components/atoms/Svg'
 
 interface DayPropsType {
-  children: DaysKeyType;
-  variant: 'dayBefore' | 'selected' | 'dayAfter';
-  leftDown: boolean;
-  onClick: () => void;
+  children: DaysKeyType
+  variant: 'dayBefore' | 'selected' | 'dayAfter'
+  leftDown: boolean
+  onClick: () => void
 }
 
 const TEXT_COLOR_TYPE = {
-  'dayBefore': `${theme.palette.lemon_300}`,
-  'selected': `${theme.palette.gray_800}`,
-  'dayAfter': `${theme.palette.gray_500}`,
-  'untilToday': `${theme.palette.lemon_300}`
+  dayBefore: `${theme.palette.lemon_300}`,
+  selected: `${theme.palette.gray_800}`,
+  dayAfter: `${theme.palette.gray_500}`,
+  untilToday: `${theme.palette.lemon_300}`,
 }
 
 export const Day = ({ children, variant, leftDown, onClick }: DayPropsType) => {
   const handleClick = () => {
     if (onClick) {
-      onClick();
+      onClick()
     }
   }
 
   return (
     <StyledDay variant={variant} onClick={handleClick}>
-      <img
-        src={
-          variant === 'dayBefore'
-            ? leftDown
-              ? dayBeforeLeftDown
-              : dayBeforeRightUp
-            : variant === 'selected'
-            ? leftDown
-              ? daySelectedLeftDown
-              : daySelectedRightUp
-            : leftDown
-            ? dayAfterLeftDown
-            : dayAfterRightUp
+      <Svg
+        children={
+          variant === 'dayBefore' ? (
+            leftDown ? (
+              <DayBeforeLeftDown />
+            ) : (
+              <DayBeforeRightUp />
+            )
+          ) : variant === 'selected' ? (
+            leftDown ? (
+              <DaySelectedLeftDown />
+            ) : (
+              <DaySelectedRightUp />
+            )
+          ) : leftDown ? (
+            <DayAfterLeftDown />
+          ) : (
+            <DayAfterRightUp />
+          )
         }
       />
       <StyledDayChild>{children}</StyledDayChild>
     </StyledDay>
-  );
-};
+  )
+}
 
 const StyledDay = styled.div<{
-  variant: 'dayBefore' | 'selected' | 'dayAfter';
+  variant: 'dayBefore' | 'selected' | 'dayAfter'
 }>`
   ${theme.typo.Mont_Caption_12SB};
   color: ${({ variant }) => `${TEXT_COLOR_TYPE[variant]}`};
@@ -65,8 +70,8 @@ const StyledDay = styled.div<{
   width: 32px;
   height: 32px;
   cursor: pointer;
-`;
+`
 
 const StyledDayChild = styled.div`
   position: absolute;
-`;
+`

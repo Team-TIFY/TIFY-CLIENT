@@ -7,13 +7,12 @@ const meta = {
   tags: ['autodocs'],
 } satisfies Meta<typeof LongInput>;
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const LongTextInput: Story = {
   args: {
     variant: 'default',
-    explanation:"",
+    explanation: '',
   },
-};
-
+}

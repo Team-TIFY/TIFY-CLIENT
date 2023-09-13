@@ -1,23 +1,11 @@
-import styled from '@emotion/styled';
-import { Outlet, useLocation } from 'react-router-dom';
-import { theme } from '@styles/theme';
-import { AppBar } from '@components/atoms/AppBar';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@libs/store/user';
-import { Navigationbar } from '@components/atoms/Navigationbar';
+import styled from '@emotion/styled'
+import { Outlet, useLocation } from 'react-router-dom'
+import { theme } from '@styles/theme'
 
 const Layout = () => {
-  const location = useLocation();
-  const userData = useRecoilValue(userState);
-  
-  return(
+  return (
     <MainContainer>
-      {/* <AppBar
-        variant={location.pathname === '/myprofile' ? 'backPushWithMenu' : 'logoWithAlarm'}
-        label={location.pathname === '/myprofile' ? userData.userName : ''}
-      /> */}
-      {/* <Navigationbar/> */}
-      <Outlet/>
+      <Outlet />
     </MainContainer>
   )
 }
@@ -29,4 +17,4 @@ const MainContainer = styled.main`
   min-height: calc(var(--vh, 1vh) * 100);
   margin: 0 auto;
   background-color: ${theme.palette.background};
-`;
+`
