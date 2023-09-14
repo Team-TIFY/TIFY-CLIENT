@@ -4,14 +4,25 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import { isBtnColorState } from '@libs/store/onboard'
-import { BeautyFavor } from './Favors/BeautyFavor'
-import { FashionFavor } from './Favors/FashionFavor'
-import { HobbyFavor } from './Favors/HobbyFavor'
+import { isBtnColorState, onboardingState } from '@libs/store/onboard'
+import { BeautyFavor } from '@components/onboarding/BeautyFavor'
+import { FashionFavor } from '@components/onboarding/FashionFavor'
+import { HobbyFavor } from '@components/onboarding/HobbyFavor'
+import { useEffect } from 'react'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const [info, setInfo] = useRecoilState(onboardingState)
 
+  useEffect(() => {
+    if (info.beautyFavor !== '' && info.fashionFavor !== '' && info.hobbyFavor !== '') {
+      setBtnColor(true)
+    } else {
+      setBtnColor(false)
+    }
+  })
+
+  console.log(btnColor)
   return (
     <>
       <FlexBox>

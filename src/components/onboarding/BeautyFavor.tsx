@@ -3,9 +3,12 @@ import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
+import { onboardingState } from '@libs/store/onboard'
 import { useState } from 'react'
+import { useRecoilState } from 'recoil'
 
-export function FashionFavor() {
+export function BeautyFavor() {
+  const [info, setInfo] = useRecoilState(onboardingState)
   const initialButtonStates: cubeButtonVariant[] = ['unSelected', 'unSelected', 'unSelected', 'unSelected']
   const [buttonStates, setButtonStates] = useState<cubeButtonVariant[]>(initialButtonStates)
 
@@ -13,37 +16,63 @@ export function FashionFavor() {
     const newButtonStates = buttonStates.map((state, i) => (i === index ? 'selected' : 'unSelected'))
     setButtonStates(newButtonStates)
   }
+
+  const updateFavor = (content: string) => {
+    setInfo({
+      ...info,
+      beautyFavor: content,
+    })
+  }
+
+  console.log(info)
   return (
     <>
       <FlexBox>
         <TextWrap>
-          <Text children="패션" typo={'Headline_16'} color={'white'} />
+          <Text children="뷰티" typo={'Headline_16'} color={'white'} />
         </TextWrap>
       </FlexBox>
       <FlexBox>
-        <CubeButton variant={buttonStates[0]} img="/images/clothes.png" text="옷" onClick={() => updateState(0)} />
+        <CubeButton
+          variant={buttonStates[0]}
+          img="/images/makeup.png"
+          text="립메이크업"
+          onClick={() => {
+            updateState(0)
+            updateFavor('립메이크업')
+          }}
+        />
         <MarginDiv />
         <CubeButton
           variant={buttonStates[1]}
-          img="/images/fashionStuff.png"
-          text="패션소품"
-          onClick={() => updateState(1)}
+          img="/images/makeup.png"
+          text="아이메이크업"
+          onClick={() => {
+            updateState(1)
+            updateFavor('아이메이크업')
+          }}
         />
         <MarginDiv />
         <CubeButton
           variant={buttonStates[2]}
-          img="/images/fashionStuff.png"
-          text="가방"
-          onClick={() => updateState(2)}
+          img="/images/fragrance.png"
+          text="향수"
+          onClick={() => {
+            updateState(2)
+            updateFavor('향수')
+          }}
         />
       </FlexBox>
       <Spacing height={12} />
       <FlexBox>
         <CubeButton
           variant={buttonStates[3]}
-          img="/images/fashionStuff.png"
-          text="액세사리"
-          onClick={() => updateState(3)}
+          img="/images/fragrance.png"
+          text="캔들"
+          onClick={() => {
+            updateState(3)
+            updateFavor('캔들')
+          }}
         />
         <div style={{ width: '216px' }} />
       </FlexBox>
