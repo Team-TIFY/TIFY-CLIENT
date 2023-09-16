@@ -20,7 +20,10 @@ const TAG_BG_COLOR_TYPE = {
   },
 }
 
-const TAG_IMG_TYPE: Record<ColorVariant, 'purple_500' | 'pink_500' | 'aqua_300'> = {
+const TAG_IMG_TYPE: Record<
+  ColorVariant,
+  'purple_500' | 'pink_500' | 'aqua_300'
+> = {
   purple: 'purple_500',
   pink: 'pink_500',
   aqua: 'aqua_300',
@@ -36,7 +39,10 @@ const TAG_PADDING_TYPE = {
   dark: '6px 10px',
 }
 
-const TAG_COLOR_TYPE: Record<indexVariant, { variant: TagVariant; color: ColorVariant }> = {
+const TAG_COLOR_TYPE: Record<
+  indexVariant,
+  { variant: TagVariant; color: ColorVariant }
+> = {
   0: {
     variant: 'main',
     color: 'purple',
@@ -71,8 +77,13 @@ interface TagProps {
 
 export const Tag = ({ index, children }: TagProps) => {
   return (
-    <Wrapper variant={TAG_COLOR_TYPE[index].variant} color={TAG_COLOR_TYPE[index].color}>
-      {TAG_COLOR_TYPE[index].variant === 'main' && <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[index].color]}`} />}
+    <Wrapper
+      variant={TAG_COLOR_TYPE[index].variant}
+      color={TAG_COLOR_TYPE[index].color}
+    >
+      {TAG_COLOR_TYPE[index].variant === 'main' && (
+        <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[index].color]}`} />
+      )}
       {children}
     </Wrapper>
   )
@@ -80,7 +91,8 @@ export const Tag = ({ index, children }: TagProps) => {
 
 const Wrapper = styled.div<{ variant: TagVariant; color: ColorVariant }>`
   ${theme.typo.Caption_12M};
-  background-color: ${({ variant, color }) => `${TAG_BG_COLOR_TYPE[variant][color]}`};
+  background-color: ${({ variant, color }) =>
+    `${TAG_BG_COLOR_TYPE[variant][color]}`};
   color: ${({ variant }) => `${TAG_TEXT_COLOR_TYPE[variant]}`};
   padding: ${({ variant }) => `${TAG_PADDING_TYPE[variant]}`};
   border-radius: 6px;

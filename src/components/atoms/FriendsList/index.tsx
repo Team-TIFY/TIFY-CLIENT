@@ -16,7 +16,12 @@ interface FriendsListProps {
   onClick?: () => void
 }
 
-export const FriendsList = ({ variant = 'visible', name, nickName, onClick }: FriendsListProps) => {
+export const FriendsList = ({
+  variant = 'visible',
+  name,
+  nickName,
+  onClick,
+}: FriendsListProps) => {
   return (
     <Wrapper variant={variant}>
       <Avatar variant="small" isVisible={`${variant}`} />
@@ -29,7 +34,11 @@ export const FriendsList = ({ variant = 'visible', name, nickName, onClick }: Fr
         <Text children={'@' + nickName} typo="Caption_12M" color="gray_300" />
       </NameWrapper>
       <IconWrapper>
-        {variant === 'visible' ? <Svg children={<OpenEye />} /> : <Svg children={<CloseEye />} />}
+        {variant === 'visible' ? (
+          <Svg children={<OpenEye />} />
+        ) : (
+          <Svg children={<CloseEye />} />
+        )}
         <Svg children={<Ordering />} onClick={onClick} />
       </IconWrapper>
     </Wrapper>

@@ -7,7 +7,14 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     variant: {
-      options: ['mediumSquare', 'medium2Square', 'medium3Square', 'smallSquare', 'xsmallSquareP', 'xsmallSquareS'],
+      options: [
+        'mediumSquare',
+        'medium2Square',
+        'medium3Square',
+        'smallSquare',
+        'xsmallSquareP',
+        'xsmallSquareS',
+      ],
     },
     fullWidth: {
       control: {

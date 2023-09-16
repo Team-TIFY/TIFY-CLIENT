@@ -9,7 +9,13 @@ interface SvgProps extends HTMLAttributes<HTMLDivElement> {
   height?: 'fit-content' | number
 }
 
-const Svg = ({ children, onClick, width = 'fit-content', height = 'fit-content', ...props }: SvgProps) => {
+const Svg = ({
+  children,
+  onClick,
+  width = 'fit-content',
+  height = 'fit-content',
+  ...props
+}: SvgProps) => {
   return (
     <SvgWrapper onClick={onClick} width={width} height={height} {...props}>
       {children}
@@ -22,8 +28,10 @@ const SvgWrapper = styled.div<{
   height?: 'fit-content' | number
 }>`
   display: inline-block;
-  width: ${(props) => (props.width !== 'fit-content' ? `${props.width}px` : `fit-content`)};
-  height: ${(props) => (props.height !== 'fit-content' ? `${props.height}px` : `fit-content`)};
+  width: ${(props) =>
+    props.width !== 'fit-content' ? `${props.width}px` : `fit-content`};
+  height: ${(props) =>
+    props.height !== 'fit-content' ? `${props.height}px` : `fit-content`};
 
   svg {
     width: 100%;

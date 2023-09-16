@@ -1,1 +1,10 @@
-export type TasteType = 'BMLIP' | 'BMEYE' | 'BFPER' | 'BFMOI' | 'BFPLA' | 'FCTOP' | 'FEFAS' | 'FEDIG' | 'FEBAG'
+export type TasteType =
+  | 'BMLIP'
+  | 'BMEYE'
+  | 'BFPER'
+  | 'BFMOI'
+  | 'BFPLA'
+  | 'FCTOP'
+  | 'FEFAS'
+  | 'FEDIG'
+  | 'FEBAG'

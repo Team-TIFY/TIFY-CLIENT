@@ -1,6 +1,12 @@
 const Cherry = () => {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="icon-temporary2-24" clipPath="url(#clip0_1188_1112)">
         <path
           id="Vector"

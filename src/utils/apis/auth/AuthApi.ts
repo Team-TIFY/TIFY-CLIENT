@@ -11,7 +11,9 @@ export const AuthApi = {
     return response.data.data
   },
   KAKAO_LOGIN: async (idToken: string): Promise<KakaoLoginResponse> => {
-    const response = await axiosApi.post(`/auth/oauth/kakao/login?idToken=${idToken}`)
+    const response = await axiosApi.post(
+      `/auth/oauth/kakao/login?idToken=${idToken}`,
+    )
     return response.data.data
   },
   KAKAO_REGISTER: async ({
@@ -21,11 +23,16 @@ export const AuthApi = {
     idToken: string
     payload: KakaoRegisterResponse
   }): Promise<KakaoLoginResponse> => {
-    const response = await axiosApi.post(`/auth/oauth/kakao/register?id_token=${idToken}`, payload)
+    const response = await axiosApi.post(
+      `/auth/oauth/kakao/register?id_token=${idToken}`,
+      payload,
+    )
     return response.data.data
   },
   KAKAO_VALID: async (idToken: string) => {
-    const response = await axiosApi.get(`/auth/oauth/register/valid?idToken=${idToken}`)
+    const response = await axiosApi.get(
+      `/auth/oauth/register/valid?idToken=${idToken}`,
+    )
     return response.data.data
   },
   REFRESH: async (refreshToken: string): Promise<KakaoLoginResponse> => {

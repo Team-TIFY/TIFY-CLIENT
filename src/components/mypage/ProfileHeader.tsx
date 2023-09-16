@@ -24,8 +24,16 @@ export const ProfileHeader = ({ userData }: ProfileHeaderProps) => {
       <Spacing height={20} />
       <ButtonWrapper>
         <FlexBox justify="space-between">
-          <SquareButton variant="mediumSquare" children="지난 데일리" onClick={handleClickPastDaily} />
-          <SquareButton variant="mediumSquare" children="새로운 관심사 답변" onClick={handleClickNewTaste} />
+          <SquareButton
+            variant="mediumSquare"
+            children="지난 데일리"
+            onClick={handleClickPastDaily}
+          />
+          <SquareButton
+            variant="mediumSquare"
+            children="새로운 관심사 답변"
+            onClick={handleClickNewTaste}
+          />
         </FlexBox>
       </ButtonWrapper>
     </ProfileHeaderWrapper>

@@ -24,8 +24,13 @@ export const UserApi = {
     return response.data.data
   },
 
-  GET_FILTERED_USER_TAG: async (userId: number, largeCategory: TagValueKey): Promise<FilteredUserTag[]> => {
-    const response = await axiosApi.get(`/users/${userId}/category?largeCategory=${largeCategory}`)
+  GET_FILTERED_USER_TAG: async (
+    userId: number,
+    largeCategory: TagValueKey,
+  ): Promise<FilteredUserTag[]> => {
+    const response = await axiosApi.get(
+      `/users/${userId}/category?largeCategory=${largeCategory}`,
+    )
     return response.data.data
   },
 

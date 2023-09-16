@@ -110,9 +110,21 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void
 }
 
-const SquareButton = ({ children, variant, fullWidth, isLoading, onClick, ...props }: ButtonProps) => {
+const SquareButton = ({
+  children,
+  variant,
+  fullWidth,
+  isLoading,
+  onClick,
+  ...props
+}: ButtonProps) => {
   return (
-    <StyledButton variant={variant} fullWidth={fullWidth} onClick={onClick} {...props}>
+    <StyledButton
+      variant={variant}
+      fullWidth={fullWidth}
+      onClick={onClick}
+      {...props}
+    >
       {isLoading ? (
         <p>로딩중입니다</p>
       ) : (
@@ -134,8 +146,12 @@ export const StyledButton = styled.button<{
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: ${({ variant }) => (variant === 'mediumSquare' ? `1px solid ${theme.palette.gray_700}` : 'none')};
-  width: ${({ variant, fullWidth }) => (fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`)};
+  border: ${({ variant }) =>
+    variant === 'mediumSquare'
+      ? `1px solid ${theme.palette.gray_700}`
+      : 'none'};
+  width: ${({ variant, fullWidth }) =>
+    fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};

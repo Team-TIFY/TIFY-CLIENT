@@ -12,7 +12,12 @@ interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 type Props = FilterProps & Partial<FilterProps>
 
-export const Filter = ({ selectedProps, setSelectedTags, selectedTags, ...props }: Props) => {
+export const Filter = ({
+  selectedProps,
+  setSelectedTags,
+  selectedTags,
+  ...props
+}: Props) => {
   const [selected, setSelected] = useState(selectedProps)
 
   useEffect(() => {
@@ -60,7 +65,12 @@ export const Filter = ({ selectedProps, setSelectedTags, selectedTags, ...props 
         </>
         <FilterContainer>
           {selected.map((item) => (
-            <SelectBtn key={item.id} active={item.active} onClick={() => handleClick(item.id)} {...props}>
+            <SelectBtn
+              key={item.id}
+              active={item.active}
+              onClick={() => handleClick(item.id)}
+              {...props}
+            >
               {item.name}
             </SelectBtn>
           ))}
@@ -95,8 +105,10 @@ const CancelBtn = styled.button`
 `
 
 const SelectBtn = styled.button<{ active: boolean }>`
-  background-color: ${(props) => (props.active ? `${theme.palette.purple_300}` : `${theme.palette.gray_900}`)};
-  color: ${(props) => (props.active ? `${theme.palette.purple_800}` : `${theme.palette.gray_100}`)};
+  background-color: ${(props) =>
+    props.active ? `${theme.palette.purple_300}` : `${theme.palette.gray_900}`};
+  color: ${(props) =>
+    props.active ? `${theme.palette.purple_800}` : `${theme.palette.gray_100}`};
   padding: 6px 18px;
   border-radius: 18px;
   ${theme.typo.Caption_12M};

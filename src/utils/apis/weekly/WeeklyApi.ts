@@ -1,19 +1,34 @@
 import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
-import { CountDailyQuestion, DailyAnswerInfo, DailyQuestionInfo } from '@libs/types/questionType'
+import {
+  CountDailyQuestion,
+  DailyAnswerInfo,
+  DailyQuestionInfo,
+} from '@libs/types/questionType'
 import { axiosApi } from '../axios'
 export const WeeklyApi = {
   GET_QUESTIONS: async (date: string): Promise<DailyQuestionInfo> => {
     const response = await axiosApi.get(`/daily-questions?loadingDate=${date}`)
     return response.data.data.dailyQuestionInfo
   },
-  ANSWER_QUESTION: async ({ questionId, answer }: { questionId: number; answer: string }) => {
-    const response = await axiosApi.post(`/daily-questions/${questionId}/answers`, {
-      answer: answer,
-    })
+  ANSWER_QUESTION: async ({
+    questionId,
+    answer,
+  }: {
+    questionId: number
+    answer: string
+  }) => {
+    const response = await axiosApi.post(
+      `/daily-questions/${questionId}/answers`,
+      {
+        answer: answer,
+      },
+    )
     return response.data
   },
   ALREADY_ANSWERED: async (questionId: number): Promise<boolean> => {
-    const response = await axiosApi.get(`/daily-questions/${questionId}/user/answers/exists`)
+    const response = await axiosApi.get(
+      `/daily-questions/${questionId}/user/answers/exists`,
+    )
     return response.data.data
   },
   COUNT_ANSWER: async (questionId: number): Promise<CountDailyQuestion> => {

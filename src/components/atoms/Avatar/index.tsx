@@ -13,7 +13,20 @@ import White2 from '/images/white2.png'
 import White3 from '/images/white3.png'
 import White4 from '/images/white4.png'
 
-const profileVariants = [Pink1, Pink2, Pink3, Pink4, Purple1, Purple2, Purple3, Purple4, White1, White2, White3, White4]
+const profileVariants = [
+  Pink1,
+  Pink2,
+  Pink3,
+  Pink4,
+  Purple1,
+  Purple2,
+  Purple3,
+  Purple4,
+  White1,
+  White2,
+  White3,
+  White4,
+]
 
 type AvatarVariant = 'xsmall' | 'small' | 'medium'
 

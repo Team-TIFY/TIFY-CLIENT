@@ -87,7 +87,8 @@ const Wrapper = styled.div`
   position: relative;
   background-color: ${theme.palette.background};
   border: 1px solid ${theme.palette.gray_800};
-  filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.12)) drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.24));
+  filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.12))
+    drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.24));
   .active {
     padding-bottom: 10px;
     & > h1 {

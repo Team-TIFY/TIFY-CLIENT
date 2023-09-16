@@ -19,7 +19,11 @@ const WeeklyRouter = () => {
         <Route
           path="/answer"
           element={
-            <AppBarTemplate variant="backPushWithMenu" label="투데이 질문" hasNav={false}>
+            <AppBarTemplate
+              variant="backPushWithMenu"
+              label="투데이 질문"
+              hasNav={false}
+            >
               <AnswerDailyQuestion />
             </AppBarTemplate>
           }
@@ -27,7 +31,11 @@ const WeeklyRouter = () => {
         <Route
           path="/answers"
           element={
-            <AppBarTemplate variant="backPushWithMenu" label="투데이 질문" hasNav={false}>
+            <AppBarTemplate
+              variant="backPushWithMenu"
+              label="투데이 질문"
+              hasNav={false}
+            >
               <CheckAllAnswers />
             </AppBarTemplate>
           }
