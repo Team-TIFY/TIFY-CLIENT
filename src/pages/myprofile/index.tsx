@@ -2,7 +2,9 @@ import { Route, Routes } from 'react-router-dom'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import MyProfile from './MyProfile'
 import NewTaste from './NewTaste'
-import SearchTaste from '@pages/searchTaste/[tasteType]'
+import BMLIP from '@pages/searchTaste/BMLIP'
+import BMEYE from '@pages/searchTaste/BMEYE'
+import FCTOP from '@pages/searchTaste/FCTOP'
 
 const MyProfileRouter = () => {
   return (
@@ -32,10 +34,26 @@ const MyProfileRouter = () => {
         }
       />
       <Route
-        path="/newTaste/:tasteType/*"
+        path="/newTaste/BMLIP/*"
         element={
           <AppBarTemplate variant="backPushWithMenu" hasNav={false}>
-            <SearchTaste />
+            <BMLIP />
+          </AppBarTemplate>
+        }
+      />
+      <Route
+        path="/newTaste/BMEYE/*"
+        element={
+          <AppBarTemplate variant="backPushWithMenu" hasNav={false}>
+            <BMEYE />
+          </AppBarTemplate>
+        }
+      />
+      <Route
+        path="/newTaste/FCTOP/*"
+        element={
+          <AppBarTemplate variant="backPushWithMenu" hasNav={false}>
+            <FCTOP />
           </AppBarTemplate>
         }
       />
