@@ -21,7 +21,8 @@ const useGetDate = () => {
     const today = new Date()
     const dateString = parseDate(today)
     let todayKey = (getTodayWeek(dateString) - 1) as TodayKeyType
-    if (todayKey === -1) todayKey = 0
+    console.log(getTodayWeek(dateString))
+    if (todayKey === -1) todayKey = 6
     setDate({
       selectedDate: todayKey,
       today: todayKey,
@@ -34,10 +35,11 @@ const useGetDate = () => {
     const stateDate = new Date()
     const newDate = new Date(stateDate.setDate(stateDate.getDate() - daydiffer))
     const dateString = parseDate(newDate)
-    const selectedKey = (getTodayWeek(dateString) - 1) as TodayKeyType
+    let selectedKey = (getTodayWeek(dateString) - 1) as TodayKeyType
     const todayString = parseDate(new Date())
     let todayKey = (getTodayWeek(todayString) - 1) as TodayKeyType
-    if (todayKey === -1) todayKey = 0
+    if (todayKey === -1) todayKey = 6
+    if (selectedKey === -1) selectedKey = 6
     setDate({
       today: todayKey,
       selectedDate: selectedKey,

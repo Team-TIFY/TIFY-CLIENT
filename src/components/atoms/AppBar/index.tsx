@@ -25,7 +25,12 @@ interface AppBarProps {
   onClickOption?: () => void
 }
 
-export const AppBar = ({ variant = 'logoWithAlarm', label, beforeUrl, onClickOption }: AppBarProps) => {
+export const AppBar = ({
+  variant = 'logoWithAlarm',
+  label,
+  beforeUrl,
+  onClickOption,
+}: AppBarProps) => {
   const navigate = useNavigate()
 
   const onClickBackBar = () => {

@@ -29,14 +29,19 @@ const MyProfile = () => {
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
 
-  const { data: userData = {} as UserInfo } = useQuery(['userProfile', auth.userId], () =>
-    UserApi.GET_USER_INFO(auth.userId),
+  const { data: userData = {} as UserInfo } = useQuery(
+    ['userProfile', auth.userId],
+    () => UserApi.GET_USER_INFO(auth.userId),
   )
 
-  const { data: userTagData = [] } = useQuery(['userTag', auth.userId], () => UserApi.GET_USER_TAG(auth.userId))
+  const { data: userTagData = [] } = useQuery(['userTag', auth.userId], () =>
+    UserApi.GET_USER_TAG(auth.userId),
+  )
 
   const getFilteredData = (selectedTags: SelectedTag[]) => {
-    const promises = selectedTags.map((tag) => UserApi.GET_FILTERED_USER_TAG(auth.userId, tag.value))
+    const promises = selectedTags.map((tag) =>
+      UserApi.GET_FILTERED_USER_TAG(auth.userId, tag.value),
+    )
 
     return Promise.all(promises)
   }
@@ -58,7 +63,11 @@ const MyProfile = () => {
           <ProfileHeader userData={userData} />
           <Spacing height={32} />
           <FilterWrapper>
-            <Filter selectedTags={selectedTags} setSelectedTags={setSelectedTags} selectedProps={selectedProps} />
+            <Filter
+              selectedTags={selectedTags}
+              setSelectedTags={setSelectedTags}
+              selectedProps={selectedProps}
+            />
           </FilterWrapper>
           <Spacing height={20} />
           <UserTagData

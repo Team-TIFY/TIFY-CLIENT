@@ -13,6 +13,7 @@ const DailyQuestionBox = () => {
 
   useEffect(() => {
     getDayWeek(date.selectedDate)
+    console.log(date)
   }, [date.dateString])
 
   const getDayWeek = (day: number) => {
@@ -48,7 +49,11 @@ const DailyQuestionBox = () => {
   return (
     <>
       <Spacing variant="default" height={48} />
-      <FlexBox direction="column" gap={8} style={{ padding: '0px 24px', textAlign: 'center' }}>
+      <FlexBox
+        direction="column"
+        gap={8}
+        style={{ padding: '0px 24px', textAlign: 'center' }}
+      >
         <Text as="div" typo="Caption_12R" color="gray_200">
           {day}의 질문
         </Text>

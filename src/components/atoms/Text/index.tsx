@@ -17,7 +17,13 @@ export interface TextProps extends HTMLAttributes<HTMLSpanElement> {
 
 export type TextPropsKey = 'typo' | 'color'
 
-export const Text = ({ typo = 'Body_14', as = 'h1', color, children, ...props }: TextProps) => {
+export const Text = ({
+  typo = 'Body_14',
+  as = 'h1',
+  color,
+  children,
+  ...props
+}: TextProps) => {
   return (
     <StyledText typoKey={typo} as={as} colorKey={color} {...props}>
       {children}
@@ -25,7 +31,10 @@ export const Text = ({ typo = 'Body_14', as = 'h1', color, children, ...props }:
   )
 }
 
-const StyledText = styled.span<{ typoKey: TextType['typo']; colorKey?: TextType['color'] }>`
+const StyledText = styled.span<{
+  typoKey: TextType['typo']
+  colorKey?: TextType['color']
+}>`
   white-space: pre-wrap;
   ${({ typoKey }) => theme.typo[typoKey]};
   color: ${({ colorKey }) => {

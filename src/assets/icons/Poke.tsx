@@ -1,6 +1,12 @@
 const Poke = () => {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M8.80029 4H14.4336C15.6302 4 16.6003 4.97005 16.6003 6.16667V6.16667C16.6003 7.36328 15.6302 8.33333 14.4336 8.33333H8.80029"
         stroke="#E4E4E5"

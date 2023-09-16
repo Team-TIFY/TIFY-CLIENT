@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from '@emotion/styled'
 import { TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { theme } from '@styles/theme'
@@ -39,7 +40,8 @@ export const Input = forwardRef<HTMLTextAreaElement, Props>(function Input(
     //줄 바뀌면 자동 높이 조절
     if (inputRef && typeof inputRef !== 'function') {
       inputRef.current && (inputRef.current.style.height = '0px')
-      inputRef.current && (inputRef.current.style.height = inputRef.current.scrollHeight + 'px')
+      inputRef.current &&
+        (inputRef.current.style.height = inputRef.current.scrollHeight + 'px')
     }
   }
 
@@ -121,7 +123,8 @@ const TextAreaWrapper = styled.div<{
   align-items: center;
   &:focus-within {
     border: 2px solid;
-    border-color: ${(count) => (count ? `${theme.palette.purple_300}` : `${theme.palette.red_300}`)};
+    border-color: ${(count) =>
+    count ? `${theme.palette.purple_300}` : `${theme.palette.red_300}`};
   }
 `
 

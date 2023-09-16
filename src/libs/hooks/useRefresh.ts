@@ -9,7 +9,9 @@ const useRefresh = () => {
   const setAuth = useSetRecoilState(authState)
   const { mutate: refreshMutate, status } = useMutation(AuthApi.REFRESH, {
     onSuccess: (data) => {
-      axiosApi.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`
+      axiosApi.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${data.accessToken}`
       setAuth({
         userId: data.userId,
         accessToken: data.accessToken,

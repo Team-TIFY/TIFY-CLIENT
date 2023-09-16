@@ -44,8 +44,18 @@ export const TextBubble = ({ variant, nickname, reply }: BubbleProps) => {
         <BubbleWrapper>
           <Avatar variant="xsmall" isVisible="visible" />
           <InfWrapper>
-            <Text children={nickname} typo="Caption_10" color={`${BUBBLE_COLOR_TYPE[variant].nickname}`} as="div" />
-            <Text children={reply} typo="Body_14" color={`${BUBBLE_COLOR_TYPE[variant].reply}`} as="div" />
+            <Text
+              children={nickname}
+              typo="Caption_10"
+              color={`${BUBBLE_COLOR_TYPE[variant].nickname}`}
+              as="div"
+            />
+            <Text
+              children={reply}
+              typo="Body_14"
+              color={`${BUBBLE_COLOR_TYPE[variant].reply}`}
+              as="div"
+            />
           </InfWrapper>
         </BubbleWrapper>
       </Bubble>
@@ -59,7 +69,8 @@ const Bubble = styled.div<{
   variant: BubbleVariant
 }>`
   display: inline-block;
-  background-color: ${({ variant }) => `${BUBBLE_COLOR_TYPE[variant].background}`};
+  background-color: ${({ variant }) =>
+    `${BUBBLE_COLOR_TYPE[variant].background}`};
   min-width: 124px;
   height: 48px;
   border: none;

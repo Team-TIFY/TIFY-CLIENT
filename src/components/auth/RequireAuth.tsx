@@ -10,7 +10,9 @@ import { UserApi } from '@utils/apis/user/UserApi'
 
 const RequireAuth = () => {
   const [auth, setAuth] = useRecoilState(authState)
-  const [status, setStatus] = useState<'loading' | 'succeed' | 'failed'>('loading')
+  const [status, setStatus] = useState<'loading' | 'succeed' | 'failed'>(
+    'loading',
+  )
   const accessToken = getCookie('accessToken')
   const fetchUserData = async () => {
     const data = await UserApi.GET_USER_INFO_TOKEN()
@@ -23,7 +25,9 @@ const RequireAuth = () => {
   }
   useEffect(() => {
     if (accessToken) {
-      axiosApi.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
+      axiosApi.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${accessToken}`
       try {
         fetchUserData()
         setStatus('succeed')

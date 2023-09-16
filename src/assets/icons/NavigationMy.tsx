@@ -1,6 +1,12 @@
 const NavigationMy = () => {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g clipPath="url(#clip0_2135_7454)">
         <path
           d="M8.66213 12.2625C9.02241 12.7826 9.52699 13.1957 10.1098 13.4761C10.6926 13.7565 11.3439 13.9 12 13.9C12.6561 13.9 13.3074 13.7565 13.8902 13.4761C14.473 13.1957 14.9776 12.7826 15.3379 12.2625"
