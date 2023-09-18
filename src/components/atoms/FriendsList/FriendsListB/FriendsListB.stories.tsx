@@ -10,7 +10,7 @@ const meta: Meta<typeof FriendsListB> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const TodayFriendsListB: Story = {
+export const TodayFriendsList_B: Story = {
   args: {
     name: '홍서현',
     currentState: '음악적 재능을 향상시키는 중 🎶🎹',
@@ -19,7 +19,7 @@ export const TodayFriendsListB: Story = {
   },
 }
 
-export const DefaultFriendsListB: Story = {
+export const DefaultFriendsList_B: Story = {
   args: {
     name: '홍서현',
     currentState: '농구 연습 중 🏀',
@@ -27,7 +27,7 @@ export const DefaultFriendsListB: Story = {
   },
 }
 
-export const NewUpdateFriendsListB: Story = {
+export const NewUpdateFriendsList_B: Story = {
   args: {
     name: '홍서현',
     currentState: '음악적 재능을 향상시키는 중 🎶🎹',

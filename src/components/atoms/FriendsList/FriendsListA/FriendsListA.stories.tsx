@@ -10,14 +10,14 @@ const meta: Meta<typeof FriendsListA> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const visibleFriendsListA: Story = {
+export const visibleFriendsList_A: Story = {
   args: {
     name: '김수빈',
     nickName: 'beenie',
   },
 }
 
-export const invisibleFriendsListA: Story = {
+export const invisibleFriendsList_A: Story = {
   args: {
     variant: 'invisible',
     name: '김수빈',

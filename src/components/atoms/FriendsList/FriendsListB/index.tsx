@@ -9,11 +9,11 @@ import CircleIcon from '@assets/icons/CircleIcon'
 type DescriptionType = 'today' | 'none' | 'newUpdate'
 
 interface FriendsListBProps {
-  name: string
-  currentState: string
-  description: DescriptionType
-  today?: DescriptionType extends 'today' ? string : never
-  onClick: () => void
+  name: string;
+  currentState: string;
+  description: DescriptionType;
+  today?: DescriptionType extends 'today' ? string : undefined;
+  onClick: () => void;
 }
 
 const FriendsListB = ({
