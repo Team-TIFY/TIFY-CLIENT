@@ -1,27 +1,27 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
-import { Text } from '../Text'
-import { Avatar } from '../Avatar'
-import Svg from '../Svg'
+import { Text } from '../../Text'
+import { Avatar } from '../../Avatar'
+import Svg from '../../Svg'
 import OpenEye from '@assets/icons/OpenEye'
 import CloseEye from '@assets/icons/CloseEye'
 import Ordering from '@assets/icons/Ordering'
 
-type FriendsListVariant = 'visible' | 'invisible'
+export type FriendsListVariant = 'visible' | 'invisible'
 
-interface FriendsListProps {
+interface FriendsListAProps {
   variant?: FriendsListVariant
   name: string
   nickName: string
   onClick?: () => void
 }
 
-export const FriendsList = ({
+export const FriendsListA = ({
   variant = 'visible',
   name,
   nickName,
   onClick,
-}: FriendsListProps) => {
+}: FriendsListAProps) => {
   return (
     <Wrapper variant={variant}>
       <Avatar variant="small" isVisible={`${variant}`} />
