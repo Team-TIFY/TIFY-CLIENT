@@ -69,7 +69,6 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
   const stepQueryKey = options?.stepQueryKey ?? DEFAULT_STEP_QUERY_KEY
 
   assert(steps.length > 0, 'steps가 비어있습니다.')
-  console.log
   const FunnelComponent = useMemo(
     () =>
       Object.assign(
@@ -93,19 +92,19 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
   const setStep = useCallback(
     (step: Steps[number], setStepOptions?: SetStepOptions) => {
       const { preserveQuery = true, query = {} } = setStepOptions ?? {}
-      const url = `${(preserveQuery ? 'myprofile' : '') + { ...query }}`
+      const url = `${(preserveQuery ? window.location.href : '')}?${stepQueryKey}=${step}`
 
       options?.onStepChange?.(step)
-
-      switch (setStepOptions?.stepChangeType) {
-        case 'replace':
-          navigate(url)
-          return
-        case 'push':
-        default:
-          navigate(url)
-          return
-      }
+      location.replace(url)
+      // switch (setStepOptions?.stepChangeType) {
+      //   case 'replace':
+      //     location.replace(url)
+      //     return
+      //   case 'push':
+      //   default:
+      //     navigate(url)
+      //     return
+      // }
     },
     [options, navigate],
   )

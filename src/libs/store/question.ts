@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { DailyQuestionInfo } from '@libs/types/questionType'
+import { DailyQuestionInfo } from '@utils/apis/weekly/questionType'
 const initialState: DailyQuestionInfo = {
   questionId: 0,
   content: '',

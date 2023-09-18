@@ -1,6 +1,6 @@
 import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
 import styled from '@emotion/styled'
-import { CountDailyQuestion } from '@libs/types/questionType'
+import { CountDailyQuestion } from '@utils/apis/weekly/questionType'
 import { useMutation } from '@tanstack/react-query'
 import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
 import { useEffect, useState } from 'react'

@@ -13,7 +13,6 @@ const DailyQuestionBox = () => {
 
   useEffect(() => {
     getDayWeek(date.selectedDate)
-    console.log(date)
   }, [date.dateString])
 
   const getDayWeek = (day: number) => {

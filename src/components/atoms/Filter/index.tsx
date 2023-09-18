@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { ButtonHTMLAttributes, useEffect, useState } from 'react'
 import { theme } from '@styles/theme'
-import { SelectedProps, SelectedTag } from '@libs/types/UserType'
+import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'
 

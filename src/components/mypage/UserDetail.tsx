@@ -3,7 +3,7 @@ import { Avatar } from '@components/atoms/Avatar'
 import { Spacing } from '@components/atoms/Spacing'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
-import { UserInfo } from '@libs/types/UserType'
+import { UserInfo } from '@utils/apis/user/UserType'
 import ThreeDots from '@assets/icons/ThreeDots'
 import Svg from '@components/atoms/Svg'
 

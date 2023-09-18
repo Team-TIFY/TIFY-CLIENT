@@ -21,7 +21,6 @@ const useGetDate = () => {
     const today = new Date()
     const dateString = parseDate(today)
     let todayKey = (getTodayWeek(dateString) - 1) as TodayKeyType
-    console.log(getTodayWeek(dateString))
     if (todayKey === -1) todayKey = 6
     setDate({
       selectedDate: todayKey,

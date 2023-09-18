@@ -5,6 +5,7 @@ import NewTaste from './NewTaste'
 import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
 import FCTOP from '@pages/searchTaste/FCTOP'
+import { Suspense } from 'react'
 
 const MyProfileRouter = () => {
   return (

@@ -4,7 +4,7 @@ import { Category } from '@components/atoms/Category'
 import { Spacing } from '@components/atoms/Spacing'
 import { indexVariant, Tag } from '@components/atoms/Tag'
 import { FlexBox } from '@components/layouts/FlexBox'
-import { FilteredUserTag, SelectedTag, UserTag } from '@libs/types/UserType'
+import { FilteredUserTag, SelectedTag, UserTag } from '@utils/apis/user/UserType'
 
 export interface UserTagDataProps {
   selectedTags: SelectedTag[]
