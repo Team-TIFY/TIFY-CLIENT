@@ -12,7 +12,7 @@ interface MultiAnswerStepProps {
   category: TasteType
   number: number
   max: number
-  setStep: () => void
+  setStep?: () => void
 }
 
 const MultiAnswerStep = ({

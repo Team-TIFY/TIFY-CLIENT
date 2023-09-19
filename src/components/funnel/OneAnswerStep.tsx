@@ -8,7 +8,7 @@ import styled from '@emotion/styled'
 interface OneAnswerStepProps {
   category: TasteType
   number: number
-  setStep: () => void
+  setStep?: () => void
 }
 
 const OneAnswerStep = ({ category, number, setStep }: OneAnswerStepProps) => {

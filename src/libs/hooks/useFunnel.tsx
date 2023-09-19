@@ -74,7 +74,7 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
       Object.assign(
         function RouteFunnel(props: RouteFunnelProps<Steps>) {
           const step = searchParams.get('funnel-step') ?? options?.initialStep
-
+          console.log(step)
           assert(
             step != null,
             `표시할 스텝을 ${stepQueryKey} 쿼리 파라미터에 지정해주세요. 쿼리 파라미터가 없을 때 초기 스텝을 렌더하려면 useFunnel의 두 번째 파라미터 options에 initialStep을 지정해주세요.`,
@@ -93,18 +93,9 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
     (step: Steps[number], setStepOptions?: SetStepOptions) => {
       const { preserveQuery = true, query = {} } = setStepOptions ?? {}
       const url = `${(preserveQuery ? window.location.href : '')}?${stepQueryKey}=${step}`
-
-      options?.onStepChange?.(step)
-      location.replace(url)
-      // switch (setStepOptions?.stepChangeType) {
-      //   case 'replace':
-      //     location.replace(url)
-      //     return
-      //   case 'push':
-      //   default:
-      //     navigate(url)
-      //     return
-      // }
+      const param = `?${stepQueryKey}=${step}`
+      location.replace(param)
+      return
     },
     [options, navigate],
   )
