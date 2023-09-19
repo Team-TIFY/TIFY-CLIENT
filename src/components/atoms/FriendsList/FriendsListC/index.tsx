@@ -3,6 +3,7 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
+import { sliceString } from '@utils/sliceString'
 
 interface FriendsListCProps {
   name: string
@@ -32,9 +33,7 @@ const FriendsListC = ({ name, currentState }: FriendsListCProps) => {
           </Text>
           <StyledText>
             <Text typo={'Caption_10'} color="gray_200">
-              {currentState.length > 14
-                ? currentState.slice(0, 13) + '···'
-                : currentState}
+              {sliceString(currentState, 14)}
             </Text>
           </StyledText>
         </TextWrapper>
@@ -62,8 +61,8 @@ const TopWrapper = styled.div`
 
 const StyledImg = styled.div<{ left: number; top: number }>`
   position: absolute;
-  top: ${({top}) => top}px;
-  left: ${({left}) => left}px;
+  top: ${({ top }) => top}px;
+  left: ${({ left }) => left}px;
   width: 48px;
   height: 48px;
 

@@ -5,15 +5,16 @@ import { theme } from '@styles/theme'
 import { Avatar } from '@components/atoms/Avatar'
 import Svg from '@components/atoms/Svg'
 import CircleIcon from '@assets/icons/CircleIcon'
+import { sliceString } from '@utils/sliceString'
 
 type DescriptionType = 'today' | 'none' | 'newUpdate'
 
 interface FriendsListBProps {
-  name: string;
-  currentState: string;
-  description: DescriptionType;
-  today?: DescriptionType extends 'today' ? string : undefined;
-  onClick: () => void;
+  name: string
+  currentState: string
+  description: DescriptionType
+  today?: DescriptionType extends 'today' ? string : undefined
+  onClick: () => void
 }
 
 const FriendsListB = ({
@@ -58,11 +59,7 @@ const FriendsListB = ({
             color="gray_200"
             as="div"
             style={{ width: currentState.length > 15 ? '100%' : 'fit-content' }}
-            children={
-              currentState.length > 15
-                ? currentState.slice(0, 14) + '···'
-                : currentState
-            }
+            children={sliceString(currentState, 15)}
           />
         </StyledTextWrapper>
       </FriendsCurrentStateWrapper>

@@ -3,6 +3,7 @@ import SquareButton from '@components/atoms/SquareButton'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
+import { sliceString } from '@utils/sliceString'
 
 interface FriendsListDProps {
   nickName: string
@@ -23,7 +24,7 @@ const FriendsListD = ({
         <Avatar variant="small" />
         <InfoWrapper>
           <Text typo="Subhead_14" color="white">
-            @{nickName.length > 12 ? nickName.slice(0, 11) + '···' : nickName}
+            @{sliceString(nickName, 12)}
           </Text>
           <Text typo="Caption_10" color="gray_400">
             함께 아는 친구 {friendsNumber}명
