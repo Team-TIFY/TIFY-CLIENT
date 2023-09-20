@@ -7,14 +7,20 @@ import Svg from '@components/atoms/Svg'
 import CircleIcon from '@assets/icons/CircleIcon'
 import { sliceString } from '@utils/sliceString'
 
-type DescriptionType = 'today' | 'none' | 'newUpdate'
-
-interface FriendsListBProps {
+type FriendsListBProps = {
   name: string
   currentState: string
-  description: DescriptionType
-  today?: DescriptionType extends 'today' ? string : undefined
-  onClick: () => void
+  onClick?: () => void
+}
+
+export type FriendsListBPropsA = FriendsListBProps & {
+  description: 'today'
+  today: string
+}
+
+export type FriendsListBPropsB = FriendsListBProps & {
+  description: 'none' | 'newUpdate'
+  today?: undefined
 }
 
 const FriendsListB = ({
@@ -23,7 +29,7 @@ const FriendsListB = ({
   description,
   today,
   ...props
-}: FriendsListBProps) => {
+}: FriendsListBPropsA | FriendsListBPropsB) => {
   return (
     <Wrapper {...props}>
       <FriendsProfileWrapper>
@@ -53,7 +59,7 @@ const FriendsListB = ({
         </FriendsInfoWrapper>
       </FriendsProfileWrapper>
       <FriendsCurrentStateWrapper>
-        <StyledTextWrapper length={currentState.length > 15}>
+        <StyledTextWrapper length={currentState.length > 15 ? 1 : 0}>
           <Text
             typo="Caption_10"
             color="gray_200"
@@ -96,7 +102,7 @@ const FriendsCurrentStateWrapper = styled(FlexBox)`
   justify-content: flex-end;
 `
 
-const StyledTextWrapper = styled(FlexBox)<{ length: boolean }>`
+const StyledTextWrapper = styled(FlexBox)<{ length: 0 | 1 }>`
   width: ${({ length }) => (length ? `100%` : `fit-content`)};
   height: 26px;
   padding: 6px 8px;
