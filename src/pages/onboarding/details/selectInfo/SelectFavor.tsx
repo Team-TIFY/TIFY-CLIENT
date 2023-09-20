@@ -9,20 +9,37 @@ import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
 import { useEffect } from 'react'
+import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const [info, setInfo] = useRecoilState(onboardingState)
 
   useEffect(() => {
-    if (info.beautyFavor !== '' && info.fashionFavor !== '' && info.hobbyFavor !== '') {
+    if (
+      info.beautyFavor !== '' &&
+      info.fashionFavor !== '' &&
+      info.hobbyFavor !== ''
+    ) {
       setBtnColor(true)
     } else {
       setBtnColor(false)
     }
   })
 
-  console.log(btnColor)
+  const gotoReg = () => {
+    if (btnColor === true) {
+      OnboardingApi.PUT_ONBOARD_STATUS({ userId: 1, data: info })
+        //userId 변경 필요
+        .then((response) => {
+          console.log('put 성공', response)
+        })
+        .catch((error) => {
+          console.error('put 실패', error)
+        })
+    }
+  }
+
   return (
     <>
       <FlexBox>
@@ -40,7 +57,13 @@ export function SelectFavor() {
       <HobbyFavor />
       <Spacing height={100} />
       <BottomSticker>
-        <RoundButton variant="mediumRound" width={312} children="다음" disabled={!btnColor} />
+        <RoundButton
+          variant="mediumRound"
+          width={312}
+          children="다음"
+          disabled={!btnColor}
+          onClick={gotoReg}
+        />
       </BottomSticker>
     </>
   )
