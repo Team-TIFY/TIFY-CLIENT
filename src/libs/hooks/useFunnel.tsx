@@ -94,7 +94,7 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
       const { preserveQuery = true, query = {} } = setStepOptions ?? {}
       const url = `${(preserveQuery ? window.location.href : '')}?${stepQueryKey}=${step}`
       const param = `?${stepQueryKey}=${step}`
-      location.replace(param)
+      location.href = param
       return
     },
     [options, navigate],
