@@ -4244,80 +4244,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@toss/assert@npm:^1.1.10":
-  version: 1.1.10
-  resolution: "@toss/assert@npm:1.1.10"
-  dependencies:
-    "@toss/utils": ^1.4.4
-  checksum: a681f1371ed5d799d238a043ec75d3a3dbe8c33ccbc3828330dfbdb1a0f3e3f499cc0bb475507e4d2166d6ef6d069fc80b9b8fec64df417f9e8f97689e1dee90
-  languageName: node
-  linkType: hard
-
-"@toss/react@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "@toss/react@npm:1.5.0"
-  dependencies:
-    "@babel/runtime": ^7.14.8
-    "@toss/storage": ^1.3.0
-    "@toss/utils": ^1.4.4
-    classnames: ^2.3.1
-    lodash.debounce: ^4.0.8
-    lodash.throttle: ^4.1.1
-  peerDependencies:
-    react: ^16.0.0 || ^17.0.0 || ^18
-  checksum: 487e69032a8d637eed279b9da54ea6cb7c32f56558d5666b794e68233c4b45729b1b5fdc902a9ff691c207220adabf980bd9a1ece39494f50e0b105a4de3c9ca
-  languageName: node
-  linkType: hard
-
-"@toss/storage@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "@toss/storage@npm:1.3.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-  checksum: bc82d32df7fc307a2376d88f0a8a153e242493d0736262d05c5e4eb49303e006e7f993988c18e03c18e42435845162fbcff58dfc4a5bbcca055db3e116a517f0
-  languageName: node
-  linkType: hard
-
-"@toss/use-funnel@npm:^1.2.6":
-  version: 1.2.6
-  resolution: "@toss/use-funnel@npm:1.2.6"
-  dependencies:
-    "@toss/assert": ^1.1.10
-    "@toss/react": ^1.5.0
-    "@toss/storage": ^1.3.0
-    "@toss/use-query-param": ^1.1.7
-    "@toss/utils": ^1.4.4
-    fast-deep-equal: ^3.1.3
-  peerDependencies:
-    next: ^11.1 || ^12 || ^13
-    react: ^16.8 || ^17 || ^18
-    react-dom: ^16.8 || ^17 || ^18
-    react-query: ^3
-  checksum: e0d6b66fbb78a70c3030936e9edc47842a1d75f36ecf541c9e6965fa2bf2e4361d521d17a3175824425978ee0e752722486f5c96267c83e264c26b119f32e64c
-  languageName: node
-  linkType: hard
-
-"@toss/use-query-param@npm:^1.1.7":
-  version: 1.1.7
-  resolution: "@toss/use-query-param@npm:1.1.7"
-  peerDependencies:
-    next: ^11.1 || ^12 || ^13
-    react: ^16.8 || ^17 || ^18
-    react-dom: ^16.8 || ^17 || ^18
-  checksum: 5486d132c953f14c513e52a97c0160327abf0675ea6bfcd03332f74b0014f12eddb8ea96c99ea77cd45641fad8e7120c0db39a4f7beddc7c1ca21a1f5c7eb3c9
-  languageName: node
-  linkType: hard
-
-"@toss/utils@npm:^1.4.4":
-  version: 1.4.4
-  resolution: "@toss/utils@npm:1.4.4"
-  dependencies:
-    "@babel/runtime": ^7.14.8
-    date-fns: ^2.25.0
-  checksum: 7013b5eb191ebdae3e53844383390a79fbb6751281528165d3730ecd4a9914d09d934fd487c5d79d231a1afa990551cfc7626a89da91dad66a33e8b3fd6e5325
-  languageName: node
-  linkType: hard
-
 "@types/aria-query@npm:^5.0.1":
   version: 5.0.1
   resolution: "@types/aria-query@npm:5.0.1"
@@ -9233,13 +9159,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.throttle@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "lodash.throttle@npm:4.1.1"
-  checksum: 129c0a28cee48b348aef146f638ef8a8b197944d4e9ec26c1890c19d9bf5a5690fe11b655c77a4551268819b32d27f4206343e30c78961f60b561b8608c8c805
-  languageName: node
-  linkType: hard
-
 "lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
@@ -11063,13 +10982,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.14.0":
-  version: 0.14.0
-  resolution: "regenerator-runtime@npm:0.14.0"
-  checksum: 1c977ad82a82a4412e4f639d65d22be376d3ebdd30da2c003eeafdaaacd03fc00c2320f18120007ee700900979284fc78a9f00da7fb593f6e6eeebc673fba9a3
-  languageName: node
-  linkType: hard
-
 "regenerator-transform@npm:^0.15.1":
   version: 0.15.1
   resolution: "regenerator-transform@npm:0.15.1"
@@ -12129,7 +12041,6 @@ __metadata:
     "@storybook/testing-library": ^0.0.14-next.2
     "@tanstack/react-query": ^4.29.15
     "@tanstack/react-query-devtools": ^4.29.15
-    "@toss/use-funnel": ^1.2.6
     "@types/prettier": ^2.7.3
     "@types/react": ^18.0.37
     "@types/react-datepicker": ^4.15.0
@@ -12153,6 +12064,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-react-refresh: ^0.3.4
     eslint-plugin-storybook: ^0.6.12
+    fast-deep-equal: ^3.1.3
     prettier: ^3.0.0
     prop-types: ^15.8.1
     react: ^18.2.0

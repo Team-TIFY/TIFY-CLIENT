@@ -61,7 +61,9 @@ const CheckAllAnswers = () => {
         </FlexBox>
       </RoundButton>
       <Spacing variant="default" height={24} />
-      <AnswerListContainer>{isEmpty ? <>아무것도 없어요</> : <>{infiniteListElement}</>}</AnswerListContainer>
+      <AnswerListContainer>
+        {isEmpty ? <>아무것도 없어요</> : <>{infiniteListElement}</>}
+      </AnswerListContainer>
     </WeekAnswersContainer>
   )
 }

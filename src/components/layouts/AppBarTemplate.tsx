@@ -10,10 +10,22 @@ interface AppBarTemplateProps {
   hasNav: boolean
   onClickOption?: () => void
 }
-const AppBarTemplate = ({ children, label, variant, beforeUrl, hasNav, onClickOption }: AppBarTemplateProps) => {
+const AppBarTemplate = ({
+  children,
+  label,
+  variant,
+  beforeUrl,
+  hasNav,
+  onClickOption,
+}: AppBarTemplateProps) => {
   return (
     <>
-      <AppBar label={label} variant={variant} beforeUrl={beforeUrl} onClickOption={onClickOption} />
+      <AppBar
+        label={label}
+        variant={variant}
+        beforeUrl={beforeUrl}
+        onClickOption={onClickOption}
+      />
       {children}
       {hasNav && <Navigationbar />}
     </>

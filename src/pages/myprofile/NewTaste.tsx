@@ -9,12 +9,11 @@ import { theme } from '@styles/theme'
 import { useQuery } from '@tanstack/react-query'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { useRecoilValue } from 'recoil'
-
 const NewTaste = () => {
   const auth = useRecoilValue(authState)
-
-  const { data: isAnsweredQuestion } = useQuery(['newTasteCategory', auth.userId], () =>
-    UserApi.GET_ISANSWERED_QUESTION(),
+  const { data: isAnsweredQuestion } = useQuery(
+    ['newTasteCategory', auth.userId],
+    () => UserApi.GET_ISANSWERED_QUESTION(),
   )
 
   return (
@@ -30,19 +29,31 @@ const NewTaste = () => {
           뷰티
         </Text>
         <Spacing height={20} />
-        <NewTasteCategory subCategoryList={isAnsweredQuestion?.slice(0, 2) as UserNewTasteCategory[]} />
+        <NewTasteCategory
+          subCategoryList={
+            isAnsweredQuestion?.slice(0, 2) as UserNewTasteCategory[]
+          }
+        />
         <Spacing height={24} />
         <Text typo="Headline_16" as="div" color="white">
           패션
         </Text>
         <Spacing height={20} />
-        <NewTasteCategory subCategoryList={isAnsweredQuestion?.slice(2, 6) as UserNewTasteCategory[]} />
+        <NewTasteCategory
+          subCategoryList={
+            isAnsweredQuestion?.slice(2, 6) as UserNewTasteCategory[]
+          }
+        />
         <Spacing height={24} />
         <Text typo="Headline_16" as="div" color="white">
           취미
         </Text>
         <Spacing height={20} />
-        <NewTasteCategory subCategoryList={isAnsweredQuestion?.slice(6, 10) as UserNewTasteCategory[]} />
+        <NewTasteCategory
+          subCategoryList={
+            isAnsweredQuestion?.slice(6, 10) as UserNewTasteCategory[]
+          }
+        />
       </Padding>
     </>
   )

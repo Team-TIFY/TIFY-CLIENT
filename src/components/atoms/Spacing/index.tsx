@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
@@ -7,12 +8,24 @@ export interface SpacingProps {
   variant?: 'default' | 'scroll' | 'side'
 }
 
-export const Spacing = ({ width = 16, height = 24, variant = 'default' }: SpacingProps) => {
+export const Spacing = ({
+  width = 16,
+  height = 24,
+  variant = 'default',
+}: SpacingProps) => {
   return (
     <div
       css={css`
-        width: ${variant === 'default' ? '100%' : variant === 'side' ? `${width}px` : '100%'};
-        height: ${variant === 'default' ? `${height}px` : variant === 'scroll' ? '48px' : '100%'};
+        width: ${variant === 'default'
+          ? '100%'
+          : variant === 'side'
+            ? `${width}px`
+            : '100%'};
+        height: ${variant === 'default'
+          ? `${height}px`
+          : variant === 'scroll'
+            ? '48px'
+            : '100%'};
       `}
     ></div>
   )

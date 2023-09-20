@@ -91,7 +91,11 @@ const AnswerDailyQuestion = () => {
       </InputSticker>
       <BottomSticker>
         {!toggled && (
-          <RoundButton disabled={disabled} onClick={submitAnswer} variant="mediumRound">
+          <RoundButton
+            disabled={disabled}
+            onClick={submitAnswer}
+            variant="mediumRound"
+          >
             답변 완료
           </RoundButton>
         )}

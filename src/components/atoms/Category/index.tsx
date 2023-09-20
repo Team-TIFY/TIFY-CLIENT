@@ -23,8 +23,17 @@ export const Category = ({
   return (
     <Wrapper>
       <Heading>
-        <Text children={categoryName} typo="Headline_16" color="white" as="div" />
-        <RoundButton variant="circle" children="+" onClick={onPlusButtonClick} />
+        <Text
+          children={categoryName}
+          typo="Headline_16"
+          color="white"
+          as="div"
+        />
+        <RoundButton
+          variant="circle"
+          children="+"
+          onClick={onPlusButtonClick}
+        />
       </Heading>
       <TagWrapper>
         {children.map((child, index) => (
@@ -32,8 +41,16 @@ export const Category = ({
         ))}
       </TagWrapper>
       <MorePreferencesContainer>
-        <Text children="취향 더보기" typo="Caption_12R" color="gray_300" as="div" />
-        <Svg children={<SmallRightChevron stroke={theme.palette.gray_300} />} onClick={onShowMorePreferencesClick} />
+        <Text
+          children="취향 더보기"
+          typo="Caption_12R"
+          color="gray_300"
+          as="div"
+        />
+        <Svg
+          children={<SmallRightChevron stroke={theme.palette.gray_300} />}
+          onClick={onShowMorePreferencesClick}
+        />
       </MorePreferencesContainer>
     </Wrapper>
   )

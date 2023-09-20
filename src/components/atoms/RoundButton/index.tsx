@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ButtonHTMLAttributes } from 'react'
 import { KeyOfTypo, theme } from '@styles/theme'
 import styled from '@emotion/styled'
@@ -114,7 +115,12 @@ export const RoundButton = ({
   ...props
 }: Props) => {
   return (
-    <StyledButton width={width} variant={variant} fullWidth={fullWidth} {...props}>
+    <StyledButton
+      width={width}
+      variant={variant}
+      fullWidth={fullWidth}
+      {...props}
+    >
       {isLoading ? (
         <p>로딩중입니다</p>
       ) : (
@@ -132,10 +138,16 @@ const StyledButton = styled.button<{
   fullWidth?: boolean
 }>`
   box-sizing: border-box;
-  padding: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
-  border: ${({ variant }) => (variant === 'circle' ? `1px solid ${theme.palette.gray_400}` : 'none')};
+  padding: ${({ variant }) =>
+    `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
+  border: ${({ variant }) =>
+    variant === 'circle' ? `1px solid ${theme.palette.gray_400}` : 'none'};
   width: ${({ variant, fullWidth, width }) =>
-    fullWidth ? '100%' : width ? `${width}px` : `${BUTTON_SHAPE_TYPE[variant].width}px`};
+    fullWidth
+      ? '100%'
+      : width
+        ? `${width}px`
+        : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
@@ -148,7 +160,8 @@ const StyledButton = styled.button<{
   }
 
   &:disabled {
-    background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.disabled[variant]}`};
+    background-color: ${({ variant }) =>
+    `${BUTTON_COLOR_TYPE.disabled[variant]}`};
     color: ${({ variant }) => `${TEXT_COLOR_TYPE.disabled[variant]}`};
   }
 `

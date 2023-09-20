@@ -1,22 +1,27 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
-import { Text } from '../Text'
-import { Avatar } from '../Avatar'
-import Svg from '../Svg'
+import { Text } from '../../Text'
+import { Avatar } from '../../Avatar'
+import Svg from '../../Svg'
 import OpenEye from '@assets/icons/OpenEye'
 import CloseEye from '@assets/icons/CloseEye'
 import Ordering from '@assets/icons/Ordering'
 
-type FriendsListVariant = 'visible' | 'invisible'
+export type FriendsListVariant = 'visible' | 'invisible'
 
-interface FriendsListProps {
+interface FriendsListAProps {
   variant?: FriendsListVariant
   name: string
   nickName: string
   onClick?: () => void
 }
 
-export const FriendsList = ({ variant = 'visible', name, nickName, onClick }: FriendsListProps) => {
+export const FriendsListA = ({
+  variant = 'visible',
+  name,
+  nickName,
+  onClick,
+}: FriendsListAProps) => {
   return (
     <Wrapper variant={variant}>
       <Avatar variant="small" isVisible={`${variant}`} />
@@ -29,7 +34,11 @@ export const FriendsList = ({ variant = 'visible', name, nickName, onClick }: Fr
         <Text children={'@' + nickName} typo="Caption_12M" color="gray_300" />
       </NameWrapper>
       <IconWrapper>
-        {variant === 'visible' ? <Svg children={<OpenEye />} /> : <Svg children={<CloseEye />} />}
+        {variant === 'visible' ? (
+          <Svg children={<OpenEye />} />
+        ) : (
+          <Svg children={<CloseEye />} />
+        )}
         <Svg children={<Ordering />} onClick={onClick} />
       </IconWrapper>
     </Wrapper>

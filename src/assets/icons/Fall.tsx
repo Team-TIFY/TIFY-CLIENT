@@ -1,6 +1,12 @@
 const Fall = () => {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g clipPath="url(#clip0_179_2139)">
         <path
           d="M3.33325 13.9999C3.66659 10.9999 4.99992 8.66659 7.99992 7.33325"

@@ -20,10 +20,18 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
       <Spacing height={12} />
       <UserInfoWrapper>
         <FlexBox justify="space-between">
-          <Text typo="Headline_20" color="white" children={userData?.userName} />
+          <Text
+            typo="Headline_20"
+            color="white"
+            children={userData?.userName}
+          />
           <Svg children={<ThreeDots />} style={{ cursor: 'pointer' }} />
         </FlexBox>
-        <Text typo="Mont_Caption_12M" color="gray_200" children={userData?.birth + ' | 바다에서 서핑 중 🏄‍♂️'} />
+        <Text
+          typo="Mont_Caption_12M"
+          color="gray_200"
+          children={userData?.birth + ' | 바다에서 서핑 중 🏄‍♂️'}
+        />
       </UserInfoWrapper>
     </>
   )

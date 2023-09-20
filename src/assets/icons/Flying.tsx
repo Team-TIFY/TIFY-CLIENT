@@ -1,6 +1,12 @@
 const Flying = () => {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="icon-temporary3-24" clipPath="url(#clip0_1188_1119)">
         <path
           id="Vector"

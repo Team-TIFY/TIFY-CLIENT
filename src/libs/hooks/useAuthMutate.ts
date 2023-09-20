@@ -48,7 +48,9 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
   })
 
   const onSuccessLogin = (loginData: KakaoLoginResponse) => {
-    axiosApi.defaults.headers.common['Authorization'] = `Bearer ${loginData.accessToken}`
+    axiosApi.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${loginData.accessToken}`
     setCookie('refreshToken', loginData.refreshToken, {
       maxAge: 2592000,
       path: '/',
