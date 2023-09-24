@@ -11,6 +11,7 @@ type FriendsListBProps = {
   name: string
   currentState: string
   onClick?: () => void
+  imageUrl: string
 }
 
 export type FriendsListBPropsA = FriendsListBProps & {
@@ -21,13 +22,14 @@ export type FriendsListBPropsA = FriendsListBProps & {
 
 export type FriendsListBPropsB = FriendsListBProps & {
   description: 'none' | 'newUpdate'
-  birthdayDescription: undefined
+  birthdayDescription?: undefined
   birthday?: undefined
 }
 
 const FriendsListB = ({
   name,
   currentState,
+  imageUrl = '',
   description,
   birthday,
   birthdayDescription,
@@ -36,7 +38,7 @@ const FriendsListB = ({
   return (
     <Wrapper {...props}>
       <FriendsProfileWrapper>
-        <Avatar variant="small" />
+        <Avatar variant="small" imageUrl={imageUrl} />
         <FriendsInfoWrapper>
           <Text typo="Subhead_14" color="white">
             {name}
