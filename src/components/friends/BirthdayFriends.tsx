@@ -4,8 +4,19 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Padding } from '@components/layouts/Padding'
 import styled from '@emotion/styled'
+import { authState } from '@libs/store/auth'
+import { useQuery } from '@tanstack/react-query'
+import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { useRecoilValue } from 'recoil'
 
 const BirthdayFriends = () => {
+  const auth = useRecoilValue(authState)
+
+  const { data: birthdayFriendsList = [] } = useQuery(
+    ['birthdayFriendsList', auth.userId],
+    FriendsApi.GET_BIRTHDAY_FRIENDS_LIST,
+  )
+
   return (
     <>
       <FlexBox justify={'flex-start'} style={{ padding: '16px' }}>
@@ -19,30 +30,16 @@ const BirthdayFriends = () => {
       </FlexBox>
       <Padding size={[0, 16]}>
         <FriendsListWrapper>
-          <FriendsListB
-            name="김민준"
-            imageUrl=""
-            currentState="음악적 재능을 향상시키는 중"
-            description="birthday"
-            birthdayDescription="오늘"
-            birthday="8월 8일"
-          />
-          <FriendsListB
-            name="김초연"
-            imageUrl=""
-            currentState="복싱 연습 중 🥊"
-            description="birthday"
-            birthdayDescription="내일"
-            birthday="8월 9일"
-          />
-          <FriendsListB
-            name="홍서현"
-            imageUrl=""
-            currentState="요리 배우는 중 👩‍🍳"
-            description="birthday"
-            birthdayDescription=""
-            birthday="8월 12일"
-          />
+          {birthdayFriendsList.map((friend) => (
+            <FriendsListB
+              name={friend.neighborName}
+              imageUrl={friend.neighborThumbnail}
+              currentState={friend.onBoardingStatus}
+              description="birthday"
+              birthdayDescription="오늘"
+              birthday={friend.neighborBirth}
+            />
+          ))}
         </FriendsListWrapper>
       </Padding>
       <Spacing height={16} />
