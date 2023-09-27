@@ -9,12 +9,23 @@ import FriendsListC from '@components/atoms/FriendsList/FriendsListC'
 import MenuIcon from '@assets/icons/MenuIcon'
 import useToggle from '@libs/hooks/useToggle'
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
+import { useRecoilValue } from 'recoil'
+import { authState } from '@libs/store/auth'
+import { useQuery } from '@tanstack/react-query'
+import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 
 const AllFriends = () => {
   const [isCubeList, toggleListOption] = useToggle(true) as [
     boolean,
     () => void,
   ]
+
+  const auth = useRecoilValue(authState)
+
+  const { data: friendsList = [] } = useQuery(
+    ['friendsList', auth.userId],
+    FriendsApi.GET_FRIENDS_LIST,
+  )
 
   return (
     <>
@@ -37,75 +48,26 @@ const AllFriends = () => {
       <Padding size={[0, 16]}>
         {isCubeList ? (
           <FriendsListWrapper>
-            <FriendsListC
-              name={'봉세환'}
-              currentState={'요리 배우는 중 👩‍🍳'}
-              imageUrl=""
-            />
-            <FriendsListC
-              name={'박소정'}
-              currentState={'비행기 바라보며 여행 꿈꾸는 중 ✈️'}
-              imageUrl=""
-            />
-            <FriendsListC
-              name={'김수빈'}
-              currentState={'카페인 수혈로 살아나는 중 ☕🍰'}
-              imageUrl=""
-            />
-            <FriendsListC
-              name={'김유진'}
-              currentState={'별자리 찾는 중 🌠'}
-              imageUrl=""
-            />
-            <FriendsListC
-              name={'김초연'}
-              currentState={'복싱 연습 중 🥊'}
-              imageUrl=""
-            />
-            <FriendsListC
-              name={'홍서현'}
-              currentState={'요리 배우는 중 👩‍🍳'}
-              imageUrl=""
-            />
+            {friendsList.map((friend) => (
+              <FriendsListC
+                key={friend.neighborId}
+                name={friend.neighborName}
+                currentState={friend.onBoardingStatus}
+                imageUrl={friend.neighborThumbnail}
+              />
+            ))}
           </FriendsListWrapper>
         ) : (
           <FriendsListWrapper>
-            <FriendsListB
-              name={'봉세환'}
-              currentState={'요리 배우는 중 👩‍🍳'}
-              imageUrl=""
-              description="newUpdate"
-            />
-            <FriendsListB
-              name={'박소정'}
-              currentState={'비행기 바라보며 여행 꿈꾸는 중 ✈️'}
-              imageUrl=""
-              description="none"
-            />
-            <FriendsListB
-              name={'김수빈'}
-              currentState={'카페인 수혈로 살아나는 중 ☕🍰'}
-              imageUrl=""
-              description="none"
-            />
-            <FriendsListB
-              name={'김유진'}
-              currentState={'별자리 찾는 중 🌠'}
-              imageUrl=""
-              description="newUpdate"
-            />
-            <FriendsListB
-              name={'김초연'}
-              currentState={'복싱 연습 중 🥊'}
-              imageUrl=""
-              description="none"
-            />
-            <FriendsListB
-              name={'홍서현'}
-              currentState={'요리 배우는 중 👩‍🍳'}
-              imageUrl=""
-              description="none"
-            />
+            {friendsList.map((friend) => (
+              <FriendsListB
+                key={friend.neighborId}
+                name={friend.neighborName}
+                currentState={friend.onBoardingStatus}
+                imageUrl={friend.neighborThumbnail}
+                description="newUpdate"
+              />
+            ))}
           </FriendsListWrapper>
         )}
       </Padding>
