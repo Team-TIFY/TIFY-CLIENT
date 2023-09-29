@@ -36,8 +36,8 @@ const StyledButton = styled.button<{ variant: cubeButtonVariant }>`
     variant === 'selected'
       ? theme.palette.white
       : variant === 'disabled'
-        ? theme.palette.gray_900
-        : theme.palette.gray_800};
+      ? theme.palette.gray_900
+      : theme.palette.gray_800};
   border-radius: 6px;
   cursor: pointer;
 `

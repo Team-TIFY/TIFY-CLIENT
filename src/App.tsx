@@ -7,6 +7,7 @@ import RequireAuth from '@components/auth/RequireAuth'
 import MyProfileRouter from '@pages/myprofile'
 import WeeklyRouter from '@pages/weekly'
 import FriendsRouter from '@pages/friends'
+import OnboardingRouter from "@pages/onboarding";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="*" element={<WeeklyRouter />} />
           <Route path="/myprofile/*" element={<MyProfileRouter />} />
           <Route path="/friends/*" element={<FriendsRouter />} />
+          <Route path="/onboarding" element={<OnboardingRouter />} />
         </Route>
         <Route element={<CheckUserAuth />}>
           <Route path="/login" element={<Login />} />
