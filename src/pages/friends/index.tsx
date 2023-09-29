@@ -1,5 +1,5 @@
 import AddUserIcon from '@assets/icons/AddUserIcon'
-import SearchIcon from '@assets/icons/SearchIcon'
+import SearchIcon from '@assets/icons/FriendSearchIcon'
 import Svg from '@components/atoms/Svg'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import { Routes, Route, useNavigate } from 'react-router-dom'
