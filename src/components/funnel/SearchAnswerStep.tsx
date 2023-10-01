@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { TasteType } from '@utils/apis/favor/TasteType'
-import { Input } from '@components/atoms/Input'
+import { LongInput } from '@components/atoms/Input/LongInput'
 interface SearchAnswerStepProps {
   category: TasteType
   number: number
@@ -14,7 +14,7 @@ const SearchAnswerStep = ({
 }: SearchAnswerStepProps) => {
   return (
     <>
-      <Input />
+      <LongInput />
     </>
   )
 }

@@ -15,9 +15,10 @@ const MyProfileRouter = () => {
           path="/"
           element={
             <AppBarTemplate
-              variant="backPushWithMenu"
+              variant="title"
               label="@user"
               hasNav={true}
+              rightChildren="dots"
             >
               <MyProfile />
             </AppBarTemplate>
@@ -27,8 +28,9 @@ const MyProfileRouter = () => {
           path="/newTaste"
           element={
             <AppBarTemplate
-              variant="backPushWithMenu"
+              variant="title"
               label="새로운 취향 답변"
+              rightChildren="dots"
               hasNav={false}
             >
               <NewTaste />
@@ -38,7 +40,7 @@ const MyProfileRouter = () => {
         <Route
           path="/newTaste/BMLIP/*"
           element={
-            <AppBarTemplate variant="backPushWithMenu" hasNav={false}>
+            <AppBarTemplate variant="title" hasNav={false} rightChildren="none">
               <BMLIP />
             </AppBarTemplate>
           }
@@ -46,7 +48,7 @@ const MyProfileRouter = () => {
         <Route
           path="/newTaste/BMEYE/*"
           element={
-            <AppBarTemplate variant="backPushWithMenu" hasNav={false}>
+            <AppBarTemplate variant="title" hasNav={false} rightChildren="none">
               <BMEYE />
             </AppBarTemplate>
           }
@@ -54,7 +56,7 @@ const MyProfileRouter = () => {
         <Route
           path="/newTaste/FCTOP/*"
           element={
-            <AppBarTemplate variant="backPushWithMenu" hasNav={false}>
+            <AppBarTemplate variant="title" hasNav={false} rightChildren="none">
               <FCTOP />
             </AppBarTemplate>
           }

@@ -8,9 +8,14 @@ import { sliceString } from '@utils/sliceString'
 interface FriendsListCProps {
   name: string
   currentState: string
+  imageUrl: string
 }
 
-const FriendsListC = ({ name, currentState }: FriendsListCProps) => {
+const FriendsListC = ({
+  name,
+  currentState,
+  imageUrl = '',
+}: FriendsListCProps) => {
   return (
     <Wrapper>
       <TopWrapper>
@@ -26,7 +31,7 @@ const FriendsListC = ({ name, currentState }: FriendsListCProps) => {
       </TopWrapper>
       <BottomWrapper></BottomWrapper>
       <InfoWrapper>
-        <Avatar variant="small" />
+        <Avatar variant="small" imageUrl={imageUrl} />
         <TextWrapper>
           <Text typo="Subhead_14" color="white">
             {name}

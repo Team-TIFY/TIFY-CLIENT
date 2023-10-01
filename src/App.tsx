@@ -6,13 +6,18 @@ import { CheckUserAuth } from '@components/auth/CheckUserAuth'
 import RequireAuth from '@components/auth/RequireAuth'
 import MyProfileRouter from '@pages/myprofile'
 import WeeklyRouter from '@pages/weekly'
+import FriendsRouter from '@pages/friends'
+import OnboardingRouter from '@pages/onboarding'
+
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route element={<RequireAuth />}>
           <Route path="*" element={<WeeklyRouter />} />
-          <Route path="/myprofile/*" element={<MyProfileRouter />}></Route>
+          <Route path="/myprofile/*" element={<MyProfileRouter />} />
+          <Route path="/friends/*" element={<FriendsRouter />} />
+          <Route path="/onboarding" element={<OnboardingRouter />} />
         </Route>
         <Route element={<CheckUserAuth />}>
           <Route path="/login" element={<Login />} />
