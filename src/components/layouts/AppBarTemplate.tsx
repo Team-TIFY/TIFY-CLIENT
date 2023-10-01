@@ -1,31 +1,45 @@
-import { AppBar, AppBarType } from '@components/atoms/AppBar'
+import { AppBar, AppBarProps } from '@components/atoms/AppBar'
 import { ReactNode } from 'react'
 import { Navigationbar } from '@components/atoms/Navigationbar'
 
-interface AppBarTemplateProps {
+type AppBarTemplateProps = AppBarProps & {
   children: ReactNode
-  label?: string
-  variant: AppBarType
-  beforeUrl?: string
   hasNav: boolean
-  onClickOption?: () => void
 }
+
 const AppBarTemplate = ({
-  children,
   label,
   variant,
   beforeUrl,
+  onClickOption1,
+  onClickOption2,
+  rightChildren,
+  rightChildrenIcon,
+  children,
   hasNav,
-  onClickOption,
 }: AppBarTemplateProps) => {
   return (
     <>
-      <AppBar
-        label={label}
-        variant={variant}
-        beforeUrl={beforeUrl}
-        onClickOption={onClickOption}
-      />
+      {rightChildren === 'actionButton' ? (
+        <AppBar
+          label={label}
+          variant={variant}
+          beforeUrl={beforeUrl}
+          onClickOption1={onClickOption1}
+          onClickOption2={onClickOption2}
+          rightChildren={'actionButton'}
+          rightChildrenIcon={rightChildrenIcon}
+        />
+      ) : (
+        <AppBar
+          label={label}
+          variant={variant}
+          beforeUrl={beforeUrl}
+          onClickOption1={onClickOption1}
+          onClickOption2={onClickOption2}
+          rightChildren={rightChildren}
+        />
+      )}
       {children}
       {hasNav && <Navigationbar />}
     </>

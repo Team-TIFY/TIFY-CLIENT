@@ -48,6 +48,7 @@ type VisibleType = {
 export interface AvatarProps {
   variant: AvatarVariant
   isVisible?: VisibleVariant
+  imageUrl?: string
 }
 
 const getRandomProfileImage = () => {
@@ -79,13 +80,17 @@ const VISIBLE_TYPE: VisibleType = {
   },
 }
 
-export const Avatar = ({ variant, isVisible = 'visible' }: AvatarProps) => {
+export const Avatar = ({
+  variant,
+  isVisible = 'visible',
+  imageUrl = '',
+}: AvatarProps) => {
   return (
     <Wrapper>
       <Dimmed variant={variant} isVisible={isVisible} />
       <AvatarCircle variant={variant}>
         <img
-          src={getRandomProfileImage()}
+          src={!imageUrl ? getRandomProfileImage() : imageUrl}
           style={{
             width: '100%',
             height: '100%',
@@ -106,7 +111,7 @@ const BaseStyle = styled.div<{
 `
 
 // eslint-disable-next-line prettier/prettier
-const Dimmed = styled(BaseStyle) <{
+const Dimmed = styled(BaseStyle)<{
   variant: AvatarVariant
   isVisible: VisibleVariant
 }>`
@@ -118,7 +123,7 @@ const Dimmed = styled(BaseStyle) <{
 `
 
 // eslint-disable-next-line prettier/prettier
-const AvatarCircle = styled(BaseStyle) <{
+const AvatarCircle = styled(BaseStyle)<{
   variant: AvatarVariant
 }>`
   border-radius: 50%;

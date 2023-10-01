@@ -29,7 +29,7 @@ export type AppBarProps =
       beforeUrl?: string
       onClickOption1?: () => void
       onClickOption2?: () => void
-      rightChildren?: 'alarm' | 'dots' | 'none'
+      rightChildren: 'alarm' | 'dots' | 'none'
       rightChildrenIcon?: undefined
     }
   | {
@@ -38,8 +38,8 @@ export type AppBarProps =
       beforeUrl?: string
       onClickOption1?: () => void
       onClickOption2?: () => void
-      rightChildren?: 'actionButton'
-      rightChildrenIcon?: React.ReactNode
+      rightChildren: 'actionButton'
+      rightChildrenIcon: React.ReactNode[]
     }
 
 export const AppBar = ({
@@ -87,7 +87,11 @@ export const AppBar = ({
       ) : rightChildren === 'dots' ? (
         <Svg children={<ThreeDots />} onClick={onClickOption1} />
       ) : rightChildren === 'actionButton' ? (
-        rightChildrenIcon
+        <FlexBox gap={16}>
+          {rightChildrenIcon?.map((icon, index) => (
+            <div key={index}>{icon}</div>
+          ))}
+        </FlexBox>
       ) : null}
     </Wrapper>
   )

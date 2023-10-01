@@ -9,12 +9,13 @@ const meta: Meta<typeof FriendsListB> = {
 
 export default meta
 
-export const TodayFriendsList_B: StoryObj<FriendsListBPropsA> = {
+export const BirthdayFriendsList_B: StoryObj<FriendsListBPropsA> = {
   args: {
     name: '홍서현',
     currentState: '음악적 재능을 향상시키는 중 🎶🎹',
-    description: 'today',
-    today: '8월 8일',
+    description: 'birthday',
+    birthdayDescription: '오늘',
+    birthday: '8월 8일',
   },
 }
 
