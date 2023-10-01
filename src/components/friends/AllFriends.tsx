@@ -29,15 +29,15 @@ const AllFriends = () => {
 
   return (
     <>
-      <FlexBox justify={'space-between'} style={{ padding: '16px' }}>
+      <FlexBox justify="space-between" style={{ padding: '16px' }}>
         <FlexBox>
           <Text
             typo="Caption_12R"
             children="친구"
-            color={'gray_100'}
+            color="gray_100"
             style={{ margin: '0 4px 0 0' }}
           />
-          <Text typo={'Mont_Caption_12M'} children={24} color="gray_400" />
+          <Text typo="Mont_Caption_12M" children={24} color="gray_400" />
         </FlexBox>
         <Svg
           children={isCubeList ? <ListIcon /> : <MenuIcon />}

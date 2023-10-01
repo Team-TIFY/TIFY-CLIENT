@@ -47,13 +47,17 @@ export function DetailInfo() {
     setSearchText(e.target.value)
   }
 
-  const { data: searchResult } = useQuery<SearchResultItem[]>(['searchOnboardStatus', searchText], () =>
-    OnboardingApi.GET_ONBOARD_STATUS(searchText),
+  const { data: searchResult } = useQuery<SearchResultItem[]>(
+    ['searchOnboardStatus', searchText],
+    () => OnboardingApi.GET_ONBOARD_STATUS(searchText),
   )
 
   const updateRandomItems = () => {
     if (searchResult) {
-      const availableArr = Array.from({ length: searchResult.length }, (_, index) => index)
+      const availableArr = Array.from(
+        { length: searchResult.length },
+        (_, index) => index,
+      )
       const selectedArr = []
 
       while (selectedArr.length < 4 && availableArr.length > 0) {
@@ -111,7 +115,11 @@ export function DetailInfo() {
     <>
       <FlexBox>
         <TextWrap>
-          <Text children="요즘 어떻게 지내요?" typo={'SCD_Headline_20'} color={'gray_100'} />
+          <Text
+            children="요즘 어떻게 지내요?"
+            typo="SCD_Headline_20"
+            color="gray_100"
+          />
         </TextWrap>
       </FlexBox>
       <SearchInput
@@ -130,7 +138,11 @@ export function DetailInfo() {
             clearSelection()
           }}
         >
-          <Text children="다른 메세지 추천" typo={'Caption_12M'} color={'gray_400'} />
+          <Text
+            children="다른 메세지 추천"
+            typo="Caption_12M"
+            color="gray_400"
+          />
           <ChangeStatus />
         </ChangeBtn>
       </FlexBox>
@@ -149,12 +161,18 @@ export function DetailInfo() {
               setIsSelectedBtn(true)
             }}
           >
-            <Text children={item.name} typo={'Subhead_16'} />
+            <Text children={item.name} typo="Subhead_16" />
           </RandomItem>
         ))}
       </RandomItemList>
       <BottomSticker>
-        <RoundButton variant="mediumRound" width={312} children="다음" onClick={gotoReg} disabled={!btnColor} />
+        <RoundButton
+          variant="mediumRound"
+          width={312}
+          children="다음"
+          onClick={gotoReg}
+          disabled={!btnColor}
+        />
       </BottomSticker>
     </>
   )
@@ -188,8 +206,10 @@ const RandomItem = styled.div<{ isSelected: boolean }>`
   width: 296px;
   height: 48px;
   border-radius: 6px;
-  background-color: ${({ isSelected }) => (isSelected ? `${theme.palette.white}` : `${theme.palette.gray_800}`)};
-  color: ${({ isSelected }) => (isSelected ? `${theme.palette.gray_800}` : `${theme.palette.gray_100}`)};
+  background-color: ${({ isSelected }) =>
+    isSelected ? `${theme.palette.white}` : `${theme.palette.gray_800}`};
+  color: ${({ isSelected }) =>
+    isSelected ? `${theme.palette.gray_800}` : `${theme.palette.gray_100}`};
   cursor: pointer;
 `
 

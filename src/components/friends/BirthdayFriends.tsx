@@ -19,19 +19,20 @@ const BirthdayFriends = () => {
 
   return (
     <>
-      <FlexBox justify={'flex-start'} style={{ padding: '16px' }}>
+      <FlexBox justify="flex-start" style={{ padding: '16px' }}>
         <Text
-          typo={'Caption_12R'}
-          children={'생일인 친구'}
+          typo="Caption_12R"
+          children="생일인 친구"
           color="gray_100"
           style={{ margin: '0 4px 0 0' }}
         />
-        <Text typo={'Mont_Caption_12M'} children={2} color="gray_400" />
+        <Text typo="Mont_Caption_12M" children={2} color="gray_400" />
       </FlexBox>
       <Padding size={[0, 16]}>
         <FriendsListWrapper>
-          {birthdayFriendsList.map((friend) => (
+          {birthdayFriendsList.map((friend, index) => (
             <FriendsListB
+              key={index}
               name={friend.neighborName}
               imageUrl={friend.neighborThumbnail}
               currentState={friend.onBoardingStatus}

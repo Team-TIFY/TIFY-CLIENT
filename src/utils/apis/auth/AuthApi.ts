@@ -1,5 +1,8 @@
 import { axiosApi } from '../axios'
-import { KakaoLoginResponse, KakaoRegisterResponse } from '@libs/types/AuthType'
+import {
+  KakaoLoginResponse,
+  KakaoRegisterResponse,
+} from '@utils/apis/auth/AuthType'
 
 export const AuthApi = {
   KAKAO_TOKEN: async (code: string) => {

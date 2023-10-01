@@ -1,22 +1,27 @@
-import styled from '@emotion/styled';
-import { theme } from "@styles/theme";
-import { ChangeEvent } from "react";
-import { Text } from "@components/atoms/Text";
-import isCheck from '@assets/icons/isCheck.svg';
-import notCheck from '@assets/icons/notCheck.svg';
+import styled from '@emotion/styled'
+import { theme } from '@styles/theme'
+import { ChangeEvent } from 'react'
+import { Text } from '@components/atoms/Text'
+import isCheck from '@assets/icons/isCheck.svg'
+import notCheck from '@assets/icons/notCheck.svg'
 
 interface CheckboxProps {
-  children: string,
-  name: string,
-  checked: boolean,
-  onChange: (target: ChangeEvent<HTMLInputElement>) => void,
-  border?: boolean,
-  padding?: number,
+  children: string
+  name: string
+  checked: boolean
+  onChange: (target: ChangeEvent<HTMLInputElement>) => void
+  border?: boolean
+  padding?: number
 }
 
 export function Checkbox({
-  children, name, checked, onChange, border=false, padding=8,
-  }: CheckboxProps) {
+  children,
+  name,
+  checked,
+  onChange,
+  border = false,
+  padding = 8,
+}: CheckboxProps) {
   return (
     <Label border={border} padding={padding}>
       <CheckInput
@@ -25,24 +30,29 @@ export function Checkbox({
         checked={checked}
         onChange={onChange}
       />
-      <Text style={{width: '248px', margin:'0px 12px'}} children={children} typo={"Body_16"} color={"gray_200"} />
+      <Text
+        style={{ width: '248px', margin: '0px 12px' }}
+        children={children}
+        typo="Body_16"
+        color="gray_200"
+      />
     </Label>
   )
 }
 
 const Label = styled.label<{
-  border: boolean,
-  padding: number,
+  border: boolean
+  padding: number
 }>`
   width: 300px;
   display: flex;
   align-items: center;
   padding: ${({ padding }) => `${padding}px`} 0px;
-  margin-bottom: ${({border}) => border ? '8px' : '0px'};
-  border-bottom: ${({ border }) => border ? '1px solid' : 'none'};
+  margin-bottom: ${({ border }) => (border ? '8px' : '0px')};
+  border-bottom: ${({ border }) => (border ? '1px solid' : 'none')};
   border-color: ${theme.palette.gray_700};
   cursor: pointer;
-`;
+`
 
 const CheckInput = styled.input`
   width: 24px;
@@ -50,7 +60,7 @@ const CheckInput = styled.input`
   appearance: none;
   background-image: url(${notCheck});
 
-  &:checked{
+  &:checked {
     border-color: transparent;
     background-image: url(${isCheck});
   }

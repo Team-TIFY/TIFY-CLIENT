@@ -3,7 +3,7 @@ import {
   CountDailyQuestion,
   DailyAnswerInfo,
   DailyQuestionInfo,
-} from '@libs/types/questionType'
+} from '@utils/apis/weekly/questionType'
 import { axiosApi } from '../axios'
 export const WeeklyApi = {
   GET_QUESTIONS: async (date: string): Promise<DailyQuestionInfo> => {

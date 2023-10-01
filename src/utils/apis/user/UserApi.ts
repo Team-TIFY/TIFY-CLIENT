@@ -5,7 +5,7 @@ import {
   UserInfo,
   UserInfoToken,
   UserTag,
-} from '@libs/types/UserType'
+} from '@utils/apis/user/UserType'
 import { axiosApi } from '../axios'
 
 export const UserApi = {

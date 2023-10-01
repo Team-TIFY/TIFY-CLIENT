@@ -7,7 +7,7 @@ import Friends from './Friends'
 import SearchFriends from './SearchFriends'
 
 const FriendsRouter = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleClickIcon = (url: string) => {
     navigate(url)
@@ -19,16 +19,18 @@ const FriendsRouter = () => {
         path="/"
         element={
           <AppBarTemplate
-            label={'프렌즈'}
-            variant={'title'}
+            label="프렌즈"
+            variant="title"
             hasNav={true}
-            rightChildren={'actionButton'}
+            rightChildren="actionButton"
             rightChildrenIcon={[
               <Svg
+                key="searchFriends"
                 children={<SearchIcon />}
                 onClick={() => handleClickIcon('/friends/searchFriends')}
               />,
               <Svg
+                key="addFriends"
                 children={<AddUserIcon />}
                 onClick={() => handleClickIcon('/friends/addFriend')}
               />,
@@ -42,10 +44,10 @@ const FriendsRouter = () => {
         path="/searchFriends"
         element={
           <AppBarTemplate
-            label={'친구 검색'}
-            variant={'backPushWithTitle'}
+            label="친구 검색"
+            variant="backPushWithTitle"
             hasNav={false}
-            rightChildren={'none'}
+            rightChildren="none"
           >
             <SearchFriends />
           </AppBarTemplate>
@@ -55,10 +57,10 @@ const FriendsRouter = () => {
         path="/addFriend"
         element={
           <AppBarTemplate
-            label={'친구 추가'}
-            variant={'backPushWithTitle'}
+            label="친구 추가"
+            variant="backPushWithTitle"
             hasNav={false}
-            rightChildren={'none'}
+            rightChildren="none"
           >
             <SearchFriends />
           </AppBarTemplate>

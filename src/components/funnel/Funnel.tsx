@@ -26,10 +26,7 @@ export const Funnel = <Steps extends NonEmptyArray<string>>({
     .filter((i) =>
       steps.includes((i.props as Partial<StepProps<Steps>>).name ?? ''),
     ) as Array<ReactElement<StepProps<Steps>>>
-  const targetStep = validChildren.find((child) => child.props.name == step)
-  console.log(validChildren)
-  console.log(step)
-  //assert(targetStep != null, `${step} is not a valid step`)
+    const targetStep = validChildren.find(child => child.props.name === step);
   return <>{targetStep}</>
 }
 

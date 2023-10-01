@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Spacing } from '@components/atoms/Spacing'
 import { FlexBox } from '@components/layouts/FlexBox'
-import { UserInfo } from '@libs/types/UserType'
+import { UserInfo } from '@utils/apis/user/UserType'
 import { UserDetail } from './UserDetail'
 import SquareButton from '@components/atoms/SquareButton'
 

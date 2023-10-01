@@ -44,7 +44,7 @@ const FriendsListB = ({
             {name}
           </Text>
           {description === 'birthday' && (
-            <FlexBox justify={'flex-start'} gap={2}>
+            <FlexBox justify="flex-start" gap={2}>
               <Text color="gray_300" typo="Caption_10">
                 {birthdayDescription && birthdayDescription + ' · '}
               </Text>
@@ -54,7 +54,7 @@ const FriendsListB = ({
             </FlexBox>
           )}
           {description === 'newUpdate' && (
-            <FlexBox justify={'flex-start'} gap={2}>
+            <FlexBox justify="flex-start" gap={2}>
               <Svg children={<CircleIcon />} style={{ display: 'flex' }} />
               <Text color="purple_400" typo="Caption_10">
                 새로운 업데이트

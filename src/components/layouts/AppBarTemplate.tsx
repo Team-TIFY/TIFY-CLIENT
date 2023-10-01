@@ -27,7 +27,7 @@ const AppBarTemplate = ({
           beforeUrl={beforeUrl}
           onClickOption1={onClickOption1}
           onClickOption2={onClickOption2}
-          rightChildren={'actionButton'}
+          rightChildren="actionButton"
           rightChildrenIcon={rightChildrenIcon}
         />
       ) : (

@@ -1,4 +1,7 @@
-import { KakaoLoginResponse, KakaoCodeResponse } from '@libs/types/AuthType'
+import {
+  KakaoLoginResponse,
+  KakaoCodeResponse,
+} from '@utils/apis/auth/AuthType'
 import { authState } from '@libs/store/auth'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'

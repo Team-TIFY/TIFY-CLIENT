@@ -110,7 +110,6 @@ const BaseStyle = styled.div<{
   height: ${({ variant }) => `${AVATAR_SIZE_TYPE[variant].size}px`};
 `
 
-// eslint-disable-next-line prettier/prettier
 const Dimmed = styled(BaseStyle)<{
   variant: AvatarVariant
   isVisible: VisibleVariant
@@ -122,7 +121,6 @@ const Dimmed = styled(BaseStyle)<{
   display: ${({ isVisible }) => `${VISIBLE_TYPE[isVisible].display}`};
 `
 
-// eslint-disable-next-line prettier/prettier
 const AvatarCircle = styled(BaseStyle)<{
   variant: AvatarVariant
 }>`
