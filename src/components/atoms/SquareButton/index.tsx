@@ -1,7 +1,8 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { theme, KeyOfTypo } from '@styles/theme'
 import { Text } from '../Text'
+import { useState } from 'react'
 
 type ButtonVariant =
   | 'mediumSquare'
@@ -51,7 +52,7 @@ const TEXT_COLOR_TYPE = {
     xsmallSquareS: `${theme.palette.gray_200}`,
   },
   selected: {
-    mediumDefualt: `${theme.palette.gray_800}`,
+    medium2Square: `${theme.palette.gray_800}`,
   },
 }
 
@@ -105,9 +106,9 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant
+  toggled?: boolean
   fullWidth?: boolean
   isLoading?: boolean
-  onClick?: () => void
 }
 
 const SquareButton = ({
@@ -115,14 +116,14 @@ const SquareButton = ({
   variant,
   fullWidth,
   isLoading,
-  onClick,
+  toggled,
   ...props
 }: ButtonProps) => {
   return (
     <StyledButton
       variant={variant}
       fullWidth={fullWidth}
-      onClick={onClick}
+      toggle={toggled}
       {...props}
     >
       {isLoading ? (
@@ -141,6 +142,7 @@ export default SquareButton
 export const StyledButton = styled.button<{
   variant: ButtonVariant
   fullWidth?: boolean
+  toggle?: boolean
 }>`
   display: flex;
   align-items: center;
@@ -153,9 +155,15 @@ export const StyledButton = styled.button<{
   width: ${({ variant, fullWidth }) =>
     fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
-  background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
+  background-color: ${({ variant, toggle }) =>
+    toggle
+      ? `${theme.palette.white}`
+      : `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
-  color: ${({ variant }) => `${TEXT_COLOR_TYPE.default[variant]}`};
+  color: ${({ variant, toggle }) =>
+    toggle
+      ? `${theme.palette.gray_800}`
+      : `${TEXT_COLOR_TYPE.default[variant]}`};
 
   &:hover {
     background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.hover[variant]}`};

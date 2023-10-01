@@ -15,24 +15,24 @@ const FriendsListC = ({ name, currentState }: FriendsListCProps) => {
     <Wrapper>
       <TopWrapper>
         <StyledImg left={12} top={12}>
-          <img src={'/images/makeup.png'} />
+          <img src="/images/makeup.png" />
         </StyledImg>
         <StyledImg left={96} top={12}>
-          <img src={'/images/exercise.png'} />
+          <img src="/images/exercise.png" />
         </StyledImg>
         <StyledImg left={54} top={41}>
-          <img src={'/images/keyring.png'} />
+          <img src="/images/keyring.png" />
         </StyledImg>
       </TopWrapper>
       <BottomWrapper></BottomWrapper>
       <InfoWrapper>
-        <Avatar variant={'small'} />
+        <Avatar variant="small" />
         <TextWrapper>
-          <Text typo={'Subhead_14'} color="white">
+          <Text typo="Subhead_14" color="white">
             {name}
           </Text>
           <StyledText>
-            <Text typo={'Caption_10'} color="gray_200">
+            <Text typo="Caption_10" color="gray_200">
               {sliceString(currentState, 14)}
             </Text>
           </StyledText>

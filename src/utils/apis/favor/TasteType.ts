@@ -20,3 +20,13 @@ export interface FavorQuestionResponse {
   number: number
   contents: string
 }
+
+export interface FavorAnswerDetailRequest {
+  num: number
+  answer: string
+}
+
+export interface FavorAnswerRequest {
+  categoryName: string
+  favorAnswerDtos: FavorAnswerDetailRequest[]
+}

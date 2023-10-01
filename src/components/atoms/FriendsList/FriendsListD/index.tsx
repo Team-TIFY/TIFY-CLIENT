@@ -32,10 +32,10 @@ const FriendsListD = ({
         </InfoWrapper>
       </ProfileWrapper>
       <ButtonWrapper>
-        <SquareButton variant={'xsmallSquareP'} onClick={onAcceptButtonClick}>
+        <SquareButton variant="xsmallSquareP" onClick={onAcceptButtonClick}>
           수락
         </SquareButton>
-        <SquareButton variant={'xsmallSquareS'} onClick={onDeleteButtonClick}>
+        <SquareButton variant="xsmallSquareS" onClick={onDeleteButtonClick}>
           삭제
         </SquareButton>
       </ButtonWrapper>
