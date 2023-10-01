@@ -31,7 +31,7 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 type Props = Partial<InputProps>
 
 export const Input = forwardRef<HTMLTextAreaElement, Props>(function Input(
-  { variant, explanation, fullWidth = false, customEvent, ...props }: Props,
+  { variant='default', explanation, fullWidth = false, customEvent, ...props }: Props,
   inputRef,
 ) {
   const [line, setLine] = useState('')
@@ -70,7 +70,7 @@ export const Input = forwardRef<HTMLTextAreaElement, Props>(function Input(
 
   return (
     <Wrapper>
-      <InstText variant={variant!}>{explanation}</InstText>
+      <InstText variant={variant}>{explanation}</InstText>
       <TextAreaWrapper fullWidth={fullWidth} count={count}>
         <StyledTextArea
           rows={1}
@@ -129,8 +129,8 @@ const TextAreaWrapper = styled.div<{
 `
 
 const StyledTextArea = styled.textarea`
-width: 100 %;
-max - height: 40px;
+width: 100%;
+max-height: 40px;
 border: none;
 resize: none;
 background: transparent;

@@ -1,29 +1,25 @@
 import { useFunnel } from '@libs/hooks/useFunnel'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
-import { SetterOrUpdater, useRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { useEffect } from 'react'
-import { FavorAnswerRequest } from '@utils/apis/favor/TasteType'
+import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
 
 const BMLIP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const [Funnel, setStep] = useFunnel(
-    ['MultiAnswer1', 'OneAnswer2', 'MultiAnswer3', 'MultiAnswer4'] as const,
+    [
+      'MultiAnswer1',
+      'OneAnswer2',
+      'MultiAnswer3',
+      'MultiAnswer4',
+      'SearchAnswer5',
+    ] as const,
     {
       initialStep: 'MultiAnswer1',
     },
   )
-  // const [Funnel, state, setState] = useFunnel(
-  //   ['MultiAnswer1', 'OneAnswer2', 'MultiAnswer3', 'MultiAnswer4'] as const,
-  //   {
-  //     initialStep: 'MultiAnswer1',
-  //   },
-  // ).withState<{
-  //   count?: number
-  //   myAnswer?: string
-  // }>({})
-
   useEffect(() => {
     setStepAnswer({ ...step, categoryName: 'BMLIP' })
     console.log(step)
@@ -48,11 +44,25 @@ const BMLIP = () => {
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer3">
         <MultiAnswerStep
-          setNextStep={() => setStep('OneAnswer2')}
-          //setStep={() => setState({ step: 'MultiAnswer4', count: 3 })}
+          setNextStep={() => setStep('MultiAnswer4')}
           category="BMLIP"
           max={2}
           number={3}
+        />
+      </Funnel.Step>
+      <Funnel.Step name="MultiAnswer4">
+        <MultiAnswerStep
+          setNextStep={() => setStep('SearchAnswer5')}
+          category="BMLIP"
+          max={2}
+          number={4}
+        />
+      </Funnel.Step>
+      <Funnel.Step name="SearchAnswer5">
+        <SearchAnswerStep
+          setNextStep={() => setStep('OneAnswer2')}
+          category="BMLIP"
+          number={5}
         />
       </Funnel.Step>
     </Funnel>
