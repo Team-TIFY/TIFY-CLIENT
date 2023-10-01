@@ -31,7 +31,13 @@ type Props = Partial<InputProps>
 
 export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
   function LongInput(
-    { variant, explanation, fullWidth = false, customEvent, ...props }: Props,
+    {
+      variant = 'default',
+      explanation,
+      fullWidth = false,
+      customEvent,
+      ...props
+    }: Props,
     inputRef,
   ) {
     const [line, setLine] = useState('')
@@ -70,7 +76,7 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
 
     return (
       <Wrapper>
-        <InstText variant={variant!}>{explanation}</InstText>
+        <InstText variant={variant}>{explanation}</InstText>
         <TextAreaWrapper fullWidth={fullWidth} count={count}>
           <StyledTextArea
             rows={1}

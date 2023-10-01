@@ -9,11 +9,10 @@ import {
   isCancelState,
   isSearchActiveBtn,
   isSearchInputState,
-  onboardingState,
 } from '@libs/store/onboard'
 
 interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  width: number
+  width?: number
   placeholder: string
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
@@ -88,12 +87,12 @@ export const SearchInput = ({
 const Wrapper = styled.div``
 
 const TextAreaWrapper = styled.div<{
-  width: number
+  width: number | undefined
 }>`
   border-radius: 12px;
   padding: 14px;
   background: ${theme.palette.gray_900};
-  width: ${({ width }) => `${width}px`};
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   display: flex;
   align-items: center;
 

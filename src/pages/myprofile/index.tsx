@@ -40,7 +40,11 @@ const MyProfileRouter = () => {
         <Route
           path="/newTaste/BMLIP/*"
           element={
-            <AppBarTemplate variant="title" hasNav={false} rightChildren="none">
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="none"
+            >
               <BMLIP />
             </AppBarTemplate>
           }

@@ -22,7 +22,6 @@ const BMLIP = () => {
   )
   useEffect(() => {
     setStepAnswer({ ...step, categoryName: 'BMLIP' })
-    console.log(step)
   }, [])
 
   return (
