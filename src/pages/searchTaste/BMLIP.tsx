@@ -5,9 +5,24 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { useEffect } from 'react'
 import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
+import { useNavigate } from 'react-router-dom'
+import useCustomBack from '@libs/hooks/useCustomBack'
 
 const BMLIP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
+  const handleBack = () => {
+    if (step.favorAnswerDtos.length > 0) {
+      const myAnswerList = [...step.favorAnswerDtos]
+      const newFavorAnswerDtos = myAnswerList.splice(0, myAnswerList.length - 1)
+      setStepAnswer({
+        ...step,
+        favorAnswerDtos: [...newFavorAnswerDtos],
+      })
+    }
+    navigate(-1)
+  }
+  const navigate = useNavigate()
+  const handleFunnelBackPage = useCustomBack(handleBack)
   const [Funnel, setStep] = useFunnel(
     [
       'MultiAnswer1',
@@ -21,6 +36,7 @@ const BMLIP = () => {
     },
   )
   useEffect(() => {
+    handleFunnelBackPage
     setStepAnswer({ ...step, categoryName: 'BMLIP' })
   }, [])
 

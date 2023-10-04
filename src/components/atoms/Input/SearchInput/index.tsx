@@ -4,6 +4,7 @@ import { theme } from '@styles/theme'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { SearchIcon } from '@assets/icons/SearchIcon'
 import { useRecoilState } from 'recoil'
+import { forwardRef } from 'react'
 import {
   isBtnColorState,
   isCancelState,
@@ -15,74 +16,77 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   width?: number
   placeholder: string
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  customRemoveHandler?: () => void
 }
 
-export const SearchInput = ({
-  width,
-  placeholder,
-  onChange,
-  ...props
-}: InputProps) => {
-  const ref = useRef<HTMLTextAreaElement>(null)
-  const [focus, setFocus] = useState(false)
-  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
-  const [content, setContent] = useState<string>('')
-  const [searchText, setSearchText] = useRecoilState(isSearchInputState)
-  const [selectedIndex, setSelectedIndex] = useRecoilState(isSearchActiveBtn)
-  const [isCancel, setIsCancel] = useRecoilState(isCancelState)
+export const SearchInput = forwardRef<HTMLTextAreaElement, InputProps>(
+  function SearchInput(
+    { width, placeholder, onChange, customRemoveHandler, ...props }: InputProps,
+    inputRef,
+  ) {
+    const [focus, setFocus] = useState(false)
+    const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+    const [content, setContent] = useState<string>('')
+    const [searchText, setSearchText] = useRecoilState(isSearchInputState)
+    const [selectedIndex, setSelectedIndex] = useRecoilState(isSearchActiveBtn)
+    const [isCancel, setIsCancel] = useRecoilState(isCancelState)
 
-  const textHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const inputText = e.target.value
-    setContent(inputText)
-    setIsCancel(false)
-  }
+    const textHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+      const inputText = e.target.value
+      setContent(inputText)
+      setIsCancel(false)
+    }
 
-  const cancelClick = () => {
-    setContent('')
-    setBtnColor(false)
-    setSearchText('')
-    setSelectedIndex(-1)
-    setIsCancel(true)
-  }
+    const cancelClick = () => {
+      if (customRemoveHandler) {
+        customRemoveHandler()
+      }
+      setContent('')
+      setBtnColor(false)
+      setSearchText('')
+      setSelectedIndex(-1)
+      setIsCancel(true)
+    }
 
-  const inputFocus = () => {
-    setFocus((prev) => !prev)
-  }
+    const inputFocus = () => {
+      setFocus((prev) => !prev)
+    }
 
-  const handleEnter = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const filteredText = e.target.value.replace(/[\r\n]/g, '')
-    setContent(filteredText)
-  }
+    const handleEnter = (e: ChangeEvent<HTMLTextAreaElement>) => {
+      const filteredText = e.target.value.replace(/[\r\n]/g, '')
+      setContent(filteredText)
+    }
 
-  return (
-    <FlexBox>
-      <Wrapper>
-        <TextAreaWrapper width={width}>
-          <SearchIcon />
-          <StyledTextArea
-            ref={ref}
-            value={content}
-            placeholder={placeholder}
-            spellCheck="false"
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              onChange(e)
-              textHandler(e)
-              handleEnter(e)
-            }}
-            onFocus={inputFocus}
-            onBlur={inputFocus}
-            {...props}
-          />
-          <CancelBtn
-            onClick={() => {
-              cancelClick()
-            }}
-          />
-        </TextAreaWrapper>
-      </Wrapper>
-    </FlexBox>
-  )
-}
+    return (
+      <FlexBox>
+        <Wrapper>
+          <TextAreaWrapper width={width}>
+            <SearchIcon />
+            <StyledTextArea
+              ref={inputRef}
+              value={content}
+              placeholder={placeholder}
+              spellCheck="false"
+              onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+                onChange(e)
+                textHandler(e)
+                handleEnter(e)
+              }}
+              onFocus={inputFocus}
+              onBlur={inputFocus}
+              {...props}
+            />
+            <CancelBtn
+              onClick={() => {
+                cancelClick()
+              }}
+            />
+          </TextAreaWrapper>
+        </Wrapper>
+      </FlexBox>
+    )
+  },
+)
 
 const Wrapper = styled.div``
 
