@@ -54,7 +54,7 @@ const SearchAnswerStep = ({
         },
       ],
     })
-    //setNextStep()
+    setNextStep()
   }
 
   //TODO: Debounce 훅 걸어두기
@@ -179,6 +179,11 @@ const AutoSearchContainer = styled.div`
   box-sizing: border-box;
   text-align: center;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 12px;
+  }
 `
 
 const AutoSearchWrap = styled.ul`
