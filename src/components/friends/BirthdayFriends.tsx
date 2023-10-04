@@ -4,6 +4,7 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Padding } from '@components/layouts/Padding'
 import styled from '@emotion/styled'
+import useGetDate from '@libs/hooks/useGetDate'
 import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
@@ -11,6 +12,9 @@ import { useRecoilValue } from 'recoil'
 
 const BirthdayFriends = () => {
   const auth = useRecoilValue(authState)
+
+  const { getDayStatus, parseDateFromString, parseBirthDayFromString } =
+    useGetDate()
 
   const { data: birthdayFriendsList = [] } = useQuery(
     ['birthdayFriendsList', auth.userId],
@@ -37,8 +41,10 @@ const BirthdayFriends = () => {
               imageUrl={friend.neighborThumbnail}
               currentState={friend.onBoardingStatus}
               description="birthday"
-              birthdayDescription="오늘"
-              birthday={friend.neighborBirth}
+              birthdayDescription={getDayStatus(
+                parseDateFromString(friend.neighborBirth),
+              )}
+              birthday={parseBirthDayFromString(friend.neighborBirth)}
             />
           ))}
         </FriendsListWrapper>

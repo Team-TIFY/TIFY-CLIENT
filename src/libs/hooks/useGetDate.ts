@@ -46,7 +46,47 @@ const useGetDate = () => {
     })
   }
 
-  return { getTodayDate, setNewDate }
+  const parseDateFromString = (stringDate: string) => {
+    const year = parseInt(stringDate.substring(0, 4))
+    const month = parseInt(stringDate.substring(4, 6)) - 1
+    const day = parseInt(stringDate.substring(6, 8))
+
+    return new Date(year, month, day)
+  }
+
+  const parseBirthDayFromString = (stringDate: string) => {
+    const month = parseInt(stringDate.substring(4, 6))
+    const day = parseInt(stringDate.substring(6, 8))
+
+    return `${month}월 ${day}일`
+  }
+
+  const getDayStatus = (date: Date) => {
+    const currentDate = new Date()
+    currentDate.setHours(currentDate.getHours() + 9) // 한국 표준시로 변환 (UTC + 9)
+
+    if (
+      date.getDate() === currentDate.getDate() &&
+      date.getMonth() === currentDate.getMonth()
+    ) {
+      return '오늘'
+    } else if (
+      date.getDate() === currentDate.getDate() + 1 &&
+      date.getMonth() === currentDate.getMonth()
+    ) {
+      return '내일'
+    } else {
+      return ''
+    }
+  }
+
+  return {
+    getTodayDate,
+    setNewDate,
+    parseDateFromString,
+    getDayStatus,
+    parseBirthDayFromString,
+  }
 }
 
 export default useGetDate
