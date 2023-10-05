@@ -15,10 +15,7 @@ import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 
 const AllFriends = () => {
-  const [isCubeList, toggleListOption] = useToggle(true) as [
-    boolean,
-    () => void,
-  ]
+  const [isCubeList, toggleListOption] = useToggle()
 
   const auth = useRecoilValue(authState)
 
