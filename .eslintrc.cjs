@@ -31,9 +31,9 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }],
+    '@typescript-eslint/no-unused-vars': ['off', { ignoreRestSiblings: true }],
   },
   settings: {
     'import/external-module-folders': ['.yarn'],
   },
-};
+}

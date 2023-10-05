@@ -47,8 +47,8 @@ export function SelectFavor() {
           <Text
             children="가장 관심있는 취향
 3가지를 골라 주세요"
-            typo={'SCD_Headline_20'}
-            color={'gray_100'}
+            typo="SCD_Headline_20"
+            color="gray_100"
           />
         </TextWrap>
       </FlexBox>

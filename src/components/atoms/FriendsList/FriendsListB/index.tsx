@@ -11,45 +11,50 @@ type FriendsListBProps = {
   name: string
   currentState: string
   onClick?: () => void
+  imageUrl: string
 }
 
 export type FriendsListBPropsA = FriendsListBProps & {
-  description: 'today'
-  today: string
+  description: 'birthday'
+  birthdayDescription: string
+  birthday: string
 }
 
 export type FriendsListBPropsB = FriendsListBProps & {
   description: 'none' | 'newUpdate'
-  today?: undefined
+  birthdayDescription?: undefined
+  birthday?: undefined
 }
 
 const FriendsListB = ({
   name,
   currentState,
+  imageUrl = '',
   description,
-  today,
+  birthday,
+  birthdayDescription,
   ...props
 }: FriendsListBPropsA | FriendsListBPropsB) => {
   return (
     <Wrapper {...props}>
       <FriendsProfileWrapper>
-        <Avatar variant="small" />
+        <Avatar variant="small" imageUrl={imageUrl} />
         <FriendsInfoWrapper>
           <Text typo="Subhead_14" color="white">
             {name}
           </Text>
-          {description === 'today' && (
-            <FlexBox justify={'flex-start'} gap={2}>
+          {description === 'birthday' && (
+            <FlexBox justify="flex-start" gap={2}>
               <Text color="gray_300" typo="Caption_10">
-                오늘 ·
+                {birthdayDescription && birthdayDescription + ' · '}
               </Text>
               <Text color="gray_300" typo="Caption_10">
-                {today}
+                {birthday}
               </Text>
             </FlexBox>
           )}
           {description === 'newUpdate' && (
-            <FlexBox justify={'flex-start'} gap={2}>
+            <FlexBox justify="flex-start" gap={2}>
               <Svg children={<CircleIcon />} style={{ display: 'flex' }} />
               <Text color="purple_400" typo="Caption_10">
                 새로운 업데이트

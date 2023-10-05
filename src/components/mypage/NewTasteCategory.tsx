@@ -3,7 +3,7 @@ import CubeButton from '@components/atoms/CubeButton'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { subCategoryState } from '@libs/store/user'
-import { subCategoryName, subCategoryType, UserNewTasteCategory } from '@libs/types/UserType'
+import { subCategoryName, subCategoryType, UserNewTasteCategory } from '@utils/apis/user/UserType'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
@@ -60,7 +60,6 @@ const NewTasteCategory = ({ subCategoryList }: NewTasteCategoryProps) => {
   const navigate = useNavigate()
 
   const handleClickSubCategory = (category: UserNewTasteCategory) => {
-    console.log(category)
     if (category.isAnswered === true) {
       return
     } else {

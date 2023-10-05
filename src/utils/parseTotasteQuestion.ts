@@ -1,4 +1,4 @@
-import { subCategoryType } from '@libs/types/UserType'
+import { subCategoryType } from '@utils/apis/user/UserType'
 
 const parseTotasteQuestion = (category: subCategoryType) => {
   if (category === 'MAKEUP') return 'BMLIP'

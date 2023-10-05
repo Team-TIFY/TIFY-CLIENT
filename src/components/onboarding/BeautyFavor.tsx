@@ -9,11 +9,19 @@ import { useRecoilState } from 'recoil'
 
 export function BeautyFavor() {
   const [info, setInfo] = useRecoilState(onboardingState)
-  const initialButtonStates: cubeButtonVariant[] = ['unSelected', 'unSelected', 'unSelected', 'unSelected']
-  const [buttonStates, setButtonStates] = useState<cubeButtonVariant[]>(initialButtonStates)
+  const initialButtonStates: cubeButtonVariant[] = [
+    'unSelected',
+    'unSelected',
+    'unSelected',
+    'unSelected',
+  ]
+  const [buttonStates, setButtonStates] =
+    useState<cubeButtonVariant[]>(initialButtonStates)
 
   const updateState = (index: number) => {
-    const newButtonStates = buttonStates.map((state, i) => (i === index ? 'selected' : 'unSelected'))
+    const newButtonStates = buttonStates.map((state, i) =>
+      i === index ? 'selected' : 'unSelected',
+    )
     setButtonStates(newButtonStates)
   }
 
@@ -29,7 +37,7 @@ export function BeautyFavor() {
     <>
       <FlexBox>
         <TextWrap>
-          <Text children="뷰티" typo={'Headline_16'} color={'white'} />
+          <Text children="뷰티" typo="Headline_16" color="white" />
         </TextWrap>
       </FlexBox>
       <FlexBox>

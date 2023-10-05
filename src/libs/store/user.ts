@@ -1,4 +1,4 @@
-import { subCategoryType } from '@libs/types/UserType'
+import { subCategoryType } from '@utils/apis/user/UserType'
 import { atom } from 'recoil'
 
 export interface UserStateType {
