@@ -30,3 +30,9 @@ export interface FavorAnswerRequest {
   categoryName: string
   favorAnswerDtos: FavorAnswerDetailRequest[]
 }
+
+export interface FavorAnswerResponse {
+  success: boolean
+  statusCode: number
+  data: string | null
+}
