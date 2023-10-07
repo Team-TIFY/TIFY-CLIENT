@@ -15,7 +15,6 @@ const BMLIP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
-      console.log(data)
       alert('취향 답변 완료!')
       navigate('myprofile')
     },
@@ -24,7 +23,6 @@ const BMLIP = () => {
     if (step.favorAnswerDtos.length > 0) {
       const myAnswerList = [...step.favorAnswerDtos]
       const newFavorAnswerDtos = myAnswerList.splice(0, myAnswerList.length - 1)
-      console.log(newFavorAnswerDtos)
       setStepAnswer({
         ...step,
         favorAnswerDtos: [...newFavorAnswerDtos],
@@ -47,7 +45,6 @@ const BMLIP = () => {
     },
   )
   useEffect(() => {
-    console.log('크아악')
     handleFunnelBackPage
     setStepAnswer({ ...step, categoryName: 'BMLIP' })
   }, [])

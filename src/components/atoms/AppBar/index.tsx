@@ -11,7 +11,12 @@ import ThreeDots from '@assets/icons/ThreeDots'
 
 export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
 
-export type RightChildrenVariant = 'alarm' | 'dots' | 'none' | 'actionButton'
+export type RightChildrenVariant =
+  | 'alarm'
+  | 'dots'
+  | 'none'
+  | 'actionButton'
+  | 'stepNum'
 
 /**
  * @param variant AppBar의 type을 나타냄 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
@@ -29,13 +34,15 @@ export type AppBarProps =
       beforeUrl?: string
       onClickOption1?: () => void
       onClickOption2?: () => void
-      rightChildren: 'alarm' | 'dots' | 'none'
+      stepNum?: [number, number]
+      rightChildren: RightChildrenVariant
       rightChildrenIcon?: undefined
     }
   | {
       variant: AppBarType
       label?: string
       beforeUrl?: string
+      stepNum?: [number, number]
       onClickOption1?: () => void
       onClickOption2?: () => void
       rightChildren: 'actionButton'
@@ -46,6 +53,7 @@ export const AppBar = ({
   variant = 'logo',
   label,
   beforeUrl,
+  stepNum = [0, 0],
   rightChildren = 'alarm',
   rightChildrenIcon,
   onClickOption1,
@@ -59,6 +67,44 @@ export const AppBar = ({
 
   const onClickLogo = () => {
     navigate('/')
+  }
+
+  const handleRightChildren = (rightElement: RightChildrenVariant) => {
+    if (rightElement === 'alarm')
+      return (
+        <FlexBox>
+          <Svg
+            children={<Alert />}
+            onClick={onClickOption1}
+            style={{ margin: '0 16px 0 0' }}
+          />
+          <Svg children={<ThreeDots />} onClick={onClickOption2} />
+        </FlexBox>
+      )
+    else if (rightElement === 'dots')
+      return <Svg children={<ThreeDots />} onClick={onClickOption1} />
+    else if (rightElement === 'actionButton') {
+      return (
+        <FlexBox gap={16}>
+          {rightChildrenIcon?.map((icon, index) => (
+            <div key={index}>{icon}</div>
+          ))}
+        </FlexBox>
+      )
+    } else if (rightElement === 'stepNum') {
+      return (
+        <FlexBox>
+          <Text typo="Body_14" color="purple_400">
+            {stepNum[0]}
+          </Text>
+          <Text typo="Body_14" color="gray_100">
+            /{stepNum[1]}
+          </Text>
+        </FlexBox>
+      )
+    } else {
+      return null
+    }
   }
 
   return (
@@ -75,24 +121,7 @@ export const AppBar = ({
           </Text>
         </FirstElement>
       )}
-      {rightChildren === 'alarm' ? (
-        <FlexBox>
-          <Svg
-            children={<Alert />}
-            onClick={onClickOption1}
-            style={{ margin: '0 16px 0 0' }}
-          />
-          <Svg children={<ThreeDots />} onClick={onClickOption2} />
-        </FlexBox>
-      ) : rightChildren === 'dots' ? (
-        <Svg children={<ThreeDots />} onClick={onClickOption1} />
-      ) : rightChildren === 'actionButton' ? (
-        <FlexBox gap={16}>
-          {rightChildrenIcon?.map((icon, index) => (
-            <div key={index}>{icon}</div>
-          ))}
-        </FlexBox>
-      ) : null}
+      {handleRightChildren(rightChildren)}
     </Wrapper>
   )
 }

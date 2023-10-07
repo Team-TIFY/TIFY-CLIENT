@@ -43,7 +43,7 @@ const MyProfileRouter = () => {
             <AppBarTemplate
               variant="backPush"
               hasNav={false}
-              rightChildren="none"
+              rightChildren="stepNum"
             >
               <BMLIP />
             </AppBarTemplate>
@@ -52,7 +52,11 @@ const MyProfileRouter = () => {
         <Route
           path="/newTaste/BMEYE/*"
           element={
-            <AppBarTemplate variant="title" hasNav={false} rightChildren="none">
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
               <BMEYE />
             </AppBarTemplate>
           }

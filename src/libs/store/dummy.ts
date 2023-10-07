@@ -1,5 +1,5 @@
 import { TasteType } from '@utils/apis/favor/TasteType'
-type FavorQuestionDataType = {
+export type FavorQuestionDataType = {
   [key in TasteType]: {
     [key: number]: string[]
   }
@@ -42,7 +42,12 @@ export const favorQuestionData: FavorQuestionDataType = {
       '무드레시피 매트 립 틴트',
     ],
   },
-  BMEYE: {},
+  BMEYE: {
+    1: ['파우더', '크림', '리퀴드'],
+    2: ['10구 이상', '8구 이상', '6구 이상', '4구 이상'],
+    3: ['음영', '쉬머', '글리터', '포인트'],
+    4: ['크아악', '크아악'],
+  },
   BFMOI: {},
   BFPER: {},
   BFPLA: {},
