@@ -9,6 +9,13 @@ import Ordering from '@assets/icons/Ordering'
 
 export type FriendsListVariant = 'visible' | 'invisible'
 
+/**
+ * @param variant FriendsList visible type을 나타냄 'visible' | 'invisible'
+ * @param name 사용자 이름을 나타냄
+ * @param nickName 사용자 닉네임을 나타냄
+ * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
+ */
+
 interface FriendsListAProps {
   variant?: FriendsListVariant
   name: string

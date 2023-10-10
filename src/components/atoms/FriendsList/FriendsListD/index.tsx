@@ -5,6 +5,13 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { sliceString } from '@utils/sliceString'
 
+/**
+ * @param nickName 사용자 닉네임을 나타냄
+ * @param friendsNumber 사용자 친구 수를 나타냄
+ * @param onAcceptButtonClick 수락 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
+ * @param onDeleteButtonClick 삭제 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
+ */
+
 interface FriendsListDProps {
   nickName: string
   friendsNumber: number
