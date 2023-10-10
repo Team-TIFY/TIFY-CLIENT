@@ -17,23 +17,16 @@ import { sliceString } from '@utils/sliceString'
  * @param birthday 생일 일자를 나타냄
  */
 
-type FriendsListBProps = {
+export type DescriptionType = 'birthday' | 'none' | 'newUpdate'
+
+export type FriendsListBProps<T extends DescriptionType> = {
   name: string
   currentState: string
   onClick?: () => void
   imageUrl: string
-}
-
-export type FriendsListBPropsA = FriendsListBProps & {
-  description: 'birthday'
-  birthdayDescription: string
-  birthday: string
-}
-
-export type FriendsListBPropsB = FriendsListBProps & {
-  description: 'none' | 'newUpdate'
-  birthdayDescription?: undefined
-  birthday?: undefined
+  description: T
+  birthdayDescription?: T extends 'birthday' ? string : undefined
+  birthday?: T extends 'birthday' ? string : undefined
 }
 
 const FriendsListB = ({
@@ -44,7 +37,7 @@ const FriendsListB = ({
   birthday,
   birthdayDescription,
   ...props
-}: FriendsListBPropsA | FriendsListBPropsB) => {
+}: FriendsListBProps<DescriptionType>) => {
   return (
     <Wrapper {...props}>
       <FriendsProfileWrapper>

@@ -20,16 +20,19 @@ export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
  * @param onClickOption2 두 번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
  */
 
-export type AppBarProps = {
+export type RightChildrenVariant = 'alarm' | 'dots' | 'none' | 'actionButton'
+
+export type AppBarProps<T extends RightChildrenVariant> = {
   variant: AppBarType
   label?: string
   beforeUrl?: string
   onClickOption1?: () => void
   onClickOption2?: () => void
-} & (
-  | { rightChildren: 'alarm' | 'dots' | 'none'; rightChildrenIcon?: undefined }
-  | { rightChildren: 'actionButton'; rightChildrenIcon: React.ReactNode[] }
-)
+  rightChildren: T
+  rightChildrenIcon?: T extends 'alarm' | 'dots' | 'none'
+    ? undefined
+    : React.ReactNode[]
+}
 
 export const AppBar = ({
   variant = 'logo',
@@ -39,7 +42,7 @@ export const AppBar = ({
   rightChildrenIcon,
   onClickOption1,
   onClickOption2,
-}: AppBarProps) => {
+}: AppBarProps<RightChildrenVariant>) => {
   const navigate = useNavigate()
 
   const onClickBackBar = () => {

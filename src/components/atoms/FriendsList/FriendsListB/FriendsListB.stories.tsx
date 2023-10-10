@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react'
-import FriendsListB, { FriendsListBPropsA, FriendsListBPropsB } from '.'
+import FriendsListB from '.'
 
 const meta: Meta<typeof FriendsListB> = {
-  title: 'Atom/FriendsList',
+  title: 'Atom/FriendsListB',
   component: FriendsListB,
   tags: ['autodocs'],
 }
 
 export default meta
 
-export const BirthdayFriendsList_B: StoryObj<FriendsListBPropsA> = {
+export const BirthdayFriendsList_B: StoryObj = {
   args: {
     name: '홍서현',
     currentState: '음악적 재능을 향상시키는 중 🎶🎹',
@@ -19,7 +19,7 @@ export const BirthdayFriendsList_B: StoryObj<FriendsListBPropsA> = {
   },
 }
 
-export const DefaultFriendsList_B: StoryObj<FriendsListBPropsB> = {
+export const DefaultFriendsList_B: StoryObj = {
   args: {
     name: '홍서현',
     currentState: '농구 연습 중 🏀',
@@ -27,7 +27,7 @@ export const DefaultFriendsList_B: StoryObj<FriendsListBPropsB> = {
   },
 }
 
-export const NewUpdateFriendsList_B: StoryObj<FriendsListBPropsB> = {
+export const NewUpdateFriendsList_B: StoryObj = {
   args: {
     name: '홍서현',
     currentState: '음악적 재능을 향상시키는 중 🎶🎹',
