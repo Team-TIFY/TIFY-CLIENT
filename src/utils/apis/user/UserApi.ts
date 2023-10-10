@@ -2,7 +2,8 @@ import { axiosApi } from '@utils/apis/axios'
 import {
   FilteredUserTag,
   UserNewTasteCategory,
-  TagValueKey,
+  IsAnsweredCategory,
+  SubCategoryType,
   UserInfo,
   UserInfoToken,
   UserTag,
@@ -26,7 +27,7 @@ export const UserApi = {
 
   GET_FILTERED_USER_TAG: async (
     userId: number,
-    largeCategory: TagValueKey,
+    largeCategory: SubCategoryType,
   ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
       `/users/${userId}/category?largeCategory=${largeCategory}`,
@@ -39,7 +40,9 @@ export const UserApi = {
     return response.data.data
   },
 
-  GET_SMALL_CATEGORY_ISANSWERED_QUESTION: async (category: TagValueKey) => {
+  GET_SMALL_CATEGORY_ISANSWERED_QUESTION: async (
+    category: SubCategoryType,
+  ): Promise<IsAnsweredCategory[]> => {
     const response = await axiosApi.get(
       `favor-questions/isAnswered/detail-category?smallCategory=${category}`,
     )

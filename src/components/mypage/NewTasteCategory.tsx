@@ -3,16 +3,17 @@ import CubeButton from '@components/atoms/CubeButton'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { subCategoryState } from '@libs/store/user'
-import { subCategoryName, subCategoryType, UserNewTasteCategory } from '@utils/apis/user/UserType'
+import { subCategoryName, SubCategoryType, UserNewTasteCategory } from '@utils/apis/user/UserType'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
+import { UserApi } from '@utils/apis/user/UserApi'
 
 interface NewTasteCategoryProps {
   subCategoryList: UserNewTasteCategory[]
 }
 
-const subCategoryTitle: Record<subCategoryType, { title: subCategoryName; img: string }> = {
+const subCategoryTitle: Record<SubCategoryType, { title: subCategoryName; img: string }> = {
   MAKEUP: {
     title: '메이크업',
     img: '/images/makeup.png',
@@ -59,14 +60,15 @@ const NewTasteCategory = ({ subCategoryList }: NewTasteCategoryProps) => {
   const [subCategory, setSubCategory] = useRecoilState(subCategoryState)
   const navigate = useNavigate()
 
-  const handleClickSubCategory = (category: UserNewTasteCategory) => {
-    if (category.isAnswered === true) {
-      return
-    } else {
-      setSubCategory(category.smallCategory)
-      const routerName = parseTotasteQuestion(category.smallCategory)
-      if (routerName)
+  const handleClickSubCategory = async (category: UserNewTasteCategory) => {
+    const answerList = await UserApi.GET_SMALL_CATEGORY_ISANSWERED_QUESTION(category.smallCategory)
+    if(answerList.filter((data) => data.answered === false).length){
+      const favorQuestionCategory = answerList.filter((data)=> data.answered === false)[0].detailCategory
+      setSubCategory(favorQuestionCategory)
+      const routerName = parseTotasteQuestion(favorQuestionCategory)
+      if(routerName){
         navigate(routerName)
+      }
     }
   }
 

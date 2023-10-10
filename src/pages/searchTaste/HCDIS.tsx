@@ -8,8 +8,10 @@ import useCustomBack from '@libs/hooks/useCustomBack'
 import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
+import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
+import OneAnswerStep from '@components/funnel/OneAnswerStep'
 
-const FCTOP = () => {
+const HCDIS = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
@@ -32,72 +34,67 @@ const FCTOP = () => {
   const handleFunnelBackPage = useCustomBack(handleBack)
   const [Funnel, setStep] = useFunnel(
     [
-      'MultiAnswer1',
-      'MultiAnswer2',
-      'MultiAnswer3',
-      'MultiAnswer4',
+      'OneAnswer1',
+      'OneAnswer2',
+      'OneAnswer3',
+      'OneAnswer4',
       'MultiAnswer5',
-      'MultiAnswer6',
+      'SearchAnswer6',
     ] as const,
     {
-      initialStep: 'MultiAnswer1',
+      initialStep: 'OneAnswer1',
     },
   )
   useEffect(() => {
     handleFunnelBackPage
-    setStepAnswer({ ...step, categoryName: 'FCTOP' })
+    setStepAnswer({ ...step, categoryName: 'HCDIS' })
   }, [])
 
   return (
     <Funnel>
-      <Funnel.Step name="MultiAnswer1">
-        <MultiAnswerStep
-          setNextStep={() => setStep('MultiAnswer2')}
-          category="FCTOP"
+      <Funnel.Step name="OneAnswer1">
+        <OneAnswerStep
+          setNextStep={() => setStep('OneAnswer2')}
+          category="HCDIS"
           number={1}
-          max={2}
         />
       </Funnel.Step>
-      <Funnel.Step name="MultiAnswer2">
-        <MultiAnswerStep
-          setNextStep={() => setStep('MultiAnswer3')}
-          category="FCTOP"
+      <Funnel.Step name="OneAnswer2">
+        <OneAnswerStep
+          setNextStep={() => setStep('OneAnswer3')}
+          category="HCDIS"
           number={2}
-          max={2}
         />
       </Funnel.Step>
-      <Funnel.Step name="MultiAnswer3">
-        <MultiAnswerStep
-          setNextStep={() => setStep('MultiAnswer4')}
-          category="FCTOP"
+      <Funnel.Step name="OneAnswer3">
+        <OneAnswerStep
+          setNextStep={() => setStep('OneAnswer4')}
+          category="HCDIS"
           number={3}
-          max={2}
         />
       </Funnel.Step>
-      <Funnel.Step name="MultiAnswer4">
-        <MultiAnswerStep
+      <Funnel.Step name="OneAnswer4">
+        <OneAnswerStep
           setNextStep={() => setStep('MultiAnswer5')}
-          max={2}
-          category="FCTOP"
+          category="HCDIS"
           number={4}
         />
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer5">
         <MultiAnswerStep
-          max={2}
-          setNextStep={() => setStep('MultiAnswer6')}
-          category="FCTOP"
+          setNextStep={() => setStep('SearchAnswer6')}
+          category="HCDIS"
           number={5}
+          max={2}
         />
       </Funnel.Step>
-      <Funnel.Step name="MultiAnswer6">
-        <MultiAnswerStep
+      <Funnel.Step name="SearchAnswer6">
+        <SearchAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
             localStorage.clear()
           }}
-          max={2}
-          category="FCTOP"
+          category="HCDIS"
           number={6}
         />
       </Funnel.Step>
@@ -105,4 +102,4 @@ const FCTOP = () => {
   )
 }
 
-export default FCTOP
+export default HCDIS
