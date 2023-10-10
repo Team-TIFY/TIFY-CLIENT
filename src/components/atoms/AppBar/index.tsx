@@ -11,8 +11,6 @@ import ThreeDots from '@assets/icons/ThreeDots'
 
 export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
 
-export type RightChildrenVariant = 'alarm' | 'dots' | 'none' | 'actionButton'
-
 /**
  * @param variant AppBar의 type을 나타냄 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
  * @param label 'backPush' | 'backPushWithTitle' 사용 시 Appbar에 나타날 문구
@@ -22,25 +20,16 @@ export type RightChildrenVariant = 'alarm' | 'dots' | 'none' | 'actionButton'
  * @param onClickOption2 두 번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
  */
 
-export type AppBarProps =
-  | {
-      variant: AppBarType
-      label?: string
-      beforeUrl?: string
-      onClickOption1?: () => void
-      onClickOption2?: () => void
-      rightChildren: 'alarm' | 'dots' | 'none'
-      rightChildrenIcon?: undefined
-    }
-  | {
-      variant: AppBarType
-      label?: string
-      beforeUrl?: string
-      onClickOption1?: () => void
-      onClickOption2?: () => void
-      rightChildren: 'actionButton'
-      rightChildrenIcon: React.ReactNode[]
-    }
+export type AppBarProps = {
+  variant: AppBarType
+  label?: string
+  beforeUrl?: string
+  onClickOption1?: () => void
+  onClickOption2?: () => void
+} & (
+  | { rightChildren: 'alarm' | 'dots' | 'none'; rightChildrenIcon?: undefined }
+  | { rightChildren: 'actionButton'; rightChildrenIcon: React.ReactNode[] }
+)
 
 export const AppBar = ({
   variant = 'logo',
@@ -59,6 +48,12 @@ export const AppBar = ({
 
   const onClickLogo = () => {
     navigate('/')
+  }
+
+  const isArray = (
+    arr: React.ReactNode[] | undefined,
+  ): arr is React.ReactNode[] => {
+    return Array.isArray(arr)
   }
 
   return (
@@ -88,9 +83,11 @@ export const AppBar = ({
         <Svg children={<ThreeDots />} onClick={onClickOption1} />
       ) : rightChildren === 'actionButton' ? (
         <FlexBox gap={16}>
-          {rightChildrenIcon?.map((icon, index) => (
-            <div key={index}>{icon}</div>
-          ))}
+          {isArray(rightChildrenIcon)
+            ? rightChildrenIcon.map((icon, index) => (
+                <div key={index}>{icon}</div>
+              ))
+            : null}
         </FlexBox>
       ) : null}
     </Wrapper>

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { Route, Routes } from 'react-router-dom'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import MyProfile from './MyProfile'
@@ -6,8 +7,13 @@ import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
 import FCTOP from '@pages/searchTaste/FCTOP'
 import { Suspense } from 'react'
+import { useRecoilValue } from 'recoil'
+import { authState } from '@libs/store/auth'
+import MenuIcon from '@assets/icons/MenuIcon'
 
 const MyProfileRouter = () => {
+  const auth = useRecoilValue(authState)
+
   return (
     <Suspense fallback={<div>loading...</div>}>
       <Routes>
@@ -16,9 +22,10 @@ const MyProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="title"
-              label="@user"
+              label={'@' + auth.userName}
               hasNav={true}
-              rightChildren="dots"
+              rightChildren="actionButton"
+              rightChildrenIcon={[<MenuIcon />]}
             >
               <MyProfile />
             </AppBarTemplate>
