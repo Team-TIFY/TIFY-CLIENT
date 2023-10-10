@@ -1,8 +1,12 @@
-import { AppBar, AppBarProps } from '@components/atoms/AppBar'
+import {
+  AppBar,
+  AppBarProps,
+  RightChildrenVariant,
+} from '@components/atoms/AppBar'
 import { ReactNode } from 'react'
 import { Navigationbar } from '@components/atoms/Navigationbar'
 
-type AppBarTemplateProps = AppBarProps & {
+type AppBarTemplateProps = AppBarProps<RightChildrenVariant> & {
   children: ReactNode
   hasNav: boolean
 }
