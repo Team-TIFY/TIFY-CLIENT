@@ -8,6 +8,9 @@ export type TasteType =
   | 'FEFAS'
   | 'FEDIG'
   | 'FEBAG'
+  | 'FAACC'
+  | 'HCDIS'
+  | 'HCCUP'
 
 export interface FavorQuestionRequest {
   category: TasteType
