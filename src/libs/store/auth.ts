@@ -7,7 +7,6 @@ export interface AuthStateType {
   callbackUrl: string
   accessToken: string
   userId: number
-  userName: string
 }
 
 const initialState: AuthStateType = {
@@ -15,7 +14,6 @@ const initialState: AuthStateType = {
   callbackUrl: '/',
   accessToken: '',
   userId: 0,
-  userName: '',
 }
 
 export const authState = atom<AuthStateType>({

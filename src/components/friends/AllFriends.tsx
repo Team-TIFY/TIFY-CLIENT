@@ -6,23 +6,30 @@ import Svg from '@components/atoms/Svg'
 import ListIcon from '@assets/icons/ListIcon'
 import styled from '@emotion/styled'
 import FriendsListC from '@components/atoms/FriendsList/FriendsListC'
-import MenuIcon from '@assets/icons/MenuIcon'
 import useToggle from '@libs/hooks/useToggle'
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { useNavigate } from 'react-router-dom'
+import FriendsMenuIcon from '@assets/icons/FriendsMenuIcon'
 
 const AllFriends = () => {
   const [isCubeList, toggleListOption] = useToggle()
 
   const auth = useRecoilValue(authState)
 
+  const navigate = useNavigate()
+
   const { data: friendsList = [] } = useQuery(
     ['friendsList', auth.userId],
     FriendsApi.GET_FRIENDS_LIST,
   )
+
+  const handleClickFriend = (friendId: number) => {
+    navigate(`/profile/${friendId}`)
+  }
 
   return (
     <>
@@ -37,7 +44,7 @@ const AllFriends = () => {
           <Text typo="Mont_Caption_12M" children={24} color="gray_400" />
         </FlexBox>
         <Svg
-          children={isCubeList ? <ListIcon /> : <MenuIcon />}
+          children={isCubeList ? <ListIcon /> : <FriendsMenuIcon />}
           style={{ cursor: 'pointer' }}
           onClick={toggleListOption}
         />
@@ -51,6 +58,7 @@ const AllFriends = () => {
                 name={friend.neighborName}
                 currentState={friend.onBoardingStatus}
                 imageUrl={friend.neighborThumbnail}
+                onClick={() => handleClickFriend(friend.neighborId)}
               />
             ))}
           </FriendsListWrapper>
@@ -62,7 +70,13 @@ const AllFriends = () => {
                 name={friend.neighborName}
                 currentState={friend.onBoardingStatus}
                 imageUrl={friend.neighborThumbnail}
-                description="newUpdate"
+                description={
+                  new Date(friend.updatedAt).getTime() >
+                  new Date(friend.viewedAt).getTime()
+                    ? 'newUpdate'
+                    : 'none'
+                }
+                onClick={() => handleClickFriend(friend.neighborId)}
               />
             ))}
           </FriendsListWrapper>

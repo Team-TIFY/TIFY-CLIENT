@@ -38,4 +38,9 @@ export const UserApi = {
     const response = await axiosApi.get(`/favor-questions/isAnswered`)
     return response.data.data
   },
+
+  UPDATE_FRIEND_PROFILE_VIEW_TIME: async (neighborId: number) => {
+    const response = await axiosApi.patch(`/users/neighbors/${neighborId}`)
+    return response.data.data
+  },
 }

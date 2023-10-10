@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
@@ -8,9 +8,10 @@ import { Spacing } from '@components/atoms/Spacing'
 import { Padding } from '@components/layouts/Padding'
 import { Filter } from '@components/atoms/Filter'
 import { SelectedProps, SelectedTag, UserInfo } from '@utils/apis/user/UserType'
-import { ProfileImage } from '@components/mypage/ProfileImage'
-import { UserTagData } from '@components/mypage/UserTagData'
-import { ProfileHeader } from '@components/mypage/ProfileHeader'
+import { ProfileImage } from '@components/profile/ProfileImage'
+import { UserTagData } from '@components/profile/UserTagData'
+import { ProfileHeader } from '@components/profile/ProfileHeader'
+import useProfileMutate from '@libs/hooks/useProfileMutate'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
@@ -24,30 +25,51 @@ const selectedProps: SelectedProps = [
   { id: 9, active: false, name: '문화생활', value: 'CULTURALLIFE' },
 ]
 
-const MyProfile = () => {
+export type ProfilePropsType<T extends UserInfo> = {
+  friendData?: T
+  friendId?: T extends UserInfo ? number : undefined
+}
+
+const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
   const auth = useRecoilValue(authState)
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
 
+  const { updateFriendProfileViewTimeMutate } = useProfileMutate()
+
+  useEffect(() => {
+    if (friendId) {
+      updateFriendProfileViewTimeMutate(friendId)
+    }
+  }, [friendId])
+
   const { data: userData = {} as UserInfo } = useQuery(
     ['userProfile', auth.userId],
     () => UserApi.GET_USER_INFO(auth.userId),
+    {
+      enabled: !friendData,
+    },
   )
 
-  const { data: userTagData = [] } = useQuery(['userTag', auth.userId], () =>
-    UserApi.GET_USER_TAG(auth.userId),
+  const { data: userTagData = [] } = useQuery(
+    ['userTag', !friendData ? auth.userId : friendId],
+    () =>
+      UserApi.GET_USER_TAG(!friendData ? auth.userId : (friendId as number)),
   )
 
   const getFilteredData = (selectedTags: SelectedTag[]) => {
     const promises = selectedTags.map((tag) =>
-      UserApi.GET_FILTERED_USER_TAG(auth.userId, tag.value),
+      UserApi.GET_FILTERED_USER_TAG(
+        !friendData ? auth.userId : (friendId as number),
+        tag.value,
+      ),
     )
 
     return Promise.all(promises)
   }
 
   const { data: filteredUserTagData = [] } = useQuery(
-    ['filteredUserTag', selectedTags, auth.userId],
+    ['filteredUserTag', selectedTags, !friendData ? auth.userId : friendId],
     () => getFilteredData(selectedTags),
     {
       enabled: selectedTags.length > 0,
@@ -60,7 +82,10 @@ const MyProfile = () => {
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>
-          <ProfileHeader userData={userData} />
+          <ProfileHeader
+            userData={friendData ? friendData : userData}
+            isFriend={friendId !== undefined}
+          />
           <Spacing height={32} />
           <FilterWrapper>
             <Filter
@@ -81,7 +106,7 @@ const MyProfile = () => {
   )
 }
 
-export default MyProfile
+export default Profile
 
 const ProfileWrapper = styled.div``
 

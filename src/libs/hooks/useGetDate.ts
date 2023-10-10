@@ -54,7 +54,7 @@ const useGetDate = () => {
     return new Date(year, month, day)
   }
 
-  const parseBirthDayFromString = (stringDate: string) => {
+  const parseMonthAndDayFromString = (stringDate: string) => {
     const month = parseInt(stringDate.substring(4, 6))
     const day = parseInt(stringDate.substring(6, 8))
 
@@ -80,12 +80,60 @@ const useGetDate = () => {
     }
   }
 
+  const formatDate = (date: string) => {
+    const month = parseInt(date?.slice(4, 6)) - 1
+    const day = parseInt(date?.slice(6))
+    let formattedMonth
+
+    switch (month) {
+      case 0:
+        formattedMonth = 'January'
+        break
+      case 1:
+        formattedMonth = 'February'
+        break
+      case 2:
+        formattedMonth = 'March'
+        break
+      case 3:
+        formattedMonth = 'April'
+        break
+      case 4:
+        formattedMonth = 'May'
+        break
+      case 5:
+        formattedMonth = 'June'
+        break
+      case 6:
+        formattedMonth = 'July'
+        break
+      case 7:
+        formattedMonth = 'August'
+        break
+      case 8:
+        formattedMonth = 'September'
+        break
+      case 9:
+        formattedMonth = 'October'
+        break
+      case 10:
+        formattedMonth = 'November'
+        break
+      case 11:
+        formattedMonth = 'December'
+        break
+    }
+
+    return `${formattedMonth} ${day}`
+  }
+
   return {
     getTodayDate,
     setNewDate,
     parseDateFromString,
     getDayStatus,
-    parseBirthDayFromString,
+    parseMonthAndDayFromString,
+    formatDate,
   }
 }
 

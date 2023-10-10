@@ -5,6 +5,7 @@ export interface UserInfo {
   birth: string
   job: string
   gender: string
+  onBoardingStatus: string
 }
 
 export interface UserInfoToken {

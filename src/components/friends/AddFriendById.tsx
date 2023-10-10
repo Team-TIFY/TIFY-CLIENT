@@ -1,6 +1,6 @@
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { Text } from '@components/atoms/Text'
-import { useInputTextChange } from '@libs/hooks/useInputTextChange'
+import useInputTextChange from '@libs/hooks/useInputTextChange'
 
 const AddFriendById = () => {
   const handleChangeSearchId = useInputTextChange()
