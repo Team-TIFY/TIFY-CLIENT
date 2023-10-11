@@ -14,7 +14,7 @@ const OnboardingRouter = () => {
         path="/"
         element={
           <AppBarTemplate
-            variant="title"
+            variant="backPushWithTitle"
             label={appLabel}
             hasNav={false}
             rightChildren="none"
