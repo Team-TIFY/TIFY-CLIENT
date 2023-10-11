@@ -12,6 +12,15 @@ import { authState } from '@libs/store/auth'
 import MenuIcon from '@assets/icons/MenuIcon'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { useQuery } from '@tanstack/react-query'
+import BFPER from '@pages/searchTaste/BFPER'
+import BFMOI from '@pages/searchTaste/BFMOI'
+import BFPLA from '@pages/searchTaste/BFPLA'
+import FEFAS from '@pages/searchTaste/FEFAS'
+import FEDIG from '@pages/searchTaste/FEDIG'
+import FEBAG from '@pages/searchTaste/FEBAG'
+import FAACC from '@pages/searchTaste/FAACC'
+import HCDIS from '@pages/searchTaste/HCDIS'
+import HCCUP from '@pages/searchTaste/HCCUP'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -45,6 +54,19 @@ const ProfileRouter = () => {
           }
         />
         <Route
+          path="/:id/*"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label={'@' + friendData?.email}
+              hasNav={false}
+              rightChildren="none"
+            >
+              <Profile friendData={friendData} friendId={friendId} />
+            </AppBarTemplate>
+          }
+        />
+        <Route
           path="/newTaste"
           element={
             <AppBarTemplate
@@ -63,7 +85,7 @@ const ProfileRouter = () => {
             <AppBarTemplate
               variant="backPush"
               hasNav={false}
-              rightChildren="none"
+              rightChildren="stepNum"
             >
               <BMLIP />
             </AppBarTemplate>
@@ -72,29 +94,132 @@ const ProfileRouter = () => {
         <Route
           path="/newTaste/BMEYE/*"
           element={
-            <AppBarTemplate variant="title" hasNav={false} rightChildren="none">
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
               <BMEYE />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/BFPER/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <BFPER />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/BFMOI/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <BFMOI />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/BFPLA/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <BFPLA />
             </AppBarTemplate>
           }
         />
         <Route
           path="/newTaste/FCTOP/*"
           element={
-            <AppBarTemplate variant="title" hasNav={false} rightChildren="none">
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
               <FCTOP />
             </AppBarTemplate>
           }
         />
         <Route
-          path="/:id/*"
+          path="/newTaste/FEFAS/*"
           element={
             <AppBarTemplate
-              variant="backPushWithTitle"
-              label={'@' + friendData?.email}
+              variant="backPush"
               hasNav={false}
-              rightChildren="none"
+              rightChildren="stepNum"
             >
-              <Profile friendData={friendData} friendId={friendId} />
+              <FEFAS />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/FEDIG/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <FEDIG />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/FEBAG/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <FEBAG />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/FAACC/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <FAACC />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/HCDIS/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <HCDIS />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/newTaste/HCCUP/*"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="stepNum"
+            >
+              <HCCUP />
             </AppBarTemplate>
           }
         />
