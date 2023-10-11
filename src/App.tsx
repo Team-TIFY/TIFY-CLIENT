@@ -8,6 +8,7 @@ import MyProfileRouter from '@pages/myprofile'
 import WeeklyRouter from '@pages/weekly'
 import FriendsRouter from '@pages/friends'
 import OnboardingRouter from '@pages/onboarding'
+import SettingRouter from '@pages/settingPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="*" element={<WeeklyRouter />} />
           <Route path="/myprofile/*" element={<MyProfileRouter />} />
           <Route path="/friends/*" element={<FriendsRouter />} />
+          <Route path="/setting/*" element={<SettingRouter />} />
           <Route path="/onboarding" element={<OnboardingRouter />} />
         </Route>
         <Route element={<CheckUserAuth />}>
