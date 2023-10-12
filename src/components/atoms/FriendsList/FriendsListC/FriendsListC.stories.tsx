@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import FriendsListC from '.'
 
 const meta: Meta<typeof FriendsListC> = {
-  title: 'Atom/FriendsListC',
+  title: 'Atom/FriendsList/FriendsListC',
   component: FriendsListC,
   tags: ['autodocs'],
   parameters: {
