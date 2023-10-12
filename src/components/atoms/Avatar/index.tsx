@@ -45,6 +45,11 @@ type VisibleType = {
   }
 }
 
+/**
+ * @param variant 크기 종류를 나타냄 "xsmall" | "small" | "medium" 중 선택 가능함
+ * @param isVisible visible 종류를 나타냄 "visible" | "invisible" 중 하나 선택 가능함
+ * @param imageUrl 이미지 URL을 나타냄
+ */
 export interface AvatarProps {
   variant: AvatarVariant
   isVisible?: VisibleVariant

@@ -2,7 +2,7 @@
 import OnAlert from '@assets/icons/OnAlert'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Routes, Route } from 'react-router-dom'
-import { AppBar, AppBarProps } from '.'
+import { AppBar, AppBarProps, RightChildrenVariant } from '.'
 import Svg from '../Svg'
 
 const meta = {
@@ -23,7 +23,7 @@ const meta = {
 } satisfies Meta<typeof AppBar>
 
 export default meta
-type Story = StoryObj<AppBarProps>
+type Story = StoryObj<AppBarProps<RightChildrenVariant>>
 
 export const BackPushWithTitleWithAlarm: Story = {
   args: {

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { SearchInput } from '.'
 
 const meta = {
-  title: 'Atom/SearchInput',
+  title: 'Atom/Input/SearchInput',
   component: SearchInput,
   tags: ['autodocs'],
 } satisfies Meta<typeof SearchInput>

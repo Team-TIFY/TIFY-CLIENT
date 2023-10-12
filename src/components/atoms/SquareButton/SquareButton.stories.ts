@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import SquareButton from '.'
 
 const meta = {
-  title: 'Atom/SquareButton',
+  title: 'Atom/Button/SquareButton',
   component: SquareButton,
   tags: ['autodocs'],
   argTypes: {

@@ -5,6 +5,12 @@ import { Text } from '../Text'
 
 export type cubeButtonVariant = 'unSelected' | 'selected' | 'disabled'
 
+/**
+ * @param variant 종류를 나타냄 "unSelected" | "selected" | "disabled" 중 선택 가능함
+ * @param img 버튼에 들어갈 이미지 url을 나타냄
+ * @param text 버튼에 들어갈 텍스트를 나타냄
+ * @param onClick 버튼 클릭 시 발생할 이벤트를 넘겨주는 함수임
+ */
 interface CubeButtonProps {
   variant: cubeButtonVariant
   img: string
