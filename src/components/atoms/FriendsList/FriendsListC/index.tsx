@@ -6,9 +6,9 @@ import { theme } from '@styles/theme'
 import { sliceString } from '@utils/sliceString'
 
 /**
- * @param name 사용자 이름을 나타냄
- * @param currentState 사용자의 현재 상태를 나타냄 ex) 헬스장에서 운동 중 🏋️
- * @param imageUrl 사용자 프로필 이미지 url을 나타냄
+ * @param name 친구 이름을 나타냄
+ * @param currentState 친구의 현재 상태를 나타냄 ex) 헬스장에서 운동 중 🏋️
+ * @param imageUrl 친구 프로필 이미지 url을 나타냄
  * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
