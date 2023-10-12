@@ -5,9 +5,33 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { useEffect } from 'react'
 import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
+import { useNavigate } from 'react-router-dom'
+import useCustomBack from '@libs/hooks/useCustomBack'
+import { useMutation } from '@tanstack/react-query'
+import { FavorApi } from '@utils/apis/favor/FavorApi'
+import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
 
 const BMLIP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
+  const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
+    onSuccess: (data: FavorAnswerResponse) => {
+      alert('취향 답변 완료!')
+      navigate('myprofile')
+    },
+  })
+  const handleBack = () => {
+    if (step.favorAnswerDtos.length > 0) {
+      const myAnswerList = [...step.favorAnswerDtos]
+      const newFavorAnswerDtos = myAnswerList.splice(0, myAnswerList.length - 1)
+      setStepAnswer({
+        ...step,
+        favorAnswerDtos: [...newFavorAnswerDtos],
+      })
+    }
+    navigate(-1)
+  }
+  const navigate = useNavigate()
+  const handleFunnelBackPage = useCustomBack(handleBack)
   const [Funnel, setStep] = useFunnel(
     [
       'MultiAnswer1',
@@ -21,6 +45,7 @@ const BMLIP = () => {
     },
   )
   useEffect(() => {
+    handleFunnelBackPage
     setStepAnswer({ ...step, categoryName: 'BMLIP' })
   }, [])
 
@@ -59,7 +84,10 @@ const BMLIP = () => {
       </Funnel.Step>
       <Funnel.Step name="SearchAnswer5">
         <SearchAnswerStep
-          setNextStep={() => setStep('OneAnswer2')}
+          setNextStep={() => {
+            favorAnswerMutation.mutate(step)
+            localStorage.clear()
+          }}
           category="BMLIP"
           number={5}
         />

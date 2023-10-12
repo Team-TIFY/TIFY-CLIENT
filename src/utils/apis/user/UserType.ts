@@ -35,14 +35,14 @@ export interface FilteredUserTag {
 
 export interface SelectedTag {
   name: TagNameKey
-  value: TagValueKey
+  value: SubCategoryType
 }
 
 export type SelectedProps = {
   id: number
   active: boolean
   name: TagNameKey
-  value: TagValueKey
+  value: SubCategoryType
 }[]
 
 export type TagNameKey =
@@ -56,23 +56,17 @@ export type TagNameKey =
   | '여행'
   | '문화생활'
 
-export type TagValueKey =
-  | 'MAKEUP'
-  | 'PERFUME'
-  | 'CLOTHES'
-  | 'FASHIONSTUFF'
-  | 'ACCESSORY'
-  | 'COOKING'
-  | 'SPORTS'
-  | 'TRIP'
-  | 'CULTURALLIFE'
-
 export interface UserNewTasteCategory {
-  smallCategory: subCategoryType
+  smallCategory: SubCategoryType
   isAnswered: boolean
 }
 
-export type subCategoryType =
+export interface IsAnsweredCategory {
+  detailCategory: SubCategoryType
+  answered: boolean
+}
+
+export type SubCategoryType =
   | 'MAKEUP'
   | 'FRAGRANCE'
   | 'CLOTHES'

@@ -8,6 +8,9 @@ export type TasteType =
   | 'FEFAS'
   | 'FEDIG'
   | 'FEBAG'
+  | 'FAACC'
+  | 'HCDIS'
+  | 'HCCUP'
 
 export interface FavorQuestionRequest {
   category: TasteType
@@ -29,4 +32,10 @@ export interface FavorAnswerDetailRequest {
 export interface FavorAnswerRequest {
   categoryName: string
   favorAnswerDtos: FavorAnswerDetailRequest[]
+}
+
+export interface FavorAnswerResponse {
+  success: boolean
+  statusCode: number
+  data: string | null
 }

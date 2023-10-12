@@ -1,4 +1,4 @@
-import { subCategoryType } from '@utils/apis/user/UserType'
+import { SubCategoryType } from '@utils/apis/user/UserType'
 import { atom } from 'recoil'
 
 export interface UserStateType {
@@ -26,7 +26,7 @@ export const userState = atom<UserStateType>({
   default: initialState,
 })
 
-export const subCategoryState = atom<subCategoryType | ''>({
+export const subCategoryState = atom<SubCategoryType | ''>({
   key: 'subCategoryState',
   default: '',
 })

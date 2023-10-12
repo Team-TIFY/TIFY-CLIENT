@@ -7,9 +7,10 @@ import { useNavigate } from 'react-router-dom'
 import useCustomBack from '@libs/hooks/useCustomBack'
 import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
+import OneAnswerStep from '@components/funnel/OneAnswerStep'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 
-const FCTOP = () => {
+const FAACC = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
@@ -45,7 +46,7 @@ const FCTOP = () => {
   )
   useEffect(() => {
     handleFunnelBackPage
-    setStepAnswer({ ...step, categoryName: 'FCTOP' })
+    setStepAnswer({ ...step, categoryName: 'FAACC' })
   }, [])
 
   return (
@@ -53,23 +54,22 @@ const FCTOP = () => {
       <Funnel.Step name="MultiAnswer1">
         <MultiAnswerStep
           setNextStep={() => setStep('MultiAnswer2')}
-          category="FCTOP"
+          category="FAACC"
           number={1}
           max={2}
         />
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer2">
-        <MultiAnswerStep
+        <OneAnswerStep
           setNextStep={() => setStep('MultiAnswer3')}
-          category="FCTOP"
+          category="FAACC"
           number={2}
-          max={2}
         />
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer3">
         <MultiAnswerStep
           setNextStep={() => setStep('MultiAnswer4')}
-          category="FCTOP"
+          category="FAACC"
           number={3}
           max={2}
         />
@@ -77,17 +77,17 @@ const FCTOP = () => {
       <Funnel.Step name="MultiAnswer4">
         <MultiAnswerStep
           setNextStep={() => setStep('MultiAnswer5')}
-          max={2}
-          category="FCTOP"
+          category="FAACC"
           number={4}
+          max={2}
         />
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer5">
         <MultiAnswerStep
-          max={2}
           setNextStep={() => setStep('MultiAnswer6')}
-          category="FCTOP"
+          category="FAACC"
           number={5}
+          max={2}
         />
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer6">
@@ -97,7 +97,7 @@ const FCTOP = () => {
             localStorage.clear()
           }}
           max={2}
-          category="FCTOP"
+          category="FAACC"
           number={6}
         />
       </Funnel.Step>
@@ -105,4 +105,4 @@ const FCTOP = () => {
   )
 }
 
-export default FCTOP
+export default FAACC
