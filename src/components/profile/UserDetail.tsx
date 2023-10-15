@@ -6,16 +6,23 @@ import { Text } from '@components/atoms/Text'
 import { UserInfo } from '@utils/apis/user/UserType'
 import ThreeDots from '@assets/icons/ThreeDots'
 import Svg from '@components/atoms/Svg'
+import useGetDate from '@libs/hooks/useGetDate'
 
 export interface UserDetailProps {
   userData: UserInfo
 }
 
 export const UserDetail = ({ userData }: UserDetailProps) => {
+  const { formatDate } = useGetDate()
+
   return (
     <>
       <AvatarWrapper>
-        <Avatar variant="medium" isVisible="visible" />
+        <Avatar
+          variant="medium"
+          isVisible="visible"
+          imageUrl={userData?.thumbnail}
+        />
       </AvatarWrapper>
       <Spacing height={12} />
       <UserInfoWrapper>
@@ -30,7 +37,9 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
         <Text
           typo="Mont_Caption_12M"
           color="gray_200"
-          children={userData?.birth + ' | 바다에서 서핑 중 🏄‍♂️'}
+          children={
+            formatDate(userData?.birth) + ' | ' + userData?.onBoardingStatus
+          }
         />
       </UserInfoWrapper>
     </>

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { WeekGroup } from '.'
 
 const meta = {
-  title: 'Atom/WeekGroup',
+  title: 'Atom/Week/WeekGroup',
   component: WeekGroup,
   tags: ['autodocs'],
 } satisfies Meta<typeof WeekGroup>

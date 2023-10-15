@@ -1,10 +1,14 @@
-import { AppBar, AppBarProps } from '@components/atoms/AppBar'
+import {
+  AppBar,
+  AppBarProps,
+  RightChildrenVariant,
+} from '@components/atoms/AppBar'
 import { ReactNode } from 'react'
 import { favorQuestionData, FavorQuestionDataType } from '@libs/store/dummy'
 import { Navigationbar } from '@components/atoms/Navigationbar'
 import { TasteType } from '@utils/apis/favor/TasteType'
 
-type AppBarTemplateProps = AppBarProps & {
+type AppBarTemplateProps = AppBarProps<RightChildrenVariant> & {
   children: ReactNode
   hasNav: boolean
 }

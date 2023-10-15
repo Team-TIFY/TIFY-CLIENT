@@ -7,15 +7,16 @@ import SquareButton from '@components/atoms/SquareButton'
 
 interface ProfileHeaderProps {
   userData: UserInfo
+  isFriend: boolean
 }
 
-export const ProfileHeader = ({ userData }: ProfileHeaderProps) => {
+export const ProfileHeader = ({ userData, isFriend }: ProfileHeaderProps) => {
   const handleClickPastDaily = () => {
     console.log('지난 데일리 버튼 클릭')
   }
 
   const handleClickNewTaste = () => {
-    window.location.href = '/myprofile/newTaste'
+    isFriend ? null : (window.location.href = '/profile/newTaste')
   }
 
   return (
@@ -31,7 +32,7 @@ export const ProfileHeader = ({ userData }: ProfileHeaderProps) => {
           />
           <SquareButton
             variant="mediumSquare"
-            children="새로운 관심사 답변"
+            children={isFriend ? '친구' : '새로운 관심사 답변'}
             onClick={handleClickNewTaste}
           />
         </FlexBox>

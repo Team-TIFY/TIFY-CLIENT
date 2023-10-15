@@ -1,11 +1,17 @@
-import { Route, Routes } from 'react-router-dom'
+/* eslint-disable react/jsx-key */
+import { Route, Routes, useLocation } from 'react-router-dom'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
-import MyProfile from './MyProfile'
+import Profile from './Profile'
 import NewTaste from './NewTaste'
 import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
 import FCTOP from '@pages/searchTaste/FCTOP'
 import { Suspense } from 'react'
+import { useRecoilValue } from 'recoil'
+import { authState } from '@libs/store/auth'
+import MenuIcon from '@assets/icons/MenuIcon'
+import { UserApi } from '@utils/apis/user/UserApi'
+import { useQuery } from '@tanstack/react-query'
 import BFPER from '@pages/searchTaste/BFPER'
 import BFMOI from '@pages/searchTaste/BFMOI'
 import BFPLA from '@pages/searchTaste/BFPLA'
@@ -16,7 +22,20 @@ import FAACC from '@pages/searchTaste/FAACC'
 import HCDIS from '@pages/searchTaste/HCDIS'
 import HCCUP from '@pages/searchTaste/HCCUP'
 
-const MyProfileRouter = () => {
+const ProfileRouter = () => {
+  const auth = useRecoilValue(authState)
+
+  const location = useLocation()
+  const friendId = parseInt(location.pathname.slice(9))
+
+  const { data: friendData } = useQuery(
+    ['friendProfile', friendId],
+    () => UserApi.GET_USER_INFO(friendId),
+    {
+      enabled: !isNaN(friendId) && auth.userId !== friendId,
+    },
+  )
+
   return (
     <Suspense fallback={<div>loading...</div>}>
       <Routes>
@@ -25,11 +44,25 @@ const MyProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="title"
-              label="@user"
+              label={'@' + '변경'}
               hasNav={true}
-              rightChildren="dots"
+              rightChildren="actionButton"
+              rightChildrenIcon={[<MenuIcon />]}
             >
-              <MyProfile />
+              <Profile />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/:id/*"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label={'@' + friendData?.email}
+              hasNav={false}
+              rightChildren="none"
+            >
+              <Profile friendData={friendData} friendId={friendId} />
             </AppBarTemplate>
           }
         />
@@ -195,4 +228,4 @@ const MyProfileRouter = () => {
   )
 }
 
-export default MyProfileRouter
+export default ProfileRouter

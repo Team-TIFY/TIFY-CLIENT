@@ -40,6 +40,10 @@ export const UserApi = {
     return response.data.data
   },
 
+  UPDATE_FRIEND_PROFILE_VIEW_TIME: async (neighborId: number) => {
+    const response = await axiosApi.patch(`/users/neighbors/${neighborId}`)
+  },
+
   GET_SMALL_CATEGORY_ISANSWERED_QUESTION: async (
     category: SubCategoryType,
   ): Promise<IsAnsweredCategory[]> => {
