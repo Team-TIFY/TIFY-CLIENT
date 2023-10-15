@@ -6,10 +6,7 @@ export interface OnboardingType {
   birth: string
   gender: string
   onBoardingState: string
-  beautyFavor: string
-  fashionFavor: string
-  hobbyFavor: string
-  [key: string]: string
+  favor: string[]
 }
 
 const initialState: OnboardingType = {
@@ -18,9 +15,7 @@ const initialState: OnboardingType = {
   birth: '',
   gender: '',
   onBoardingState: '',
-  beautyFavor: '',
-  fashionFavor: '',
-  hobbyFavor: '',
+  favor: [],
 }
 
 export const onboardingState = atom<OnboardingType>({

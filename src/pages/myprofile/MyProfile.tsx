@@ -30,24 +30,25 @@ const MyProfile = () => {
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
 
   const { data: userData = {} as UserInfo } = useQuery(
-    ['userProfile', auth.userId],
-    () => UserApi.GET_USER_INFO(auth.userId),
+    ['userProfile', auth.userProfile.userId],
+    () => UserApi.GET_USER_INFO(auth.userProfile.userId),
   )
 
-  const { data: userTagData = [] } = useQuery(['userTag', auth.userId], () =>
-    UserApi.GET_USER_TAG(auth.userId),
+  const { data: userTagData = [] } = useQuery(
+    ['userTag', auth.userProfile.userId],
+    () => UserApi.GET_USER_TAG(auth.userProfile.userId),
   )
 
   const getFilteredData = (selectedTags: SelectedTag[]) => {
     const promises = selectedTags.map((tag) =>
-      UserApi.GET_FILTERED_USER_TAG(auth.userId, tag.value),
+      UserApi.GET_FILTERED_USER_TAG(auth.userProfile.userId, tag.value),
     )
 
     return Promise.all(promises)
   }
 
   const { data: filteredUserTagData = [] } = useQuery(
-    ['filteredUserTag', selectedTags, auth.userId],
+    ['filteredUserTag', selectedTags, auth.userProfile.userId],
     () => getFilteredData(selectedTags),
     {
       enabled: selectedTags.length > 0,

@@ -29,12 +29,12 @@ const INPUT_TYPE: InputVariantType = {
 interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   variant: InputVariant
   maxText?: number
-  explanation: string
+  explanation?: string
   width: number
-  placeholder: string
+  placeholder?: string
   warning?: string
   error: boolean
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
   content: string
 }
 
@@ -97,7 +97,7 @@ export const ShortInput = ({
             placeholder={placeholder}
             spellCheck="false"
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              onChange(e)
+              if (onChange) onChange(e)
               textHandler(e, content)
               handleEnter(e, content)
             }}

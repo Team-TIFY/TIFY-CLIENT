@@ -13,7 +13,7 @@ const BirthdayFriends = () => {
   const auth = useRecoilValue(authState)
 
   const { data: birthdayFriendsList = [] } = useQuery(
-    ['birthdayFriendsList', auth.userId],
+    ['birthdayFriendsList', auth.userProfile.userId],
     FriendsApi.GET_BIRTHDAY_FRIENDS_LIST,
   )
 

@@ -7,30 +7,12 @@ import { onboardingState } from '@libs/store/onboard'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 
-export function HobbyFavor() {
+interface HobbyFavorProps {
+  updateMyFavor: (myFavor: string) => void
+}
+
+export function HobbyFavor({ updateMyFavor }: HobbyFavorProps) {
   const [info, setInfo] = useRecoilState(onboardingState)
-  const initialButtonStates: cubeButtonVariant[] = [
-    'unSelected',
-    'unSelected',
-    'unSelected',
-    'unSelected',
-  ]
-  const [buttonStates, setButtonStates] =
-    useState<cubeButtonVariant[]>(initialButtonStates)
-
-  const updateState = (index: number) => {
-    const newButtonStates = buttonStates.map((state, i) =>
-      i === index ? 'selected' : 'unSelected',
-    )
-    setButtonStates(newButtonStates)
-  }
-
-  const updateFavor = (content: string) => {
-    setInfo({
-      ...info,
-      hobbyFavor: content,
-    })
-  }
   return (
     <>
       <FlexBox>
@@ -40,44 +22,40 @@ export function HobbyFavor() {
       </FlexBox>
       <FlexBox>
         <CubeButton
-          variant={buttonStates[0]}
+          variant={info.favor.includes('HCDIS') ? 'selected' : 'unSelected'}
           img="/images/cooking.png"
           text="요리"
           onClick={() => {
-            updateState(0)
-            updateFavor('요리')
+            updateMyFavor('HCDIS')
           }}
         />
         <MarginDiv />
         <CubeButton
-          variant={buttonStates[1]}
+          variant={info.favor.includes('HEEXE') ? 'selected' : 'unSelected'}
           img="/images/exercise.png"
           text="운동"
           onClick={() => {
-            updateState(1)
-            updateFavor('운동')
+            updateMyFavor('HEEXE')
           }}
         />
         <MarginDiv />
         <CubeButton
-          variant={buttonStates[2]}
+          variant="disabled"
           img="/images/travel.png"
           text="여행"
           onClick={() => {
-            updateState(2)
-            updateFavor('여행')
+            updateMyFavor('HEEXE')
           }}
         />
       </FlexBox>
       <Spacing height={12} />
       <FlexBox>
         <CubeButton
-          variant={buttonStates[3]}
+          variant="disabled"
           img="/images/culturalLife.png"
           text="문화생활"
           onClick={() => {
-            updateState(3)
-            updateFavor('문화생활')
+            updateMyFavor('HEEXE')
           }}
         />
         <div style={{ width: '216px' }} />

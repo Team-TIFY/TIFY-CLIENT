@@ -2,19 +2,19 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { Text } from '../Text'
+import { ButtonHTMLAttributes } from 'react'
 
 export type cubeButtonVariant = 'unSelected' | 'selected' | 'disabled'
 
-interface CubeButtonProps {
+interface CubeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   variant: cubeButtonVariant
   img: string
   text: string
-  onClick?: () => void
 }
 
-const CubeButton = ({ variant, img, text, onClick }: CubeButtonProps) => {
+const CubeButton = ({ variant, img, text, ...props}: CubeButtonProps) => {
   return (
-    <StyledButton variant={variant} onClick={onClick}>
+    <StyledButton variant={variant} onClick={props.onClick}>
       <TextWrapper variant={variant}>
         <img src={img} width={40} height={40} />
         <Text
