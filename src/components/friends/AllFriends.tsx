@@ -25,7 +25,7 @@ const AllFriends = () => {
   const navigate = useNavigate()
 
   const { data: friendsList = [] } = useQuery(
-    ['friendsList', auth.userId],
+    ['friendsList', auth.userProfile.userId],
     FriendsApi.GET_FRIENDS_LIST,
   )
 

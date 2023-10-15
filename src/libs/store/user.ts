@@ -9,6 +9,7 @@ export interface UserStateType {
   job: string
   createdAt: Date
   gender: string
+  onBoardingStatus: string
 }
 
 const initialState: UserStateType = {
@@ -19,6 +20,7 @@ const initialState: UserStateType = {
   job: '',
   createdAt: new Date(),
   gender: '',
+  onBoardingStatus: '',
 }
 
 export const userState = atom<UserStateType>({

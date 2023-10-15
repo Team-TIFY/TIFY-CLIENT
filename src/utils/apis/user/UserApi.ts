@@ -5,12 +5,11 @@ import {
   IsAnsweredCategory,
   SubCategoryType,
   UserInfo,
-  UserInfoToken,
   UserTag,
 } from '@utils/apis/user/UserType'
 
 export const UserApi = {
-  GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {
+  GET_USER_INFO_TOKEN: async (): Promise<UserInfo> => {
     const response = await axiosApi.get('/users')
     return response.data.data
   },

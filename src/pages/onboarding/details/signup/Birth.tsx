@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
+import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { theme } from '@styles/theme'
 import { isBtnColorState, onboardingState } from '@libs/store/onboard'
@@ -10,7 +10,9 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { format } from 'date-fns'
 
 export function Birth() {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [selectedDate, setSelectedDate] = useState<Date | null>(
+    new Date('2000-06-15'),
+  )
   const [info, setInfo] = useRecoilState(onboardingState)
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
 
@@ -40,7 +42,7 @@ export function Birth() {
           selected={selectedDate}
           onChange={handleDateChange}
           dateFormat="yyyy-MM-dd"
-          minDate={new Date('2009-01-01')}
+          maxDate={new Date('2009-01-01')}
           locale={ko}
           shouldCloseOnSelect
         />
@@ -59,7 +61,7 @@ const SmallText = styled.div`
   margin-bottom: 8px;
 `
 
-const CustomDatePicker = styled(DatePicker)`
+const CustomDatePicker = styled(ReactDatePicker)`
   display: flex;
   width: 280px;
   align-items: center;

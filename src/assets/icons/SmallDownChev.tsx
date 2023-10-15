@@ -11,9 +11,9 @@ export const SmallDownChev = () => {
         <path
           d="M1 1L5 5L9 1"
           stroke="#E4E4E5"
-          stroke-width="1.2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>

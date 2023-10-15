@@ -2,25 +2,19 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { Text } from '../Text'
+import { ButtonHTMLAttributes } from 'react'
 
 export type cubeButtonVariant = 'unSelected' | 'selected' | 'disabled'
 
-/**
- * @param variant 종류를 나타냄 "unSelected" | "selected" | "disabled" 중 선택 가능함
- * @param img 버튼에 들어갈 이미지 url을 나타냄
- * @param text 버튼에 들어갈 텍스트를 나타냄
- * @param onClick 버튼 클릭 시 발생할 이벤트를 넘겨주는 함수임
- */
-interface CubeButtonProps {
+interface CubeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   variant: cubeButtonVariant
   img: string
   text: string
-  onClick?: () => void
 }
 
-const CubeButton = ({ variant, img, text, onClick }: CubeButtonProps) => {
+const CubeButton = ({ variant, img, text, ...props}: CubeButtonProps) => {
   return (
-    <StyledButton variant={variant} onClick={onClick}>
+    <StyledButton variant={variant} onClick={props.onClick}>
       <TextWrapper variant={variant}>
         <img src={img} width={40} height={40} />
         <Text

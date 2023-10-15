@@ -13,7 +13,7 @@ import { useRecoilValue } from 'recoil'
 const NewTaste = () => {
   const auth = useRecoilValue(authState)
   const { data: isAnsweredQuestion } = useQuery(
-    ['newTasteCategory', auth.userId],
+    ['newTasteCategory', auth.userProfile.userId],
     () => UserApi.GET_ISANSWERED_QUESTION(),
   )
 

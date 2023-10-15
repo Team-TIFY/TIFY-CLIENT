@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query'
 import { AuthApi } from '@utils/apis/auth/AuthApi'
 import { axiosApi } from '@utils/apis/axios'
 import { setCookie } from '@utils/cookies'
+import { UserApi } from '@utils/apis/user/UserApi'
 
 const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
   const [auth, setAuth] = useRecoilState(authState)
@@ -33,7 +34,7 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
   //회원가입 여부 검증
   const ouathValidMutation = useMutation(AuthApi.KAKAO_VALID, {
     onSuccess: (data: { canRegister: boolean }) => {
-      //그냥 로그인 하셈
+      //회원가입이 필요한 사람
       if (data.canRegister) {
         ouathKakaoRegisterMutation.mutate({
           idToken,
@@ -44,13 +45,16 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
             phoneNumber: '010-1234-456',
           },
         })
+        //회원가입 직후 온보딩페이지로 이동
+        navigate('/onboarding')
       } else {
+        //회원가입이 필요 없으면 그냥 로그인합니다.
         ouathKakaoLoginMutation.mutate(idToken)
       }
     },
   })
 
-  const onSuccessLogin = (loginData: KakaoLoginResponse) => {
+  const onSuccessLogin = async (loginData: KakaoLoginResponse) => {
     axiosApi.defaults.headers.common[
       'Authorization'
     ] = `Bearer ${loginData.accessToken}`
@@ -62,11 +66,21 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
       maxAge: 20000,
       path: '/',
     })
+    const data = await UserApi.GET_USER_INFO(loginData.userId)
     setAuth({
       isAuthenticated: true,
       callbackUrl: '/',
       accessToken: loginData.accessToken,
-      userId: loginData.userId,
+      userProfile: {
+        userId: data.userId,
+        userName: data.userName,
+        imageUrl: data.imageUrl,
+        birth: data.birth,
+        job: data.job,
+        createdAt: data.createdAt,
+        gender: data.gender,
+        onBoardingStatus: data.onBoardingStatus,
+      },
     })
   }
   return { ouathValidMutation }

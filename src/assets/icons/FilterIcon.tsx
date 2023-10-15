@@ -1,4 +1,4 @@
-export function FilterIcon(){
+export function FilterIcon() {
   return (
     <>
       <svg
@@ -30,6 +30,6 @@ export function FilterIcon(){
           </clipPath>
         </defs>
       </svg>
-</>
+    </>
   )
 }

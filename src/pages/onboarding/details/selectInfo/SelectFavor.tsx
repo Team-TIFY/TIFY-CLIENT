@@ -16,16 +16,29 @@ export function SelectFavor() {
   const [info, setInfo] = useRecoilState(onboardingState)
 
   useEffect(() => {
-    if (
-      info.beautyFavor !== '' &&
-      info.fashionFavor !== '' &&
-      info.hobbyFavor !== ''
-    ) {
+    if (info.favor.length !== 0) {
       setBtnColor(true)
     } else {
       setBtnColor(false)
     }
+    console.log(info)
   })
+
+  const updateMyFavor = (favorType: string) => {
+    if (info.favor.includes(favorType)) {
+      const favorList = [...info.favor]
+      const index = favorList.indexOf(favorType)
+      favorList.splice(index, 1)
+      setInfo({ ...info, favor: [...favorList] })
+    } else if (info.favor.length === 3) {
+      const favorList = [...info.favor]
+      favorList.splice(info.favor.length - 1)
+      favorList.push(favorType)
+      setInfo({ ...info, favor: [...favorList] })
+    } else {
+      setInfo({ ...info, favor: [...info.favor, favorType] })
+    }
+  }
 
   const gotoReg = () => {
     if (btnColor === true) {
@@ -45,16 +58,20 @@ export function SelectFavor() {
       <FlexBox>
         <TextWrap>
           <Text
-            children="가장 관심있는 취향
-3가지를 골라 주세요"
+            children="가장 관심있는 취향 3가지를 선택해"
+            typo="SCD_Headline_20"
+            color="gray_100"
+          />
+          <Text
+            children="나의 선물상자를 꾸며보세요"
             typo="SCD_Headline_20"
             color="gray_100"
           />
         </TextWrap>
       </FlexBox>
-      <BeautyFavor />
-      <FashionFavor />
-      <HobbyFavor />
+      <BeautyFavor updateMyFavor={updateMyFavor} />
+      <FashionFavor updateMyFavor={updateMyFavor} />
+      <HobbyFavor updateMyFavor={updateMyFavor} />
       <Spacing height={100} />
       <BottomSticker>
         <RoundButton

@@ -21,7 +21,7 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
         <Avatar
           variant="medium"
           isVisible="visible"
-          imageUrl={userData?.thumbnail}
+          imageUrl={userData?.imageUrl}
         />
       </AvatarWrapper>
       <Spacing height={12} />

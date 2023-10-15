@@ -6,26 +6,22 @@ import OnBoardGift from '@assets/image/OnBoardGift'
 import styled from '@emotion/styled'
 import { RoundButton } from '@components/atoms/RoundButton'
 import { useNavigate } from 'react-router-dom'
-import { onboardingPageState } from '@libs/store/onboard'
+import { onboardingPageState, onboardingState } from '@libs/store/onboard'
+import { useEffect, useState } from 'react'
 
 export function HalfSuccess() {
-  const user = useRecoilValue(userState)
+  const [info, setInfo] = useRecoilState(onboardingState)
   const [goNext, setGoNext] = useRecoilState(onboardingPageState)
 
   const goToNext = () => {
     setGoNext({ ...goNext, onboardStatus: true })
-    console.log(goNext)
   }
-
   return (
     <>
       <Spacing height={32} />
       <TextDiv>
-        <Text typo="SCD_Headline_24" color="gray_100">
-          {' '}
-          {user.userName}님 안녕하세요!
-          <br /> 나의 취향 프로필을 꾸며볼까요?
-        </Text>
+        <Text typo="SCD_Headline_24">{info.username}님 안녕하세요!</Text>
+        <Text typo="SCD_Headline_24">나의 취향 프로필을 꾸며볼까요?</Text>
       </TextDiv>
       <Spacing height={48} />
       <ImgWrapper>
