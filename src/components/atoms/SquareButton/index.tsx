@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { theme, KeyOfTypo } from '@styles/theme'
 import { Text } from '../Text'
 import { useState } from 'react'
+import { FlexBox } from '@components/layouts/FlexBox'
 
 type ButtonVariant =
   | 'mediumSquare'
@@ -130,7 +131,7 @@ const SquareButton = ({
         <p>로딩중입니다</p>
       ) : (
         <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
-          {children}
+          <FlexBox>{children}</FlexBox>
         </Text>
       )}
     </StyledButton>

@@ -5,19 +5,28 @@ import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { sliceString } from '@utils/sliceString'
 
+/**
+ * @param name 친구 이름을 나타냄
+ * @param currentState 친구의 현재 상태를 나타냄 ex) 헬스장에서 운동 중 🏋️
+ * @param imageUrl 친구 프로필 이미지 url을 나타냄
+ * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
+ */
+
 interface FriendsListCProps {
   name: string
   currentState: string
   imageUrl: string
+  onClick?: () => void
 }
 
 const FriendsListC = ({
   name,
   currentState,
   imageUrl = '',
+  onClick,
 }: FriendsListCProps) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <TopWrapper>
         <StyledImg left={12} top={12}>
           <img src="/images/makeup.png" />
@@ -54,6 +63,7 @@ const Wrapper = styled.div`
   height: 217px;
   border-radius: 12px;
   position: relative;
+  cursor: pointer;
 `
 
 const TopWrapper = styled.div`

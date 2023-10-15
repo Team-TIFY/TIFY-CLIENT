@@ -4,18 +4,29 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Padding } from '@components/layouts/Padding'
 import styled from '@emotion/styled'
+import useGetDate from '@libs/hooks/useGetDate'
 import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 
 const BirthdayFriends = () => {
   const auth = useRecoilValue(authState)
 
+  const navigate = useNavigate()
+
+  const { getDayStatus, parseDateFromString, parseMonthAndDayFromString } =
+    useGetDate()
+
   const { data: birthdayFriendsList = [] } = useQuery(
     ['birthdayFriendsList', auth.userProfile.userId],
     FriendsApi.GET_BIRTHDAY_FRIENDS_LIST,
   )
+
+  const handleClickFriend = (friendId: number) => {
+    navigate(`/profile/${friendId}`)
+  }
 
   return (
     <>
@@ -37,8 +48,11 @@ const BirthdayFriends = () => {
               imageUrl={friend.neighborThumbnail}
               currentState={friend.onBoardingStatus}
               description="birthday"
-              birthdayDescription="오늘"
-              birthday={friend.neighborBirth}
+              birthdayDescription={getDayStatus(
+                parseDateFromString(friend.neighborBirth),
+              )}
+              birthday={parseMonthAndDayFromString(friend.neighborBirth)}
+              onClick={() => handleClickFriend(friend.neighborId)}
             />
           ))}
         </FriendsListWrapper>

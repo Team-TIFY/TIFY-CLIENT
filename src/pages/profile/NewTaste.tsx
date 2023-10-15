@@ -1,7 +1,7 @@
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { Padding } from '@components/layouts/Padding'
-import NewTasteCategory from '@components/mypage/NewTasteCategory'
+import NewTasteCategory from '@components/profile/NewTasteCategory'
 import styled from '@emotion/styled'
 import { authState } from '@libs/store/auth'
 import { UserNewTasteCategory } from '@utils/apis/user/UserType'
@@ -9,6 +9,7 @@ import { theme } from '@styles/theme'
 import { useQuery } from '@tanstack/react-query'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { useRecoilValue } from 'recoil'
+
 const NewTaste = () => {
   const auth = useRecoilValue(authState)
   const { data: isAnsweredQuestion } = useQuery(

@@ -2,6 +2,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
+/**
+ * @param width 가로 너비를 나타냄
+ * @param height 높이를 나타냄
+ * @param variant 종류를 나타냄 "default" | "scroll" | "side" 중 하나 선택 가능함
+ */
 export interface SpacingProps {
   width?: 16 | 24
   height?: 4 | 8 | 12 | 16 | 20 | 24 | 32 | 48 | 64 | 100

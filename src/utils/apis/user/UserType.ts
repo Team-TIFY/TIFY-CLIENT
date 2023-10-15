@@ -4,8 +4,8 @@ export interface UserInfo {
   imageUrl: string
   birth: string
   job: string
-  createdAt: string
   gender: string
+  createdAt: string
   onBoardingStatus: string
 }
 

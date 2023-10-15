@@ -69,6 +69,11 @@ const TAG_COLOR_TYPE: Record<
   },
 }
 
+/**
+ * @param index 태그 종류를 나타냄 0 | 1 | 2 | 3 | 4 | 5  중 하나 가능함
+ * @param children 태그 컴포넌트에 들어갈 텍스트를 나타냄
+ * @param onClick 태그 클릭 시 발생할 이벤트를 넘겨주는 함수임
+ */
 interface TagProps {
   index: 0 | 1 | 2 | 3 | 4 | 5
   children: string

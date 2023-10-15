@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { Day } from '.'
 
 const meta = {
-  title: 'Atom/Day',
+  title: 'Atom/Week/Day',
   component: Day,
   tags: ['autodocs'],
 } satisfies Meta<typeof Day>

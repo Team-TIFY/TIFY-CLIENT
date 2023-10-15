@@ -8,7 +8,6 @@ export interface AuthStateType {
   callbackUrl: string
   accessToken: string
   userProfile: UserInfo
-  //TODO: 추후 지워야
 }
 
 const initialState: AuthStateType = {
