@@ -54,7 +54,7 @@ export function SelectFavor() {
       const favorWithPriority = favorPriority.filter((data) =>
         info.favor.includes(data.taste),
       )
-      favorPriority.forEach((data) => {
+      favorWithPriority.forEach((data) => {
         if (data.priority === 1) {
           navigate(`/profile/newTaste/${data.taste}`)
           return
