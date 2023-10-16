@@ -24,27 +24,16 @@ export interface FilteredUserTag {
 }
 
 export interface SelectedTag {
-  name: TagNameKey
+  name: SubCategoryName
   value: SubCategoryType
 }
 
 export type SelectedProps = {
   id: number
   active: boolean
-  name: TagNameKey
+  name: SubCategoryName
   value: SubCategoryType
 }[]
-
-export type TagNameKey =
-  | '메이크업'
-  | '프레그런스'
-  | '의류'
-  | '잡화'
-  | '액세사리'
-  | '요리'
-  | '운동'
-  | '여행'
-  | '문화생활'
 
 export interface UserNewTasteCategory {
   smallCategory: SubCategoryType
@@ -68,7 +57,7 @@ export type SubCategoryType =
   | 'TRAVEL'
   | 'CULTURE_LIFE'
 
-export type subCategoryName =
+export type SubCategoryName =
   | '메이크업'
   | '프레그런스'
   | '의류'
