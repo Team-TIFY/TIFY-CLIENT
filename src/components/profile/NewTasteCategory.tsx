@@ -3,7 +3,7 @@ import CubeButton from '@components/atoms/CubeButton'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { subCategoryState } from '@libs/store/user'
-import { subCategoryName, SubCategoryType, UserNewTasteCategory } from '@utils/apis/user/UserType'
+import { SubCategoryName, SubCategoryType, UserNewTasteCategory } from '@utils/apis/user/UserType'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
@@ -13,7 +13,7 @@ interface NewTasteCategoryProps {
   subCategoryList: UserNewTasteCategory[]
 }
 
-const subCategoryTitle: Record<SubCategoryType, { title: subCategoryName; img: string }> = {
+const subCategoryTitle: Record<SubCategoryType, { title: SubCategoryName; img: string }> = {
   MAKEUP: {
     title: '메이크업',
     img: '/images/makeup.png',

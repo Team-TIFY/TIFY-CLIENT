@@ -17,7 +17,7 @@ const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
   { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE' },
   { id: 3, active: false, name: '의류', value: 'CLOTHES' },
-  { id: 4, active: false, name: '잡화', value: 'FASHION_PRODUCT' },
+  { id: 4, active: false, name: '패션소품', value: 'FASHION_PRODUCT' },
   { id: 5, active: false, name: '액세사리', value: 'ACCESSORY' },
   { id: 6, active: false, name: '요리', value: 'COOKING' },
   { id: 7, active: false, name: '운동', value: 'EXERCISE' },

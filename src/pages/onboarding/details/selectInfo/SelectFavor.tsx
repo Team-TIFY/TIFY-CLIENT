@@ -10,11 +10,15 @@ import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
 import { useEffect } from 'react'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
+import { authState } from '@libs/store/auth'
+import { favorPriority } from '@libs/store/priority'
+import { useNavigate } from 'react-router-dom'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const [info, setInfo] = useRecoilState(onboardingState)
-
+  const [auth, setAuth] = useRecoilState(authState)
+  const navigate = useNavigate()
   useEffect(() => {
     if (info.favor.length !== 0) {
       setBtnColor(true)
@@ -41,15 +45,24 @@ export function SelectFavor() {
   }
 
   const gotoReg = () => {
-    if (btnColor === true) {
-      OnboardingApi.PUT_ONBOARD_STATUS({ userId: 1, data: info })
-        //userId 변경 필요
-        .then((response) => {
-          console.log('put 성공', response)
-        })
-        .catch((error) => {
-          console.error('put 실패', error)
-        })
+    if (btnColor) {
+      // OnboardingApi.PUT_ONBOARD_STATUS({
+      //   userId: auth.userProfile.userId,
+      //   data: info,
+      // })
+      //TODO: 온보딩 API여기서 완료
+      const favorWithPriority = favorPriority.filter((data) =>
+        info.favor.includes(data.taste),
+      )
+      favorWithPriority.forEach((data) => {
+        if (data.priority === 1) {
+          navigate(`/profile/newTaste/${data.taste}`)
+          return
+        } else if (data.priority === 2) {
+          navigate(`/profile/newTaste/${data.taste}`)
+          return
+        } else navigate(`/profile/newTaste/${data.taste}`)
+      })
     }
   }
 
