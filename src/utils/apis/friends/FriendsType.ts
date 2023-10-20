@@ -13,3 +13,16 @@ export type FriendRequestType = {
   }
   neighborApplicationStatus: string
 }
+
+export type FriendsType = {
+  neighborId: number
+  neighborUserId: string
+  neighborThumbnail: string
+  neighborName: string
+  neighborBirth: string
+  onBoardingStatus: string
+  order: number
+  updatedAt: string
+  viewedAt: string
+  view: boolean
+}
