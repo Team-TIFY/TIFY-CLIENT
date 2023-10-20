@@ -69,6 +69,7 @@ const ProfileWrapper = styled(FlexBox)`
 
 const InfoWrapper = styled(FlexBox)`
   flex-direction: column;
+  align-items: flex-start;
   gap: 2px;
 `
 
