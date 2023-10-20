@@ -1,4 +1,14 @@
 export interface UserInfo {
+  userName: string
+  email: string
+  thumbnail: string
+  birth: string
+  job: string
+  gender: string
+  onBoardingStatus: string
+}
+
+export interface UserInfoToken {
   userId: number
   userName: string
   imageUrl: string

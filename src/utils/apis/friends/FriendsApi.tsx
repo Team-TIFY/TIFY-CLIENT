@@ -1,6 +1,5 @@
-import { FriendsType } from '@libs/types/FriendsType'
 import { axiosApi } from '../axios'
-import { FriendRequestType } from './FriendsType'
+import { FriendRequestType, FriendsType } from './FriendsType'
 
 export const FriendsApi = {
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {

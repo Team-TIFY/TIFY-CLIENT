@@ -1,4 +1,3 @@
-import FriendsListD from '@components/atoms/FriendsList/FriendsListD'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { authState } from '@libs/store/auth'
