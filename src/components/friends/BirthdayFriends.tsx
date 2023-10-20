@@ -1,32 +1,20 @@
-import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Padding } from '@components/layouts/Padding'
-import styled from '@emotion/styled'
-import useGetDate from '@libs/hooks/useGetDate'
 import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+import FriendsListBItem from './FriendsListBItem'
 
 const BirthdayFriends = () => {
   const auth = useRecoilValue(authState)
-
-  const navigate = useNavigate()
-
-  const { getDayStatus, parseDateFromString, parseMonthAndDayFromString } =
-    useGetDate()
 
   const { data: birthdayFriendsList = [] } = useQuery(
     ['birthdayFriendsList', auth.userProfile.userId],
     FriendsApi.GET_BIRTHDAY_FRIENDS_LIST,
   )
-
-  const handleClickFriend = (friendId: number) => {
-    navigate(`/profile/${friendId}`)
-  }
 
   return (
     <>
@@ -40,22 +28,10 @@ const BirthdayFriends = () => {
         <Text typo="Mont_Caption_12M" children={2} color="gray_400" />
       </FlexBox>
       <Padding size={[0, 16]}>
-        <FriendsListWrapper>
-          {birthdayFriendsList.map((friend, index) => (
-            <FriendsListB
-              key={index}
-              name={friend.neighborName}
-              imageUrl={friend.neighborThumbnail}
-              currentState={friend.onBoardingStatus}
-              description="birthday"
-              birthdayDescription={getDayStatus(
-                parseDateFromString(friend.neighborBirth),
-              )}
-              birthday={parseMonthAndDayFromString(friend.neighborBirth)}
-              onClick={() => handleClickFriend(friend.neighborId)}
-            />
-          ))}
-        </FriendsListWrapper>
+        <FriendsListBItem
+          friendsList={birthdayFriendsList}
+          description="birthday"
+        />
       </Padding>
       <Spacing height={16} />
     </>
@@ -63,8 +39,3 @@ const BirthdayFriends = () => {
 }
 
 export default BirthdayFriends
-
-const FriendsListWrapper = styled(FlexBox)`
-  flex-direction: column;
-  gap: 16px;
-`
