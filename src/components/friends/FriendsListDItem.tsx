@@ -1,4 +1,7 @@
+import Plus from '@assets/icons/Plus'
 import FriendsListD from '@components/atoms/FriendsList/FriendsListD'
+import Svg from '@components/atoms/Svg'
+import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import useFriendMutate from '@libs/hooks/useFriendMutate'
@@ -22,19 +25,51 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
 
   return (
     <FriendsListWrapper>
-      {friendsList.map((requestFriend) => (
-        <FriendsListD
-          key={requestFriend.neighborApplicationId}
-          nickName={requestFriend.toUserInfo.userName}
-          friendsNumber={requestFriend.mutualNeighborCounts}
-          onAcceptButtonClick={() =>
-            handleAcceptButtonClick(requestFriend.neighborApplicationId)
-          }
-          onDeleteButtonClick={() =>
-            handleDeleteButtonClick(requestFriend.neighborApplicationId)
-          }
-        />
-      ))}
+      {friendsList.length > 4 ? (
+        <>
+          {friendsList.slice(0, 4).map((requestFriend) => (
+            <FriendsListD
+              key={requestFriend.neighborApplicationId}
+              nickName={requestFriend.toUserInfo.userName}
+              friendsNumber={requestFriend.mutualNeighborCounts}
+              onAcceptButtonClick={() =>
+                handleAcceptButtonClick(requestFriend.neighborApplicationId)
+              }
+              onDeleteButtonClick={() =>
+                handleDeleteButtonClick(requestFriend.neighborApplicationId)
+              }
+            />
+          ))}
+          <FlexBox
+            gap={4}
+            style={{
+              padding: '16px',
+              cursor: 'pointer',
+            }}
+          >
+            <Text
+              typo="Caption_12R"
+              children="모든 요청 보기"
+              color="gray_400"
+            />
+            <Svg children={<Plus />} />
+          </FlexBox>
+        </>
+      ) : (
+        friendsList.map((requestFriend) => (
+          <FriendsListD
+            key={requestFriend.neighborApplicationId}
+            nickName={requestFriend.toUserInfo.userName}
+            friendsNumber={requestFriend.mutualNeighborCounts}
+            onAcceptButtonClick={() =>
+              handleAcceptButtonClick(requestFriend.neighborApplicationId)
+            }
+            onDeleteButtonClick={() =>
+              handleDeleteButtonClick(requestFriend.neighborApplicationId)
+            }
+          />
+        ))
+      )}
     </FriendsListWrapper>
   )
 }
