@@ -35,7 +35,11 @@ const AllFriends = () => {
             color="gray_100"
             style={{ margin: '0 4px 0 0' }}
           />
-          <Text typo="Mont_Caption_12M" children={24} color="gray_400" />
+          <Text
+            typo="Mont_Caption_12M"
+            children={friendsList.length}
+            color="gray_400"
+          />
         </FlexBox>
         <Svg
           children={isCubeList.value ? <ListIcon /> : <FriendsMenuIcon />}

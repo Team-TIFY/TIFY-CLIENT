@@ -25,7 +25,11 @@ const BirthdayFriends = () => {
           color="gray_100"
           style={{ margin: '0 4px 0 0' }}
         />
-        <Text typo="Mont_Caption_12M" children={2} color="gray_400" />
+        <Text
+          typo="Mont_Caption_12M"
+          children={birthdayFriendsList.length}
+          color="gray_400"
+        />
       </FlexBox>
       <Padding size={[0, 16]}>
         <FriendsListBItem

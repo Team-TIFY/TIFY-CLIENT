@@ -11,6 +11,7 @@ export type FriendRequestType = {
     gender: string
     onBoardingStatus: string
   }
+  mutualNeighborCounts: number
   neighborApplicationStatus: string
 }
 
