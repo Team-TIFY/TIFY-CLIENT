@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/react-query'
 import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
 
-const BMLIP = () => {
+const BMLIP = ({ isOnBoard }: { isOnBoard?: boolean }) => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {

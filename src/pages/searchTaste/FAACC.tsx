@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 
-const FAACC = () => {
+const FAACC = ({ isOnBoard }: { isOnBoard?: boolean }) => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {

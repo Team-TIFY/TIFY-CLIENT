@@ -9,9 +9,11 @@ import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
+import { IsOnboard } from '@libs/store/onboard'
 
 const HCCUP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
+  const [isOnboard, setIsOnboard] = useRecoilState(IsOnboard)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
       alert('취향 답변 완료!')
@@ -103,6 +105,12 @@ const HCCUP = () => {
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
             localStorage.clear()
+            if (isOnboard === false) {
+              setIsOnboard(true)
+              navigate('/')
+              //TODO: 추후 모달 창으로 변경할것!
+              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
+            }
           }}
           category="HCCUP"
           number={7}

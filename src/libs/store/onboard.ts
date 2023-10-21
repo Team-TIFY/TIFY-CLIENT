@@ -1,5 +1,13 @@
 import { atom } from 'recoil'
 
+export interface OnboardRequest {
+  username: string
+  id: string
+  birth: string
+  gender: string
+  onBoardingState: string
+}
+
 export interface OnboardingType {
   username: string
   id: string
@@ -71,5 +79,10 @@ export const isSearchActiveBtn = atom({
 
 export const isCancelState = atom({
   key: 'isCancelState',
+  default: false,
+})
+
+export const IsOnboard = atom({
+  key: 'IsOnboard',
   default: false,
 })

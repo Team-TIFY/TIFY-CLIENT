@@ -9,7 +9,7 @@ import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 
-const FCTOP = () => {
+const FCTOP = ({ isOnBoard }: { isOnBoard?: boolean }) => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
