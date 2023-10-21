@@ -13,6 +13,7 @@ export const FavorApi = {
     const response = await axiosApi.get('/favor-questions', { params: payload })
     return response.data.data
   },
+
   POST_FAVOR_QUESTION: async (
     payload: FavorAnswerRequest,
   ): Promise<FavorAnswerResponse> => {
