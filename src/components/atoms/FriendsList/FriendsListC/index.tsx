@@ -12,7 +12,7 @@ import { sliceString } from '@utils/sliceString'
  * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
-interface FriendsListCProps {
+export type FriendsListCProps = {
   name: string
   currentState: string
   imageUrl: string

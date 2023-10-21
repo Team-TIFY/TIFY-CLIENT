@@ -6,6 +6,11 @@ import { ButtonHTMLAttributes } from 'react'
 
 export type cubeButtonVariant = 'unSelected' | 'selected' | 'disabled'
 
+/**
+ * @param variant 종류를 나타냄 "unSelected" | "selected" | "disabled" 중 선택 가능함
+ * @param img 버튼에 들어갈 이미지 url을 나타냄
+ * @param text 버튼에 들어갈 텍스트를 나타냄
+ */
 interface CubeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   variant: cubeButtonVariant
   img: string

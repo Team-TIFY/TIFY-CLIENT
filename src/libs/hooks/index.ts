@@ -1,7 +1,6 @@
 export * from './useAuthMutate'
 export * from './useGetDate'
 export * from './useInfiniteQueries'
-export * from './useInputTextChange'
 export * from './useProfileMutate'
 export * from './useQuestionMutate'
 export * from './useRefresh'
