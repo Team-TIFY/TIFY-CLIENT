@@ -53,7 +53,7 @@ export function SelectFavor() {
     if (btnColor) {
       const { favor, ...rest } = info
       OnboardingApi.PUT_ONBOARD_STATUS({
-        userId: auth.userProfile.userId,
+        userId: auth.userProfile.id,
         data: rest,
       })
       const favorWithPriority = favorPriority.filter((data) =>

@@ -10,7 +10,7 @@ export interface UserInfo {
 }
 
 export interface UserInfoToken {
-  userId: number
+  id: number
   userName: string
   imageUrl: string
   birth: string
@@ -30,8 +30,10 @@ export interface UserTag {
 }
 
 export interface FilteredUserTag {
-  userFavorId: number
-  smallCategory: string
+  answerId: number
+  largeCategory: CategoryType
+  smallCategory: SubCategoryType
+  answer: string
 }
 
 export interface SelectedTag {
@@ -67,6 +69,8 @@ export type SubCategoryType =
   | 'EXERCISE'
   | 'TRAVEL'
   | 'CULTURE_LIFE'
+
+export type CategoryType = 'BEAUTY' | 'FASHION' | 'HOBBY'
 
 export type SubCategoryName =
   | '메이크업'

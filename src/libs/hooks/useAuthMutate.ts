@@ -67,17 +67,18 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
       path: '/',
     })
     const data = await UserApi.GET_USER_INFO(loginData.userId)
+    //TODO: 백엔드 명세 바뀌면 바뀌어야
     setAuth({
       isAuthenticated: true,
       callbackUrl: '/',
       accessToken: loginData.accessToken,
       userProfile: {
-        userId: data.userId,
+        id: data.userId,
         userName: data.userName,
-        imageUrl: data.imageUrl,
+        imageUrl: data.thumbnail,
         birth: data.birth,
         job: data.job,
-        createdAt: data.createdAt,
+        createdAt: '',
         gender: data.gender,
         onBoardingStatus: data.onBoardingStatus,
       },

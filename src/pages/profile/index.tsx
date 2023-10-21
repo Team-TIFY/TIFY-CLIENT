@@ -32,7 +32,7 @@ const ProfileRouter = () => {
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
     {
-      enabled: !isNaN(friendId) && auth.userId !== friendId,
+      enabled: !isNaN(friendId) && auth.userProfile.id !== friendId,
     },
   )
 

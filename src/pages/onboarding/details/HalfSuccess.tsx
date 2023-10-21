@@ -1,7 +1,6 @@
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { userState } from '@libs/store/user'
 import OnBoardGift from '@assets/image/OnBoardGift'
 import styled from '@emotion/styled'
 import { RoundButton } from '@components/atoms/RoundButton'

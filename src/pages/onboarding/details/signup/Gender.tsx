@@ -26,7 +26,7 @@ export function Gender() {
         <Group>
           <GenderWomanBtn
             onClick={() => {
-              setGender('여성')
+              setGender('female')
               isBtnColor(() => true)
             }}
             gender={isGender}
@@ -35,7 +35,7 @@ export function Gender() {
           </GenderWomanBtn>
           <GenderManBtn
             onClick={() => {
-              setGender('남성')
+              setGender('male')
               isBtnColor(() => true)
             }}
             gender={isGender}

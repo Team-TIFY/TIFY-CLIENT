@@ -5,12 +5,13 @@ import {
   IsAnsweredCategory,
   SubCategoryType,
   UserInfo,
+  UserInfoToken,
   UserTag,
 } from '@utils/apis/user/UserType'
 
 export const UserApi = {
-  GET_USER_INFO_TOKEN: async (): Promise<UserInfo> => {
-    const response = await axiosApi.get('/users')
+  GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {
+    const response = await axiosApi.get('/users/me')
     return response.data.data
   },
 
@@ -25,11 +26,10 @@ export const UserApi = {
   },
 
   GET_FILTERED_USER_TAG: async (
-    userId: number,
-    largeCategory: SubCategoryType,
+    smallCategory: SubCategoryType,
   ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
-      `/users/${userId}/category?largeCategory=${largeCategory}`,
+      `/favor-questions/answers?smallCategory=${smallCategory}`,
     )
     return response.data.data
   },
