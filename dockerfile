@@ -23,6 +23,7 @@ RUN yarn install
 RUN yarn vite build
 
 # prod environment
+## TODO:nginx 관련된 거 다 뺴기~ 
 FROM nginx:stable-alpine
 
 # 이전 빌드 단계에서 빌드한 결과물을 /usr/share/nginx/html 으로 복사한다.

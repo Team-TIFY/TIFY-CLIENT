@@ -8,6 +8,7 @@ import { Outlet } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { IsOnboard } from '@libs/store/onboard'
+import Loading from '@components/atoms/Loading'
 
 const RequireAuth = () => {
   const [auth, setAuth] = useRecoilState(authState)
@@ -67,7 +68,7 @@ const RequireAuth = () => {
   } else if (status === 'failed')
     // 둘 다 없으면 로그인 */
     return <Navigate replace to="/login" />
-  else return <>로딩중..</>
+  else return <Loading />
 }
 
 export default RequireAuth

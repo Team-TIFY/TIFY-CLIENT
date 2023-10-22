@@ -3,6 +3,7 @@ import { ButtonHTMLAttributes } from 'react'
 import { KeyOfTypo, theme } from '@styles/theme'
 import styled from '@emotion/styled'
 import { Text } from '../Text'
+import Loading from '@components/atoms/Loading'
 
 type ButtonVariant = 'mediumRound' | 'smallRound' | 'circle' | 'kakao'
 
@@ -122,7 +123,7 @@ export const RoundButton = ({
       {...props}
     >
       {isLoading ? (
-        <p>로딩중입니다</p>
+        <Loading/>
       ) : (
         <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
           {children}

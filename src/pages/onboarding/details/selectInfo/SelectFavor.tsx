@@ -52,10 +52,10 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
-      OnboardingApi.PUT_ONBOARD_STATUS({
-        userId: auth.userProfile.id,
-        data: rest,
-      })
+      // OnboardingApi.PUT_ONBOARD_STATUS({
+      //   userId: auth.userProfile.id,
+      //   data: rest,
+      // })
       const favorWithPriority = favorPriority.filter((data) =>
         info.favor.includes(data.taste),
       )
