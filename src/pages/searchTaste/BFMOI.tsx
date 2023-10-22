@@ -9,9 +9,12 @@ import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
+import { UserApi } from '@utils/apis/user/UserApi'
+import { authState } from '@libs/store/auth'
 
 const BFMOI = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
+  const [auth, setAuth] = useRecoilState(authState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
       alert('취향 답변 완료!')
@@ -82,9 +85,16 @@ const BFMOI = () => {
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer5">
         <MultiAnswerStep
-          setNextStep={() => {
+          setNextStep={async () => {
             favorAnswerMutation.mutate(step)
             localStorage.clear()
+            //유저의 취향 답변 길이가 0일 경우에는 온보딩 추카추카 메시지까지 같이~
+            const answerData = await UserApi.GET_USER_TAG(auth.userProfile.id)
+            if (answerData.length === 0) {
+              navigate('/')
+              //TODO: 추후 모달 창으로 변경할것!
+              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
+            }
           }}
           category="BFMOI"
           max={2}

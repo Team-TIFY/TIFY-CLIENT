@@ -14,9 +14,9 @@ const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
     nickname: '',
   })
   const getUserInfo = async () => {
-    const data = await UserApi.GET_USER_INFO(answerInfo.userId)
+    const data = await UserApi.GET_USER_INFO(answerInfo.id)
     setProfile({
-      profileImg: data.imageUrl,
+      profileImg: data.thumbnail,
       nickname: data.userName,
     })
   }

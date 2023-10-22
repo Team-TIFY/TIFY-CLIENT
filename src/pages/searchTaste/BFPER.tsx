@@ -11,7 +11,7 @@ import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
 
-const BFPER = () => {
+const BFPER = ({ isOnBoard }: { isOnBoard?: boolean }) => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {

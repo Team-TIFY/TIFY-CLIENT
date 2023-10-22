@@ -1,4 +1,4 @@
-import { UserInfo } from '@utils/apis/user/UserType'
+import { UserInfo, UserInfoToken } from '@utils/apis/user/UserType'
 import { atom } from 'recoil'
 import { recoilPersist } from 'recoil-persist'
 
@@ -7,7 +7,7 @@ export interface AuthStateType {
   isAuthenticated: boolean
   callbackUrl: string
   accessToken: string
-  userProfile: UserInfo
+  userProfile: UserInfoToken
 }
 
 const initialState: AuthStateType = {
@@ -15,7 +15,7 @@ const initialState: AuthStateType = {
   callbackUrl: '/',
   accessToken: '',
   userProfile: {
-    userId: 0,
+    id: 0,
     userName: '',
     imageUrl: '',
     birth: '',

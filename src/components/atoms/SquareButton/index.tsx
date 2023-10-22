@@ -4,6 +4,7 @@ import { theme, KeyOfTypo } from '@styles/theme'
 import { Text } from '../Text'
 import { useState } from 'react'
 import { FlexBox } from '@components/layouts/FlexBox'
+import Loading from '@components/atoms/Loading'
 
 type ButtonVariant =
   | 'mediumSquare'
@@ -128,7 +129,7 @@ const SquareButton = ({
       {...props}
     >
       {isLoading ? (
-        <p>로딩중입니다</p>
+        <Loading />
       ) : (
         <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
           <FlexBox>{children}</FlexBox>

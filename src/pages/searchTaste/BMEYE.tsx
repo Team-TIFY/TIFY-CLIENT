@@ -10,9 +10,11 @@ import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
+import { IsOnboard } from '@libs/store/onboard'
 
 const BMEYE = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
+  const [isOnboard, setIsOnboard] = useRecoilState(IsOnboard)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
       alert('취향 답변 완료!')
@@ -72,6 +74,12 @@ const BMEYE = () => {
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
             localStorage.clear()
+            if (isOnboard === false) {
+              setIsOnboard(true)
+              navigate('/')
+              //TODO: 추후 모달 창으로 변경할것!
+              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
+            }
           }}
           category="BMEYE"
           number={4}

@@ -41,30 +41,28 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
     if (friendId) {
       updateFriendProfileViewTimeMutate(friendId)
     }
+    console.log(auth)
   }, [friendId])
 
   const { data: userData = {} as UserInfo } = useQuery(
-    ['userProfile', auth.userProfile.userId],
-    () => UserApi.GET_USER_INFO(auth.userProfile.userId),
+    ['userProfile', auth.userProfile.id],
+    () => UserApi.GET_USER_INFO(auth.userProfile.id),
     {
       enabled: !friendData,
     },
   )
 
   const { data: userTagData = [] } = useQuery(
-    ['userTag', !friendData ? auth.userProfile.userId : friendId],
+    ['userTag', !friendData ? auth.userProfile.id : friendId],
     () =>
       UserApi.GET_USER_TAG(
-        !friendData ? auth.userProfile.userId : (friendId as number),
+        !friendData ? auth.userProfile.id : (friendId as number),
       ),
   )
 
   const getFilteredData = (selectedTags: SelectedTag[]) => {
     const promises = selectedTags.map((tag) =>
-      UserApi.GET_FILTERED_USER_TAG(
-        !friendData ? auth.userProfile.userId : (friendId as number),
-        tag.value,
-      ),
+      UserApi.GET_FILTERED_USER_TAG(tag.value),
     )
 
     return Promise.all(promises)
@@ -74,7 +72,7 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
     [
       'filteredUserTag',
       selectedTags,
-      !friendData ? auth.userProfile.userId : friendId,
+      !friendData ? auth.userProfile.id : friendId,
     ],
     () => getFilteredData(selectedTags),
     {

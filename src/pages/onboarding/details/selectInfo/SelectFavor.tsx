@@ -4,7 +4,11 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import { isBtnColorState, onboardingState } from '@libs/store/onboard'
+import {
+  isBtnColorState,
+  onboardingState,
+  IsOnboard,
+} from '@libs/store/onboard'
 import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
@@ -18,6 +22,7 @@ export function SelectFavor() {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const [info, setInfo] = useRecoilState(onboardingState)
   const [auth, setAuth] = useRecoilState(authState)
+  const [isOnboard, setIsOnboardFavor] = useRecoilState(IsOnboard)
   const navigate = useNavigate()
   useEffect(() => {
     if (info.favor.length !== 0) {
@@ -46,22 +51,23 @@ export function SelectFavor() {
 
   const gotoReg = () => {
     if (btnColor) {
+      const { favor, ...rest } = info
       // OnboardingApi.PUT_ONBOARD_STATUS({
-      //   userId: auth.userProfile.userId,
-      //   data: info,
+      //   userId: auth.userProfile.id,
+      //   data: rest,
       // })
-      //TODO: 온보딩 API여기서 완료
       const favorWithPriority = favorPriority.filter((data) =>
         info.favor.includes(data.taste),
       )
       favorWithPriority.forEach((data) => {
         if (data.priority === 1) {
           navigate(`/profile/newTaste/${data.taste}`)
-          return
         } else if (data.priority === 2) {
           navigate(`/profile/newTaste/${data.taste}`)
           return
-        } else navigate(`/profile/newTaste/${data.taste}`)
+        } else {
+          navigate(`/profile/newTaste/${data.taste}`)
+        }
       })
     }
   }

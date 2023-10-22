@@ -2,7 +2,7 @@
 import CubeButton from '@components/atoms/CubeButton'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
-import { subCategoryState } from '@libs/store/user'
+import { subCategoryState } from '@libs/store/subCategory'
 import { SubCategoryName, SubCategoryType, UserNewTasteCategory } from '@utils/apis/user/UserType'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'

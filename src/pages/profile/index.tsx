@@ -21,6 +21,7 @@ import FEBAG from '@pages/searchTaste/FEBAG'
 import FAACC from '@pages/searchTaste/FAACC'
 import HCDIS from '@pages/searchTaste/HCDIS'
 import HCCUP from '@pages/searchTaste/HCCUP'
+import Loading from '@components/atoms/Loading'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -32,12 +33,12 @@ const ProfileRouter = () => {
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
     {
-      enabled: !isNaN(friendId) && auth.userId !== friendId,
+      enabled: !isNaN(friendId) && auth.userProfile.id !== friendId,
     },
   )
 
   return (
-    <Suspense fallback={<div>loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <Routes>
         <Route
           path="/"
