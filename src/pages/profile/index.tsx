@@ -45,7 +45,7 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="title"
-              label={'@' + '변경'}
+              label={'@' + `${auth.userProfile.userId}`}
               hasNav={true}
               rightChildren="actionButton"
               rightChildrenIcon={[<MenuIcon />]}
@@ -59,7 +59,7 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="backPushWithTitle"
-              label={'@' + friendData?.email}
+              label={'@' + friendData?.userId}
               hasNav={false}
               rightChildren="none"
             >
