@@ -22,6 +22,7 @@ import FAACC from '@pages/searchTaste/FAACC'
 import HCDIS from '@pages/searchTaste/HCDIS'
 import HCCUP from '@pages/searchTaste/HCCUP'
 import Loading from '@components/atoms/Loading'
+import EditProfile from './EditProfile'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -64,6 +65,19 @@ const ProfileRouter = () => {
               rightChildren="none"
             >
               <Profile friendData={friendData} friendId={friendId} />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              label="프로필 수정"
+              hasNav={false}
+              rightChildren="none"
+            >
+              <EditProfile />
             </AppBarTemplate>
           }
         />

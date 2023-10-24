@@ -15,7 +15,7 @@ const ShareMyId = () => {
         style={{ padding: '16px' }}
       />
       <FlexBox gap={12}>
-        <SquareButton variant="mediumSquare">
+        <SquareButton variant="mediumSquare" subVariant="default">
           <Svg
             children={<LinkIcon />}
             width={20}
@@ -24,7 +24,7 @@ const ShareMyId = () => {
           />
           링크 복사하기
         </SquareButton>
-        <SquareButton variant="mediumSquare">
+        <SquareButton variant="mediumSquare" subVariant="default">
           <Svg
             children={<ShareIcon />}
             width={20}

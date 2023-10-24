@@ -255,7 +255,6 @@ const SquareButton = ({
       xlargeVariant={xlargeVariant}
       fullWidth={fullWidth}
       {...props}
-      style={{ position: 'relative' }}
     >
       {isLoading ? (
         <p>로딩중입니다</p>
@@ -286,6 +285,8 @@ export const StyledButton = styled.button<{
     variant === 'mediumSquare'
       ? `1px solid ${theme.palette.gray_700}`
       : 'none'};
+  border-bottom: ${({ xlargeVariant, variant }) =>
+    xlargeVariant === 'top' && `1px solid ${theme.palette.gray_900}`};
   width: ${({ variant, fullWidth }) =>
     fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant, xlargeVariant }) =>
@@ -309,6 +310,8 @@ export const StyledButton = styled.button<{
       variant === 'mediumSquare' || variant === 'smallSquare'
         ? `${TEXT_COLOR_TYPE.hover[variant]}`
         : null};
-    border: none;
+    border-bottom: ${({ xlargeVariant }) =>
+      xlargeVariant === 'top' ? `1px solid ${theme.palette.gray_900}` : 'none'};
+    border: ${({ xlargeVariant }) => xlargeVariant !== 'top' && 'none'};
   }
 `
