@@ -127,6 +127,13 @@ const useGetDate = () => {
     return `${formattedMonth} ${day}`
   }
 
+  const getMonthOrDayFromBirth = (birth: string) => {
+    const month = birth[4] == '0' ? birth.slice(5, 6) : birth.slice(4, 6)
+    const day = birth[6] == '0' ? birth.slice(7, 8) : birth.slice(6, 8)
+
+    return { month, day }
+  }
+
   return {
     getTodayDate,
     setNewDate,
@@ -134,6 +141,7 @@ const useGetDate = () => {
     getDayStatus,
     parseMonthAndDayFromString,
     formatDate,
+    getMonthOrDayFromBirth,
   }
 }
 

@@ -120,12 +120,13 @@ export const ShortInput = ({
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  height: 52px;
+`
 
 const InstText = styled.div`
-  width: 280px;
-  height: 20px;
-  margin-bottom: 8px;
+  width: fit-content;
+  height: fit-content;
   ${theme.typo.Caption_12M};
   color: ${theme.palette.gray_300};
 `
@@ -138,6 +139,7 @@ const TextAreaWrapper = styled.div<{
   padding: 14px;
   background: ${theme.palette.gray_900};
   width: ${({ width }) => `${width}px`};
+  height: 100%;
   display: flex;
   align-items: center;
   border: ${({ error }) => (error ? '2px solid' : 'none')};

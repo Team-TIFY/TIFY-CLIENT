@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
-import { TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
+import { TextareaHTMLAttributes, useState } from 'react'
 import { theme } from '@styles/theme'
 import React from 'react'
-import { forwardRef, InputHTMLAttributes } from 'react'
+import { forwardRef } from 'react'
 
 type InputVariant = 'default' | 'withInst'
 
@@ -26,6 +26,9 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   explanation: string
   fullWidth: boolean
   customEvent?: (e: any) => void
+  width?: number | undefined
+  padding?: number
+  defaultValue: string
 }
 type Props = Partial<InputProps>
 
@@ -35,12 +38,15 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
       variant = 'default',
       explanation,
       fullWidth = false,
+      width,
       customEvent,
+      padding = 24,
+      defaultValue = '',
       ...props
     }: Props,
     inputRef,
   ) {
-    const [line, setLine] = useState('')
+    const [line, setLine] = useState(defaultValue)
     const [count, setCount] = useState(true) //2줄 넘지 않으면 true
     const handleResizeHeight = () => {
       //줄 바뀌면 자동 높이 조절
@@ -75,9 +81,9 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
     }
 
     return (
-      <Wrapper>
+      <Wrapper padding={padding}>
         <InstText variant={variant}>{explanation}</InstText>
-        <TextAreaWrapper fullWidth={fullWidth} count={count}>
+        <TextAreaWrapper fullWidth={fullWidth} count={count} width={width}>
           <StyledTextArea
             rows={1}
             value={line}
@@ -97,13 +103,14 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
   },
 )
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ padding: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  padding: 0px 24px;
+  height: 52px;
+  padding: ${({ padding }) => `0px ${padding}px`};
 `
 
 const InstText = styled.div<{
@@ -121,11 +128,14 @@ const InstText = styled.div<{
 const TextAreaWrapper = styled.div<{
   count: boolean
   fullWidth: boolean
+  width: number | undefined
 }>`
   border-radius: 12px;
   padding: 14px;
   background: ${theme.palette.gray_900};
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : '284px')};
+  width: ${({ fullWidth, width }) =>
+    fullWidth ? '100%' : width ? `${width}px` : '284px'};
+  height: 100%;
   display: flex;
   align-items: center;
   &:focus-within {
