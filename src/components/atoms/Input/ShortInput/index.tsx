@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from '@emotion/styled'
 import { ChangeEvent, TextareaHTMLAttributes, useRef, useState } from 'react'
 import { theme } from '@styles/theme'
@@ -93,7 +94,7 @@ export const ShortInput = ({
           <IDdiv variant={INPUT_TYPE[variant].isIdInput}>@</IDdiv>
           <StyledTextArea
             ref={ref}
-            value={info[content]}
+            //value={info[content]}
             placeholder={placeholder}
             spellCheck="false"
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -147,7 +148,7 @@ const TextAreaWrapper = styled.div<{
   &:focus-within {
     border: 2px solid;
     border-color: ${({ error }) =>
-      error ? `${theme.palette.red_300}` : `${theme.palette.purple_300}`};
+    error ? `${theme.palette.red_300}` : `${theme.palette.purple_300}`};
   }
 `
 
