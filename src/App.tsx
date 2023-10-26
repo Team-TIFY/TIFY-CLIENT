@@ -1,18 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg';
-import { useQueryClient } from '@tanstack/react-query';
-import { Routes, Route } from 'react-router-dom';
-import Home from '@pages/home/Home';
-import Layout from '@components/layouts/Layout';
+import { Routes, Route } from 'react-router-dom'
+import Layout from '@components/layouts/Layout'
+import Login from '@pages/home/Login'
+import { Redirect } from '@pages/home/Redirect'
+import { CheckUserAuth } from '@components/auth/CheckUserAuth'
+import RequireAuth from '@components/auth/RequireAuth'
+import ProfileRouter from '@pages/profile'
+import WeeklyRouter from '@pages/weekly'
+import FriendsRouter from '@pages/friends'
+import OnboardingRouter from '@pages/onboarding'
+import SettingRouter from '@pages/settingPage'
 
 function App() {
-
   return (
-      <Routes>
-        <Route element={<Layout/>}>
-          <Route path="/" element ={<Home/>}/>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route element={<RequireAuth />}>
+          <Route path="*" element={<WeeklyRouter />} />
+          <Route path="/profile/*" element={<ProfileRouter />} />
+          <Route path="/friends/*" element={<FriendsRouter />} />
+          <Route path="/setting/*" element={<SettingRouter />} />
+          <Route path="/onboarding" element={<OnboardingRouter />} />
         </Route>
-      </Routes>
+        <Route element={<CheckUserAuth />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route path="/kakao/callback" element={<Redirect />} />
+      </Route>
+    </Routes>
   )
 }
 
