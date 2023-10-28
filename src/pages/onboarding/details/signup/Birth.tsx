@@ -28,6 +28,10 @@ export function Birth({
 
   const handleDateChange = (date: Date | null) => {
     setProfileStateData((prevState) => ({ ...prevState, isEdit: true }))
+    setProfileStateData((prevState) => ({
+      ...prevState,
+      buttonText: '확인',
+    }))
     setSelectedDate(date)
 
     if (date) {

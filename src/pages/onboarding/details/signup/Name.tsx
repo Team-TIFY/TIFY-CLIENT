@@ -1,7 +1,7 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { ShortInput } from '@components/atoms/Input/ShortInput'
-import { isBtnColorState, onboardingState } from '@libs/store/onboard'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { isBtnColorState } from '@libs/store/onboard'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { profileState } from '@libs/store/profile'
 
 type NameProps = {

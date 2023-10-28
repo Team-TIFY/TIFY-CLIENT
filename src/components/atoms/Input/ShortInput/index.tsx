@@ -90,6 +90,10 @@ export const ShortInput = ({
   ) => {
     const inputText = e.target.value
 
+    setProfileStateData((prevState) => ({
+      ...prevState,
+      buttonText: '확인',
+    }))
     setProfileStateData((prevState) => ({ ...prevState, isEdit: true }))
     setInfo({ ...info, [content]: inputText })
   }
@@ -114,6 +118,13 @@ export const ShortInput = ({
     })
   }
 
+  const handleClick = () => {
+    setProfileStateData((prevState) => ({
+      ...prevState,
+      buttonText: '확인',
+    }))
+  }
+
   return (
     <FlexBox>
       <Wrapper>
@@ -132,6 +143,7 @@ export const ShortInput = ({
               textHandler(e, content)
               handleEnter(e, content)
             }}
+            onClick={handleClick}
             maxLength={maxText}
             onFocus={focusInput}
             onBlur={focusInput}

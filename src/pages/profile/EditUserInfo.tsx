@@ -9,7 +9,7 @@ import OnboardingStatus from '@components/profile/OnboardingStatus'
 import { authState } from '@libs/store/auth'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { useEffect, useState } from 'react'
-import { onboardingState } from '@libs/store/onboard'
+import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import useProfileMutate from '@libs/hooks/useProfileMutate'
 import { Birth } from '@pages/onboarding/details/signup/Birth'
 import useGetDate from '@libs/hooks/useGetDate'
@@ -18,7 +18,7 @@ import { getGender } from '@utils/getGender'
 
 const EditUserInfo = () => {
   const auth = useRecoilValue(authState)
-  const profileStateData = useRecoilValue(profileState)
+  const [profileStateData, setProfileStateData] = useRecoilState(profileState)
   const [info, setInfo] = useRecoilState(onboardingState)
 
   const { updateUserInfoMutate } = useProfileMutate()
@@ -30,6 +30,7 @@ const EditUserInfo = () => {
   const [onBoardingStatus, setOnBoardingStatus] = useState(
     auth.userProfile.onBoardingStatus,
   )
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
 
   const handleClickEditComplete = () => {
     updateUserInfoMutate({
@@ -44,6 +45,13 @@ const EditUserInfo = () => {
           : auth.userProfile.onBoardingStatus,
       },
     })
+  }
+
+  const handleClickComplete = () => {
+    setProfileStateData((prevState) => ({
+      ...prevState,
+      buttonText: '수정 완료',
+    }))
   }
 
   useEffect(() => {
@@ -63,6 +71,7 @@ const EditUserInfo = () => {
         ),
         onboardingState: auth.userProfile.onBoardingStatus,
       }))
+      setBtnColor(true)
     }
   }, [])
 
@@ -77,18 +86,25 @@ const EditUserInfo = () => {
         <Spacing height={20} />
         <UserId isEdit={true} value={userId} />
         <Spacing height={20} />
-        <Birth value="20010308" textPadding={4} />
+        <Birth value={birth} textPadding={4} />
         <Spacing height={20} />
         <OnboardingStatus value={onBoardingStatus} />
         <ButtonWrapper>
           <RoundButton
             variant="mediumRound"
-            children="수정 완료"
+            children={profileStateData.buttonText}
             fullWidth={true}
             style={{ marginBottom: '9px' }}
-            onClick={handleClickEditComplete}
+            onClick={
+              profileStateData.buttonText === '수정 완료'
+                ? handleClickEditComplete
+                : handleClickComplete
+            }
+            disabled={!btnColor}
           />
-          <Spacing height={32} />
+          {profileStateData.buttonText === '수정 완료' && (
+            <Spacing height={32} />
+          )}
         </ButtonWrapper>
       </Padding>
     </EditUserInfoWrapper>
