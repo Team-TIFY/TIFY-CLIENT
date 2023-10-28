@@ -1,9 +1,15 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { ShortInput } from '@components/atoms/Input/ShortInput'
-import { isBtnColorState } from '@libs/store/onboard'
-import { useRecoilState } from 'recoil'
+import { isBtnColorState, onboardingState } from '@libs/store/onboard'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { profileState } from '@libs/store/profile'
 
-export function Name() {
+type NameProps = {
+  isEdit?: boolean
+  value: string
+}
+
+export function Name({ isEdit = false, value }: NameProps) {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
@@ -16,7 +22,7 @@ export function Name() {
       setErrorMsg('한글과 알파벳만 사용해 주세요.')
     } else if (regex.test(e.target.value) && e.target.value.length >= 10) {
       setError(true)
-      setErrorMsg('10글자 이내로 부탁해요!')
+      setErrorMsg('10자 이내로 부탁해요!')
     } else {
       setError(false)
       setErrorMsg('')
@@ -38,9 +44,13 @@ export function Name() {
       <ShortInput
         variant="default"
         maxText={10}
-        explanation="이름"
+        explanation={isEdit ? '이름/닉네임' : '이름'}
+        explanationPadding={4}
+        defaultValue={isEdit ? value : undefined}
         width={312}
-        placeholder="이름을 입력해주세요"
+        placeholder={
+          isEdit ? '이름/닉네임을 입력해주세요' : '이름을 입력해주세요'
+        }
         error={error}
         warning={errorMsg}
         onChange={handleName}

@@ -1,43 +1,57 @@
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { theme } from '@styles/theme'
 import { isBtnColorState, onboardingState } from '@libs/store/onboard'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { ko } from 'date-fns/locale'
 import { FlexBox } from '@components/layouts/FlexBox'
-import { format } from 'date-fns'
+import useGetDate from '@libs/hooks/useGetDate'
+import { profileState } from '@libs/store/profile'
 
-export function Birth() {
+export function Birth({
+  value,
+  textPadding,
+}: {
+  value: string
+  textPadding?: number
+}) {
+  const { getFormattedDate, parseDate } = useGetDate()
+
   const [selectedDate, setSelectedDate] = useState<Date | null>(
-    new Date('2000-06-15'),
+    value ? new Date(getFormattedDate(value)) : new Date('2000-06-15'),
   )
   const [info, setInfo] = useRecoilState(onboardingState)
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const setProfileStateData = useSetRecoilState(profileState)
 
   const handleDateChange = (date: Date | null) => {
+    setProfileStateData((prevState) => ({ ...prevState, isEdit: true }))
     setSelectedDate(date)
 
     if (date) {
-      const formattedDate = formatDateToString(date)
+      const formattedDate = parseDate(date)
       setInfo({
         ...info,
         birth: formattedDate,
       })
+      console.log(formattedDate)
     }
 
     setBtnColor(true)
   }
 
-  const formatDateToString = (date: Date) => {
-    return format(date, 'yyyy-MM-dd')
-  }
+  useEffect(() => {
+    if (info.birth) {
+      setSelectedDate(new Date(info.birth))
+    }
+  }, [value, info.birth])
 
   return (
     <FlexBox>
       <BirthDiv>
-        <SmallText>생년월일</SmallText>
+        <SmallText textPadding={textPadding}>생년월일</SmallText>
         <CustomDatePicker
           selected={selectedDate}
           onChange={handleDateChange}
@@ -55,9 +69,11 @@ const BirthDiv = styled.div`
   width: 312px;
 `
 
-const SmallText = styled.div`
+const SmallText = styled.div<{ textPadding?: number }>`
   ${theme.typo.Caption_12M};
   color: ${theme.palette.gray_300};
+  padding-left: ${({ textPadding }) =>
+    textPadding ? `${textPadding}px` : null};
   margin-bottom: 8px;
 `
 

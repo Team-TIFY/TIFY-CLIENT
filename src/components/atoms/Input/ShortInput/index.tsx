@@ -1,13 +1,21 @@
 import styled from '@emotion/styled'
-import { ChangeEvent, TextareaHTMLAttributes, useRef, useState } from 'react'
+import {
+  ChangeEvent,
+  TextareaHTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { theme } from '@styles/theme'
 import { FlexBox } from '@components/layouts/FlexBox'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   isBtnColorState,
   onboardingPageState,
   onboardingState,
 } from '@libs/store/onboard'
+import { authState } from '@libs/store/auth'
+import { profileState } from '@libs/store/profile'
 
 type InputVariant = 'default' | 'idInput'
 
@@ -30,6 +38,8 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   variant: InputVariant
   maxText?: number
   explanation?: string
+  explanationPadding?: number
+  defaultValue?: string
   width: number
   placeholder?: string
   warning?: string
@@ -42,6 +52,8 @@ export const ShortInput = ({
   variant,
   maxText,
   explanation,
+  explanationPadding,
+  defaultValue,
   width,
   placeholder,
   onChange,
@@ -55,14 +67,31 @@ export const ShortInput = ({
   const [info, setInfo] = useRecoilState(onboardingState)
   const [infoPage, setInfoPage] = useRecoilState(onboardingPageState)
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const [auth, setAuth] = useRecoilState(authState)
+  const setProfileStateData = useSetRecoilState(profileState)
+
+  useEffect(() => {
+    if (defaultValue) {
+      setInfo((prevInfo) => ({ ...prevInfo, [content]: defaultValue }))
+    }
+  }, [content])
+
+  useEffect(() => {
+    if (content === 'username' && info.username) {
+      setInfo({ ...info, username: info.username })
+    } else if (content === 'id' && info.id) {
+      setInfo({ ...info, id: info.id })
+    }
+  }, [info.username, info.id])
 
   const textHandler = (
     e: ChangeEvent<HTMLTextAreaElement>,
     content: string,
   ) => {
     const inputText = e.target.value
+
+    setProfileStateData((prevState) => ({ ...prevState, isEdit: true }))
     setInfo({ ...info, [content]: inputText })
-    console.log(info)
   }
 
   const cancelClick = (content: string) => {
@@ -88,7 +117,9 @@ export const ShortInput = ({
   return (
     <FlexBox>
       <Wrapper>
-        <InstText>{explanation}</InstText>
+        <InstText explanationPadding={explanationPadding}>
+          {explanation}
+        </InstText>
         <TextAreaWrapper width={width} error={error}>
           <IDdiv variant={INPUT_TYPE[variant].isIdInput}>@</IDdiv>
           <StyledTextArea
@@ -113,7 +144,7 @@ export const ShortInput = ({
           />
         </TextAreaWrapper>
         {
-          error ? <WarningText>{warning}</WarningText> : null //경고 문구
+          error && <WarningText>{warning}</WarningText> //경고 문구
         }
       </Wrapper>
     </FlexBox>
@@ -121,12 +152,15 @@ export const ShortInput = ({
 }
 
 const Wrapper = styled.div`
-  height: 52px;
+  height: fit-content;
 `
 
-const InstText = styled.div`
+const InstText = styled.div<{ explanationPadding?: number }>`
   width: fit-content;
   height: fit-content;
+  padding-left: ${({ explanationPadding }) =>
+    explanationPadding ? `${explanationPadding}px` : null};
+  margin-bottom: 8px;
   ${theme.typo.Caption_12M};
   color: ${theme.palette.gray_300};
 `
@@ -136,10 +170,10 @@ const TextAreaWrapper = styled.div<{
   width: number
 }>`
   border-radius: 12px;
-  padding: 14px;
+  padding: 16px;
   background: ${theme.palette.gray_900};
   width: ${({ width }) => `${width}px`};
-  height: 100%;
+  height: 52px;
   display: flex;
   align-items: center;
   border: ${({ error }) => (error ? '2px solid' : 'none')};
@@ -169,8 +203,7 @@ const StyledTextArea = styled.textarea`
 
 const WarningText = styled.div`
   width: 280px;
-  height: 20px;
-  padding: 8px 14px;
+  padding: 8px 14px 0px 14px;
   color: ${theme.palette.red_500};
   ${theme.typo.Caption_12M};
 `
@@ -188,4 +221,5 @@ const IDdiv = styled.div<{
 }>`
   display: ${({ variant }) => (variant ? 'block' : 'none')};
   margin-right: 3px;
+  color: ${theme.palette.gray_100};
 `

@@ -1,11 +1,12 @@
 import { Avatar } from '@components/atoms/Avatar'
 import { Text } from '@components/atoms/Text'
+import { authState } from '@libs/store/auth'
+import { useRecoilValue } from 'recoil'
 
-type EditProfileImagePropsType = {
-  imageUrl: string
-}
+const EditProfileImage = () => {
+  const auth = useRecoilValue(authState)
+  const imageUrl = auth.userProfile.imageUrl
 
-const EditProfileImage = ({ imageUrl }: EditProfileImagePropsType) => {
   return (
     <>
       <Avatar variant="medium" imageUrl={imageUrl} />

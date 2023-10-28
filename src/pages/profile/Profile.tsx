@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 import { UserApi } from '@utils/apis/user/UserApi'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
 import { Spacing } from '@components/atoms/Spacing'
@@ -36,6 +36,7 @@ export type ProfilePropsType<T extends UserInfo> = {
 
 const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
   const auth = useRecoilValue(authState)
+  const setIsEdit = useSetRecoilState(profileState)
 
   const outsideRef = useRef(null)
 
@@ -63,6 +64,10 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
       document.body.style.overflow = 'auto'
     }
   }, [isMenuOpen])
+
+  useEffect(() => {
+    setIsEdit((prevState) => ({ ...prevState, isEdit: false }))
+  }, [])
 
   const { data: userData = {} as UserInfo } = useQuery(
     ['userProfile', auth.userProfile.id],

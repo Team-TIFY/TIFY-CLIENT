@@ -13,6 +13,7 @@ const ProfileButtons = () => {
 
   const handleClickEditProfile = () => {
     navigate('/profile/edit-profile')
+    setIsMenuOpen({ ...profileStateData, isMenuOpen: false })
   }
 
   const handleClickCancel = () => {

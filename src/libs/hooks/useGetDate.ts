@@ -17,6 +17,28 @@ const useGetDate = () => {
     return dateString
   }
 
+  const getFormattedDate = (stringDate: string) => {
+    const year = parseInt(stringDate.substring(0, 4))
+    const month = parseInt(stringDate.substring(4, 6))
+      .toString()
+      .padStart(2, '0')
+    const day = parseInt(stringDate.substring(6, 8))
+
+    return `${year}-${month}-${day}`
+  }
+
+  const getFormattedDateString = (stringDate: string) => {
+    const year = parseInt(stringDate.substring(0, 4))
+    const month = parseInt(stringDate.substring(5, 7))
+      .toString()
+      .padStart(2, '0')
+    const day = parseInt(stringDate.substring(8, 10))
+      .toString()
+      .padStart(2, '0')
+
+    return `${year}${month}${day}`
+  }
+
   const getTodayDate = (): [string, TodayKeyType] => {
     const today = new Date()
     const dateString = parseDate(today)
@@ -127,11 +149,12 @@ const useGetDate = () => {
     return `${formattedMonth} ${day}`
   }
 
-  const getMonthOrDayFromBirth = (birth: string) => {
+  const getYearMonthAndDayFromBirth = (birth: string) => {
+    const year = birth.slice(0, 4)
     const month = birth[4] == '0' ? birth.slice(5, 6) : birth.slice(4, 6)
     const day = birth[6] == '0' ? birth.slice(7, 8) : birth.slice(6, 8)
 
-    return { month, day }
+    return { year, month, day }
   }
 
   return {
@@ -141,7 +164,10 @@ const useGetDate = () => {
     getDayStatus,
     parseMonthAndDayFromString,
     formatDate,
-    getMonthOrDayFromBirth,
+    getYearMonthAndDayFromBirth,
+    getFormattedDate,
+    getFormattedDateString,
+    parseDate,
   }
 }
 

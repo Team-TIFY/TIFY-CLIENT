@@ -4,7 +4,7 @@ import {
   RightChildrenVariant,
 } from '@components/atoms/AppBar'
 import { ReactNode } from 'react'
-import { favorQuestionData, FavorQuestionDataType } from '@libs/store/dummy'
+import { favorQuestionData } from '@libs/store/dummy'
 import { Navigationbar } from '@components/atoms/Navigationbar'
 import { TasteType } from '@utils/apis/favor/TasteType'
 

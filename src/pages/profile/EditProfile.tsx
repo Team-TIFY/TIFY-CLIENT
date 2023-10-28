@@ -6,17 +6,10 @@ import { useRecoilValue } from 'recoil'
 import EditUserInfo from './EditUserInfo'
 
 const EditProfile = () => {
-  const auth = useRecoilValue(authState)
-
   return (
     <EditProfileWrapper>
-      <EditProfileImage imageUrl={auth.userProfile.imageUrl} />
-      <EditUserInfo
-        userName={auth.userProfile.userName}
-        userId={auth.userProfile.userId}
-        birth={auth.userProfile.birth}
-        onBoardingStatus={auth.userProfile.onBoardingStatus}
-      />
+      <EditProfileImage />
+      <EditUserInfo />
     </EditProfileWrapper>
   )
 }
