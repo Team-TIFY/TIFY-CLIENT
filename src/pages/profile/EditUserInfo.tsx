@@ -39,7 +39,9 @@ const EditUserInfo = () => {
         id: info.id,
         birth: getFormattedDateString(info.birth),
         gender: getGender(auth.userProfile.gender),
-        onBoardingState: info.onBoardingState,
+        onBoardingState: info.onBoardingState
+          ? info.onBoardingState
+          : auth.userProfile.onBoardingStatus,
       },
     })
   }
@@ -66,7 +68,7 @@ const EditUserInfo = () => {
 
   useEffect(() => {
     if (profileStateData.isEdit) setOnBoardingStatus(info.onBoardingState)
-  }, [info.onBoardingState])
+  }, [info.onBoardingState, auth.userProfile.onBoardingStatus])
 
   return (
     <EditUserInfoWrapper>

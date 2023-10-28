@@ -28,7 +28,9 @@ const useProfileMutate = () => {
             userName: info.username,
             userId: info.id,
             birth: getFormattedDateString(info.birth),
-            onBoardingStatus: info.onBoardingState,
+            onBoardingStatus: info.onBoardingState
+              ? info.onBoardingState
+              : auth.userProfile.onBoardingStatus,
           },
         }),
           navigate('/profile')

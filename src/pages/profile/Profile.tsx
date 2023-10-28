@@ -51,7 +51,6 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
     if (friendId) {
       updateFriendProfileViewTimeMutate(friendId)
     }
-    console.log(auth)
   }, [friendId])
 
   useEffect(() => {
