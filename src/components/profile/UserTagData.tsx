@@ -22,7 +22,7 @@ export const UserTagData = ({ selectedTags, filteredUserTagData, userTagData }: 
               key={idx}
               categoryName={selectedTags[idx].name}
               children={tag.map((tagData, index) => (
-                <Tag key={tagData.userFavorId} index={index as indexVariant} children={tagData.smallCategory} />
+                <Tag key={tagData.answerId} index={index as indexVariant} children={tagData.smallCategory} />
               ))}
             />
           ))

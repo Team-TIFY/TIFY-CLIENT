@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
@@ -48,7 +49,7 @@ const FriendsListBItem = ({
           {...commonProps}
           description={
             new Date(friend.updatedAt).getTime() >
-            new Date(friend.viewedAt).getTime()
+              new Date(friend.viewedAt).getTime()
               ? 'newUpdate'
               : 'none'
           }

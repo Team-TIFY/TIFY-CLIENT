@@ -28,10 +28,10 @@
       "@libs/*": ["src/libs/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*" : ["src/utils/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/.*/", ".yarn" , "storybook-static"],
+  "exclude": ["node_modules", "**/.*/", ".yarn", "storybook-static"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
