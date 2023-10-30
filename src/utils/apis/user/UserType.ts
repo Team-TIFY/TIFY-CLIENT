@@ -12,6 +12,7 @@ export interface UserInfo {
 export interface UserInfoToken {
   id: number
   userName: string
+  userId: string
   imageUrl: string
   birth: string
   job: string
