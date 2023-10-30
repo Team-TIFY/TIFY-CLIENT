@@ -12,12 +12,12 @@ const ShareMyId = () => {
   const auth = useRecoilValue(authState)
 
   return (
-    <>
+    <FlexBox direction="column">
       <Text
         typo="Caption_12R"
         children="내 ID 공유하기"
         color="gray_100"
-        style={{ padding: '16px' }}
+        style={{ padding: '16px', width: '328px' }}
       />
       <FlexBox gap={12}>
         <CopyToClipboard
@@ -44,7 +44,7 @@ const ShareMyId = () => {
           공유하기
         </SquareButton>
       </FlexBox>
-    </>
+    </FlexBox>
   )
 }
 export default ShareMyId

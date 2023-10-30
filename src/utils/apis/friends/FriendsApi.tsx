@@ -1,4 +1,5 @@
 import { axiosApi } from '../axios'
+import { UserInfoToken } from '../user/UserType'
 import { FriendRequestType, FriendsType } from './FriendsType'
 
 export const FriendsApi = {
@@ -29,5 +30,11 @@ export const FriendsApi = {
       `/users/neighbors/applications/${neighborApplicationId}/reject`,
     )
     return response.data.data
+  },
+
+  SEARCH_FRIEND: async (userId: string): Promise<UserInfoToken> => {
+    const response = await axiosApi.get(`/users?userId=${userId}`)
+
+    return response.data.data.content
   },
 }

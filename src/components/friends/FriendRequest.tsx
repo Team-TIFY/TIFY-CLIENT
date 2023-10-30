@@ -15,17 +15,17 @@ const FriendRequest = () => {
   )
 
   return (
-    <>
+    <FlexBox direction="column">
       <Text
         typo="Caption_12R"
         children="친구 요청"
         color="gray_100"
-        style={{ padding: '16px 16px 8px 16px' }}
+        style={{ padding: '16px 16px 8px 16px', width: '328px' }}
       />
       <FlexBox direction="column">
         <FriendsListDItem friendsList={friendRequestList} />
       </FlexBox>
-    </>
+    </FlexBox>
   )
 }
 
