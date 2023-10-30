@@ -17,6 +17,7 @@ const initialState: AuthStateType = {
   userProfile: {
     id: 0,
     userName: '',
+    userId: '',
     imageUrl: '',
     birth: '',
     job: '',

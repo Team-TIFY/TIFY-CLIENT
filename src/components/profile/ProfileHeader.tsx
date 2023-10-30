@@ -21,17 +21,19 @@ export const ProfileHeader = ({ userData, isFriend }: ProfileHeaderProps) => {
 
   return (
     <ProfileHeaderWrapper>
-      <UserDetail userData={userData} />
+      <UserDetail userData={userData} isFriend={isFriend} />
       <Spacing height={20} />
       <ButtonWrapper>
         <FlexBox justify="space-between">
           <SquareButton
             variant="mediumSquare"
+            subVariant="default"
             children="지난 데일리"
             onClick={handleClickPastDaily}
           />
           <SquareButton
             variant="mediumSquare"
+            subVariant="default"
             children={isFriend ? '친구' : '새로운 관심사 답변'}
             onClick={handleClickNewTaste}
           />
