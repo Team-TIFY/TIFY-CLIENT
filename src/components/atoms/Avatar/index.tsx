@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
+import { useCallback, useEffect, useState } from 'react'
 import Pink1 from '/images/pink1.png'
 import Pink2 from '/images/pink2.png'
 import Pink3 from '/images/pink3.png'
@@ -56,12 +57,6 @@ export interface AvatarProps {
   imageUrl?: string
 }
 
-const getRandomProfileImage = () => {
-  const randomIndex = Math.floor(Math.random() * profileVariants.length)
-
-  return profileVariants[randomIndex]
-}
-
 const AVATAR_SIZE_TYPE: AvatarShapeType = {
   xsmall: {
     size: 36,
@@ -90,12 +85,26 @@ export const Avatar = ({
   isVisible = 'visible',
   imageUrl = '',
 }: AvatarProps) => {
+  const [randomImageUrl, setRandomImageUrl] = useState('')
+
+  const getRandomProfileImage = useCallback(() => {
+    const randomIndex = Math.floor(Math.random() * profileVariants.length)
+
+    return profileVariants[randomIndex]
+  }, [])
+
+  useEffect(() => {
+    if (!imageUrl) {
+      setRandomImageUrl(getRandomProfileImage())
+    }
+  }, [])
+
   return (
     <Wrapper>
       <Dimmed variant={variant} isVisible={isVisible} />
       <AvatarCircle variant={variant}>
         <img
-          src={!imageUrl ? getRandomProfileImage() : imageUrl}
+          src={!imageUrl ? randomImageUrl : imageUrl}
           style={{
             width: '100%',
             height: '100%',
