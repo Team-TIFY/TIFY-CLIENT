@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { UserApi } from '@utils/apis/user/UserApi'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
 import { Spacing } from '@components/atoms/Spacing'
@@ -12,6 +12,10 @@ import { ProfileImage } from '@components/profile/ProfileImage'
 import { UserTagData } from '@components/profile/UserTagData'
 import { ProfileHeader } from '@components/profile/ProfileHeader'
 import useProfileMutate from '@libs/hooks/useProfileMutate'
+import { profileState } from '@libs/store/profile'
+import ProfileButtons from '@components/profile/ProfileButtons'
+import Dimmer from '@components/layouts/Dimmer'
+import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
@@ -32,8 +36,14 @@ export type ProfilePropsType<T extends UserInfo> = {
 
 const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
   const auth = useRecoilValue(authState)
+  const setIsEdit = useSetRecoilState(profileState)
+
+  const outsideRef = useRef(null)
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
+
+  const [profileStateData, setIsMenuOpen] = useRecoilState(profileState)
+  const isMenuOpen = profileStateData?.isMenuOpen ?? false
 
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
@@ -41,8 +51,22 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
     if (friendId) {
       updateFriendProfileViewTimeMutate(friendId)
     }
-    console.log(auth)
   }, [friendId])
+
+  useEffect(() => {
+    // 메뉴 버튼 오픈 시 스크롤 금지
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isMenuOpen])
+
+  useEffect(() => {
+    setIsEdit((prevState) => ({ ...prevState, isEdit: false }))
+  }, [])
 
   const { data: userData = {} as UserInfo } = useQuery(
     ['userProfile', auth.userProfile.id],
@@ -80,6 +104,10 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
     },
   )
 
+  const handleClickDimmer = useOutsideClick(outsideRef, () =>
+    setIsMenuOpen({ ...profileStateData, isMenuOpen: false }),
+  )
+
   return (
     <>
       <ProfileImage />
@@ -106,6 +134,12 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
           />
         </ProfileWrapper>
       </Padding>
+      {isMenuOpen && (
+        <>
+          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
+          <ProfileButtons />
+        </>
+      )}
     </>
   )
 }

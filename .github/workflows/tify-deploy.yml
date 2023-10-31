@@ -15,7 +15,7 @@ jobs:
         run: |
           RELEASE_VERSION_WITHOUT_V="$(cut -d'v' -f2 <<< ${GITHUB_REF#refs/*/})"
           echo ::set-output name=VERSION::$RELEASE_VERSION_WITHOUT_V
-      
+
       # - name: Create Release
       #   uses: ncipollo/release-action@v1
       #   with:
@@ -40,4 +40,4 @@ jobs:
           file: ./dockerfile
           platforms: linux/amd64
           push: true
-          tags: eugene028/tify:${{ steps.get_version.outputs.VERSION }}
+          tags: eugene028/tify-client:latest

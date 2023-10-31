@@ -3,7 +3,7 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { RoundButton } from '@components/atoms/RoundButton'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   isCancelState,
   isSearchActiveBtn,
@@ -17,13 +17,15 @@ import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { Spacing } from '@components/atoms/Spacing'
 import { ChangeStatus } from '@assets/icons/ChangeStatus'
 import { theme } from '@styles/theme'
+import { useNavigate } from 'react-router-dom'
+import { profileState } from '@libs/store/profile'
 
 interface SearchResultItem {
   name: string
   onBoardingStatusId: number
 }
 
-export function DetailInfo() {
+export function DetailInfo({ isEdit }: { isEdit: boolean }) {
   const [info, setInfo] = useRecoilState(onboardingState)
   const [goNext, setGoNext] = useRecoilState(onboardingPageState)
   const [btnColor, setBtnColor] = useState<boolean>(false)
@@ -33,6 +35,13 @@ export function DetailInfo() {
   const [selectedIndex, setSelectedIndex] = useRecoilState(isSearchActiveBtn)
   const [isSelectedBtn, setIsSelectedBtn] = useState<boolean>(false)
   const [isCancel, setIsCancel] = useRecoilState(isCancelState)
+  const setProfileStateData = useSetRecoilState(profileState)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setProfileStateData((prevState) => ({ ...prevState, isEdit: true }))
+  }, [])
 
   const gotoReg = () => {
     if (btnColor === true) {
@@ -85,6 +94,11 @@ export function DetailInfo() {
     setSelectedItemName('')
   }
 
+  const handleClickChangeState = () => {
+    setInfo((prevInfo) => ({ ...prevInfo, onBoardingState: selectedItemName }))
+    navigate('/profile/edit-profile')
+  }
+
   useEffect(() => {
     if (searchResult) {
       updateRandomItems()
@@ -112,7 +126,7 @@ export function DetailInfo() {
   })
 
   return (
-    <>
+    <DetailInfoWrapper>
       <FlexBox>
         <TextWrap>
           <Text
@@ -142,6 +156,7 @@ export function DetailInfo() {
             children="다른 메세지 추천"
             typo="Caption_12M"
             color="gray_400"
+            style={{ marginRight: '4px' }}
           />
           <ChangeStatus />
         </ChangeBtn>
@@ -169,14 +184,18 @@ export function DetailInfo() {
         <RoundButton
           variant="mediumRound"
           width={312}
-          children="다음"
-          onClick={gotoReg}
+          children={isEdit ? '상태 변경' : '다음'}
+          onClick={isEdit ? handleClickChangeState : gotoReg}
           disabled={!btnColor}
         />
       </BottomSticker>
-    </>
+    </DetailInfoWrapper>
   )
 }
+
+const DetailInfoWrapper = styled.div`
+  min-height: fit-content;
+`
 
 const TextWrap = styled.div`
   margin: 32px 24px;
@@ -196,6 +215,7 @@ const RandomItemList = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 218px;
 `
 
 const RandomItem = styled.div<{ isSelected: boolean }>`
@@ -214,9 +234,10 @@ const RandomItem = styled.div<{ isSelected: boolean }>`
 `
 
 const BottomSticker = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   text-align: center;
+  left: 0;
   bottom: 32px;
   display: flex;
   flex-direction: column;

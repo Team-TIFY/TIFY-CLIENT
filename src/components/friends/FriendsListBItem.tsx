@@ -1,8 +1,9 @@
+/* eslint-disable prettier/prettier */
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import useGetDate from '@libs/hooks/useGetDate'
-import { FriendsType } from '@libs/types/FriendsType'
+import { FriendsType } from '@utils/apis/friends/FriendsType'
 import { useNavigate } from 'react-router-dom'
 
 export type FriendsListBItemProps = {
@@ -48,7 +49,7 @@ const FriendsListBItem = ({
           {...commonProps}
           description={
             new Date(friend.updatedAt).getTime() >
-            new Date(friend.viewedAt).getTime()
+              new Date(friend.viewedAt).getTime()
               ? 'newUpdate'
               : 'none'
           }
