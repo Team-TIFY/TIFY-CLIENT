@@ -35,7 +35,7 @@ export const ProfileHeader = ({
 
   return (
     <ProfileHeaderWrapper>
-      <UserDetail userData={userData} />
+      <UserDetail userData={userData} isFriend={isFriend} />
       <Spacing height={20} />
       {addFriend ? (
         <SquareButton
