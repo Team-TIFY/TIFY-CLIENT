@@ -28,9 +28,14 @@ const selectedProps: SelectedProps = [
 export type ProfilePropsType<T extends UserInfo> = {
   friendData?: T
   friendId?: T extends UserInfo ? number : undefined
+  addFriend?: boolean
 }
 
-const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
+const Profile = ({
+  friendData,
+  friendId,
+  addFriend = false,
+}: ProfilePropsType<UserInfo>) => {
   const auth = useRecoilValue(authState)
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
@@ -41,7 +46,6 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
     if (friendId) {
       updateFriendProfileViewTimeMutate(friendId)
     }
-    console.log(auth)
   }, [friendId])
 
   const { data: userData = {} as UserInfo } = useQuery(
@@ -89,21 +93,26 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
           <ProfileHeader
             userData={friendData ? friendData : userData}
             isFriend={friendId !== undefined}
+            addFriend={addFriend}
           />
-          <Spacing height={32} />
-          <FilterWrapper>
-            <Filter
-              selectedTags={selectedTags}
-              setSelectedTags={setSelectedTags}
-              selectedProps={selectedProps}
-            />
-          </FilterWrapper>
-          <Spacing height={20} />
-          <UserTagData
-            selectedTags={selectedTags}
-            filteredUserTagData={filteredUserTagData}
-            userTagData={userTagData}
-          />
+          {!addFriend && (
+            <>
+              <Spacing height={32} />
+              <FilterWrapper>
+                <Filter
+                  selectedTags={selectedTags}
+                  setSelectedTags={setSelectedTags}
+                  selectedProps={selectedProps}
+                />
+              </FilterWrapper>
+              <Spacing height={20} />
+              <UserTagData
+                selectedTags={selectedTags}
+                filteredUserTagData={filteredUserTagData}
+                userTagData={userTagData}
+              />
+            </>
+          )}
         </ProfileWrapper>
       </Padding>
     </>

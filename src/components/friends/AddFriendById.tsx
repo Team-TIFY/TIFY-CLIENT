@@ -5,26 +5,22 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { friendState } from '@libs/store/friend'
 import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import { useEffect, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { useState } from 'react'
+import { useRecoilState } from 'recoil'
 import SearchedFriend from './SearchedFriend'
 
 const AddFriendById = () => {
-  const setFriendStateData = useSetRecoilState(friendState)
+  const [friendStateData, setFriendStateData] = useRecoilState(friendState)
 
   const [searchFriendId, setSearchFriendId] = useState('')
 
   const { data: searchFriendData } = useQuery(
-    ['searchFriend'],
+    ['searchFriend', searchFriendId],
     () => FriendsApi.SEARCH_FRIEND(searchFriendId),
     {
-      enabled: !!searchFriendId,
+      enabled: !!searchFriendId.length,
     },
   )
-
-  useEffect(() => {
-    console.log(searchFriendData)
-  }, [searchFriendData])
 
   return (
     <FlexBox direction="column">
@@ -40,7 +36,6 @@ const AddFriendById = () => {
       <SearchInput
         placeholder="추가할 친구 TIFY ID 검색"
         onChange={(e) => {
-          console.log(e.target.value)
           setSearchFriendId(e.target.value)
         }}
         onClick={() =>
@@ -50,8 +45,24 @@ const AddFriendById = () => {
           }))
         }
       />
-      <Spacing height={20} />
-      <SearchedFriend />
+      {friendStateData.isToggle &&
+        (searchFriendData ? (
+          <>
+            <Spacing height={20} />
+            <SearchedFriend friendData={searchFriendData} />
+          </>
+        ) : (
+          searchFriendId.length && (
+            <>
+              <Spacing height={32} />
+              <Text
+                typo="Subhead_14"
+                children="사용자를 찾을 수 없어요."
+                color="gray_200"
+              />
+            </>
+          )
+        ))}
     </FlexBox>
   )
 }

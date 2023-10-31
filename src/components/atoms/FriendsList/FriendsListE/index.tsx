@@ -16,6 +16,7 @@ type FriendsListEType = {
   userId: string
   userName: string
   neighborsNumber: number
+  onClick?: () => void
 }
 
 const FriendsListE = ({
@@ -23,9 +24,10 @@ const FriendsListE = ({
   userId = '',
   userName = '',
   neighborsNumber = 0,
+  onClick,
 }: FriendsListEType) => {
   return (
-    <FriendsListEWrapper>
+    <FriendsListEWrapper onClick={onClick}>
       <Avatar variant="small" imageUrl={imageUrl ? imageUrl : ''} />
       <FlexBox direction="column" style={{ gap: '8px' }}>
         <FlexBox direction="column">
@@ -52,4 +54,5 @@ const FriendsListEWrapper = styled(FlexBox)`
   height: 174px;
   border-radius: 16px;
   background-color: ${theme.palette.gray_900};
+  cursor: pointer;
 `

@@ -18,7 +18,7 @@ const BirthdayFriends = () => {
 
   return (
     <>
-      <FlexBox justify="flex-start" style={{ padding: '16px' }}>
+      <FlexBox justify="flex-start" style={{ padding: '16px', width: '360px' }}>
         <Text
           typo="Caption_12R"
           children="생일인 친구"

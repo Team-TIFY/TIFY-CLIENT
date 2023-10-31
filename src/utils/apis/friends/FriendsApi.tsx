@@ -1,6 +1,9 @@
 import { axiosApi } from '../axios'
-import { UserInfoToken } from '../user/UserType'
-import { FriendRequestType, FriendsType } from './FriendsType'
+import {
+  FriendRequestType,
+  FriendsType,
+  SearchedFriendType,
+} from './FriendsType'
 
 export const FriendsApi = {
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
@@ -32,9 +35,13 @@ export const FriendsApi = {
     return response.data.data
   },
 
-  SEARCH_FRIEND: async (userId: string): Promise<UserInfoToken> => {
+  SEARCH_FRIEND: async (userId: string): Promise<SearchedFriendType> => {
     const response = await axiosApi.get(`/users?userId=${userId}`)
+    return response.data.data.content.length && response.data.data.content[0]
+  },
 
-    return response.data.data.content
+  REQUEST_FRIEND: async (toUserId: number) => {
+    const response = await axiosApi.post(`/users/${toUserId}/neighbors`)
+    return response.data.data
   },
 }

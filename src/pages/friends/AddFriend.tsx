@@ -3,10 +3,15 @@ import AddFriendById from '@components/friends/AddFriendById'
 import FriendRequest from '@components/friends/FriendRequest'
 import ShareMyId from '@components/friends/ShareMyId'
 import { friendState } from '@libs/store/friend'
-import { useRecoilValue } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 
 const AddFriend = () => {
-  const friendStateData = useRecoilValue(friendState)
+  const [friendStateData, setFriendStateData] = useRecoilState(friendState)
+
+  useEffect(() => {
+    setFriendStateData((prevState) => ({ ...prevState, isToggle: false }))
+  }, [])
 
   return (
     <>

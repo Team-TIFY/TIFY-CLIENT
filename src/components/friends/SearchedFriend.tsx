@@ -1,12 +1,21 @@
 import FriendsListE from '@components/atoms/FriendsList/FriendsListE'
+import { SearchedFriendType } from '@utils/apis/friends/FriendsType'
+import { useNavigate } from 'react-router-dom'
 
-const SearchedFriend = () => {
+type SearchedFriendPropsType = {
+  friendData: SearchedFriendType
+}
+
+const SearchedFriend = ({ friendData }: SearchedFriendPropsType) => {
+  const navigate = useNavigate()
+
   return (
     <FriendsListE
-      imageUrl=""
-      userId="sehee_han"
-      userName="한세희"
-      neighborsNumber={6}
+      imageUrl={friendData.imgUrl}
+      userId={friendData.userId}
+      userName={friendData.userName}
+      neighborsNumber={friendData.mutualFriends}
+      onClick={() => navigate(`/profile/${friendData.id}/addFriend`)}
     />
   )
 }
