@@ -70,6 +70,19 @@ const ProfileRouter = () => {
           }
         />
         <Route
+          path="/:id/addFriend"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label={'@' + friendData?.email}
+              hasNav={false}
+              rightChildren="none"
+            >
+              <Profile
+                friendData={friendData}
+                friendId={friendId}
+                addFriend={true}
+              />
           path="/edit-profile"
           element={
             <AppBarTemplate

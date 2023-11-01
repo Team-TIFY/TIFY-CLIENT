@@ -16,12 +16,20 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   width?: number
   placeholder: string
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  onClick?: () => void
   customRemoveHandler?: () => void
 }
 
 export const SearchInput = forwardRef<HTMLTextAreaElement, InputProps>(
   function SearchInput(
-    { width, placeholder, onChange, customRemoveHandler, ...props }: InputProps,
+    {
+      width,
+      placeholder,
+      onChange,
+      onClick,
+      customRemoveHandler,
+      ...props
+    }: InputProps,
     inputRef,
   ) {
     const [focus, setFocus] = useState(false)
@@ -67,6 +75,7 @@ export const SearchInput = forwardRef<HTMLTextAreaElement, InputProps>(
               value={content}
               placeholder={placeholder}
               spellCheck="false"
+              onClick={onClick}
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
                 onChange(e)
                 textHandler(e)
