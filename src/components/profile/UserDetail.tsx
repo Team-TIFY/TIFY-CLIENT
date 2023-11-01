@@ -7,13 +7,19 @@ import { UserInfo } from '@utils/apis/user/UserType'
 import ThreeDots from '@assets/icons/ThreeDots'
 import Svg from '@components/atoms/Svg'
 import useGetDate from '@libs/hooks/useGetDate'
+import { RecoilState, useRecoilState } from 'recoil'
+import { profileState } from '@libs/store/profile'
+import { AuthStateType } from '@libs/store/auth'
 
 export interface UserDetailProps {
   userData: UserInfo
+  isFriend: boolean
 }
 
-export const UserDetail = ({ userData }: UserDetailProps) => {
+export const UserDetail = ({ userData, isFriend }: UserDetailProps) => {
   const { formatDate } = useGetDate()
+
+  const [profileStateData, setIsMenuOpen] = useRecoilState(profileState)
 
   return (
     <>
@@ -32,7 +38,15 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
             color="white"
             children={userData?.userName}
           />
-          <Svg children={<ThreeDots />} style={{ cursor: 'pointer' }} />
+          <Svg
+            children={<ThreeDots />}
+            style={{ cursor: 'pointer' }}
+            onClick={() =>
+              !isFriend
+                ? setIsMenuOpen({ ...profileStateData, isMenuOpen: true })
+                : null
+            }
+          />
         </FlexBox>
         <Text
           typo="Mont_Caption_12M"
@@ -51,3 +65,6 @@ const AvatarWrapper = styled.div``
 const UserInfoWrapper = styled.div`
   height: 52px;
 `
+function useRecoilValue(authState: RecoilState<AuthStateType>) {
+  throw new Error('Function not implemented.')
+}

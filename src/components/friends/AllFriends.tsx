@@ -27,7 +27,10 @@ const AllFriends = () => {
 
   return (
     <>
-      <FlexBox justify="space-between" style={{ padding: '16px' }}>
+      <FlexBox
+        justify="space-between"
+        style={{ padding: '16px', width: '360px' }}
+      >
         <FlexBox>
           <Text
             typo="Caption_12R"

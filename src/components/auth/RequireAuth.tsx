@@ -22,7 +22,6 @@ const RequireAuth = () => {
     // if (data.onBoardingStatus.length > 0) {
     //   setIsOnboard(true)
     // }
-    console.log(data)
     setAuth({
       isAuthenticated: true,
       callbackUrl: '/',
@@ -30,6 +29,7 @@ const RequireAuth = () => {
       userProfile: {
         id: data.id,
         userName: data.userName,
+        userId: data.userId,
         imageUrl: data.imageUrl,
         birth: data.birth,
         job: data.job,

@@ -17,7 +17,7 @@ export type PaddingSize = number | [number, number] | [number, number, number, n
  * number : 상하좌우 패딩
  * [number,number] : 상하, 좌우
  * [number,number,number,number] : 상, 우, 하, 좌
- * @param fill true: width100%
+ * @param fill true: width 100%
  */
 export const Padding = ({ children, size = [0, 24], fill = false, ...props }: PaddingProps) => {
   return (
