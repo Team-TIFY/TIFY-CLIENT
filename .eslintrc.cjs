@@ -23,6 +23,12 @@ module.exports = {
       'error',
       { props: 'never', children: 'never' },
     ],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'react-refresh/only-export-components': 'warn',
     'react/react-in-jsx-scope': 'off',
     'react/no-children-prop': 'off',
