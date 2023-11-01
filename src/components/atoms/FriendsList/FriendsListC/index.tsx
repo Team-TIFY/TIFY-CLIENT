@@ -6,21 +6,21 @@ import { theme } from '@styles/theme'
 import { sliceString } from '@utils/sliceString'
 
 /**
- * @param name 친구 이름을 나타냄
+ * @param userName 친구 이름을 나타냄
  * @param currentState 친구의 현재 상태를 나타냄 ex) 헬스장에서 운동 중 🏋️
  * @param imageUrl 친구 프로필 이미지 url을 나타냄
  * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
 export type FriendsListCProps = {
-  name: string
+  userName: string
   currentState: string
   imageUrl: string
   onClick?: () => void
 }
 
 const FriendsListC = ({
-  name,
+  userName,
   currentState,
   imageUrl = '',
   onClick,
@@ -43,7 +43,7 @@ const FriendsListC = ({
         <Avatar variant="small" imageUrl={imageUrl} />
         <TextWrapper>
           <Text typo="Subhead_14" color="white">
-            {name}
+            {userName}
           </Text>
           <StyledText>
             <Text typo="Caption_10" color="gray_200">

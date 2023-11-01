@@ -7,21 +7,21 @@ import { palette } from '@styles/theme/palette'
 import { sliceString } from '@utils/sliceString'
 
 /**
- * @param nickName 친구 닉네임을 나타냄
+ * @param userId 친구 아이디를 나타냄
  * @param friendsNumber 친구 수를 나타냄
  * @param onAcceptButtonClick 수락 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  * @param onDeleteButtonClick 삭제 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
 interface FriendsListDProps {
-  nickName: string
+  userId: string
   friendsNumber: number
   onAcceptButtonClick?: () => void
   onDeleteButtonClick?: () => void
 }
 
 const FriendsListD = ({
-  nickName,
+  userId,
   friendsNumber,
   onAcceptButtonClick,
   onDeleteButtonClick,
@@ -32,7 +32,7 @@ const FriendsListD = ({
         <Avatar variant="small" />
         <InfoWrapper>
           <Text typo="Subhead_14" color="white">
-            @{sliceString(nickName, 12)}
+            @{sliceString(userId, 12)}
           </Text>
           <Text typo="Caption_10" color="gray_400">
             함께 아는 친구 {friendsNumber}명
@@ -40,10 +40,18 @@ const FriendsListD = ({
         </InfoWrapper>
       </ProfileWrapper>
       <ButtonWrapper>
-        <SquareButton variant="xsmallSquareP" onClick={onAcceptButtonClick}>
+        <SquareButton
+          variant="xsmallSquareP"
+          onClick={onAcceptButtonClick}
+          subVariant="default"
+        >
           수락
         </SquareButton>
-        <SquareButton variant="xsmallSquareS" onClick={onDeleteButtonClick}>
+        <SquareButton
+          variant="xsmallSquareS"
+          onClick={onDeleteButtonClick}
+          subVariant="default"
+        >
           삭제
         </SquareButton>
       </ButtonWrapper>
