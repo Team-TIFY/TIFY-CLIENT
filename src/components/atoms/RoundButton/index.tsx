@@ -123,7 +123,7 @@ export const RoundButton = ({
       {...props}
     >
       {isLoading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
           {children}
