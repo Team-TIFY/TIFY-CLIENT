@@ -1,8 +1,8 @@
-import FriendsListC from '@components/atoms/FriendsList/FriendsListC'
-import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
-import { FriendsType } from '@utils/apis/friends/FriendsType'
 import { useNavigate } from 'react-router-dom'
+import styled from '@emotion/styled'
+import { FlexBox } from '@components/layouts/FlexBox'
+import FriendsListC from '@components/atoms/FriendsList/FriendsListC'
+import { FriendsType } from '@utils/apis/friends/FriendsType'
 
 export type FriendsListCItemProps = {
   friendsList: FriendsType[]
@@ -11,7 +11,7 @@ export type FriendsListCItemProps = {
 const FriendsListCItem = ({ friendsList }: FriendsListCItemProps) => {
   const navigate = useNavigate()
 
-  const handleClickFriend = (friendId: number) => {
+  const handleClickFriendProfile = (friendId: number) => {
     navigate(`/profile/${friendId}`)
   }
 
@@ -20,10 +20,10 @@ const FriendsListCItem = ({ friendsList }: FriendsListCItemProps) => {
       {friendsList.map((friend) => (
         <FriendsListC
           key={friend.neighborId}
-          name={friend.neighborName}
+          userName={friend.neighborName}
           currentState={friend.onBoardingStatus}
           imageUrl={friend.neighborThumbnail}
-          onClick={() => handleClickFriend(friend.neighborId)}
+          onClick={() => handleClickFriendProfile(friend.neighborId)}
         />
       ))}
     </FriendsListWrapper>
