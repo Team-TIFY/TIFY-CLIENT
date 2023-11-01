@@ -1,16 +1,9 @@
-import CopyIcon from '@assets/icons/CopyIcon'
-import ShareIcon from '@assets/icons/ShareIcon'
-import SquareButton from '@components/atoms/SquareButton'
-import Svg from '@components/atoms/Svg'
-import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
-import { authState } from '@libs/store/auth'
-import CopyToClipboard from 'react-copy-to-clipboard'
-import { useRecoilValue } from 'recoil'
+import { Text } from '@components/atoms/Text'
+import CopyMyIdButton from './CopyMyIdButton'
+import ShareMyIdButton from './ShareMyIdButton'
 
 const ShareMyId = () => {
-  const auth = useRecoilValue(authState)
-
   return (
     <FlexBox direction="column">
       <Text
@@ -20,29 +13,8 @@ const ShareMyId = () => {
         style={{ padding: '16px', width: '328px' }}
       />
       <FlexBox gap={12}>
-        <CopyToClipboard
-          text={`${auth.userProfile.userId}`}
-          onCopy={() => console.log('복사 완료')}
-        >
-          <SquareButton variant="mediumSquare">
-            <Svg
-              children={<CopyIcon />}
-              width={20}
-              height={20}
-              style={{ margin: '0 4px 0 0' }}
-            />
-            복사하기
-          </SquareButton>
-        </CopyToClipboard>
-        <SquareButton variant="mediumSquare">
-          <Svg
-            children={<ShareIcon />}
-            width={20}
-            height={20}
-            style={{ margin: '0 4px 0 0' }}
-          />
-          공유하기
-        </SquareButton>
+        <CopyMyIdButton />
+        <ShareMyIdButton />
       </FlexBox>
     </FlexBox>
   )
