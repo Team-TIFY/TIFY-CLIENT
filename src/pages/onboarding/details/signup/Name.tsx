@@ -1,8 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { ShortInput } from '@components/atoms/Input/ShortInput'
 import { isBtnColorState } from '@libs/store/onboard'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { profileState } from '@libs/store/profile'
+import { useSetRecoilState } from 'recoil'
 
 type NameProps = {
   isEdit?: boolean
@@ -12,7 +11,7 @@ type NameProps = {
 export function Name({ isEdit = false, value }: NameProps) {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const setBtnColor = useSetRecoilState(isBtnColorState)
 
   const handleName = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\n\r]+$/ //정규식 - 한글과 영어만
