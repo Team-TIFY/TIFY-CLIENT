@@ -60,6 +60,7 @@ const OneAnswerStep = ({
   }
   return (
     <OneAnswerStepWrapper>
+      <Spacing height={32} />
       <FlexBox direction="column" gap={20}>
         <Text typo="SCD_Headline_24" color="white">
           {data?.contents}

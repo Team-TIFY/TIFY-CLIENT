@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { AuthApi } from '@utils/apis/auth/AuthApi'
 import { Text } from '@components/atoms/Text'
 import useAuthMutate from '@libs/hooks/useAuthMutate'
+import Loading from '@components/atoms/Loading'
 
 export const Redirect = () => {
   const [token, setToken] = useState<KakaoCodeResponse>({
@@ -36,9 +37,7 @@ export const Redirect = () => {
   }, [token])
   return (
     <>
-      <Text typo="Body_16" color="white">
-        로딩중입니다
-      </Text>
+      <Loading />
     </>
   )
 }

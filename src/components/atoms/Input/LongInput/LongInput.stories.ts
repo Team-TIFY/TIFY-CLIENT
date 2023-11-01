@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { LongInput } from '.'
 
 const meta = {
-  title: 'Atom/LongInput',
+  title: 'Atom/Input/LongInput',
   component: LongInput,
   tags: ['autodocs'],
 } satisfies Meta<typeof LongInput>

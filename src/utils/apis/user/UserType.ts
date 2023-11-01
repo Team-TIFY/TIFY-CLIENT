@@ -1,20 +1,23 @@
 export interface UserInfo {
+  userId: number
   userName: string
   email: string
   thumbnail: string
   birth: string
   job: string
   gender: string
+  onBoardingStatus: string
 }
 
 export interface UserInfoToken {
-  userId: number
+  id: number
   userName: string
+  userId: string
   imageUrl: string
   birth: string
   job: string
-  createdAt: string
   gender: string
+  createdAt: string
   onBoardingStatus: string
 }
 
@@ -28,50 +31,35 @@ export interface UserTag {
 }
 
 export interface FilteredUserTag {
-  userFavorId: number
-  smallCategory: string
+  answerId: number
+  largeCategory: CategoryType
+  smallCategory: SubCategoryType
+  answer: string
 }
 
 export interface SelectedTag {
-  name: TagNameKey
-  value: TagValueKey
+  name: SubCategoryName
+  value: SubCategoryType
 }
 
 export type SelectedProps = {
   id: number
   active: boolean
-  name: TagNameKey
-  value: TagValueKey
+  name: SubCategoryName
+  value: SubCategoryType
 }[]
 
-export type TagNameKey =
-  | '메이크업'
-  | '프레그런스'
-  | '의류'
-  | '잡화'
-  | '액세사리'
-  | '요리'
-  | '운동'
-  | '여행'
-  | '문화생활'
-
-export type TagValueKey =
-  | 'MAKEUP'
-  | 'PERFUME'
-  | 'CLOTHES'
-  | 'FASHIONSTUFF'
-  | 'ACCESSORY'
-  | 'COOKING'
-  | 'SPORTS'
-  | 'TRIP'
-  | 'CULTURALLIFE'
-
 export interface UserNewTasteCategory {
-  smallCategory: subCategoryType
+  smallCategory: SubCategoryType
   isAnswered: boolean
 }
 
-export type subCategoryType =
+export interface IsAnsweredCategory {
+  detailCategory: SubCategoryType
+  answered: boolean
+}
+
+export type SubCategoryType =
   | 'MAKEUP'
   | 'FRAGRANCE'
   | 'CLOTHES'
@@ -83,7 +71,9 @@ export type subCategoryType =
   | 'TRAVEL'
   | 'CULTURE_LIFE'
 
-export type subCategoryName =
+export type CategoryType = 'BEAUTY' | 'FASHION' | 'HOBBY'
+
+export type SubCategoryName =
   | '메이크업'
   | '프레그런스'
   | '의류'

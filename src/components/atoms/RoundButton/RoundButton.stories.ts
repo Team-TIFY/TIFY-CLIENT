@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { RoundButton } from '.'
 
 const meta = {
-  title: 'Atom/RoundButton',
+  title: 'Atom/Button/RoundButton',
   component: RoundButton,
   tags: ['autodocs'],
 } satisfies Meta<typeof RoundButton>

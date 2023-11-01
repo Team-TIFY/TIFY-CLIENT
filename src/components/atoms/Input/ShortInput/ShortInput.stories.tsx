@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { ShortInput } from '.'
 
 const meta = {
-  title: 'Atom/ShortInput',
+  title: 'Atom/Input/ShortInput',
   component: ShortInput,
   tags: ['autodocs'],
 } satisfies Meta<typeof ShortInput>

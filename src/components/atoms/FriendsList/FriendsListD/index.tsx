@@ -3,7 +3,15 @@ import SquareButton from '@components/atoms/SquareButton'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
+import { palette } from '@styles/theme/palette'
 import { sliceString } from '@utils/sliceString'
+
+/**
+ * @param nickName 친구 닉네임을 나타냄
+ * @param friendsNumber 친구 수를 나타냄
+ * @param onAcceptButtonClick 수락 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
+ * @param onDeleteButtonClick 삭제 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
+ */
 
 interface FriendsListDProps {
   nickName: string
@@ -48,6 +56,7 @@ export default FriendsListD
 const Wrapper = styled(FlexBox)`
   width: 328px;
   height: 48px;
+  background-color: ${palette.background};
   justify-content: space-between;
 `
 
@@ -60,6 +69,7 @@ const ProfileWrapper = styled(FlexBox)`
 
 const InfoWrapper = styled(FlexBox)`
   flex-direction: column;
+  align-items: flex-start;
   gap: 2px;
 `
 

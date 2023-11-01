@@ -26,7 +26,7 @@ export function Gender() {
         <Group>
           <GenderWomanBtn
             onClick={() => {
-              setGender('여성')
+              setGender('female')
               isBtnColor(() => true)
             }}
             gender={isGender}
@@ -35,7 +35,7 @@ export function Gender() {
           </GenderWomanBtn>
           <GenderManBtn
             onClick={() => {
-              setGender('남성')
+              setGender('male')
               isBtnColor(() => true)
             }}
             gender={isGender}
@@ -69,9 +69,13 @@ const GenderWomanBtn = styled.button<{
   width: 148px;
   height: 52px;
   color: ${({ gender }) =>
-    gender == '여성' ? `${theme.palette.gray_800}` : `${theme.palette.white}`};
+    gender == 'female'
+      ? `${theme.palette.gray_800}`
+      : `${theme.palette.white}`};
   background-color: ${({ gender }) =>
-    gender == '여성' ? `${theme.palette.white}` : `${theme.palette.gray_900}`};
+    gender == 'female'
+      ? `${theme.palette.white}`
+      : `${theme.palette.gray_900}`};
   ${theme.typo.Body_14};
   margin: 0 8px 0 8px;
   border-radius: 12px;

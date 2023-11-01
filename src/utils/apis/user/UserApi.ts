@@ -1,16 +1,17 @@
+import { axiosApi } from '@utils/apis/axios'
 import {
   FilteredUserTag,
   UserNewTasteCategory,
-  TagValueKey,
+  IsAnsweredCategory,
+  SubCategoryType,
   UserInfo,
   UserInfoToken,
   UserTag,
 } from '@utils/apis/user/UserType'
-import { axiosApi } from '../axios'
 
 export const UserApi = {
   GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {
-    const response = await axiosApi.get('/users')
+    const response = await axiosApi.get('/users/me')
     return response.data.data
   },
 
@@ -25,17 +26,29 @@ export const UserApi = {
   },
 
   GET_FILTERED_USER_TAG: async (
-    userId: number,
-    largeCategory: TagValueKey,
+    smallCategory: SubCategoryType,
   ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
-      `/users/${userId}/category?largeCategory=${largeCategory}`,
+      `/favor-questions/answers?smallCategory=${smallCategory}`,
     )
     return response.data.data
   },
 
   GET_ISANSWERED_QUESTION: async (): Promise<UserNewTasteCategory[]> => {
     const response = await axiosApi.get(`/favor-questions/isAnswered`)
+    return response.data.data
+  },
+
+  UPDATE_FRIEND_PROFILE_VIEW_TIME: async (neighborId: number) => {
+    const response = await axiosApi.patch(`/users/neighbors/${neighborId}`)
+  },
+
+  GET_SMALL_CATEGORY_ISANSWERED_QUESTION: async (
+    category: SubCategoryType,
+  ): Promise<IsAnsweredCategory[]> => {
+    const response = await axiosApi.get(
+      `favor-questions/isAnswered/detail-category?smallCategory=${category}`,
+    )
     return response.data.data
   },
 }

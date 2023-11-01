@@ -5,7 +5,12 @@ import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { ChangeEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
-export const UserId = () => {
+type UserIdPropsType = {
+  isEdit?: boolean
+  value: string
+}
+
+export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
@@ -23,7 +28,7 @@ export const UserId = () => {
       )
     } else if (regex.test(e.target.value) && e.target.value.length >= 15) {
       setError(true)
-      setErrorMsg('15글자 이내로 부탁해요!')
+      setErrorMsg('15자 이내로 부탁해요!')
     } else {
       setError(false)
       setErrorMsg('')
@@ -61,9 +66,11 @@ export const UserId = () => {
       <ShortInput
         variant="idInput"
         maxText={15}
-        explanation="사용자 ID"
+        explanation={isEdit ? '아이디' : '사용자 ID'}
+        explanationPadding={4}
+        defaultValue={isEdit ? value : undefined}
         width={312}
-        placeholder="ID를 입력해주세요"
+        placeholder={isEdit ? '아이디를 입력해주세요' : 'ID를 입력해주세요'}
         error={error}
         warning={errorMsg}
         onChange={handleName}

@@ -11,7 +11,12 @@ import ThreeDots from '@assets/icons/ThreeDots'
 
 export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
 
-export type RightChildrenVariant = 'alarm' | 'dots' | 'none' | 'actionButton'
+export type RightChildrenVariant =
+  | 'alarm'
+  | 'dots'
+  | 'none'
+  | 'actionButton'
+  | 'stepNum'
 
 /**
  * @param variant AppBar의 type을 나타냄 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
@@ -22,35 +27,29 @@ export type RightChildrenVariant = 'alarm' | 'dots' | 'none' | 'actionButton'
  * @param onClickOption2 두 번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
  */
 
-export type AppBarProps =
-  | {
-      variant: AppBarType
-      label?: string
-      beforeUrl?: string
-      onClickOption1?: () => void
-      onClickOption2?: () => void
-      rightChildren: 'alarm' | 'dots' | 'none'
-      rightChildrenIcon?: undefined
-    }
-  | {
-      variant: AppBarType
-      label?: string
-      beforeUrl?: string
-      onClickOption1?: () => void
-      onClickOption2?: () => void
-      rightChildren: 'actionButton'
-      rightChildrenIcon: React.ReactNode[]
-    }
+export type AppBarProps<T extends RightChildrenVariant> = {
+  variant: AppBarType
+  label?: string
+  beforeUrl?: string
+  onClickOption1?: () => void
+  onClickOption2?: () => void
+  stepNum?: [number, number]
+  rightChildren: T
+  rightChildrenIcon?: T extends 'alarm' | 'dots' | 'none'
+    ? undefined
+    : React.ReactNode[]
+}
 
 export const AppBar = ({
   variant = 'logo',
   label,
   beforeUrl,
+  stepNum = [0, 0],
   rightChildren = 'alarm',
   rightChildrenIcon,
   onClickOption1,
   onClickOption2,
-}: AppBarProps) => {
+}: AppBarProps<RightChildrenVariant>) => {
   const navigate = useNavigate()
 
   const onClickBackBar = () => {
@@ -59,6 +58,52 @@ export const AppBar = ({
 
   const onClickLogo = () => {
     navigate('/')
+  }
+
+  const isArray = (
+    arr: React.ReactNode[] | undefined,
+  ): arr is React.ReactNode[] => {
+    return Array.isArray(arr)
+  }
+
+  const handleRightChildren = (rightElement: RightChildrenVariant) => {
+    if (rightElement === 'alarm')
+      return (
+        <FlexBox>
+          <Svg
+            children={<Alert />}
+            onClick={onClickOption1}
+            style={{ margin: '0 16px 0 0' }}
+          />
+          <Svg children={<ThreeDots />} onClick={onClickOption2} />
+        </FlexBox>
+      )
+    else if (rightElement === 'dots')
+      return <Svg children={<ThreeDots />} onClick={onClickOption1} />
+    else if (rightElement === 'actionButton') {
+      return (
+        <FlexBox gap={16}>
+          {isArray(rightChildrenIcon)
+            ? rightChildrenIcon?.map((icon, index) => (
+                <div key={index}>{icon}</div>
+              ))
+            : null}
+        </FlexBox>
+      )
+    } else if (rightElement === 'stepNum') {
+      return (
+        <FlexBox>
+          <Text typo="Body_14" color="purple_400">
+            {stepNum[0]}
+          </Text>
+          <Text typo="Body_14" color="gray_100">
+            /{stepNum[1]}
+          </Text>
+        </FlexBox>
+      )
+    } else {
+      return null
+    }
   }
 
   return (
@@ -75,24 +120,7 @@ export const AppBar = ({
           </Text>
         </FirstElement>
       )}
-      {rightChildren === 'alarm' ? (
-        <FlexBox>
-          <Svg
-            children={<Alert />}
-            onClick={onClickOption1}
-            style={{ margin: '0 16px 0 0' }}
-          />
-          <Svg children={<ThreeDots />} onClick={onClickOption2} />
-        </FlexBox>
-      ) : rightChildren === 'dots' ? (
-        <Svg children={<ThreeDots />} onClick={onClickOption1} />
-      ) : rightChildren === 'actionButton' ? (
-        <FlexBox gap={16}>
-          {rightChildrenIcon?.map((icon, index) => (
-            <div key={index}>{icon}</div>
-          ))}
-        </FlexBox>
-      ) : null}
+      {handleRightChildren(rightChildren)}
     </Wrapper>
   )
 }

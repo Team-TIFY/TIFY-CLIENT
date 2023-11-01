@@ -2,12 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react'
 import SquareButton from '.'
 
 const meta = {
-  title: 'Atom/SquareButton',
+  title: 'Atom/Button/SquareButton',
   component: SquareButton,
   tags: ['autodocs'],
   argTypes: {
     variant: {
       options: [
+        'xlargeSquare',
+        'largeSquare',
         'mediumSquare',
         'medium2Square',
         'medium3Square',
@@ -27,44 +29,67 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const mediumSquare: Story = {
+export const XlargeSquare: Story = {
+  args: {
+    variant: 'xlargeSquare',
+    subVariant: 'default',
+    children: '줄글',
+    xlargeChildren: '줄글',
+  },
+}
+
+export const LargeSquare: Story = {
+  args: {
+    variant: 'largeSquare',
+    subVariant: 'default',
+    children: '버튼 이름',
+  },
+}
+
+export const MediumSquare: Story = {
   args: {
     variant: 'mediumSquare',
+    subVariant: 'default',
     children: '버튼 이름',
   },
 }
 
-export const medium2Square: Story = {
+export const Medium2Square: Story = {
   args: {
     variant: 'medium2Square',
+    subVariant: 'default',
     children: '버튼 이름',
   },
 }
 
-export const medium3Square: Story = {
+export const Medium3Square: Story = {
   args: {
     variant: 'medium3Square',
+    subVariant: 'default',
     children: '버튼 이름',
   },
 }
 
-export const smallSquare: Story = {
+export const SmallSquare: Story = {
   args: {
     variant: 'smallSquare',
-    children: '버튼 이름',
+    subVariant: 'default',
+    children: '신고하기',
   },
 }
 
-export const xsmallSquareP: Story = {
+export const XsmallSquareP: Story = {
   args: {
     variant: 'xsmallSquareP',
+    subVariant: 'default',
     children: '수락',
   },
 }
 
-export const xsmallSquareS: Story = {
+export const XsmallSquareS: Story = {
   args: {
     variant: 'xsmallSquareS',
+    subVariant: 'default',
     children: '삭제',
   },
 }

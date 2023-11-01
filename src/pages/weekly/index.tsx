@@ -4,6 +4,7 @@ import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import AnswerDailyQuestion from './AnswerDailyQuestion'
 import CheckAllAnswers from './CheckAllAnswers'
 import CheckTodayDate from '@components/WeeklyQuestion/CheckTodayDate'
+import { AlarmIcon } from '@assets/icons/AlarmIcon'
 const WeeklyRouter = () => {
   return (
     <Routes>
@@ -11,7 +12,7 @@ const WeeklyRouter = () => {
         <Route
           path="/"
           element={
-            <AppBarTemplate variant="logoWithAlarm" hasNav={true}>
+            <AppBarTemplate variant="logo" rightChildren="alarm" hasNav={true}>
               <WeeklyMainQuestion />
             </AppBarTemplate>
           }
@@ -20,7 +21,8 @@ const WeeklyRouter = () => {
           path="/answer"
           element={
             <AppBarTemplate
-              variant="backPushWithMenu"
+              variant="backPush"
+              rightChildren="none"
               label="투데이 질문"
               hasNav={false}
             >
@@ -32,7 +34,8 @@ const WeeklyRouter = () => {
           path="/answers"
           element={
             <AppBarTemplate
-              variant="backPushWithMenu"
+              variant="backPush"
+              rightChildren="none"
               label="투데이 질문"
               hasNav={false}
             >

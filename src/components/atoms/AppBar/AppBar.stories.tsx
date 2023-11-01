@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-key */
 import OnAlert from '@assets/icons/OnAlert'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Routes, Route } from 'react-router-dom'
-import { AppBar, AppBarProps } from '.'
+import { AppBar, AppBarProps, RightChildrenVariant } from '.'
 import Svg from '../Svg'
 
 const meta = {
@@ -22,7 +23,7 @@ const meta = {
 } satisfies Meta<typeof AppBar>
 
 export default meta
-type Story = StoryObj<AppBarProps>
+type Story = StoryObj<AppBarProps<RightChildrenVariant>>
 
 export const BackPushWithTitleWithAlarm: Story = {
   args: {
@@ -53,7 +54,7 @@ export const BackPushWithTitleWithActionButton: Story = {
     variant: 'backPushWithTitle',
     label: '제목',
     rightChildren: 'actionButton',
-    rightChildrenIcon: <Svg children={<OnAlert />} />,
+    rightChildrenIcon: [<Svg children={<OnAlert />} />],
   },
 }
 
@@ -86,7 +87,7 @@ export const TitleWithActionButton: Story = {
     variant: 'title',
     label: '제목',
     rightChildren: 'actionButton',
-    rightChildrenIcon: <Svg children={<OnAlert />} />,
+    rightChildrenIcon: [<Svg children={<OnAlert />} />],
   },
 }
 
@@ -119,7 +120,7 @@ export const BackPushWithActionButton: Story = {
     variant: 'backPush',
     label: '제목',
     rightChildren: 'actionButton',
-    rightChildrenIcon: <Svg children={<OnAlert />} />,
+    rightChildrenIcon: [<Svg children={<OnAlert />} />],
   },
 }
 
@@ -152,6 +153,6 @@ export const LogoWithActionButton: Story = {
     variant: 'logo',
     label: '제목',
     rightChildren: 'actionButton',
-    rightChildrenIcon: <Svg children={<OnAlert />} />,
+    rightChildrenIcon: [<Svg children={<OnAlert />} />],
   },
 }

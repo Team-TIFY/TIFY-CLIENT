@@ -3,6 +3,7 @@ import SearchIcon from '@assets/icons/FriendSearchIcon'
 import Svg from '@components/atoms/Svg'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import AddFriend from './AddFriend'
 import Friends from './Friends'
 import SearchFriends from './SearchFriends'
 
@@ -62,7 +63,7 @@ const FriendsRouter = () => {
             hasNav={false}
             rightChildren="none"
           >
-            <SearchFriends />
+            <AddFriend />
           </AppBarTemplate>
         }
       />

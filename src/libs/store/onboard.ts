@@ -1,15 +1,20 @@
 import { atom } from 'recoil'
 
+export interface OnboardRequest {
+  username: string
+  id: string
+  birth: string
+  gender: string
+  onBoardingState: string
+}
+
 export interface OnboardingType {
   username: string
   id: string
   birth: string
   gender: string
   onBoardingState: string
-  beautyFavor: string
-  fashionFavor: string
-  hobbyFavor: string
-  [key: string]: string
+  favor: string[]
 }
 
 const initialState: OnboardingType = {
@@ -18,9 +23,7 @@ const initialState: OnboardingType = {
   birth: '',
   gender: '',
   onBoardingState: '',
-  beautyFavor: '',
-  fashionFavor: '',
-  hobbyFavor: '',
+  favor: [],
 }
 
 export const onboardingState = atom<OnboardingType>({
@@ -76,5 +79,10 @@ export const isSearchActiveBtn = atom({
 
 export const isCancelState = atom({
   key: 'isCancelState',
+  default: false,
+})
+
+export const IsOnboard = atom({
+  key: 'IsOnboard',
   default: false,
 })

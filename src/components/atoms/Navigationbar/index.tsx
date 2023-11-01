@@ -53,7 +53,7 @@ export const Navigationbar = () => {
           className={select === 2 ? 'active' : ''}
           onClick={() => {
             handleClick(2)
-            navigate('/myprofile')
+            navigate('/profile')
           }}
           ref={(elem) => (navRef.current[2] = elem)}
         >
