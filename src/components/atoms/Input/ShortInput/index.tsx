@@ -63,7 +63,6 @@ export const ShortInput = ({
   ) => {
     const inputText = e.target.value
     setInfo({ ...info, [content]: inputText })
-    console.log(info)
   }
 
   const cancelClick = (content: string) => {
