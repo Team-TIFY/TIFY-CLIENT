@@ -83,6 +83,10 @@ const ProfileRouter = () => {
                 friendId={friendId}
                 addFriend={true}
               />
+            </AppBarTemplate>
+          }
+        />
+        <Route
           path="/edit-profile"
           element={
             <AppBarTemplate

@@ -1,18 +1,19 @@
-import { Spacing } from '@components/atoms/Spacing'
+import { useCallback } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useRecoilValue } from 'recoil'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Padding } from '@components/layouts/Padding'
+import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import Svg from '@components/atoms/Svg'
-import ListIcon from '@assets/icons/ListIcon'
-import { useRecoilValue } from 'recoil'
-import { authState } from '@libs/store/auth'
-import { useQuery } from '@tanstack/react-query'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import FriendsMenuIcon from '@assets/icons/FriendsMenuIcon'
-import { ProfileState, profileState } from '@libs/store/profile'
-import useRecoilToggle from '@libs/hooks/useRecoilToggle'
 import FriendsListCItem from './FriendsListCItem'
 import FriendsListBItem from './FriendsListBItem'
+import ListIcon from '@assets/icons/ListIcon'
+import FriendsMenuIcon from '@assets/icons/FriendsMenuIcon'
+import { authState } from '@libs/store/auth'
+import { ProfileState, profileState } from '@libs/store/profile'
+import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import useRecoilToggle from '@libs/hooks/useRecoilToggle'
 
 const AllFriends = () => {
   const [isCubeList, toggleListOption] =
@@ -24,6 +25,22 @@ const AllFriends = () => {
     ['friendsList', auth.userProfile.id],
     FriendsApi.GET_FRIENDS_LIST,
   )
+
+  const getMenuIcon = useCallback(() => {
+    if (isCubeList.value) {
+      return <ListIcon />
+    } else {
+      return <FriendsMenuIcon />
+    }
+  }, [isCubeList.value])
+
+  const renderCubeFriendsList = () => {
+    return isCubeList.value ? (
+      <FriendsListCItem friendsList={friendsList} />
+    ) : (
+      <FriendsListBItem friendsList={friendsList} />
+    )
+  }
 
   return (
     <>
@@ -45,18 +62,12 @@ const AllFriends = () => {
           />
         </FlexBox>
         <Svg
-          children={isCubeList.value ? <ListIcon /> : <FriendsMenuIcon />}
+          children={getMenuIcon()}
           style={{ cursor: 'pointer' }}
           onClick={toggleListOption}
         />
       </FlexBox>
-      <Padding size={[0, 16]}>
-        {isCubeList.value ? (
-          <FriendsListCItem friendsList={friendsList} />
-        ) : (
-          <FriendsListBItem friendsList={friendsList} />
-        )}
-      </Padding>
+      <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
       <Spacing height={16} />
     </>
   )
