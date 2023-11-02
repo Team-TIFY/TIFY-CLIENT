@@ -1,33 +1,41 @@
+import { useEffect } from 'react'
+import { useRecoilValue } from 'recoil'
+import { friendState } from '@libs/store/friend'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { Spacing } from '@components/atoms/Spacing'
-import AddFriendById from '@components/friends/AddFriendById'
 import FriendRequest from '@components/friends/FriendRequest'
 import ShareMyId from '@components/friends/ShareMyId'
-import { friendState } from '@libs/store/friend'
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import AddFriendById from '@components/friends/AddFriendById'
 
 const AddFriend = () => {
-  const [friendStateData, setFriendStateData] = useRecoilState(friendState)
+  const friendStateData = useRecoilValue(friendState)
+  const { setIsToggle } = useSetFriendRecoilState()
+
+  const getSpacingHeight = () => {
+    return friendStateData.showPartialRequest ? 24 : 64
+  }
 
   useEffect(() => {
-    setFriendStateData((prevState) => ({ ...prevState, isToggle: false }))
+    setIsToggle(false)
   }, [])
+
+  const renderFriendRequestAndShareMyId = () => {
+    if (!friendStateData.isToggle) {
+      return (
+        <>
+          <Spacing height={32} />
+          <FriendRequest />
+          <Spacing height={getSpacingHeight()} />
+          <ShareMyId />
+        </>
+      )
+    }
+  }
 
   return (
     <>
       <AddFriendById />
-      {!friendStateData.isToggle && (
-        <>
-          <Spacing height={32} />
-          <FriendRequest />
-          {friendStateData.showPartialRequest ? (
-            <Spacing height={24} />
-          ) : (
-            <Spacing height={64} />
-          )}
-          <ShareMyId />
-        </>
-      )}
+      {renderFriendRequestAndShareMyId()}
     </>
   )
 }

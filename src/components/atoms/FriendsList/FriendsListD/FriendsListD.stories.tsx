@@ -10,9 +10,9 @@ const meta: Meta<typeof FriendsListD> = {
       'FriendsListD는 친구 목록을 나타내는 네 번째 종류입니다.',
   },
   argTypes: {
-    nickName: {
-      name: 'nickName',
-      description: '친구 닉네임입니다.',
+    userId: {
+      name: 'userId',
+      description: '친구 아이디입니다.',
       control: {
         type: 'text',
       },
@@ -46,7 +46,7 @@ type Story = StoryObj<typeof meta>
 
 export const FriendsList_D: Story = {
   args: {
-    nickName: 'sehee_han990821',
+    userId: 'sehee_han990821',
     friendsNumber: 6,
   },
 }

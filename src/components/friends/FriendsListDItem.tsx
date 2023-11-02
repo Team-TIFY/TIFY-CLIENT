@@ -1,24 +1,26 @@
-import Plus from '@assets/icons/Plus'
+import { useCallback, useEffect } from 'react'
+import { useRecoilValue } from 'recoil'
+import styled from '@emotion/styled'
+import { FlexBox } from '@components/layouts/FlexBox'
 import FriendsListD from '@components/atoms/FriendsList/FriendsListD'
 import Svg from '@components/atoms/Svg'
 import { Text } from '@components/atoms/Text'
-import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
+import Plus from '@assets/icons/Plus'
 import useFriendMutate from '@libs/hooks/useFriendMutate'
 import { friendState } from '@libs/store/friend'
 import { FriendRequestType } from '@utils/apis/friends/FriendsType'
-import { useCallback, useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 
 export type FriendsListDItemProps = {
   friendsList: FriendRequestType[]
 }
 
 const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
-  const [friendStateData, setFriendStateData] = useRecoilState(friendState)
+  const friendStateData = useRecoilValue(friendState)
 
   const { acceptFriendRequestMutate, rejectFriendRequestMutate } =
     useFriendMutate()
+  const { setShowPartialRequest, setIsAllRequest } = useSetFriendRecoilState()
 
   const handleClickAcceptButton = (acceptRequestId: number) => {
     acceptFriendRequestMutate(acceptRequestId)
@@ -40,7 +42,7 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
       (requestFriend) => (
         <FriendsListD
           key={requestFriend.neighborApplicationId}
-          nickName={requestFriend.toUserInfo.userName}
+          userId={requestFriend.toUserInfo.userName}
           friendsNumber={requestFriend.mutualNeighborCounts}
           onAcceptButtonClick={() =>
             handleClickAcceptButton(requestFriend.neighborApplicationId)
@@ -53,37 +55,36 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
     )
   }, [friendsList, friendStateData.isAllRequest])
 
+  const handleClickAllRequest = () => {
+    setIsAllRequest(true)
+    setShowPartialRequest(false)
+  }
+
   useEffect(() => {
-    !friendStateData.isAllRequest &&
-      friendsList.length > 4 &&
-      setFriendStateData((prevState) => ({
-        ...prevState,
-        showPartialRequest: true,
-      }))
+    if (!friendStateData.isAllRequest && friendsList.length > 4)
+      setShowPartialRequest(true)
   }, [friendStateData.isAllRequest, friendsList])
 
-  return (
-    <FriendsListWrapper>
-      <FlexBox direction="column" gap={16}>
-        {renderFriendsList()}
-      </FlexBox>
-      {friendStateData.showPartialRequest && (
-        <AllRequestWrapper
-          onClick={() =>
-            setFriendStateData((prevState) => ({
-              ...prevState,
-              isAllRequest: true,
-              showPartialRequest: false,
-            }))
-          }
-        >
+  const renderAllRequests = () => {
+    if (friendStateData.showPartialRequest) {
+      return (
+        <AllRequestWrapper onClick={handleClickAllRequest}>
           <Text typo="Caption_12R" children="모든 요청 보기" color="gray_400" />
           <Svg
             children={<Plus />}
             style={{ display: 'flex', alignItems: 'center' }}
           />
         </AllRequestWrapper>
-      )}
+      )
+    }
+  }
+
+  return (
+    <FriendsListWrapper>
+      <FlexBox direction="column" gap={16}>
+        {renderFriendsList()}
+      </FlexBox>
+      {renderAllRequests()}
     </FriendsListWrapper>
   )
 }

@@ -16,8 +16,8 @@ const meta: Meta<typeof FriendsListB> = {
     },
   },
   argTypes: {
-    name: {
-      name: 'name',
+    userName: {
+      name: 'userName',
       description: '친구 이름입니다.',
       control: {
         type: 'text',
@@ -77,7 +77,7 @@ export default meta
  */
 export const BirthdayFriendsList_B: StoryObj = {
   args: {
-    name: '홍서현',
+    userName: '홍서현',
     currentState: '음악적 재능을 향상시키는 중 🎶🎹',
     description: 'birthday',
     birthdayDescription: '오늘',
@@ -90,7 +90,7 @@ export const BirthdayFriendsList_B: StoryObj = {
  */
 export const DefaultFriendsList_B: StoryObj = {
   args: {
-    name: '홍서현',
+    userName: '홍서현',
     currentState: '농구 연습 중 🏀',
     description: 'none',
   },
@@ -101,7 +101,7 @@ export const DefaultFriendsList_B: StoryObj = {
  */
 export const NewUpdateFriendsList_B: StoryObj = {
   args: {
-    name: '홍서현',
+    userName: '홍서현',
     currentState: '음악적 재능을 향상시키는 중 🎶🎹',
     description: 'newUpdate',
   },
