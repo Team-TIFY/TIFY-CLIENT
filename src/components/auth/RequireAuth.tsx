@@ -46,12 +46,12 @@ const RequireAuth = () => {
       ] = `Bearer ${accessToken}`
       try {
         fetchUserData()
-        // if (isOnboard === false) {
-        //   //TODO: 추후 toast UI로 변경할 것
-        //   alert('온보딩이 필요해요')
-        //   setStatus('needOnboarding')
-        // } else setStatus('succeed')
-        setStatus('succeed')
+        if (isOnboard === false) {
+          //TODO: 추후 toast UI로 변경할 것
+          alert('온보딩이 필요해요')
+          setStatus('needOnboarding')
+        } else setStatus('succeed')
+        //setStatus('succeed')
       } catch (error) {
         setStatus('failed')
       }
