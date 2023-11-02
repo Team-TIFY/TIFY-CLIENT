@@ -86,6 +86,11 @@ const BMLIP = ({ isOnBoard }: { isOnBoard?: boolean }) => {
         <SearchAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
+            if (localStorage.getItem('isOnboardingFavor') === 'true') {
+              navigate('/')
+              //TODO: 추후 모달 창으로 변경할것!
+              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
+            }
             localStorage.clear()
           }}
           category="BMLIP"

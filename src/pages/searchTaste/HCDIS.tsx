@@ -94,13 +94,12 @@ const HCDIS = () => {
         <SearchAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
-            localStorage.clear()
-            if (isOnboard === false) {
-              setIsOnboard(true)
+            if (localStorage.getItem('isOnboardingFavor') === 'true') {
               navigate('/')
               //TODO: 추후 모달 창으로 변경할것!
               setTimeout(() => alert('tify 가입을 환영해요!'), 500)
             }
+            localStorage.clear()
           }}
           category="HCDIS"
           number={6}

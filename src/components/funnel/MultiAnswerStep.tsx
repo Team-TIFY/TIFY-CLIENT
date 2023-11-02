@@ -12,6 +12,9 @@ import { useEffect, useState } from 'react'
 import { theme } from '@styles/theme'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
+import { useLocation } from 'react-router-dom'
+import { useCallback } from 'react'
+
 interface MultiAnswerStepProps {
   category: TasteType
   number: number
@@ -25,6 +28,7 @@ const MultiAnswerStep = ({
   max,
   setNextStep,
 }: MultiAnswerStepProps) => {
+  const location = useLocation()
   const { data } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
@@ -57,8 +61,11 @@ const MultiAnswerStep = ({
         },
       ],
     })
-    setNextStep()
   }
+
+  useEffect(() => {
+    if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
+  }, [step])
 
   const handleAnswerValue = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -102,6 +109,7 @@ const MultiAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
+                subVariant="default"
                 key={index}
                 fullWidth={true}
                 variant="medium2Square"
@@ -119,6 +127,7 @@ const MultiAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
+                subVariant="default"
                 key={index}
                 fullWidth={true}
                 variant="medium2Square"

@@ -87,14 +87,12 @@ const BFMOI = () => {
         <MultiAnswerStep
           setNextStep={async () => {
             favorAnswerMutation.mutate(step)
-            localStorage.clear()
-            //유저의 취향 답변 길이가 0일 경우에는 온보딩 추카추카 메시지까지 같이~
-            const answerData = await UserApi.GET_USER_TAG(auth.userProfile.id)
-            if (answerData.length === 0) {
+            if (localStorage.getItem('isOnboardingFavor') === 'true') {
               navigate('/')
               //TODO: 추후 모달 창으로 변경할것!
               setTimeout(() => alert('tify 가입을 환영해요!'), 500)
             }
+            localStorage.clear()
           }}
           category="BFMOI"
           max={2}

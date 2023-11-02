@@ -20,10 +20,12 @@ const FEBAG = ({ isOnBoard }: { isOnBoard?: boolean }) => {
   })
   const handleBack = () => {
     if (step.favorAnswerDtos.length > 0) {
-      const myAnswerList = [...step.favorAnswerDtos]
-      const newFavorAnswerDtos = myAnswerList.splice(0, myAnswerList.length - 1)
+      const newFavorAnswerDtos = step.favorAnswerDtos.slice(
+        0,
+        step.favorAnswerDtos.length - 1,
+      )
       setStepAnswer({
-        ...step,
+        categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
     }
@@ -71,6 +73,11 @@ const FEBAG = ({ isOnBoard }: { isOnBoard?: boolean }) => {
         <MultiAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
+            if (localStorage.getItem('isOnboardingFavor') === 'true') {
+              navigate('/')
+              //TODO: 추후 모달 창으로 변경할것!
+              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
+            }
             localStorage.clear()
           }}
           max={2}
