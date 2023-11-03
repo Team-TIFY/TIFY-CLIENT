@@ -1,18 +1,25 @@
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+import styled from '@emotion/styled'
+import { FlexBox } from '@components/layouts/FlexBox'
 import CubeButton from '@components/atoms/CubeButton'
-import { subCategoryState } from '@libs/store/subCategory'
-import { UserApi } from '@utils/apis/user/UserApi'
 import {
   IsAnsweredCategory,
   UserNewTasteCategory,
 } from '@utils/apis/user/UserType'
+import { subCategoryState } from '@libs/store/subCategory'
+import { UserApi } from '@utils/apis/user/UserApi'
+import { isArray } from '@utils/isArray'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
 import { subCategoryTitle } from '@utils/subCategoryTitle'
 
-const SubCategoryListItem = (subCategoryList: {
+interface NewTasteCategoryListItemProps {
   subCategoryList: UserNewTasteCategory[]
-}) => {
+}
+
+const NewTasteCategoryListItem = ({
+  subCategoryList,
+}: NewTasteCategoryListItemProps) => {
   const [subCategory, setSubCategory] = useRecoilState(subCategoryState)
 
   const navigate = useNavigate()
@@ -52,8 +59,8 @@ const SubCategoryListItem = (subCategoryList: {
   }
 
   return (
-    <>
-      {Array.isArray(subCategoryList) &&
+    <StyledButtonWrapper>
+      {isArray(subCategoryList) &&
         subCategoryList?.map((category: UserNewTasteCategory, idx: number) => (
           <CubeButton
             key={idx}
@@ -63,8 +70,14 @@ const SubCategoryListItem = (subCategoryList: {
             img={subCategoryTitle[category.smallCategory]['img']}
           />
         ))}
-    </>
+    </StyledButtonWrapper>
   )
 }
 
-export default SubCategoryListItem
+export default NewTasteCategoryListItem
+
+const StyledButtonWrapper = styled(FlexBox)`
+  gap: 12px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+`
