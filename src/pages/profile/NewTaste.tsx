@@ -1,14 +1,13 @@
-import { Spacing } from '@components/atoms/Spacing'
-import { Text } from '@components/atoms/Text'
-import { Padding } from '@components/layouts/Padding'
-import NewTasteCategory from '@components/profile/NewTasteCategory'
-import styled from '@emotion/styled'
-import { authState } from '@libs/store/auth'
-import { UserNewTasteCategory } from '@utils/apis/user/UserType'
+import { useRecoilValue } from 'recoil'
 import { theme } from '@styles/theme'
 import { useQuery } from '@tanstack/react-query'
+import styled from '@emotion/styled'
+import { Padding } from '@components/layouts/Padding'
+import { Spacing } from '@components/atoms/Spacing'
+import NewTasteCategory from '@components/profile/NewTasteCategory'
+import { authState } from '@libs/store/auth'
 import { UserApi } from '@utils/apis/user/UserApi'
-import { useRecoilValue } from 'recoil'
+import { UserNewTasteCategory } from '@utils/apis/user/UserType'
 
 const NewTaste = () => {
   const auth = useRecoilValue(authState)
@@ -16,6 +15,13 @@ const NewTaste = () => {
     ['newTasteCategory', auth.userProfile.id],
     () => UserApi.GET_ISANSWERED_QUESTION(),
   )
+
+  const getSubCategoryList = (startIndex: number, endIndex: number) => {
+    return isAnsweredQuestion?.slice(
+      startIndex,
+      endIndex,
+    ) as UserNewTasteCategory[]
+  }
 
   return (
     <>
@@ -26,34 +32,19 @@ const NewTaste = () => {
           카테고리를 골라주세요
         </TextWrapper>
         <Spacing height={48} />
-        <Text typo="Headline_16" as="div" color="white">
-          뷰티
-        </Text>
-        <Spacing height={20} />
         <NewTasteCategory
-          subCategoryList={
-            isAnsweredQuestion?.slice(0, 2) as UserNewTasteCategory[]
-          }
+          categoryName="뷰티"
+          subCategoryList={getSubCategoryList(0, 2)}
         />
         <Spacing height={24} />
-        <Text typo="Headline_16" as="div" color="white">
-          패션
-        </Text>
-        <Spacing height={20} />
         <NewTasteCategory
-          subCategoryList={
-            isAnsweredQuestion?.slice(2, 6) as UserNewTasteCategory[]
-          }
+          categoryName="패션"
+          subCategoryList={getSubCategoryList(2, 6)}
         />
         <Spacing height={24} />
-        <Text typo="Headline_16" as="div" color="white">
-          취미
-        </Text>
-        <Spacing height={20} />
         <NewTasteCategory
-          subCategoryList={
-            isAnsweredQuestion?.slice(6, 10) as UserNewTasteCategory[]
-          }
+          categoryName="취미"
+          subCategoryList={getSubCategoryList(6, 10)}
         />
       </Padding>
     </>

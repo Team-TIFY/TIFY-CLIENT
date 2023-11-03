@@ -1,10 +1,11 @@
+import { useRecoilValue } from 'recoil'
 import { Avatar } from '@components/atoms/Avatar'
 import { Text } from '@components/atoms/Text'
 import { authState } from '@libs/store/auth'
-import { useRecoilValue } from 'recoil'
 
 const EditProfileImage = () => {
   const auth = useRecoilValue(authState)
+
   const imageUrl = auth.userProfile.imageUrl
 
   return (

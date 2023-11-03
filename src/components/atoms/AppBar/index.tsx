@@ -8,6 +8,7 @@ import TifyLogo from '@assets/icons/TifyLogo'
 import LeftArrow from '@assets/icons/LeftArrow'
 import Alert from '@assets/icons/Alert'
 import ThreeDots from '@assets/icons/ThreeDots'
+import { isArray } from '@utils/isArray'
 
 export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
 
@@ -58,12 +59,6 @@ export const AppBar = ({
 
   const onClickLogo = () => {
     navigate('/')
-  }
-
-  const isArray = (
-    arr: React.ReactNode[] | undefined,
-  ): arr is React.ReactNode[] => {
-    return Array.isArray(arr)
   }
 
   const handleRightChildren = (rightElement: RightChildrenVariant) => {

@@ -25,9 +25,33 @@ export const useSetFriendRecoilState = () => {
     }))
   }
 
+  const setIsMenuOpen = (isMenuOpenData: boolean) => {
+    setFriendStateData((prevState) => ({
+      ...prevState,
+      isMenuOpen: isMenuOpenData,
+    }))
+  }
+
+  const setIsCutOffMenuOpen = (isCutOffMenuOpenData: boolean) => {
+    setFriendStateData((prevState) => ({
+      ...prevState,
+      isCutOffMenuOpen: isCutOffMenuOpenData,
+    }))
+  }
+
+  const setIsBlockMenuOpen = (isBlockMenuOpenData: boolean) => {
+    setFriendStateData((prevState) => ({
+      ...prevState,
+      isBlockMenuOpen: isBlockMenuOpenData,
+    }))
+  }
+
   return {
     setIsToggle,
     setShowPartialRequest,
     setIsAllRequest,
+    setIsMenuOpen,
+    setIsCutOffMenuOpen,
+    setIsBlockMenuOpen,
   }
 }
