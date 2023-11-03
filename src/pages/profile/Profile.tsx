@@ -136,7 +136,7 @@ const Profile = ({
     return () => {
       document.body.style.overflow = 'auto'
     }
-  }, [isProfileMenuOpen, isFriendMenuOpen])
+  }, [isProfileMenuOpen, isFriendMenuOpen, isCutOffMenuOpen, isBlockMenuOpen])
 
   useEffect(() => {
     setIsEdit(false)
