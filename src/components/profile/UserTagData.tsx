@@ -1,40 +1,59 @@
-/* eslint-disable prettier/prettier */
 import styled from '@emotion/styled'
 import { Category } from '@components/atoms/Category'
 import { Spacing } from '@components/atoms/Spacing'
 import { indexVariant, Tag } from '@components/atoms/Tag'
 import { FlexBox } from '@components/layouts/FlexBox'
-import { FilteredUserTag, SelectedTag, UserTag } from '@utils/apis/user/UserType'
+import {
+  FilteredUserTag,
+  SelectedTag,
+  UserTag,
+} from '@utils/apis/user/UserType'
 
 export interface UserTagDataProps {
   selectedTags: SelectedTag[]
   filteredUserTagData: FilteredUserTag[][]
   userTagData: UserTag[]
+  isFriend: boolean
 }
 
-export const UserTagData = ({ selectedTags, filteredUserTagData, userTagData }: UserTagDataProps) => {
+export const UserTagData = ({
+  selectedTags,
+  filteredUserTagData,
+  userTagData,
+  isFriend,
+}: UserTagDataProps) => {
   return (
     <CategoryWrapper>
       <FlexBox direction="column" gap={20}>
         {selectedTags.length > 0
           ? filteredUserTagData.map((tag, idx) => (
-            <Category
-              key={idx}
-              categoryName={selectedTags[idx].name}
-              children={tag.map((tagData, index) => (
-                <Tag key={tagData.answerId} index={index as indexVariant} children={tagData.smallCategory} />
-              ))}
-            />
-          ))
+              <Category
+                key={idx}
+                categoryName={selectedTags[idx].name}
+                children={tag.map((tagData, index) => (
+                  <Tag
+                    key={tagData.answerId}
+                    index={index as indexVariant}
+                    children={tagData.smallCategory}
+                  />
+                ))}
+                isFriend={isFriend}
+              />
+            ))
           : userTagData.map((category) => (
-            <Category
-              key={category.userTagId}
-              categoryName={category.largeCategory}
-              children={category.favors.map((tag, index) => (
-                <Tag key={tag.userFavorId} index={index as indexVariant} children={tag.smallCategory} />
-              ))}
-            />
-          ))}
+              <Category
+                key={category.userTagId}
+                categoryName={category.largeCategory}
+                children={category.favors.map((tag, index) => (
+                  <Tag
+                    key={tag.userFavorId}
+                    index={index as indexVariant}
+                    children={tag.smallCategory}
+                  />
+                ))}
+                isFriend={isFriend}
+              />
+            ))}
       </FlexBox>
       <Spacing height={32} />
     </CategoryWrapper>
