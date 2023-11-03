@@ -49,11 +49,11 @@ export function DetailInfo({ isEdit }: { isEdit: boolean }) {
     } else {
       setGoNext({ ...goNext, favor: false })
     }
-    console.log(goNext)
   }
 
-  const searchStatus = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleSearchStatusUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setSearchText(e.target.value)
+    clearSelection()
   }
 
   const { data: searchResult } = useQuery<SearchResultItem[]>(
@@ -119,6 +119,10 @@ export function DetailInfo({ isEdit }: { isEdit: boolean }) {
   }, [selectedItemName])
 
   useEffect(() => {
+    setSelectedIndex(-1)
+  }, [])
+
+  useEffect(() => {
     if (isCancel) {
       setBtnColor(false)
     }
@@ -139,10 +143,8 @@ export function DetailInfo({ isEdit }: { isEdit: boolean }) {
       <SearchInput
         width={312}
         placeholder="직업, 운동, 학습 등 검색어 입력"
-        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-          searchStatus(e)
-          clearSelection()
-        }}
+        onBlur={handleSearchStatusUpdate}
+        onChange={() => {}}
       />
       <Spacing height={24} />
       <FlexBox>
