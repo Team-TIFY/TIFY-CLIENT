@@ -15,7 +15,14 @@ const useSetProfileRecoilState = () => {
     setProfileStateData((prevState) => ({ ...prevState, isEdit: isEditData }))
   }
 
-  return { setIsMenuOpen, setIsEdit }
+  const setButtonText = (buttonTextData: string) => {
+    setProfileStateData((prevState) => ({
+      ...prevState,
+      buttonText: '수정 완료',
+    }))
+  }
+
+  return { setIsMenuOpen, setIsEdit, setButtonText }
 }
 
 export default useSetProfileRecoilState
