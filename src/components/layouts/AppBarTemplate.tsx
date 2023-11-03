@@ -21,6 +21,7 @@ const AppBarTemplate = ({
   onClickOption2,
   rightChildren,
   rightChildrenIcon,
+  customHandler,
   children,
   hasNav,
 }: AppBarTemplateProps) => {
@@ -33,7 +34,6 @@ const AppBarTemplate = ({
       .split('?')[0] as TasteType
     const totalNum = Object.keys(favorQuestionData[favorType]).length
     const stepNum = parseInt(window.location.href.slice(-1), 10)
-    console.log(stepNum)
     if (isNaN(stepNum)) {
       return [1, totalNum]
     } else {
@@ -49,6 +49,7 @@ const AppBarTemplate = ({
           beforeUrl={beforeUrl}
           onClickOption1={onClickOption1}
           onClickOption2={onClickOption2}
+          customHandler={customHandler}
           rightChildren="actionButton"
           rightChildrenIcon={rightChildrenIcon}
         />
@@ -59,6 +60,7 @@ const AppBarTemplate = ({
           beforeUrl={beforeUrl}
           onClickOption1={onClickOption1}
           onClickOption2={onClickOption2}
+          customHandler={customHandler}
           rightChildren={rightChildren}
           stepNum={parseStepNum()}
         />

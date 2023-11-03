@@ -4,15 +4,19 @@ import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
 import { answerState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
-import useCustomBack from '@libs/hooks/useCustomBack'
+import { useState } from 'react'
+import { FavorAnswerDetailRequest } from '@utils/apis/favor/TasteType'
 import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
 
-const FEDIG = ({ isOnBoard }: { isOnBoard?: boolean }) => {
+const FEDIG = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
+  const [beforeStep, setBeforeStep] = useState<FavorAnswerDetailRequest[]>(
+    step.favorAnswerDtos,
+  )
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
       alert('취향 답변 완료!')
@@ -31,7 +35,7 @@ const FEDIG = ({ isOnBoard }: { isOnBoard?: boolean }) => {
     navigate(-1)
   }
   const navigate = useNavigate()
-  const handleFunnelBackPage = useCustomBack(handleBack)
+
   const [Funnel, setStep] = useFunnel(
     [
       'SearchAnswer1',
@@ -47,9 +51,11 @@ const FEDIG = ({ isOnBoard }: { isOnBoard?: boolean }) => {
     },
   )
   useEffect(() => {
-    handleFunnelBackPage
+    if (beforeStep.length > step.favorAnswerDtos.length) {
+      navigate(-1)
+    }
     setStepAnswer({ ...step, categoryName: 'FEDIG' })
-  }, [])
+  }, [step.favorAnswerDtos])
 
   return (
     <Funnel>
