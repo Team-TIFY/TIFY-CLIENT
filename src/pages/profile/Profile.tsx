@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 import { UserApi } from '@utils/apis/user/UserApi'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
 import { Spacing } from '@components/atoms/Spacing'
@@ -13,9 +13,13 @@ import { UserTagData } from '@components/profile/UserTagData'
 import { ProfileHeader } from '@components/profile/ProfileHeader'
 import useProfileMutate from '@libs/hooks/useProfileMutate'
 import { profileState } from '@libs/store/profile'
-import ProfileButtons from '@components/profile/ProfileButtons'
+import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
 import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
+import ProfileMenuButtons from '@components/profile/ProfileMenuButtons'
+import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
+import { friendState } from '@libs/store/friend'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
@@ -41,15 +45,23 @@ const Profile = ({
   addFriend = false,
 }: ProfilePropsType<UserInfo>) => {
   const auth = useRecoilValue(authState)
-  const setIsEdit = useSetRecoilState(profileState)
+  const profileStateData = useRecoilValue(profileState)
+  const friendStateData = useRecoilValue(friendState)
 
-  const outsideRef = useRef(null)
-
+  const profileMenuOutsideRef = useRef(null)
+  const friendMenuOutsideRef = useRef(null)
+  const cutOffMenuOutsideRef = useRef(null)
+  const blockMenuOutsideRef = useRef(null)
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
 
-  const [profileStateData, setIsMenuOpen] = useRecoilState(profileState)
-  const isMenuOpen = profileStateData?.isMenuOpen ?? false
+  const isProfileMenuOpen = profileStateData?.isMenuOpen ?? false
+  const isFriendMenuOpen = friendStateData?.isMenuOpen ?? false
+  const isCutOffMenuOpen = friendStateData?.isCutOffMenuOpen ?? false
+  const isBlockMenuOpen = friendStateData?.isBlockMenuOpen ?? false
 
+  const { setIsEdit, setIsMenuOpen } = useSetProfileRecoilState()
+  const { setIsMenuOpen: setIsFriendMenuOpen, setIsCutOffMenuOpen } =
+    useSetFriendRecoilState()
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
   useEffect(() => {
@@ -60,17 +72,22 @@ const Profile = ({
 
   useEffect(() => {
     // 메뉴 버튼 오픈 시 스크롤 금지
-    if (isMenuOpen) {
+    if (
+      isProfileMenuOpen ||
+      isFriendMenuOpen ||
+      isCutOffMenuOpen ||
+      isBlockMenuOpen
+    ) {
       document.body.style.overflow = 'hidden'
     }
 
     return () => {
       document.body.style.overflow = 'auto'
     }
-  }, [isMenuOpen])
+  }, [isProfileMenuOpen, isFriendMenuOpen])
 
   useEffect(() => {
-    setIsEdit((prevState) => ({ ...prevState, isEdit: false }))
+    setIsEdit(false)
   }, [])
 
   const { data: userData = {} as UserInfo } = useQuery(
@@ -109,8 +126,16 @@ const Profile = ({
     },
   )
 
-  const handleClickDimmer = useOutsideClick(outsideRef, () =>
-    setIsMenuOpen({ ...profileStateData, isMenuOpen: false }),
+  const handleClickProfileDimmer = useOutsideClick(profileMenuOutsideRef, () =>
+    setIsMenuOpen(false),
+  )
+
+  const handleClickFriendDimmer = useOutsideClick(friendMenuOutsideRef, () =>
+    setIsFriendMenuOpen(false),
+  )
+
+  const handleClickCutOffDimmer = useOutsideClick(cutOffMenuOutsideRef, () =>
+    setIsCutOffMenuOpen(false),
   )
 
   return (
@@ -139,15 +164,54 @@ const Profile = ({
                 selectedTags={selectedTags}
                 filteredUserTagData={filteredUserTagData}
                 userTagData={userTagData}
+                isFriend={friendId !== undefined}
               />
             </>
           )}
         </ProfileWrapper>
       </Padding>
-      {isMenuOpen && (
+      {isProfileMenuOpen && (
         <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-          <ProfileButtons />
+          <Dimmer
+            dimmerRef={profileMenuOutsideRef}
+            onClick={handleClickProfileDimmer}
+          />
+          <ProfileMenuButtons type={'myProfile' as ProfileButtonVariant} />
+        </>
+      )}
+      {isFriendMenuOpen && (
+        <>
+          <Dimmer
+            dimmerRef={friendMenuOutsideRef}
+            onClick={handleClickFriendDimmer}
+          />
+          <ProfileMenuButtons type={'report' as ProfileButtonVariant} />
+        </>
+      )}
+      {isCutOffMenuOpen && (
+        <>
+          <Dimmer
+            dimmerRef={cutOffMenuOutsideRef}
+            onClick={handleClickCutOffDimmer}
+          />
+          <ProfileMenuButtons
+            type={'cutOffFriend' as ProfileButtonVariant}
+            friendUserId={friendData?.userId}
+            friendImageUrl={friendData?.thumbnail}
+          />
+        </>
+      )}
+      {isBlockMenuOpen && (
+        <>
+          <Dimmer
+            dimmerRef={blockMenuOutsideRef}
+            onClick={handleClickFriendDimmer}
+          />
+          <ProfileMenuButtons
+            type={'block' as ProfileButtonVariant}
+            friendUserId={friendData?.userId}
+            friendImageUrl={friendData?.thumbnail}
+          />
         </>
       )}
     </>

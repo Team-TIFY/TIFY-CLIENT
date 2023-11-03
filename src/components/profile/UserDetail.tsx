@@ -10,6 +10,8 @@ import useGetDate from '@libs/hooks/useGetDate'
 import { RecoilState, useRecoilState } from 'recoil'
 import { profileState } from '@libs/store/profile'
 import { AuthStateType } from '@libs/store/auth'
+import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 
 export interface UserDetailProps {
   userData: UserInfo
@@ -19,7 +21,8 @@ export interface UserDetailProps {
 export const UserDetail = ({ userData, isFriend }: UserDetailProps) => {
   const { formatDate } = useGetDate()
 
-  const [profileStateData, setIsMenuOpen] = useRecoilState(profileState)
+  const { setIsMenuOpen } = useSetProfileRecoilState()
+  const { setIsMenuOpen: setIsFriendMenuOpen } = useSetFriendRecoilState()
 
   return (
     <>
@@ -42,9 +45,7 @@ export const UserDetail = ({ userData, isFriend }: UserDetailProps) => {
             children={<ThreeDots />}
             style={{ cursor: 'pointer' }}
             onClick={() =>
-              !isFriend
-                ? setIsMenuOpen({ ...profileStateData, isMenuOpen: true })
-                : null
+              !isFriend ? setIsMenuOpen(true) : setIsFriendMenuOpen(true)
             }
           />
         </FlexBox>
