@@ -1,18 +1,18 @@
+import { useEffect, useState } from 'react'
+import styled from '@emotion/styled'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { Name } from '@pages/onboarding/details/signup/Name'
+import { UserId } from '@pages/onboarding/details/signup/UserId'
+import { Birth } from '@pages/onboarding/details/signup/Birth'
 import { Spacing } from '@components/atoms/Spacing'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Padding } from '@components/layouts/Padding'
-import styled from '@emotion/styled'
-import { Name } from '@pages/onboarding/details/signup/Name'
-import { UserId } from '@pages/onboarding/details/signup/UserId'
 import OnboardingStatus from '@components/profile/OnboardingStatus'
-import { authState } from '@libs/store/auth'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { useEffect, useState } from 'react'
-import { isBtnColorState, onboardingState } from '@libs/store/onboard'
-import { Birth } from '@pages/onboarding/details/signup/Birth'
-import useGetDate from '@libs/hooks/useGetDate'
-import { profileState } from '@libs/store/profile'
 import EditProfileButton from './EditProfileButton'
+import { authState } from '@libs/store/auth'
+import { isBtnColorState, onboardingState } from '@libs/store/onboard'
+import { profileState } from '@libs/store/profile'
+import useGetDate from '@libs/hooks/useGetDate'
 
 const EditUserInfo = () => {
   const auth = useRecoilValue(authState)
@@ -20,14 +20,14 @@ const EditUserInfo = () => {
   const [info, setInfo] = useRecoilState(onboardingState)
   const setBtnColor = useSetRecoilState(isBtnColorState)
 
-  const { parseDate, getFormattedDate } = useGetDate()
-
   const [userName, setUserName] = useState(auth.userProfile.userName)
   const [userId, setUserId] = useState(auth.userProfile.userId)
   const [birth, setBirth] = useState(auth.userProfile.birth)
   const [onBoardingStatus, setOnBoardingStatus] = useState(
     auth.userProfile.onBoardingStatus,
   )
+
+  const { parseDate, getFormattedDate } = useGetDate()
 
   useEffect(() => {
     if (!profileStateData.isEdit) {

@@ -1,7 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+import { Padding } from '@components/layouts/Padding'
 import { LongInput } from '@components/atoms/Input/LongInput'
 import { Text } from '@components/atoms/Text'
-import { Padding } from '@components/layouts/Padding'
-import { useNavigate } from 'react-router-dom'
 
 export type EditOnboardingStatusType = {
   value: string
