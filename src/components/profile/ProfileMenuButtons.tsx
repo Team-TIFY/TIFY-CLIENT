@@ -1,9 +1,8 @@
+import styled from '@emotion/styled'
+import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import SquareButton from '@components/atoms/SquareButton'
-import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
 import useProfileMenuButtonsData from '@libs/hooks/useProfileMenuButtonsData'
-import { useParams } from 'react-router-dom'
 
 export type ProfileButtonVariant =
   | 'myProfile'
@@ -22,11 +21,9 @@ const ProfileMenuButtons = <T extends ProfileButtonVariant>({
 }) => {
   const buttonData = useProfileMenuButtonsData(type)
 
-  const friend = useParams()
-
-  return (
-    <ProfileButtonsWrapper type={type}>
-      {type === 'myProfile' || type === 'report' ? (
+  const renderMenuButtons = () => {
+    if (type === 'myProfile' || type === 'report') {
+      return (
         <>
           <SquareButton
             variant="xlargeSquare"
@@ -53,7 +50,9 @@ const ProfileMenuButtons = <T extends ProfileButtonVariant>({
             onClick={buttonData.onClickCancelButton}
           />
         </>
-      ) : (
+      )
+    } else {
+      return (
         <>
           <SquareButton
             variant="xlargeSquare"
@@ -89,8 +88,13 @@ const ProfileMenuButtons = <T extends ProfileButtonVariant>({
             onClick={buttonData.onClickCancelButton}
           />
         </>
-      )}
+      )
+    }
+  }
 
+  return (
+    <ProfileButtonsWrapper type={type}>
+      {renderMenuButtons()}
       <Spacing height={32} />
     </ProfileButtonsWrapper>
   )
