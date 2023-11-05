@@ -17,7 +17,7 @@ export const FavorApi = {
   POST_FAVOR_QUESTION: async (
     payload: FavorAnswerRequest,
   ): Promise<FavorAnswerResponse> => {
-    const response = await axiosApi.post('/favor-questions/answers', payload)
+    const response = await axiosApi.post('/favor-questions/answersㅁ', payload)
     return response.data.data
   },
 }

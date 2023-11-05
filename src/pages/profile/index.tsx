@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
 import BMLIP from '@pages/searchTaste/BMLIP'
@@ -23,14 +23,26 @@ import Profile from './Profile'
 import NewTaste from './NewTaste'
 import { authState } from '@libs/store/auth'
 import MenuIcon from '@assets/icons/MenuIcon'
+import { useRecoilState } from 'recoil'
+import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
-
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
-
+  const [step, setStepAnswer] = useRecoilState(answerState)
   const location = useLocation()
   const friendId = parseInt(location.pathname.slice(9))
-
+  const handleBack = () => {
+    if (step.favorAnswerDtos.length > 0) {
+      const tempList = [...step.favorAnswerDtos]
+      console.log('호우!')
+      const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)
+      setStepAnswer({
+        categoryName: step.categoryName,
+        favorAnswerDtos: [...newFavorAnswerDtos],
+      })
+    }
+    //const time = setTimeout(() => navigate(-1), 100)
+  }
   const { data: friendData } = useQuery(
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
@@ -132,6 +144,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BMLIP />
             </AppBarTemplate>
@@ -144,6 +157,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BMEYE />
             </AppBarTemplate>
@@ -156,6 +170,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BFPER />
             </AppBarTemplate>
@@ -168,6 +183,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BFMOI />
             </AppBarTemplate>
@@ -180,6 +196,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BFPLA />
             </AppBarTemplate>
@@ -192,6 +209,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FCTOP />
             </AppBarTemplate>
@@ -204,6 +222,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FEFAS />
             </AppBarTemplate>
@@ -216,6 +235,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FEDIG />
             </AppBarTemplate>
@@ -228,6 +248,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FEBAG />
             </AppBarTemplate>
@@ -240,6 +261,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FAACC />
             </AppBarTemplate>
@@ -252,6 +274,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <HCDIS />
             </AppBarTemplate>
@@ -264,6 +287,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <HCCUP />
             </AppBarTemplate>

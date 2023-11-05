@@ -4,7 +4,8 @@ import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
 import { answerState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
-import useCustomBack from '@libs/hooks/useCustomBack'
+import { useState } from 'react'
+import { FavorAnswerDetailRequest } from '@utils/apis/favor/TasteType'
 import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
@@ -13,26 +14,16 @@ import { IsOnboard } from '@libs/store/onboard'
 
 const HCCUP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
-  const [isOnboard, setIsOnboard] = useRecoilState(IsOnboard)
+  const [beforeStep, setBeforeStep] = useState<FavorAnswerDetailRequest[]>(
+    step.favorAnswerDtos,
+  )
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
       alert('취향 답변 완료!')
       navigate('myprofile')
     },
   })
-  const handleBack = () => {
-    if (step.favorAnswerDtos.length > 0) {
-      const myAnswerList = [...step.favorAnswerDtos]
-      const newFavorAnswerDtos = myAnswerList.splice(0, myAnswerList.length - 1)
-      setStepAnswer({
-        ...step,
-        favorAnswerDtos: [...newFavorAnswerDtos],
-      })
-    }
-    navigate(-1)
-  }
   const navigate = useNavigate()
-  const handleFunnelBackPage = useCustomBack(handleBack)
   const [Funnel, setStep] = useFunnel(
     [
       'MultiAnswer1',
@@ -48,10 +39,11 @@ const HCCUP = () => {
     },
   )
   useEffect(() => {
-    handleFunnelBackPage
+    if (beforeStep.length > step.favorAnswerDtos.length) {
+      navigate(-1)
+    }
     setStepAnswer({ ...step, categoryName: 'HCCUP' })
-  }, [])
-
+  }, [step.favorAnswerDtos])
   return (
     <Funnel>
       <Funnel.Step name="MultiAnswer1">
@@ -104,13 +96,12 @@ const HCCUP = () => {
         <OneAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
-            localStorage.clear()
-            if (isOnboard === false) {
-              setIsOnboard(true)
+            if (localStorage.getItem('isOnboardingFavor') === 'true') {
               navigate('/')
               //TODO: 추후 모달 창으로 변경할것!
               setTimeout(() => alert('tify 가입을 환영해요!'), 500)
             }
+            localStorage.clear()
           }}
           category="HCCUP"
           number={7}

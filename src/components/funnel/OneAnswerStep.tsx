@@ -7,7 +7,7 @@ import { RoundButton } from '@components/atoms/RoundButton'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { theme } from '@styles/theme'
 import { Spacing } from '@components/atoms/Spacing'
 import { favorQuestionData } from '@libs/store/dummy'
@@ -56,8 +56,12 @@ const OneAnswerStep = ({
         },
       ],
     })
-    setNextStep()
   }
+
+  useEffect(() => {
+    if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
+  }, [step])
+
   return (
     <OneAnswerStepWrapper>
       <Spacing height={32} />

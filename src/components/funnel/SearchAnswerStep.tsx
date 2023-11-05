@@ -54,8 +54,11 @@ const SearchAnswerStep = ({
         },
       ],
     })
-    setNextStep()
   }
+
+  useEffect(() => {
+    if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
+  }, [step])
 
   //TODO: Debounce 훅 걸어두기
   useEffect(() => {
@@ -100,6 +103,7 @@ const SearchAnswerStep = ({
           <AutoSearchWrap>
             {autoItems.map((data, index) => (
               <SquareButton
+                subVariant="default"
                 variant="medium2Square"
                 fullWidth={true}
                 style={{ height: '48px' }}
