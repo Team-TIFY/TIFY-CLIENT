@@ -22,6 +22,7 @@ const RequireAuth = () => {
     if (data.onBoardingStatus) {
       setIsOnboard(true)
     }
+    console.log(data)
     setAuth({
       isAuthenticated: true,
       callbackUrl: '/',

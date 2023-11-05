@@ -36,11 +36,11 @@ export function Birth({
 
     if (date) {
       const formattedDate = parseDate(date)
+      const myBirthDay = formattedDate.split('-').join('')
       setInfo({
         ...info,
-        birth: formattedDate,
+        birth: myBirthDay,
       })
-      console.log(formattedDate)
     }
 
     setBtnColor(true)
@@ -48,7 +48,14 @@ export function Birth({
 
   useEffect(() => {
     if (info.birth) {
-      setSelectedDate(new Date(info.birth))
+      const newDate =
+        info.birth.substring(0, 4) +
+        '-' +
+        info.birth.substring(4, 6) +
+        '-' +
+        info.birth.substring(6, 8)
+      console.log(newDate)
+      setSelectedDate(new Date(newDate))
     }
   }, [value, info.birth])
 
