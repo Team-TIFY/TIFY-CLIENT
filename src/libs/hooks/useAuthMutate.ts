@@ -36,15 +36,7 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
     onSuccess: (data: { canRegister: boolean }) => {
       //회원가입이 필요한 사람
       if (data.canRegister) {
-        ouathKakaoRegisterMutation.mutate({
-          idToken,
-          payload: {
-            email: 'abcd@example.com',
-            profileImage: 'http://aaab',
-            name: '김미미',
-            phoneNumber: '010-1234-456',
-          },
-        })
+        ouathKakaoRegisterMutation.mutate(idToken)
         //회원가입 직후 온보딩페이지로 이동
         navigate('/onboarding')
       } else {
@@ -73,7 +65,8 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
       callbackUrl: '/',
       accessToken: loginData.accessToken,
       userProfile: {
-        id: data.userId,
+        id: loginData.userId,
+        userId: data.userId,
         userName: data.userName,
         imageUrl: data.thumbnail,
         birth: data.birth,
