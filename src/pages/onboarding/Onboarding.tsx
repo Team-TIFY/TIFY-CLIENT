@@ -15,7 +15,7 @@ const Onboarding = () => {
       {onboardPage.favor ? (
         <SelectFavor />
       ) : onboardPage.onboardStatus ? (
-        <DetailInfo />
+        <DetailInfo isEdit={false} />
       ) : onboardPage.interestStart ? (
         <HalfSuccess />
       ) : onboardPage.agreement ? (

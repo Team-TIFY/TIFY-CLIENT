@@ -84,5 +84,5 @@ export const isCancelState = atom({
 
 export const IsOnboard = atom({
   key: 'IsOnboard',
-  default: false,
+  default: true,
 })
