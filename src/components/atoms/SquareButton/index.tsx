@@ -71,7 +71,7 @@ const TEXT_COLOR_TYPE = {
   selected: {
     xlargeSquare: `${theme.palette.gray_100}`,
     largeSquare: `${theme.palette.gray_800}`,
-    mediumSquare: `${theme.palette.gray_200}`,
+    mediumSquare: `${theme.palette.gray_800}`,
     medium2Square: `${theme.palette.gray_800}`,
     medium3Square: `${theme.palette.gray_800}`,
     smallSquare: `${theme.palette.gray_100}`,
@@ -261,11 +261,7 @@ const SquareButton = ({
       {isLoading ? (
         <p>로딩중입니다</p>
       ) : (
-        <Text
-          typo={`${BUTTON_SHAPE_TYPE[variant].typo}`}
-          as="span"
-          color={textColor}
-        >
+        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
           <FlexBox gap={variant === 'smallSquare' ? 37 : 0}>
             <>{handleVariant(variant, xlargeVariant as XlargeSubVariant)}</>
           </FlexBox>
