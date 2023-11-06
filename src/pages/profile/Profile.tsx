@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { MouseEventHandler, RefObject, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
@@ -41,9 +41,9 @@ export type ProfilePropsType<T extends UserInfo> = {
 
 type MenuButtonType = {
   menuOpen: boolean
+  ref: RefObject<HTMLDivElement>
   type: string
-  ref: React.MutableRefObject<null>
-  close: () => void
+  close: MouseEventHandler<HTMLDivElement>
 }
 
 const Profile = ({
@@ -55,25 +55,21 @@ const Profile = ({
   const profileStateData = useRecoilValue(profileState)
   const friendStateData = useRecoilValue(friendState)
 
-  const profileMenuOutsideRef = useRef(null)
-  const friendMenuOutsideRef = useRef(null)
-  const cutOffMenuOutsideRef = useRef(null)
-  const blockMenuOutsideRef = useRef(null)
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
 
-  const handleClickProfileDimmer = useOutsideClick(profileMenuOutsideRef, () =>
-    setIsMenuOpen(false),
+  const [profileMenuOutsideRef, handleClickProfileDimmer] = useOutsideClick(
+    () => setIsMenuOpen(false),
   )
 
-  const handleClickFriendDimmer = useOutsideClick(friendMenuOutsideRef, () =>
+  const [friendMenuOutsideRef, handleClickFriendDimmer] = useOutsideClick(() =>
     setIsFriendMenuOpen(false),
   )
 
-  const handleClickCutOffDimmer = useOutsideClick(cutOffMenuOutsideRef, () =>
+  const [cutOffMenuOutsideRef, handleClickCutOffDimmer] = useOutsideClick(() =>
     setIsCutOffMenuOpen(false),
   )
 
-  const handleClickBlockDimmer = useOutsideClick(blockMenuOutsideRef, () =>
+  const [blockMenuOutsideRef, handleClickBlockDimmer] = useOutsideClick(() =>
     setIsBlockMenuOpen(false),
   )
 
@@ -198,6 +194,7 @@ const Profile = ({
             <Dimmer dimmerRef={menu.ref} onClick={menu.close} />
             <ProfileMenuButtons
               type={menu.type as ProfileButtonVariant}
+              friendId={friendId}
               friendUserId={getFriendUserId(menu)}
               friendImageUrl={getFriendImageUrl(menu)}
             />
