@@ -4,7 +4,8 @@ import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import AnswerDailyQuestion from './AnswerDailyQuestion'
 import CheckAllAnswers from './CheckAllAnswers'
 import CheckTodayDate from '@components/WeeklyQuestion/CheckTodayDate'
-import { AlarmIcon } from '@assets/icons/AlarmIcon'
+import Svg from '@components/atoms/Svg'
+import FriendList from '@assets/icons/FriendList'
 const WeeklyRouter = () => {
   return (
     <Routes>
@@ -22,9 +23,18 @@ const WeeklyRouter = () => {
           element={
             <AppBarTemplate
               variant="backPush"
-              rightChildren="none"
               label="투데이 질문"
               hasNav={false}
+              rightChildren="actionButton"
+              rightChildrenIcon={[
+                <Svg
+                  key="friendsMenuIcon"
+                  children={<FriendList />}
+                  onClick={() => {
+                    console.log('클릭')
+                  }}
+                />,
+              ]}
             >
               <AnswerDailyQuestion />
             </AppBarTemplate>

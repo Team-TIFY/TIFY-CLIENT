@@ -1,5 +1,4 @@
 import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
-import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { useEffect, useRef, useState } from 'react'
 import { RoundButton } from '@components/atoms/RoundButton'
@@ -9,6 +8,7 @@ import { useRecoilState } from 'recoil'
 import { questionState } from '@libs/store/question'
 import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
 import { useNavigate } from 'react-router-dom'
+import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
 import { LongInput } from '@components/atoms/Input/LongInput'
 
 const AnswerDailyQuestion = () => {
@@ -59,35 +59,37 @@ const AnswerDailyQuestion = () => {
 
   return (
     <AnswerDailyQuestionContainer ref={divRef}>
-      <DailyQuestionBox />
-      {toggled && (
-        <FlexBox direction="column" fullWidth={true}>
-          <div
-            style={{
-              background: 'rgb(255, 153, 207, 0.3)',
-              cursor: 'pointer',
-              height: '240px',
-              width: '100%',
-              color: 'white',
-              textAlign: 'center',
-            }}
-            onClick={() => setToggle(false)}
-          >
-            이미지 영역
-          </div>
-          <Spacing variant="default" height={64} />
-        </FlexBox>
-      )}
+      <div className="dailyQuestionBox">
+        <DailyQuestionBox />
+      </div>
+      <ToggleSection isToggle={toggled}>
+        <div
+          style={{
+            cursor: 'pointer',
+            height: `${toggled ? '0px' : '240px'}`,
+            width: '100%',
+            textAlign: 'center',
+          }}
+          className="QuestionImg"
+          onClick={() => setToggle(false)}
+        >
+          <QuestionImg category={question.category} isToggled={toggled} />
+        </div>
+        <Spacing variant="default" height={64} />
+      </ToggleSection>
+
       <InputSticker isBottom={toggled}>
-        <LongInput
-          className={toggled ? 'bottomInput' : undefined}
-          ref={inputRef}
-          onClick={handleToggleInput}
-          customEvent={handleButtonDisabled}
-          fullWidth={true}
-          variant={toggled ? 'withInst' : 'default'}
-          explanation="입력하면 친구들의 답변을 볼 수 있어요!"
-        />
+        <div className="InputSticker">
+          <LongInput
+            className={toggled ? 'bottomInput' : undefined}
+            ref={inputRef}
+            onClick={handleToggleInput}
+            customEvent={handleButtonDisabled}
+            fullWidth={true}
+            variant={toggled ? 'withInst' : 'default'}
+            explanation="입력하면 친구들의 답변을 볼 수 있어요!"
+          />
+        </div>
       </InputSticker>
       <BottomSticker>
         {!toggled && (
@@ -120,10 +122,33 @@ const AnswerDailyQuestionContainer = styled.div`
   position: relative;
   height: calc(var(--vh, 1vh) * 100 - 80px);
   background-color: ${theme.palette.background};
+
+  @keyframes fadeIn2 {
+    from {
+      opacity: 0;
+      transform: translateY(0px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(10px);
+    }
+  }
+  .InputSticker {
+    animation: 1.5s forwards fadeIn2 cubic-bezier(0.61, 1, 0.88, 1);
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
 `
 
 const InputSticker = styled.div<{ isBottom: boolean }>`
   width: 100%;
   position: ${({ isBottom }) => (isBottom ? 'absolute' : 'relative')};
   bottom: ${({ isBottom }) => (isBottom ? '64px' : undefined)};
+`
+const ToggleSection = styled.div<{ isToggle: boolean }>`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: ${({ isToggle }) => (isToggle ? '304px' : '0px')};
+  transition: all 0.5s cubic-bezier(0.61, 1, 0.88, 1);
 `

@@ -12,6 +12,8 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { useInfiniteQueries } from '@libs/hooks'
 import AnswerList from '@components/WeeklyQuestion/AnswerList'
 import { Spacing } from '@components/atoms/Spacing'
+import { Text } from '@components/atoms/Text'
+import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
 
 const CheckAllAnswers = () => {
   const [question, setQuestion] = useRecoilState(questionState)
@@ -20,8 +22,7 @@ const CheckAllAnswers = () => {
     ['answerList', question.questionId],
     ({ pageParam = 0 }) =>
       WeeklyApi.GET_ANSWERS({
-        //TODO: questionId 목업이 갖춰지면 진짜 id로 바꿔줄 것
-        questionId: 9,
+        questionId: question.questionId,
         pageParam: pageParam,
       }),
     AnswerList,
@@ -34,35 +35,46 @@ const CheckAllAnswers = () => {
   })
 
   useEffect(() => {
-    if (question.questionId) countQuestionMutation.mutate(9)
-    //TODO: Mock데이터가 온전히 채워진 경우 경우에 맞는 questionId로 변경할 것
-    //countQuestionMutation.mutate(question.questionId)
+    if (question.questionId) countQuestionMutation.mutate(question.questionId)
   }, [question.questionId])
   return (
     <WeekAnswersContainer>
       <DailyQuestionBox />
       <div
         style={{
-          background: 'rgb(255, 153, 207, 0.3)',
           cursor: 'pointer',
           width: '100%',
           minHeight: '242px',
-          margin: '60px 0px',
-          color: 'white',
+          margin: '30px 0px',
           textAlign: 'center',
         }}
       >
-        이미지 영역
+        <QuestionImg category={question.category} />
       </div>
-      <RoundButton variant="smallRound" width={240} fullWidth={false}>
-        <FlexBox align="center" gap={8}>
-          답변 안한 친구 찌르러 가기
-          <Poke />
-        </FlexBox>
-      </RoundButton>
       <Spacing variant="default" height={24} />
       <AnswerListContainer>
-        {isEmpty ? <>아무것도 없어요</> : <>{infiniteListElement}</>}
+        {isEmpty ? (
+          <>
+            <Text color="gray_200" typo="Caption_12R">
+              아직 답변을 작성한 친구가 없어요.
+            </Text>
+            <RoundButton
+              style={{ marginBottom: '32px' }}
+              variant="smallRound"
+              width={240}
+              fullWidth={false}
+            >
+              <FlexBox align="center" gap={8}>
+                친구 쿡 찌르기
+                <Poke />
+              </FlexBox>
+            </RoundButton>
+
+            <>{infiniteListElement}</>
+          </>
+        ) : (
+          <>{infiniteListElement}</>
+        )}
       </AnswerListContainer>
     </WeekAnswersContainer>
   )
@@ -84,4 +96,5 @@ const AnswerListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  margin-bottom: 10px;
 `
