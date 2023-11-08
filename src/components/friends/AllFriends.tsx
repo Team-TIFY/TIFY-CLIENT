@@ -46,7 +46,7 @@ const AllFriends = () => {
     <>
       <FlexBox
         justify="space-between"
-        style={{ padding: '16px', width: '360px' }}
+        style={{ padding: '16px', width: '100%' }}
       >
         <FlexBox>
           <Text
@@ -67,8 +67,26 @@ const AllFriends = () => {
           onClick={toggleListOption}
         />
       </FlexBox>
-      <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
-      <Spacing height={16} />
+      {friendsList.length ? (
+        <>
+          <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
+          <Spacing height={16} />
+        </>
+      ) : (
+        <>
+          <Spacing height={32} />
+          <Text
+            typo="Subhead_14"
+            color="gray_200"
+            children="아직 친구가 없어요."
+          />
+          <Text
+            typo="Subhead_14"
+            color="gray_200"
+            children="ID 공유를 통해 친구를 추가해보세요."
+          />
+        </>
+      )}
     </>
   )
 }
