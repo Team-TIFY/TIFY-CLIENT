@@ -8,12 +8,12 @@ import {
 export const FriendsApi = {
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
     const response = await axiosApi.get('/users/neighbors')
-    return response.data.data.content
+    return response.data.data
   },
 
   GET_BIRTHDAY_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
     const response = await axiosApi.get('/users/neighbors/birthday')
-    return response.data.data.content
+    return response.data.data
   },
 
   GET_FRIEND_REQUEST_LIST: async (): Promise<FriendRequestType[]> => {
@@ -42,6 +42,26 @@ export const FriendsApi = {
 
   REQUEST_FRIEND: async (toUserId: number) => {
     const response = await axiosApi.post(`/users/${toUserId}/neighbors`)
+    return response.data.data
+  },
+
+  BLOCK_FRIEND: async (userId: number) => {
+    const response = await axiosApi.post(`/users/${userId}/block`)
+    return response.data.data
+  },
+
+  CANCEL_BLOCK_FRIEND: async (userId: number) => {
+    const response = await axiosApi.delete(`/users/${userId}/block`)
+    return response.data.data
+  },
+
+  REPORT_FRIEND: async (userId: number) => {
+    const response = await axiosApi.post(`/users/report/${userId}`)
+    return response.data.data
+  },
+
+  CUT_OFF_FRIEND: async (userId: number) => {
+    const response = await axiosApi.delete(`/users/${userId}/neighbors/delete`)
     return response.data.data
   },
 }

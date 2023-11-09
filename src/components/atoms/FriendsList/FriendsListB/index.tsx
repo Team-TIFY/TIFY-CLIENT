@@ -85,11 +85,11 @@ const FriendsListB = ({
 export default FriendsListB
 
 const Wrapper = styled(FlexBox)`
-  width: 328px;
   height: 48px;
   justify-content: space-between;
   background-color: ${palette.background};
   cursor: pointer;
+  width: 100%;
 `
 
 const FriendsProfileWrapper = styled(FlexBox)`

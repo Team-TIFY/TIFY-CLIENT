@@ -1,4 +1,4 @@
-const Complete = () => {
+const CompleteIcon = () => {
   return (
     <svg
       width="20"
@@ -27,4 +27,4 @@ const Complete = () => {
   )
 }
 
-export default Complete
+export default CompleteIcon
