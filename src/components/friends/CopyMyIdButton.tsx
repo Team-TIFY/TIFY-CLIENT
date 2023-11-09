@@ -1,9 +1,9 @@
 import { useRecoilValue } from 'recoil'
-import CopyToClipboard from 'react-copy-to-clipboard'
 import SquareButton from '@components/atoms/SquareButton'
 import Svg from '@components/atoms/Svg'
 import CopyIcon from '@assets/icons/CopyIcon'
 import { authState } from '@libs/store/auth'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const CopyMyIdButton = () => {
   const auth = useRecoilValue(authState)
