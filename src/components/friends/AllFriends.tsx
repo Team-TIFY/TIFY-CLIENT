@@ -75,7 +75,7 @@ const AllFriends = () => {
           onClick={toggleListOption}
         />
       </FlexBox>
-      {0 ? (
+      {friendsList.length ? (
         <>
           <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
           <Spacing height={16} />
