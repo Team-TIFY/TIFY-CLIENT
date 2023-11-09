@@ -9,17 +9,19 @@ import useGetDate from '@libs/hooks/useGetDate'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import ThreeDots from '@assets/icons/ThreeDots'
+import { useRecoilValue } from 'recoil'
+import { authState } from '@libs/store/auth'
 
 export interface UserDetailProps {
   userData: UserInfo
-  isFriend: boolean
 }
 
-export const UserDetail = ({ userData, isFriend }: UserDetailProps) => {
+export const UserDetail = ({ userData }: UserDetailProps) => {
   const { formatDate } = useGetDate()
 
   const { setIsMenuOpen } = useSetProfileRecoilState()
   const { setIsMenuOpen: setIsFriendMenuOpen } = useSetFriendRecoilState()
+  const auth = useRecoilValue(authState)
 
   const getUserInfoText = () => {
     return formatDate(userData?.birth) + ' | ' + userData?.onBoardingStatus
@@ -46,7 +48,9 @@ export const UserDetail = ({ userData, isFriend }: UserDetailProps) => {
             children={<ThreeDots />}
             style={{ cursor: 'pointer' }}
             onClick={() =>
-              !isFriend ? setIsMenuOpen(true) : setIsFriendMenuOpen(true)
+              userData.userId === auth.userProfile.userId
+                ? setIsMenuOpen(true)
+                : setIsFriendMenuOpen(true)
             }
           />
         </FlexBox>

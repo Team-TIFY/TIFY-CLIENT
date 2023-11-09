@@ -1,15 +1,18 @@
 import { authState } from '@libs/store/auth'
 import { onboardingState } from '@libs/store/onboard'
+import { snackBarState } from '@libs/store/snackBar'
 import { useMutation } from '@tanstack/react-query'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import useGetDate from './useGetDate'
 
 const useProfileMutate = () => {
   const [auth, setAuth] = useRecoilState(authState)
   const info = useRecoilValue(onboardingState)
+  const setSnackBarStateData = useSetRecoilState(snackBarState)
+
   const { getFormattedDateString } = useGetDate()
   const navigate = useNavigate()
 
@@ -34,11 +37,19 @@ const useProfileMutate = () => {
           },
         }),
           navigate('/profile')
+        setSnackBarStateData((prevState) => ({
+          ...prevState,
+          isSnackBarOn: true,
+          message: '수정이 완료되었어요.',
+        }))
       },
     },
   )
 
-  return { updateFriendProfileViewTimeMutate, updateUserInfoMutate }
+  return {
+    updateFriendProfileViewTimeMutate,
+    updateUserInfoMutate,
+  }
 }
 
 export default useProfileMutate
