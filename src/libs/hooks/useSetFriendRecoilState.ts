@@ -46,6 +46,13 @@ export const useSetFriendRecoilState = () => {
     }))
   }
 
+  const setIsCancelBlockMenuOpen = (isCancelBlockMenuOpenData: boolean) => {
+    setFriendStateData((prevState) => ({
+      ...prevState,
+      isCancelBlockMenuOpen: isCancelBlockMenuOpenData,
+    }))
+  }
+
   return {
     setIsToggle,
     setShowPartialRequest,
@@ -53,5 +60,6 @@ export const useSetFriendRecoilState = () => {
     setIsMenuOpen,
     setIsCutOffMenuOpen,
     setIsBlockMenuOpen,
+    setIsCancelBlockMenuOpen,
   }
 }

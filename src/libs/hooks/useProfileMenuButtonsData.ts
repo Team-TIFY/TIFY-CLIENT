@@ -2,6 +2,7 @@ import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
+import useFriendMutate from './useFriendMutate'
 import useProfileMutate from './useProfileMutate'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 
@@ -16,10 +17,15 @@ const useProfileMenuButtonsData = (
     setIsMenuOpen: setIsFriendMenuOpen,
     setIsCutOffMenuOpen,
     setIsBlockMenuOpen,
+    setIsCancelBlockMenuOpen,
   } = useSetFriendRecoilState()
-  const { reportFriendMutate, blockFriendMutate, cutOffFriendMutate } =
-    useProfileMutate()
 
+  const {
+    reportFriendMutate,
+    blockFriendMutate,
+    cutOffFriendMutate,
+    cancelBlockFriendMutate,
+  } = useFriendMutate()
   const navigate = useNavigate()
 
   if (type === 'myProfile') {
@@ -125,7 +131,7 @@ const useProfileMenuButtonsData = (
       onClickFirstButton,
       onClickCancelButton,
     }
-  } else {
+  } else if (type === 'block') {
     const firstButtonText: ButtonTextType = {
       text: '차단하기',
       color: 'red_500',
@@ -136,6 +142,24 @@ const useProfileMenuButtonsData = (
     }
     const onClickCancelButton = () => {
       setIsBlockMenuOpen(false)
+    }
+
+    return {
+      firstButtonText,
+      onClickFirstButton,
+      onClickCancelButton,
+    }
+  } else {
+    const firstButtonText: ButtonTextType = {
+      text: '차단 해제하기',
+      color: 'red_500',
+    }
+
+    const onClickFirstButton = () => {
+      friendId && cancelBlockFriendMutate(friendId)
+    }
+    const onClickCancelButton = () => {
+      setIsCancelBlockMenuOpen(false)
     }
 
     return {

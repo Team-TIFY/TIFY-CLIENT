@@ -26,6 +26,7 @@ import MenuIcon from '@assets/icons/MenuIcon'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
+
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
   const [step, setStepAnswer] = useRecoilState(answerState)
@@ -47,7 +48,10 @@ const ProfileRouter = () => {
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
     {
-      enabled: !isNaN(friendId) && auth.userProfile.id !== friendId,
+      enabled:
+        !isNaN(friendId) &&
+        friendId !== auth.userProfile.id &&
+        auth.userProfile.id !== friendId,
     },
   )
 

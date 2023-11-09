@@ -9,6 +9,7 @@ export interface FlexBoxProps extends HTMLAttributes<HTMLDivElement> {
   direction?: CSSProperties['flexDirection']
   gap?: CSSProperties['gap']
   children: ReactNode
+  onClick?: () => void
   fullWidth?: boolean
 }
 
@@ -27,10 +28,12 @@ export const FlexBox = ({
   gap = 0,
   children,
   fullWidth,
+  onClick,
   ...props
 }: FlexBoxProps) => {
   return (
     <div
+      onClick={onClick}
       css={css`
         display: flex;
         align-items: ${align};

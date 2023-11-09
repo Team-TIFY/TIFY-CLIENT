@@ -1,4 +1,4 @@
-const Sting = () => {
+const StingIcon = () => {
   return (
     <svg
       width="20"
@@ -34,4 +34,4 @@ const Sting = () => {
   )
 }
 
-export default Sting
+export default StingIcon

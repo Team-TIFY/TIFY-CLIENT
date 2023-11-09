@@ -73,10 +73,14 @@ const Profile = ({
     setIsBlockMenuOpen(false),
   )
 
+  const [cancelBlockMenuOutsideRef, handleClickCancelBlockDimmer] =
+    useOutsideClick(() => setIsCancelBlockMenuOpen(false))
+
   const isProfileMenuOpen = profileStateData?.isMenuOpen ?? false
   const isFriendMenuOpen = friendStateData?.isMenuOpen ?? false
   const isCutOffMenuOpen = friendStateData?.isCutOffMenuOpen ?? false
   const isBlockMenuOpen = friendStateData?.isBlockMenuOpen ?? false
+  const isCancelBlockMenuOpen = friendStateData?.isCancelBlockMenuOpen ?? false
   const menus = [
     {
       menuOpen: isProfileMenuOpen,
@@ -102,6 +106,12 @@ const Profile = ({
       ref: blockMenuOutsideRef,
       close: handleClickBlockDimmer,
     },
+    {
+      menuOpen: isCancelBlockMenuOpen,
+      type: 'cancelBlock',
+      ref: cancelBlockMenuOutsideRef,
+      close: handleClickCancelBlockDimmer,
+    },
   ]
 
   const { setIsEdit, setIsMenuOpen } = useSetProfileRecoilState()
@@ -109,6 +119,7 @@ const Profile = ({
     setIsMenuOpen: setIsFriendMenuOpen,
     setIsCutOffMenuOpen,
     setIsBlockMenuOpen,
+    setIsCancelBlockMenuOpen,
   } = useSetFriendRecoilState()
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
@@ -175,13 +186,17 @@ const Profile = ({
   )
 
   const getFriendUserId = (menu: MenuButtonType) => {
-    return menu.type === 'cutOffFriend' || menu.type === 'block'
+    return menu.type === 'cutOffFriend' ||
+      menu.type === 'block' ||
+      menu.type === 'cancelBlock'
       ? friendData?.userId
       : undefined
   }
 
   const getFriendImageUrl = (menu: MenuButtonType) => {
-    return menu.type === 'cutOffFriend' || menu.type === 'block'
+    return menu.type === 'cutOffFriend' ||
+      menu.type === 'block' ||
+      menu.type === 'cancelBlock'
       ? friendData?.thumbnail
       : undefined
   }
@@ -211,7 +226,6 @@ const Profile = ({
         <ProfileWrapper>
           <ProfileHeader
             userData={friendData ? friendData : userData}
-            isFriend={friendId !== undefined}
             addFriend={addFriend}
           />
           {!addFriend && (
@@ -229,7 +243,7 @@ const Profile = ({
                 selectedTags={selectedTags}
                 filteredUserTagData={filteredUserTagData}
                 userTagData={userTagData}
-                isFriend={friendId !== undefined}
+                isFriend={friendData?.friend ?? false}
               />
             </>
           )}

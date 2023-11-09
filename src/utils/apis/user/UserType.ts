@@ -7,6 +7,10 @@ export interface UserInfo {
   job: string
   gender: string
   onBoardingStatus: string
+  blocked: boolean
+  friend: boolean
+  receivedApplication: object
+  sentApplication: object
 }
 
 export interface UserInfoToken {
