@@ -1,9 +1,9 @@
+import { MouseEventHandler, RefObject } from 'react'
 import { theme } from '@styles/theme'
-import { RefObject } from 'react'
 
 export type DimmerPropsType = {
   dimmerRef: RefObject<HTMLDivElement>
-  onClick: () => void
+  onClick: MouseEventHandler<HTMLDivElement>
 }
 
 const Dimmer = ({ dimmerRef, onClick }: DimmerPropsType) => {

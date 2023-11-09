@@ -11,6 +11,13 @@ const useSetProfileRecoilState = () => {
     }))
   }
 
+  const setIsEditImageMenuOpen = (isEditImageMenuOpenData: boolean) => {
+    setProfileStateData((prevState) => ({
+      ...prevState,
+      isEditImageMenuOpen: isEditImageMenuOpenData,
+    }))
+  }
+
   const setIsEdit = (isEditData: boolean) => {
     setProfileStateData((prevState) => ({ ...prevState, isEdit: isEditData }))
   }
@@ -18,11 +25,11 @@ const useSetProfileRecoilState = () => {
   const setButtonText = (buttonTextData: string) => {
     setProfileStateData((prevState) => ({
       ...prevState,
-      buttonText: '수정 완료',
+      buttonText: buttonTextData,
     }))
   }
 
-  return { setIsMenuOpen, setIsEdit, setButtonText }
+  return { setIsMenuOpen, setIsEditImageMenuOpen, setIsEdit, setButtonText }
 }
 
 export default useSetProfileRecoilState

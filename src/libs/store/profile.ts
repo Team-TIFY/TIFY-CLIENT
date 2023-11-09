@@ -3,6 +3,7 @@ import { atom } from 'recoil'
 export type ProfileState = {
   value: boolean
   isMenuOpen: boolean
+  isEditImageMenuOpen: boolean
   isEdit: boolean
   buttonText: string
 }
@@ -10,6 +11,7 @@ export type ProfileState = {
 const initialState: ProfileState = {
   value: true,
   isMenuOpen: false,
+  isEditImageMenuOpen: false,
   isEdit: false,
   buttonText: '수정 완료',
 }
