@@ -8,6 +8,7 @@ import TifyLogo from '@assets/icons/TifyLogo'
 import LeftArrow from '@assets/icons/LeftArrow'
 import Alert from '@assets/icons/Alert'
 import ThreeDots from '@assets/icons/ThreeDots'
+import { isArray } from '@utils/isArray'
 
 export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
 
@@ -33,6 +34,7 @@ export type AppBarProps<T extends RightChildrenVariant> = {
   beforeUrl?: string
   onClickOption1?: () => void
   onClickOption2?: () => void
+  customHandler?: () => void
   stepNum?: [number, number]
   rightChildren: T
   rightChildrenIcon?: T extends 'alarm' | 'dots' | 'none'
@@ -49,21 +51,20 @@ export const AppBar = ({
   rightChildrenIcon,
   onClickOption1,
   onClickOption2,
+  customHandler,
 }: AppBarProps<RightChildrenVariant>) => {
   const navigate = useNavigate()
 
   const onClickBackBar = () => {
-    beforeUrl ? navigate(beforeUrl) : navigate(-1)
+    if (customHandler) {
+      customHandler()
+    } else {
+      beforeUrl ? navigate(beforeUrl) : navigate(-1)
+    }
   }
 
   const onClickLogo = () => {
     navigate('/')
-  }
-
-  const isArray = (
-    arr: React.ReactNode[] | undefined,
-  ): arr is React.ReactNode[] => {
-    return Array.isArray(arr)
   }
 
   const handleRightChildren = (rightElement: RightChildrenVariant) => {

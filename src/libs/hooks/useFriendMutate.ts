@@ -18,7 +18,18 @@ const useFriendMutate = () => {
     },
   )
 
-  return { acceptFriendRequestMutate, rejectFriendRequestMutate }
+  const { mutate: requestFriendMutate } = useMutation(
+    FriendsApi.REQUEST_FRIEND,
+    {
+      onSuccess: () => queryClient.invalidateQueries(['friendRequestList']),
+    },
+  )
+
+  return {
+    acceptFriendRequestMutate,
+    rejectFriendRequestMutate,
+    requestFriendMutate,
+  }
 }
 
 export default useFriendMutate

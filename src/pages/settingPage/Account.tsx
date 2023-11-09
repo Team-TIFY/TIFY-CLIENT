@@ -7,10 +7,8 @@ import { theme } from '@styles/theme'
 import { useRef, useState } from 'react'
 
 const Account = () => {
-  const outsideRef = useRef(null)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-
-  const handleClickDimmer = useOutsideClick(outsideRef, () =>
+  const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsMenuOpen(false),
   )
 

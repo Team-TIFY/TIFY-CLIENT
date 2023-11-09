@@ -1,9 +1,9 @@
-/* eslint-disable prettier/prettier */
 import { ButtonHTMLAttributes } from 'react'
 import { KeyOfTypo, theme } from '@styles/theme'
 import styled from '@emotion/styled'
 import { Text } from '../Text'
 import Loading from '@components/atoms/Loading'
+import { FlexBox } from '@components/layouts/FlexBox'
 
 type ButtonVariant = 'mediumRound' | 'smallRound' | 'circle' | 'kakao'
 
@@ -123,10 +123,10 @@ export const RoundButton = ({
       {...props}
     >
       {isLoading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
-          {children}
+          <FlexBox>{children}</FlexBox>
         </Text>
       )}
     </StyledButton>
@@ -147,8 +147,8 @@ const StyledButton = styled.button<{
     fullWidth
       ? '100%'
       : width
-        ? `${width}px`
-        : `${BUTTON_SHAPE_TYPE[variant].width}px`};
+      ? `${width}px`
+      : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
@@ -162,7 +162,7 @@ const StyledButton = styled.button<{
 
   &:disabled {
     background-color: ${({ variant }) =>
-    `${BUTTON_COLOR_TYPE.disabled[variant]}`};
+      `${BUTTON_COLOR_TYPE.disabled[variant]}`};
     color: ${({ variant }) => `${TEXT_COLOR_TYPE.disabled[variant]}`};
   }
 `

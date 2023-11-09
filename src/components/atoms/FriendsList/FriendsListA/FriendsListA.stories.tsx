@@ -25,16 +25,16 @@ const meta: Meta<typeof FriendsListA> = {
         options: ['visible', 'invisible'],
       },
     },
-    name: {
-      name: 'name',
+    userName: {
+      name: 'userName',
       description: '친구 이름입니다.',
       control: {
         type: 'text',
       },
     },
-    nickName: {
-      name: 'nickName',
-      description: '친구 닉네임입니다.',
+    userId: {
+      name: 'userId',
+      description: '친구 아이디입니다.',
       control: {
         type: 'text',
       },
@@ -57,8 +57,8 @@ type Story = StoryObj<typeof meta>
  */
 export const VisibleFriendsList_A: Story = {
   args: {
-    name: '김수빈',
-    nickName: 'beenie',
+    userName: '김수빈',
+    userId: 'beenie',
   },
 }
 
@@ -68,7 +68,7 @@ export const VisibleFriendsList_A: Story = {
 export const InvisibleFriendsList_A: Story = {
   args: {
     variant: 'invisible',
-    name: '김수빈',
-    nickName: 'beenie',
+    userName: '김수빈',
+    userId: 'beenie',
   },
 }

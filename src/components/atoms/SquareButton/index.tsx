@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react'
 import styled from '@emotion/styled'
-import { theme, KeyOfTypo } from '@styles/theme'
+import { theme, KeyOfTypo, TextType } from '@styles/theme'
 import { Text } from '../Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import Svg from '../Svg'
@@ -188,6 +188,7 @@ interface ButtonProps<
 > extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant
   subVariant: T
+  textColor?: TextType['color']
   xlargeChildren?: K extends 'xlargeSquare' ? React.ReactNode : undefined
   fullWidth?: boolean
   isLoading?: boolean
@@ -199,6 +200,7 @@ interface ButtonProps<
 const SquareButton = ({
   children,
   xlargeChildren,
+  textColor = 'gray_100',
   variant,
   subVariant = 'default',
   fullWidth,
@@ -259,7 +261,11 @@ const SquareButton = ({
       {isLoading ? (
         <p>로딩중입니다</p>
       ) : (
-        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
+        <Text
+          typo={`${BUTTON_SHAPE_TYPE[variant].typo}`}
+          as="span"
+          color={textColor}
+        >
           <FlexBox gap={variant === 'smallSquare' ? 37 : 0}>
             <>{handleVariant(variant, xlargeVariant as XlargeSubVariant)}</>
           </FlexBox>
@@ -285,8 +291,9 @@ export const StyledButton = styled.button<{
     variant === 'mediumSquare'
       ? `1px solid ${theme.palette.gray_700}`
       : 'none'};
-  border-bottom: ${({ xlargeVariant, variant }) =>
-    xlargeVariant === 'top' && `1px solid ${theme.palette.gray_900}`};
+  border-bottom: ${({ xlargeVariant }) =>
+    (xlargeVariant === 'top' || xlargeVariant === 'middle') &&
+    `1px solid ${theme.palette.gray_900}`};
   width: ${({ variant, fullWidth }) =>
     fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant, xlargeVariant }) =>

@@ -19,9 +19,9 @@ const RequireAuth = () => {
   const accessToken = getCookie('accessToken')
   const fetchUserData = async () => {
     const data = await UserApi.GET_USER_INFO_TOKEN()
-    // if (data.onBoardingStatus.length > 0) {
-    //   setIsOnboard(true)
-    // }
+    if (data.onBoardingStatus) {
+      setIsOnboard(true)
+    }
     setAuth({
       isAuthenticated: true,
       callbackUrl: '/',
@@ -47,7 +47,7 @@ const RequireAuth = () => {
       try {
         fetchUserData()
         // if (isOnboard === false) {
-        //   //TODO: 추후 toast UI로 변경할 것
+        //TODO: 추후 toast UI로 변경할 것
         //   alert('온보딩이 필요해요')
         //   setStatus('needOnboarding')
         // } else setStatus('succeed')

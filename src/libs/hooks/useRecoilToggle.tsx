@@ -3,7 +3,7 @@ import { RecoilState, useRecoilState } from 'recoil'
 
 type UseToggleReturnType<T> = readonly [T, () => void]
 
-type HasValueProperty<T> = T extends { value: unknown } ? T : never
+type HasValueProperty<T> = T extends { value: boolean } ? T : never
 
 const useRecoilToggle = <T,>(
   toggleState: RecoilState<HasValueProperty<T>>,

@@ -34,7 +34,6 @@ function PresentRecommend() {
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
   const [selectedPage, setSelectedPage] = useState<number>(8)
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
-  const outsideRef = useRef(null)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const [products, setProducts] = useState<DataType[]>([])
 
@@ -73,10 +72,9 @@ function PresentRecommend() {
 
   console.log(products)
 
-  const handleClickDimmer = useOutsideClick(outsideRef, () =>
+  const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsMenuOpen(false),
   )
-
   return (
     <>
       <FilterWrapper>

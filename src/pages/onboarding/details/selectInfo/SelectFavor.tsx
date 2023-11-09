@@ -51,20 +51,25 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
-      // OnboardingApi.PUT_ONBOARD_STATUS({
-      //   userId: auth.userProfile.id,
-      //   data: rest,
-      // })
+      console.log(auth.userProfile)
+      OnboardingApi.PUT_ONBOARD_STATUS({
+        userId: 19,
+        //userId: auth.userProfile.id,
+        data: rest,
+      })
       const favorWithPriority = favorPriority.filter((data) =>
         info.favor.includes(data.taste),
       )
       favorWithPriority.forEach((data) => {
         if (data.priority === 1) {
+          localStorage.setItem('isOnboardingFavor', 'true')
           navigate(`/profile/newTaste/${data.taste}`)
         } else if (data.priority === 2) {
+          localStorage.setItem('isOnboardingFavor', 'true')
           navigate(`/profile/newTaste/${data.taste}`)
           return
         } else {
+          localStorage.setItem('isOnboardingFavor', 'true')
           navigate(`/profile/newTaste/${data.taste}`)
         }
       })

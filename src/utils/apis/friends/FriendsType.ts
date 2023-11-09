@@ -27,3 +27,11 @@ export type FriendsType = {
   viewedAt: string
   view: boolean
 }
+
+export type SearchedFriendType = {
+  id: number
+  userId: string
+  userName: string
+  imgUrl: string
+  mutualFriends: number
+}

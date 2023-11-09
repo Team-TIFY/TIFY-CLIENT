@@ -12,10 +12,8 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   isBtnColorState,
-  onboardingPageState,
   onboardingState,
 } from '@libs/store/onboard'
-import { authState } from '@libs/store/auth'
 import { profileState } from '@libs/store/profile'
 
 type InputVariant = 'default' | 'idInput'
@@ -64,11 +62,9 @@ export const ShortInput = ({
   ...props
 }: InputProps) => {
   const ref = useRef<HTMLTextAreaElement>(null)
-  const [focus, setFocus] = useState(false)
+  const [_, setFocus] = useState(false)
   const [info, setInfo] = useRecoilState(onboardingState)
-  const [infoPage, setInfoPage] = useRecoilState(onboardingPageState)
-  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
-  const [auth, setAuth] = useRecoilState(authState)
+  const setBtnColor = useSetRecoilState(isBtnColorState)
   const setProfileStateData = useSetRecoilState(profileState)
 
   useEffect(() => {
@@ -80,8 +76,10 @@ export const ShortInput = ({
   useEffect(() => {
     if (content === 'username' && info.username) {
       setInfo({ ...info, username: info.username })
+      ref.current!.value = info.username
     } else if (content === 'id' && info.id) {
       setInfo({ ...info, id: info.id })
+      ref.current!.value = info.id
     }
   }, [info.username, info.id])
 
