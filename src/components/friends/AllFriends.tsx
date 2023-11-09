@@ -14,8 +14,12 @@ import { authState } from '@libs/store/auth'
 import { ProfileState, profileState } from '@libs/store/profile'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import useRecoilToggle from '@libs/hooks/useRecoilToggle'
+import { RoundButton } from '@components/atoms/RoundButton'
+import ShareIcon from '@assets/icons/ShareIcon'
+import { useNavigate } from 'react-router-dom'
 
 const AllFriends = () => {
+  const navigate = useNavigate()
   const [isCubeList, toggleListOption] =
     useRecoilToggle<ProfileState>(profileState)
 
@@ -40,6 +44,10 @@ const AllFriends = () => {
     ) : (
       <FriendsListBItem friendsList={friendsList} />
     )
+  }
+
+  const handleClickNavigateButton = () => {
+    navigate('/friends/addFriend')
   }
 
   return (
@@ -67,7 +75,7 @@ const AllFriends = () => {
           onClick={toggleListOption}
         />
       </FlexBox>
-      {friendsList.length ? (
+      {0 ? (
         <>
           <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
           <Spacing height={16} />
@@ -84,6 +92,13 @@ const AllFriends = () => {
             typo="Subhead_14"
             color="gray_200"
             children="ID 공유를 통해 친구를 추가해보세요."
+          />
+          <RoundButton
+            variant="xlargeRound"
+            children="ID 공유하고 친구 추가하기"
+            xlargeRightChildren={<Svg children={<ShareIcon />} />}
+            onClick={handleClickNavigateButton}
+            style={{ position: 'fixed', bottom: '113px' }}
           />
         </>
       )}
