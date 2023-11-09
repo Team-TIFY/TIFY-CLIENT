@@ -122,6 +122,9 @@ interface ButtonProps<T extends ButtonVariant>
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant
   xlargeDescription?: T extends 'xlargeRound' ? string | undefined : undefined
+  xlargeRightChildren?: T extends 'xlargeRound'
+    ? React.ReactNode | undefined
+    : undefined
   fullWidth?: boolean
   width?: number
   isLoading?: boolean
@@ -134,6 +137,7 @@ export const RoundButton = ({
   children,
   variant = 'mediumRound',
   xlargeDescription,
+  xlargeRightChildren,
   fullWidth = false,
   width,
   isLoading,
@@ -164,7 +168,11 @@ export const RoundButton = ({
                 />
               )}
             </FlexBox>
-            <Svg children={<RightChevron />} />
+            <Svg
+              children={
+                xlargeRightChildren ? xlargeRightChildren : <RightChevron />
+              }
+            />
           </FlexBox>
         </>
       )
