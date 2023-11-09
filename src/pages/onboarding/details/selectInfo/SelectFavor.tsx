@@ -30,7 +30,6 @@ export function SelectFavor() {
     } else {
       setBtnColor(false)
     }
-    console.log(info)
   })
 
   const updateMyFavor = (favorType: string) => {

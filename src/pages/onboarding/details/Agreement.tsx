@@ -16,13 +16,7 @@ export function Agreement() {
 
   const checkAll = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.checked
-      ? setCheckList([
-          'age',
-          'service',
-          'handlePrivacy',
-          'collectPrivacy',
-          'marketing',
-        ])
+      ? setCheckList(['age', 'service', 'handlePrivacy', 'community'])
       : setCheckList([])
   }
 
@@ -37,7 +31,7 @@ export function Agreement() {
       checkList.includes('age') &&
       checkList.includes('service') &&
       checkList.includes('handlePrivacy') &&
-      checkList.includes('collectPrivacy')
+      checkList.includes('community')
     ) {
       setBtnColor(true)
     } else {
@@ -69,7 +63,7 @@ export function Agreement() {
           children="약관 전체 동의"
           name="all"
           onChange={checkAll}
-          checked={checkList.length === 5 ? true : false}
+          checked={checkList.length === 4 ? true : false}
           border={true}
           padding={16}
         />
@@ -91,7 +85,7 @@ export function Agreement() {
           onChange={check}
           checked={checkList.includes('service') ? true : false}
         />
-        <Vector linkUrl="9e75acf1487c481a9fe818754198b73a" />
+        <Vector linkUrl="db764680157346e1a5f8f757b94b543a" />
       </CheckDiv>
       <CheckDiv>
         <Checkbox
@@ -100,23 +94,14 @@ export function Agreement() {
           onChange={check}
           checked={checkList.includes('handlePrivacy') ? true : false}
         />
-        <Vector linkUrl="9e75acf1487c481a9fe818754198b73a" />
+        <Vector linkUrl="46ff4d5c23964bd08cba01abda6f01f9" />
       </CheckDiv>
       <CheckDiv>
         <Checkbox
-          children="개인정보 수집 및 이용 동의서"
-          name="collectPrivacy"
+          children="커뮤니티 가이드라인"
+          name="community"
           onChange={check}
-          checked={checkList.includes('collectPrivacy') ? true : false}
-        />
-        <Vector linkUrl="9e75acf1487c481a9fe818754198b73a" />
-      </CheckDiv>
-      <CheckDiv>
-        <Checkbox
-          children="마케팅 수신 동의(선택)"
-          name="marketing"
-          onChange={check}
-          checked={checkList.includes('marketing') ? true : false}
+          checked={checkList.includes('community') ? true : false}
         />
         <Vector linkUrl="9e75acf1487c481a9fe818754198b73a" />
       </CheckDiv>
