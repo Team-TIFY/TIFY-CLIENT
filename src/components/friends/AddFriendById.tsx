@@ -28,6 +28,8 @@ const AddFriendById = () => {
 
   const handleClickSearchInput = () => setIsToggle(true)
 
+  const handleBlurSearchInput = () => setIsToggle(false)
+
   const handleRemoveSearchInput = () => {
     setSearchFriendId('')
   }
@@ -47,6 +49,7 @@ const AddFriendById = () => {
         placeholder="추가할 친구 TIFY ID 검색"
         onChange={(e) => handleChangeSearchInput(e)}
         onClick={handleClickSearchInput}
+        onBlur={handleBlurSearchInput}
         customRemoveHandler={handleRemoveSearchInput}
       />
       <SearchedFriendList
