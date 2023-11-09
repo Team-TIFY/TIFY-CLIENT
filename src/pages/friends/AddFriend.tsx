@@ -11,10 +11,6 @@ const AddFriend = () => {
   const friendStateData = useRecoilValue(friendState)
   const { setIsToggle } = useSetFriendRecoilState()
 
-  const getSpacingHeight = () => {
-    return friendStateData.showPartialRequest ? 24 : 64
-  }
-
   useEffect(() => {
     setIsToggle(false)
   }, [])
@@ -25,7 +21,6 @@ const AddFriend = () => {
         <>
           <Spacing height={32} />
           <FriendRequest />
-          <Spacing height={getSpacingHeight()} />
           <ShareMyId />
         </>
       )
