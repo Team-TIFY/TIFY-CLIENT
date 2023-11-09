@@ -291,8 +291,9 @@ export const StyledButton = styled.button<{
     variant === 'mediumSquare'
       ? `1px solid ${theme.palette.gray_700}`
       : 'none'};
-  border-bottom: ${({ xlargeVariant, variant }) =>
-    xlargeVariant === 'top' && `1px solid ${theme.palette.gray_900}`};
+  border-bottom: ${({ xlargeVariant }) =>
+    (xlargeVariant === 'top' || xlargeVariant === 'middle') &&
+    `1px solid ${theme.palette.gray_900}`};
   width: ${({ variant, fullWidth }) =>
     fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant, xlargeVariant }) =>
