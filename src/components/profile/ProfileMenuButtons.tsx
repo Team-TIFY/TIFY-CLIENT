@@ -9,6 +9,7 @@ export type ProfileButtonVariant =
   | 'cutOffFriend'
   | 'report'
   | 'block'
+  | 'cancelBlock'
   | 'editProfile'
 
 const ProfileMenuButtons = <T extends ProfileButtonVariant>({
@@ -18,8 +19,12 @@ const ProfileMenuButtons = <T extends ProfileButtonVariant>({
   friendId,
 }: {
   type: T
-  friendUserId?: T extends 'cutOffFriend' | 'block' ? string : undefined
-  friendImageUrl?: T extends 'cutOffFriend' | 'block' ? string : undefined
+  friendUserId?: T extends 'cutOffFriend' | 'block' | 'cancelBlock'
+    ? string
+    : undefined
+  friendImageUrl?: T extends 'cutOffFriend' | 'block' | 'cancelBlock'
+    ? string
+    : undefined
   friendId?: number
 }) => {
   const buttonData = useProfileMenuButtonsData(type, friendId)
@@ -100,13 +105,15 @@ const ProfileMenuButtons = <T extends ProfileButtonVariant>({
             xlargeVariant="withProfile"
             imageUrl={friendImageUrl}
             children={
-              type === 'block'
+              type === 'block' || type === 'cancelBlock'
                 ? `@${friendUserId} 님을`
                 : `원하는 경우 @${friendUserId} 님께`
             }
             xlargeChildren={
               type === 'block'
                 ? `정말 차단하시겠습니까?`
+                : type === 'cancelBlock'
+                ? '차단 해제하시겠습니까?'
                 : '친구를 다시 요청할 수 있습니다.'
             }
             textColor="gray_200"

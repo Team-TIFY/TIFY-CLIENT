@@ -292,7 +292,9 @@ export const StyledButton = styled.button<{
       ? `1px solid ${theme.palette.gray_700}`
       : 'none'};
   border-bottom: ${({ xlargeVariant }) =>
-    (xlargeVariant === 'top' || xlargeVariant === 'middle') &&
+    (xlargeVariant === 'top' ||
+      xlargeVariant === 'middle' ||
+      xlargeVariant === 'withProfile') &&
     `1px solid ${theme.palette.gray_900}`};
   width: ${({ variant, fullWidth }) =>
     fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};

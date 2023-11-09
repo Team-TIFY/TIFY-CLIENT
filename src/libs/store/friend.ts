@@ -7,6 +7,7 @@ export type FriendState = {
   isMenuOpen: boolean
   isCutOffMenuOpen: boolean
   isBlockMenuOpen: boolean
+  isCancelBlockMenuOpen: boolean
 }
 
 const initialState: FriendState = {
@@ -16,6 +17,7 @@ const initialState: FriendState = {
   isMenuOpen: false,
   isCutOffMenuOpen: false,
   isBlockMenuOpen: false,
+  isCancelBlockMenuOpen: false,
 }
 
 export const friendState = atom<FriendState>({

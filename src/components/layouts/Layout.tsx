@@ -1,11 +1,22 @@
 import styled from '@emotion/styled'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { theme } from '@styles/theme'
+import { useRecoilValue } from 'recoil'
+import { snackBarState } from '@libs/store/snackBar'
+import SnackBar from '@components/atoms/SnackBar'
 
 const Layout = () => {
+  const snackBarStateData = useRecoilValue(snackBarState)
+
   return (
     <MainContainer>
       <Outlet />
+      {snackBarStateData.isSnackBarOn && (
+        <SnackBar
+          variant={snackBarStateData.variant}
+          message={snackBarStateData.message}
+        />
+      )}
     </MainContainer>
   )
 }
