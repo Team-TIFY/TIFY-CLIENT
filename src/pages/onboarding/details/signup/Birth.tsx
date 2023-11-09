@@ -40,7 +40,6 @@ export function Birth({
         ...info,
         birth: formattedDate,
       })
-      console.log(formattedDate)
     }
 
     setBtnColor(true)

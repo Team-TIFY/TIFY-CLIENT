@@ -81,6 +81,12 @@ export const typo = {
     line-height: 12px;
     font-weight: 600;
   `,
+  Mont_Caption_12B: css`
+    font-family: 'Montserrat';
+    font-size: ${calcRem(12)};
+    line-height: 12px;
+    font-weight: 700;
+  `,
   Mont_Caption_12M: css`
     font-family: 'Montserrat';
     font-size: ${calcRem(12)};

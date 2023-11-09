@@ -1,4 +1,5 @@
 import { axiosApi } from '../axios'
+import { SelectedTag } from '../user/UserType'
 import {
   FriendRequestType,
   FriendsType,
@@ -45,6 +46,13 @@ export const FriendsApi = {
     return response.data.data
   },
 
+  GET_PRESENT_RECOMMEND: async (smallCategory: string, page: number) => {
+    const response = await axiosApi.get(
+      `/products/products/small-category?${smallCategory}&page=${page}&size=10`,
+    )
+    return response.data
+  },
+   
   BLOCK_FRIEND: async (userId: number) => {
     const response = await axiosApi.post(`/users/${userId}/block`)
     return response.data.data
