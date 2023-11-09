@@ -1,6 +1,7 @@
 import AddUserIcon from '@assets/icons/AddUserIcon'
 import SearchIcon from '@assets/icons/FriendSearchIcon'
 import Svg from '@components/atoms/Svg'
+import PresentRecommend from '@components/friends/PresentRecommend'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import AddFriend from './AddFriend'
@@ -64,6 +65,19 @@ const FriendsRouter = () => {
             rightChildren="none"
           >
             <AddFriend />
+          </AppBarTemplate>
+        }
+      />
+      <Route
+        path="/presentRecommend"
+        element={
+          <AppBarTemplate
+            label="선물하기"
+            variant="backPushWithTitle"
+            hasNav={false}
+            rightChildren="none"
+          >
+            <PresentRecommend />
           </AppBarTemplate>
         }
       />

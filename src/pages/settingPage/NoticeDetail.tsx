@@ -29,7 +29,6 @@ const NoticeDetail = () => {
   ]
 
   const params = parseInt(useParams().postId as string)
-  console.log(params)
   return (
     <Wrapper>
       <TitleWrap>

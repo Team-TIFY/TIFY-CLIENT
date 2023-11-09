@@ -1,4 +1,5 @@
 import { axiosApi } from '../axios'
+import { SelectedTag } from '../user/UserType'
 import { FriendRequestType, FriendsType } from './FriendsType'
 
 export const FriendsApi = {
@@ -29,5 +30,12 @@ export const FriendsApi = {
       `/users/neighbors/applications/${neighborApplicationId}/reject`,
     )
     return response.data.data
+  },
+
+  GET_PRESENT_RECOMMEND: async (smallCategory: string, page: number) => {
+    const response = await axiosApi.get(
+      `/products/products/small-category?${smallCategory}&page=${page}&size=10`,
+    )
+    return response.data
   },
 }

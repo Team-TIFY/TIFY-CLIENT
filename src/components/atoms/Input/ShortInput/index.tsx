@@ -196,7 +196,7 @@ const TextAreaWrapper = styled.div<{
   &:focus-within {
     border: 2px solid;
     border-color: ${({ error }) =>
-    error ? `${theme.palette.red_300}` : `${theme.palette.purple_300}`};
+      error ? `${theme.palette.red_300}` : `${theme.palette.purple_300}`};
   }
 `
 
