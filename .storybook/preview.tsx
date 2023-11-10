@@ -2,6 +2,7 @@ import { Preview } from '@storybook/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './style.css';
+import { RecoilRoot } from 'recoil'
 
 const customViewports = {
   iPhone13: {
@@ -40,9 +41,11 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <BrowserRouter>
-      <div>
-        <Story/>
-      </div>
+      <RecoilRoot>
+        <div>
+          <Story/>
+        </div>
+      </RecoilRoot>
       </BrowserRouter>
     )
   ]
