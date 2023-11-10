@@ -264,7 +264,7 @@ const SquareButton = ({
         <Text
           typo={`${BUTTON_SHAPE_TYPE[variant].typo}`}
           as="span"
-          color={textColor}
+          color={variant === 'xsmallSquareP' ? `gray_900` : textColor}
         >
           <FlexBox gap={variant === 'smallSquare' ? 37 : 0}>
             <>{handleVariant(variant, xlargeVariant as XlargeSubVariant)}</>
