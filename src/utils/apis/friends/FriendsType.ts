@@ -34,4 +34,5 @@ export type SearchedFriendType = {
   userName: string
   imgUrl: string
   mutualFriends: number
+  friend: boolean
 }

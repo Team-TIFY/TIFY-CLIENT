@@ -12,7 +12,7 @@ const AddFriendById = () => {
 
   const { setIsToggle } = useSetFriendRecoilState()
 
-  const { data: searchFriendList } = useQuery(
+  const { data: searchFriendData } = useQuery(
     ['searchFriend', searchFriendId],
     () => FriendsApi.SEARCH_FRIEND(searchFriendId),
     {
@@ -27,8 +27,6 @@ const AddFriendById = () => {
   }
 
   const handleClickSearchInput = () => setIsToggle(true)
-
-  const handleBlurSearchInput = () => setIsToggle(false)
 
   const handleRemoveSearchInput = () => {
     setSearchFriendId('')
@@ -49,11 +47,10 @@ const AddFriendById = () => {
         placeholder="추가할 친구 TIFY ID 검색"
         onChange={(e) => handleChangeSearchInput(e)}
         onClick={handleClickSearchInput}
-        onBlur={handleBlurSearchInput}
         customRemoveHandler={handleRemoveSearchInput}
       />
       <SearchedFriendList
-        searchFriendList={searchFriendList}
+        searchFriendData={searchFriendData}
         isSearchFriendId={searchFriendId.length !== 0}
       />
     </FlexBox>
