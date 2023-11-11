@@ -19,7 +19,6 @@ const useFriendMutate = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['friendProfile'])
-        queryClient.invalidateQueries(['friendRequestList'])
       },
     },
   )

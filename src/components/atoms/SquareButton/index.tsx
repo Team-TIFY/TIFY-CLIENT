@@ -195,6 +195,9 @@ interface ButtonProps<
   selectedCount?: T extends 'selectedMultiple' ? React.ReactNode : undefined
   xlargeVariant?: K extends 'xlargeSquare' ? XlargeSubVariant : undefined
   imageUrl?: G extends 'withProfile' ? string : undefined
+  onClick?:
+    | (() => void)
+    | ((event: React.MouseEvent<HTMLButtonElement>) => void)
 }
 
 const SquareButton = ({
