@@ -2,6 +2,7 @@ import { axiosApi } from '../axios'
 import {
   FriendRequestType,
   FriendsType,
+  NewFriendsType,
   SearchedFriendType,
 } from './FriendsType'
 
@@ -40,8 +41,8 @@ export const FriendsApi = {
     return response.data.data.content.length && response.data.data.content[0]
   },
 
-  REQUEST_FRIEND: async (toUserId: number) => {
-    const response = await axiosApi.post(`/users/${toUserId}/neighbors`)
+  REQUEST_FRIEND: async (toId: number) => {
+    const response = await axiosApi.post(`/users/${toId}/neighbors`)
     return response.data.data
   },
 
@@ -52,23 +53,33 @@ export const FriendsApi = {
     return response.data
   },
 
-  BLOCK_FRIEND: async (userId: number) => {
-    const response = await axiosApi.post(`/users/${userId}/block`)
+  BLOCK_FRIEND: async (id: number) => {
+    const response = await axiosApi.post(`/users/${id}/block`)
     return response.data.data
   },
 
-  CANCEL_BLOCK_FRIEND: async (userId: number) => {
-    const response = await axiosApi.delete(`/users/${userId}/block`)
+  CANCEL_BLOCK_FRIEND: async (id: number) => {
+    const response = await axiosApi.delete(`/users/${id}/block`)
     return response.data.data
   },
 
-  REPORT_FRIEND: async (userId: number) => {
-    const response = await axiosApi.post(`/users/report/${userId}`)
+  REPORT_FRIEND: async (id: number) => {
+    const response = await axiosApi.post(`/users/report/${id}`)
     return response.data.data
   },
 
-  CUT_OFF_FRIEND: async (userId: number) => {
-    const response = await axiosApi.delete(`/users/${userId}/neighbors/delete`)
+  CUT_OFF_FRIEND: async (id: number) => {
+    const response = await axiosApi.delete(`/users/${id}/neighbors/delete`)
+    return response.data.data
+  },
+
+  GET_NEW_FRIENDS_LIST: async (): Promise<NewFriendsType[]> => {
+    const response = await axiosApi.get(`/users/neighbors/isNew`)
+    return response.data.data
+  },
+
+  REMOVE_NEW_FRIEND: async (id: number) => {
+    const response = await axiosApi.patch(`/users/neighbors/${id}/isNew`)
     return response.data.data
   },
 }
