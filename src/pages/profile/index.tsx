@@ -110,6 +110,7 @@ const ProfileRouter = () => {
               label="프로필 수정"
               hasNav={false}
               rightChildren="none"
+              isLabelAlignCenter={true}
               beforeUrl="/profile"
             >
               <EditProfile />
