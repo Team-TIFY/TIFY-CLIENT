@@ -37,6 +37,7 @@ const CheckAllAnswers = () => {
   useEffect(() => {
     if (question.questionId) countQuestionMutation.mutate(question.questionId)
   }, [question.questionId])
+
   return (
     <WeekAnswersContainer>
       <DailyQuestionBox />
@@ -69,11 +70,26 @@ const CheckAllAnswers = () => {
                 <Poke />
               </FlexBox>
             </RoundButton>
-
-            <>{infiniteListElement}</>
+            {infiniteListElement}
           </>
         ) : (
-          <>{infiniteListElement}</>
+          <>
+            <Text color="gray_200" typo="Caption_12R">
+              답변을 하지 않은 친구가 N명 있어요.
+            </Text>
+            <RoundButton
+              style={{ marginBottom: '32px' }}
+              variant="smallRound"
+              width={240}
+              fullWidth={false}
+            >
+              <FlexBox align="center" gap={8}>
+                친구 쿡 찌르기
+                <Poke />
+              </FlexBox>
+            </RoundButton>
+            {infiniteListElement}
+          </>
         )}
       </AnswerListContainer>
     </WeekAnswersContainer>

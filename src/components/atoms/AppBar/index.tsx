@@ -83,7 +83,7 @@ export const AppBar = ({
       return <Svg children={<ThreeDots />} onClick={onClickOption1} />
     else if (rightElement === 'actionButton') {
       return (
-        <FlexBox gap={16}>
+        <FlexBox gap={16} style={{ cursor: 'pointer' }}>
           {isArray(rightChildrenIcon)
             ? rightChildrenIcon?.map((icon, index) => (
                 <div key={index}>{icon}</div>
