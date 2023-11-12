@@ -22,6 +22,7 @@ const AppBarTemplate = ({
   rightChildren,
   rightChildrenIcon,
   customHandler,
+  isLabelAlignCenter,
   children,
   hasNav,
 }: AppBarTemplateProps) => {
@@ -40,6 +41,7 @@ const AppBarTemplate = ({
       return [stepNum, totalNum]
     }
   }
+
   return (
     <>
       {rightChildren === 'actionButton' ? (
@@ -50,6 +52,7 @@ const AppBarTemplate = ({
           onClickOption1={onClickOption1}
           onClickOption2={onClickOption2}
           customHandler={customHandler}
+          isLabelAlignCenter={isLabelAlignCenter}
           rightChildren="actionButton"
           rightChildrenIcon={rightChildrenIcon}
         />
@@ -61,6 +64,7 @@ const AppBarTemplate = ({
           onClickOption1={onClickOption1}
           onClickOption2={onClickOption2}
           customHandler={customHandler}
+          isLabelAlignCenter={isLabelAlignCenter}
           rightChildren={rightChildren}
           stepNum={parseStepNum()}
         />

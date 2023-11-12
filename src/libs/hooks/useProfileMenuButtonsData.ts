@@ -2,18 +2,30 @@ import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
+import useFriendMutate from './useFriendMutate'
+import useProfileMutate from './useProfileMutate'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 
 type ButtonTextType = { text: string; color: TextType['color'] }
 
-const useProfileMenuButtonsData = (type: ProfileButtonVariant) => {
-  const { setIsMenuOpen } = useSetProfileRecoilState()
+const useProfileMenuButtonsData = (
+  type: ProfileButtonVariant,
+  friendId?: number,
+) => {
+  const { setIsMenuOpen, setIsEditImageMenuOpen } = useSetProfileRecoilState()
   const {
     setIsMenuOpen: setIsFriendMenuOpen,
     setIsCutOffMenuOpen,
     setIsBlockMenuOpen,
+    setIsCancelBlockMenuOpen,
   } = useSetFriendRecoilState()
 
+  const {
+    reportFriendMutate,
+    blockFriendMutate,
+    cutOffFriendMutate,
+    cancelBlockFriendMutate,
+  } = useFriendMutate()
   const navigate = useNavigate()
 
   if (type === 'myProfile') {
@@ -25,6 +37,10 @@ const useProfileMenuButtonsData = (type: ProfileButtonVariant) => {
       text: '프로필 공유',
       color: 'gray_100',
     }
+    const thirdButtonText: ButtonTextType = {
+      text: '취향상자 수정',
+      color: 'gray_100',
+    }
 
     const onClickFirstButton = () => {
       navigate('/profile/edit-profile')
@@ -32,6 +48,7 @@ const useProfileMenuButtonsData = (type: ProfileButtonVariant) => {
       setIsMenuOpen(false)
     }
     const onClickSecondButton = () => {}
+    const onClickThirdButton = () => {}
     const onClickCancelButton = () => {
       setIsMenuOpen(false)
     }
@@ -39,8 +56,10 @@ const useProfileMenuButtonsData = (type: ProfileButtonVariant) => {
     return {
       firstButtonText,
       secondButtonText,
+      thirdButtonText,
       onClickFirstButton,
       onClickSecondButton,
+      onClickThirdButton,
       onClickCancelButton,
     }
   } else if (type === 'report') {
@@ -53,7 +72,9 @@ const useProfileMenuButtonsData = (type: ProfileButtonVariant) => {
       color: 'red_500',
     }
 
-    const onClickFirstButton = () => {}
+    const onClickFirstButton = () => {
+      friendId && reportFriendMutate(friendId)
+    }
     const onClickSecondButton = () => {
       setIsFriendMenuOpen(false)
       setIsBlockMenuOpen(true)
@@ -69,13 +90,38 @@ const useProfileMenuButtonsData = (type: ProfileButtonVariant) => {
       onClickSecondButton,
       onClickCancelButton,
     }
+  } else if (type === 'editProfile') {
+    const firstButtonText: ButtonTextType = {
+      text: '갤러리에서 선택',
+      color: 'gray_100',
+    }
+    const secondButtonText: ButtonTextType = {
+      text: '기본 이미지로 변경',
+      color: 'gray_100',
+    }
+
+    const onClickFirstButton = () => {}
+    const onClickSecondButton = () => {}
+    const onClickCancelButton = () => {
+      setIsEditImageMenuOpen(false)
+    }
+
+    return {
+      firstButtonText,
+      secondButtonText,
+      onClickFirstButton,
+      onClickSecondButton,
+      onClickCancelButton,
+    }
   } else if (type === 'cutOffFriend') {
     const firstButtonText: ButtonTextType = {
       text: '친구 끊기',
       color: 'red_500',
     }
 
-    const onClickFirstButton = () => {}
+    const onClickFirstButton = () => {
+      friendId && cutOffFriendMutate(friendId)
+    }
     const onClickCancelButton = () => {
       setIsCutOffMenuOpen(false)
     }
@@ -85,15 +131,35 @@ const useProfileMenuButtonsData = (type: ProfileButtonVariant) => {
       onClickFirstButton,
       onClickCancelButton,
     }
-  } else {
+  } else if (type === 'block') {
     const firstButtonText: ButtonTextType = {
       text: '차단하기',
       color: 'red_500',
     }
 
-    const onClickFirstButton = () => {}
+    const onClickFirstButton = () => {
+      friendId && blockFriendMutate(friendId)
+    }
     const onClickCancelButton = () => {
       setIsBlockMenuOpen(false)
+    }
+
+    return {
+      firstButtonText,
+      onClickFirstButton,
+      onClickCancelButton,
+    }
+  } else {
+    const firstButtonText: ButtonTextType = {
+      text: '차단 해제하기',
+      color: 'red_500',
+    }
+
+    const onClickFirstButton = () => {
+      friendId && cancelBlockFriendMutate(friendId)
+    }
+    const onClickCancelButton = () => {
+      setIsCancelBlockMenuOpen(false)
     }
 
     return {

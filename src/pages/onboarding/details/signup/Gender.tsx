@@ -16,7 +16,6 @@ export function Gender() {
       gender: gender,
     })
     setIsGender(gender)
-    console.log(info)
   }
 
   return (

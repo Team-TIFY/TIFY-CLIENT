@@ -9,6 +9,8 @@ import { sliceString } from '@utils/sliceString'
 /**
  * @param userId 친구 아이디를 나타냄
  * @param friendsNumber 친구 수를 나타냄
+ * @param isAccepted 친구 수락 여부를 나타냄
+ * @param onClick 친구 리스트를 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  * @param onAcceptButtonClick 수락 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  * @param onDeleteButtonClick 삭제 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
@@ -16,6 +18,8 @@ import { sliceString } from '@utils/sliceString'
 interface FriendsListDProps {
   userId: string
   friendsNumber: number
+  isAccepted?: boolean
+  onClick?: () => void
   onAcceptButtonClick?: () => void
   onDeleteButtonClick?: () => void
 }
@@ -23,11 +27,13 @@ interface FriendsListDProps {
 const FriendsListD = ({
   userId,
   friendsNumber,
+  isAccepted = false,
+  onClick,
   onAcceptButtonClick,
   onDeleteButtonClick,
 }: FriendsListDProps) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <ProfileWrapper>
         <Avatar variant="small" />
         <InfoWrapper>
@@ -40,20 +46,39 @@ const FriendsListD = ({
         </InfoWrapper>
       </ProfileWrapper>
       <ButtonWrapper>
-        <SquareButton
-          variant="xsmallSquareP"
-          onClick={onAcceptButtonClick}
-          subVariant="default"
-        >
-          수락
-        </SquareButton>
-        <SquareButton
-          variant="xsmallSquareS"
-          onClick={onDeleteButtonClick}
-          subVariant="default"
-        >
-          삭제
-        </SquareButton>
+        {isAccepted ? (
+          <SquareButton
+            variant="xsmallSquareS"
+            fullWidth={true}
+            onClick={onAcceptButtonClick}
+            subVariant="default"
+          >
+            팔로잉
+          </SquareButton>
+        ) : (
+          <>
+            <SquareButton
+              variant="xsmallSquareP"
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                event.stopPropagation()
+                onAcceptButtonClick && onAcceptButtonClick()
+              }}
+              subVariant="default"
+            >
+              수락
+            </SquareButton>
+            <SquareButton
+              variant="xsmallSquareS"
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                event.stopPropagation()
+                onDeleteButtonClick && onDeleteButtonClick()
+              }}
+              subVariant="default"
+            >
+              삭제
+            </SquareButton>
+          </>
+        )}
       </ButtonWrapper>
     </Wrapper>
   )
@@ -66,6 +91,7 @@ const Wrapper = styled(FlexBox)`
   height: 48px;
   background-color: ${palette.background};
   justify-content: space-between;
+  cursor: pointer;
 `
 
 const ProfileWrapper = styled(FlexBox)`
@@ -82,6 +108,7 @@ const InfoWrapper = styled(FlexBox)`
 `
 
 const ButtonWrapper = styled(FlexBox)`
+  width: 132px;
   height: 100%;
   gap: 4px;
 `

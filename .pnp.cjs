@@ -48,6 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.29.15"],\
             ["@types/prettier", "npm:2.7.3"],\
             ["@types/react", "npm:18.2.8"],\
+            ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
             ["@types/react-datepicker", "npm:4.15.0"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@types/react-lottie", "npm:1.2.8"],\
@@ -7657,6 +7658,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prop-types", "npm:15.7.5"],\
             ["@types/scheduler", "npm:0.16.3"],\
             ["csstype", "npm:3.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/react-copy-to-clipboard", [\
+        ["npm:5.0.7", {\
+          "packageLocation": "./.yarn/cache/@types-react-copy-to-clipboard-npm-5.0.7-cf9459d351-adc2970c87.zip/node_modules/@types/react-copy-to-clipboard/",\
+          "packageDependencies": [\
+            ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
+            ["@types/react", "npm:18.2.8"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -16807,6 +16818,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.29.15"],\
             ["@types/prettier", "npm:2.7.3"],\
             ["@types/react", "npm:18.2.8"],\
+            ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
             ["@types/react-datepicker", "npm:4.15.0"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@types/react-lottie", "npm:1.2.8"],\

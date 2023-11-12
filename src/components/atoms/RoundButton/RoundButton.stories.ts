@@ -10,6 +10,21 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+export const XlargeRound: Story = {
+  args: {
+    variant: 'xlargeRound',
+    children: '버튼 이름',
+  },
+}
+
+export const XlargeRoundWithDescription: Story = {
+  args: {
+    variant: 'xlargeRound',
+    children: '버튼 이름',
+    xlargeDescription: '상세 설명',
+  },
+}
+
 export const MediumRound: Story = {
   args: {
     variant: 'mediumRound',

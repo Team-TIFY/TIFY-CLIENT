@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { MouseEventHandler, RefObject, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
@@ -41,9 +41,9 @@ export type ProfilePropsType<T extends UserInfo> = {
 
 type MenuButtonType = {
   menuOpen: boolean
+  ref: RefObject<HTMLDivElement>
   type: string
-  ref: React.MutableRefObject<null>
-  close: () => void
+  close: MouseEventHandler<HTMLDivElement>
 }
 
 const Profile = ({
@@ -55,32 +55,32 @@ const Profile = ({
   const profileStateData = useRecoilValue(profileState)
   const friendStateData = useRecoilValue(friendState)
 
-  const profileMenuOutsideRef = useRef(null)
-  const friendMenuOutsideRef = useRef(null)
-  const cutOffMenuOutsideRef = useRef(null)
-  const blockMenuOutsideRef = useRef(null)
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
 
-  const handleClickProfileDimmer = useOutsideClick(profileMenuOutsideRef, () =>
-    setIsMenuOpen(false),
+  const [profileMenuOutsideRef, handleClickProfileDimmer] = useOutsideClick(
+    () => setIsMenuOpen(false),
   )
 
-  const handleClickFriendDimmer = useOutsideClick(friendMenuOutsideRef, () =>
+  const [friendMenuOutsideRef, handleClickFriendDimmer] = useOutsideClick(() =>
     setIsFriendMenuOpen(false),
   )
 
-  const handleClickCutOffDimmer = useOutsideClick(cutOffMenuOutsideRef, () =>
+  const [cutOffMenuOutsideRef, handleClickCutOffDimmer] = useOutsideClick(() =>
     setIsCutOffMenuOpen(false),
   )
 
-  const handleClickBlockDimmer = useOutsideClick(blockMenuOutsideRef, () =>
+  const [blockMenuOutsideRef, handleClickBlockDimmer] = useOutsideClick(() =>
     setIsBlockMenuOpen(false),
   )
+
+  const [cancelBlockMenuOutsideRef, handleClickCancelBlockDimmer] =
+    useOutsideClick(() => setIsCancelBlockMenuOpen(false))
 
   const isProfileMenuOpen = profileStateData?.isMenuOpen ?? false
   const isFriendMenuOpen = friendStateData?.isMenuOpen ?? false
   const isCutOffMenuOpen = friendStateData?.isCutOffMenuOpen ?? false
   const isBlockMenuOpen = friendStateData?.isBlockMenuOpen ?? false
+  const isCancelBlockMenuOpen = friendStateData?.isCancelBlockMenuOpen ?? false
   const menus = [
     {
       menuOpen: isProfileMenuOpen,
@@ -106,6 +106,12 @@ const Profile = ({
       ref: blockMenuOutsideRef,
       close: handleClickBlockDimmer,
     },
+    {
+      menuOpen: isCancelBlockMenuOpen,
+      type: 'cancelBlock',
+      ref: cancelBlockMenuOutsideRef,
+      close: handleClickCancelBlockDimmer,
+    },
   ]
 
   const { setIsEdit, setIsMenuOpen } = useSetProfileRecoilState()
@@ -113,6 +119,7 @@ const Profile = ({
     setIsMenuOpen: setIsFriendMenuOpen,
     setIsCutOffMenuOpen,
     setIsBlockMenuOpen,
+    setIsCancelBlockMenuOpen,
   } = useSetFriendRecoilState()
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
@@ -158,12 +165,8 @@ const Profile = ({
       ),
   )
 
-  const getFilteredData = (selectedTags: SelectedTag[]) => {
-    const promises = selectedTags.map((tag) =>
-      UserApi.GET_FILTERED_USER_TAG(tag.value),
-    )
-
-    return Promise.all(promises)
+  const getSmallCategoryData = (selectedTags: SelectedTag[]) => {
+    return selectedTags.map((tag) => `${tag.value}`)
   }
 
   const { data: filteredUserTagData = [] } = useQuery(
@@ -172,20 +175,24 @@ const Profile = ({
       selectedTags,
       !friendData ? auth.userProfile.id : friendId,
     ],
-    () => getFilteredData(selectedTags),
+    () => UserApi.GET_FILTERED_USER_TAG(getSmallCategoryData(selectedTags)),
     {
       enabled: selectedTags.length > 0,
     },
   )
 
   const getFriendUserId = (menu: MenuButtonType) => {
-    return menu.type === 'cutOffFriend' || menu.type === 'block'
+    return menu.type === 'cutOffFriend' ||
+      menu.type === 'block' ||
+      menu.type === 'cancelBlock'
       ? friendData?.userId
       : undefined
   }
 
   const getFriendImageUrl = (menu: MenuButtonType) => {
-    return menu.type === 'cutOffFriend' || menu.type === 'block'
+    return menu.type === 'cutOffFriend' ||
+      menu.type === 'block' ||
+      menu.type === 'cancelBlock'
       ? friendData?.thumbnail
       : undefined
   }
@@ -198,6 +205,7 @@ const Profile = ({
             <Dimmer dimmerRef={menu.ref} onClick={menu.close} />
             <ProfileMenuButtons
               type={menu.type as ProfileButtonVariant}
+              friendId={friendId}
               friendUserId={getFriendUserId(menu)}
               friendImageUrl={getFriendImageUrl(menu)}
             />
@@ -214,7 +222,6 @@ const Profile = ({
         <ProfileWrapper>
           <ProfileHeader
             userData={friendData ? friendData : userData}
-            isFriend={friendId !== undefined}
             addFriend={addFriend}
           />
           {!addFriend && (
@@ -232,7 +239,7 @@ const Profile = ({
                 selectedTags={selectedTags}
                 filteredUserTagData={filteredUserTagData}
                 userTagData={userTagData}
-                isFriend={friendId !== undefined}
+                isFriend={friendData?.friend ?? false}
               />
             </>
           )}
