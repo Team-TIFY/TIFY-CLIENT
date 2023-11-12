@@ -1,46 +1,38 @@
-import { FlexBox } from '@components/layouts/FlexBox'
-import { Text } from '../Text'
-import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
-import { useNavigate } from 'react-router-dom'
-import Svg from '../Svg'
-import TifyLogo from '@assets/icons/TifyLogo'
-import LeftArrow from '@assets/icons/LeftArrow'
-import Alert from '@assets/icons/Alert'
-import ThreeDots from '@assets/icons/ThreeDots'
-import { isArray } from '@utils/isArray'
+import { FlexBox } from '@components/layouts/FlexBox';
+import { Text } from '../Text';
+import styled from '@emotion/styled';
+import { theme } from '@styles/theme';
+import { useNavigate } from 'react-router-dom';
+import Svg from '../Svg';
+import TifyLogo from '@assets/icons/TifyLogo';
+import LeftArrow from '@assets/icons/LeftArrow';
+import Alert from '@assets/icons/Alert';
+import ThreeDots from '@assets/icons/ThreeDots';
+import { isArray } from '@utils/isArray';
 
-export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
+export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo';
 
 export type RightChildrenVariant =
   | 'alarm'
   | 'dots'
   | 'none'
   | 'actionButton'
-  | 'stepNum'
-
-/**
- * @param variant AppBar의 type을 나타냄 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
- * @param label 'backPush' | 'backPushWithTitle' 사용 시 Appbar에 나타날 문구
- * @param beforeUrl (optional) BackArrow를 통하여 이동할 url (기본 값은 뒤로 가기)
- * @param rightChildren 오른쪽에 들어갈 아이콘의 type을 나타냄 'alarm' | 'dots' | 'none' | 'actionButton'
- * @param onClickOption1 첫 번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
- * @param onClickOption2 두 번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
- */
+  | 'stepNum';
 
 export type AppBarProps<T extends RightChildrenVariant> = {
-  variant: AppBarType
-  label?: string
-  beforeUrl?: string
-  onClickOption1?: () => void
-  onClickOption2?: () => void
-  customHandler?: () => void
-  stepNum?: [number, number]
-  rightChildren: T
+  variant: AppBarType;
+  label?: string;
+  beforeUrl?: string;
+  onClickOption1?: () => void;
+  onClickOption2?: () => void;
+  customHandler?: () => void;
+  stepNum?: [number, number];
+  rightChildren: T;
   rightChildrenIcon?: T extends 'alarm' | 'dots' | 'none'
     ? undefined
-    : React.ReactNode[]
-}
+    : React.ReactNode[];
+  isLabelAlignCenter?: boolean;
+};
 
 export const AppBar = ({
   variant = 'logo',
@@ -52,20 +44,21 @@ export const AppBar = ({
   onClickOption1,
   onClickOption2,
   customHandler,
+  isLabelAlignCenter = false,
 }: AppBarProps<RightChildrenVariant>) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onClickBackBar = () => {
     if (customHandler) {
-      customHandler()
+      customHandler();
     } else {
-      beforeUrl ? navigate(beforeUrl) : navigate(-1)
+      beforeUrl ? navigate(beforeUrl) : navigate(-1);
     }
-  }
+  };
 
   const onClickLogo = () => {
-    navigate('/')
-  }
+    navigate('/');
+  };
 
   const handleRightChildren = (rightElement: RightChildrenVariant) => {
     if (rightElement === 'alarm')
@@ -78,9 +71,9 @@ export const AppBar = ({
           />
           <Svg children={<ThreeDots />} onClick={onClickOption2} />
         </FlexBox>
-      )
+      );
     else if (rightElement === 'dots')
-      return <Svg children={<ThreeDots />} onClick={onClickOption1} />
+      return <Svg children={<ThreeDots />} onClick={onClickOption1} />;
     else if (rightElement === 'actionButton') {
       return (
         <FlexBox gap={16}>
@@ -90,7 +83,7 @@ export const AppBar = ({
               ))
             : null}
         </FlexBox>
-      )
+      );
     } else if (rightElement === 'stepNum') {
       return (
         <FlexBox>
@@ -101,11 +94,11 @@ export const AppBar = ({
             /{stepNum[1]}
           </Text>
         </FlexBox>
-      )
+      );
     } else {
-      return null
+      return null;
     }
-  }
+  };
 
   return (
     <Wrapper>
@@ -116,32 +109,45 @@ export const AppBar = ({
           {(variant === 'backPush' || variant === 'backPushWithTitle') && (
             <Svg children={<LeftArrow />} onClick={onClickBackBar} />
           )}
-          <Text typo="Subhead_16" color="gray_200">
+          <Text
+            typo="Subhead_16"
+            color="gray_200"
+            style={{
+              position: isLabelAlignCenter && 'absolute',
+              margin: isLabelAlignCenter && 'auto',
+              left: isLabelAlignCenter && '0',
+              right: isLabelAlignCenter && '0',
+              width: 'fit-content',
+            }}
+          >
             {label}
           </Text>
         </FirstElement>
       )}
       {handleRightChildren(rightChildren)}
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled(FlexBox)`
   height: 80px;
   width: 100%;
   position: sticky;
   justify-content: space-between;
+  align-items: center;
   top: 0;
   padding: 40px 16px 16px 16px;
   background-color: ${theme.palette.background};
   z-index: 100;
-`
+`;
 
 const FirstElement = styled(FlexBox)`
-  justify-content: center;
+  position: relative;
+  justify-content: flex-start;
   align-items: center;
   gap: 8px;
+  width: 100%;
   & > h1:nth-of-type(1) {
     padding-top: 3px;
   }
-`
+`;
