@@ -165,12 +165,8 @@ const Profile = ({
       ),
   )
 
-  const getFilteredData = (selectedTags: SelectedTag[]) => {
-    const promises = selectedTags.map((tag) =>
-      UserApi.GET_FILTERED_USER_TAG(tag.value),
-    )
-
-    return Promise.all(promises)
+  const getSmallCategoryData = (selectedTags: SelectedTag[]) => {
+    return selectedTags.map((tag) => `${tag.value}`)
   }
 
   const { data: filteredUserTagData = [] } = useQuery(
@@ -179,7 +175,7 @@ const Profile = ({
       selectedTags,
       !friendData ? auth.userProfile.id : friendId,
     ],
-    () => getFilteredData(selectedTags),
+    () => UserApi.GET_FILTERED_USER_TAG(getSmallCategoryData(selectedTags)),
     {
       enabled: selectedTags.length > 0,
     },
