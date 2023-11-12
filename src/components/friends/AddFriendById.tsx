@@ -12,7 +12,7 @@ const AddFriendById = () => {
 
   const { setIsToggle } = useSetFriendRecoilState()
 
-  const { data: searchFriendList } = useQuery(
+  const { data: searchFriendData } = useQuery(
     ['searchFriend', searchFriendId],
     () => FriendsApi.SEARCH_FRIEND(searchFriendId),
     {
@@ -50,7 +50,7 @@ const AddFriendById = () => {
         customRemoveHandler={handleRemoveSearchInput}
       />
       <SearchedFriendList
-        searchFriendList={searchFriendList}
+        searchFriendData={searchFriendData}
         isSearchFriendId={searchFriendId.length !== 0}
       />
     </FlexBox>

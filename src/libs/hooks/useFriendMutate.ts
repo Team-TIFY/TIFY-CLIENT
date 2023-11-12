@@ -19,7 +19,6 @@ const useFriendMutate = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['friendProfile'])
-        queryClient.invalidateQueries(['friendRequestList'])
       },
     },
   )
@@ -116,6 +115,15 @@ const useFriendMutate = () => {
     },
   )
 
+  const { mutate: removeNewFriendMutate } = useMutation(
+    FriendsApi.REMOVE_NEW_FRIEND,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['newFriendsList'])
+      },
+    },
+  )
+
   return {
     acceptFriendRequestMutate,
     rejectFriendRequestMutate,
@@ -124,6 +132,7 @@ const useFriendMutate = () => {
     blockFriendMutate,
     cancelBlockFriendMutate,
     cutOffFriendMutate,
+    removeNewFriendMutate,
   }
 }
 
