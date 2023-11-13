@@ -30,6 +30,10 @@ const EditUserInfo = () => {
   const { parseDate, getFormattedDate } = useGetDate()
 
   useEffect(() => {
+    console.log(info.birth)
+  }, [info.birth])
+
+  useEffect(() => {
     if (!profileStateData.isEdit) {
       setUserName(auth.userProfile.userName)
       setUserId(auth.userProfile.userId)

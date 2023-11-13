@@ -59,7 +59,7 @@ export const UserTagDataListItem = ({
       <FlexBox direction="column" gap={20}>
         {renderUserTagDataListItem()}
       </FlexBox>
-      <Spacing height={32} />
+      <Spacing height={48} />
     </CategoryWrapper>
   )
 }

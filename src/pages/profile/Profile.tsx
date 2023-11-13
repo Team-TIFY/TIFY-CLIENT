@@ -11,7 +11,12 @@ import { ProfileImage } from '@components/profile/ProfileImage'
 import { ProfileHeader } from '@components/profile/ProfileHeader'
 import ProfileMenuButtons from '@components/profile/ProfileMenuButtons'
 import { UserTagDataListItem } from '@components/profile/UserTagDataListItem'
-import { SelectedProps, SelectedTag, UserInfo } from '@utils/apis/user/UserType'
+import {
+  SelectedProps,
+  SelectedTag,
+  SubCategoryType,
+  UserInfo,
+} from '@utils/apis/user/UserType'
 import { UserApi } from '@utils/apis/user/UserApi'
 import useProfileMutate from '@libs/hooks/useProfileMutate'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
@@ -166,7 +171,9 @@ const Profile = ({
   )
 
   const getSmallCategoryData = (selectedTags: SelectedTag[]) => {
-    return selectedTags.map((tag) => `${tag.value}`)
+    return selectedTags.map(
+      (tag: SelectedTag) => `${tag.value}` as SubCategoryType,
+    )
   }
 
   const { data: filteredUserTagData = [] } = useQuery(
@@ -216,7 +223,7 @@ const Profile = ({
 
   return (
     <>
-      <ProfileImage />
+      <ProfileImage isFriend={friendId !== undefined} />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>
@@ -224,24 +231,38 @@ const Profile = ({
             userData={friendData ? friendData : userData}
             addFriend={addFriend}
           />
-          {!addFriend && (
-            <>
-              <Spacing height={32} />
-              <FilterWrapper>
-                <Filter
+          {!addFriend ? (
+            !friendId ? (
+              <>
+                <Spacing height={32} />
+                <FilterWrapper>
+                  <Filter
+                    selectedTags={selectedTags}
+                    setSelectedTags={setSelectedTags}
+                    selectedProps={selectedProps}
+                  />
+                </FilterWrapper>
+                <Spacing height={20} />
+                <UserTagDataListItem
                   selectedTags={selectedTags}
-                  setSelectedTags={setSelectedTags}
-                  selectedProps={selectedProps}
+                  filteredUserTagData={filteredUserTagData}
+                  userTagData={userTagData}
+                  isFriend={false}
                 />
-              </FilterWrapper>
-              <Spacing height={20} />
-              <UserTagDataListItem
-                selectedTags={selectedTags}
-                filteredUserTagData={filteredUserTagData}
-                userTagData={userTagData}
-                isFriend={friendData?.friend ?? false}
-              />
-            </>
+              </>
+            ) : (
+              <>
+                <Spacing height={24} />
+                <UserTagDataListItem
+                  selectedTags={selectedTags}
+                  filteredUserTagData={filteredUserTagData}
+                  userTagData={userTagData}
+                  isFriend={friendData?.friend ?? false}
+                />
+              </>
+            )
+          ) : (
+            <Spacing height={24} />
           )}
         </ProfileWrapper>
       </Padding>

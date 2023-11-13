@@ -6,11 +6,14 @@ import { Text } from '@components/atoms/Text'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import SearchedFriendList from './SearchedFriendList'
+import { authState } from '@libs/store/auth'
+import { useRecoilValue } from 'recoil'
 
 const AddFriendById = () => {
   const [searchFriendId, setSearchFriendId] = useState('')
 
   const { setIsToggle } = useSetFriendRecoilState()
+  const auth = useRecoilValue(authState)
 
   const { data: searchFriendData } = useQuery(
     ['searchFriend', searchFriendId],
@@ -32,6 +35,14 @@ const AddFriendById = () => {
     setSearchFriendId('')
   }
 
+  const handleBlur = () => {
+    if (searchFriendData) {
+      return
+    } else {
+      setIsToggle(false)
+    }
+  }
+
   return (
     <FlexBox direction="column">
       <Text
@@ -46,6 +57,7 @@ const AddFriendById = () => {
       <SearchInput
         placeholder="추가할 친구 TIFY ID 검색"
         onChange={(e) => handleChangeSearchInput(e)}
+        onBlur={handleBlur}
         onClick={handleClickSearchInput}
         customRemoveHandler={handleRemoveSearchInput}
       />

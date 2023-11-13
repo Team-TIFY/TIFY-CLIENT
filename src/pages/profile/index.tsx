@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
 import BMLIP from '@pages/searchTaste/BMLIP'
@@ -66,7 +66,7 @@ const ProfileRouter = () => {
               label={'@' + `${auth.userProfile.userId}`}
               hasNav={true}
               rightChildren="actionButton"
-              rightChildrenIcon={[<MenuIcon />]}
+              rightChildrenIcon={!isNaN(friendId) ? undefined : [<MenuIcon />]}
             >
               <Profile />
             </AppBarTemplate>
