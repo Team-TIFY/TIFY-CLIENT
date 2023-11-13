@@ -231,7 +231,7 @@ const Profile = ({
             userData={friendData ? friendData : userData}
             addFriend={addFriend}
           />
-          {!addFriend && (
+          {!addFriend ? (
             <>
               <Spacing height={32} />
               <FilterWrapper>
@@ -249,6 +249,8 @@ const Profile = ({
                 isFriend={friendData?.friend ?? false}
               />
             </>
+          ) : (
+            <Spacing height={24} />
           )}
         </ProfileWrapper>
       </Padding>
