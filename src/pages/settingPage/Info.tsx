@@ -3,7 +3,7 @@ import Announce from '@assets/icons/Announce'
 import Chat from '@assets/icons/Chat'
 import { InformationIcon } from '@assets/icons/InformationIcon'
 import { LogoutIcon } from '@assets/icons/LogoutIcon'
-import { RightChevron } from '@assets/icons/RightChevron'
+import RightChevron from '@assets/icons/RightChevron'
 import { SecurityIcon } from '@assets/icons/SecurityIcon'
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
@@ -30,7 +30,7 @@ const Info = () => {
       <SettingList
         onClick={() =>
           linktoNotion(
-            'https://www.notion.so/tify-thisis4u/9e75acf1487c481a9fe818754198b73a',
+            'https://tify-thisis4u.notion.site/db764680157346e1a5f8f757b94b543a',
           )
         }
       >
@@ -42,7 +42,7 @@ const Info = () => {
       <SettingList
         onClick={() =>
           linktoNotion(
-            'https://www.notion.so/tify-thisis4u/9e75acf1487c481a9fe818754198b73a',
+            'https://tify-thisis4u.notion.site/46ff4d5c23964bd08cba01abda6f01f9',
           )
         }
       >
@@ -70,7 +70,7 @@ const Info = () => {
       <SettingList
         onClick={() =>
           linktoNotion(
-            'https://www.notion.so/tify-thisis4u/9e75acf1487c481a9fe818754198b73a',
+            'https://www.notion.so/tify-thisis4u/78b9ea114e8a4fc88baa99d0072ed2be',
           )
         }
       >

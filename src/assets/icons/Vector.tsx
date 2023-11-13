@@ -8,7 +8,7 @@ interface VectorProps {
 
 export function Vector({ linkUrl, visible }: VectorProps) {
   const linkToUrl = () => {
-    window.open(`https://www.notion.so/tify-thisis4u/${linkUrl}`)
+    window.open(`https://tify-thisis4u.notion.site/${linkUrl}`)
   }
 
   return (

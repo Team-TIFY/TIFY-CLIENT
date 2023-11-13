@@ -1792,6 +1792,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.9.2":
+  version: 7.23.2
+  resolution: "@babel/runtime@npm:7.23.2"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: 6c4df4839ec75ca10175f636d6362f91df8a3137f86b38f6cd3a4c90668a0fe8e9281d320958f4fbd43b394988958585a17c3aab2a4ea6bf7316b22916a371fb
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.18.10, @babel/template@npm:^7.20.7, @babel/template@npm:^7.21.9":
   version: 7.21.9
   resolution: "@babel/template@npm:7.21.9"
@@ -2434,6 +2443,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lottiefiles/react-lottie-player@npm:^3.5.3":
+  version: 3.5.3
+  resolution: "@lottiefiles/react-lottie-player@npm:3.5.3"
+  dependencies:
+    lottie-web: ^5.10.2
+  peerDependencies:
+    react: 16 - 18
+  checksum: 083521730d8a75a70c82446df859d08d5e3614b937afa419249d047d9cbffb61fba24733e1a736593e734530d99aa715a38fcbbebbcca5a72ff4719145931da1
+  languageName: node
+  linkType: hard
+
 "@mdx-js/react@npm:^2.1.5":
   version: 2.3.0
   resolution: "@mdx-js/react@npm:2.3.0"
@@ -2522,6 +2542,27 @@ __metadata:
   version: 2.11.8
   resolution: "@popperjs/core@npm:2.11.8"
   checksum: e5c69fdebf52a4012f6a1f14817ca8e9599cb1be73dd1387e1785e2ed5e5f0862ff817f420a87c7fc532add1f88a12e25aeb010ffcbdc98eace3d55ce2139cf0
+  languageName: node
+  linkType: hard
+
+"@react-dnd/asap@npm:^5.0.1":
+  version: 5.0.2
+  resolution: "@react-dnd/asap@npm:5.0.2"
+  checksum: 18f040e53512983f11c542ef21e6e4cac605d585a10cd764b13bc1b2f3ac7490e0fa40503adc348d8387aa45bc8e7eebe9cb33003b960a30bb5fde666ff2adde
+  languageName: node
+  linkType: hard
+
+"@react-dnd/invariant@npm:^4.0.1":
+  version: 4.0.2
+  resolution: "@react-dnd/invariant@npm:4.0.2"
+  checksum: 594f6d78896c19bb8f023e101334fd91a9fdff686117bd8e830ba53737ec0a6042dab66971d3d63c7afbc622103909aff7a64c5c6767e0aa8d9561fd42705016
+  languageName: node
+  linkType: hard
+
+"@react-dnd/shallowequal@npm:^4.0.1":
+  version: 4.0.2
+  resolution: "@react-dnd/shallowequal@npm:4.0.2"
+  checksum: 7f21d691bddbfd4d2830948cbeefecca1600b2b46bcb1934926795f07ae8a1fa60a3dfd3a2112be5ef682c3820c80a99711e9fa15843f7e300acb25a4ecb70ab
   languageName: node
   linkType: hard
 
@@ -4582,6 +4623,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-copy-to-clipboard@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "@types/react-copy-to-clipboard@npm:5.0.7"
+  dependencies:
+    "@types/react": "*"
+  checksum: adc2970c8756e648daa06e294c422df3dc076a784344ab2ecb78a17ebd7e8e3dfd7f31e68c24267de4815cdeec573a743d952a308b45b8380f6b7912a9a8b911
+  languageName: node
+  linkType: hard
+
 "@types/react-datepicker@npm:^4.15.0":
   version: 4.15.0
   resolution: "@types/react-datepicker@npm:4.15.0"
@@ -4600,15 +4650,6 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 8301f35cf1cbfec8c723e9477aecf87774e3c168bd457d353b23c45064737213d3e8008b067c6767b7b08e4f2b3823ee239242a6c225fc91e7f8725ef8734124
-  languageName: node
-  linkType: hard
-
-"@types/react-lottie@npm:^1.2.8":
-  version: 1.2.8
-  resolution: "@types/react-lottie@npm:1.2.8"
-  dependencies:
-    "@types/react": "*"
-  checksum: 06f0fc53d4e07952b162d25ad9b58d7bc3700ef50c35b9b7cd0e807d606a62e04f0dd28f04f635a4f35a8ee50b87627f991562c2b56101b2528a08e68dbd2e1b
   languageName: node
   linkType: hard
 
@@ -4642,7 +4683,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^18.0.37":
+"@types/react@npm:^18.0.37":
   version: 18.2.8
   resolution: "@types/react@npm:18.2.8"
   dependencies:
@@ -5433,16 +5474,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-runtime@npm:^6.26.0":
-  version: 6.26.0
-  resolution: "babel-runtime@npm:6.26.0"
-  dependencies:
-    core-js: ^2.4.0
-    regenerator-runtime: ^0.11.0
-  checksum: 8aeade94665e67a73c1ccc10f6fd42ba0c689b980032b70929de7a6d9a12eb87ef51902733f8fefede35afea7a5c3ef7e916a64d503446c1eedc9e3284bd3d50
-  languageName: node
-  linkType: hard
-
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -6093,19 +6124,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"copy-to-clipboard@npm:^3.3.1":
+  version: 3.3.3
+  resolution: "copy-to-clipboard@npm:3.3.3"
+  dependencies:
+    toggle-selection: ^1.0.6
+  checksum: e0a325e39b7615108e6c1c8ac110ae7b829cdc4ee3278b1df6a0e4228c490442cc86444cd643e2da344fbc424b3aab8909e2fec82f8bc75e7e5b190b7c24eecf
+  languageName: node
+  linkType: hard
+
 "core-js-compat@npm:^3.25.1, core-js-compat@npm:^3.30.1, core-js-compat@npm:^3.30.2":
   version: 3.30.2
   resolution: "core-js-compat@npm:3.30.2"
   dependencies:
     browserslist: ^4.21.5
   checksum: 4c81d635559eebc2f81db60f5095a235f580a2f90698113c4124c72761393592b139e30974cce6095a9a6aad6bb3cd467b24b20c32e77ed24ca74eb5944d0638
-  languageName: node
-  linkType: hard
-
-"core-js@npm:^2.4.0":
-  version: 2.6.12
-  resolution: "core-js@npm:2.6.12"
-  checksum: 44fa9934a85f8c78d61e0c8b7b22436330471ffe59ec5076fe7f324d6e8cf7f824b14b1c81ca73608b13bdb0fef035bd820989bf059767ad6fa13123bb8bd016
   languageName: node
   linkType: hard
 
@@ -6420,6 +6453,17 @@ __metadata:
   dependencies:
     path-type: ^4.0.0
   checksum: fa05e18324510d7283f55862f3161c6759a3f2f8dbce491a2fc14c8324c498286c54282c1f0e933cb930da8419b30679389499b919122952a4f8592362ef4615
+  languageName: node
+  linkType: hard
+
+"dnd-core@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "dnd-core@npm:16.0.1"
+  dependencies:
+    "@react-dnd/asap": ^5.0.1
+    "@react-dnd/invariant": ^4.0.1
+    redux: ^4.2.0
+  checksum: b7d3ef4664f433af796f440ddd27ad9d7fef0205f26c4b7c0af6ebf612ffa9b33e64d095d3e79190c4baaed34aa36570f321ebe0d2cc8ff1031ff158a0907b3f
   languageName: node
   linkType: hard
 
@@ -8096,7 +8140,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hoist-non-react-statics@npm:^3.0.0, hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.1":
+"hoist-non-react-statics@npm:^3.0.0, hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.1, hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
   dependencies:
@@ -9208,7 +9252,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lottie-web@npm:^5.1.3":
+"lottie-web@npm:^5.10.2":
   version: 5.12.2
   resolution: "lottie-web@npm:5.12.2"
   checksum: af5bc3bc405fd760de8b17a36158d5a8c3e8c586c711d0c63681ddf056b65bc6b54ea36b1fcad782fb02dbe12e696a40e0ba72daf41b8f10ab5b5d1113793636
@@ -10640,6 +10684,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-copy-to-clipboard@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "react-copy-to-clipboard@npm:5.1.0"
+  dependencies:
+    copy-to-clipboard: ^3.3.1
+    prop-types: ^15.8.1
+  peerDependencies:
+    react: ^15.3.0 || 16 || 17 || 18
+  checksum: f00a4551b9b63c944a041a6ab46af5ef20ba1106b3bc25173e7ef9bffbfba17a613368682ab8820cfe8d4b3acc5335cd9ce20229145bcc1e6aa8d1db04c512e5
+  languageName: node
+  linkType: hard
+
 "react-datepicker@npm:^4.16.0":
   version: 4.16.0
   resolution: "react-datepicker@npm:4.16.0"
@@ -10654,6 +10710,40 @@ __metadata:
     react: ^16.9.0 || ^17 || ^18
     react-dom: ^16.9.0 || ^17 || ^18
   checksum: 59da0305ca3a353ca007cf526320335790d73108942cc8f0d7177a1dfd020b28c5ea70f9d042f240cd2eadd09b3aa22357e6b6f509b42b6d8d51d73d20c97476
+  languageName: node
+  linkType: hard
+
+"react-dnd-html5-backend@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "react-dnd-html5-backend@npm:16.0.1"
+  dependencies:
+    dnd-core: ^16.0.1
+  checksum: e2368bf85d5632a5cd867b743feb54c9052d909ea5331608860fa455edf3c633ac791f5b338e3db29b19ea8670c0ba5fb43c9c1c2510760bea030811d726cdfa
+  languageName: node
+  linkType: hard
+
+"react-dnd@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "react-dnd@npm:16.0.1"
+  dependencies:
+    "@react-dnd/invariant": ^4.0.1
+    "@react-dnd/shallowequal": ^4.0.1
+    dnd-core: ^16.0.1
+    fast-deep-equal: ^3.1.3
+    hoist-non-react-statics: ^3.3.2
+  peerDependencies:
+    "@types/hoist-non-react-statics": ">= 3.3.1"
+    "@types/node": ">= 12"
+    "@types/react": ">= 16"
+    react: ">= 16.14"
+  peerDependenciesMeta:
+    "@types/hoist-non-react-statics":
+      optional: true
+    "@types/node":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: e8da2186aaafcd5bb41c090a995c963a7c3c73c20991667a2cfc0c800d7f7f73913414b2e61c437cdb6221bb2151bd5174088b8b42c17056a896fc4d1da5729f
   languageName: node
   linkType: hard
 
@@ -10762,18 +10852,6 @@ __metadata:
   version: 3.0.4
   resolution: "react-lifecycles-compat@npm:3.0.4"
   checksum: a904b0fc0a8eeb15a148c9feb7bc17cec7ef96e71188280061fc340043fd6d8ee3ff233381f0e8f95c1cf926210b2c4a31f38182c8f35ac55057e453d6df204f
-  languageName: node
-  linkType: hard
-
-"react-lottie@npm:^1.2.3":
-  version: 1.2.3
-  resolution: "react-lottie@npm:1.2.3"
-  dependencies:
-    babel-runtime: ^6.26.0
-    lottie-web: ^5.1.3
-  peerDependencies:
-    react: ^0.14.7 || ^15.0.0 || ^16.0.0
-  checksum: 05326e40b45cb1f52efe324386875858cec4725392d98033f767566c2f101bdbf59111a42108596ef63c96c897f13cf8d3c612e7a288d0dee3e1b7fb1a7911a2
   languageName: node
   linkType: hard
 
@@ -10985,6 +11063,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"redux@npm:^4.2.0":
+  version: 4.2.1
+  resolution: "redux@npm:4.2.1"
+  dependencies:
+    "@babel/runtime": ^7.9.2
+  checksum: f63b9060c3a1d930ae775252bb6e579b42415aee7a23c4114e21a0b4ba7ec12f0ec76936c00f546893f06e139819f0e2855e0d55ebfce34ca9c026241a6950dd
+  languageName: node
+  linkType: hard
+
 "reflect.getprototypeof@npm:^1.0.3":
   version: 1.0.4
   resolution: "reflect.getprototypeof@npm:1.0.4"
@@ -11012,13 +11099,6 @@ __metadata:
   version: 1.4.2
   resolution: "regenerate@npm:1.4.2"
   checksum: 3317a09b2f802da8db09aa276e469b57a6c0dd818347e05b8862959c6193408242f150db5de83c12c3fa99091ad95fb42a6db2c3329bfaa12a0ea4cbbeb30cb0
-  languageName: node
-  linkType: hard
-
-"regenerator-runtime@npm:^0.11.0":
-  version: 0.11.1
-  resolution: "regenerator-runtime@npm:0.11.1"
-  checksum: 3c97bd2c7b2b3247e6f8e2147a002eb78c995323732dad5dc70fac8d8d0b758d0295e7015b90d3d444446ae77cbd24b9f9123ec3a77018e81d8999818301b4f4
   languageName: node
   linkType: hard
 
@@ -12080,6 +12160,7 @@ __metadata:
     "@emotion/react": ^11.11.1
     "@emotion/serialize": ^1.1.2
     "@emotion/styled": ^11.11.0
+    "@lottiefiles/react-lottie-player": ^3.5.3
     "@react-native-community/datetimepicker": ^7.4.1
     "@storybook/addon-actions": ^7.0.24
     "@storybook/addon-essentials": ^7.0.18
@@ -12097,9 +12178,9 @@ __metadata:
     "@tanstack/react-query-devtools": ^4.29.15
     "@types/prettier": ^2.7.3
     "@types/react": ^18.0.37
+    "@types/react-copy-to-clipboard": ^5.0.7
     "@types/react-datepicker": ^4.15.0
     "@types/react-dom": ^18.0.11
-    "@types/react-lottie": ^1.2.8
     "@types/react-modal": ^3.16.0
     "@types/react-router-dom": ^5.3.3
     "@typescript-eslint/eslint-plugin": ^5.59.0
@@ -12108,6 +12189,7 @@ __metadata:
     axios: ^1.4.0
     chromatic: ^6.19.9
     date-fns: ^2.30.0
+    dnd-core: ^16.0.1
     emotion-reset: ^3.0.1
     emotion-theming: ^11.0.0
     eslint: ^8.43.0
@@ -12124,10 +12206,12 @@ __metadata:
     prop-types: ^15.8.1
     react: ^18.2.0
     react-cookie: ^4.1.1
+    react-copy-to-clipboard: ^5.1.0
     react-datepicker: ^4.16.0
+    react-dnd: ^16.0.1
+    react-dnd-html5-backend: ^16.0.1
     react-dom: ^18.2.0
     react-intersection-observer: ^9.5.2
-    react-lottie: ^1.2.3
     react-modal: ^3.16.1
     react-native-modal-datetime-picker: ^17.1.0
     react-router-dom: ^6.14.1
@@ -12166,6 +12250,13 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
+  languageName: node
+  linkType: hard
+
+"toggle-selection@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "toggle-selection@npm:1.0.6"
+  checksum: a90dc80ed1e7b18db8f4e16e86a5574f87632dc729cfc07d9ea3ced50021ad42bb4e08f22c0913e0b98e3837b0b717e0a51613c65f30418e21eb99da6556a74c
   languageName: node
   linkType: hard
 

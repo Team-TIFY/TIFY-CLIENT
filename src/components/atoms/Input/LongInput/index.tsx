@@ -3,6 +3,8 @@ import { TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { theme } from '@styles/theme'
 import React from 'react'
 import { forwardRef, InputHTMLAttributes } from 'react'
+import { authState } from '@libs/store/auth'
+import { useRecoilState } from 'recoil'
 
 type InputVariant = 'default' | 'withInst'
 
@@ -24,9 +26,13 @@ const INPUT_TYPE: InputVariantType = {
 interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   variant: InputVariant
   explanation: string
+  content?: string
+  value?: string
   fullWidth: boolean
   customEvent?: (e: any) => void
+  onClick: () => void
 }
+
 type Props = Partial<InputProps>
 
 export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
@@ -35,13 +41,22 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
       variant = 'default',
       explanation,
       fullWidth = false,
+      value,
+      content,
       customEvent,
+      onClick,
       ...props
     }: Props,
     inputRef,
   ) {
-    const [line, setLine] = useState('')
+    const [line, setLine] = useState(value ? value : '')
     const [count, setCount] = useState(true) //2줄 넘지 않으면 true
+    const [auth, setAuth] = useRecoilState(authState)
+
+    useEffect(() => {
+      value && setLine(value as string)
+    }, [value])
+
     const handleResizeHeight = () => {
       //줄 바뀌면 자동 높이 조절
       if (inputRef && typeof inputRef !== 'function') {
@@ -71,6 +86,16 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
         } else if (textHeight && textHeight > 40) {
           setCount(false)
         }
+
+        if (content) {
+          setAuth({
+            ...auth,
+            userProfile: {
+              ...auth.userProfile,
+              [content]: line,
+            },
+          })
+        }
       }
     }
 
@@ -86,6 +111,7 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
             spellCheck="false"
             onInput={handleResizeHeight}
             onChange={countLength}
+            onClick={onClick}
             {...props}
           />
         </TextAreaWrapper>
@@ -111,7 +137,7 @@ const InstText = styled.div<{
 }>`
   display: ${({ variant }) => INPUT_TYPE[variant].display};
   text-align: center;
-  width: '280px';
+  width: 280px;
   height: 20px;
   margin-bottom: 8px;
   ${theme.typo.Caption_12M};
@@ -123,9 +149,9 @@ const TextAreaWrapper = styled.div<{
   fullWidth: boolean
 }>`
   border-radius: 12px;
-  padding: 14px;
+  padding: 16px;
   background: ${theme.palette.gray_900};
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : '284px')};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : '312px')};
   display: flex;
   align-items: center;
   &:focus-within {

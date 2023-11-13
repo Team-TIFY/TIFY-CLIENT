@@ -1,17 +1,11 @@
 /* eslint-disable react/jsx-key */
 import { Route, Routes, useLocation } from 'react-router-dom'
-import AppBarTemplate from '@components/layouts/AppBarTemplate'
-import Profile from './Profile'
-import NewTaste from './NewTaste'
+import { Suspense } from 'react'
+import { useRecoilValue } from 'recoil'
+import { useQuery } from '@tanstack/react-query'
 import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
 import FCTOP from '@pages/searchTaste/FCTOP'
-import { Suspense } from 'react'
-import { useRecoilValue } from 'recoil'
-import { authState } from '@libs/store/auth'
-import MenuIcon from '@assets/icons/MenuIcon'
-import { UserApi } from '@utils/apis/user/UserApi'
-import { useQuery } from '@tanstack/react-query'
 import BFPER from '@pages/searchTaste/BFPER'
 import BFMOI from '@pages/searchTaste/BFMOI'
 import BFPLA from '@pages/searchTaste/BFPLA'
@@ -21,19 +15,43 @@ import FEBAG from '@pages/searchTaste/FEBAG'
 import FAACC from '@pages/searchTaste/FAACC'
 import HCDIS from '@pages/searchTaste/HCDIS'
 import HCCUP from '@pages/searchTaste/HCCUP'
+import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import Loading from '@components/atoms/Loading'
+import EditProfile from './EditProfile'
+import EditOnboardingStatus from './EditOnboardingStatus'
+import Profile from './Profile'
+import NewTaste from './NewTaste'
+import { authState } from '@libs/store/auth'
+import MenuIcon from '@assets/icons/MenuIcon'
+import { useRecoilState } from 'recoil'
+import { answerState } from '@libs/store/question'
+import { UserApi } from '@utils/apis/user/UserApi'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
-
+  const [step, setStepAnswer] = useRecoilState(answerState)
   const location = useLocation()
   const friendId = parseInt(location.pathname.slice(9))
-
+  const handleBack = () => {
+    if (step.favorAnswerDtos.length > 0) {
+      const tempList = [...step.favorAnswerDtos]
+      console.log('호우!')
+      const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)
+      setStepAnswer({
+        categoryName: step.categoryName,
+        favorAnswerDtos: [...newFavorAnswerDtos],
+      })
+    }
+    //const time = setTimeout(() => navigate(-1), 100)
+  }
   const { data: friendData } = useQuery(
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
     {
-      enabled: !isNaN(friendId) && auth.userProfile.id !== friendId,
+      enabled:
+        !isNaN(friendId) &&
+        friendId !== auth.userProfile.id &&
+        auth.userProfile.id !== friendId,
     },
   )
 
@@ -45,10 +63,10 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="title"
-              label={'@' + '변경'}
+              label={'@' + `${auth.userProfile.userId}`}
               hasNav={true}
               rightChildren="actionButton"
-              rightChildrenIcon={[<MenuIcon />]}
+              rightChildrenIcon={!isNaN(friendId) ? undefined : [<MenuIcon />]}
             >
               <Profile />
             </AppBarTemplate>
@@ -59,11 +77,55 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="backPushWithTitle"
-              label={'@' + friendData?.email}
+              label={'@' + friendData?.userId}
               hasNav={false}
               rightChildren="none"
             >
               <Profile friendData={friendData} friendId={friendId} />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/:id/addFriend"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label={'@' + friendData?.email}
+              hasNav={false}
+              rightChildren="none"
+            >
+              <Profile
+                friendData={friendData}
+                friendId={friendId}
+                addFriend={true}
+              />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              label="프로필 수정"
+              hasNav={false}
+              rightChildren="none"
+              isLabelAlignCenter={true}
+              beforeUrl="/profile"
+            >
+              <EditProfile />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/edit-profile/onboardingStatus"
+          element={
+            <AppBarTemplate
+              variant="backPush"
+              hasNav={false}
+              rightChildren="none"
+            >
+              <EditOnboardingStatus />
             </AppBarTemplate>
           }
         />
@@ -87,6 +149,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BMLIP />
             </AppBarTemplate>
@@ -99,6 +162,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BMEYE />
             </AppBarTemplate>
@@ -111,6 +175,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BFPER />
             </AppBarTemplate>
@@ -123,6 +188,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BFMOI />
             </AppBarTemplate>
@@ -135,6 +201,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <BFPLA />
             </AppBarTemplate>
@@ -147,6 +214,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FCTOP />
             </AppBarTemplate>
@@ -159,6 +227,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FEFAS />
             </AppBarTemplate>
@@ -171,6 +240,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FEDIG />
             </AppBarTemplate>
@@ -183,6 +253,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FEBAG />
             </AppBarTemplate>
@@ -195,6 +266,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <FAACC />
             </AppBarTemplate>
@@ -207,6 +279,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <HCDIS />
             </AppBarTemplate>
@@ -219,6 +292,7 @@ const ProfileRouter = () => {
               variant="backPush"
               hasNav={false}
               rightChildren="stepNum"
+              customHandler={handleBack}
             >
               <HCCUP />
             </AppBarTemplate>

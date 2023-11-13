@@ -31,6 +31,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:11.11.1"],\
             ["@emotion/serialize", "npm:1.1.2"],\
             ["@emotion/styled", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:11.11.0"],\
+            ["@lottiefiles/react-lottie-player", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.5.3"],\
             ["@react-native-community/datetimepicker", "npm:7.4.1"],\
             ["@storybook/addon-actions", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:7.0.24"],\
             ["@storybook/addon-essentials", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:7.0.18"],\
@@ -48,9 +49,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.29.15"],\
             ["@types/prettier", "npm:2.7.3"],\
             ["@types/react", "npm:18.2.8"],\
+            ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
             ["@types/react-datepicker", "npm:4.15.0"],\
             ["@types/react-dom", "npm:18.2.4"],\
-            ["@types/react-lottie", "npm:1.2.8"],\
             ["@types/react-modal", "npm:3.16.0"],\
             ["@types/react-router-dom", "npm:5.3.3"],\
             ["@typescript-eslint/eslint-plugin", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.59.9"],\
@@ -59,6 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.4.0"],\
             ["chromatic", "npm:6.19.9"],\
             ["date-fns", "npm:2.30.0"],\
+            ["dnd-core", "npm:16.0.1"],\
             ["emotion-reset", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.0.1"],\
             ["emotion-theming", "npm:11.0.0"],\
             ["eslint", "npm:8.43.0"],\
@@ -75,10 +77,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prop-types", "npm:15.8.1"],\
             ["react", "npm:18.2.0"],\
             ["react-cookie", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.1.1"],\
+            ["react-copy-to-clipboard", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0"],\
             ["react-datepicker", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.16.0"],\
+            ["react-dnd", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:16.0.1"],\
+            ["react-dnd-html5-backend", "npm:16.0.1"],\
             ["react-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:18.2.0"],\
             ["react-intersection-observer", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:9.5.2"],\
-            ["react-lottie", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:1.2.3"],\
             ["react-modal", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.16.1"],\
             ["react-native-modal-datetime-picker", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:17.1.0"],\
             ["react-router-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:6.14.1"],\
@@ -4050,6 +4054,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regenerator-runtime", "npm:0.13.11"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:7.23.2", {\
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.23.2-d013d6cf7e-6c4df4839e.zip/node_modules/@babel/runtime/",\
+          "packageDependencies": [\
+            ["@babel/runtime", "npm:7.23.2"],\
+            ["regenerator-runtime", "npm:0.14.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@babel/template", [\
@@ -4849,6 +4861,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@lottiefiles/react-lottie-player", [\
+        ["npm:3.5.3", {\
+          "packageLocation": "./.yarn/cache/@lottiefiles-react-lottie-player-npm-3.5.3-1b99195f06-083521730d.zip/node_modules/@lottiefiles/react-lottie-player/",\
+          "packageDependencies": [\
+            ["@lottiefiles/react-lottie-player", "npm:3.5.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.5.3", {\
+          "packageLocation": "./.yarn/__virtual__/@lottiefiles-react-lottie-player-virtual-6fe717362a/0/cache/@lottiefiles-react-lottie-player-npm-3.5.3-1b99195f06-083521730d.zip/node_modules/@lottiefiles/react-lottie-player/",\
+          "packageDependencies": [\
+            ["@lottiefiles/react-lottie-player", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.5.3"],\
+            ["@types/react", "npm:18.2.8"],\
+            ["lottie-web", "npm:5.12.2"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@mdx-js/react", [\
         ["npm:2.3.0", {\
           "packageLocation": "./.yarn/cache/@mdx-js-react-npm-2.3.0-d5582a450b-f45fe77955.zip/node_modules/@mdx-js/react/",\
@@ -4957,6 +4992,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@popperjs-core-npm-2.11.8-f1692e11a0-e5c69fdebf.zip/node_modules/@popperjs/core/",\
           "packageDependencies": [\
             ["@popperjs/core", "npm:2.11.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@react-dnd/asap", [\
+        ["npm:5.0.2", {\
+          "packageLocation": "./.yarn/cache/@react-dnd-asap-npm-5.0.2-66021d3d61-18f040e535.zip/node_modules/@react-dnd/asap/",\
+          "packageDependencies": [\
+            ["@react-dnd/asap", "npm:5.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@react-dnd/invariant", [\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/@react-dnd-invariant-npm-4.0.2-826eacc1ea-594f6d7889.zip/node_modules/@react-dnd/invariant/",\
+          "packageDependencies": [\
+            ["@react-dnd/invariant", "npm:4.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@react-dnd/shallowequal", [\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/@react-dnd-shallowequal-npm-4.0.2-f944714335-7f21d691bd.zip/node_modules/@react-dnd/shallowequal/",\
+          "packageDependencies": [\
+            ["@react-dnd/shallowequal", "npm:4.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7622,6 +7684,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/react-copy-to-clipboard", [\
+        ["npm:5.0.7", {\
+          "packageLocation": "./.yarn/cache/@types-react-copy-to-clipboard-npm-5.0.7-cf9459d351-adc2970c87.zip/node_modules/@types/react-copy-to-clipboard/",\
+          "packageDependencies": [\
+            ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
+            ["@types/react", "npm:18.2.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/react-datepicker", [\
         ["npm:4.15.0", {\
           "packageLocation": "./.yarn/cache/@types-react-datepicker-npm-4.15.0-6db90fe0cc-02a7125b25.zip/node_modules/@types/react-datepicker/",\
@@ -7640,16 +7712,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.2.4-5d62ac2096-8301f35cf1.zip/node_modules/@types/react-dom/",\
           "packageDependencies": [\
             ["@types/react-dom", "npm:18.2.4"],\
-            ["@types/react", "npm:18.2.8"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@types/react-lottie", [\
-        ["npm:1.2.8", {\
-          "packageLocation": "./.yarn/cache/@types-react-lottie-npm-1.2.8-2d5b35a348-06f0fc53d4.zip/node_modules/@types/react-lottie/",\
-          "packageDependencies": [\
-            ["@types/react-lottie", "npm:1.2.8"],\
             ["@types/react", "npm:18.2.8"]\
           ],\
           "linkType": "HARD"\
@@ -8755,17 +8817,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["babel-runtime", [\
-        ["npm:6.26.0", {\
-          "packageLocation": "./.yarn/cache/babel-runtime-npm-6.26.0-d38e7946b4-8aeade9466.zip/node_modules/babel-runtime/",\
-          "packageDependencies": [\
-            ["babel-runtime", "npm:6.26.0"],\
-            ["core-js", "npm:2.6.12"],\
-            ["regenerator-runtime", "npm:0.11.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["balanced-match", [\
         ["npm:1.0.2", {\
           "packageLocation": "./.yarn/cache/balanced-match-npm-1.0.2-a53c126459-9706c088a2.zip/node_modules/balanced-match/",\
@@ -9486,11 +9537,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["core-js", [\
-        ["npm:2.6.12", {\
-          "packageLocation": "./.yarn/unplugged/core-js-npm-2.6.12-0b93d77d31/node_modules/core-js/",\
+      ["copy-to-clipboard", [\
+        ["npm:3.3.3", {\
+          "packageLocation": "./.yarn/cache/copy-to-clipboard-npm-3.3.3-6964e6cfad-e0a325e39b.zip/node_modules/copy-to-clipboard/",\
           "packageDependencies": [\
-            ["core-js", "npm:2.6.12"]\
+            ["copy-to-clipboard", "npm:3.3.3"],\
+            ["toggle-selection", "npm:1.0.6"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9896,6 +9948,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["dir-glob", "npm:3.0.1"],\
             ["path-type", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dnd-core", [\
+        ["npm:16.0.1", {\
+          "packageLocation": "./.yarn/cache/dnd-core-npm-16.0.1-552224cee0-b7d3ef4664.zip/node_modules/dnd-core/",\
+          "packageDependencies": [\
+            ["dnd-core", "npm:16.0.1"],\
+            ["@react-dnd/asap", "npm:5.0.2"],\
+            ["@react-dnd/invariant", "npm:4.0.2"],\
+            ["redux", "npm:4.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -14885,6 +14949,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-copy-to-clipboard", [\
+        ["npm:5.1.0", {\
+          "packageLocation": "./.yarn/cache/react-copy-to-clipboard-npm-5.1.0-de9742f2bc-f00a4551b9.zip/node_modules/react-copy-to-clipboard/",\
+          "packageDependencies": [\
+            ["react-copy-to-clipboard", "npm:5.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-copy-to-clipboard-virtual-f0a42cb97a/0/cache/react-copy-to-clipboard-npm-5.1.0-de9742f2bc-f00a4551b9.zip/node_modules/react-copy-to-clipboard/",\
+          "packageDependencies": [\
+            ["react-copy-to-clipboard", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0"],\
+            ["@types/react", "npm:18.2.8"],\
+            ["copy-to-clipboard", "npm:3.3.3"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-datepicker", [\
         ["npm:4.16.0", {\
           "packageLocation": "./.yarn/cache/react-datepicker-npm-4.16.0-c94778dc5d-59da0305ca.zip/node_modules/react-datepicker/",\
@@ -14913,6 +15001,47 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react",\
             "react-dom",\
             "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-dnd", [\
+        ["npm:16.0.1", {\
+          "packageLocation": "./.yarn/cache/react-dnd-npm-16.0.1-974f047d7b-e8da2186aa.zip/node_modules/react-dnd/",\
+          "packageDependencies": [\
+            ["react-dnd", "npm:16.0.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:16.0.1", {\
+          "packageLocation": "./.yarn/__virtual__/react-dnd-virtual-7dafbc7721/0/cache/react-dnd-npm-16.0.1-974f047d7b-e8da2186aa.zip/node_modules/react-dnd/",\
+          "packageDependencies": [\
+            ["react-dnd", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:16.0.1"],\
+            ["@react-dnd/invariant", "npm:4.0.2"],\
+            ["@react-dnd/shallowequal", "npm:4.0.2"],\
+            ["@types/hoist-non-react-statics", null],\
+            ["@types/node", null],\
+            ["@types/react", "npm:18.2.8"],\
+            ["dnd-core", "npm:16.0.1"],\
+            ["fast-deep-equal", "npm:3.1.3"],\
+            ["hoist-non-react-statics", "npm:3.3.2"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/hoist-non-react-statics",\
+            "@types/node",\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-dnd-html5-backend", [\
+        ["npm:16.0.1", {\
+          "packageLocation": "./.yarn/cache/react-dnd-html5-backend-npm-16.0.1-754940d855-e2368bf85d.zip/node_modules/react-dnd-html5-backend/",\
+          "packageDependencies": [\
+            ["react-dnd-html5-backend", "npm:16.0.1"],\
+            ["dnd-core", "npm:16.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -15092,30 +15221,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/react-lifecycles-compat-npm-3.0.4-d5e285a39e-a904b0fc0a.zip/node_modules/react-lifecycles-compat/",\
           "packageDependencies": [\
             ["react-lifecycles-compat", "npm:3.0.4"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["react-lottie", [\
-        ["npm:1.2.3", {\
-          "packageLocation": "./.yarn/cache/react-lottie-npm-1.2.3-3d4f0a3852-05326e40b4.zip/node_modules/react-lottie/",\
-          "packageDependencies": [\
-            ["react-lottie", "npm:1.2.3"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:1.2.3", {\
-          "packageLocation": "./.yarn/__virtual__/react-lottie-virtual-fbe378b4bc/0/cache/react-lottie-npm-1.2.3-3d4f0a3852-05326e40b4.zip/node_modules/react-lottie/",\
-          "packageDependencies": [\
-            ["react-lottie", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:1.2.3"],\
-            ["@types/react", "npm:18.2.8"],\
-            ["babel-runtime", "npm:6.26.0"],\
-            ["lottie-web", "npm:5.12.2"],\
-            ["react", "npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react",\
-            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -15467,6 +15572,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["redux", [\
+        ["npm:4.2.1", {\
+          "packageLocation": "./.yarn/cache/redux-npm-4.2.1-e7e2cf2e37-f63b9060c3.zip/node_modules/redux/",\
+          "packageDependencies": [\
+            ["redux", "npm:4.2.1"],\
+            ["@babel/runtime", "npm:7.23.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["reflect.getprototypeof", [\
         ["npm:1.0.4", {\
           "packageLocation": "./.yarn/cache/reflect.getprototypeof-npm-1.0.4-fa901640c3-16e2361988.zip/node_modules/reflect.getprototypeof/",\
@@ -15502,13 +15617,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["regenerator-runtime", [\
-        ["npm:0.11.1", {\
-          "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.11.1-a31e4f8dcd-3c97bd2c7b.zip/node_modules/regenerator-runtime/",\
-          "packageDependencies": [\
-            ["regenerator-runtime", "npm:0.11.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:0.13.11", {\
           "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.13.11-90bf536060-27481628d2.zip/node_modules/regenerator-runtime/",\
           "packageDependencies": [\
@@ -16654,6 +16762,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:11.11.1"],\
             ["@emotion/serialize", "npm:1.1.2"],\
             ["@emotion/styled", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:11.11.0"],\
+            ["@lottiefiles/react-lottie-player", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.5.3"],\
             ["@react-native-community/datetimepicker", "npm:7.4.1"],\
             ["@storybook/addon-actions", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:7.0.24"],\
             ["@storybook/addon-essentials", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:7.0.18"],\
@@ -16671,9 +16780,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.29.15"],\
             ["@types/prettier", "npm:2.7.3"],\
             ["@types/react", "npm:18.2.8"],\
+            ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
             ["@types/react-datepicker", "npm:4.15.0"],\
             ["@types/react-dom", "npm:18.2.4"],\
-            ["@types/react-lottie", "npm:1.2.8"],\
             ["@types/react-modal", "npm:3.16.0"],\
             ["@types/react-router-dom", "npm:5.3.3"],\
             ["@typescript-eslint/eslint-plugin", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.59.9"],\
@@ -16682,6 +16791,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.4.0"],\
             ["chromatic", "npm:6.19.9"],\
             ["date-fns", "npm:2.30.0"],\
+            ["dnd-core", "npm:16.0.1"],\
             ["emotion-reset", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.0.1"],\
             ["emotion-theming", "npm:11.0.0"],\
             ["eslint", "npm:8.43.0"],\
@@ -16698,10 +16808,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prop-types", "npm:15.8.1"],\
             ["react", "npm:18.2.0"],\
             ["react-cookie", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.1.1"],\
+            ["react-copy-to-clipboard", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:5.1.0"],\
             ["react-datepicker", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:4.16.0"],\
+            ["react-dnd", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:16.0.1"],\
+            ["react-dnd-html5-backend", "npm:16.0.1"],\
             ["react-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:18.2.0"],\
             ["react-intersection-observer", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:9.5.2"],\
-            ["react-lottie", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:1.2.3"],\
             ["react-modal", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:3.16.1"],\
             ["react-native-modal-datetime-picker", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:17.1.0"],\
             ["react-router-dom", "virtual:4e45c0fc66fcea691a6899704877c01ef5db8b206163e1bbedea31dcc437239f0f7b8715d5370a3fca234bafb04ae08706f0cd583bd4645634ee000ae7b4548c#npm:6.14.1"],\
@@ -16747,6 +16859,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["to-regex-range", "npm:5.0.1"],\
             ["is-number", "npm:7.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["toggle-selection", [\
+        ["npm:1.0.6", {\
+          "packageLocation": "./.yarn/cache/toggle-selection-npm-1.0.6-c506b73005-a90dc80ed1.zip/node_modules/toggle-selection/",\
+          "packageDependencies": [\
+            ["toggle-selection", "npm:1.0.6"]\
           ],\
           "linkType": "HARD"\
         }]\

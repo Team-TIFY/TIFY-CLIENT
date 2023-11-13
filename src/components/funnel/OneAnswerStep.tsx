@@ -7,7 +7,7 @@ import { RoundButton } from '@components/atoms/RoundButton'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { theme } from '@styles/theme'
 import { Spacing } from '@components/atoms/Spacing'
 import { favorQuestionData } from '@libs/store/dummy'
@@ -33,13 +33,13 @@ const OneAnswerStep = ({
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (answer === '') {
       setAnswer(e.currentTarget.value)
-      e.currentTarget.style.backgroundColor = 'white'
-      e.currentTarget.style.color = `${theme.palette.gray_800}`
+      // e.currentTarget.style.backgroundColor = 'white'
+      // e.currentTarget.style.color = `${theme.palette.gray_800}`
     } else {
       if (e.currentTarget.value === answer) {
         setAnswer('')
-        e.currentTarget.style.backgroundColor = `${theme.palette.gray_800}`
-        e.currentTarget.style.color = `${theme.palette.white}`
+        // e.currentTarget.style.backgroundColor = `${theme.palette.gray_800}`
+        // e.currentTarget.style.color = `${theme.palette.white}`
       } else {
         return
       }
@@ -56,8 +56,12 @@ const OneAnswerStep = ({
         },
       ],
     })
-    setNextStep()
   }
+
+  useEffect(() => {
+    if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
+  }, [step])
+
   return (
     <OneAnswerStepWrapper>
       <Spacing height={32} />
@@ -72,6 +76,7 @@ const OneAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
+                subVariant={answer.length > 0 ? 'selected' : 'default'}
                 key={index}
                 fullWidth={true}
                 variant="medium2Square"
@@ -89,6 +94,7 @@ const OneAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
+                subVariant={answer.length > 0 ? 'selected' : 'default'}
                 key={index}
                 fullWidth={true}
                 variant="medium2Square"

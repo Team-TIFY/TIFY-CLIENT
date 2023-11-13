@@ -19,9 +19,9 @@ const RequireAuth = () => {
   const accessToken = getCookie('accessToken')
   const fetchUserData = async () => {
     const data = await UserApi.GET_USER_INFO_TOKEN()
-    // if (data.onBoardingStatus.length > 0) {
-    //   setIsOnboard(true)
-    // }
+    if (!data.onBoardingStatus) {
+      setIsOnboard(false)
+    }
     console.log(data)
     setAuth({
       isAuthenticated: true,
@@ -30,6 +30,7 @@ const RequireAuth = () => {
       userProfile: {
         id: data.id,
         userName: data.userName,
+        userId: data.userId,
         imageUrl: data.imageUrl,
         birth: data.birth,
         job: data.job,
@@ -46,11 +47,6 @@ const RequireAuth = () => {
       ] = `Bearer ${accessToken}`
       try {
         fetchUserData()
-        // if (isOnboard === false) {
-        //   //TODO: 추후 toast UI로 변경할 것
-        //   alert('온보딩이 필요해요')
-        //   setStatus('needOnboarding')
-        // } else setStatus('succeed')
         setStatus('succeed')
       } catch (error) {
         setStatus('failed')
@@ -60,9 +56,20 @@ const RequireAuth = () => {
     }
   }, [accessToken])
 
+  useEffect(() => {
+    if (accessToken) {
+      if (isOnboard === false) {
+        setStatus('needOnboarding')
+      } else setStatus('succeed')
+    } else {
+      setStatus('failed')
+    }
+  }, [isOnboard, accessToken])
+
   if (status === 'succeed') {
     return <Outlet />
   } else if (status === 'needOnboarding') {
+    //alert('온보딩이 필요해요!')
     setTimeout(() => setStatus('succeed'), 500)
     return <Navigate replace to="/onboarding" />
   } else if (status === 'failed')

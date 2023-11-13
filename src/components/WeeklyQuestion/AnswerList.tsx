@@ -27,7 +27,7 @@ const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
     <>
       <TextBubble
         variant={isMine ? 'new' : 'old'}
-        nickname={profile.nickname}
+        nickname={isMine ? 'ME' : profile.nickname}
         reply={answerInfo.content}
       />
     </>

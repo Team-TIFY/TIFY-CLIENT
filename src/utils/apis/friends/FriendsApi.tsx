@@ -1,15 +1,21 @@
 import { axiosApi } from '../axios'
-import { FriendRequestType, FriendsType } from './FriendsType'
+import { InfiniteResponse } from '@libs/hooks'
+import {
+  FriendRequestType,
+  FriendsType,
+  NewFriendsType,
+  SearchedFriendType,
+} from './FriendsType'
 
 export const FriendsApi = {
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
     const response = await axiosApi.get('/users/neighbors')
-    return response.data.data.content
+    return response.data.data
   },
 
   GET_BIRTHDAY_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
     const response = await axiosApi.get('/users/neighbors/birthday')
-    return response.data.data.content
+    return response.data.data
   },
 
   GET_FRIEND_REQUEST_LIST: async (): Promise<FriendRequestType[]> => {
@@ -28,6 +34,53 @@ export const FriendsApi = {
     const response = await axiosApi.patch(
       `/users/neighbors/applications/${neighborApplicationId}/reject`,
     )
+    return response.data.data
+  },
+
+  SEARCH_FRIEND: async (userId: string): Promise<SearchedFriendType> => {
+    const response = await axiosApi.get(`/users?userId=${userId}`)
+    return response.data.data.content.length && response.data.data.content[0]
+  },
+
+  REQUEST_FRIEND: async (toId: number) => {
+    const response = await axiosApi.post(`/users/${toId}/neighbors`)
+    return response.data.data
+  },
+
+  GET_PRESENT_RECOMMEND: async (smallCategory: string, page: number) => {
+    const response = await axiosApi.get(
+      `/products/products/small-category?${smallCategory}&page=${page}&size=10`,
+    )
+    return response.data
+  },
+
+  BLOCK_FRIEND: async (id: number) => {
+    const response = await axiosApi.post(`/users/${id}/block`)
+    return response.data.data
+  },
+
+  CANCEL_BLOCK_FRIEND: async (id: number) => {
+    const response = await axiosApi.delete(`/users/${id}/block`)
+    return response.data.data
+  },
+
+  REPORT_FRIEND: async (id: number) => {
+    const response = await axiosApi.post(`/users/report/${id}`)
+    return response.data.data
+  },
+
+  CUT_OFF_FRIEND: async (id: number) => {
+    const response = await axiosApi.delete(`/users/${id}/neighbors/delete`)
+    return response.data.data
+  },
+
+  GET_NEW_FRIENDS_LIST: async (): Promise<NewFriendsType[]> => {
+    const response = await axiosApi.get(`/users/neighbors/isNew`)
+    return response.data.data
+  },
+
+  REMOVE_NEW_FRIEND: async (id: number) => {
+    const response = await axiosApi.patch(`/users/neighbors/${id}/isNew`)
     return response.data.data
   },
 }

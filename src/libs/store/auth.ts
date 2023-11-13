@@ -1,4 +1,4 @@
-import { UserInfo, UserInfoToken } from '@utils/apis/user/UserType'
+import { UserInfoToken } from '@utils/apis/user/UserType'
 import { atom } from 'recoil'
 import { recoilPersist } from 'recoil-persist'
 
@@ -17,6 +17,7 @@ const initialState: AuthStateType = {
   userProfile: {
     id: 0,
     userName: '',
+    userId: '',
     imageUrl: '',
     birth: '',
     job: '',

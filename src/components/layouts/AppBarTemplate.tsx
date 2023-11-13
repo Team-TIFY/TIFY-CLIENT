@@ -4,7 +4,7 @@ import {
   RightChildrenVariant,
 } from '@components/atoms/AppBar'
 import { ReactNode } from 'react'
-import { favorQuestionData, FavorQuestionDataType } from '@libs/store/dummy'
+import { favorQuestionData } from '@libs/store/dummy'
 import { Navigationbar } from '@components/atoms/Navigationbar'
 import { TasteType } from '@utils/apis/favor/TasteType'
 
@@ -21,6 +21,8 @@ const AppBarTemplate = ({
   onClickOption2,
   rightChildren,
   rightChildrenIcon,
+  customHandler,
+  isLabelAlignCenter,
   children,
   hasNav,
 }: AppBarTemplateProps) => {
@@ -33,13 +35,13 @@ const AppBarTemplate = ({
       .split('?')[0] as TasteType
     const totalNum = Object.keys(favorQuestionData[favorType]).length
     const stepNum = parseInt(window.location.href.slice(-1), 10)
-    console.log(stepNum)
     if (isNaN(stepNum)) {
       return [1, totalNum]
     } else {
       return [stepNum, totalNum]
     }
   }
+
   return (
     <>
       {rightChildren === 'actionButton' ? (
@@ -49,6 +51,8 @@ const AppBarTemplate = ({
           beforeUrl={beforeUrl}
           onClickOption1={onClickOption1}
           onClickOption2={onClickOption2}
+          customHandler={customHandler}
+          isLabelAlignCenter={isLabelAlignCenter}
           rightChildren="actionButton"
           rightChildrenIcon={rightChildrenIcon}
         />
@@ -59,6 +63,8 @@ const AppBarTemplate = ({
           beforeUrl={beforeUrl}
           onClickOption1={onClickOption1}
           onClickOption2={onClickOption2}
+          customHandler={customHandler}
+          isLabelAlignCenter={isLabelAlignCenter}
           rightChildren={rightChildren}
           stepNum={parseStepNum()}
         />

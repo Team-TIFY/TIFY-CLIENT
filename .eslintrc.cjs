@@ -23,7 +23,13 @@ module.exports = {
       'error',
       { props: 'never', children: 'never' },
     ],
-    'react-refresh/only-export-components': 'warn',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'react-refresh/only-export-components': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/no-children-prop': 'off',
     'no-unused-expressions': 'off',
@@ -31,7 +37,10 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'no-unused-vars': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': ['off', { ignoreRestSiblings: true }],
+    'react-hooks/exhaustive-deps': 'off',
   },
   settings: {
     'import/external-module-folders': ['.yarn'],

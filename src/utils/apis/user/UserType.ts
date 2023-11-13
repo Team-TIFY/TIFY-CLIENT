@@ -1,5 +1,6 @@
 export interface UserInfo {
-  userId: number
+  id: number
+  userId: string
   userName: string
   email: string
   thumbnail: string
@@ -7,11 +8,16 @@ export interface UserInfo {
   job: string
   gender: string
   onBoardingStatus: string
+  blocked: boolean
+  friend: boolean
+  receivedApplication: object
+  sentApplication: object
 }
 
 export interface UserInfoToken {
   id: number
   userName: string
+  userId: string
   imageUrl: string
   birth: string
   job: string

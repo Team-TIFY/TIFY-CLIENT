@@ -1,26 +1,36 @@
-/* eslint-disable prettier/prettier */
 import { ButtonHTMLAttributes } from 'react'
 import { KeyOfTypo, theme } from '@styles/theme'
 import styled from '@emotion/styled'
 import { Text } from '../Text'
 import Loading from '@components/atoms/Loading'
+import { FlexBox } from '@components/layouts/FlexBox'
+import Svg from '../Svg'
+import RightChevron from '@assets/icons/RightChevron'
 
-type ButtonVariant = 'mediumRound' | 'smallRound' | 'circle' | 'kakao'
+type ButtonVariant =
+  | 'xlargeRound'
+  | 'mediumRound'
+  | 'smallRound'
+  | 'circle'
+  | 'kakao'
 
 const BUTTON_COLOR_TYPE = {
   default: {
+    xlargeRound: `${theme.palette.gray_800}`,
     mediumRound: `${theme.palette.purple_500}`,
     smallRound: `${theme.palette.background}`,
     circle: `${theme.palette.gray_800}`,
     kakao: `${theme.palette.kakao}`,
   },
   disabled: {
+    xlargeRound: `${theme.palette.gray_800}`,
     mediumRound: `${theme.palette.gray_700}`,
     smallRound: `${theme.palette.background}`,
     circle: `${theme.palette.gray_700}`,
     kakao: `${theme.palette.kakao}`,
   },
   hover: {
+    xlargeRound: `${theme.palette.gray_800}`,
     mediumRound: `${theme.palette.purple_600}`,
     smallRound: `${theme.palette.gray_800}`,
     circle: `${theme.palette.gray_700}`,
@@ -30,18 +40,21 @@ const BUTTON_COLOR_TYPE = {
 
 const TEXT_COLOR_TYPE = {
   default: {
+    xlargeRound: `${theme.palette.gray_100}`,
     mediumRound: `${theme.palette.white}`,
     smallRound: `${theme.palette.gray_100}`,
     circle: `${theme.palette.gray_100}`,
     kakao: `${theme.palette.gray_900}`,
   },
   disabled: {
+    xlargeRound: `${theme.palette.gray_100}`,
     mediumRound: `${theme.palette.gray_500}`,
     smallRound: `${theme.palette.gray_100}`,
     circle: `${theme.palette.gray_500}`,
     kakao: `${theme.palette.gray_900}`,
   },
   hover: {
+    xlargeRound: `${theme.palette.gray_100}`,
     mediumRound: `${theme.palette.white}`,
     smallRound: `${theme.palette.gray_100}`,
     circle: `${theme.palette.gray_200}`,
@@ -60,6 +73,13 @@ type ButtonShapeType = {
 }
 
 const BUTTON_SHAPE_TYPE: ButtonShapeType = {
+  xlargeRound: {
+    radius: 80,
+    typo: 'Body_16',
+    width: 312,
+    height: 65,
+    padding: [12, 24],
+  },
   mediumRound: {
     radius: 24,
     typo: 'Subhead_16',
@@ -98,23 +118,75 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
  * @param onClick 버튼을 클릭할 때 발생하는 event 명시 (optional)
  */
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps<T extends ButtonVariant>
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant
+  xlargeDescription?: T extends 'xlargeRound' ? string | undefined : undefined
+  xlargeRightChildren?: T extends 'xlargeRound'
+    ? React.ReactNode | undefined
+    : undefined
   fullWidth?: boolean
   width?: number
   isLoading?: boolean
   onClick?: () => void
 }
-type Props = Partial<ButtonProps>
+
+type Props = Partial<ButtonProps<ButtonVariant>>
 
 export const RoundButton = ({
   children,
   variant = 'mediumRound',
+  xlargeDescription,
+  xlargeRightChildren,
   fullWidth = false,
   width,
   isLoading,
   ...props
 }: Props) => {
+  const renderRoundButton = () => {
+    if (variant === 'xlargeRound') {
+      return (
+        <>
+          <FlexBox style={{ width: '100%', justifyContent: 'space-between' }}>
+            <FlexBox direction="column">
+              <Text
+                typo={
+                  xlargeDescription
+                    ? `Subhead_16`
+                    : `${BUTTON_SHAPE_TYPE[variant].typo}`
+                }
+                as="span"
+                style={{ marginLeft: '8px' }}
+              >
+                {children}
+              </Text>
+              {xlargeDescription && (
+                <Text
+                  typo="Caption_12R"
+                  color="gray_300"
+                  children={xlargeDescription}
+                />
+              )}
+            </FlexBox>
+            <Svg
+              children={
+                xlargeRightChildren ? xlargeRightChildren : <RightChevron />
+              }
+            />
+          </FlexBox>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
+            <FlexBox>{children}</FlexBox>
+          </Text>
+        </>
+      )
+    }
+  }
+
   return (
     <StyledButton
       width={width}
@@ -122,13 +194,7 @@ export const RoundButton = ({
       fullWidth={fullWidth}
       {...props}
     >
-      {isLoading ? (
-        <Loading/>
-      ) : (
-        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
-          {children}
-        </Text>
-      )}
+      {isLoading ? <Loading /> : renderRoundButton()}
     </StyledButton>
   )
 }
@@ -138,6 +204,9 @@ const StyledButton = styled.button<{
   width?: number
   fullWidth?: boolean
 }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   padding: ${({ variant }) =>
     `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
@@ -147,8 +216,8 @@ const StyledButton = styled.button<{
     fullWidth
       ? '100%'
       : width
-        ? `${width}px`
-        : `${BUTTON_SHAPE_TYPE[variant].width}px`};
+      ? `${width}px`
+      : `${BUTTON_SHAPE_TYPE[variant].width}px`};
   height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
@@ -162,7 +231,7 @@ const StyledButton = styled.button<{
 
   &:disabled {
     background-color: ${({ variant }) =>
-    `${BUTTON_COLOR_TYPE.disabled[variant]}`};
+      `${BUTTON_COLOR_TYPE.disabled[variant]}`};
     color: ${({ variant }) => `${TEXT_COLOR_TYPE.disabled[variant]}`};
   }
 `

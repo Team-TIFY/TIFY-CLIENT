@@ -10,8 +10,8 @@ const meta: Meta<typeof FriendsListC> = {
       'FriendsListC는 친구 목록을 나타내는 세 번째 종류입니다.',
   },
   argTypes: {
-    name: {
-      name: 'name',
+    userName: {
+      name: 'userName',
       description: '친구 이름입니다.',
       control: {
         type: 'text',
@@ -46,7 +46,7 @@ type Story = StoryObj<typeof meta>
 
 export const FriendsList_C: Story = {
   args: {
-    name: '김수빈',
+    userName: '김수빈',
     currentState: '비행기 바라보며 여행 꿈꾸는 중 ✈️',
   },
 }

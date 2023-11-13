@@ -16,7 +16,6 @@ export function Gender() {
       gender: gender,
     })
     setIsGender(gender)
-    console.log(info)
   }
 
   return (
@@ -87,9 +86,9 @@ const GenderManBtn = styled.button<{
   width: 148px;
   height: 52px;
   color: ${({ gender }) =>
-    gender == '남성' ? `${theme.palette.gray_800}` : `${theme.palette.white}`};
+    gender == 'male' ? `${theme.palette.gray_800}` : `${theme.palette.white}`};
   background-color: ${({ gender }) =>
-    gender == '남성' ? `${theme.palette.white}` : `${theme.palette.gray_900}`};
+    gender == 'male' ? `${theme.palette.white}` : `${theme.palette.gray_900}`};
   ${theme.typo.Body_14};
   margin: 0 8px 0 8px;
   border-radius: 12px;

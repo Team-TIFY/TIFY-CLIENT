@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
 import { NonEmptyArray } from '@libs/hooks/useFunnel'
-import { assert } from '@utils/asset'
 import {
   ReactNode,
   useEffect,
@@ -13,8 +11,8 @@ export interface FunnelProps<Steps extends NonEmptyArray<string>> {
   steps: Steps
   step: Steps[number]
   children:
-  | Array<ReactElement<StepProps<Steps>>>
-  | ReactElement<StepProps<Steps>>
+    | Array<ReactElement<StepProps<Steps>>>
+    | ReactElement<StepProps<Steps>>
 }
 export const Funnel = <Steps extends NonEmptyArray<string>>({
   steps,
@@ -26,7 +24,7 @@ export const Funnel = <Steps extends NonEmptyArray<string>>({
     .filter((i) =>
       steps.includes((i.props as Partial<StepProps<Steps>>).name ?? ''),
     ) as Array<ReactElement<StepProps<Steps>>>
-    const targetStep = validChildren.find(child => child.props.name === step);
+  const targetStep = validChildren.find((child) => child.props.name === step)
   return <>{targetStep}</>
 }
 

@@ -3,23 +3,27 @@ on:
   pull_request:
     branches: [dev]
     paths: ['src/components/atoms/**']
-
 jobs:
-  test:
+  storybook:
     permissions:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Install dependencies
-        run: yarn
-      - name: Publish to Chromatic
-        id: chromatic
-        run : yarn chromatic
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      - name: comment PR  
-        uses: thollander/actions-comment-pull-request@v2  
-        with:  
-          message: "🚀storybook: https://www.chromatic.com/builds?appId=64ace737dc3be00731907172"  
-
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name : Install dependencies
+      run : yarn install
+    - name : Publish to Chromatic
+      id: chromatic
+      uses: chromaui/action@v1
+      with :
+        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        token: ${{secrets.GH_TOKEN}}
+    - name: comment PR
+      uses: thollander/actions-comment-pull-request@v2
+      env:
+        GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+      with:  
+        message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}"

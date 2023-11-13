@@ -11,22 +11,22 @@ export type FriendsListVariant = 'visible' | 'invisible'
 
 /**
  * @param variant FriendsList visible type을 나타냄 'visible' | 'invisible'
- * @param name 친구 이름을 나타냄
- * @param nickName 친구 닉네임을 나타냄
+ * @param userName 친구 이름을 나타냄
+ * @param userId 친구 아이디를 나타냄
  * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
 interface FriendsListAProps {
   variant?: FriendsListVariant
-  name: string
-  nickName: string
+  userName: string
+  userId: string
   onClick?: () => void
 }
 
 export const FriendsListA = ({
   variant = 'visible',
-  name,
-  nickName,
+  userName,
+  userId,
   onClick,
 }: FriendsListAProps) => {
   return (
@@ -34,11 +34,11 @@ export const FriendsListA = ({
       <Avatar variant="small" isVisible={`${variant}`} />
       <NameWrapper>
         {variant === 'visible' ? (
-          <Text children={name} typo="Subhead_16" color="white" />
+          <Text children={userName} typo="Subhead_16" color="white" />
         ) : (
-          <Text children={name} typo="Subhead_16" color="gray_400" />
+          <Text children={userName} typo="Subhead_16" color="gray_400" />
         )}
-        <Text children={'@' + nickName} typo="Caption_12M" color="gray_300" />
+        <Text children={'@' + userId} typo="Caption_12M" color="gray_300" />
       </NameWrapper>
       <IconWrapper>
         {variant === 'visible' ? (

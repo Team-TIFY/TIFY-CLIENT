@@ -10,7 +10,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const week: Story = {
+export const WeekComponent: Story = {
   args: {
     today: 3,
   },

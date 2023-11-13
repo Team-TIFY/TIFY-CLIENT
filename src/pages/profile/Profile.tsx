@@ -1,17 +1,30 @@
+import { MouseEventHandler, RefObject, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
-import { UserApi } from '@utils/apis/user/UserApi'
 import { useRecoilValue } from 'recoil'
-import { authState } from '@libs/store/auth'
 import { useQuery } from '@tanstack/react-query'
-import { Spacing } from '@components/atoms/Spacing'
 import { Padding } from '@components/layouts/Padding'
+import Dimmer from '@components/layouts/Dimmer'
+import { Spacing } from '@components/atoms/Spacing'
 import { Filter } from '@components/atoms/Filter'
-import { SelectedProps, SelectedTag, UserInfo } from '@utils/apis/user/UserType'
+import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
 import { ProfileImage } from '@components/profile/ProfileImage'
-import { UserTagData } from '@components/profile/UserTagData'
 import { ProfileHeader } from '@components/profile/ProfileHeader'
+import ProfileMenuButtons from '@components/profile/ProfileMenuButtons'
+import { UserTagDataListItem } from '@components/profile/UserTagDataListItem'
+import {
+  SelectedProps,
+  SelectedTag,
+  SubCategoryType,
+  UserInfo,
+} from '@utils/apis/user/UserType'
+import { UserApi } from '@utils/apis/user/UserApi'
 import useProfileMutate from '@libs/hooks/useProfileMutate'
+import { useOutsideClick } from '@libs/hooks/useOutsideClick'
+import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
+import { friendState } from '@libs/store/friend'
+import { authState } from '@libs/store/auth'
+import { profileState } from '@libs/store/profile'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
@@ -28,21 +41,118 @@ const selectedProps: SelectedProps = [
 export type ProfilePropsType<T extends UserInfo> = {
   friendData?: T
   friendId?: T extends UserInfo ? number : undefined
+  addFriend?: boolean
 }
 
-const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
+type MenuButtonType = {
+  menuOpen: boolean
+  ref: RefObject<HTMLDivElement>
+  type: string
+  close: MouseEventHandler<HTMLDivElement>
+}
+
+const Profile = ({
+  friendData,
+  friendId,
+  addFriend = false,
+}: ProfilePropsType<UserInfo>) => {
   const auth = useRecoilValue(authState)
+  const profileStateData = useRecoilValue(profileState)
+  const friendStateData = useRecoilValue(friendState)
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
 
+  const [profileMenuOutsideRef, handleClickProfileDimmer] = useOutsideClick(
+    () => setIsMenuOpen(false),
+  )
+
+  const [friendMenuOutsideRef, handleClickFriendDimmer] = useOutsideClick(() =>
+    setIsFriendMenuOpen(false),
+  )
+
+  const [cutOffMenuOutsideRef, handleClickCutOffDimmer] = useOutsideClick(() =>
+    setIsCutOffMenuOpen(false),
+  )
+
+  const [blockMenuOutsideRef, handleClickBlockDimmer] = useOutsideClick(() =>
+    setIsBlockMenuOpen(false),
+  )
+
+  const [cancelBlockMenuOutsideRef, handleClickCancelBlockDimmer] =
+    useOutsideClick(() => setIsCancelBlockMenuOpen(false))
+
+  const isProfileMenuOpen = profileStateData?.isMenuOpen ?? false
+  const isFriendMenuOpen = friendStateData?.isMenuOpen ?? false
+  const isCutOffMenuOpen = friendStateData?.isCutOffMenuOpen ?? false
+  const isBlockMenuOpen = friendStateData?.isBlockMenuOpen ?? false
+  const isCancelBlockMenuOpen = friendStateData?.isCancelBlockMenuOpen ?? false
+  const menus = [
+    {
+      menuOpen: isProfileMenuOpen,
+      type: 'myProfile',
+      ref: profileMenuOutsideRef,
+      close: handleClickProfileDimmer,
+    },
+    {
+      menuOpen: isFriendMenuOpen,
+      type: 'report',
+      ref: friendMenuOutsideRef,
+      close: handleClickFriendDimmer,
+    },
+    {
+      menuOpen: isCutOffMenuOpen,
+      type: 'cutOffFriend',
+      ref: cutOffMenuOutsideRef,
+      close: handleClickCutOffDimmer,
+    },
+    {
+      menuOpen: isBlockMenuOpen,
+      type: 'block',
+      ref: blockMenuOutsideRef,
+      close: handleClickBlockDimmer,
+    },
+    {
+      menuOpen: isCancelBlockMenuOpen,
+      type: 'cancelBlock',
+      ref: cancelBlockMenuOutsideRef,
+      close: handleClickCancelBlockDimmer,
+    },
+  ]
+
+  const { setIsEdit, setIsMenuOpen } = useSetProfileRecoilState()
+  const {
+    setIsMenuOpen: setIsFriendMenuOpen,
+    setIsCutOffMenuOpen,
+    setIsBlockMenuOpen,
+    setIsCancelBlockMenuOpen,
+  } = useSetFriendRecoilState()
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
   useEffect(() => {
     if (friendId) {
       updateFriendProfileViewTimeMutate(friendId)
     }
-    console.log(auth)
   }, [friendId])
+
+  useEffect(() => {
+    // 메뉴 버튼 오픈 시 스크롤 금지
+    if (
+      isProfileMenuOpen ||
+      isFriendMenuOpen ||
+      isCutOffMenuOpen ||
+      isBlockMenuOpen
+    ) {
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isProfileMenuOpen, isFriendMenuOpen, isCutOffMenuOpen, isBlockMenuOpen])
+
+  useEffect(() => {
+    setIsEdit(false)
+  }, [])
 
   const { data: userData = {} as UserInfo } = useQuery(
     ['userProfile', auth.userProfile.id],
@@ -60,12 +170,10 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
       ),
   )
 
-  const getFilteredData = (selectedTags: SelectedTag[]) => {
-    const promises = selectedTags.map((tag) =>
-      UserApi.GET_FILTERED_USER_TAG(tag.value),
+  const getSmallCategoryData = (selectedTags: SelectedTag[]) => {
+    return selectedTags.map(
+      (tag: SelectedTag) => `${tag.value}` as SubCategoryType,
     )
-
-    return Promise.all(promises)
   }
 
   const { data: filteredUserTagData = [] } = useQuery(
@@ -74,38 +182,91 @@ const Profile = ({ friendData, friendId }: ProfilePropsType<UserInfo>) => {
       selectedTags,
       !friendData ? auth.userProfile.id : friendId,
     ],
-    () => getFilteredData(selectedTags),
+    () => UserApi.GET_FILTERED_USER_TAG(getSmallCategoryData(selectedTags)),
     {
       enabled: selectedTags.length > 0,
     },
   )
 
+  const getFriendUserId = (menu: MenuButtonType) => {
+    return menu.type === 'cutOffFriend' ||
+      menu.type === 'block' ||
+      menu.type === 'cancelBlock'
+      ? friendData?.userId
+      : undefined
+  }
+
+  const getFriendImageUrl = (menu: MenuButtonType) => {
+    return menu.type === 'cutOffFriend' ||
+      menu.type === 'block' ||
+      menu.type === 'cancelBlock'
+      ? friendData?.thumbnail
+      : undefined
+  }
+
+  const renderMenuButtons = () => {
+    return menus.map(
+      (menu, idx) =>
+        menu.menuOpen && (
+          <div key={idx}>
+            <Dimmer dimmerRef={menu.ref} onClick={menu.close} />
+            <ProfileMenuButtons
+              type={menu.type as ProfileButtonVariant}
+              friendId={friendId}
+              friendUserId={getFriendUserId(menu)}
+              friendImageUrl={getFriendImageUrl(menu)}
+            />
+          </div>
+        ),
+    )
+  }
+
   return (
     <>
-      <ProfileImage />
+      <ProfileImage isFriend={friendId !== undefined} />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>
           <ProfileHeader
             userData={friendData ? friendData : userData}
-            isFriend={friendId !== undefined}
+            addFriend={addFriend}
           />
-          <Spacing height={32} />
-          <FilterWrapper>
-            <Filter
-              selectedTags={selectedTags}
-              setSelectedTags={setSelectedTags}
-              selectedProps={selectedProps}
-            />
-          </FilterWrapper>
-          <Spacing height={20} />
-          <UserTagData
-            selectedTags={selectedTags}
-            filteredUserTagData={filteredUserTagData}
-            userTagData={userTagData}
-          />
+          {!addFriend ? (
+            !friendId ? (
+              <>
+                <Spacing height={32} />
+                <FilterWrapper>
+                  <Filter
+                    selectedTags={selectedTags}
+                    setSelectedTags={setSelectedTags}
+                    selectedProps={selectedProps}
+                  />
+                </FilterWrapper>
+                <Spacing height={20} />
+                <UserTagDataListItem
+                  selectedTags={selectedTags}
+                  filteredUserTagData={filteredUserTagData}
+                  userTagData={userTagData}
+                  isFriend={false}
+                />
+              </>
+            ) : (
+              <>
+                <Spacing height={24} />
+                <UserTagDataListItem
+                  selectedTags={selectedTags}
+                  filteredUserTagData={filteredUserTagData}
+                  userTagData={userTagData}
+                  isFriend={friendData?.friend ?? false}
+                />
+              </>
+            )
+          ) : (
+            <Spacing height={24} />
+          )}
         </ProfileWrapper>
       </Padding>
+      {renderMenuButtons()}
     </>
   )
 }

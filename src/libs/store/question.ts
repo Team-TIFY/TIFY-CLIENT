@@ -7,7 +7,7 @@ const { persistAtom } = recoilPersist()
 const initialState: DailyQuestionInfo = {
   questionId: 0,
   content: '',
-  category: 'PERFUME',
+  category: 'FOOD',
   loadingData: '',
 }
 

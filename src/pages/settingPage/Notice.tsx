@@ -1,4 +1,4 @@
-import { RightChevron } from '@assets/icons/RightChevron'
+import RightChevron from '@assets/icons/RightChevron'
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'

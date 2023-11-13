@@ -1,12 +1,16 @@
 import styled from '@emotion/styled'
+import { FlexBox } from '@components/layouts/FlexBox'
 import { Avatar } from '@components/atoms/Avatar'
 import { Spacing } from '@components/atoms/Spacing'
-import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
-import { UserInfo } from '@utils/apis/user/UserType'
-import ThreeDots from '@assets/icons/ThreeDots'
 import Svg from '@components/atoms/Svg'
+import { UserInfo } from '@utils/apis/user/UserType'
 import useGetDate from '@libs/hooks/useGetDate'
+import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
+import ThreeDots from '@assets/icons/ThreeDots'
+import { useRecoilValue } from 'recoil'
+import { authState } from '@libs/store/auth'
 
 export interface UserDetailProps {
   userData: UserInfo
@@ -14,6 +18,14 @@ export interface UserDetailProps {
 
 export const UserDetail = ({ userData }: UserDetailProps) => {
   const { formatDate } = useGetDate()
+
+  const { setIsMenuOpen } = useSetProfileRecoilState()
+  const { setIsMenuOpen: setIsFriendMenuOpen } = useSetFriendRecoilState()
+  const auth = useRecoilValue(authState)
+
+  const getUserInfoText = () => {
+    return formatDate(userData?.birth) + ' | ' + userData?.onBoardingStatus
+  }
 
   return (
     <>
@@ -32,14 +44,20 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
             color="white"
             children={userData?.userName}
           />
-          <Svg children={<ThreeDots />} style={{ cursor: 'pointer' }} />
+          <Svg
+            children={<ThreeDots />}
+            style={{ cursor: 'pointer' }}
+            onClick={() =>
+              userData.userId === auth.userProfile.userId
+                ? setIsMenuOpen(true)
+                : setIsFriendMenuOpen(true)
+            }
+          />
         </FlexBox>
         <Text
           typo="Mont_Caption_12M"
           color="gray_200"
-          children={
-            formatDate(userData?.birth) + ' | ' + userData?.onBoardingStatus
-          }
+          children={getUserInfoText()}
         />
       </UserInfoWrapper>
     </>
