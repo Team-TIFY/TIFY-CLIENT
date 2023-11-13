@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import OnAlert from '@assets/icons/OnAlert'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Routes, Route } from 'react-router-dom'

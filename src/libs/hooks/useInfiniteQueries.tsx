@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import {
   QueryKey,
   useInfiniteQuery,
@@ -36,7 +37,9 @@ export const useInfiniteQueries = <T,>(
   }, [inView])
 
   const listElement = data?.pages.map(({ content }) =>
-    content.map((item, idx) => <ListItem {...item} key={`item-${idx}`} />),
+    content.map((item, idx) => (
+      <ListItem {...item} className={`item-${idx}`} key={`item-${idx}`} />
+    )),
   )
   const observer = (
     <div
@@ -46,18 +49,65 @@ export const useInfiniteQueries = <T,>(
     />
   )
 
-  const isEmpty = data?.pages[0].content.length === 0
+  const isEmpty = data?.pages[0].content.length === 1
 
   return {
     infiniteListElement: (
-      <>
+      <ListElementContainer>
         {listElement}
         {observer}
-      </>
+      </ListElementContainer>
     ),
     isEmpty,
   }
 }
+
+// eslint-disable-next-line react-refresh/only-export-components
+const ListElementContainer = styled.div`
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes movetoY {
+    from {
+      transform: translateY(20px);
+    }
+    to {
+      transform: translateY(0px);
+    }
+  }
+  &:nth-child(1) {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-name: movetoY, fadeIn;
+    animation-duration: 0.8s, 0.5s;
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1),
+      cubic-bezier(0.61, 1, 0.88, 1);
+    animation-delay: 0.8s;
+  }
+  &:nth-child(2) {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-name: movetoY, fadeIn;
+    animation-duration: 0.8s, 0.4s;
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1),
+      cubic-bezier(0.61, 1, 0.88, 1);
+    animation-delay: 1.2s;
+  }
+  &:nth-child(3) {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-name: movetoY, fadeIn;
+    animation-duration: 0.8s, 0.4s;
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1),
+      cubic-bezier(0.65, 0, 0.35, 1);
+    animation-delay: 1.6s;
+  }
+`
 
 export interface InfiniteResponse<T> {
   content: T[]

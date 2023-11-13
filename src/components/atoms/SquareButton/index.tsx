@@ -71,7 +71,7 @@ const TEXT_COLOR_TYPE = {
   selected: {
     xlargeSquare: `${theme.palette.gray_100}`,
     largeSquare: `${theme.palette.gray_800}`,
-    mediumSquare: `${theme.palette.gray_200}`,
+    mediumSquare: `${theme.palette.gray_800}`,
     medium2Square: `${theme.palette.gray_800}`,
     medium3Square: `${theme.palette.gray_800}`,
     smallSquare: `${theme.palette.gray_100}`,

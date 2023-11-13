@@ -1,4 +1,5 @@
 import { axiosApi } from '../axios'
+import { InfiniteResponse } from '@libs/hooks'
 import {
   FriendRequestType,
   FriendsType,

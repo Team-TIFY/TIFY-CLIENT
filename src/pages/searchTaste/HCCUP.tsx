@@ -10,7 +10,6 @@ import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
-import { IsOnboard } from '@libs/store/onboard'
 
 const HCCUP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
@@ -31,8 +30,6 @@ const HCCUP = () => {
       'OneAnswer3',
       'OneAnswer4',
       'MultiAnswer5',
-      'MultiAnswer6',
-      'SearchAnswer7',
     ] as const,
     {
       initialStep: 'MultiAnswer1',
@@ -79,21 +76,6 @@ const HCCUP = () => {
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer5">
         <OneAnswerStep
-          setNextStep={() => setStep('MultiAnswer6')}
-          category="HCCUP"
-          number={5}
-        />
-      </Funnel.Step>
-      <Funnel.Step name="MultiAnswer6">
-        <MultiAnswerStep
-          setNextStep={() => setStep('SearchAnswer7')}
-          max={2}
-          category="HCCUP"
-          number={6}
-        />
-      </Funnel.Step>
-      <Funnel.Step name="SearchAnswer7">
-        <OneAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
             if (localStorage.getItem('isOnboardingFavor') === 'true') {
@@ -104,7 +86,7 @@ const HCCUP = () => {
             localStorage.clear()
           }}
           category="HCCUP"
-          number={7}
+          number={5}
         />
       </Funnel.Step>
     </Funnel>

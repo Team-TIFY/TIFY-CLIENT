@@ -1,38 +1,38 @@
-import { FlexBox } from '@components/layouts/FlexBox';
-import { Text } from '../Text';
-import styled from '@emotion/styled';
-import { theme } from '@styles/theme';
-import { useNavigate } from 'react-router-dom';
-import Svg from '../Svg';
-import TifyLogo from '@assets/icons/TifyLogo';
-import LeftArrow from '@assets/icons/LeftArrow';
-import Alert from '@assets/icons/Alert';
-import ThreeDots from '@assets/icons/ThreeDots';
-import { isArray } from '@utils/isArray';
+import { FlexBox } from '@components/layouts/FlexBox'
+import { Text } from '../Text'
+import styled from '@emotion/styled'
+import { theme } from '@styles/theme'
+import { useNavigate } from 'react-router-dom'
+import Svg from '../Svg'
+import TifyLogo from '@assets/icons/TifyLogo'
+import LeftArrow from '@assets/icons/LeftArrow'
+import Alert from '@assets/icons/Alert'
+import ThreeDots from '@assets/icons/ThreeDots'
+import { isArray } from '@utils/isArray'
 
-export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo';
+export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
 
 export type RightChildrenVariant =
   | 'alarm'
   | 'dots'
   | 'none'
   | 'actionButton'
-  | 'stepNum';
+  | 'stepNum'
 
 export type AppBarProps<T extends RightChildrenVariant> = {
-  variant: AppBarType;
-  label?: string;
-  beforeUrl?: string;
-  onClickOption1?: () => void;
-  onClickOption2?: () => void;
-  customHandler?: () => void;
-  stepNum?: [number, number];
-  rightChildren: T;
+  variant: AppBarType
+  label?: string
+  beforeUrl?: string
+  onClickOption1?: () => void
+  onClickOption2?: () => void
+  customHandler?: () => void
+  stepNum?: [number, number]
+  rightChildren: T
   rightChildrenIcon?: T extends 'alarm' | 'dots' | 'none'
     ? undefined
-    : React.ReactNode[];
-  isLabelAlignCenter?: boolean;
-};
+    : React.ReactNode[]
+  isLabelAlignCenter?: boolean
+}
 
 export const AppBar = ({
   variant = 'logo',
@@ -46,19 +46,19 @@ export const AppBar = ({
   customHandler,
   isLabelAlignCenter = false,
 }: AppBarProps<RightChildrenVariant>) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onClickBackBar = () => {
     if (customHandler) {
-      customHandler();
+      customHandler()
     } else {
-      beforeUrl ? navigate(beforeUrl) : navigate(-1);
+      beforeUrl ? navigate(beforeUrl) : navigate(-1)
     }
-  };
+  }
 
   const onClickLogo = () => {
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   const handleRightChildren = (rightElement: RightChildrenVariant) => {
     if (rightElement === 'alarm')
@@ -71,19 +71,19 @@ export const AppBar = ({
           />
           <Svg children={<ThreeDots />} onClick={onClickOption2} />
         </FlexBox>
-      );
+      )
     else if (rightElement === 'dots')
-      return <Svg children={<ThreeDots />} onClick={onClickOption1} />;
+      return <Svg children={<ThreeDots />} onClick={onClickOption1} />
     else if (rightElement === 'actionButton') {
       return (
-        <FlexBox gap={16}>
+        <FlexBox gap={16} style={{ cursor: 'pointer' }}>
           {isArray(rightChildrenIcon)
             ? rightChildrenIcon?.map((icon, index) => (
                 <div key={index}>{icon}</div>
               ))
             : null}
         </FlexBox>
-      );
+      )
     } else if (rightElement === 'stepNum') {
       return (
         <FlexBox>
@@ -94,11 +94,11 @@ export const AppBar = ({
             /{stepNum[1]}
           </Text>
         </FlexBox>
-      );
+      )
     } else {
-      return null;
+      return null
     }
-  };
+  }
 
   return (
     <Wrapper>
@@ -113,10 +113,10 @@ export const AppBar = ({
             typo="Subhead_16"
             color="gray_200"
             style={{
-              position: isLabelAlignCenter && 'absolute',
-              margin: isLabelAlignCenter && 'auto',
-              left: isLabelAlignCenter && '0',
-              right: isLabelAlignCenter && '0',
+              position: isLabelAlignCenter ? 'absolute' : undefined,
+              margin: isLabelAlignCenter ? 'auto' : undefined,
+              left: isLabelAlignCenter ? '0' : undefined,
+              right: isLabelAlignCenter ? '0' : undefined,
               width: 'fit-content',
             }}
           >
@@ -126,8 +126,8 @@ export const AppBar = ({
       )}
       {handleRightChildren(rightChildren)}
     </Wrapper>
-  );
-};
+  )
+}
 
 const Wrapper = styled(FlexBox)`
   height: 80px;
@@ -139,7 +139,7 @@ const Wrapper = styled(FlexBox)`
   padding: 40px 16px 16px 16px;
   background-color: ${theme.palette.background};
   z-index: 100;
-`;
+`
 
 const FirstElement = styled(FlexBox)`
   position: relative;
@@ -150,4 +150,4 @@ const FirstElement = styled(FlexBox)`
   & > h1:nth-of-type(1) {
     padding-top: 3px;
   }
-`;
+`

@@ -1,4 +1,4 @@
-const MenuIcon = () => {
+const FriendsMenuIcon = () => {
   return (
     <svg
       width="16"
@@ -50,4 +50,4 @@ const MenuIcon = () => {
   )
 }
 
-export default MenuIcon
+export default FriendsMenuIcon
