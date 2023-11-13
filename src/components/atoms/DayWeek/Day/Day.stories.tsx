@@ -10,7 +10,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const dayBeforeRightUp: Story = {
+export const DayBeforeRightUp: Story = {
   args: {
     children: 'M',
     variant: 'dayBefore',
@@ -18,7 +18,7 @@ export const dayBeforeRightUp: Story = {
   },
 }
 
-export const dayBeforeLeftDown: Story = {
+export const DayBeforeLeftDown: Story = {
   args: {
     children: 'M',
     variant: 'dayBefore',
@@ -26,7 +26,7 @@ export const dayBeforeLeftDown: Story = {
   },
 }
 
-export const selectedRightUp: Story = {
+export const SelectedRightUp: Story = {
   args: {
     children: 'M',
     variant: 'selected',
@@ -34,7 +34,7 @@ export const selectedRightUp: Story = {
   },
 }
 
-export const selectedLeftDown: Story = {
+export const SelectedLeftDown: Story = {
   args: {
     children: 'M',
     variant: 'selected',
@@ -42,7 +42,7 @@ export const selectedLeftDown: Story = {
   },
 }
 
-export const dayAfterRightUp: Story = {
+export const DayAfterRightUp: Story = {
   args: {
     children: 'M',
     variant: 'dayAfter',
@@ -50,7 +50,7 @@ export const dayAfterRightUp: Story = {
   },
 }
 
-export const dayAfterLeftDown: Story = {
+export const DayAfterLeftDown: Story = {
   args: {
     children: 'M',
     variant: 'dayAfter',

@@ -25,7 +25,6 @@
     "@storybook/addons": "^7.0.27",
     "@tanstack/react-query": "^4.29.15",
     "@tanstack/react-query-devtools": "^4.29.15",
-    "@types/react-lottie": "^1.2.8",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
@@ -38,13 +37,13 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.5.2",
-    "react-lottie": "^1.2.3",
     "react-modal": "^3.16.1",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-router-dom": "^6.14.1",
     "recoil": "^0.7.7"
   },
   "devDependencies": {
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@storybook/addon-essentials": "^7.0.18",
     "@storybook/addon-interactions": "^7.0.18",
     "@storybook/addon-links": "^7.0.18",

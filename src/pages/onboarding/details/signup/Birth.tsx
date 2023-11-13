@@ -14,7 +14,7 @@ export function Birth({
   value,
   textPadding,
 }: {
-  value: string
+  value?: string
   textPadding?: number
 }) {
   const { getFormattedDate, parseDate } = useGetDate()

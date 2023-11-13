@@ -8,7 +8,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 
 type UserIdPropsType = {
   isEdit?: boolean
-  value: string
+  value?: string
 }
 
 export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
