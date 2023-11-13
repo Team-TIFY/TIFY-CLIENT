@@ -1,10 +1,14 @@
 import styled from '@emotion/styled'
 import backgroundImage from '@assets/image/profile_background.png'
+import profileBox from '@assets/image/profile_box.png'
+import shadow from '@assets/image/profile_shadow.png'
 
 export const ProfileImage = () => {
   return (
     <ImageWrapper>
       <BackgroundImage src={backgroundImage} />
+      <ProfileBox src={profileBox} />
+      <Shadow src={shadow} />
     </ImageWrapper>
   )
 }
@@ -41,7 +45,38 @@ const ImageWrapper = styled.div`
 
 const BackgroundImage = styled.img`
   width: 100%;
-  height: 100%;
+  height: calc(100% * 14 / 15);
   object-fit: cover;
   z-index: 0;
+`
+
+const ProfileBox = styled.img`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 279px;
+  height: 294px;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn, moveToY1;
+  animation-duration: 1.5s, 1.5s;
+  animation-delay: 0.8s 0.8s;
+`
+
+const Shadow = styled.img`
+  position: absolute;
+  width: 199px;
+  height: 37px;
+  left: 0;
+  right: 0;
+  top: calc(50% + 75px);
+  margin: auto;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn, moveToY2;
+  animation-duration: 1.5s, 1.5s;
+  animation-delay: 0.8s 0.8s;
 `
