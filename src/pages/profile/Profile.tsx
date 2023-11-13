@@ -232,23 +232,35 @@ const Profile = ({
             addFriend={addFriend}
           />
           {!addFriend ? (
-            <>
-              <Spacing height={32} />
-              <FilterWrapper>
-                <Filter
+            !friendId ? (
+              <>
+                <Spacing height={32} />
+                <FilterWrapper>
+                  <Filter
+                    selectedTags={selectedTags}
+                    setSelectedTags={setSelectedTags}
+                    selectedProps={selectedProps}
+                  />
+                </FilterWrapper>
+                <Spacing height={20} />
+                <UserTagDataListItem
                   selectedTags={selectedTags}
-                  setSelectedTags={setSelectedTags}
-                  selectedProps={selectedProps}
+                  filteredUserTagData={filteredUserTagData}
+                  userTagData={userTagData}
+                  isFriend={false}
                 />
-              </FilterWrapper>
-              <Spacing height={20} />
-              <UserTagDataListItem
-                selectedTags={selectedTags}
-                filteredUserTagData={filteredUserTagData}
-                userTagData={userTagData}
-                isFriend={friendData?.friend ?? false}
-              />
-            </>
+              </>
+            ) : (
+              <>
+                <Spacing height={24} />
+                <UserTagDataListItem
+                  selectedTags={selectedTags}
+                  filteredUserTagData={filteredUserTagData}
+                  userTagData={userTagData}
+                  isFriend={friendData?.friend ?? false}
+                />
+              </>
+            )
           ) : (
             <Spacing height={24} />
           )}
