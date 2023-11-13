@@ -62,7 +62,6 @@ export const useInfiniteQueries = <T,>(
   }
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 const ListElementContainer = styled.div`
   @keyframes fadeIn {
     from {

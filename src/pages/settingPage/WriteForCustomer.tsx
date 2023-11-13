@@ -186,7 +186,7 @@ const WriteForCustomer = () => {
     } else {
       setBtnColor(false)
     }
-  })
+  }, [])
 
   const fileName = () => {
     if (fileRef.current.value !== '') {
