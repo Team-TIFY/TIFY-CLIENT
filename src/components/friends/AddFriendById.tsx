@@ -37,14 +37,9 @@ const AddFriendById = () => {
 
   const handleBlur = () => {
     if (searchFriendData) {
-      if (
-        searchFriendData.userName === auth.userProfile.userName ||
-        searchFriendData.friend
-      ) {
-        setIsToggle(false)
-      } else {
-        return
-      }
+      return
+    } else {
+      setIsToggle(false)
     }
   }
 
