@@ -12,6 +12,21 @@ COPY yarn.lock .yarn .yarnrc.yml ./
 
 # RUN yarn install
 COPY . .
+RUN yarn install
+RUN yarn build
+
+# COPY .yarn ./.yarn
+# COPY .pnp.cjs .yarnrc.yml package.json yarn.lock* ./
+# RUN yarn install --immutable
+
+# COPY . .
+
+# RUN npm install yarn --global --force
+# RUN yarn set version berry
+# RUN yarn install --immutable --immutable-cache --check-cache
+
+# RUN yarn set version berry
+# RUN yarn build
 
 RUN yarn build
 
