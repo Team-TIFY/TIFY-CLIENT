@@ -2,7 +2,7 @@ const usehandleVisualViewport = <T>({
   divRef,
   height,
 }: {
-  divRef: React.RefObject<T>
+  divRef: React.MutableRefObject<HTMLDivElement>
   height: number
 }) => {
   const handleVisualViewPortResize = () => {

@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil'
 
 type NameProps = {
   isEdit?: boolean
-  value: string
+  value?: string
 }
 
 export function Name({ isEdit = false, value }: NameProps) {
