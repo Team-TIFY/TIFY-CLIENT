@@ -223,7 +223,7 @@ const Profile = ({
 
   return (
     <>
-      <ProfileImage />
+      <ProfileImage isFriend={friendId !== undefined} />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>

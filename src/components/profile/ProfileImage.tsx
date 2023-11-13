@@ -1,13 +1,14 @@
 import styled from '@emotion/styled'
 import backgroundImage from '@assets/image/profile_background.png'
 import profileBox from '@assets/image/profile_box.png'
+import friendProfileBox from '@assets/image/profile_friend_box.png'
 import shadow from '@assets/image/profile_shadow.png'
 
-export const ProfileImage = () => {
+export const ProfileImage = ({ isFriend }: { isFriend: boolean }) => {
   return (
     <ImageWrapper>
       <BackgroundImage src={backgroundImage} />
-      <ProfileBox src={profileBox} />
+      <ProfileBox src={isFriend ? friendProfileBox : profileBox} />
       <Shadow src={shadow} />
     </ImageWrapper>
   )
@@ -64,6 +65,7 @@ const ProfileBox = styled.img`
   animation-name: fadeIn, moveToY1;
   animation-duration: 1.5s, 1.5s;
   animation-delay: 0.8s 0.8s;
+  z-index: 2;
 `
 
 const Shadow = styled.img`
@@ -79,4 +81,5 @@ const Shadow = styled.img`
   animation-name: fadeIn, moveToY2;
   animation-duration: 1.5s, 1.5s;
   animation-delay: 0.8s 0.8s;
+  z-index: 1;
 `
