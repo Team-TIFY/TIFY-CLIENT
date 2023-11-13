@@ -11,7 +11,12 @@ import { ProfileImage } from '@components/profile/ProfileImage'
 import { ProfileHeader } from '@components/profile/ProfileHeader'
 import ProfileMenuButtons from '@components/profile/ProfileMenuButtons'
 import { UserTagDataListItem } from '@components/profile/UserTagDataListItem'
-import { SelectedProps, SelectedTag, UserInfo } from '@utils/apis/user/UserType'
+import {
+  SelectedProps,
+  SelectedTag,
+  SubCategoryType,
+  UserInfo,
+} from '@utils/apis/user/UserType'
 import { UserApi } from '@utils/apis/user/UserApi'
 import useProfileMutate from '@libs/hooks/useProfileMutate'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
@@ -166,7 +171,9 @@ const Profile = ({
   )
 
   const getSmallCategoryData = (selectedTags: SelectedTag[]) => {
-    return selectedTags.map((tag) => `${tag.value}`)
+    return selectedTags.map(
+      (tag: SelectedTag) => `${tag.value}` as SubCategoryType,
+    )
   }
 
   const { data: filteredUserTagData = [] } = useQuery(
