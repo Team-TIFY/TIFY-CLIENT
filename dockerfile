@@ -12,7 +12,7 @@ COPY yarn.lock .yarn .yarnrc.yml ./
 
 # RUN yarn install
 COPY . .
-
+RUN yarn install
 RUN yarn build
 
 # COPY .yarn ./.yarn
