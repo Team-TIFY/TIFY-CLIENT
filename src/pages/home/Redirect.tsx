@@ -3,7 +3,6 @@ import { KakaoCodeResponse } from '@utils/apis/auth/AuthType'
 import { useMutation } from '@tanstack/react-query'
 import { useLocation } from 'react-router-dom'
 import { AuthApi } from '@utils/apis/auth/AuthApi'
-import { Text } from '@components/atoms/Text'
 import useAuthMutate from '@libs/hooks/useAuthMutate'
 import Loading from '@components/atoms/Loading'
 
@@ -18,6 +17,8 @@ export const Redirect = () => {
 
   const kakaoTokenMutation = useMutation(AuthApi.KAKAO_TOKEN, {
     onSuccess: (data: KakaoCodeResponse) => {
+      console.log(data.idToken)
+      console.log(data.accessToken)
       setToken(data)
     },
   })
@@ -35,6 +36,7 @@ export const Redirect = () => {
       ouathValidMutation.mutate(token.idToken)
     }
   }, [token])
+
   return (
     <>
       <Loading />

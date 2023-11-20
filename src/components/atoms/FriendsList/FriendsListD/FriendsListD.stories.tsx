@@ -44,9 +44,17 @@ const meta: Meta<typeof FriendsListD> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const FriendsList_D: Story = {
+export const DefaultFriendsList_D: Story = {
   args: {
     userId: 'sehee_han990821',
+    friendsNumber: 6,
+  },
+}
+
+export const FollowingFriendsList_D: Story = {
+  args: {
+    userId: 'sehee_han990821',
+    isAccepted: true,
     friendsNumber: 6,
   },
 }

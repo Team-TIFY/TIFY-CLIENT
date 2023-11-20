@@ -2,14 +2,46 @@
 
 # base image 설정(as build 로 완료된 파일을 밑에서 사용할 수 있다.)
 FROM --platform=linux/arm64 node:18.16.1-alpine as builder
-
 # 컨테이너 내부 작업 디렉토리 설정
 WORKDIR /app
-COPY package.json ./
-COPY yarn.lock ./
 
-RUN yarn install
+COPY package.json .
+RUN yarn set version berry
+
+COPY yarn.lock .yarn .yarnrc.yml ./
+
+# RUN yarn install
 COPY . .
+RUN yarn install
+RUN yarn build
+
+# COPY .yarn ./.yarn
+# COPY .pnp.cjs .yarnrc.yml package.json yarn.lock* ./
+# RUN yarn install --immutable
+
+# COPY . .
+
+# RUN npm install yarn --global --force
+# RUN yarn set version berry
+# RUN yarn install --immutable --immutable-cache --check-cache
+
+# RUN yarn set version berry
+# RUN yarn build
+
+RUN yarn build
+
+# COPY .yarn ./.yarn
+# COPY .pnp.cjs .yarnrc.yml package.json yarn.lock* ./
+# RUN yarn install --immutable
+
+# COPY . .
+
+# RUN npm install yarn --global --force
+# RUN yarn set version berry
+# RUN yarn install --immutable --immutable-cache --check-cache
+
+# RUN yarn set version berry
+# RUN yarn build
 
 # app dependencies
 # 컨테이너 내부로 package.json 파일들을 복사
@@ -26,7 +58,6 @@ COPY . .
 # yarn build
 # RUN npm i -D esbuild
 # RUN yarn install
-RUN yarn build
 
 # prod environment
 ## TODO:nginx 관련된 거 다 뺴기~ 

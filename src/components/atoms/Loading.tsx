@@ -1,7 +1,7 @@
-import Lottie from 'react-lottie'
 import animationData from '@assets/lotties/tify_loading.json'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
+import { Player } from '@lottiefiles/react-lottie-player'
 
 const Loading = () => {
   const defaultOptions = {
@@ -14,7 +14,12 @@ const Loading = () => {
   }
   return (
     <LottieWrapper>
-      {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
+      <Player
+        autoplay
+        loop
+        src={animationData}
+        style={{ height: '100px', width: '100px' }}
+      ></Player>
     </LottieWrapper>
   )
 }

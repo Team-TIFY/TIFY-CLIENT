@@ -1,19 +1,21 @@
 import { ShortInput } from '@components/atoms/Input/ShortInput'
+import { authState } from '@libs/store/auth'
 import { isBtnColorState } from '@libs/store/onboard'
 import { useQuery } from '@tanstack/react-query'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { ChangeEvent, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 type UserIdPropsType = {
   isEdit?: boolean
-  value: string
+  value?: string
 }
 
 export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const auth = useRecoilValue(authState)
   const [inputValue, setInputValue] = useState<string>('')
 
   const handleName = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -53,6 +55,10 @@ export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
 
   const handleBlur = () => {
     if (inputValue !== '') {
+      if (auth.userProfile.userId === inputValue) {
+        return
+      }
+
       if (isIdAvailable === false) {
         setErrorMsg('다른 사용자가 사용하고 있어요.')
         setError(true)

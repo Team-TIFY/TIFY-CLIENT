@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
 import BMLIP from '@pages/searchTaste/BMLIP'
@@ -26,6 +26,7 @@ import MenuIcon from '@assets/icons/MenuIcon'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
+
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
   const [step, setStepAnswer] = useRecoilState(answerState)
@@ -47,7 +48,10 @@ const ProfileRouter = () => {
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
     {
-      enabled: !isNaN(friendId) && auth.userProfile.id !== friendId,
+      enabled:
+        !isNaN(friendId) &&
+        friendId !== auth.userProfile.id &&
+        auth.userProfile.id !== friendId,
     },
   )
 
@@ -62,7 +66,7 @@ const ProfileRouter = () => {
               label={'@' + `${auth.userProfile.userId}`}
               hasNav={true}
               rightChildren="actionButton"
-              rightChildrenIcon={[<MenuIcon />]}
+              rightChildrenIcon={!isNaN(friendId) ? undefined : [<MenuIcon />]}
             >
               <Profile />
             </AppBarTemplate>
@@ -106,6 +110,7 @@ const ProfileRouter = () => {
               label="프로필 수정"
               hasNav={false}
               rightChildren="none"
+              isLabelAlignCenter={true}
               beforeUrl="/profile"
             >
               <EditProfile />

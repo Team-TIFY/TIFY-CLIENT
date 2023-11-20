@@ -8,6 +8,7 @@ import FriendsListBItem from '@components/friends/FriendsListBItem'
 import FriendNotFound from '@components/friends/FriendNotFound'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import { FriendsType } from '@utils/apis/friends/FriendsType'
+import styled from '@emotion/styled'
 
 const SearchFriends = () => {
   const auth = useRecoilValue(authState)
@@ -54,7 +55,7 @@ const SearchFriends = () => {
   }
 
   return (
-    <>
+    <SearchedFriendsListWrapper>
       <Spacing height={16} />
       <SearchInput
         placeholder="친구 이름 검색"
@@ -63,8 +64,14 @@ const SearchFriends = () => {
       />
       <Spacing height={32} />
       {renderSearchedFriendsList()}
-    </>
+    </SearchedFriendsListWrapper>
   )
 }
 
 export default SearchFriends
+
+const SearchedFriendsListWrapper = styled.div`
+  width: 328px;
+  height: 100%;
+  margin: 0 auto;
+`

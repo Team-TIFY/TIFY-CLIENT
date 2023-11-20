@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil'
 import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
 import { questionState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
+import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
 
 const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
@@ -27,19 +28,20 @@ const WeeklyMainQuestion = () => {
       <WeekWrapper>
         <Spacing variant="default" height={48} />
         <Week today={date.today} />
-        <DailyQuestionBox />
+        <div className="dailyQuestionBox">
+          <DailyQuestionBox />
+        </div>
+
         <div
           style={{
-            background: 'rgb(255, 153, 207, 0.3)',
             cursor: 'pointer',
             height: '242px',
-            margin: '60px 0px',
-            color: 'white',
             textAlign: 'center',
           }}
+          className="QuestionImg"
           onClick={handleAnswerQuestion}
         >
-          이미지 영역
+          <QuestionImg category={question.category} />
         </div>
       </WeekWrapper>
     </WeekContainer>
@@ -54,6 +56,21 @@ const WeekContainer = styled.div`
   height: calc(100vh - 80px);
   background-color: #2e2159;
   position: relative;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(0px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+  }
+  .QuestionImg {
+    animation: 0.5s forwards fadeIn cubic-bezier(0.61, 1, 0.88, 1);
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
 `
 const BackgroundImg = styled.div`
   width: 100%;

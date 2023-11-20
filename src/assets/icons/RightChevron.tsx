@@ -1,28 +1,33 @@
-export const RightChevron = () => {
+const RightChevron = () => {
   return (
-    <>
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g clipPath="url(#clip0_2272_27288)">
-          <path
-            d="M6 12L10 8L6 4"
-            stroke="#E4E4E5"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+    <svg
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clipPath="url(#clip0_1485_2077)">
+        <path
+          d="M9 18.5L15 12.5L9 6.5"
+          stroke="#E4E4E5"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_1485_2077">
+          <rect
+            width="24"
+            height="24"
+            fill="white"
+            transform="translate(0 0.5)"
           />
-        </g>
-        <defs>
-          <clipPath id="clip0_2272_27288">
-            <rect width="16" height="16" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
-    </>
+        </clipPath>
+      </defs>
+    </svg>
   )
 }
+
+export default RightChevron

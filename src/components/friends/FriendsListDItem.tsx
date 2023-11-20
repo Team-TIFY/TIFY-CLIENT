@@ -10,6 +10,7 @@ import useFriendMutate from '@libs/hooks/useFriendMutate'
 import { friendState } from '@libs/store/friend'
 import { FriendRequestType } from '@utils/apis/friends/FriendsType'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
+import { useNavigate } from 'react-router-dom'
 
 export type FriendsListDItemProps = {
   friendsList: FriendRequestType[]
@@ -21,6 +22,7 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
   const { acceptFriendRequestMutate, rejectFriendRequestMutate } =
     useFriendMutate()
   const { setShowPartialRequest, setIsAllRequest } = useSetFriendRecoilState()
+  const navigate = useNavigate()
 
   const handleClickAcceptButton = (acceptRequestId: number) => {
     acceptFriendRequestMutate(acceptRequestId)
@@ -37,6 +39,10 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
     return isAllRequest ? friendsList : friendsList.slice(0, 4)
   }
 
+  const handleClickFriendsList = (friendId: number) => {
+    navigate(`/profile/${friendId}`)
+  }
+
   const renderFriendsList = useCallback(() => {
     return getFriendsList(friendsList, friendStateData.isAllRequest).map(
       (requestFriend) => (
@@ -44,6 +50,8 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
           key={requestFriend.neighborApplicationId}
           userId={requestFriend.toUserInfo.userName}
           friendsNumber={requestFriend.mutualNeighborCounts}
+          isAccepted={requestFriend.neighborApplicationStatus === 'ACCEPT'}
+          onClick={() => handleClickFriendsList(requestFriend.toUserInfo.id)}
           onAcceptButtonClick={() =>
             handleClickAcceptButton(requestFriend.neighborApplicationId)
           }

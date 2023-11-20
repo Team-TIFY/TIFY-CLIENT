@@ -33,7 +33,6 @@ const HCDIS = () => {
       'OneAnswer3',
       'OneAnswer4',
       'MultiAnswer5',
-      'SearchAnswer6',
     ] as const,
     {
       initialStep: 'OneAnswer1',
@@ -78,14 +77,6 @@ const HCDIS = () => {
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer5">
         <MultiAnswerStep
-          setNextStep={() => setStep('SearchAnswer6')}
-          category="HCDIS"
-          number={5}
-          max={2}
-        />
-      </Funnel.Step>
-      <Funnel.Step name="SearchAnswer6">
-        <SearchAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
             if (localStorage.getItem('isOnboardingFavor') === 'true') {
@@ -96,7 +87,8 @@ const HCDIS = () => {
             localStorage.clear()
           }}
           category="HCDIS"
-          number={6}
+          number={5}
+          max={2}
         />
       </Funnel.Step>
     </Funnel>

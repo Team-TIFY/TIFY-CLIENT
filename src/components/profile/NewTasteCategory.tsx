@@ -17,6 +17,7 @@ const NewTasteCategory = ({
       </Text>
       <Spacing height={20} />
       <NewTasteCategoryList subCategoryList={subCategoryList} />
+      <Spacing height={48} />
     </>
   )
 }

@@ -1,4 +1,4 @@
-const Error = () => {
+const ErrorIcon = () => {
   return (
     <svg
       width="20"
@@ -27,4 +27,4 @@ const Error = () => {
   )
 }
 
-export default Error
+export default ErrorIcon

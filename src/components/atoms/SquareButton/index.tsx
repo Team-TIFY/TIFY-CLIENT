@@ -71,7 +71,7 @@ const TEXT_COLOR_TYPE = {
   selected: {
     xlargeSquare: `${theme.palette.gray_100}`,
     largeSquare: `${theme.palette.gray_800}`,
-    mediumSquare: `${theme.palette.gray_200}`,
+    mediumSquare: `${theme.palette.gray_800}`,
     medium2Square: `${theme.palette.gray_800}`,
     medium3Square: `${theme.palette.gray_800}`,
     smallSquare: `${theme.palette.gray_100}`,
@@ -195,6 +195,9 @@ interface ButtonProps<
   selectedCount?: T extends 'selectedMultiple' ? React.ReactNode : undefined
   xlargeVariant?: K extends 'xlargeSquare' ? XlargeSubVariant : undefined
   imageUrl?: G extends 'withProfile' ? string : undefined
+  onClick?:
+    | (() => void)
+    | ((event: React.MouseEvent<HTMLButtonElement>) => void)
 }
 
 const SquareButton = ({
@@ -264,7 +267,7 @@ const SquareButton = ({
         <Text
           typo={`${BUTTON_SHAPE_TYPE[variant].typo}`}
           as="span"
-          color={textColor}
+          color={variant === 'xsmallSquareP' ? `gray_900` : textColor}
         >
           <FlexBox gap={variant === 'smallSquare' ? 37 : 0}>
             <>{handleVariant(variant, xlargeVariant as XlargeSubVariant)}</>
@@ -292,7 +295,9 @@ export const StyledButton = styled.button<{
       ? `1px solid ${theme.palette.gray_700}`
       : 'none'};
   border-bottom: ${({ xlargeVariant }) =>
-    (xlargeVariant === 'top' || xlargeVariant === 'middle') &&
+    (xlargeVariant === 'top' ||
+      xlargeVariant === 'middle' ||
+      xlargeVariant === 'withProfile') &&
     `1px solid ${theme.palette.gray_900}`};
   width: ${({ variant, fullWidth }) =>
     fullWidth ? '100%' : `${BUTTON_SHAPE_TYPE[variant].width}px`};

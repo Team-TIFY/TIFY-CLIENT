@@ -19,15 +19,6 @@ export type RightChildrenVariant =
   | 'actionButton'
   | 'stepNum'
 
-/**
- * @param variant AppBar의 type을 나타냄 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
- * @param label 'backPush' | 'backPushWithTitle' 사용 시 Appbar에 나타날 문구
- * @param beforeUrl (optional) BackArrow를 통하여 이동할 url (기본 값은 뒤로 가기)
- * @param rightChildren 오른쪽에 들어갈 아이콘의 type을 나타냄 'alarm' | 'dots' | 'none' | 'actionButton'
- * @param onClickOption1 첫 번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
- * @param onClickOption2 두 번째 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수
- */
-
 export type AppBarProps<T extends RightChildrenVariant> = {
   variant: AppBarType
   label?: string
@@ -40,6 +31,7 @@ export type AppBarProps<T extends RightChildrenVariant> = {
   rightChildrenIcon?: T extends 'alarm' | 'dots' | 'none'
     ? undefined
     : React.ReactNode[]
+  isLabelAlignCenter?: boolean
 }
 
 export const AppBar = ({
@@ -52,6 +44,7 @@ export const AppBar = ({
   onClickOption1,
   onClickOption2,
   customHandler,
+  isLabelAlignCenter = false,
 }: AppBarProps<RightChildrenVariant>) => {
   const navigate = useNavigate()
 
@@ -83,7 +76,7 @@ export const AppBar = ({
       return <Svg children={<ThreeDots />} onClick={onClickOption1} />
     else if (rightElement === 'actionButton') {
       return (
-        <FlexBox gap={16}>
+        <FlexBox gap={16} style={{ cursor: 'pointer' }}>
           {isArray(rightChildrenIcon)
             ? rightChildrenIcon?.map((icon, index) => (
                 <div key={index}>{icon}</div>
@@ -116,7 +109,17 @@ export const AppBar = ({
           {(variant === 'backPush' || variant === 'backPushWithTitle') && (
             <Svg children={<LeftArrow />} onClick={onClickBackBar} />
           )}
-          <Text typo="Subhead_16" color="gray_200">
+          <Text
+            typo="Subhead_16"
+            color="gray_200"
+            style={{
+              position: isLabelAlignCenter ? 'absolute' : undefined,
+              margin: isLabelAlignCenter ? 'auto' : undefined,
+              left: isLabelAlignCenter ? '0' : undefined,
+              right: isLabelAlignCenter ? '0' : undefined,
+              width: 'fit-content',
+            }}
+          >
             {label}
           </Text>
         </FirstElement>
@@ -131,6 +134,7 @@ const Wrapper = styled(FlexBox)`
   width: 100%;
   position: sticky;
   justify-content: space-between;
+  align-items: center;
   top: 0;
   padding: 40px 16px 16px 16px;
   background-color: ${theme.palette.background};
@@ -138,9 +142,11 @@ const Wrapper = styled(FlexBox)`
 `
 
 const FirstElement = styled(FlexBox)`
-  justify-content: center;
+  position: relative;
+  justify-content: flex-start;
   align-items: center;
   gap: 8px;
+  width: 100%;
   & > h1:nth-of-type(1) {
     padding-top: 3px;
   }

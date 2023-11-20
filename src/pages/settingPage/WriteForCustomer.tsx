@@ -186,7 +186,7 @@ const WriteForCustomer = () => {
     } else {
       setBtnColor(false)
     }
-  })
+  }, [])
 
   const fileName = () => {
     if (fileRef.current.value !== '') {
@@ -226,31 +226,31 @@ const WriteForCustomer = () => {
         <BasicInput
           height={52}
           maxText={20}
-          placeholder={'제목을 입력해 주세요. (20자 이내)'}
+          placeholder="제목을 입력해 주세요. (20자 이내)"
           error={error.title}
-          warning={'20자 이내로 입력해주세요!'}
+          warning="20자 이내로 입력해주세요!"
           onChange={handleTitle}
-          explanation={'제목'}
+          explanation="제목"
         />
       </Title>
       <Content>
         <BasicInput
           height={200}
           maxText={200}
-          placeholder={'내용을 입력해 주세요. (200자 이내)'}
+          placeholder="내용을 입력해 주세요. (200자 이내)"
           error={error.content}
           onChange={handleContent}
-          explanation={'문의 내용'}
-          warning={'200자 이내로 입력해주세요!'}
+          explanation="문의 내용"
+          warning="200자 이내로 입력해주세요!"
         />
       </Content>
       <Email>
         <BasicInput
           height={52}
           maxText={35}
-          placeholder={'답변 받을 이메일 주소*'}
+          placeholder="답변 받을 이메일 주소*"
           error={error.email}
-          warning={'유효한 이메일 주소를 입력해주세요.'}
+          warning="유효한 이메일 주소를 입력해주세요."
           onBlur={handleEmail}
         />
       </Email>

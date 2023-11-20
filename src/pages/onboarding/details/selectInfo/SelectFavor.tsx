@@ -53,8 +53,7 @@ export function SelectFavor() {
       const { favor, ...rest } = info
       console.log(auth.userProfile)
       OnboardingApi.PUT_ONBOARD_STATUS({
-        userId: 19,
-        //userId: auth.userProfile.id,
+        userId: auth.userProfile.id,
         data: rest,
       })
       const favorWithPriority = favorPriority.filter((data) =>

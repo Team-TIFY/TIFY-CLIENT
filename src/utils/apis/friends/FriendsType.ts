@@ -28,10 +28,25 @@ export type FriendsType = {
   view: boolean
 }
 
+export type NewFriendsType = {
+  neighborId: number
+  userId: number
+  neighborThumbnail: string
+  neighborName: string
+  neighborBirth: string
+  onBoardingStatus: string
+  order: number
+  updatedAt: string
+  viewedAt: string
+  new: boolean
+  view: boolean
+}
+
 export type SearchedFriendType = {
   id: number
   userId: string
   userName: string
   imgUrl: string
   mutualFriends: number
+  friend: boolean
 }

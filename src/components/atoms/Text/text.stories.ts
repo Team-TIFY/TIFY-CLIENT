@@ -10,7 +10,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const text: Story = {
+export const TextComponent: Story = {
   args: {
     children: 'Tify',
     typo: 'SCD_Headline_24',
