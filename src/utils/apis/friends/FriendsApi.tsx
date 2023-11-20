@@ -48,9 +48,13 @@ export const FriendsApi = {
     return response.data.data
   },
 
-  GET_PRESENT_RECOMMEND: async (smallCategory: string, page: number) => {
+  GET_PRESENT_RECOMMEND: async (
+    smallCategory: string,
+    priceOrder: string,
+    priceFilter: string,
+  ) => {
     const response = await axiosApi.get(
-      `/products/products/small-category?${smallCategory}&page=${page}&size=10`,
+      `/products/products/small-category?smallCategoryList=${smallCategory}&priceOrder=${priceOrder}&priceFilter=${priceFilter}&page=0&size=5000`,
     )
     return response.data
   },

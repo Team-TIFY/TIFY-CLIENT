@@ -4,12 +4,14 @@ import styled from '@emotion/styled'
 import { PriceFilter } from '@assets/icons/PriceFilter'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
-import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
 import { theme } from '@styles/theme'
+import SortItem from './bottomsheet/SortItem'
+import { useRecoilState } from 'recoil'
+import { FilterState } from '@libs/store/present'
 
 type DataType = {
   productId: number
@@ -32,49 +34,43 @@ function PresentRecommend() {
     { id: 9, active: false, name: '문화생활', value: 'CULTURE_LIFE' },
   ]
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
-  const [selectedPage, setSelectedPage] = useState<number>(8)
+  const [priceOrder, setPriceOrder] = useState<string>('DEFAULT')
+  const [priceFilter, setPriceFilter] = useState<string>('DEFAULT')
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const [isSortOpen, setIsSortOpen] = useState<string>('')
   const [products, setProducts] = useState<DataType[]>([])
+  const [selected, setSelected] = useRecoilState(FilterState)
 
   // 선택한 카테고리를 별도의 매개 변수로 생성
   const selectedCategories = selectedTags.map((tag) => tag.value)
   const selectedCategoriesString = selectedCategories
-    .map((category) => `smallCategory=${category}`)
-    .join('&')
+    .map((category) => `${category}`)
+    .join(',')
 
   // 만약 selectedTags가 비어 있는 경우, 모든 태그를 선택한 것으로 가정
   const allCategoriesString = selectedProps
-    .map((category) => `smallCategory=${category.value}`)
-    .join('&')
-
-  const { data: productsData = [] } = useQuery(['products', selectedTags], () =>
-    FriendsApi.GET_PRESENT_RECOMMEND(
-      selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
-      selectedPage,
-    ),
-  )
-
-  //카테고리 제대로 출력되는지 확인
-  console.log(
-    selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
-  )
+    .map((category) => `${category.value}`)
+    .join(',')
 
   useEffect(() => {
-    if (productsData.statusCode === 200) {
-      // 데이터를 products 변수에 저장
-      setProducts(productsData.data.content)
-      setDataLoaded(true)
-    } else {
-      setDataLoaded(false)
-    }
-  }, [productsData])
-
-  console.log(products)
+    FriendsApi.GET_PRESENT_RECOMMEND(
+      selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
+      priceOrder,
+      priceFilter,
+    ).then((response) => {
+      if (response.statusCode === 200) {
+        setProducts(response.data.content)
+        setDataLoaded(true)
+      } else {
+        setDataLoaded(false)
+      }
+    })
+  }, [selectedTags, priceOrder, priceFilter])
 
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
-    setIsMenuOpen(false),
+    setIsSortOpen(''),
   )
+
   return (
     <>
       <FilterWrapper>
@@ -86,13 +82,17 @@ function PresentRecommend() {
       </FilterWrapper>
       <Container>
         <FilterItemWrap>
-          <RecommendFilter onClick={() => setIsMenuOpen(true)}>
+          <RecommendFilter onClick={() => setIsSortOpen('filter')}>
             <ItemFilter />
             <Margin widthProps={2} />
-            <Text typo="Caption_12R" children="추천순" color="gray_300" />
+            <Text
+              typo="Caption_12R"
+              children={selected.filter}
+              color="gray_300"
+            />
           </RecommendFilter>
           <Margin widthProps={12} />
-          <RecommendFilter>
+          <RecommendFilter onClick={() => setIsSortOpen('price')}>
             <PriceFilter />
             <Margin widthProps={2} />
             <Text typo="Caption_12R" children="가격" color="gray_300" />
@@ -134,13 +134,19 @@ function PresentRecommend() {
             ))}
           </SortItemWrap>
         )}
-        {isMenuOpen && (
-          <>
-            <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-            {/* BottomSheet 추가 필요*/}
-          </>
-        )}
       </Container>
+      {isSortOpen === 'filter' && (
+        <>
+          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
+          <SortItem />
+        </>
+      )}
+      {isSortOpen === 'price' && (
+        <>
+          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
+          <PriceFilter />
+        </>
+      )}
     </>
   )
 }
