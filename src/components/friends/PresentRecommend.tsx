@@ -71,6 +71,8 @@ function PresentRecommend() {
     setIsSortOpen(''),
   )
 
+  console.log(products)
+
   return (
     <>
       <FilterWrapper>

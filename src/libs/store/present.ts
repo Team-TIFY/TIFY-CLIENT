@@ -10,3 +10,14 @@ export const FilterState = atom<filterType>({
     filter: '추천순',
   },
 })
+
+export interface priceType {
+  price: string
+}
+
+export const PriceState = atom<filterType>({
+  key: 'priceState',
+  default: {
+    filter: '가격',
+  },
+})

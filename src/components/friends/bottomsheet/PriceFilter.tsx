@@ -1,5 +1,3 @@
-function PriceFilter() {
+export const PriceFilter = () => {
   return <></>
 }
-
-export default PriceFilter
