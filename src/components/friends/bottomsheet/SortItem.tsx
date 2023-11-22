@@ -20,7 +20,12 @@ function SortItem() {
           <Text typo="Subhead_16" children="정렬 기준" color="gray_100" />
         </Wrap>
         <Sort
-          onClick={() => handleSortClick({ filter: '추천순' })}
+          onClick={() =>
+            handleSortClick({
+              filter: '추천순',
+              filterValue: 'DEFAULT',
+            })
+          }
           isselected={selected.filter === '추천순'}
         >
           추천순
@@ -31,7 +36,12 @@ function SortItem() {
           )}
         </Sort>
         <Sort
-          onClick={() => handleSortClick({ filter: '가격낮은순' })}
+          onClick={() =>
+            handleSortClick({
+              filter: '가격낮은순',
+              filterValue: 'PRICE_ASC',
+            })
+          }
           isselected={selected.filter === '가격낮은순'}
         >
           가격낮은순
@@ -42,7 +52,12 @@ function SortItem() {
           )}
         </Sort>
         <Sort
-          onClick={() => handleSortClick({ filter: '가격높은순' })}
+          onClick={() =>
+            handleSortClick({
+              filter: '가격높은순',
+              filterValue: 'PRICE_DESC',
+            })
+          }
           isselected={selected.filter === '가격높은순'}
         >
           가격높은순
@@ -62,10 +77,10 @@ export default SortItem
 const Container = styled.div`
   width: 100vw;
   max-width: 480px;
-  height: 288px;
   background-color: ${theme.palette.gray_900};
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
+  padding-bottom: 32px;
 `
 const BottomSticker = styled.div`
   position: fixed;
@@ -91,5 +106,5 @@ const Sort = styled.div<{ isselected: boolean }>`
   justify-content: space-between;
   color: ${({ isselected }) =>
     isselected ? `${theme.palette.purple_300}` : `${theme.palette.white}`};
-  ${theme.typo.Subhead_14}
+  ${(props) => (props.isselected ? theme.typo.Subhead_14 : theme.typo.Body_14)}
 `

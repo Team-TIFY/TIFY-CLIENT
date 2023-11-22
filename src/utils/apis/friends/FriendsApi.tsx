@@ -88,11 +88,4 @@ export const FriendsApi = {
     const response = await axiosApi.patch(`/users/neighbors/${id}/isNew`)
     return response.data.data
   },
-
-  // GET_PRESENT_RECOMMEND: async (smallCategory: string, page: number) => {
-  //   const response = await axiosApi.get(
-  //     `/products/products/small-category?${smallCategory}&page=${page}&size=10`,
-  //   )
-  //   return response.data
-  // },
 }

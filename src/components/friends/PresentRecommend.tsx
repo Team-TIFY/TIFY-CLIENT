@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
 import styled from '@emotion/styled'
-import { PriceFilter } from '@assets/icons/PriceFilter'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
@@ -10,8 +9,10 @@ import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
 import { theme } from '@styles/theme'
 import SortItem from './bottomsheet/SortItem'
-import { useRecoilState } from 'recoil'
-import { FilterState } from '@libs/store/present'
+import { useRecoilValue } from 'recoil'
+import { FilterState, PriceState } from '@libs/store/present'
+import PriceFilter from './bottomsheet/PriceFilter'
+import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 
 type DataType = {
   productId: number
@@ -34,12 +35,11 @@ function PresentRecommend() {
     { id: 9, active: false, name: '문화생활', value: 'CULTURE_LIFE' },
   ]
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
-  const [priceOrder, setPriceOrder] = useState<string>('DEFAULT')
-  const [priceFilter, setPriceFilter] = useState<string>('DEFAULT')
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
   const [isSortOpen, setIsSortOpen] = useState<string>('')
   const [products, setProducts] = useState<DataType[]>([])
-  const [selected, setSelected] = useRecoilState(FilterState)
+  const selectedFilter = useRecoilValue(FilterState)
+  const selectedPrice = useRecoilValue(PriceState)
 
   // 선택한 카테고리를 별도의 매개 변수로 생성
   const selectedCategories = selectedTags.map((tag) => tag.value)
@@ -55,8 +55,8 @@ function PresentRecommend() {
   useEffect(() => {
     FriendsApi.GET_PRESENT_RECOMMEND(
       selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
-      priceOrder,
-      priceFilter,
+      selectedFilter.filterValue,
+      selectedPrice.priceValue,
     ).then((response) => {
       if (response.statusCode === 200) {
         setProducts(response.data.content)
@@ -65,13 +65,11 @@ function PresentRecommend() {
         setDataLoaded(false)
       }
     })
-  }, [selectedTags, priceOrder, priceFilter])
+  }, [selectedTags, selectedFilter.filter, selectedPrice.price])
 
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsSortOpen(''),
   )
-
-  console.log(products)
 
   return (
     <>
@@ -89,15 +87,19 @@ function PresentRecommend() {
             <Margin widthProps={2} />
             <Text
               typo="Caption_12R"
-              children={selected.filter}
+              children={selectedFilter.filter}
               color="gray_300"
             />
           </RecommendFilter>
           <Margin widthProps={12} />
           <RecommendFilter onClick={() => setIsSortOpen('price')}>
-            <PriceFilter />
+            <PriceFilterIcon />
             <Margin widthProps={2} />
-            <Text typo="Caption_12R" children="가격" color="gray_300" />
+            <Text
+              typo="Caption_12R"
+              children={selectedPrice.price}
+              color="gray_300"
+            />
           </RecommendFilter>
         </FilterItemWrap>
         {dataLoaded && (
