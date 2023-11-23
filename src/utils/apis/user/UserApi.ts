@@ -12,6 +12,7 @@ import {
 export const UserApi = {
   GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {
     const response = await axiosApi.get('/users/me')
+    console.log(response)
     return response.data.data
   },
 

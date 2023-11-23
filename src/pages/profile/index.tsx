@@ -17,6 +17,7 @@ import HCDIS from '@pages/searchTaste/HCDIS'
 import HCCUP from '@pages/searchTaste/HCCUP'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import Loading from '@components/atoms/Loading'
+import { useNavigate } from 'react-router-dom'
 import EditProfile from './EditProfile'
 import EditOnboardingStatus from './EditOnboardingStatus'
 import Profile from './Profile'
@@ -29,19 +30,21 @@ import { UserApi } from '@utils/apis/user/UserApi'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
+  const navigate = useNavigate()
   const [step, setStepAnswer] = useRecoilState(answerState)
   const location = useLocation()
   const friendId = parseInt(location.pathname.slice(9))
+
   const handleBack = () => {
     if (step.favorAnswerDtos.length > 0) {
       const tempList = [...step.favorAnswerDtos]
-      console.log('호우!')
       const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)
       setStepAnswer({
         categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
     }
+    navigate(-1)
     //const time = setTimeout(() => navigate(-1), 100)
   }
   const { data: friendData } = useQuery(

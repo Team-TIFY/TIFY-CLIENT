@@ -38,12 +38,16 @@ const BMLIP = () => {
       initialStep: 'MultiAnswer1',
     },
   )
+  // useEffect(() => {
+  //   if (beforeStep.length > step.favorAnswerDtos.length) {
+  //     navigate(-1)
+  //   }
+  //   setStepAnswer({ ...step, categoryName: 'BMLIP' })
+  // }, [step.favorAnswerDtos])
+  // console.log(window.history.length)
   useEffect(() => {
-    if (beforeStep.length > step.favorAnswerDtos.length) {
-      navigate(-1)
-    }
-    setStepAnswer({ ...step, categoryName: 'BMLIP' })
-  }, [step.favorAnswerDtos])
+    setStepAnswer({ ...step, categoryName: ' BMLIP' })
+  }, [])
 
   return (
     <Funnel>
