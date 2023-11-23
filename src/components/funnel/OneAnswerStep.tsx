@@ -33,13 +33,9 @@ const OneAnswerStep = ({
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (answer === '') {
       setAnswer(e.currentTarget.value)
-      // e.currentTarget.style.backgroundColor = 'white'
-      // e.currentTarget.style.color = `${theme.palette.gray_800}`
     } else {
       if (e.currentTarget.value === answer) {
         setAnswer('')
-        // e.currentTarget.style.backgroundColor = `${theme.palette.gray_800}`
-        // e.currentTarget.style.color = `${theme.palette.white}`
       } else {
         return
       }
@@ -76,7 +72,7 @@ const OneAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
-                subVariant={answer.length > 0 ? 'selected' : 'default'}
+                subVariant={answer === data ? 'selected' : 'default'}
                 key={index}
                 fullWidth={true}
                 variant="medium2Square"

@@ -214,7 +214,7 @@ const SquareButton = ({
   children,
   xlargeChildren,
   xlargeChildrenTwo,
-  textColor = 'gray_100',
+  textColor,
   variant,
   subVariant = 'default',
   fullWidth,
@@ -324,6 +324,7 @@ export const StyledButton = styled.button<{
   fullWidth?: boolean
 }>`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;

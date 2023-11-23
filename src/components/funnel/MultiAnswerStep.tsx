@@ -12,8 +12,8 @@ import { useEffect, useState } from 'react'
 import { theme } from '@styles/theme'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
-import { useLocation } from 'react-router-dom'
-import { useCallback } from 'react'
+import useStepNumberIcon from '@libs/hooks/useStepNumberIcon'
+import { Step1 } from '@assets/icons/SignupStep/1'
 
 interface MultiAnswerStepProps {
   category: TasteType
@@ -28,10 +28,10 @@ const MultiAnswerStep = ({
   max,
   setNextStep,
 }: MultiAnswerStepProps) => {
-  const location = useLocation()
   const { data } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
+  const [setStepNumberIcon] = useStepNumberIcon()
   const [step, setStepAnswer] = useRecoilState(answerState)
   const [answer, setAnswer] = useState<string[]>([])
   const [toggleState, setToggleState] = useState<boolean[]>(
@@ -78,8 +78,6 @@ const MultiAnswerStep = ({
       setAnswer([...deleteAnswer])
       toggleState.splice(index, 1, false)
       setToggleState([...toggleState])
-      e.currentTarget.style.backgroundColor = `${theme.palette.gray_800}`
-      e.currentTarget.style.color = `${theme.palette.white}`
     } else {
       if (answer.length === max) {
         alert(`최대 ${max}개까지 선택할 수 있어요!`)
@@ -88,10 +86,11 @@ const MultiAnswerStep = ({
       setAnswer([...answer, e.currentTarget.value])
       toggleState.splice(index, 1, true)
       setToggleState([...toggleState])
-      e.currentTarget.style.backgroundColor = 'white'
-      e.currentTarget.style.color = `${theme.palette.gray_800}`
     }
   }
+  useEffect(() => {
+    console.log(toggleState)
+  }, [toggleState])
   return (
     <MultiAnswerStepWrapper>
       <FlexBox direction="column" gap={10}>
@@ -109,9 +108,10 @@ const MultiAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
-                subVariant="default"
+                subVariant={toggleState[index] ? 'selectedMultiple' : 'default'}
                 key={index}
                 fullWidth={true}
+                selectedCount={setStepNumberIcon(answer.indexOf(data) + 1)}
                 variant="medium2Square"
                 style={{ height: '48px' }}
                 value={data}
@@ -127,9 +127,10 @@ const MultiAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
-                subVariant="default"
+                subVariant={toggleState[index] ? 'selectedMultiple' : 'default'}
                 key={index}
                 fullWidth={true}
+                selectedCount={setStepNumberIcon(answer.indexOf(data) + 1)}
                 variant="medium2Square"
                 style={{ height: '48px' }}
                 value={data}
@@ -169,4 +170,9 @@ const GridBox = styled.div`
   width: 100%;
   row-gap: 16px;
   column-gap: 26px;
+`
+
+const MultiCountBox = styled.div`
+  border-radius: 50%;
+  background-color: ${theme.palette.purple_500};
 `
