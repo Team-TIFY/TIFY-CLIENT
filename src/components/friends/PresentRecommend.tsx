@@ -1,15 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
 import styled from '@emotion/styled'
-import { PriceFilter } from '@assets/icons/PriceFilter'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
-import { useQuery } from '@tanstack/react-query'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
 import { theme } from '@styles/theme'
+import SortItem from './bottomsheet/SortItem'
+import { useRecoilValue } from 'recoil'
+import { FilterState, PriceState } from '@libs/store/present'
+import PriceFilter from './bottomsheet/PriceFilter'
+import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 
 type DataType = {
   productId: number
@@ -17,6 +20,7 @@ type DataType = {
   name: string
   price: number
   productOption: string
+  imageUrl: string
 }
 
 function PresentRecommend() {
@@ -32,49 +36,43 @@ function PresentRecommend() {
     { id: 9, active: false, name: '문화생활', value: 'CULTURE_LIFE' },
   ]
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
-  const [selectedPage, setSelectedPage] = useState<number>(8)
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const [isSortOpen, setIsSortOpen] = useState<string>('')
   const [products, setProducts] = useState<DataType[]>([])
+  const selectedFilter = useRecoilValue(FilterState)
+  const selectedPrice = useRecoilValue(PriceState)
 
   // 선택한 카테고리를 별도의 매개 변수로 생성
   const selectedCategories = selectedTags.map((tag) => tag.value)
   const selectedCategoriesString = selectedCategories
-    .map((category) => `smallCategory=${category}`)
-    .join('&')
+    .map((category) => `${category}`)
+    .join(',')
 
   // 만약 selectedTags가 비어 있는 경우, 모든 태그를 선택한 것으로 가정
   const allCategoriesString = selectedProps
-    .map((category) => `smallCategory=${category.value}`)
-    .join('&')
-
-  const { data: productsData = [] } = useQuery(['products', selectedTags], () =>
-    FriendsApi.GET_PRESENT_RECOMMEND(
-      selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
-      selectedPage,
-    ),
-  )
-
-  //카테고리 제대로 출력되는지 확인
-  console.log(
-    selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
-  )
+    .map((category) => `${category.value}`)
+    .join(',')
 
   useEffect(() => {
-    if (productsData.statusCode === 200) {
-      // 데이터를 products 변수에 저장
-      setProducts(productsData.data.content)
-      setDataLoaded(true)
-    } else {
-      setDataLoaded(false)
-    }
-  }, [productsData])
-
-  console.log(products)
+    FriendsApi.GET_PRESENT_RECOMMEND(
+      selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
+      selectedFilter.filterValue,
+      selectedPrice.priceValue,
+    ).then((response) => {
+      if (response.statusCode === 200) {
+        setProducts(response.data.content)
+        setDataLoaded(true)
+      } else {
+        setDataLoaded(false)
+      }
+    })
+  }, [selectedTags, selectedFilter.filter, selectedPrice.price])
 
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
-    setIsMenuOpen(false),
+    setIsSortOpen(''),
   )
+  console.log(products)
+
   return (
     <>
       <FilterWrapper>
@@ -86,23 +84,31 @@ function PresentRecommend() {
       </FilterWrapper>
       <Container>
         <FilterItemWrap>
-          <RecommendFilter onClick={() => setIsMenuOpen(true)}>
+          <RecommendFilter onClick={() => setIsSortOpen('filter')}>
             <ItemFilter />
             <Margin widthProps={2} />
-            <Text typo="Caption_12R" children="추천순" color="gray_300" />
+            <Text
+              typo="Caption_12R"
+              children={selectedFilter.filter}
+              color="gray_300"
+            />
           </RecommendFilter>
           <Margin widthProps={12} />
-          <RecommendFilter>
-            <PriceFilter />
+          <RecommendFilter onClick={() => setIsSortOpen('price')}>
+            <PriceFilterIcon />
             <Margin widthProps={2} />
-            <Text typo="Caption_12R" children="가격" color="gray_300" />
+            <Text
+              typo="Caption_12R"
+              children={selectedPrice.price}
+              color="gray_300"
+            />
           </RecommendFilter>
         </FilterItemWrap>
         {dataLoaded && (
           <SortItemWrap>
             {products.map((product: DataType, index: number) => (
               <ItemDiv key={index}>
-                <ItemImg />
+                <ItemImg imageUrl={product.imageUrl} />
                 <Text
                   typo="Caption_12R"
                   color="gray_400"
@@ -111,7 +117,6 @@ function PresentRecommend() {
                 <div
                   style={{
                     display: 'flex',
-                    width: '149px',
                     marginBottom: '4px',
                   }}
                 >
@@ -134,13 +139,19 @@ function PresentRecommend() {
             ))}
           </SortItemWrap>
         )}
-        {isMenuOpen && (
-          <>
-            <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-            {/* BottomSheet 추가 필요*/}
-          </>
-        )}
       </Container>
+      {isSortOpen === 'filter' && (
+        <>
+          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
+          <SortItem />
+        </>
+      )}
+      {isSortOpen === 'price' && (
+        <>
+          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
+          <PriceFilter />
+        </>
+      )}
     </>
   )
 }
@@ -194,10 +205,11 @@ const ItemDiv = styled.div`
   flex-direction: column;
 `
 
-const ItemImg = styled.div`
+const ItemImg = styled.div<{ imageUrl: string }>`
   width: 100%;
   padding-bottom: 100%; //추후 크롤링 이미지 받으면 변경필요
-  background-color: ${theme.palette.gray_300};
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+  background-size: cover;
   border-radius: 8px;
   margin-bottom: 8px;
 `

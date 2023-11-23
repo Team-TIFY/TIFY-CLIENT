@@ -19,6 +19,7 @@ export interface UserInfoToken {
   userName: string
   userId: string
   imageUrl: string
+  email: string
   birth: string
   job: string
   gender: string
@@ -36,10 +37,8 @@ export interface UserTag {
 }
 
 export interface FilteredUserTag {
-  answerId: number
-  largeCategory: CategoryType
   smallCategory: SubCategoryType
-  answer: string
+  answerContentList: string[]
 }
 
 export interface SelectedTag {
@@ -52,6 +51,7 @@ export type SelectedProps = {
   active: boolean
   name: SubCategoryName
   value: SubCategoryType
+  count: number
 }[]
 
 export interface UserNewTasteCategory {
