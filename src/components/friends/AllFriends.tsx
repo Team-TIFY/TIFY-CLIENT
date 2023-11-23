@@ -80,10 +80,10 @@ const AllFriends = () => {
         />
       </FlexBox>
       {friendsList.length ? (
-        <>
+        <div style={{ width: '100%' }}>
           <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
           <Spacing height={16} />
-        </>
+        </div>
       ) : (
         <>
           <Spacing height={32} />
