@@ -32,6 +32,7 @@ const RequireAuth = () => {
         userName: data.userName,
         userId: data.userId,
         imageUrl: data.imageUrl,
+        email: data.email,
         birth: data.birth,
         job: data.job,
         createdAt: data.createdAt,

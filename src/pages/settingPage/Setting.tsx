@@ -10,6 +10,7 @@ import Dimmer from '@components/layouts/Dimmer'
 import styled from '@emotion/styled'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { useState } from 'react'
+import LogOutBtn from './LogOutBtn'
 
 const Setting = () => {
   const [isLogOutOpen, setIsLogOutOpen] = useState<boolean>(false)
@@ -63,19 +64,7 @@ const Setting = () => {
         <RightChevron />
       </SettingList>
       <Height />
-      <SettingList>
-        <Wrap onClick={() => setIsLogOutOpen(true)}>
-          <LogoutIcon />
-          <Margin />
-          <Text children="로그아웃" typo="Body_16" color="gray_100" />
-        </Wrap>
-        {isLogOutOpen && (
-          <>
-            <Dimmer dimmerRef={outsideRef} onClick={handleClickLogOutDimmer} />
-            {/* BottomSheet 추가 필요*/}
-          </>
-        )}
-      </SettingList>
+      <LogOutBtn />
     </Wrapper>
   )
 }

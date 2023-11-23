@@ -20,6 +20,7 @@ type DataType = {
   name: string
   price: number
   productOption: string
+  imageUrl: string
 }
 
 function PresentRecommend() {
@@ -70,6 +71,7 @@ function PresentRecommend() {
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsSortOpen(''),
   )
+  console.log(products)
 
   return (
     <>
@@ -106,7 +108,7 @@ function PresentRecommend() {
           <SortItemWrap>
             {products.map((product: DataType, index: number) => (
               <ItemDiv key={index}>
-                <ItemImg />
+                <ItemImg imageUrl={product.imageUrl} />
                 <Text
                   typo="Caption_12R"
                   color="gray_400"
@@ -115,7 +117,6 @@ function PresentRecommend() {
                 <div
                   style={{
                     display: 'flex',
-                    width: '149px',
                     marginBottom: '4px',
                   }}
                 >
@@ -204,10 +205,11 @@ const ItemDiv = styled.div`
   flex-direction: column;
 `
 
-const ItemImg = styled.div`
+const ItemImg = styled.div<{ imageUrl: string }>`
   width: 100%;
   padding-bottom: 100%; //추후 크롤링 이미지 받으면 변경필요
-  background-color: ${theme.palette.gray_300};
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+  background-size: cover;
   border-radius: 8px;
   margin-bottom: 8px;
 `

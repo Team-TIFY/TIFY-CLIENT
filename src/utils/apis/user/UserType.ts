@@ -19,6 +19,7 @@ export interface UserInfoToken {
   userName: string
   userId: string
   imageUrl: string
+  email: string
   birth: string
   job: string
   gender: string
