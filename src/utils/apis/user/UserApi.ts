@@ -20,16 +20,12 @@ export const UserApi = {
     return response.data.data
   },
 
-  GET_USER_TAG: async (userId: number): Promise<UserTag[]> => {
-    const response = await axiosApi.get(`/users/${userId}/tags`)
-    return response.data.data
-  },
-
-  GET_FILTERED_USER_TAG: async (
+  GET_USER_TAG: async (
+    userId: number,
     smallCategory: SubCategoryType[],
-  ): Promise<FilteredUserTag[][]> => {
+  ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
-      `/favor-questions/answers?smallCategory=${smallCategory}`,
+      `/users/${userId}/tags?smallCategory=${smallCategory}`,
     )
     return response.data.data
   },

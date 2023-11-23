@@ -1,9 +1,18 @@
 import styled from '@emotion/styled'
 import { ButtonHTMLAttributes, useEffect, useState } from 'react'
 import { theme } from '@styles/theme'
-import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
+import {
+  SelectedProps,
+  SelectedTag,
+  SubCategoryType,
+} from '@utils/apis/user/UserType'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'
+
+export type CategoryAnswerCountType = {
+  smallCategory: SubCategoryType
+  answerCount: number
+}
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selectedProps: SelectedProps
@@ -64,16 +73,18 @@ export const Filter = ({
           )}
         </>
         <FilterContainer>
-          {selected.map((item) => (
-            <SelectBtn
-              key={item.id}
-              active={item.active}
-              onClick={() => handleClick(item.id)}
-              {...props}
-            >
-              {item.name}
-            </SelectBtn>
-          ))}
+          {selected.map((item) =>
+            item.count ? (
+              <SelectBtn
+                key={item.id}
+                active={item.active}
+                onClick={() => handleClick(item.id)}
+                {...props}
+              >
+                {item.name}
+              </SelectBtn>
+            ) : null,
+          )}
         </FilterContainer>
       </DivContainer>
     </Wrapper>

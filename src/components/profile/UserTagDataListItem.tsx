@@ -5,53 +5,37 @@ import { Category } from '@components/atoms/Category'
 import { indexVariant, Tag } from '@components/atoms/Tag'
 import {
   FilteredUserTag,
+  SelectedProps,
   SelectedTag,
-  UserTag,
 } from '@utils/apis/user/UserType'
 
 export interface UserTagDataProps {
   selectedTags: SelectedTag[]
-  filteredUserTagData: FilteredUserTag[][]
-  userTagData: UserTag[]
+  selectedProps: SelectedProps
+  userTagData: FilteredUserTag[]
   isFriend: boolean
 }
 
 export const UserTagDataListItem = ({
   selectedTags,
-  filteredUserTagData,
+  selectedProps,
   userTagData,
   isFriend,
 }: UserTagDataProps) => {
   const renderUserTagDataListItem = () => {
-    return selectedTags.length > 0
-      ? filteredUserTagData.map((tag, idx) => (
-          <Category
-            key={idx}
-            categoryName={selectedTags[idx].name}
-            children={tag.map((tagData, index) => (
-              <Tag
-                key={tagData.answerId}
-                index={index as indexVariant}
-                children={tagData.smallCategory}
-              />
-            ))}
-            isFriend={isFriend}
-          />
-        ))
-      : userTagData.map((category) => (
-          <Category
-            key={category.userTagId}
-            categoryName={category.largeCategory}
-            children={category.favors.map((tag, index) => (
-              <Tag
-                key={tag.userFavorId}
-                index={index as indexVariant}
-                children={tag.smallCategory}
-              />
-            ))}
-            isFriend={isFriend}
-          />
-        ))
+    console.log(userTagData, selectedTags)
+    return userTagData.map((tag, idx) =>
+      tag.answerContentList?.length ? (
+        <Category
+          key={idx}
+          categoryName={selectedProps[idx]?.name}
+          children={tag?.answerContentList?.map((tagData, index) => (
+            <Tag key={index} index={index as indexVariant} children={tagData} />
+          ))}
+          isFriend={isFriend}
+        />
+      ) : null,
+    )
   }
 
   return (
