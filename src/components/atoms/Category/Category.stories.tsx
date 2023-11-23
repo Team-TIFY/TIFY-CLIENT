@@ -38,14 +38,6 @@ const meta = {
         type: 'function',
       },
     },
-    onShowMorePreferencesClick: {
-      name: 'onShowMorePreferencesClick',
-      description:
-        '취향 더보기 버튼 클릭 시 발생할 이벤트를 넘겨주는 함수입니다.',
-      control: {
-        type: 'function',
-      },
-    },
   },
 } as Meta<typeof Category>
 
