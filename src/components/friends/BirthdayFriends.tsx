@@ -7,6 +7,7 @@ import { Text } from '@components/atoms/Text'
 import FriendsListBItem from './FriendsListBItem'
 import { authState } from '@libs/store/auth'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { useEffect } from 'react'
 
 const BirthdayFriends = () => {
   const auth = useRecoilValue(authState)
@@ -15,6 +16,12 @@ const BirthdayFriends = () => {
     ['birthdayFriendsList', auth.userProfile.id],
     FriendsApi.GET_BIRTHDAY_FRIENDS_LIST,
   )
+
+  useEffect(() => {
+    birthdayFriendsList.sort((a, b) =>
+      a.neighborName.localeCompare(b.neighborName),
+    )
+  }, [birthdayFriendsList])
 
   return birthdayFriendsList.length ? (
     <>
