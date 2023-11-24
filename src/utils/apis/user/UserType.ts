@@ -1,3 +1,5 @@
+import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
+
 export interface UserInfo {
   id: number
   userId: string
@@ -36,10 +38,8 @@ export interface UserTag {
 }
 
 export interface FilteredUserTag {
-  answerId: number
-  largeCategory: CategoryType
   smallCategory: SubCategoryType
-  answer: string
+  answerContentList: string[]
 }
 
 export interface SelectedTag {
@@ -52,6 +52,7 @@ export type SelectedProps = {
   active: boolean
   name: SubCategoryName
   value: SubCategoryType
+  count: number
 }[]
 
 export interface UserNewTasteCategory {
@@ -62,6 +63,11 @@ export interface UserNewTasteCategory {
 export interface IsAnsweredCategory {
   detailCategory: SubCategoryType
   answered: boolean
+}
+
+export type PastTodayCategoryCountType = {
+  dailyQuestionCategory: TodayCategoryValueType
+  count: number
 }
 
 export type SubCategoryType =

@@ -7,6 +7,7 @@ import {
   UserInfo,
   UserInfoToken,
   UserTag,
+  PastTodayCategoryCountType,
 } from '@utils/apis/user/UserType'
 
 export const UserApi = {
@@ -20,8 +21,13 @@ export const UserApi = {
     return response.data.data
   },
 
-  GET_USER_TAG: async (userId: number): Promise<UserTag[]> => {
-    const response = await axiosApi.get(`/users/${userId}/tags`)
+  GET_USER_TAG: async (
+    userId: number,
+    smallCategory: SubCategoryType[],
+  ): Promise<FilteredUserTag[]> => {
+    const response = await axiosApi.get(
+      `/users/${userId}/tags?smallCategory=${smallCategory}`,
+    )
     return response.data.data
   },
 
@@ -48,6 +54,15 @@ export const UserApi = {
   ): Promise<IsAnsweredCategory[]> => {
     const response = await axiosApi.get(
       `favor-questions/isAnswered/detail-category?smallCategory=${category}`,
+    )
+    return response.data.data
+  },
+
+  GET_PAST_TODAY_CATEGORY_COUNT: async (
+    id: number,
+  ): Promise<PastTodayCategoryCountType[]> => {
+    const response = await axiosApi.get(
+      `/users/daily-answer/${id}/count/all-category`,
     )
     return response.data.data
   },
