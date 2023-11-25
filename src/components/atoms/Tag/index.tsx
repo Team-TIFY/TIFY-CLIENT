@@ -81,7 +81,6 @@ interface TagProps {
 }
 
 export const Tag = ({ index, children }: TagProps) => {
-  console.log(index)
   return (
     <Wrapper
       variant={TAG_COLOR_TYPE[index].variant}

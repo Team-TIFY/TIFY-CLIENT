@@ -51,7 +51,6 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
-      console.log(auth.userProfile)
       OnboardingApi.PUT_ONBOARD_STATUS({
         userId: auth.userProfile.id,
         data: rest,
