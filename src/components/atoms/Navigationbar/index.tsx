@@ -1,19 +1,21 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { Text } from '../Text'
 import Svg from '../Svg'
 import NavigationMy from '@assets/icons/NavigationMy'
 import NavigationToday from '@assets/icons/NavigationToday'
 import NavigationFriends from '@assets/icons/NavigationFriends'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useLocation } from 'react-router-dom'
 
 export const Navigationbar = () => {
   const navigate = useNavigate()
-  const controls = useAnimation()
-
-  const [selected, setSelect] = useState<number>(0)
+  const { pathname } = useLocation()
+  const [selected, setSelect] = useState<number>(
+    pathname === '/' ? 1 : pathname === '/profile' ? 2 : 0,
+  )
   const navigationData = [
     {
       title: '프렌즈',
@@ -32,50 +34,22 @@ export const Navigationbar = () => {
     },
   ]
   const handleClick = (index: number) => {
-    // console.log(offset)
-    // if (selected === 0) {
-    //   if (index === 1) {
-    //     setOffset((offset) => offset + 54)
-    //   } else if (index === 2) {
-    //     setOffset((offset) => offset + 108)
-    //   } else return
-    // } else if (selected === 1) {
-    //   if (index === 0) {
-    //     setOffset((offset) => offset - 54)
-    //   } else if (index === 2) {
-    //     setOffset((offset) => offset + 54)
-    //   } else return
-    // } else {
-    //   if (index === 0) {
-    //     setOffset((offset) => offset - 108)
-    //   } else if (index === 1) {
-    //     setOffset((offset) => offset - 54)
-    //   } else return
-    // }
     setSelect(index)
-    if (index > selected) controls.start({ x: 30, opacity: 0 })
-    else controls.start({ x: -30, opacity: 0 })
   }
-  useEffect(() => {
-    controls.start({ x: +30, opacity: 1 })
-    return () => controls.stop()
-  }, [controls])
-
   return (
     <NavContainer>
       <Wrapper>
-        {/* <NavBorder select={selected} /> */}
         {navigationData.map((data, index) => {
           return (
             <NavBtn
               key={index}
               onClick={() => {
                 handleClick(index)
-                // navigate(data.url)
+                navigate(data.url)
               }}
             >
               <NavBorder
-                initial={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 0 }}
                 animate={{
                   opacity: index === selected ? 1 : 0,
                 }}
