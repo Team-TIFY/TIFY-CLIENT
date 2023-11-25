@@ -77,7 +77,7 @@ const SearchAnswerStep = ({
 
   return (
     <SearchContainer>
-      <Spacing height={20} />
+      <Spacing height={32} />
       <FlexBox direction="column" gap={20}>
         <Text typo="SCD_Headline_24" color="white">
           {data?.contents.substring(0, 18)}

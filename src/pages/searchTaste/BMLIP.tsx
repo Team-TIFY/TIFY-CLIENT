@@ -9,8 +9,6 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
-import BottomSheet from '@components/atoms/BottomSheet'
-import GreetingOnboarding from '@components/onboarding/GreetingOnboarding'
 
 const BMLIP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)

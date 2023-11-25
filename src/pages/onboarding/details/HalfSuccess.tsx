@@ -1,13 +1,10 @@
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import OnBoardGift from '@assets/image/OnBoardGift'
+import { useRecoilState } from 'recoil'
 import styled from '@emotion/styled'
 import { RoundButton } from '@components/atoms/RoundButton'
-import { useNavigate } from 'react-router-dom'
 import { onboardingPageState, onboardingState } from '@libs/store/onboard'
-import { useEffect, useState } from 'react'
-
+import onBoardingImg from '@assets/image/onBoardingImg.png'
 export function HalfSuccess() {
   const [info, setInfo] = useRecoilState(onboardingState)
   const [goNext, setGoNext] = useRecoilState(onboardingPageState)
@@ -22,10 +19,10 @@ export function HalfSuccess() {
         <Text typo="SCD_Headline_24">{info.username}님 안녕하세요!</Text>
         <Text typo="SCD_Headline_24">나의 취향 프로필을 꾸며볼까요?</Text>
       </TextDiv>
-      <Spacing height={48} />
-      <ImgWrapper>
-        <OnBoardGift />
-      </ImgWrapper>
+      <Spacing height={100} />
+      <div style={{ textAlign: 'center' }}>
+        <img src={onBoardingImg} alt="온보딩 이미지" width={360} height={242} />
+      </div>
       <BottomSticker>
         <RoundButton
           variant="mediumRound"

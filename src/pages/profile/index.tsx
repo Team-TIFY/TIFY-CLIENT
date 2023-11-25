@@ -2,6 +2,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Suspense } from 'react'
 import { useRecoilValue } from 'recoil'
+import Svg from '@components/atoms/Svg'
 import { useQuery } from '@tanstack/react-query'
 import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
@@ -28,6 +29,7 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
 import FullModal from '@components/atoms/Modal/FullModal'
+import BigX from '@assets/icons/BigX'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -46,8 +48,11 @@ const ProfileRouter = () => {
       })
     }
     navigate(-1)
-    //const time = setTimeout(() => navigate(-1), 100)
   }
+  const handleClickIcon = (url: string) => {
+    navigate(url)
+  }
+
   const { data: friendData } = useQuery(
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
@@ -139,8 +144,15 @@ const ProfileRouter = () => {
             <AppBarTemplate
               variant="title"
               label="새로운 취향 답변"
-              rightChildren="dots"
+              rightChildren="actionButton"
               hasNav={false}
+              rightChildrenIcon={[
+                <Svg
+                  key="searchFriends"
+                  children={<BigX />}
+                  onClick={() => handleClickIcon('/profile')}
+                />,
+              ]}
             >
               <NewTaste />
             </AppBarTemplate>

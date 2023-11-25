@@ -1,13 +1,7 @@
-import CompleteIcon from '@assets/icons/CompleteIcon'
-import ErrorIcon from '@assets/icons/ErrorIcon'
-import StingIcon from '@assets/icons/StingIcon'
-import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
-import { snackBarState } from '@libs/store/snackBar'
 import { theme } from '@styles/theme'
-import { useSetRecoilState } from 'recoil'
 import 'react-toastify/dist/ReactToastify.css'
-import { toast, ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 
 export type SnackBarVariantType = 'complete' | 'error' | 'sting'
 
@@ -20,7 +14,7 @@ const SnackBar = () => {
   return (
     <StyledMessage
       position="bottom-center"
-      autoClose={3000}
+      autoClose={1500}
       closeButton={false}
       newestOnTop
       hideProgressBar
