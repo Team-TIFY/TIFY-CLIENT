@@ -27,6 +27,7 @@ import MenuIcon from '@assets/icons/MenuIcon'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
+import FullModal from '@components/atoms/Modal/FullModal'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -145,6 +146,7 @@ const ProfileRouter = () => {
             </AppBarTemplate>
           }
         />
+        <Route path="/newTaste/question-complete" element={<FullModal />} />
         <Route
           path="/newTaste/BMLIP/*"
           element={

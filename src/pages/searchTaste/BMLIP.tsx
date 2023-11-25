@@ -45,6 +45,7 @@ const BMLIP = () => {
   //   setStepAnswer({ ...step, categoryName: 'BMLIP' })
   // }, [step.favorAnswerDtos])
   // console.log(window.history.length)
+
   useEffect(() => {
     setStepAnswer({ ...step, categoryName: ' BMLIP' })
   }, [])
@@ -91,7 +92,7 @@ const BMLIP = () => {
               //TODO: 추후 모달 창으로 변경할것!
               setTimeout(() => alert('tify 가입을 환영해요!'), 500)
             }
-            localStorage.clear()
+            localStorage.removeItem('isOnboardingFavor')
           }}
           category="BMLIP"
           number={5}

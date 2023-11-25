@@ -88,9 +88,7 @@ const MultiAnswerStep = ({
       setToggleState([...toggleState])
     }
   }
-  useEffect(() => {
-    console.log(toggleState)
-  }, [toggleState])
+
   return (
     <MultiAnswerStepWrapper>
       <FlexBox direction="column" gap={10}>

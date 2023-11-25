@@ -24,5 +24,4 @@ export const questionState = atom<DailyQuestionInfo>({
 export const answerState = atom<FavorAnswerRequest>({
   key: 'favorAnswer',
   default: initialAnswerState,
-  effects_UNSTABLE: [persistAtom],
 })

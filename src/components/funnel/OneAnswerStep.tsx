@@ -8,7 +8,6 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
-import { theme } from '@styles/theme'
 import { Spacing } from '@components/atoms/Spacing'
 import { favorQuestionData } from '@libs/store/dummy'
 import SquareButton from '@components/atoms/SquareButton'
@@ -31,15 +30,7 @@ const OneAnswerStep = ({
   const [step, setStepAnswer] = useRecoilState(answerState)
 
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (answer === '') {
-      setAnswer(e.currentTarget.value)
-    } else {
-      if (e.currentTarget.value === answer) {
-        setAnswer('')
-      } else {
-        return
-      }
-    }
+    setAnswer(e.currentTarget.value)
   }
   const submitAnswer = () => {
     setStepAnswer({
