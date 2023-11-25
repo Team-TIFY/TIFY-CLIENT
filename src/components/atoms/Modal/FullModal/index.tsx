@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
 import { Text } from '@components/atoms/Text'
 import giftBoxImage from '@assets/image/modalGiftBox.png'
-import { FlexBox } from '@components/layouts/FlexBox'
+import { useNavigate } from 'react-router-dom'
 import { RoundButton } from '@components/atoms/RoundButton'
 import { theme } from '@styles/theme'
 const FullModal = () => {
+  const navigate = useNavigate()
   return (
     <ModalContainer>
       <ModalContent>
@@ -14,8 +15,17 @@ const FullModal = () => {
         </Text>
       </ModalContent>
       <StickyButton>
-        <RoundButton variant="xlargeRound">다른 취향도 답하러 가기</RoundButton>
-        <RoundButton variant="mediumRound" width={312}>
+        <RoundButton
+          variant="xlargeRound"
+          onClick={() => navigate('/profile/newTaste')}
+        >
+          다른 취향도 답하러 가기
+        </RoundButton>
+        <RoundButton
+          variant="mediumRound"
+          width={312}
+          onClick={() => navigate('/profile')}
+        >
           프로필 바로가기
         </RoundButton>
       </StickyButton>

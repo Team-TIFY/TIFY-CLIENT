@@ -11,7 +11,7 @@ const initialState: DailyQuestionInfo = {
   loadingData: '',
 }
 
-const initialAnswerState: FavorAnswerRequest = {
+export const initialAnswerState: FavorAnswerRequest = {
   categoryName: '',
   favorAnswerDtos: [],
 }

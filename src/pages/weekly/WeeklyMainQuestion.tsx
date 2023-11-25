@@ -8,11 +8,14 @@ import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
 import { questionState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
 import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
+import { useEffect } from 'react'
+import useSnackBar from '@libs/hooks/useSnackBar'
 
 const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
   const [question, setQuestion] = useRecoilState(questionState)
   const navigate = useNavigate()
+  const { setSnackBar } = useSnackBar()
 
   const handleAnswerQuestion = async () => {
     const data = await WeeklyApi.ALREADY_ANSWERED(question.questionId)

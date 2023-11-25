@@ -13,7 +13,7 @@ import { theme } from '@styles/theme'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import useStepNumberIcon from '@libs/hooks/useStepNumberIcon'
-import { Step1 } from '@assets/icons/SignupStep/1'
+import useSnackBar from '@libs/hooks/useSnackBar'
 
 interface MultiAnswerStepProps {
   category: TasteType
@@ -31,6 +31,7 @@ const MultiAnswerStep = ({
   const { data } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
+  const { setSnackBar } = useSnackBar()
   const [setStepNumberIcon] = useStepNumberIcon()
   const [step, setStepAnswer] = useRecoilState(answerState)
   const [answer, setAnswer] = useState<string[]>([])
@@ -80,7 +81,10 @@ const MultiAnswerStep = ({
       setToggleState([...toggleState])
     } else {
       if (answer.length === max) {
-        alert(`최대 ${max}개까지 선택할 수 있어요!`)
+        setSnackBar({
+          comment: `최대 ${max}개까지 선택할 수 있어요`,
+          type: 'error',
+        })
         return
       }
       setAnswer([...answer, e.currentTarget.value])

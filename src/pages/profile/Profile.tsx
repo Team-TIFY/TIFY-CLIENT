@@ -26,7 +26,6 @@ import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { friendState } from '@libs/store/friend'
 import { authState } from '@libs/store/auth'
 import { profileState } from '@libs/store/profile'
-import FullModal from '@components/atoms/Modal/FullModal'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP', count: 0 },
@@ -258,7 +257,6 @@ const Profile = ({
 
   return (
     <>
-      <FullModal />
       <ProfileImage isFriend={friendId !== undefined} />
       <Spacing />
       <Padding size={[0, 16]}>

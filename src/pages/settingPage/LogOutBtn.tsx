@@ -8,6 +8,7 @@ import Dimmer from '@components/layouts/Dimmer'
 import { useState } from 'react'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import axios from 'axios'
+import useSnackBar from '@libs/hooks/useSnackBar'
 import { useMutation } from '@tanstack/react-query'
 import { SettingApi } from '@utils/apis/setting'
 import { useNavigate } from 'react-router-dom'
@@ -17,6 +18,7 @@ import { authState } from '@libs/store/auth'
 const LogOutBtn = () => {
   const auth = useRecoilValue(authState)
   const [isLogOutOpen, setIsLogOutOpen] = useState<boolean>(false)
+  const { setSnackBar } = useSnackBar()
   const navigate = useNavigate()
   const [outsideRef, handleClickLogOutDimmer] = useOutsideClick(() =>
     setIsLogOutOpen(false),
@@ -24,7 +26,7 @@ const LogOutBtn = () => {
 
   const onClickLogOut = useMutation(SettingApi.POST_LOGOUT, {
     onSuccess: () => {
-      alert('로그아웃 완료!')
+      setSnackBar({ comment: '로그아웃이 완료되었어요.', type: 'success' })
       navigate('/login')
     },
   })

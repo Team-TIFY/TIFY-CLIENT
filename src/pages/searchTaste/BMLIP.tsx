@@ -19,10 +19,18 @@ const BMLIP = () => {
   )
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
-      alert('취향 답변 완료!')
-      navigate('myprofile')
+      if (localStorage.getItem('isOnboardingFavor') === 'true') {
+        navigate('/')
+        //TODO: 추후 모달 창으로 변경할것!
+        setTimeout(() => alert('tify 가입을 환영해요!'), 500)
+        localStorage.removeItem('isOnboardingFavor')
+      } else {
+        setStepAnswer({ categoryName: '', favorAnswerDtos: [] })
+        navigate('/profile/newTaste/question-complete')
+      }
     },
   })
+  console.log(step)
 
   const navigate = useNavigate()
 
@@ -47,7 +55,7 @@ const BMLIP = () => {
   // console.log(window.history.length)
 
   useEffect(() => {
-    setStepAnswer({ ...step, categoryName: ' BMLIP' })
+    setStepAnswer({ ...step, categoryName: 'BMLIP' })
   }, [])
 
   return (
@@ -87,12 +95,6 @@ const BMLIP = () => {
         <SearchAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
-            if (localStorage.getItem('isOnboardingFavor') === 'true') {
-              navigate('/')
-              //TODO: 추후 모달 창으로 변경할것!
-              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
-            }
-            localStorage.removeItem('isOnboardingFavor')
           }}
           category="BMLIP"
           number={5}
