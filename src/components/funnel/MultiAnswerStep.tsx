@@ -9,7 +9,6 @@ import { favorQuestionData } from '@libs/store/dummy'
 import SquareButton from '@components/atoms/SquareButton'
 import { RoundButton } from '@components/atoms/RoundButton'
 import { useEffect, useState } from 'react'
-import { theme } from '@styles/theme'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import useStepNumberIcon from '@libs/hooks/useStepNumberIcon'
@@ -172,9 +171,4 @@ const GridBox = styled.div`
   width: 100%;
   row-gap: 16px;
   column-gap: 26px;
-`
-
-const MultiCountBox = styled.div`
-  border-radius: 50%;
-  background-color: ${theme.palette.purple_500};
 `

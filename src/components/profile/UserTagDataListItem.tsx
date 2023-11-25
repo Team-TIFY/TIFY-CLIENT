@@ -23,7 +23,6 @@ export const UserTagDataListItem = ({
   isFriend,
 }: UserTagDataProps) => {
   const renderUserTagDataListItem = () => {
-    console.log(userTagData, selectedTags)
     return userTagData.map((tag, idx) =>
       tag.answerContentList?.length ? (
         <Category

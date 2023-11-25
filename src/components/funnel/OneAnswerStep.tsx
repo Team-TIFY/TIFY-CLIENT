@@ -81,7 +81,7 @@ const OneAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
-                subVariant={answer.length > 0 ? 'selected' : 'default'}
+                subVariant={answer === data ? 'selected' : 'default'}
                 key={index}
                 fullWidth={true}
                 variant="medium2Square"
