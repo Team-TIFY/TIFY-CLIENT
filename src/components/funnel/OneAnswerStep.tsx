@@ -8,7 +8,6 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
-import { theme } from '@styles/theme'
 import { Spacing } from '@components/atoms/Spacing'
 import { favorQuestionData } from '@libs/store/dummy'
 import SquareButton from '@components/atoms/SquareButton'
@@ -31,19 +30,7 @@ const OneAnswerStep = ({
   const [step, setStepAnswer] = useRecoilState(answerState)
 
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (answer === '') {
-      setAnswer(e.currentTarget.value)
-      // e.currentTarget.style.backgroundColor = 'white'
-      // e.currentTarget.style.color = `${theme.palette.gray_800}`
-    } else {
-      if (e.currentTarget.value === answer) {
-        setAnswer('')
-        // e.currentTarget.style.backgroundColor = `${theme.palette.gray_800}`
-        // e.currentTarget.style.color = `${theme.palette.white}`
-      } else {
-        return
-      }
-    }
+    setAnswer(e.currentTarget.value)
   }
   const submitAnswer = () => {
     setStepAnswer({
@@ -76,7 +63,7 @@ const OneAnswerStep = ({
           {favorQuestionData[category][number].map((data, index) => {
             return (
               <SquareButton
-                subVariant={answer.length > 0 ? 'selected' : 'default'}
+                subVariant={answer === data ? 'selected' : 'default'}
                 key={index}
                 fullWidth={true}
                 variant="medium2Square"

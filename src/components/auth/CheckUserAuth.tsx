@@ -5,7 +5,6 @@ import useRefresh from '@libs/hooks/useRefresh'
 
 export const CheckUserAuth = () => {
   const refreshToken = getCookie('refreshToken')
-  console.log(refreshToken)
   const { refreshMutate, status } = useRefresh()
   useEffect(() => {
     refreshToken ? refreshMutate(refreshToken) : null

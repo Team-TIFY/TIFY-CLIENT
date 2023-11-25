@@ -18,7 +18,7 @@ const Dimmer = ({ dimmerRef, onClick }: DimmerPropsType) => {
         width: '100%',
         height: '100%',
         zIndex: '101',
-        backgroundColor: `${theme.palette.dim_800}`,
+        backgroundColor: `${theme.palette.dim_500}`,
       }}
     ></div>
   )

@@ -1,11 +1,5 @@
 import { NonEmptyArray } from '@libs/hooks/useFunnel'
-import {
-  ReactNode,
-  useEffect,
-  ReactElement,
-  Children,
-  isValidElement,
-} from 'react'
+import { ReactNode, ReactElement, Children, isValidElement } from 'react'
 
 export interface FunnelProps<Steps extends NonEmptyArray<string>> {
   steps: Steps
@@ -30,16 +24,11 @@ export const Funnel = <Steps extends NonEmptyArray<string>>({
 
 export interface StepProps<Steps extends NonEmptyArray<string>> {
   name: Steps[number]
-  onEnter?: () => void
   children: ReactNode
 }
 
 export const Step = <T extends NonEmptyArray<string>>({
-  onEnter,
   children,
 }: StepProps<T>) => {
-  useEffect(() => {
-    onEnter?.()
-  }, [onEnter])
   return <>{children}</>
 }
