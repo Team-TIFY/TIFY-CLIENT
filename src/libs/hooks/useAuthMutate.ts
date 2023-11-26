@@ -66,6 +66,7 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
       accessToken: loginData.accessToken,
       userProfile: {
         id: loginData.userId,
+        email: data.email,
         userId: data.userId,
         userName: data.userName,
         imageUrl: data.thumbnail,
