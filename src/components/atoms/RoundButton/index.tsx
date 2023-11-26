@@ -5,6 +5,7 @@ import { Text } from '../Text'
 import Loading from '@components/atoms/Loading'
 import { FlexBox } from '@components/layouts/FlexBox'
 import Svg from '../Svg'
+import { useState } from 'react'
 import RightChevron from '@assets/icons/RightChevron'
 
 type ButtonVariant =
@@ -141,8 +142,10 @@ export const RoundButton = ({
   fullWidth = false,
   width,
   isLoading,
+  onClick,
   ...props
 }: Props) => {
+  const [isClicked, setIsClicked] = useState(false)
   const renderRoundButton = () => {
     if (variant === 'xlargeRound') {
       return (
@@ -178,24 +181,32 @@ export const RoundButton = ({
       )
     } else {
       return (
-        <>
-          <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
-            <FlexBox>{children}</FlexBox>
-          </Text>
-        </>
+        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
+          <FlexBox>{children}</FlexBox>
+        </Text>
       )
     }
   }
 
   return (
-    <StyledButton
-      width={width}
-      variant={variant}
-      fullWidth={fullWidth}
-      {...props}
-    >
-      {isLoading ? <Loading /> : renderRoundButton()}
-    </StyledButton>
+    <>
+      <StyledButton
+        width={width}
+        variant={variant}
+        fullWidth={fullWidth}
+        isClicked={isClicked}
+        onClick={(e) => {
+          if (onClick) onClick()
+          setIsClicked(true)
+          setTimeout(() => {
+            setIsClicked(false)
+          }, 1000) // 1초 후 isClicked를 false로 설정하여 원래 크기로 돌아가도록 합니다.
+        }}
+        {...props}
+      >
+        {isLoading ? <Loading /> : renderRoundButton()}
+      </StyledButton>
+    </>
   )
 }
 
@@ -203,6 +214,7 @@ const StyledButton = styled.button<{
   variant: ButtonVariant
   width?: number
   fullWidth?: boolean
+  isClicked?: boolean
 }>`
   display: flex;
   justify-content: center;
@@ -222,6 +234,8 @@ const StyledButton = styled.button<{
   background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
   border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
   color: ${({ variant }) => `${TEXT_COLOR_TYPE.default[variant]}`};
+  transform: ${({ variant, isClicked }) =>
+    variant === 'mediumRound' ? (isClicked ? 'scale(1.2)' : 'scale(1)') : ''};
 
   &:hover {
     background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.hover[variant]}`};
