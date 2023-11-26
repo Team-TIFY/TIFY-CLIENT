@@ -28,8 +28,9 @@ const OneAnswerStep = ({
   )
   const [answer, setAnswer] = useState<string>('')
   const [step, setStepAnswer] = useRecoilState(answerState)
-
+  const [disabled, setDisabled] = useState<boolean>(true)
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setDisabled(false)
     setAnswer(e.currentTarget.value)
   }
   const submitAnswer = () => {
@@ -99,6 +100,7 @@ const OneAnswerStep = ({
         style={{ position: 'absolute', bottom: '32px' }}
         variant="mediumRound"
         onClick={submitAnswer}
+        disabled={disabled}
       >
         다음
       </RoundButton>
