@@ -15,6 +15,7 @@ const usehandleVisualViewport = <T>({
   if (window.visualViewport) {
     window.visualViewport.onresize = handleVisualViewPortResize
   }
+  return [() => handleVisualViewPortResize]
 }
 
 export default usehandleVisualViewport

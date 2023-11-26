@@ -26,7 +26,6 @@ const NewTasteCategoryListItem = ({
 
   const handleClickSubCategory = async (category: UserNewTasteCategory) => {
     const answerList = await fetchAnswerList(category)
-
     routeToNotAnsweredCategory(answerList)
   }
 
@@ -44,7 +43,6 @@ const NewTasteCategoryListItem = ({
         (data) => data.answered === false,
       )[0].detailCategory
       setSubCategory(favorQuestionCategory)
-
       const routerName = parseTotasteQuestion(favorQuestionCategory)
       routerName && navigate(routerName)
     }

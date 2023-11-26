@@ -60,7 +60,6 @@ const SearchAnswerStep = ({
     if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
   }, [step])
 
-  //TODO: Debounce 훅 걸어두기
   useEffect(() => {
     if (keyword) {
       const word = favorQuestionData[category][number]
@@ -78,7 +77,7 @@ const SearchAnswerStep = ({
 
   return (
     <SearchContainer>
-      <Spacing height={20} />
+      <Spacing height={32} />
       <FlexBox direction="column" gap={20}>
         <Text typo="SCD_Headline_24" color="white">
           {data?.contents.substring(0, 18)}
@@ -103,7 +102,7 @@ const SearchAnswerStep = ({
           <AutoSearchWrap>
             {autoItems.map((data, index) => (
               <SquareButton
-                subVariant="default"
+                subVariant={answer === data ? 'selected' : 'default'}
                 variant="medium2Square"
                 fullWidth={true}
                 style={{ height: '48px' }}

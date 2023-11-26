@@ -8,6 +8,8 @@ import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
 import { questionState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
 import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
+import BottomSheet from '@components/atoms/BottomSheet'
+import GreetingOnboarding from '@components/onboarding/GreetingOnboarding'
 
 const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
@@ -24,6 +26,13 @@ const WeeklyMainQuestion = () => {
 
   return (
     <WeekContainer>
+      {localStorage.getItem('isOnboardingFavor') === 'true' ? (
+        <BottomSheet delaytime={3200}>
+          <GreetingOnboarding />
+        </BottomSheet>
+      ) : (
+        ''
+      )}
       <BackgroundImg />
       <WeekWrapper>
         <Spacing variant="default" height={48} />

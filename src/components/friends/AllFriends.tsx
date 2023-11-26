@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
 import { FlexBox } from '@components/layouts/FlexBox'
@@ -29,6 +29,10 @@ const AllFriends = () => {
     ['friendsList', auth.userProfile.id],
     FriendsApi.GET_FRIENDS_LIST,
   )
+
+  useEffect(() => {
+    friendsList.sort((a, b) => a.neighborName.localeCompare(b.neighborName))
+  }, [friendsList])
 
   const getMenuIcon = useCallback(() => {
     if (isCubeList.value) {
@@ -76,10 +80,10 @@ const AllFriends = () => {
         />
       </FlexBox>
       {friendsList.length ? (
-        <>
+        <div style={{ width: '100%' }}>
           <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
           <Spacing height={16} />
-        </>
+        </div>
       ) : (
         <>
           <Spacing height={32} />

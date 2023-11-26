@@ -1,4 +1,4 @@
-export const PriceFilter = () => {
+export const PriceFilterIcon = () => {
   return (
     <>
       <svg

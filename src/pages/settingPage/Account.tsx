@@ -3,10 +3,14 @@ import { Text } from '@components/atoms/Text'
 import Dimmer from '@components/layouts/Dimmer'
 import styled from '@emotion/styled'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
+import { authState } from '@libs/store/auth'
 import { theme } from '@styles/theme'
 import { useRef, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import DeleteAccountBtn from './DeleteAccountBtn'
 
 const Account = () => {
+  const auth = useRecoilValue(authState)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsMenuOpen(false),
@@ -16,22 +20,15 @@ const Account = () => {
     <>
       <Wrapper>
         <Email>
-          {/* 추후 해당 유저의 이메일로 넣어야함 */}
           <Text children="이메일" typo="Caption_12R" color="gray_400" />
-          <Text children="~~@~~.com" typo="Subhead_16" color="gray_100" />
+          <Text
+            children={auth.userProfile.email}
+            typo="Subhead_16"
+            color="gray_100"
+          />
         </Email>
       </Wrapper>
-      <DeleteAccount onClick={() => setIsMenuOpen(true)}>
-        {/* 계정 삭제 기능 구현 필요 */}
-        <Delete />
-        <Text children="계정 삭제" typo="Body_16" color="gray_200" />
-      </DeleteAccount>
-      {isMenuOpen && (
-        <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-          {/* BottomSheet 추가 필요*/}
-        </>
-      )}
+      <DeleteAccountBtn />
     </>
   )
 }

@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Padding } from '@components/layouts/Padding'
 import Dimmer from '@components/layouts/Dimmer'
 import { Spacing } from '@components/atoms/Spacing'
-import { Filter } from '@components/atoms/Filter'
+import { CategoryAnswerCountType, Filter } from '@components/atoms/Filter'
 import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
 import { ProfileImage } from '@components/profile/ProfileImage'
 import { ProfileHeader } from '@components/profile/ProfileHeader'
@@ -14,6 +14,7 @@ import { UserTagDataListItem } from '@components/profile/UserTagDataListItem'
 import {
   SelectedProps,
   SelectedTag,
+  SubCategoryName,
   SubCategoryType,
   UserInfo,
 } from '@utils/apis/user/UserType'
@@ -27,16 +28,29 @@ import { authState } from '@libs/store/auth'
 import { profileState } from '@libs/store/profile'
 
 const selectedProps: SelectedProps = [
-  { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
-  { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE' },
-  { id: 3, active: false, name: '의류', value: 'CLOTHES' },
-  { id: 4, active: false, name: '패션소품', value: 'FASHION_PRODUCT' },
-  { id: 5, active: false, name: '액세사리', value: 'ACCESSORY' },
-  { id: 6, active: false, name: '요리', value: 'COOKING' },
-  { id: 7, active: false, name: '운동', value: 'EXERCISE' },
-  { id: 8, active: false, name: '여행', value: 'TRAVEL' },
-  { id: 9, active: false, name: '문화생활', value: 'CULTURE_LIFE' },
+  { id: 1, active: false, name: '메이크업', value: 'MAKEUP', count: 0 },
+  { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE', count: 0 },
+  { id: 3, active: false, name: '의류', value: 'CLOTHES', count: 0 },
+  {
+    id: 4,
+    active: false,
+    name: '패션소품',
+    value: 'FASHION_PRODUCT',
+    count: 0,
+  },
+  { id: 5, active: false, name: '액세사리', value: 'ACCESSORY', count: 0 },
+  { id: 6, active: false, name: '요리', value: 'COOKING', count: 0 },
+  { id: 7, active: false, name: '운동', value: 'EXERCISE', count: 0 },
+  { id: 8, active: false, name: '여행', value: 'TRAVEL', count: 0 },
+  { id: 9, active: false, name: '문화생활', value: 'CULTURE_LIFE', count: 0 },
 ]
+
+export type SelectedPropType = {
+  id: number
+  active: boolean
+  name: SubCategoryName
+  value: SubCategoryType
+}
 
 export type ProfilePropsType<T extends UserInfo> = {
   friendData?: T
@@ -61,6 +75,10 @@ const Profile = ({
   const friendStateData = useRecoilValue(friendState)
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
+  const [userTagCountData, setUserTagCountData] = useState<
+    CategoryAnswerCountType[]
+  >([])
+  const [userTagCountSumData, setUserTagCountSumData] = useState<number>(0)
 
   const [profileMenuOutsideRef, handleClickProfileDimmer] = useOutsideClick(
     () => setIsMenuOpen(false),
@@ -162,31 +180,47 @@ const Profile = ({
     },
   )
 
-  const { data: userTagData = [] } = useQuery(
-    ['userTag', !friendData ? auth.userProfile.id : friendId],
-    () =>
-      UserApi.GET_USER_TAG(
-        !friendData ? auth.userProfile.id : (friendId as number),
-      ),
-  )
-
   const getSmallCategoryData = (selectedTags: SelectedTag[]) => {
-    return selectedTags.map(
-      (tag: SelectedTag) => `${tag.value}` as SubCategoryType,
-    )
+    return selectedTags.length
+      ? (selectedTags as SelectedTag[]).map(
+          (tag: SelectedTag) => `${tag.value}` as SubCategoryType,
+        )
+      : selectedProps.map(
+          (selectedProp: SelectedPropType) =>
+            `${selectedProp.value}` as SubCategoryType,
+        )
   }
 
-  const { data: filteredUserTagData = [] } = useQuery(
+  const { data: userTagData = [] } = useQuery(
     [
       'filteredUserTag',
       selectedTags,
       !friendData ? auth.userProfile.id : friendId,
     ],
-    () => UserApi.GET_FILTERED_USER_TAG(getSmallCategoryData(selectedTags)),
-    {
-      enabled: selectedTags.length > 0,
-    },
+    () =>
+      UserApi.GET_USER_TAG(
+        !friendData ? auth.userProfile.id : (friendId as number),
+        getSmallCategoryData(selectedTags),
+      ),
   )
+
+  useEffect(() => {
+    if (!selectedTags.length) {
+      selectedProps.map((prop) => {
+        userTagData.forEach((tag) =>
+          tag.smallCategory === prop.value
+            ? (prop.count = tag.answerContentList?.length)
+            : 0,
+        )
+      })
+
+      let userTagCount = 0
+      userTagData.forEach((userTagCategory) => {
+        userTagCount += userTagCategory.answerContentList.length
+      })
+      setUserTagCountSumData(userTagCount)
+    }
+  }, [userTagData])
 
   const getFriendUserId = (menu: MenuButtonType) => {
     return menu.type === 'cutOffFriend' ||
@@ -236,16 +270,18 @@ const Profile = ({
               <>
                 <Spacing height={32} />
                 <FilterWrapper>
-                  <Filter
-                    selectedTags={selectedTags}
-                    setSelectedTags={setSelectedTags}
-                    selectedProps={selectedProps}
-                  />
+                  {userTagCountSumData && (
+                    <Filter
+                      selectedTags={selectedTags}
+                      setSelectedTags={setSelectedTags}
+                      selectedProps={selectedProps}
+                    />
+                  )}
                 </FilterWrapper>
                 <Spacing height={20} />
                 <UserTagDataListItem
+                  selectedProps={selectedProps}
                   selectedTags={selectedTags}
-                  filteredUserTagData={filteredUserTagData}
                   userTagData={userTagData}
                   isFriend={false}
                 />
@@ -254,8 +290,8 @@ const Profile = ({
               <>
                 <Spacing height={24} />
                 <UserTagDataListItem
+                  selectedProps={selectedProps}
                   selectedTags={selectedTags}
-                  filteredUserTagData={filteredUserTagData}
                   userTagData={userTagData}
                   isFriend={friendData?.friend ?? false}
                 />
@@ -266,6 +302,7 @@ const Profile = ({
           )}
         </ProfileWrapper>
       </Padding>
+      <Spacing height={64} />
       {renderMenuButtons()}
     </>
   )

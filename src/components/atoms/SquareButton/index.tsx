@@ -18,7 +18,14 @@ type ButtonVariant =
   | 'xsmallSquareS'
 
 type ButtonSubVariant = 'default' | 'selected' | 'selectedMultiple'
-type XlargeSubVariant = 'alone' | 'top' | 'middle' | 'foot' | 'withProfile'
+type XlargeSubVariant =
+  | 'alone'
+  | 'top'
+  | 'middle'
+  | 'foot'
+  | 'withProfile'
+  | 'LogOutBtn'
+  | 'DeleteBtn'
 
 const BUTTON_COLOR_TYPE = {
   default: {
@@ -160,6 +167,8 @@ const getRadius = (variant: XlargeSubVariant) => {
       return '16px'
     case 'top':
     case 'withProfile':
+    case 'LogOutBtn':
+    case 'DeleteBtn':
       return '16px 16px 0px 0px'
     case 'middle':
       return '0px'
@@ -190,6 +199,7 @@ interface ButtonProps<
   subVariant: T
   textColor?: TextType['color']
   xlargeChildren?: K extends 'xlargeSquare' ? React.ReactNode : undefined
+  xlargeChildrenTwo?: K extends 'xlargeSquare' ? React.ReactNode : undefined
   fullWidth?: boolean
   isLoading?: boolean
   selectedCount?: T extends 'selectedMultiple' ? React.ReactNode : undefined
@@ -203,7 +213,8 @@ interface ButtonProps<
 const SquareButton = ({
   children,
   xlargeChildren,
-  textColor = 'gray_100',
+  xlargeChildrenTwo,
+  textColor,
   variant,
   subVariant = 'default',
   fullWidth,
@@ -226,6 +237,32 @@ const SquareButton = ({
               {children}
               <br />
               {xlargeChildren}
+            </Text>
+          </>
+        </FlexBox>
+      )
+    } else if (variant === 'xlargeSquare' && xlargeVariant === 'LogOutBtn') {
+      return (
+        <FlexBox direction="column" gap={8}>
+          <>
+            <Text typo="Body_16">
+              {children}
+              <br />
+              {xlargeChildren}
+            </Text>
+          </>
+        </FlexBox>
+      )
+    } else if (variant === 'xlargeSquare' && xlargeVariant === 'DeleteBtn') {
+      return (
+        <FlexBox direction="column" gap={8}>
+          <>
+            <Text typo="Body_16">
+              {children}
+              <br />
+              {xlargeChildren}
+              <br />
+              {xlargeChildrenTwo}
             </Text>
           </>
         </FlexBox>
@@ -287,6 +324,7 @@ export const StyledButton = styled.button<{
   fullWidth?: boolean
 }>`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -297,6 +335,7 @@ export const StyledButton = styled.button<{
   border-bottom: ${({ xlargeVariant }) =>
     (xlargeVariant === 'top' ||
       xlargeVariant === 'middle' ||
+      xlargeVariant === 'LogOutBtn' ||
       xlargeVariant === 'withProfile') &&
     `1px solid ${theme.palette.gray_900}`};
   width: ${({ variant, fullWidth }) =>
@@ -304,6 +343,10 @@ export const StyledButton = styled.button<{
   height: ${({ variant, xlargeVariant }) =>
     variant === 'xlargeSquare' && xlargeVariant === 'withProfile'
       ? '144px'
+      : variant === 'xlargeSquare' && xlargeVariant === 'LogOutBtn'
+      ? '88px'
+      : variant === 'xlargeSquare' && xlargeVariant === 'DeleteBtn'
+      ? '122px'
       : `${BUTTON_SHAPE_TYPE[variant].height}px`};
   background-color: ${({ variant, subVariant }) =>
     `${BUTTON_COLOR_TYPE[subVariant][variant]}`};
