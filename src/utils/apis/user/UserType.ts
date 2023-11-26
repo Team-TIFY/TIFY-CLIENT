@@ -51,7 +51,7 @@ export type SelectedProps = {
   active: boolean
   name: SubCategoryName
   value: SubCategoryType
-  count: number
+  count?: number
 }[]
 
 export interface UserNewTasteCategory {

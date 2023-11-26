@@ -27,7 +27,6 @@ export const UserApi = {
     const response = await axiosApi.get(
       `/users/${userId}/tags?smallCategory=${smallCategory}`,
     )
-    console.log(response.data)
     return response.data.data
   },
 

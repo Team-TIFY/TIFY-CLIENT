@@ -41,10 +41,6 @@ const BFMOI = () => {
     setStepAnswer({ ...step, categoryName: 'BFMOI' })
   }, [])
 
-  useEffect(() => {
-    console.log(step)
-  }, [step])
-
   return (
     <Funnel>
       <Funnel.Step name="MultiAnswer1">

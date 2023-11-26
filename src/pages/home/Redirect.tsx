@@ -17,8 +17,6 @@ export const Redirect = () => {
 
   const kakaoTokenMutation = useMutation(AuthApi.KAKAO_TOKEN, {
     onSuccess: (data: KakaoCodeResponse) => {
-      console.log(data.idToken)
-      console.log(data.accessToken)
       setToken(data)
     },
   })
