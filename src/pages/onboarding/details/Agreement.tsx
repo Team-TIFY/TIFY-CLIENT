@@ -120,7 +120,7 @@ export function Agreement() {
 
 const TextWrap = styled.div`
   margin: 32px;
-  width: 312px;
+  /* width: 312px; */
 `
 
 const CheckDiv = styled.label`

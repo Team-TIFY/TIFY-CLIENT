@@ -1,9 +1,9 @@
 import { ShortInput } from '@components/atoms/Input/ShortInput'
 import { authState } from '@libs/store/auth'
-import { isBtnColorState } from '@libs/store/onboard'
+import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { useQuery } from '@tanstack/react-query'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 type UserIdPropsType = {
@@ -17,11 +17,12 @@ export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const auth = useRecoilValue(authState)
   const [inputValue, setInputValue] = useState<string>('')
+  const isUserId = useRecoilValue(onboardingState)
+
+  const regex = /^[a-zA-Z0-9.-_-\n\r]+$/ //정규식
 
   const handleName = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value)
-
-    const regex = /^[a-zA-Z0-9.-_-\n\r]+$/ //정규식
 
     if (!regex.test(e.target.value) && e.target.value.length > 0) {
       setError(true)
@@ -46,6 +47,15 @@ export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
       setBtnColor(false)
     }
   }
+
+  // useEffect(() => {
+  //   console.log(regex.test(isUserId.id))
+  //   if (isUserId.id.length && regex.test(isUserId.id) && !error) {
+  //     setBtnColor(true)
+  //   } else {
+  //     setBtnColor(false)
+  //   }
+  // }, [isUserId.id])
 
   const { data: isIdAvailable } = useQuery(
     //중복확인

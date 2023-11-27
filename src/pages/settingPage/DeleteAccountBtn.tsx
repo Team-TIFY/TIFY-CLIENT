@@ -2,14 +2,10 @@ import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import SquareButton from '@components/atoms/SquareButton'
-import { LogoutIcon } from '@assets/icons/LogoutIcon'
 import { Text } from '@components/atoms/Text'
 import Dimmer from '@components/layouts/Dimmer'
 import { useState } from 'react'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
-import axios from 'axios'
-import { useMutation } from '@tanstack/react-query'
-import { SettingApi } from '@utils/apis/setting'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
@@ -18,7 +14,6 @@ import { Delete } from '@assets/icons/Delete'
 const DeleteAccountBtn = () => {
   const auth = useRecoilValue(authState)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-  const navigate = useNavigate()
   const [outsideRef, handleClickLogOutDimmer] = useOutsideClick(() =>
     setIsMenuOpen(false),
   )
@@ -71,7 +66,7 @@ const ProfileButtonsWrapper = styled(FlexBox)`
   flex-direction: column;
   z-index: 999;
   position: fixed;
-  top: calc(100vh - 216px);
+  bottom: 32px;
   left: 0;
   right: 0;
   margin: 0 auto;
