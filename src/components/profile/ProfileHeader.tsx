@@ -28,7 +28,9 @@ export const ProfileHeader = ({
   const navigate = useNavigate()
 
   const handleClickPastToday = () => {
-    navigate('/profile/pastToday')
+    friend.id
+      ? navigate(`/profile/pastToday/${friend.id}`)
+      : navigate(`/profile/pastToday/${auth.userProfile.id}`)
   }
 
   const handleClickNewTaste = () => {

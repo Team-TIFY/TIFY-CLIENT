@@ -14,6 +14,18 @@ export const typo = {
     line-height: 30px;
     font-weight: 500;
   `,
+  SCD_Body_12M: css`
+    font-family: 'S-CoreDream-3';
+    font-size: ${calcRem(12)};
+    line-height: 16px;
+    font-weight: 500;
+  `,
+  SCD_Body_12L: css`
+    font-family: 'S-CoreDream-3';
+    font-size: ${calcRem(12)};
+    line-height: 16px;
+    font-weight: 300;
+  `,
   Headline_20: css`
     font-family: 'SpoqaHanSansNeo';
     font-size: ${calcRem(20)};

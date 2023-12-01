@@ -70,6 +70,15 @@ export type PastTodayCategoryCountType = {
   count: number
 }
 
+export type PastTodayAnswerType = {
+  month: number
+  answerTime: string
+  questionId: number
+  question: string
+  answerId: number
+  answer: string
+}
+
 export type SubCategoryType =
   | 'MAKEUP'
   | 'FRAGRANCE'
