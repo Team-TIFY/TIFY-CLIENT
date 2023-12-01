@@ -35,11 +35,13 @@ export default SnackBar
 const StyledMessage = styled(ToastContainer)`
   .Toastify__toast {
     ${theme.typo.Body_14}
-    margin: 30px;
-    display: flex
-    flex-direction : row
-    gap: 16px
-    align-items : center;
+    width: 312px;
+    height: 65px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
     box-shadow:
       0px -2px 8px 0px rgba(0, 0, 0, 0.15),
       0px 0px 2px 0px rgba(0, 0, 0, 0.3);
