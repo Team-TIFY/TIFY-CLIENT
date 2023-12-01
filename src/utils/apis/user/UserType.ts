@@ -21,6 +21,7 @@ export interface UserInfoToken {
   userName: string
   userId: string
   imageUrl: string
+  email: string
   birth: string
   job: string
   gender: string
@@ -52,7 +53,7 @@ export type SelectedProps = {
   active: boolean
   name: SubCategoryName
   value: SubCategoryType
-  count: number
+  count?: number
 }[]
 
 export interface UserNewTasteCategory {

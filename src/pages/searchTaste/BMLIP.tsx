@@ -6,21 +6,23 @@ import { answerState } from '@libs/store/question'
 import { useEffect } from 'react'
 import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { FavorAnswerDetailRequest } from '@utils/apis/favor/TasteType'
 import { useMutation } from '@tanstack/react-query'
 import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
 
 const BMLIP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
-  const [beforeStep, setBeforeStep] = useState<FavorAnswerDetailRequest[]>(
-    step.favorAnswerDtos,
-  )
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
-      alert('취향 답변 완료!')
-      navigate('myprofile')
+      if (localStorage.getItem('isOnboardingFavor') === 'true') {
+        navigate('/')
+        setTimeout(() => {
+          localStorage.removeItem('isOnboardingFavor')
+        }, 3500)
+      } else {
+        setStepAnswer({ categoryName: '', favorAnswerDtos: [] })
+        navigate('/profile/newTaste/question-complete')
+      }
     },
   })
 
@@ -38,12 +40,10 @@ const BMLIP = () => {
       initialStep: 'MultiAnswer1',
     },
   )
+
   useEffect(() => {
-    if (beforeStep.length > step.favorAnswerDtos.length) {
-      navigate(-1)
-    }
     setStepAnswer({ ...step, categoryName: 'BMLIP' })
-  }, [step.favorAnswerDtos])
+  }, [])
 
   return (
     <Funnel>
@@ -82,12 +82,6 @@ const BMLIP = () => {
         <SearchAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
-            if (localStorage.getItem('isOnboardingFavor') === 'true') {
-              navigate('/')
-              //TODO: 추후 모달 창으로 변경할것!
-              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
-            }
-            localStorage.clear()
           }}
           category="BMLIP"
           number={5}

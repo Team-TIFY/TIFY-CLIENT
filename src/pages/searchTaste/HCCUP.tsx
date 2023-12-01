@@ -4,8 +4,6 @@ import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
 import { answerState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { FavorAnswerDetailRequest } from '@utils/apis/favor/TasteType'
 import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
@@ -13,13 +11,17 @@ import OneAnswerStep from '@components/funnel/OneAnswerStep'
 
 const HCCUP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
-  const [beforeStep, setBeforeStep] = useState<FavorAnswerDetailRequest[]>(
-    step.favorAnswerDtos,
-  )
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
-      alert('취향 답변 완료!')
-      navigate('myprofile')
+      if (localStorage.getItem('isOnboardingFavor') === 'true') {
+        navigate('/')
+        setTimeout(() => {
+          localStorage.removeItem('isOnboardingFavor')
+        }, 3500)
+      } else {
+        setStepAnswer({ categoryName: '', favorAnswerDtos: [] })
+        navigate('/profile/newTaste/question-complete')
+      }
     },
   })
   const navigate = useNavigate()
@@ -27,38 +29,38 @@ const HCCUP = () => {
     [
       'MultiAnswer1',
       'MultiAnswer2',
-      'OneAnswer3',
+      'MultiAnswer3',
       'OneAnswer4',
-      'MultiAnswer5',
+      'OneAnswer5',
     ] as const,
     {
       initialStep: 'MultiAnswer1',
     },
   )
+
   useEffect(() => {
-    if (beforeStep.length > step.favorAnswerDtos.length) {
-      navigate(-1)
-    }
     setStepAnswer({ ...step, categoryName: 'HCCUP' })
   }, [step.favorAnswerDtos])
+
   return (
     <Funnel>
       <Funnel.Step name="MultiAnswer1">
-        <OneAnswerStep
+        <MultiAnswerStep
           setNextStep={() => setStep('MultiAnswer2')}
           category="HCCUP"
+          max={2}
           number={1}
         />
       </Funnel.Step>
       <Funnel.Step name="MultiAnswer2">
         <MultiAnswerStep
-          setNextStep={() => setStep('OneAnswer3')}
+          setNextStep={() => setStep('MultiAnswer3')}
           category="HCCUP"
           number={2}
           max={2}
         />
       </Funnel.Step>
-      <Funnel.Step name="OneAnswer3">
+      <Funnel.Step name="MultiAnswer3">
         <MultiAnswerStep
           setNextStep={() => setStep('OneAnswer4')}
           category="HCCUP"
@@ -67,23 +69,16 @@ const HCCUP = () => {
         />
       </Funnel.Step>
       <Funnel.Step name="OneAnswer4">
-        <MultiAnswerStep
-          setNextStep={() => setStep('MultiAnswer5')}
-          max={2}
+        <OneAnswerStep
+          setNextStep={() => setStep('OneAnswer5')}
           category="HCCUP"
           number={4}
         />
       </Funnel.Step>
-      <Funnel.Step name="MultiAnswer5">
+      <Funnel.Step name="OneAnswer5">
         <OneAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
-            if (localStorage.getItem('isOnboardingFavor') === 'true') {
-              navigate('/')
-              //TODO: 추후 모달 창으로 변경할것!
-              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
-            }
-            localStorage.clear()
           }}
           category="HCCUP"
           number={5}

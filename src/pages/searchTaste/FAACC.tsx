@@ -4,22 +4,24 @@ import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
 import { answerState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import { useFunnel } from '@libs/hooks/useFunnel'
 import { useEffect } from 'react'
 import OneAnswerStep from '@components/funnel/OneAnswerStep'
 import MultiAnswerStep from '@components/funnel/MultiAnswerStep'
-import { FavorAnswerDetailRequest } from '@utils/apis/favor/TasteType'
 
 const FAACC = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
-  const [beforeStep, setBeforeStep] = useState<FavorAnswerDetailRequest[]>(
-    step.favorAnswerDtos,
-  )
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
     onSuccess: (data: FavorAnswerResponse) => {
-      alert('취향 답변 완료!')
-      navigate('myprofile')
+      if (localStorage.getItem('isOnboardingFavor') === 'true') {
+        navigate('/')
+        setTimeout(() => {
+          localStorage.removeItem('isOnboardingFavor')
+        }, 3500)
+      } else {
+        setStepAnswer({ categoryName: '', favorAnswerDtos: [] })
+        navigate('/profile/newTaste/question-complete')
+      }
     },
   })
   const navigate = useNavigate()
@@ -37,12 +39,8 @@ const FAACC = () => {
     },
   )
   useEffect(() => {
-    if (beforeStep.length > step.favorAnswerDtos.length) {
-      navigate(-1)
-    }
     setStepAnswer({ ...step, categoryName: 'FAACC' })
-  }, [step.favorAnswerDtos])
-
+  }, [])
   return (
     <Funnel>
       <Funnel.Step name="MultiAnswer1">
@@ -88,12 +86,6 @@ const FAACC = () => {
         <MultiAnswerStep
           setNextStep={() => {
             favorAnswerMutation.mutate(step)
-            if (localStorage.getItem('isOnboardingFavor') === 'true') {
-              navigate('/')
-              //TODO: 추후 모달 창으로 변경할것!
-              setTimeout(() => alert('tify 가입을 환영해요!'), 500)
-            }
-            localStorage.clear()
           }}
           max={2}
           category="FAACC"

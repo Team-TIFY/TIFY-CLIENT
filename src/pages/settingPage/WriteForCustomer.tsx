@@ -178,7 +178,6 @@ const WriteForCustomer = () => {
       // 문의접수 api 호출해서 의견 넘기기
     }
   }
-  console.log(showOptions)
 
   useEffect(() => {
     if (isWritten.content && isWritten.title && isWritten.email) {

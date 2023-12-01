@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { useEffect } from 'react'
 
 const NewFriends = () => {
   const auth = useRecoilValue(authState)
@@ -16,6 +17,11 @@ const NewFriends = () => {
     ['newFriendsList', auth.userProfile.id],
     FriendsApi.GET_NEW_FRIENDS_LIST,
   )
+
+  useEffect(() => {
+    newFriendsList.sort((a, b) => a.neighborName.localeCompare(b.neighborName))
+  }, [newFriendsList])
+
   return newFriendsList.length ? (
     <>
       <FlexBox justify="flex-start" style={{ width: '100%', padding: '16px' }}>

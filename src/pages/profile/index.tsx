@@ -2,6 +2,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Suspense } from 'react'
 import { useRecoilValue } from 'recoil'
+import Svg from '@components/atoms/Svg'
 import { useQuery } from '@tanstack/react-query'
 import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
@@ -17,6 +18,7 @@ import HCDIS from '@pages/searchTaste/HCDIS'
 import HCCUP from '@pages/searchTaste/HCCUP'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import Loading from '@components/atoms/Loading'
+import { useNavigate } from 'react-router-dom'
 import EditProfile from './EditProfile'
 import EditOnboardingStatus from './EditOnboardingStatus'
 import Profile from './Profile'
@@ -28,24 +30,31 @@ import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
 import PastToday from './PastToday'
 import PastTodayDetail from './PastTodayDetail'
+import FullModal from '@components/atoms/Modal/FullModal'
+import BigX from '@assets/icons/BigX'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
+  const navigate = useNavigate()
   const [step, setStepAnswer] = useRecoilState(answerState)
   const location = useLocation()
   const friendId = parseInt(location.pathname.slice(9))
+
   const handleBack = () => {
     if (step.favorAnswerDtos.length > 0) {
       const tempList = [...step.favorAnswerDtos]
-      console.log('호우!')
       const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)
       setStepAnswer({
         categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
     }
-    //const time = setTimeout(() => navigate(-1), 100)
+    navigate(-1)
   }
+  const handleClickIcon = (url: string) => {
+    navigate(url)
+  }
+
   const { data: friendData } = useQuery(
     ['friendProfile', friendId],
     () => UserApi.GET_USER_INFO(friendId),
@@ -137,13 +146,21 @@ const ProfileRouter = () => {
             <AppBarTemplate
               variant="title"
               label="새로운 취향 답변"
-              rightChildren="dots"
+              rightChildren="actionButton"
               hasNav={false}
+              rightChildrenIcon={[
+                <Svg
+                  key="searchFriends"
+                  children={<BigX />}
+                  onClick={() => handleClickIcon('/profile')}
+                />,
+              ]}
             >
               <NewTaste />
             </AppBarTemplate>
           }
         />
+        <Route path="/newTaste/question-complete" element={<FullModal />} />
         <Route
           path="/newTaste/BMLIP/*"
           element={

@@ -11,7 +11,7 @@ const initialState: DailyQuestionInfo = {
   loadingData: '',
 }
 
-const initialAnswerState: FavorAnswerRequest = {
+export const initialAnswerState: FavorAnswerRequest = {
   categoryName: '',
   favorAnswerDtos: [],
 }
@@ -24,5 +24,4 @@ export const questionState = atom<DailyQuestionInfo>({
 export const answerState = atom<FavorAnswerRequest>({
   key: 'favorAnswer',
   default: initialAnswerState,
-  effects_UNSTABLE: [persistAtom],
 })

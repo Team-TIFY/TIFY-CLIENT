@@ -11,6 +11,7 @@ export type TasteType =
   | 'FAACC'
   | 'HCDIS'
   | 'HCCUP'
+  | 'HEEXE'
 
 export interface FavorQuestionRequest {
   category: TasteType

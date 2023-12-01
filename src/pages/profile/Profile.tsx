@@ -302,6 +302,7 @@ const Profile = ({
           )}
         </ProfileWrapper>
       </Padding>
+      <Spacing height={64} />
       {renderMenuButtons()}
     </>
   )

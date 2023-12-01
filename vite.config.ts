@@ -16,4 +16,7 @@ export default defineConfig({
       { find: '@utils', replacement: '/src/utils' },
     ],
   },
+  server: {
+    port: 3000,
+  },
 })

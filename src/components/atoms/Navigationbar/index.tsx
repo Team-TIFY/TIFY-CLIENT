@@ -1,71 +1,93 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { Text } from '../Text'
 import Svg from '../Svg'
 import NavigationMy from '@assets/icons/NavigationMy'
 import NavigationToday from '@assets/icons/NavigationToday'
 import NavigationFriends from '@assets/icons/NavigationFriends'
+import { motion } from 'framer-motion'
+import { useLocation } from 'react-router-dom'
 
 export const Navigationbar = () => {
   const navigate = useNavigate()
-  const [select, setSelect] = useState<number>(1)
-  const navRef = useRef<any>([])
+  const { pathname } = useLocation()
+  const [selected, setSelect] = useState<number>(
+    pathname === '/' ? 1 : pathname === '/profile' ? 2 : 0,
+  )
+  const navigationData = [
+    {
+      title: '프렌즈',
+      url: '/friends',
+      icon: <NavigationFriends />,
+    },
+    {
+      title: '위클리',
+      url: '/',
+      icon: <NavigationToday />,
+    },
+    {
+      title: '마이',
+      url: '/profile',
+      icon: <NavigationMy />,
+    },
+  ]
   const handleClick = (index: number) => {
-    if (select === index) return
-    navRef.current[select].classList.remove('active')
-    navRef.current[select].classList.add('active')
     setSelect(index)
   }
-
   return (
     <NavContainer>
       <Wrapper>
-        <NavBorder select={select} />
-        <NavBtn
-          className={select === 0 ? 'active' : ''}
-          onClick={() => {
-            handleClick(0)
-            navigate('/friends')
-          }}
-          ref={(elem) => (navRef.current[0] = elem)}
-        >
-          <Svg children={<NavigationFriends />} />
-          <Text className="text" typo="Caption_10" color="purple_200">
-            프렌즈
-          </Text>
-        </NavBtn>
-        <NavBtn
-          className={select === 1 ? 'active' : ''}
-          onClick={() => {
-            handleClick(1)
-            navigate('/')
-          }}
-          ref={(elem) => (navRef.current[1] = elem)}
-        >
-          <Svg children={<NavigationToday />} />
-          <Text className="text" typo="Caption_10" color="purple_200">
-            위클리
-          </Text>
-        </NavBtn>
-        <NavBtn
-          className={select === 2 ? 'active' : ''}
-          onClick={() => {
-            handleClick(2)
-            navigate('/profile')
-          }}
-          ref={(elem) => (navRef.current[2] = elem)}
-        >
-          <Svg children={<NavigationMy />} />
-          <Text className="text" typo="Caption_10" color="purple_200">
-            마이
-          </Text>
-        </NavBtn>
+        {navigationData.map((data, index) => {
+          return (
+            <NavBtn
+              key={index}
+              onClick={() => {
+                handleClick(index)
+                navigate(data.url)
+              }}
+            >
+              <NavBorder
+                initial={{ opacity: 0, x: 0 }}
+                animate={{
+                  opacity: index === selected ? 1 : 0,
+                }}
+                transition={{ duration: 0.5 }}
+              />
+              <Svg
+                children={data.icon}
+                style={{
+                  paddingBottom: `${index === selected ? '30px' : '0px'}`,
+                  zIndex: '30',
+                }}
+              />
+              <motion.div
+                initial={{ opacity: 1, x: 0 }}
+                style={{
+                  bottom: '7px',
+                  position: 'absolute',
+                  display: `${selected === index ? 'block' : 'none'}`,
+                }}
+                whileTap={{ scale: 1.2 }}
+                animate={{
+                  opacity: index === selected ? 1 : 0,
+                  x: index === selected ? 0 : selected < index ? -54 : +54,
+                }}
+                transition={{ duration: 0.5 }}
+              >
+                <Text className="text" typo="Caption_10" color="purple_200">
+                  {navigationData[selected].title}
+                </Text>
+              </motion.div>
+            </NavBtn>
+          )
+        })}
       </Wrapper>
     </NavContainer>
   )
 }
+
 const NavContainer = styled.nav`
   position: absolute;
   bottom: 40px;
@@ -89,12 +111,6 @@ const Wrapper = styled.div`
   border: 1px solid ${theme.palette.gray_800};
   filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.12))
     drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.24));
-  .active {
-    padding-bottom: 10px;
-    & > h1 {
-      display: block;
-    }
-  }
 `
 const NavBtn = styled.button`
   cursor: pointer;
@@ -104,22 +120,16 @@ const NavBtn = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  position: relative;
   background-color: transparent;
-  & .text {
-    display: none;
-  }
 `
 
-const NavBorder = styled.div<{ select: number }>`
+const NavBorder = styled(motion.div)`
   position: absolute;
-  width: 45px;
-  height: 35px;
-  border-radius: 50% 50% 0px 0px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   background-color: ${theme.palette.background};
   border-top: 1px solid ${theme.palette.gray_800};
+  margin-bottom: 30px;
   filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.24));
-  left: 27px;
-  left: ${({ select }) => 25 + select * 52.5}px;
-  top: -12px;
 `

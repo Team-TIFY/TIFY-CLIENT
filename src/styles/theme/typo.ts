@@ -14,17 +14,19 @@ export const typo = {
     line-height: 30px;
     font-weight: 500;
   `,
-  SCD_Body_12M: css`
-    font-family: 'S-CoreDream-3';
-    font-size: ${calcRem(12)};
-    line-height: 16px;
-    font-weight: 500;
-  `,
   SCD_Body_12L: css`
     font-family: 'S-CoreDream-3';
     font-size: ${calcRem(12)};
     line-height: 16px;
     font-weight: 300;
+    letter-spacing: -0.011em;
+  `,
+  SCD_Body_12M: css`
+    font-family: 'S-CoreDream-3';
+    font-size: ${calcRem(12)};
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: -0.011em;
   `,
   Headline_20: css`
     font-family: 'SpoqaHanSansNeo';

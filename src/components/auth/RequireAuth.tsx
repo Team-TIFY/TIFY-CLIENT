@@ -9,10 +9,12 @@ import { Navigate } from 'react-router-dom'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { IsOnboard } from '@libs/store/onboard'
 import Loading from '@components/atoms/Loading'
+import useSnackBar from '@libs/hooks/useSnackBar'
 
 const RequireAuth = () => {
   const [auth, setAuth] = useRecoilState(authState)
   const [isOnboard, setIsOnboard] = useRecoilState(IsOnboard)
+  const { setSnackBar } = useSnackBar()
   const [status, setStatus] = useState<
     'loading' | 'succeed' | 'failed' | 'needOnboarding'
   >('loading')
@@ -31,6 +33,7 @@ const RequireAuth = () => {
         userName: data.userName,
         userId: data.userId,
         imageUrl: data.imageUrl,
+        email: data.email,
         birth: data.birth,
         job: data.job,
         createdAt: data.createdAt,
@@ -68,13 +71,13 @@ const RequireAuth = () => {
   if (status === 'succeed') {
     return <Outlet />
   } else if (status === 'needOnboarding') {
-    //alert('온보딩이 필요해요!')
+    setSnackBar({ comment: '온보딩이 필요해요', type: 'error' })
     setTimeout(() => setStatus('succeed'), 500)
     return <Navigate replace to="/onboarding" />
-  } else if (status === 'failed')
-    // 둘 다 없으면 로그인 */
+  } else if (status === 'failed') {
+    setSnackBar({ comment: '로그인이 필요해요', type: 'error' })
     return <Navigate replace to="/login" />
-  else return <Loading />
+  } else return <Loading />
 }
 
 export default RequireAuth

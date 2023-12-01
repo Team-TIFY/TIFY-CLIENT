@@ -34,9 +34,9 @@ export const UserApi = {
 
   GET_FILTERED_USER_TAG: async (
     smallCategory: SubCategoryType[],
-  ): Promise<FilteredUserTag[][]> => {
+  ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
-      `/favor-questions/answers?smallCategory=${smallCategory}`,
+      `/users/${userId}/tags?smallCategory=${smallCategory}`,
     )
     return response.data.data
   },
