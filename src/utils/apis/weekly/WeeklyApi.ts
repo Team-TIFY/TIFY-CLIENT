@@ -1,8 +1,8 @@
-import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
+import { NeighborAnswerListInfo } from '@utils/apis/weekly/questionType'
 import {
   CountDailyQuestion,
-  DailyAnswerInfo,
   DailyQuestionInfo,
+  DailyAnswerContentInfo,
 } from '@utils/apis/weekly/questionType'
 import { axiosApi } from '../axios'
 export const WeeklyApi = {
@@ -37,17 +37,22 @@ export const WeeklyApi = {
   },
   GET_ANSWERS: async ({
     questionId,
-    pageParam,
-    size = 4,
-    sort = 'asc',
-  }: InfiniteRequest): Promise<InfiniteResponse<DailyAnswerInfo>> => {
-    const response = await axiosApi.get(`/${questionId}/answers`, {
-      params: {
-        page: pageParam,
-        size: size,
-        sort: sort,
-      },
-    })
+  }: {
+    questionId: number
+  }): Promise<DailyAnswerContentInfo[]> => {
+    const response = await axiosApi.get(`/${questionId}/answers`)
+    return response.data.data
+  },
+  GET_NEIGHBOR_ANSWERS: async ({
+    questionId,
+    userId,
+  }: {
+    questionId: number
+    userId: number
+  }): Promise<NeighborAnswerListInfo[]> => {
+    const response = await axiosApi.get(
+      `/${questionId}/answers/${userId}/neighbors`,
+    )
     return response.data.data
   },
 }

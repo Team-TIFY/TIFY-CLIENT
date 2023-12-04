@@ -70,7 +70,6 @@ function PresentRecommend() {
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsSortOpen(''),
   )
-  console.log(products)
 
   return (
     <>

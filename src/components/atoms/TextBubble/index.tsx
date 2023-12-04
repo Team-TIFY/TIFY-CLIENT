@@ -73,8 +73,10 @@ const Bubble = styled.div<{
   display: inline-block;
   background-color: ${({ variant }) =>
     `${BUBBLE_COLOR_TYPE[variant].background}`};
+  cursor: ${({ variant }) => (variant === 'old' ? 'pointer' : 'cursor')};
   min-width: 124px;
-  height: 48px;
+  max-width: 276px;
+  min-height: 48px;
   border: none;
   border-radius: 24px;
 `

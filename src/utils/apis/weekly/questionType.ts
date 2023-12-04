@@ -1,3 +1,5 @@
+import { FriendsType } from '@utils/apis/friends/FriendsType'
+
 export interface DailyQuestionInfo {
   questionId: number
   content: string
@@ -7,6 +9,12 @@ export interface DailyQuestionInfo {
 
 export interface CountDailyQuestion {
   answerCount: number
+}
+
+export interface NeighborAnswerListInfo {
+  neighborInfo: FriendsType
+  answerInfo: DailyAnswerInfo
+  neighborKnocked: boolean
 }
 
 export interface DailyAnswerInfo {
