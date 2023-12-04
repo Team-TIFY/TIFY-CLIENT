@@ -1,4 +1,5 @@
 import { TIfyLogoOnly } from '@assets/icons/TifyLogoOnly'
+import { TIfyLogoSymbol } from '@assets/icons/TifyLogoSymbol'
 import { Text } from '@components/atoms/Text'
 import SettingAppBar from '@components/settingPage/SettingAppBar'
 import styled from '@emotion/styled'
@@ -8,7 +9,7 @@ const VersionInfo = () => {
   return (
     <Wrapper>
       <Wrap>
-        <TIfyLogoOnly />
+        <TIfyLogoSymbol />
       </Wrap>
       <Text
         children="가장 최신 버전을 사용 중입니다."
@@ -27,7 +28,7 @@ const Wrapper = styled.div`
 `
 const Wrap = styled.div`
   display: flex;
-  height: calc(var(--vh, 1vh) * 34);
+  height: calc(var(--vh, 1vh) * 50 - 80px);
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 32px;

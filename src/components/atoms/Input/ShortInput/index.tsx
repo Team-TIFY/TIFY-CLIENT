@@ -13,6 +13,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   isBtnColorState,
   onboardingState,
+  OnboardingType,
 } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
 
@@ -63,7 +64,7 @@ export const ShortInput = ({
 }: InputProps) => {
   const ref = useRef<HTMLTextAreaElement>(null)
   const [_, setFocus] = useState(false)
-  const [info, setInfo] = useRecoilState(onboardingState)
+  const [info, setInfo] = useRecoilState<OnboardingType>(onboardingState)
   const setBtnColor = useSetRecoilState(isBtnColorState)
   const setProfileStateData = useSetRecoilState(profileState)
 
@@ -134,7 +135,7 @@ export const ShortInput = ({
           <IDdiv variant={INPUT_TYPE[variant].isIdInput}>@</IDdiv>
           <StyledTextArea
             ref={ref}
-            //value={info[content]}
+            value={info[content as keyof OnboardingType]}
             placeholder={placeholder}
             spellCheck="false"
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
