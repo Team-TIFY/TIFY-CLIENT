@@ -28,6 +28,8 @@ import MenuIcon from '@assets/icons/MenuIcon'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
+import PastToday from './PastToday'
+import PastTodayDetail from './PastTodayDetail'
 import FullModal from '@components/atoms/Modal/FullModal'
 import BigX from '@assets/icons/BigX'
 
@@ -312,6 +314,32 @@ const ProfileRouter = () => {
               customHandler={handleBack}
             >
               <HCCUP />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/pastToday/:id"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label="지난 투데이"
+              hasNav={false}
+              rightChildren="none"
+            >
+              <PastToday />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/pastToday/:id/detail"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label="지난 투데이"
+              hasNav={false}
+              rightChildren="none"
+            >
+              <PastTodayDetail />
             </AppBarTemplate>
           }
         />

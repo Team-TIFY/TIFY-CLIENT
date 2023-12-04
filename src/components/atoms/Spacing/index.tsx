@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
+import { css, SerializedStyles } from '@emotion/react'
 
 /**
  * @param width 가로 너비를 나타냄
@@ -9,14 +9,16 @@ import { css } from '@emotion/react'
  */
 export interface SpacingProps {
   width?: 16 | 24
-  height?: 4 | 8 | 12 | 16 | 20 | 24 | 32 | 48 | 64 | 100
+  height?: 4 | 8 | 12 | 16 | 20 | 24 | 32 | 48 | 56 | 64 | 100
   variant?: 'default' | 'scroll' | 'side'
+  style?: SerializedStyles
 }
 
 export const Spacing = ({
   width = 16,
   height = 24,
   variant = 'default',
+  style,
 }: SpacingProps) => {
   return (
     <div
@@ -30,7 +32,8 @@ export const Spacing = ({
           ? `${height}px`
           : variant === 'scroll'
             ? '48px'
-            : '100%'};
+          : '100%'};
+        ${style};
       `}
     ></div>
   )
