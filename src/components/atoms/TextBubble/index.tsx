@@ -63,7 +63,9 @@ export const TextBubble = ({ variant, nickname, reply }: BubbleProps) => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  margin-bottom: 20px;
+`
 
 const Bubble = styled.div<{
   variant: BubbleVariant

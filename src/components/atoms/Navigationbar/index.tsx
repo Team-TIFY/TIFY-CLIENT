@@ -23,7 +23,7 @@ export const Navigationbar = () => {
       icon: <NavigationFriends />,
     },
     {
-      title: '위클리',
+      title: '투데이',
       url: '/',
       icon: <NavigationToday />,
     },

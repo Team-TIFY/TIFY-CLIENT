@@ -54,22 +54,6 @@ const Info = () => {
       <SettingList
         onClick={() =>
           linktoNotion(
-            'https://www.notion.so/tify-thisis4u/9e75acf1487c481a9fe818754198b73a',
-          )
-        }
-      >
-        <Wrap>
-          <Text
-            children="개인정보 수집 및 이용 동의서"
-            typo="Body_14"
-            color="gray_100"
-          />
-          <RightChevron />
-        </Wrap>
-      </SettingList>
-      <SettingList
-        onClick={() =>
-          linktoNotion(
             'https://www.notion.so/tify-thisis4u/78b9ea114e8a4fc88baa99d0072ed2be',
           )
         }
