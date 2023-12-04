@@ -31,6 +31,8 @@ const SmallRightChevron = ({ stroke = '#E4E4E5' }: { stroke?: string }) => {
 
 const Wrapper = styled.div`
   cursor: pointer;
+  margin: auto;
+  height: 100%;
 `
 
 export default SmallRightChevron

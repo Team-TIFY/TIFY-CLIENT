@@ -39,6 +39,8 @@ const NoticeDetail = () => {
         />
         <DateWrap>{mockData[params].date}</DateWrap>
       </TitleWrap>
+      <Margin isborder={true} />
+      <Margin isborder={false} />
       <ContentWrap>{mockData[params].content}</ContentWrap>
     </Wrapper>
   )
@@ -48,11 +50,12 @@ export default NoticeDetail
 
 const Wrapper = styled.div`
   margin-top: 16px;
+  padding: 0 20px 0 24px;
 `
 const TitleWrap = styled.div`
   height: 100%;
   width: 100%;
-  padding: 16px 20px 16px 24px;
+  padding: 16px 0 16px 0;
 `
 const DateWrap = styled.div`
   font-weight: 400;
@@ -62,8 +65,17 @@ const DateWrap = styled.div`
   margin-top: 6px;
   margin-bottom: 6px;
 `
+
+const Margin = styled.div<{
+  isborder: boolean
+}>`
+  width: 100%;
+  height: 16px;
+  border-bottom: ${({ isborder }) =>
+    isborder ? `0.3px solid ${theme.palette.gray_700}` : 'none'};
+`
 const ContentWrap = styled.div`
-  padding: 16px 24px 16px 24px;
+  padding: 16px 0px 16px 0px;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;

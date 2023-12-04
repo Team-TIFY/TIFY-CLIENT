@@ -1,14 +1,8 @@
-import { AlarmIcon } from '@assets/icons/AlarmIcon'
-import Announce from '@assets/icons/Announce'
-import Chat from '@assets/icons/Chat'
-import { InformationIcon } from '@assets/icons/InformationIcon'
-import { LogoutIcon } from '@assets/icons/LogoutIcon'
 import RightChevron from '@assets/icons/RightChevron'
-import { SecurityIcon } from '@assets/icons/SecurityIcon'
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
+import { theme } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
-import { Vector } from './../../assets/icons/Vector'
 
 const Info = () => {
   const navigate = useNavigate()
@@ -18,7 +12,10 @@ const Info = () => {
   }
   return (
     <Wrapper>
-      <SettingList onClick={() => navigate('/setting/info/version')}>
+      <SettingList
+        height={106}
+        onClick={() => navigate('/setting/info/version')}
+      >
         <Text children="앱 버전" typo="Caption_12R" color="gray_400" />
         <Height />
         <Wrap>
@@ -26,8 +23,10 @@ const Info = () => {
           <RightChevron />
         </Wrap>
       </SettingList>
-      <Margin />
+      <Margin isborder={true} />
+      <Margin isborder={false} />
       <SettingList
+        height={52}
         onClick={() =>
           linktoNotion(
             'https://tify-thisis4u.notion.site/db764680157346e1a5f8f757b94b543a',
@@ -40,6 +39,7 @@ const Info = () => {
         </Wrap>
       </SettingList>
       <SettingList
+        height={52}
         onClick={() =>
           linktoNotion(
             'https://tify-thisis4u.notion.site/46ff4d5c23964bd08cba01abda6f01f9',
@@ -52,6 +52,7 @@ const Info = () => {
         </Wrap>
       </SettingList>
       <SettingList
+        height={52}
         onClick={() =>
           linktoNotion(
             'https://www.notion.so/tify-thisis4u/78b9ea114e8a4fc88baa99d0072ed2be',
@@ -79,22 +80,29 @@ const Wrapper = styled.div`
   padding: 0 20px 0 24px;
 `
 
-const SettingList = styled.div`
-  height: 56px;
+const SettingList = styled.div<{
+  height: number
+}>`
+  height: ${({ height }) => `${height}px`};
   width: 100%;
-  padding: 16px 20px 16px 16px;
+  padding: 16px 0px 16px 0px;
 `
-const Margin = styled.div`
-  height: 40px;
+
+const Margin = styled.div<{
+  isborder: boolean
+}>`
+  border-bottom: ${({ isborder }) =>
+    isborder ? `0.3px solid ${theme.palette.gray_700}` : 'none'};
+  width: 100%;
+  height: 12px;
 `
 
 const Height = styled.div`
-  height: 6px;
+  height: 18px;
 `
 
 const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 48px;
   align-items: center;
 `

@@ -1,3 +1,4 @@
+import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
 import { axiosApi } from '@utils/apis/axios'
 import {
   FilteredUserTag,
@@ -6,7 +7,8 @@ import {
   SubCategoryType,
   UserInfo,
   UserInfoToken,
-  UserTag,
+  PastTodayCategoryCountType,
+  PastTodayAnswerType,
 } from '@utils/apis/user/UserType'
 
 export const UserApi = {
@@ -22,6 +24,15 @@ export const UserApi = {
 
   GET_USER_TAG: async (
     userId: number,
+    smallCategory: SubCategoryType[],
+  ): Promise<FilteredUserTag[]> => {
+    const response = await axiosApi.get(
+      `/users/${userId}/tags?smallCategory=${smallCategory}`,
+    )
+    return response.data.data
+  },
+
+  GET_FILTERED_USER_TAG: async (
     smallCategory: SubCategoryType[],
   ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
@@ -46,5 +57,24 @@ export const UserApi = {
       `favor-questions/isAnswered/detail-category?smallCategory=${category}`,
     )
     return response.data.data
+  },
+
+  GET_PAST_TODAY_CATEGORY_COUNT: async (
+    id: number,
+  ): Promise<PastTodayCategoryCountType[]> => {
+    const response = await axiosApi.get(
+      `/users/daily-answer/${id}/count/all-category`,
+    )
+    return response.data.data
+  },
+
+  GET_PAST_TODAY_ANSWER: async (
+    id: number,
+    category: TodayCategoryValueType,
+  ): Promise<PastTodayAnswerType[][]> => {
+    const reponse = await axiosApi.get(
+      `/users/daily-answer/${id}?dailyQuestionCategory=${category}`,
+    )
+    return reponse.data.data
   },
 }

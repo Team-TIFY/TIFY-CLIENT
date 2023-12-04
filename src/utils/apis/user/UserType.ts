@@ -1,3 +1,5 @@
+import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
+
 export interface UserInfo {
   id: number
   userId: string
@@ -62,6 +64,20 @@ export interface UserNewTasteCategory {
 export interface IsAnsweredCategory {
   detailCategory: SubCategoryType
   answered: boolean
+}
+
+export type PastTodayCategoryCountType = {
+  dailyQuestionCategory: TodayCategoryValueType
+  count: number
+}
+
+export type PastTodayAnswerType = {
+  month: number
+  answerTime: string
+  questionId: number
+  question: string
+  answerId: number
+  answer: string
 }
 
 export type SubCategoryType =

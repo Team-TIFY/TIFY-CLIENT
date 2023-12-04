@@ -78,7 +78,7 @@ const ProfileButtonsWrapper = styled(FlexBox)`
   flex-direction: column;
   z-index: 999;
   position: fixed;
-  top: calc(100vh - 216px);
+  bottom: 32px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -95,10 +95,6 @@ const SettingList = styled.div`
 `
 const Margin = styled.div`
   width: 8px;
-`
-
-const Height = styled.div`
-  height: 24px;
 `
 
 const Wrap = styled.div`
