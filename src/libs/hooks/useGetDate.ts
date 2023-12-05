@@ -22,7 +22,7 @@ const useGetDate = () => {
     const month = parseInt(stringDate.substring(4, 6))
       .toString()
       .padStart(2, '0')
-    const day = parseInt(stringDate.substring(6, 8))
+    const day = parseInt(stringDate.substring(6, 8)).toString().padStart(2, '0')
 
     return `${year}-${month}-${day}`
   }

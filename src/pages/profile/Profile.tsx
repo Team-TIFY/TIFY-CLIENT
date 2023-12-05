@@ -270,13 +270,13 @@ const Profile = ({
               <>
                 <Spacing height={32} />
                 <FilterWrapper>
-                  {userTagCountSumData && (
+                  {userTagCountSumData ? (
                     <Filter
                       selectedTags={selectedTags}
                       setSelectedTags={setSelectedTags}
                       selectedProps={selectedProps}
                     />
-                  )}
+                  ) : null}
                 </FilterWrapper>
                 <Spacing height={20} />
                 <UserTagDataListItem
