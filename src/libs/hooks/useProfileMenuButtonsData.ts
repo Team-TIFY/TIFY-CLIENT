@@ -3,7 +3,6 @@ import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
 import useFriendMutate from './useFriendMutate'
-import useProfileMutate from './useProfileMutate'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 
 type ButtonTextType = { text: string; color: TextType['color'] }
