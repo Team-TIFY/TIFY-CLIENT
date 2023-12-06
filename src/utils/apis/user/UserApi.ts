@@ -33,6 +33,7 @@ export const UserApi = {
   },
 
   GET_FILTERED_USER_TAG: async (
+    userId: number,
     smallCategory: SubCategoryType[],
   ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
