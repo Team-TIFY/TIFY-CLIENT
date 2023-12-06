@@ -1,6 +1,4 @@
 import { axiosApi } from '../axios'
-import { SelectedTag } from '../user/UserType'
-import { InfiniteResponse } from '@libs/hooks'
 import {
   FriendRequestType,
   FriendsType,
