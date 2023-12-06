@@ -54,7 +54,7 @@ export const FriendsApi = {
     priceFilter: string,
   ) => {
     const response = await axiosApi.get(
-      `/products/products/small-category?smallCategoryList=${smallCategory}&priceOrder=${priceOrder}&priceFilter=${priceFilter}&page=0&size=5000`,
+      `/products/products/small-category?smallCategoryList=${smallCategory}&priceOrder=${priceOrder}&priceFilter=${priceFilter}`,
     )
     return response.data
   },

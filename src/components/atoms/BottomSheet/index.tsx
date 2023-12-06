@@ -8,11 +8,13 @@ import { motion } from 'framer-motion'
 const BottomSheet = ({
   delaytime,
   children,
+  isexpanded,
 }: {
   delaytime?: number
   children?: ReactNode
+  isexpanded: boolean
 }) => {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(isexpanded)
   const [outsideRef, handleClickEditProfileDimmer] = useOutsideClick(() =>
     setExpanded(false),
   )
@@ -23,6 +25,10 @@ const BottomSheet = ({
       }, delaytime)
     }
   }, [])
+
+  useEffect(() => {
+    setExpanded(isexpanded)
+  }, [isexpanded])
 
   return (
     <>
