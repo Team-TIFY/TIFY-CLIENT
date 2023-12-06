@@ -32,6 +32,7 @@ import PastToday from './PastToday'
 import PastTodayDetail from './PastTodayDetail'
 import FullModal from '@components/atoms/Modal/FullModal'
 import BigX from '@assets/icons/BigX'
+import ShareProfile from './ShareProfile'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -114,7 +115,7 @@ const ProfileRouter = () => {
           }
         />
         <Route
-          path="/edit-profile"
+          path="/editProfile"
           element={
             <AppBarTemplate
               variant="backPush"
@@ -129,7 +130,7 @@ const ProfileRouter = () => {
           }
         />
         <Route
-          path="/edit-profile/onboardingStatus"
+          path="/editProfile/onboardingStatus"
           element={
             <AppBarTemplate
               variant="backPush"
@@ -137,6 +138,25 @@ const ProfileRouter = () => {
               rightChildren="none"
             >
               <EditOnboardingStatus />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/shareProfile"
+          element={
+            <AppBarTemplate
+              label="프로필 공유"
+              variant="title"
+              hasNav={false}
+              rightChildren="actionButton"
+              rightChildrenIcon={[
+                <Svg
+                  onClick={() => navigate('/profile')}
+                  children={<BigX />}
+                />,
+              ]}
+            >
+              <ShareProfile />
             </AppBarTemplate>
           }
         />
