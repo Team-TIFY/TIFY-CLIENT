@@ -3,7 +3,6 @@ import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
 import useFriendMutate from './useFriendMutate'
-import useProfileMutate from './useProfileMutate'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 
 type ButtonTextType = { text: string; color: TextType['color'] }
@@ -43,11 +42,15 @@ const useProfileMenuButtonsData = (
     }
 
     const onClickFirstButton = () => {
-      navigate('/profile/edit-profile')
+      navigate('/profile/editProfile')
 
       setIsMenuOpen(false)
     }
-    const onClickSecondButton = () => {}
+    const onClickSecondButton = () => {
+      navigate('/profile/shareProfile')
+
+      setIsMenuOpen(false)
+    }
     const onClickThirdButton = () => {}
     const onClickCancelButton = () => {
       setIsMenuOpen(false)

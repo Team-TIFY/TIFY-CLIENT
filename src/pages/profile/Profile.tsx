@@ -75,9 +75,6 @@ const Profile = ({
   const friendStateData = useRecoilValue(friendState)
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
-  const [userTagCountData, setUserTagCountData] = useState<
-    CategoryAnswerCountType[]
-  >([])
   const [userTagCountSumData, setUserTagCountSumData] = useState<number>(0)
 
   const [profileMenuOutsideRef, handleClickProfileDimmer] = useOutsideClick(
@@ -270,13 +267,13 @@ const Profile = ({
               <>
                 <Spacing height={32} />
                 <FilterWrapper>
-                  {userTagCountSumData && (
+                  {userTagCountSumData ? (
                     <Filter
                       selectedTags={selectedTags}
                       setSelectedTags={setSelectedTags}
                       selectedProps={selectedProps}
                     />
-                  )}
+                  ) : null}
                 </FilterWrapper>
                 <Spacing height={20} />
                 <UserTagDataListItem
