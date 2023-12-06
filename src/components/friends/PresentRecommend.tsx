@@ -80,7 +80,6 @@ function PresentRecommend() {
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsSortOpen(''),
   )
-  console.log(products)
 
   const gotoSite = (siteUrl: string) => {
     window.open(`${siteUrl}`)

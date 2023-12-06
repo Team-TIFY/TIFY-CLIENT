@@ -2,6 +2,7 @@ import { DailyAnswerContentInfo } from '@utils/apis/weekly/questionType'
 import { TextBubble } from '@components/atoms/TextBubble'
 import { useEffect, useState } from 'react'
 import { UserApi } from '@utils/apis/user/UserApi'
+import styled from '@emotion/styled'
 
 interface BubbleProfile {
   profileImg: string
@@ -14,7 +15,7 @@ const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
     nickname: '',
   })
   const getUserInfo = async () => {
-    const data = await UserApi.GET_USER_INFO(answerInfo.id)
+    const data = await UserApi.GET_USER_INFO(answerInfo.userId)
     setProfile({
       profileImg: data.thumbnail,
       nickname: data.userName,
@@ -23,15 +24,35 @@ const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
   useEffect(() => {
     getUserInfo()
   }, [])
+
   return (
-    <>
+    <AnswerListContainer>
+      {answerInfo.content === null && (
+        <div
+          style={{
+            cursor: 'pointer',
+            position: 'absolute',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            minWidth: '124px',
+            height: '48px',
+            borderRadius: '24px',
+          }}
+        />
+      )}
       <TextBubble
-        variant={isMine ? 'new' : 'old'}
+        variant={isMine ? 'new' : answerInfo ? 'old' : 'older'}
         nickname={isMine ? 'ME' : profile.nickname}
-        reply={answerInfo.content}
+        reply={answerInfo.content ? answerInfo.content : '...'}
       />
-    </>
+    </AnswerListContainer>
   )
 }
 
 export default AnswerList
+
+const AnswerListContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

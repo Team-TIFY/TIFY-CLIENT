@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import styled from '@emotion/styled'
 import {
   ChangeEvent,

@@ -30,8 +30,13 @@ const OneAnswerStep = ({
   const [step, setStepAnswer] = useRecoilState(answerState)
   const [disabled, setDisabled] = useState<boolean>(true)
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setDisabled(false)
-    setAnswer(e.currentTarget.value)
+    if (answer === e.currentTarget.value) {
+      setDisabled(true)
+      setAnswer('')
+    } else {
+      setDisabled(false)
+      setAnswer(e.currentTarget.value)
+    }
   }
   const submitAnswer = () => {
     setStepAnswer({

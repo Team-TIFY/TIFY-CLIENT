@@ -63,7 +63,9 @@ export const TextBubble = ({ variant, nickname, reply }: BubbleProps) => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  margin-bottom: 20px;
+`
 
 const Bubble = styled.div<{
   variant: BubbleVariant
@@ -71,8 +73,10 @@ const Bubble = styled.div<{
   display: inline-block;
   background-color: ${({ variant }) =>
     `${BUBBLE_COLOR_TYPE[variant].background}`};
+  cursor: ${({ variant }) => (variant === 'old' ? 'pointer' : 'cursor')};
   min-width: 124px;
-  height: 48px;
+  max-width: 276px;
+  min-height: 48px;
   border: none;
   border-radius: 24px;
 `
