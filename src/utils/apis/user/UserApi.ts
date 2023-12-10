@@ -32,16 +32,6 @@ export const UserApi = {
     return response.data.data
   },
 
-  GET_FILTERED_USER_TAG: async (
-    userId: number,
-    smallCategory: SubCategoryType[],
-  ): Promise<FilteredUserTag[]> => {
-    const response = await axiosApi.get(
-      `/users/${userId}/tags?smallCategory=${smallCategory}`,
-    )
-    return response.data.data
-  },
-
   GET_ISANSWERED_QUESTION: async (): Promise<UserNewTasteCategory[]> => {
     const response = await axiosApi.get(`/favor-questions/isAnswered`)
     return response.data.data
