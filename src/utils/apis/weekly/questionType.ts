@@ -45,3 +45,9 @@ export const DailyQuestionCategory: Record<DailyQuestionCategoryType, string> =
     BEVERAGE: '/images/drink.png',
     MY: '/images/my.png',
   }
+
+export interface DailyQuestionReport {
+  userId: number
+  answerId: number
+  reportSuccess: boolean
+}
