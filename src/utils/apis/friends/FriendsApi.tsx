@@ -86,4 +86,24 @@ export const FriendsApi = {
     const response = await axiosApi.patch(`/users/neighbors/${id}/isNew`)
     return response.data.data
   },
+
+  REORDER_FRIEND_LIST: async ({
+    fromNeighborId,
+    toNeighborId,
+  }: {
+    fromNeighborId: number
+    toNeighborId: number
+  }) => {
+    const response = await axiosApi.patch(`/users/neighbors/orders`, {
+      fromNeighborId: fromNeighborId,
+      toNeighborId: toNeighborId,
+    })
+    return response.data
+  },
+  VIEW_FRIEND: async (neighborId: number) => {
+    const response = await axiosApi.patch(
+      `/users/neighbors/${neighborId}/views`,
+    )
+    return response.data
+  },
 }
