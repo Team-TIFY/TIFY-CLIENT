@@ -93,8 +93,23 @@ export const globalStyle = css`
   }
 
   &::-webkit-scrollbar {
-    ${media.mobile} {
-      display: none;
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes movetoY {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(20px);
     }
   }
 `

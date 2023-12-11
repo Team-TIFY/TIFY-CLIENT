@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultTodayList: Story = {
   args: {
+    isLastMonth: false,
     todayAnswerList: [
       {
         answerTime: '2023-12-27T05:16:40.000+00:00',

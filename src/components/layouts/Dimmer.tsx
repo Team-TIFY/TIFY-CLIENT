@@ -4,9 +4,10 @@ import { theme } from '@styles/theme'
 export type DimmerPropsType = {
   dimmerRef: RefObject<HTMLDivElement>
   onClick: MouseEventHandler<HTMLDivElement>
+  blur?: boolean
 }
 
-const Dimmer = ({ dimmerRef, onClick }: DimmerPropsType) => {
+const Dimmer = ({ dimmerRef, onClick, blur = false }: DimmerPropsType) => {
   return (
     <div
       ref={dimmerRef}
@@ -19,6 +20,7 @@ const Dimmer = ({ dimmerRef, onClick }: DimmerPropsType) => {
         height: '100%',
         zIndex: '101',
         backgroundColor: `${theme.palette.dim_500}`,
+        backdropFilter: blur ? 'blur(3px)' : 'none',
       }}
     ></div>
   )

@@ -15,6 +15,7 @@ export const DefaultTodayCategory: Story = {
     categoryName: '음식',
     categoryValue: 'FOOD',
     infoCount: 12,
+    id: 0,
   },
 }
 
@@ -23,5 +24,6 @@ export const ActivateTodayCategory: Story = {
     categoryName: '음식',
     categoryValue: 'FOOD',
     infoCount: 12,
+    id: 1,
   },
 }
