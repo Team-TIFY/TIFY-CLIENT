@@ -8,7 +8,7 @@ import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import OpenEye from '@assets/icons/OpenEye'
 import Ordering from '@assets/icons/Ordering'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CloseEye from '@assets/icons/CloseEye'
 
 export type FriendsListCProps = {
@@ -35,15 +35,21 @@ const DragDropFriend = ({
       queryClient.invalidateQueries(['friendList'])
     },
   })
+
   const [canView, setView] = useState(view)
+
   return (
-    <Draggable draggableId={String(neighborId)} key={userName} index={id}>
+    <Draggable
+      draggableId={String(neighborId)}
+      key={userName}
+      index={id}
+      isDragDisabled={canView ? false : true}
+    >
       {(provided) => (
         <Wrapper
           {...props}
           ref={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
         >
           <FriendsProfileWrapper>
             <Avatar
@@ -72,7 +78,10 @@ const DragDropFriend = ({
             >
               {canView ? <OpenEye /> : <CloseEye />}
             </div>
-            <div>
+            <div
+              style={{ cursor: 'pointer', width: '30px' }}
+              {...provided.dragHandleProps}
+            >
               <Ordering />
             </div>
           </FlexBox>
@@ -89,7 +98,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${palette.background};
-  cursor: pointer;
 `
 
 const FriendsProfileWrapper = styled(FlexBox)`

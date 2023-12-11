@@ -39,8 +39,6 @@ const EditFriendList = () => {
   }, [data])
 
   const reorderList = (startIndex: number, endIndex: number) => {
-    console.log(startIndex)
-    console.log(endIndex)
     const [removed] = friendList.splice(startIndex, 1)
     friendList.splice(endIndex, 0, removed)
     setFriendList(friendList)
@@ -70,29 +68,34 @@ const EditFriendList = () => {
           목록에서 숨길 수 있어요
         </Text>
       </TextBox>
-
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="friendList">
-          {(provided, snapshot) => (
-            <EditFriendListContainer
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {friendList.map((friend, index) => (
-                <DragDropFriend
-                  key={index}
-                  id={index}
-                  view={friend.view}
-                  neighborId={friend.neighborId}
-                  userName={friend.neighborName}
-                  imageUrl=""
-                />
-              ))}
-              {provided.placeholder}
-            </EditFriendListContainer>
-          )}
-        </Droppable>
-      </DragDropContext>
+      {friendList.length === 0 ? (
+        <Text typo="Body_14" color="gray_400" style={{ padding: '100px' }}>
+          아직 친구가 없어요. 친구를 추가해주세요.
+        </Text>
+      ) : (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="friendList">
+            {(provided) => (
+              <EditFriendListContainer
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {friendList.map((friend, index) => (
+                  <DragDropFriend
+                    key={index}
+                    id={index}
+                    view={friend.view}
+                    neighborId={friend.neighborId}
+                    userName={friend.neighborName}
+                    imageUrl=""
+                  />
+                ))}
+                {provided.placeholder}
+              </EditFriendListContainer>
+            )}
+          </Droppable>
+        </DragDropContext>
+      )}
     </>
   )
 }
