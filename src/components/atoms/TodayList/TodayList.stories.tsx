@@ -27,6 +27,5 @@ export const DefaultTodayList: Story = {
         answer: '표정을 숨기지 못한다.',
       },
     ],
-    isLastMonth: false,
   },
 }
