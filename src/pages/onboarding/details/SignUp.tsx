@@ -109,11 +109,20 @@ export function SignUp() {
           <Birth />
           <Spacing height={48} />
         </StepDiv>
-        <StepDiv step={infoPage.info.name} onClick={() => gotoBack('userId')}>
+        <StepDiv
+          step={infoPage.info.name}
+          onClick={() => {
+            gotoBack('userId')
+          }}
+        >
           <UserId />
           <Spacing height={48} />
         </StepDiv>
-        <div onClick={() => gotoBack('name')}>
+        <div
+          onClick={() => {
+            gotoBack('name')
+          }}
+        >
           <Name />
         </div>
       </SignUpDiv>

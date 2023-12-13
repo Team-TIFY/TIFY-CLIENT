@@ -20,7 +20,10 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
   const { formatDate } = useGetDate()
 
   const { setIsMenuOpen } = useSetProfileRecoilState()
-  const { setIsMenuOpen: setIsFriendMenuOpen } = useSetFriendRecoilState()
+  const {
+    setIsMenuOpen: setIsFriendMenuOpen,
+    setIsCancelBlockMenuOpen: setIsFriendCancelBlockMenuOpen,
+  } = useSetFriendRecoilState()
   const auth = useRecoilValue(authState)
 
   const getUserInfoText = () => {
@@ -38,7 +41,7 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
       </AvatarWrapper>
       <Spacing height={12} />
       <UserInfoWrapper>
-        <FlexBox justify="space-between">
+        <FlexBox justify="space-between" style={{ marginBottom: '2px' }}>
           <Text
             typo="Headline_20"
             color="white"
@@ -50,6 +53,8 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
             onClick={() =>
               userData.userId === auth.userProfile.userId
                 ? setIsMenuOpen(true)
+                : userData.blocked
+                ? setIsFriendCancelBlockMenuOpen(true)
                 : setIsFriendMenuOpen(true)
             }
           />

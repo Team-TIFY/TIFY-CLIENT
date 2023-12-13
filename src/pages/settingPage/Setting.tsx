@@ -2,13 +2,10 @@ import { AlarmIcon } from '@assets/icons/AlarmIcon'
 import Announce from '@assets/icons/Announce'
 import Chat from '@assets/icons/Chat'
 import { InformationIcon } from '@assets/icons/InformationIcon'
-import { LogoutIcon } from '@assets/icons/LogoutIcon'
 import RightChevron from '@assets/icons/RightChevron'
 import { SecurityIcon } from '@assets/icons/SecurityIcon'
 import { Text } from '@components/atoms/Text'
-import Dimmer from '@components/layouts/Dimmer'
 import styled from '@emotion/styled'
-import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { useState } from 'react'
 import LogOutBtn from './LogOutBtn'
 
@@ -17,9 +14,6 @@ const Setting = () => {
   const linkToUrl = (linkUrl: string) => {
     window.location.href = `setting/${linkUrl}`
   }
-  const [outsideRef, handleClickLogOutDimmer] = useOutsideClick(() =>
-    setIsLogOutOpen(false),
-  )
 
   return (
     <Wrapper>

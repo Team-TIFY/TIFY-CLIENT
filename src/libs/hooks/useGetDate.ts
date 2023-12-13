@@ -22,7 +22,7 @@ const useGetDate = () => {
     const month = parseInt(stringDate.substring(4, 6))
       .toString()
       .padStart(2, '0')
-    const day = parseInt(stringDate.substring(6, 8))
+    const day = parseInt(stringDate.substring(6, 8)).toString().padStart(2, '0')
 
     return `${year}-${month}-${day}`
   }
@@ -102,9 +102,7 @@ const useGetDate = () => {
     }
   }
 
-  const formatDate = (date: string) => {
-    const month = parseInt(date?.slice(4, 6)) - 1
-    const day = parseInt(date?.slice(6))
+  const getStringMonth = (month: number) => {
     let formattedMonth
 
     switch (month) {
@@ -146,6 +144,14 @@ const useGetDate = () => {
         break
     }
 
+    return formattedMonth
+  }
+
+  const formatDate = (date: string) => {
+    const month = parseInt(date?.slice(4, 6)) - 1
+    const day = parseInt(date?.slice(6))
+    const formattedMonth = getStringMonth(month)
+
     return `${formattedMonth} ${day}`
   }
 
@@ -155,6 +161,15 @@ const useGetDate = () => {
     const day = birth[6] == '0' ? birth.slice(7, 8) : birth.slice(6, 8)
 
     return { year, month, day }
+  }
+
+  const getYearAndMonthAndDayFromDate = (dateString: string) => {
+    const date = new Date(dateString)
+    const formattedYear = date.getFullYear()
+    const formattedMonth = getStringMonth(date.getMonth())
+    const formattedDate = date.getDate().toString().padStart(2, '0')
+
+    return { formattedYear, formattedMonth, formattedDate }
   }
 
   return {
@@ -168,6 +183,7 @@ const useGetDate = () => {
     getFormattedDate,
     getFormattedDateString,
     parseDate,
+    getYearAndMonthAndDayFromDate,
   }
 }
 

@@ -1,6 +1,4 @@
 import { axiosApi } from '../axios'
-import { SelectedTag } from '../user/UserType'
-import { InfiniteResponse } from '@libs/hooks'
 import {
   FriendRequestType,
   FriendsType,
@@ -54,7 +52,7 @@ export const FriendsApi = {
     priceFilter: string,
   ) => {
     const response = await axiosApi.get(
-      `/products/products/small-category?smallCategoryList=${smallCategory}&priceOrder=${priceOrder}&priceFilter=${priceFilter}&page=0&size=5000`,
+      `/products/products/small-category?smallCategoryList=${smallCategory}&priceOrder=${priceOrder}&priceFilter=${priceFilter}`,
     )
     return response.data
   },
@@ -87,5 +85,25 @@ export const FriendsApi = {
   REMOVE_NEW_FRIEND: async (id: number) => {
     const response = await axiosApi.patch(`/users/neighbors/${id}/isNew`)
     return response.data.data
+  },
+
+  REORDER_FRIEND_LIST: async ({
+    fromNeighborId,
+    toNeighborId,
+  }: {
+    fromNeighborId: number
+    toNeighborId: number
+  }) => {
+    const response = await axiosApi.patch(`/users/neighbors/orders`, {
+      fromNeighborId: fromNeighborId,
+      toNeighborId: toNeighborId,
+    })
+    return response.data
+  },
+  VIEW_FRIEND: async (neighborId: number) => {
+    const response = await axiosApi.patch(
+      `/users/neighbors/${neighborId}/views`,
+    )
+    return response.data
   },
 }

@@ -170,5 +170,5 @@ const GridBox = styled.div`
   grid-template-columns: 1fr 1fr;
   width: 100%;
   row-gap: 16px;
-  column-gap: 26px;
+  column-gap: 16px;
 `

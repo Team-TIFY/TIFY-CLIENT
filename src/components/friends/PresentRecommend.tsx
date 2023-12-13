@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
 import styled from '@emotion/styled'
 import { ItemFilter } from '@assets/icons/ItemFilter'
@@ -7,12 +7,12 @@ import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
-import { theme } from '@styles/theme'
 import SortItem from './bottomsheet/SortItem'
 import { useRecoilValue } from 'recoil'
 import { FilterState, PriceState } from '@libs/store/present'
 import PriceFilter from './bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
+import { theme } from '@styles/theme'
 
 type DataType = {
   productId: number
@@ -21,6 +21,7 @@ type DataType = {
   price: number
   productOption: string
   imageUrl: string
+  siteUrl: string
 }
 
 function PresentRecommend() {
@@ -37,10 +38,18 @@ function PresentRecommend() {
   ]
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
-  const [isSortOpen, setIsSortOpen] = useState<string>('')
   const [products, setProducts] = useState<DataType[]>([])
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
+  const [isSortOpen, setIsSortOpen] = useState<string>('')
+
+  const openSortSheet = (type: string) => {
+    setIsSortOpen(type)
+  }
+
+  const closeSortSheet = () => {
+    setIsSortOpen('')
+  }
 
   // 선택한 카테고리를 별도의 매개 변수로 생성
   const selectedCategories = selectedTags.map((tag) => tag.value)
@@ -60,7 +69,7 @@ function PresentRecommend() {
       selectedPrice.priceValue,
     ).then((response) => {
       if (response.statusCode === 200) {
-        setProducts(response.data.content)
+        setProducts(response.data)
         setDataLoaded(true)
       } else {
         setDataLoaded(false)
@@ -71,7 +80,10 @@ function PresentRecommend() {
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsSortOpen(''),
   )
-  console.log(products)
+
+  const gotoSite = (siteUrl: string) => {
+    window.open(`${siteUrl}`)
+  }
 
   return (
     <>
@@ -107,7 +119,7 @@ function PresentRecommend() {
         {dataLoaded && (
           <SortItemWrap>
             {products.map((product: DataType, index: number) => (
-              <ItemDiv key={index}>
+              <ItemDiv key={index} onClick={() => gotoSite(product.siteUrl)}>
                 <ItemImg imageUrl={product.imageUrl} />
                 <Text
                   typo="Caption_12R"
@@ -158,13 +170,22 @@ function PresentRecommend() {
 
 export default PresentRecommend
 
+const Height = styled.div`
+  height: 24px;
+  width: 100%;
+`
+
 const FilterWrapper = styled.div`
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
+  position: sticky;
   display: flex;
-  margin: 24px 0 16px 0;
-  padding: 0 16px 0 16px;
+
+  top: 80px;
+  margin: 0px 0 16px 0;
+  padding: 24px 16px 0 16px;
+  background-color: ${theme.palette.background};
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -172,7 +193,7 @@ const FilterWrapper = styled.div`
   }
 `
 const Container = styled.div`
-  padding: 0 24px 0 24px;
+  padding: 0px 24px 0 24px;
 `
 
 const FilterItemWrap = styled.div`

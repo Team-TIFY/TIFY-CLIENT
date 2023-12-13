@@ -82,15 +82,16 @@ interface TagProps {
 
 export const Tag = ({ index, children }: TagProps) => {
   return (
-    <Wrapper
-      variant={TAG_COLOR_TYPE[index].variant}
-      color={TAG_COLOR_TYPE[index].color}
-    >
-      {TAG_COLOR_TYPE[index].variant === 'main' && (
-        <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[index].color]}`} />
-      )}
-      {children}
-    </Wrapper>
+    // <Wrapper
+    //   variant={TAG_COLOR_TYPE[index].variant}
+    //   color={TAG_COLOR_TYPE[index].color}
+    // >
+    //   {TAG_COLOR_TYPE[index].variant === 'main' && (
+    //     <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[index].color]}`} />
+    //   )}
+    //   {children}
+    // </Wrapper>
+    <div></div>
   )
 }
 

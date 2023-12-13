@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
@@ -25,9 +25,12 @@ export const ProfileHeader = ({
 
   const friend = useParams()
   const { requestFriendMutate, acceptFriendRequestMutate } = useFriendMutate()
+  const navigate = useNavigate()
 
   const handleClickPastToday = () => {
-    console.log('지난 투데이 버튼 클릭')
+    friend.id
+      ? navigate(`/profile/pastToday/${friend.id}`)
+      : navigate(`/profile/pastToday/${auth.userProfile.id}`)
   }
 
   const handleClickNewTaste = () => {

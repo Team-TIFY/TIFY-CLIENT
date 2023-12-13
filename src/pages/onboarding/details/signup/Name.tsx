@@ -1,7 +1,11 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { ShortInput } from '@components/atoms/Input/ShortInput'
-import { isBtnColorState } from '@libs/store/onboard'
-import { useSetRecoilState } from 'recoil'
+import {
+  isBtnColorState,
+  onboardingPageState,
+  onboardingState,
+} from '@libs/store/onboard'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 type NameProps = {
   isEdit?: boolean
@@ -12,10 +16,11 @@ export function Name({ isEdit = false, value }: NameProps) {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
   const setBtnColor = useSetRecoilState(isBtnColorState)
+  const infoPage = useRecoilValue(onboardingPageState)
+  const isName = useRecoilValue(onboardingState)
 
+  const regex = /^[ㄱ-ㅎ가-힣a-zA-Z\n\r]+$/ //정규식 - 한글과 영어만
   const handleName = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\n\r]+$/ //정규식 - 한글과 영어만
-
     if (!regex.test(e.target.value) && e.target.value.length > 0) {
       setError(true)
       setErrorMsg('한글과 알파벳만 사용해 주세요.')

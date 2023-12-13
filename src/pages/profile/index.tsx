@@ -28,8 +28,11 @@ import MenuIcon from '@assets/icons/MenuIcon'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { UserApi } from '@utils/apis/user/UserApi'
+import PastToday from './PastToday'
+import PastTodayDetail from './PastTodayDetail'
 import FullModal from '@components/atoms/Modal/FullModal'
 import BigX from '@assets/icons/BigX'
+import ShareProfile from './ShareProfile'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -112,7 +115,7 @@ const ProfileRouter = () => {
           }
         />
         <Route
-          path="/edit-profile"
+          path="/editProfile"
           element={
             <AppBarTemplate
               variant="backPush"
@@ -127,7 +130,7 @@ const ProfileRouter = () => {
           }
         />
         <Route
-          path="/edit-profile/onboardingStatus"
+          path="/editProfile/onboardingStatus"
           element={
             <AppBarTemplate
               variant="backPush"
@@ -135,6 +138,25 @@ const ProfileRouter = () => {
               rightChildren="none"
             >
               <EditOnboardingStatus />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/shareProfile"
+          element={
+            <AppBarTemplate
+              label="프로필 공유"
+              variant="title"
+              hasNav={false}
+              rightChildren="actionButton"
+              rightChildrenIcon={[
+                <Svg
+                  onClick={() => navigate('/profile')}
+                  children={<BigX />}
+                />,
+              ]}
+            >
+              <ShareProfile />
             </AppBarTemplate>
           }
         />
@@ -312,6 +334,32 @@ const ProfileRouter = () => {
               customHandler={handleBack}
             >
               <HCCUP />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/pastToday/:id"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label="지난 투데이"
+              hasNav={false}
+              rightChildren="none"
+            >
+              <PastToday />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="/pastToday/:id/detail"
+          element={
+            <AppBarTemplate
+              variant="backPushWithTitle"
+              label="지난 투데이"
+              hasNav={false}
+              rightChildren="none"
+            >
+              <PastTodayDetail />
             </AppBarTemplate>
           }
         />
