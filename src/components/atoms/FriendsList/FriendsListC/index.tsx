@@ -47,7 +47,7 @@ const FriendsListC = ({
           </Text>
           <StyledText>
             <Text typo="Caption_10" color="gray_200">
-              {sliceString(currentState, 14)}
+              {sliceString(currentState, 11)}
             </Text>
           </StyledText>
         </TextWrapper>
