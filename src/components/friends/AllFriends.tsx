@@ -80,7 +80,7 @@ const AllFriends = () => {
         />
       </FlexBox>
       {friendsList.length ? (
-        <div style={{ width: '360px' }}>
+        <div style={{ width: '100%' }}>
           <Padding
             size={[0, 16]}
             style={{ display: 'flex', justifyContent: 'flex-start' }}
