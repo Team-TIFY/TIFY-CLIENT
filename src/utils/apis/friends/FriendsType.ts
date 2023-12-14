@@ -18,6 +18,7 @@ export type FriendRequestType = {
 export type FriendsType = {
   neighborId: number
   neighborUserId: string
+  userId: number
   neighborThumbnail: string
   neighborName: string
   neighborBirth: string
