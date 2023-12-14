@@ -102,7 +102,7 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="backPushWithTitle"
-              label={'@' + friendData?.email}
+              label={'@' + friendData?.userId}
               hasNav={false}
               rightChildren="none"
             >
