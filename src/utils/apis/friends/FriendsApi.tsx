@@ -3,6 +3,7 @@ import {
   FriendRequestType,
   FriendsType,
   NewFriendsType,
+  ReportFriendDataType,
   SearchedFriendType,
 } from './FriendsType'
 
@@ -67,7 +68,7 @@ export const FriendsApi = {
     return response.data.data
   },
 
-  REPORT_FRIEND: async (id: number) => {
+  REPORT_FRIEND: async (id: number): Promise<ReportFriendDataType> => {
     const response = await axiosApi.post(`/users/report/${id}`)
     return response.data.data
   },

@@ -50,3 +50,9 @@ export type SearchedFriendType = {
   mutualFriends: number
   friend: boolean
 }
+
+export type ReportFriendDataType = {
+  fromUserId: number
+  toUserId: number
+  reportSuccess: boolean
+}
