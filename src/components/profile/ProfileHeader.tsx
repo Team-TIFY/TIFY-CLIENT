@@ -59,17 +59,19 @@ export const ProfileHeader = ({
     if (userData.blocked) {
       return (
         <ButtonWrapper>
-          <FlexBox justify="space-between">
+          <FlexBox justify="space-between" gap={12}>
             <SquareButton
               variant="mediumSquare"
               subVariant="default"
               children="지난 투데이"
+              fullWidth={true}
               onClick={handleClickPastToday}
             />
             <SquareButton
               variant="mediumSquare"
               subVariant="default"
               children="차단 해제"
+              fullWidth={true}
               onClick={handleClickCancelBlockFriend}
             />
           </FlexBox>
@@ -113,17 +115,19 @@ export const ProfileHeader = ({
     } else {
       return (
         <ButtonWrapper>
-          <FlexBox justify="space-between">
+          <FlexBox justify="space-between" gap={12}>
             <SquareButton
               variant="mediumSquare"
               subVariant="default"
               children="지난 투데이"
+              fullWidth={true}
               onClick={handleClickPastToday}
             />
             <SquareButton
               variant="mediumSquare"
               subVariant="default"
               children={userData.friend ? '친구' : '새로운 취향 답변'}
+              fullWidth={true}
               onClick={
                 userData.friend ? handleClickFriend : handleClickNewTaste
               }
