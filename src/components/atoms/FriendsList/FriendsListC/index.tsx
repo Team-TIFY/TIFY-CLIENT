@@ -3,12 +3,15 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
+import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
 import { sliceString } from '@utils/sliceString'
+import { tasteBoxImage } from '@utils/tasteBoxImage'
 
 /**
  * @param userName 친구 이름을 나타냄
  * @param currentState 친구의 현재 상태를 나타냄 ex) 헬스장에서 운동 중 🏋️
  * @param imageUrl 친구 프로필 이미지 url을 나타냄
+ * @param favorList 친구의 취향 상자 정보 세 가지를 나타냄
  * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
@@ -16,6 +19,7 @@ export type FriendsListCProps = {
   userName: string
   currentState: string
   imageUrl: string
+  favorList: TasteBoxVariantType[]
   onClick?: () => void
 }
 
@@ -23,19 +27,20 @@ const FriendsListC = ({
   userName,
   currentState,
   imageUrl = '',
+  favorList = ['LIP', 'EXERCISE', 'ACCESSORY'],
   onClick,
 }: FriendsListCProps) => {
   return (
     <Wrapper onClick={onClick}>
       <TopWrapper>
         <StyledImg left={12} top={12}>
-          <img src="/images/makeup.png" />
+          <img src={tasteBoxImage[favorList[0]]} />
         </StyledImg>
         <StyledImg left={96} top={12}>
-          <img src="/images/exercise.png" />
+          <img src={tasteBoxImage[favorList[1]]} />
         </StyledImg>
         <StyledImg left={54} top={41}>
-          <img src="/images/keyring.png" />
+          <img src={tasteBoxImage[favorList[2]]} />
         </StyledImg>
       </TopWrapper>
       <BottomWrapper></BottomWrapper>

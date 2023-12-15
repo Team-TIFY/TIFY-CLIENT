@@ -31,6 +31,13 @@ const meta: Meta<typeof FriendsListC> = {
         type: 'function',
       },
     },
+    favorList: {
+      name: 'favorList',
+      description: '친구의 취향 상자 정보 세 가지입니다.',
+      control: {
+        type: 'array',
+      },
+    },
     imageUrl: {
       name: 'imageUrl',
       description: '친구 프로필 이미지 url입니다.',
@@ -48,5 +55,6 @@ export const FriendsList_C: Story = {
   args: {
     userName: '김수빈',
     currentState: '비행기 바라보며 여행 꿈꾸는 중 ✈️',
+    favorList: ['LIP', 'EXERCISE', 'ACCESSORY'],
   },
 }
