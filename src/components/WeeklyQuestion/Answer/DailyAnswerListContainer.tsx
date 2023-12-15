@@ -112,7 +112,7 @@ const DailyAnswerListContainer = ({
                   ? data.answerInfo
                   : {
                       ...data.answerInfo,
-                      userId: data.neighborInfo.neighborId,
+                      userId: Number(data.neighborInfo.neighborUserId),
                     }
               }
               isMine={false}
