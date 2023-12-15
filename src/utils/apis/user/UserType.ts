@@ -1,6 +1,6 @@
 import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
 
-export interface UserInfo {
+export type UserInfo = {
   id: number
   userId: string
   userName: string
@@ -16,7 +16,7 @@ export interface UserInfo {
   sentApplication: object
 }
 
-export interface UserInfoToken {
+export type UserInfoToken = {
   id: number
   userName: string
   userId: string
@@ -29,7 +29,7 @@ export interface UserInfoToken {
   onBoardingStatus: string
 }
 
-export interface UserTag {
+export type UserTag = {
   userTagId: number
   largeCategory: string
   favors: {
@@ -38,12 +38,12 @@ export interface UserTag {
   }[]
 }
 
-export interface FilteredUserTag {
+export type FilteredUserTag = {
   smallCategory: SubCategoryType
   answerContentList: string[]
 }
 
-export interface SelectedTag {
+export type SelectedTag = {
   name: SubCategoryName
   value: SubCategoryType
 }
@@ -56,12 +56,12 @@ export type SelectedProps = {
   count?: number
 }[]
 
-export interface UserNewTasteCategory {
+export type UserNewTasteCategory = {
   smallCategory: SubCategoryType
   isAnswered: boolean
 }
 
-export interface IsAnsweredCategory {
+export type IsAnsweredCategory = {
   detailCategory: SubCategoryType
   answered: boolean
 }
@@ -105,3 +105,13 @@ export type SubCategoryName =
   | '운동'
   | '여행'
   | '문화생활'
+
+export type EditUserProfileDataType = {
+  username: string
+  birth: string
+  job?: string
+  gender?: string
+  thumbnail?: string
+  userId: string
+  onBoardingStatus: string
+}

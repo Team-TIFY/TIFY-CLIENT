@@ -96,7 +96,7 @@ export function DetailInfo({ isEdit }: { isEdit: boolean }) {
 
   const handleClickChangeState = () => {
     setInfo((prevInfo) => ({ ...prevInfo, onBoardingState: selectedItemName }))
-    navigate('/profile/edit-profile')
+    navigate('/profile/editProfile')
   }
 
   useEffect(() => {
