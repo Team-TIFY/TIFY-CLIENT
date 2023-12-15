@@ -254,7 +254,7 @@ const Profile = ({
 
   return (
     <>
-      <ProfileImage isFriend={friendId !== undefined} />
+      <ProfileImage favorList={userData.userFavorList} />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>

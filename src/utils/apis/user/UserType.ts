@@ -1,4 +1,5 @@
 import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
+import { TasteBoxVariantType } from '../favor/TasteType'
 
 export type UserInfo = {
   id: number
@@ -14,6 +15,7 @@ export type UserInfo = {
   friend: boolean
   receivedApplication: object
   sentApplication: object
+  userFavorList: TasteBoxVariantType[]
 }
 
 export type UserInfoToken = {

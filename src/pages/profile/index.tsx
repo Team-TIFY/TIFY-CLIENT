@@ -52,6 +52,7 @@ const ProfileRouter = () => {
     }
     navigate(-1)
   }
+
   const handleClickIcon = (url: string) => {
     navigate(url)
   }
