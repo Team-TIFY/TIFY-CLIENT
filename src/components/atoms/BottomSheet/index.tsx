@@ -1,63 +1,54 @@
 import styled from '@emotion/styled'
-import { useState, useEffect, ReactNode } from 'react'
-import Dimmer from '@components/layouts/Dimmer'
-import { useOutsideClick } from '@libs/hooks/useOutsideClick'
+import { ReactNode, RefObject } from 'react'
 import { theme } from '@styles/theme'
 import { motion } from 'framer-motion'
 
 const BottomSheet = ({
-  delaytime,
   children,
   isexpanded,
+  bottomSheetRef,
 }: {
-  delaytime?: number
   children?: ReactNode
   isexpanded: boolean
+  bottomSheetRef: RefObject<HTMLDivElement>
 }) => {
-  const [expanded, setExpanded] = useState(isexpanded)
-  const [outsideRef, handleClickEditProfileDimmer] = useOutsideClick(() =>
-    setExpanded(false),
-  )
-  useEffect(() => {
-    if (delaytime) {
-      setTimeout(() => {
-        setExpanded(false)
-      }, delaytime)
-    }
-  }, [])
-
-  useEffect(() => {
-    setExpanded(isexpanded)
-  }, [isexpanded])
-
   return (
     <>
-      {expanded ? (
-        <Dimmer dimmerRef={outsideRef} onClick={handleClickEditProfileDimmer} />
-      ) : (
-        ''
-      )}
-      <BottomSheetContainer
-        initial={{ y: '100%' }}
-        animate={{ y: expanded ? '0%' : '100%' }}
-        transition={{
-          duration: 1,
-          type: 'spring',
-          damping: 40,
-          stiffness: 400,
+      <div
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          zIndex: '101',
+          backgroundColor: `${theme.palette.dim_500}`,
+          display: `${isexpanded ? 'block' : 'none'}`,
         }}
       >
-        <div
-          style={{
-            borderRadius: '40px',
-            width: '32px',
-            height: '4px',
-            backgroundColor: `${theme.palette.gray_500}`,
-            marginBottom: '60px',
+        <BottomSheetContainer
+          ref={bottomSheetRef}
+          initial={{ y: '100%' }}
+          animate={{ y: isexpanded ? '0%' : '100%' }}
+          transition={{
+            duration: 1,
+            type: 'spring',
+            damping: 40,
+            stiffness: 400,
           }}
-        />
-        {children}
-      </BottomSheetContainer>
+        >
+          <div
+            style={{
+              borderRadius: '40px',
+              width: '32px',
+              height: '4px',
+              backgroundColor: `${theme.palette.gray_500}`,
+              marginBottom: '60px',
+            }}
+          />
+          {children}
+        </BottomSheetContainer>
+      </div>
     </>
   )
 }
