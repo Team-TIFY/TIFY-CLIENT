@@ -43,13 +43,11 @@ const useFriendMutate = () => {
   )
 
   const { mutate: reportFriendMutate } = useMutation(FriendsApi.REPORT_FRIEND, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       setIsMenuOpen(false)
       setSnackBar({
-        comment: data.reportSuccess
-          ? '신고가 완료되었어요. 빠르게 확인 후 처리할게요'
-          : '이미 신고한 사람이에요.',
-        type: data.reportSuccess ? 'success' : 'error',
+        comment: '신고가 완료되었어요. 빠르게 확인 후 처리할게요',
+        type: 'success',
       })
     },
     onError: () => {
