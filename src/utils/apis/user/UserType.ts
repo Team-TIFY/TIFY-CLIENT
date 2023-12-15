@@ -91,6 +91,7 @@ export type SubCategoryType =
   | 'EXERCISE'
   | 'TRAVEL'
   | 'CULTURE_LIFE'
+  | 'DIGITAL_PRODUCT'
 
 export type CategoryType = 'BEAUTY' | 'FASHION' | 'HOBBY'
 
@@ -105,3 +106,4 @@ export type SubCategoryName =
   | '운동'
   | '여행'
   | '문화생활'
+  | '디지털 소품'

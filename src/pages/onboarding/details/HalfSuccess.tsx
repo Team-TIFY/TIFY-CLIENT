@@ -16,8 +16,8 @@ export function HalfSuccess() {
     <>
       <Spacing height={32} />
       <TextDiv>
-        <Text typo="SCD_Headline_24">{info.username}님 안녕하세요!</Text>
-        <Text typo="SCD_Headline_24">나의 취향 프로필을 꾸며볼까요?</Text>
+        <Text typo="SCD_Headline_20">{info.username}님 안녕하세요!</Text>
+        <Text typo="SCD_Headline_20">나의 취향 프로필을 꾸며볼까요?</Text>
       </TextDiv>
       <Spacing height={100} />
       <div style={{ textAlign: 'center' }}>

@@ -131,38 +131,35 @@ export function DetailInfo({ isEdit }: { isEdit: boolean }) {
 
   return (
     <DetailInfoWrapper>
-      <FlexBox>
-        <TextWrap>
-          <Text
-            children="요즘 어떻게 지내요?"
-            typo="SCD_Headline_20"
-            color="gray_100"
-          />
-        </TextWrap>
-      </FlexBox>
-      <SearchInput
-        width={312}
-        placeholder="직업, 운동, 학습 등 검색어 입력"
-        onBlur={handleSearchStatusUpdate}
-        onChange={() => {}}
-      />
+      <TextWrap>
+        <Text
+          children="요즘 어떻게 지내요?"
+          typo="SCD_Headline_20"
+          color="gray_100"
+        />
+        <Spacing height={48} />
+        <SearchInput
+          placeholder="직업, 운동, 학습 등 검색어 입력"
+          onBlur={handleSearchStatusUpdate}
+          onChange={() => {}}
+        />
+      </TextWrap>
       <Spacing height={24} />
-      <FlexBox>
-        <ChangeBtn
-          onClick={() => {
-            updateRandomItems()
-            clearSelection()
-          }}
-        >
-          <Text
-            children="다른 메세지 추천"
-            typo="Caption_12M"
-            color="gray_400"
-            style={{ marginRight: '4px' }}
-          />
-          <ChangeStatus />
-        </ChangeBtn>
-      </FlexBox>
+      <ChangeBtn
+        onClick={() => {
+          updateRandomItems()
+          clearSelection()
+        }}
+      >
+        <Text
+          children="다른 메세지 추천"
+          typo="Caption_12M"
+          color="gray_400"
+          style={{ marginRight: '4px' }}
+        />
+        <ChangeStatus />
+      </ChangeBtn>
+
       <Spacing height={16} />
       <RandomItemList>
         {randomItems.map((item, index) => (
@@ -200,19 +197,19 @@ const DetailInfoWrapper = styled.div`
 `
 
 const TextWrap = styled.div`
-  margin: 32px 24px;
-  width: 312px;
+  margin: 32px 24px 0 24px;
 `
 
 const ChangeBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 312px;
   cursor: pointer;
+  margin: 0px 24px;
 `
 
 const RandomItemList = styled.div`
+  margin: 0px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -224,8 +221,8 @@ const RandomItem = styled.div<{ isSelected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 8px;
-  width: 296px;
+  margin-bottom: 16px;
+  width: 100%;
   height: 48px;
   border-radius: 6px;
   background-color: ${({ isSelected }) =>
