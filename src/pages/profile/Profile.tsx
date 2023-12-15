@@ -26,6 +26,7 @@ import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { friendState } from '@libs/store/friend'
 import { authState } from '@libs/store/auth'
 import { profileState } from '@libs/store/profile'
+import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP', count: 0 },
@@ -254,7 +255,13 @@ const Profile = ({
 
   return (
     <>
-      <ProfileImage favorList={userData.userFavorList} />
+      <ProfileImage
+        favorList={
+          friendId
+            ? (friendData?.userFavorList as TasteBoxVariantType[])
+            : userData.userFavorList
+        }
+      />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>
