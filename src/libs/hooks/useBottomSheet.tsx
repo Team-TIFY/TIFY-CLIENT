@@ -23,7 +23,7 @@ const useBottomSheet = ({
         closeBottomSheet()
       }, delaytime)
     }
-  }, [])
+  }, [delaytime])
 
   const handleOutsideClick = (event: MouseEvent) => {
     if (

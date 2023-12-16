@@ -1,17 +1,19 @@
-import CubeButton, { cubeButtonVariant } from '@components/atoms/CubeButton'
+import CubeButton from '@components/atoms/CubeButton'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
-import { onboardingState } from '@libs/store/onboard'
-import { useRecoilState } from 'recoil'
+import { TasteType } from '@utils/apis/favor/TasteType'
 
-interface FashionFavorProps {
-  updateMyFavor: (myFavor: string) => void
+interface HobbyFavorProps {
+  favorList: TasteType[]
+  updateMyFavor: (myFavor: TasteType) => void
 }
-export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
-  const [info, setInfo] = useRecoilState(onboardingState)
 
+export function EditFashionFavor({
+  updateMyFavor,
+  favorList,
+}: HobbyFavorProps) {
   return (
     <>
       <FlexBox>
@@ -21,7 +23,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
       </FlexBox>
       <FlexBox>
         <CubeButton
-          variant={info.favor.includes('FCTOP') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('FCTOP') ? 'selected' : 'unSelected'}
           img="/images/clothes.png"
           text="옷"
           onClick={() => {
@@ -31,7 +33,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
         <MarginDiv />
 
         <CubeButton
-          variant={info.favor.includes('FEFAS') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('FEFAS') ? 'selected' : 'unSelected'}
           img="/images/hat.png"
           text="패션소품"
           onClick={() => {
@@ -40,7 +42,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
         />
         <MarginDiv />
         <CubeButton
-          variant={info.favor.includes('FEDIG') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('FEDIG') ? 'selected' : 'unSelected'}
           img="/images/keyring.png"
           text="데코소품"
           onClick={() => {
@@ -52,7 +54,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
 
       <FlexBox>
         <CubeButton
-          variant={info.favor.includes('FEBAG') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('FEBAG') ? 'selected' : 'unSelected'}
           img="/images/bag.png"
           text="가방"
           onClick={() => {
@@ -61,7 +63,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
         />
         <MarginDiv />
         <CubeButton
-          variant={info.favor.includes('FAACC') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('FAACC') ? 'selected' : 'unSelected'}
           img="/images/ring.png"
           text="액세사리"
           onClick={() => {

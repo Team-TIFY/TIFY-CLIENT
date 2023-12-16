@@ -15,6 +15,7 @@ const BottomSheet = ({
   return (
     <>
       <div
+        className="background"
         style={{
           position: 'fixed',
           top: '0',
@@ -37,15 +38,6 @@ const BottomSheet = ({
             stiffness: 400,
           }}
         >
-          <div
-            style={{
-              borderRadius: '40px',
-              width: '32px',
-              height: '4px',
-              backgroundColor: `${theme.palette.gray_500}`,
-              marginBottom: '60px',
-            }}
-          />
           {children}
         </BottomSheetContainer>
       </div>
@@ -67,4 +59,5 @@ const BottomSheetContainer = styled(motion.div)`
   z-index: 1000;
   border-radius: 24px 24px 0px 0px;
   padding: 16px;
+  overflow: scroll;
 `

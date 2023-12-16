@@ -8,7 +8,7 @@ import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import OpenEye from '@assets/icons/OpenEye'
 import Ordering from '@assets/icons/Ordering'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import CloseEye from '@assets/icons/CloseEye'
 
 export type FriendsListCProps = {
@@ -33,6 +33,9 @@ const DragDropFriend = ({
   const friendViewMutation = useMutation(FriendsApi.VIEW_FRIEND, {
     onSettled: () => {
       queryClient.invalidateQueries(['friendList'])
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['neighborInfo'])
     },
   })
 

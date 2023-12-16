@@ -17,6 +17,7 @@ import { theme } from '@styles/theme'
 
 interface SearchAnswerStepProps {
   category: TasteType
+  isLastAnswer?: boolean
   number: number
   setNextStep: () => void
 }
@@ -25,6 +26,7 @@ const SearchAnswerStep = ({
   category,
   number,
   setNextStep,
+  isLastAnswer = false,
 }: SearchAnswerStepProps) => {
   const { data } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
@@ -77,29 +79,31 @@ const SearchAnswerStep = ({
 
   return (
     <SearchContainer>
-      <Spacing height={32} />
-      <FlexBox direction="column" gap={20}>
-        <Text typo="SCD_Headline_24" color="white">
-          {data?.contents.substring(0, 18)}
-        </Text>
-      </FlexBox>
-      <Spacing height={64} />
-      <FlexBox>
-        <SearchInput
-          width={328}
-          placeholder="검색해 주세요"
-          ref={inputRef}
-          value={keyword}
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-            handleSearchProduct(e)
-          }}
-          customRemoveHandler={() => {
-            setKeyword('')
-            setAnswer('')
-            setDisabled(true)
-          }}
-        />
-      </FlexBox>
+      <div style={{ flexShrink: 0 }}>
+        <Spacing height={32} />
+        <FlexBox direction="column" gap={20}>
+          <Text typo="SCD_Headline_24" color="white">
+            {data?.contents.substring(0, 18)}
+          </Text>
+        </FlexBox>
+        <Spacing height={64} />
+        <FlexBox>
+          <SearchInput
+            width={328}
+            placeholder="검색해 주세요"
+            ref={inputRef}
+            value={keyword}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+              handleSearchProduct(e)
+            }}
+            customRemoveHandler={() => {
+              setKeyword('')
+              setAnswer('')
+              setDisabled(true)
+            }}
+          />
+        </FlexBox>
+      </div>
 
       {autoItems.length > 0 && keyword ? (
         <AutoSearchContainer>
@@ -115,11 +119,19 @@ const SearchAnswerStep = ({
                   handleAnswer(data)
                 }}
               >
-                {data.split(keyword)[0]}
-                <span style={{ color: `${theme.palette.purple_500}` }}>
-                  {keyword}
-                </span>
-                {data.split(keyword)[1]}
+                <div
+                  style={{
+                    width: '70%',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {data.split(keyword)[0]}
+                  <span style={{ color: `${theme.palette.purple_500}` }}>
+                    {keyword}
+                  </span>
+                  {data.split(keyword)[1]}
+                </div>
               </SquareButton>
             ))}
 
@@ -162,7 +174,7 @@ const SearchAnswerStep = ({
         disabled={disabled}
         onClick={submitAnswer}
       >
-        다음
+        {isLastAnswer ? '완료' : '다음'}
       </RoundButton>
     </SearchContainer>
   )

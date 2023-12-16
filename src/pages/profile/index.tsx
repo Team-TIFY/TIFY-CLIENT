@@ -33,6 +33,7 @@ import PastTodayDetail from './PastTodayDetail'
 import FullModal from '@components/atoms/Modal/FullModal'
 import BigX from '@assets/icons/BigX'
 import ShareProfile from './ShareProfile'
+import EditFavorBox from '@pages/profile/EditFavorBox'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
@@ -82,6 +83,26 @@ const ProfileRouter = () => {
               rightChildrenIcon={!isNaN(friendId) ? undefined : [<MenuIcon />]}
             >
               <Profile />
+            </AppBarTemplate>
+          }
+        />
+        <Route
+          path="editFavorBox"
+          element={
+            <AppBarTemplate
+              variant="title"
+              label="취향 상자 수정"
+              rightChildren="actionButton"
+              hasNav={false}
+              rightChildrenIcon={[
+                <Svg
+                  key="searchFriends"
+                  children={<BigX />}
+                  onClick={() => handleClickIcon('/profile')}
+                />,
+              ]}
+            >
+              <EditFavorBox />
             </AppBarTemplate>
           }
         />

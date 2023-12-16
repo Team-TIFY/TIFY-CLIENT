@@ -6,9 +6,14 @@ import {
   ReportFriendDataType,
   PokeCountType,
   SearchedFriendType,
+  DailyFriendsType,
 } from './FriendsType'
 
 export const FriendsApi = {
+  GET_ALL_FRIENDS_LIST: async (): Promise<DailyFriendsType[]> => {
+    const response = await axiosApi.get(`/users/neighbors`)
+    return response.data.data
+  },
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
     const response = await axiosApi.get('/users/neighbors/favors')
     return response.data.data

@@ -17,9 +17,23 @@ export type FriendRequestType = {
   neighborApplicationStatus: string
 }
 
-export type FriendsType = {
+export type DailyFriendsType = {
   neighborId: number
   neighborUserId: number
+  userId: number
+  neighborThumbnail: string
+  neighborName: string
+  neighborBirth: string
+  onBoardingStatus: string
+  order: number
+  updatedAt: string
+  viewedAt: string
+  new: boolean
+  view: boolean
+}
+
+export type FriendsType = {
+  neighborId: number
   userId: number
   neighborThumbnail: string
   neighborBirth: string

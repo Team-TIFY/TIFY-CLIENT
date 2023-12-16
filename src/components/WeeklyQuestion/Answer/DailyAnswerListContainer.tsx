@@ -60,16 +60,20 @@ const DailyAnswerListContainer = ({
       const myAnswer = answerLists.filter((data) => data.isMine)
       setMyAnswer(myAnswer[0])
     }
+    answerData
+      .filter((data) => data.neighborInfo.view === true)
+      .sort((a, b) => {
+        if (a.neighborInfo.order !== null && b.neighborInfo.order === null) {
+          return -1
+        } else if (
+          a.neighborInfo.order === null &&
+          b.neighborInfo.order !== null
+        ) {
+          return 1
+        }
+        return 0
+      })
   }, [answerLists])
-
-  answerData.sort((a, b) => {
-    if (a.answerInfo.content !== null && b.answerInfo.content === null) {
-      return -1
-    } else if (a.answerInfo === null && b.answerInfo.content !== null) {
-      return 1
-    }
-    return 0
-  })
 
   return (
     <AnswerListContainer>
@@ -89,54 +93,56 @@ const DailyAnswerListContainer = ({
           />
         )}
       </AnimationContainer>
-      {answerData.map((data, key) => (
-        <div
-          key={key}
-          onClick={() => {
-            if (!data.answerInfo.content) {
-              return
-            } else {
-              setDimmer(true)
-              setSelectedAnswer(key)
-            }
-          }}
-          style={{
-            zIndex: dimmer && key === selectedAnswer ? '300' : '0',
-            position: 'relative',
-          }}
-        >
-          <AnimationContainer num={key + 2}>
-            <AnswerList
-              answerInfo={
-                data.answerInfo.userId
-                  ? data.answerInfo
-                  : {
-                      ...data.answerInfo,
-                      userId: Number(data.neighborInfo.neighborUserId),
-                    }
+      {answerData
+        .filter((data) => data.neighborInfo.view === true)
+        .map((data, key) => (
+          <div
+            key={key}
+            onClick={() => {
+              if (!data.answerInfo.content) {
+                return
+              } else {
+                setDimmer(true)
+                setSelectedAnswer(key)
               }
-              isMine={false}
-            />
-          </AnimationContainer>
-          {dimmer && selectedAnswer === key && (
-            <SquareButton
-              key={key}
-              style={{ position: 'absolute', left: 2 }}
-              variant="smallSquare"
-              subVariant="default"
-              onClick={() => {
-                setDimmer(false)
-                reportMutation.mutate({
-                  questionId: data.answerInfo.questionId,
-                  answerId: data.answerInfo.id,
-                })
-              }}
-            >
-              신고하기
-            </SquareButton>
-          )}
-        </div>
-      ))}
+            }}
+            style={{
+              zIndex: dimmer && key === selectedAnswer ? '300' : '0',
+              position: 'relative',
+            }}
+          >
+            <AnimationContainer num={key + 2}>
+              <AnswerList
+                answerInfo={
+                  data.answerInfo.userId
+                    ? data.answerInfo
+                    : {
+                        ...data.answerInfo,
+                        userId: Number(data.neighborInfo.neighborUserId),
+                      }
+                }
+                isMine={false}
+              />
+            </AnimationContainer>
+            {dimmer && selectedAnswer === key && (
+              <SquareButton
+                key={key}
+                style={{ position: 'absolute', left: 2 }}
+                variant="smallSquare"
+                subVariant="default"
+                onClick={() => {
+                  setDimmer(false)
+                  reportMutation.mutate({
+                    questionId: data.answerInfo.questionId,
+                    answerId: data.answerInfo.id,
+                  })
+                }}
+              >
+                신고하기
+              </SquareButton>
+            )}
+          </div>
+        ))}
     </AnswerListContainer>
   )
 }

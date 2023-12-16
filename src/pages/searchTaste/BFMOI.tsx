@@ -82,6 +82,7 @@ const BFMOI = () => {
           category="BFMOI"
           max={2}
           number={5}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

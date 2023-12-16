@@ -1,17 +1,16 @@
-import CubeButton from '@components/atoms/CubeButton'
+import CubeButton, { cubeButtonVariant } from '@components/atoms/CubeButton'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
-import { onboardingState } from '@libs/store/onboard'
-import { useRecoilState } from 'recoil'
+import { TasteType } from '@utils/apis/favor/TasteType'
 
-interface BeautyFavorProps {
-  updateMyFavor: (myFavor: string) => void
+interface HobbyFavorProps {
+  favorList: TasteType[]
+  updateMyFavor: (myFavor: TasteType) => void
 }
-export function BeautyFavor({ updateMyFavor }: BeautyFavorProps) {
-  const [info, setInfo] = useRecoilState(onboardingState)
 
+export function EditBeautyFavor({ updateMyFavor, favorList }: HobbyFavorProps) {
   return (
     <>
       <FlexBox>
@@ -21,7 +20,7 @@ export function BeautyFavor({ updateMyFavor }: BeautyFavorProps) {
       </FlexBox>
       <FlexBox>
         <CubeButton
-          variant={info.favor.includes('BMLIP') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('BMLIP') ? 'selected' : 'unSelected'}
           img="/images/makeup.png"
           text="립메이크업"
           className="BMLIP"
@@ -31,7 +30,7 @@ export function BeautyFavor({ updateMyFavor }: BeautyFavorProps) {
         />
         <MarginDiv />
         <CubeButton
-          variant={info.favor.includes('BMEYE') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('BMEYE') ? 'selected' : 'unSelected'}
           img="/images/eyeshadow.png"
           text="아이메이크업"
           onClick={() => {
@@ -40,7 +39,7 @@ export function BeautyFavor({ updateMyFavor }: BeautyFavorProps) {
         />
         <MarginDiv />
         <CubeButton
-          variant={info.favor.includes('BFPER') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('BFPER') ? 'selected' : 'unSelected'}
           img="/images/fragrance.png"
           text="향수"
           onClick={() => {
@@ -51,7 +50,7 @@ export function BeautyFavor({ updateMyFavor }: BeautyFavorProps) {
       <Spacing height={12} />
       <FlexBox>
         <CubeButton
-          variant={info.favor.includes('BFPLA') ? 'selected' : 'unSelected'}
+          variant={favorList.includes('BFPLA') ? 'selected' : 'unSelected'}
           img="/images/candle2.png"
           text="캔들"
           onClick={() => {
