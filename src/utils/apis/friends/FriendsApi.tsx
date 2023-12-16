@@ -4,6 +4,7 @@ import {
   FriendsType,
   NewFriendsType,
   ReportFriendDataType,
+  PokeCountType,
   SearchedFriendType,
 } from './FriendsType'
 
@@ -106,5 +107,29 @@ export const FriendsApi = {
       `/users/neighbors/${neighborId}/views`,
     )
     return response.data
+  },
+  POKE_FRIEND: async ({
+    questionId,
+    userId,
+  }: {
+    questionId: number
+    userId: number
+  }) => {
+    const response = await axiosApi.post(
+      `/${questionId}/answers/${userId}/knock`,
+    )
+    return response.data
+  },
+  POKE_COUNT_MYFRIEND: async ({
+    questionId,
+    userId,
+  }: {
+    questionId: number
+    userId: number
+  }): Promise<PokeCountType> => {
+    const response = await axiosApi.get(
+      `/${questionId}/answers/${userId}/knock/count`,
+    )
+    return response.data.data
   },
 }
