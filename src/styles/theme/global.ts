@@ -40,7 +40,8 @@ export const globalStyle = css`
 
   @font-face {
     font-family: 'Montserrat';
-    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat')
+      format('css2');
     font-weight: 600;
     font-style: normal;
   }

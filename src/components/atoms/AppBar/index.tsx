@@ -68,7 +68,6 @@ export const AppBar = ({
             onClick={onClickOption1}
             style={{ margin: '0 16px 0 0' }}
           />
-          <Svg children={<ThreeDots />} onClick={onClickOption2} />
         </FlexBox>
       )
     else if (rightElement === 'dots')
