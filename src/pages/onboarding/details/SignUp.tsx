@@ -13,12 +13,13 @@ import { Name } from './signup/Name'
 import { UserId } from './signup/UserId'
 import { Birth } from './signup/Birth'
 import { Gender } from './signup/Gender'
+import { useNavigate } from 'react-router-dom'
 
 export function SignUp() {
   const [infoPage, setInfoPage] = useRecoilState(onboardingPageState)
   const [page, setPage] = useState<string>('name')
-  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
-
+  const [btnColor, setBtnColor] = useState<boolean>(false)
+  const navigate = useNavigate()
   useEffect(() => {
     if (infoPage.info.name) {
       setPage('userId')
@@ -61,6 +62,7 @@ export function SignUp() {
         },
       })
       setPage('gender')
+      setBtnColor(true)
     } else if (content == 'birth') {
       setInfoPage({
         ...infoPage,
@@ -71,6 +73,7 @@ export function SignUp() {
         },
       })
       setPage('birth')
+      setBtnColor(true)
     } else if (content == 'userId') {
       setInfoPage({
         ...infoPage,
@@ -81,6 +84,7 @@ export function SignUp() {
           userId: false,
         },
       })
+      setBtnColor(true)
       setPage('userId')
     } else if (content == 'name') {
       setInfoPage({
@@ -94,6 +98,7 @@ export function SignUp() {
         },
       })
     }
+    setBtnColor(true)
     setPage('name')
   }
 

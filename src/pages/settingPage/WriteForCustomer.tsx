@@ -8,6 +8,7 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
 import { FileIcon } from '@assets/icons/FileIcon'
 import { RoundButton } from '@components/atoms/RoundButton'
+import { CustomerCenterApi } from '@utils/apis/setting'
 
 interface Options {
   title: boolean
@@ -17,19 +18,21 @@ interface Options {
 
 const WriteForCustomer = () => {
   const Options = [
-    { key: 0, value: '일반 문의' },
-    { key: 1, value: '기능 오류' },
-    { key: 2, value: '브랜드/상품 제안' },
-    { key: 3, value: '질문 제안' },
-    { key: 4, value: '게시물/사용자 신고' },
-    { key: 5, value: '사용법 문의' },
-    { key: 6, value: '기타 문의' },
+    { key: 0, name: '기능 오류', value: 'FUNCTION_ERROR' },
+    { key: 1, name: '브랜드/상품 제안', value: 'BRAND_PRODUCT' },
+    { key: 2, name: '투데이/취향 질문 제안', value: 'DAILY_FAVOR_QUESTION' },
+    { key: 3, name: '게시물/사용자 신고', value: 'REPORT' },
+    { key: 4, name: '사용법 문의', value: 'HOW_TO_USE' },
+    { key: 5, name: '기타 문의', value: 'OTHER' },
   ]
 
-  const [currentValue, setCurrentValue] = useState(Options[0].value)
+  const [currentValue, setCurrentValue] = useState(Options[0].name)
+  const [currentOption, setCurrentOption] = useState(Options[0].value)
+  const [titleValue, setTitleValue] = useState<string>('')
+  const [contentValue, setContentValue] = useState<string>('')
+  const [emailValue, setEmailValue] = useState<string>('')
   const [showOptions, setShowOptions] = useState(false)
   const fileRef = useRef<any>(null)
-  const outsideRef = useRef(null)
   const [filename, setFilename] = useState<string>('+ 파일 첨부')
   const [isWritten, setIsWritten] = useState<Options>({
     title: false,
@@ -63,16 +66,22 @@ const WriteForCustomer = () => {
     setShowOptions((prev) => !prev)
   }
 
-  const handleOptionClick = (value: string) => {
-    setCurrentValue(value)
+  const handleOptionClick = (name: string, value: string) => {
+    setCurrentValue(name)
+    setCurrentOption(value)
     toggleOptions()
   }
 
   const handleTitle = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setTitleValue(e.target.value)
     if (e.target.value.length > 20) {
       setError((prevErrors) => ({
         ...prevErrors,
         title: true,
+      }))
+      setIsWritten((prev) => ({
+        ...prev,
+        title: false,
       }))
     } else if (e.target.value.length <= 20 && e.target.value.length == 0) {
       setError((prevErrors) => ({
@@ -96,10 +105,15 @@ const WriteForCustomer = () => {
   }
 
   const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContentValue(e.target.value)
     if (e.target.value.length > 200) {
       setError((prevErrors) => ({
         ...prevErrors,
         content: true,
+      }))
+      setIsWritten((prev) => ({
+        ...prev,
+        content: false,
       }))
     } else if (e.target.value.length <= 200 && e.target.value.length > 0) {
       setError((prevErrors) => ({
@@ -129,11 +143,16 @@ const WriteForCustomer = () => {
   }
 
   const handleEmail = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setEmailValue(e.target.value)
     const value = e.target.value
     if (e.target.value.length > 35) {
       setError((prevErrors) => ({
         ...prevErrors,
         email: true,
+      }))
+      setIsWritten((prev) => ({
+        ...prev,
+        email: false,
       }))
     } else if (
       e.target.value.length <= 35 &&
@@ -176,6 +195,22 @@ const WriteForCustomer = () => {
   const gotoReg = () => {
     if (btnColor === true) {
       // 문의접수 api 호출해서 의견 넘기기
+      CustomerCenterApi.POST_OPINION(
+        currentOption,
+        titleValue,
+        contentValue,
+        emailValue,
+      )
+        .then((response) => {
+          if (response.status === 200) {
+            console.log('Post successful:', response.data)
+          } else {
+            console.error('Post failed with status:', response.status)
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
     }
   }
 
@@ -185,7 +220,7 @@ const WriteForCustomer = () => {
     } else {
       setBtnColor(false)
     }
-  }, [])
+  }, [isWritten.content, isWritten.title, isWritten.email])
 
   const fileName = () => {
     if (fileRef.current.value !== '') {
@@ -205,16 +240,16 @@ const WriteForCustomer = () => {
           <SelectOptions show={showOptions}>
             {Options.map(
               (data) =>
-                data.value !== currentValue && (
+                data.name !== currentValue && (
                   <Option
                     key={data.key}
-                    value={data.value}
+                    value={data.name}
                     onClick={() => {
                       toggleOptions()
-                      handleOptionClick(data.value)
+                      handleOptionClick(data.name, data.value)
                     }}
                   >
-                    {data.value}
+                    {data.name}
                   </Option>
                 ),
             )}
@@ -224,7 +259,7 @@ const WriteForCustomer = () => {
       <Title>
         <BasicInput
           height={52}
-          maxText={20}
+          maxText={21}
           placeholder="제목을 입력해 주세요. (20자 이내)"
           error={error.title}
           warning="20자 이내로 입력해주세요!"
@@ -235,22 +270,23 @@ const WriteForCustomer = () => {
       <Content>
         <BasicInput
           height={200}
-          maxText={200}
+          maxText={201}
           placeholder="내용을 입력해 주세요. (200자 이내)"
           error={error.content}
-          onChange={handleContent}
+          onInput={handleContent}
           explanation="문의 내용"
           warning="200자 이내로 입력해주세요!"
         />
       </Content>
       <Email>
         <BasicInput
-          height={52}
-          maxText={35}
+          height={55}
+          maxText={36}
           placeholder="답변 받을 이메일 주소*"
           error={error.email}
           warning="유효한 이메일 주소를 입력해주세요."
           onBlur={handleEmail}
+          onInput={handleEmail}
         />
       </Email>
       <FileUpload>
@@ -310,7 +346,7 @@ const Label = styled.label`
 
 const Option = styled.li`
   font-size: 14px;
-  padding: 16px 0 0 0px;
+  margin: 16px 0 0 0px;
   height: 16px;
 `
 const Title = styled.div`

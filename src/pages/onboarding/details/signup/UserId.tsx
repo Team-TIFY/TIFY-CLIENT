@@ -1,9 +1,14 @@
 import { ShortInput } from '@components/atoms/Input/ShortInput'
+import styled from '@emotion/styled'
 import { authState } from '@libs/store/auth'
-import { isBtnColorState, onboardingState } from '@libs/store/onboard'
+import {
+  isBtnColorState,
+  onboardingPageState,
+  onboardingState,
+} from '@libs/store/onboard'
 import { useQuery } from '@tanstack/react-query'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 type UserIdPropsType = {
@@ -14,10 +19,12 @@ type UserIdPropsType = {
 export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const [btnColor, setBtnColor] = useState<boolean>(false)
   const auth = useRecoilValue(authState)
   const [inputValue, setInputValue] = useState<string>('')
   const isUserId = useRecoilValue(onboardingState)
+  const infoPage = useRecoilValue(onboardingPageState)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   const regex = /^[a-zA-Z0-9.-_-\n\r]+$/ //정규식
 
@@ -48,15 +55,6 @@ export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log(regex.test(isUserId.id))
-  //   if (isUserId.id.length && regex.test(isUserId.id) && !error) {
-  //     setBtnColor(true)
-  //   } else {
-  //     setBtnColor(false)
-  //   }
-  // }, [isUserId.id])
-
   const { data: isIdAvailable } = useQuery(
     //중복확인
     ['userIdCheck', inputValue],
@@ -78,21 +76,23 @@ export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
   }
 
   return (
-    <>
+    <Container>
       <ShortInput
         variant="idInput"
         maxText={15}
         explanation={isEdit ? '아이디' : '사용자 ID'}
         explanationPadding={4}
         defaultValue={isEdit ? value : undefined}
-        width={312}
         placeholder={isEdit ? '아이디를 입력해주세요' : 'ID를 입력해주세요'}
         error={error}
         warning={errorMsg}
         onChange={handleName}
-        onBlur={handleBlur}
+        onInput={handleBlur}
         content="id"
       />
-    </>
+    </Container>
   )
 }
+const Container = styled.div`
+  margin: 0px 24px;
+`

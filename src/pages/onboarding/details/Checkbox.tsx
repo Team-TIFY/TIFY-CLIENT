@@ -31,7 +31,7 @@ export function Checkbox({
         onChange={onChange}
       />
       <Text
-        style={{ width: '248px', margin: '0px 12px' }}
+        style={{ margin: '0px 12px' }}
         children={children}
         typo="Body_16"
         color="gray_200"
@@ -44,13 +44,11 @@ const Label = styled.label<{
   border: boolean
   padding: number
 }>`
-  width: 300px;
+  width: 100%;
   display: flex;
   align-items: center;
   padding: ${({ padding }) => `${padding}px`} 0px;
   margin-bottom: ${({ border }) => (border ? '8px' : '0px')};
-  border-bottom: ${({ border }) => (border ? '1px solid' : 'none')};
-  border-color: ${theme.palette.gray_700};
   cursor: pointer;
 `
 

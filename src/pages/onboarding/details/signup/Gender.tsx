@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil'
 export function Gender() {
   const [info, setInfo] = useRecoilState(onboardingState)
   const [isGender, setIsGender] = useState<string>('')
-  const [btnColor, isBtnColor] = useRecoilState(isBtnColorState)
+  const [btnColor, setBtnColor] = useState<boolean>(false)
 
   const setGender = (gender: string) => {
     setInfo({
@@ -19,36 +19,34 @@ export function Gender() {
   }
 
   return (
-    <FlexBox>
-      <GenderDiv>
-        <SmallText>성별</SmallText>
-        <Group>
-          <GenderWomanBtn
-            onClick={() => {
-              setGender('female')
-              isBtnColor(() => true)
-            }}
-            gender={isGender}
-          >
-            여성
-          </GenderWomanBtn>
-          <GenderManBtn
-            onClick={() => {
-              setGender('male')
-              isBtnColor(() => true)
-            }}
-            gender={isGender}
-          >
-            남성
-          </GenderManBtn>
-        </Group>
-      </GenderDiv>
-    </FlexBox>
+    <GenderDiv>
+      <SmallText>성별</SmallText>
+      <Group>
+        <GenderWomanBtn
+          onClick={() => {
+            setGender('female')
+            setBtnColor(() => true)
+          }}
+          gender={isGender}
+        >
+          여성
+        </GenderWomanBtn>
+        <GenderManBtn
+          onClick={() => {
+            setGender('male')
+            setBtnColor(() => true)
+          }}
+          gender={isGender}
+        >
+          남성
+        </GenderManBtn>
+      </Group>
+    </GenderDiv>
   )
 }
 
 const GenderDiv = styled.div`
-  width: 312px;
+  margin: 0px 24px;
 `
 
 const SmallText = styled.div`
@@ -58,14 +56,14 @@ const SmallText = styled.div`
 `
 
 const Group = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
 `
 
 const GenderWomanBtn = styled.button<{
   gender: string
 }>`
-  width: 148px;
   height: 52px;
   color: ${({ gender }) =>
     gender == 'female'
@@ -76,20 +74,19 @@ const GenderWomanBtn = styled.button<{
       ? `${theme.palette.white}`
       : `${theme.palette.gray_900}`};
   ${theme.typo.Body_14};
-  margin: 0 8px 0 8px;
+  margin: 0 8px 0 0px;
   border-radius: 12px;
 `
 
 const GenderManBtn = styled.button<{
   gender: string
 }>`
-  width: 148px;
   height: 52px;
   color: ${({ gender }) =>
     gender == 'male' ? `${theme.palette.gray_800}` : `${theme.palette.white}`};
   background-color: ${({ gender }) =>
     gender == 'male' ? `${theme.palette.white}` : `${theme.palette.gray_900}`};
   ${theme.typo.Body_14};
-  margin: 0 8px 0 8px;
+  margin: 0 0px 0 8px;
   border-radius: 12px;
 `
