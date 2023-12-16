@@ -54,7 +54,7 @@ function PriceFilter() {
           onClick={() =>
             handleSortClick({
               price: '1-2만원대',
-              priceValue: 'MORE_THAN_10000_LESS_THAN_20000',
+              priceValue: 'MORE_THAN_10000_LESS_THAN_30000',
             })
           }
           isselected={selected.price === '1-2만원대'}
@@ -69,24 +69,8 @@ function PriceFilter() {
         <Sort
           onClick={() =>
             handleSortClick({
-              price: '2-3만원대',
-              priceValue: 'MORE_THAN_20000_LESS_THAN_30000',
-            })
-          }
-          isselected={selected.price === '2-3만원대'}
-        >
-          2-3만원대
-          {selected.price === '2-3만원대' && (
-            <>
-              <PurpleCheck />
-            </>
-          )}
-        </Sort>
-        <Sort
-          onClick={() =>
-            handleSortClick({
               price: '3-4만원대',
-              priceValue: 'MORE_THAN_30000_LESS_THAN_40000',
+              priceValue: 'MORE_THAN_30000_LESS_THAN_50000',
             })
           }
           isselected={selected.price === '3-4만원대'}

@@ -84,19 +84,23 @@ const SearchAnswerStep = ({
         </Text>
       </FlexBox>
       <Spacing height={64} />
-      <SearchInput
-        placeholder="검색해 주세요"
-        ref={inputRef}
-        value={keyword}
-        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-          handleSearchProduct(e)
-        }}
-        customRemoveHandler={() => {
-          setKeyword('')
-          setAnswer('')
-          setDisabled(true)
-        }}
-      />
+      <FlexBox>
+        <SearchInput
+          width={328}
+          placeholder="검색해 주세요"
+          ref={inputRef}
+          value={keyword}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+            handleSearchProduct(e)
+          }}
+          customRemoveHandler={() => {
+            setKeyword('')
+            setAnswer('')
+            setDisabled(true)
+          }}
+        />
+      </FlexBox>
+
       {autoItems.length > 0 && keyword ? (
         <AutoSearchContainer>
           <AutoSearchWrap>
