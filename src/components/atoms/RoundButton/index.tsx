@@ -84,7 +84,7 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
   mediumRound: {
     radius: 24,
     typo: 'Subhead_16',
-    width: 126,
+    width: 94,
     height: 48,
     padding: [12, 32],
   },

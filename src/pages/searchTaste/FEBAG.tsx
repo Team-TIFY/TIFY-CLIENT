@@ -69,6 +69,7 @@ const FEBAG = () => {
           max={2}
           category="FEBAG"
           number={4}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

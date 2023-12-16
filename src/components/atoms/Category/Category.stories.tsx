@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Category } from '.'
 import { Tag } from '../Tag'
-//
+
 const meta = {
   title: 'Atom/Category',
   component: Category,
@@ -44,7 +44,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Makeup_category: Story = {
+export const MakeupCategory: Story = {
   args: {
     categoryName: '메이크업',
     children: [

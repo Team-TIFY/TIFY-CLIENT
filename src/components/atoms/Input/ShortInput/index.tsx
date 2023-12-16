@@ -7,10 +7,10 @@ import {
   useState,
 } from 'react'
 import { theme } from '@styles/theme'
-import { FlexBox } from '@components/layouts/FlexBox'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   isBtnColorState,
+  onboardingPageState,
   onboardingState,
   OnboardingType,
 } from '@libs/store/onboard'
@@ -39,7 +39,7 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   explanation?: string
   explanationPadding?: number
   defaultValue?: string
-  width: number
+  width?: number
   placeholder?: string
   warning?: string
   error: boolean
@@ -64,6 +64,7 @@ export const ShortInput = ({
   const ref = useRef<HTMLTextAreaElement>(null)
   const [_, setFocus] = useState(false)
   const [info, setInfo] = useRecoilState<OnboardingType>(onboardingState)
+  const infoPage = useRecoilValue(onboardingPageState)
   const setBtnColor = useSetRecoilState(isBtnColorState)
   const setProfileStateData = useSetRecoilState(profileState)
 
@@ -125,45 +126,42 @@ export const ShortInput = ({
   }
 
   return (
-    <FlexBox>
-      <Wrapper>
-        <InstText explanationPadding={explanationPadding}>
-          {explanation}
-        </InstText>
-        <TextAreaWrapper width={width} error={error}>
-          <IDdiv variant={INPUT_TYPE[variant].isIdInput}>@</IDdiv>
-          <StyledTextArea
-            ref={ref}
-            value={info[content as keyof OnboardingType]}
-            placeholder={placeholder}
-            spellCheck="false"
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              if (onChange) onChange(e)
-              textHandler(e, content)
-              handleEnter(e, content)
-            }}
-            onClick={handleClick}
-            maxLength={maxText}
-            onFocus={focusInput}
-            onBlur={focusInput}
-            {...props}
-          />
-          <CancelBtn
-            onClick={() => {
-              cancelClick(content)
-            }}
-          />
-        </TextAreaWrapper>
-        {
-          error && <WarningText>{warning}</WarningText> //경고 문구
-        }
-      </Wrapper>
-    </FlexBox>
+    <Wrapper>
+      <InstText explanationPadding={explanationPadding}>{explanation}</InstText>
+      <TextAreaWrapper width={width} error={error}>
+        <IDdiv variant={INPUT_TYPE[variant].isIdInput}>@</IDdiv>
+        <StyledTextArea
+          ref={ref}
+          value={info[content as keyof OnboardingType]}
+          placeholder={placeholder}
+          spellCheck="false"
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+            if (onChange) onChange(e)
+            textHandler(e, content)
+            handleEnter(e, content)
+          }}
+          onClick={handleClick}
+          maxLength={maxText}
+          onFocus={focusInput}
+          onBlur={focusInput}
+          {...props}
+        />
+        <CancelBtn
+          onClick={() => {
+            cancelClick(content)
+          }}
+        />
+      </TextAreaWrapper>
+      {
+        error && <WarningText>{warning}</WarningText> //경고 문구
+      }
+    </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   height: fit-content;
+  width: 100%;
 `
 
 const InstText = styled.div<{ explanationPadding?: number }>`
@@ -178,12 +176,12 @@ const InstText = styled.div<{ explanationPadding?: number }>`
 
 const TextAreaWrapper = styled.div<{
   error: boolean
-  width: number
+  width: number | undefined
 }>`
   border-radius: 12px;
   padding: 16px;
   background: ${theme.palette.gray_900};
-  width: ${({ width }) => `${width}px`};
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 52px;
   display: flex;
   align-items: center;
@@ -199,7 +197,7 @@ const TextAreaWrapper = styled.div<{
 `
 
 const StyledTextArea = styled.textarea`
-  width: 254px;
+  width: 100%;
   max-height: 20px;
   border: none;
   resize: none;

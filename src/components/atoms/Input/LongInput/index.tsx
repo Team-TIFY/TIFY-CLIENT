@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
-import { TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
+import { TextareaHTMLAttributes, useEffect, useState } from 'react'
 import { theme } from '@styles/theme'
 import React from 'react'
-import { forwardRef, InputHTMLAttributes } from 'react'
+import { forwardRef } from 'react'
 import { authState } from '@libs/store/auth'
 import { useRecoilState } from 'recoil'
 
@@ -125,7 +125,6 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;

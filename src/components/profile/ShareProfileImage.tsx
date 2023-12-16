@@ -14,7 +14,7 @@ const ShareProfileImage = () => {
   const [backgroundImage, setBackgroundImage] = useState(true)
 
   return (
-    <ProfileImageWrapper backgroundColor={backgroundColor}>
+    <ProfileImageWrapper color={backgroundColor}>
       <ShareProfileIcons
         backgroundColor={backgroundColor}
         setBackgroundColor={setBackgroundColor}
@@ -31,12 +31,11 @@ const ShareProfileImage = () => {
 export default ShareProfileImage
 
 const ProfileImageWrapper = styled(FlexBox)<{
-  backgroundColor: BackgroundColorVariant
+  color: BackgroundColorVariant
 }>`
   position: relative;
   flex-direction: column;
-  background-color: ${({ backgroundColor }) =>
-    `${theme.palette[backgroundColor]}`};
+  background-color: ${({ color }) => `${theme.palette[color]}`};
   margin: 12px auto 15px auto;
   width: 320px;
   height: 568px;

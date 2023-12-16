@@ -51,7 +51,10 @@ const useProfileMenuButtonsData = (
 
       setIsMenuOpen(false)
     }
-    const onClickThirdButton = () => {}
+    const onClickThirdButton = () => {
+      navigate('/profile/editFavorBox')
+      setIsMenuOpen(false)
+    }
     const onClickCancelButton = () => {
       setIsMenuOpen(false)
     }

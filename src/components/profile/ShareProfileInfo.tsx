@@ -6,20 +6,28 @@ import { authState } from '@libs/store/auth'
 import { theme } from '@styles/theme'
 import { useRecoilValue } from 'recoil'
 import { Text } from '@components/atoms/Text'
-import backgroundImageUrl from '@assets/image/profile_background.png'
-import shadowImageUrl from '@assets/image/profile_shadow.png'
-import profileBoxImageUrl from '@assets/image/profile_box.png'
+import ProfileBox from '@components/atoms/ProfileBox'
+import { useQuery } from '@tanstack/react-query'
+import { UserApi } from '@utils/apis/user/UserApi'
+import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
 
 const ShareProfileInfo = () => {
   const auth = useRecoilValue(authState)
   const { getFormattedDate } = useGetDate()
 
+  const { data: userFavorList = [] } = useQuery(
+    ['userFavorList', auth.userProfile.id],
+    () => UserApi.GET_USER_FAVOR_BOX(auth.userProfile.id),
+  )
+
+  const filteredUserFavorList: TasteBoxVariantType[] = userFavorList?.map(
+    (favor) => favor.detailCategory as TasteBoxVariantType,
+  )
+
   return (
     <ProfileInfoWrapper>
       <ProfileImageBoxWrapper>
-        <StyledBackgroundImage src={backgroundImageUrl} />
-        <StyledShadowImage src={shadowImageUrl} />
-        <StyledProfileBoxImage src={profileBoxImageUrl} />
+        <ProfileBox variant="shareProfile" favorList={filteredUserFavorList} />
       </ProfileImageBoxWrapper>
       <Text typo="Headline_16" color="gray_100">
         {'@' + auth.userProfile.userId}
@@ -55,31 +63,4 @@ const ProfileImageBoxWrapper = styled.div`
   margin-bottom: 12px;
   position: relative;
   background-color: ${theme.palette.background};
-`
-
-const StyledBackgroundImage = styled.img`
-  width: 200px;
-  height: 186px;
-  top: 14px;
-  position: absolute;
-  border-radius: 10px;
-  z-index: 999;
-`
-
-const StyledShadowImage = styled.img`
-  position: absolute;
-  width: 110px;
-  height: 20px;
-  left: 47px;
-  bottom: 10px;
-  z-index: 1000;
-`
-
-const StyledProfileBoxImage = styled.img`
-  position: absolute;
-  width: 137px;
-  height: 152px;
-  top: 30px;
-  left: 32px;
-  z-index: 1002;
 `

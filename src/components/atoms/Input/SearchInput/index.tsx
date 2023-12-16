@@ -66,33 +66,32 @@ export const SearchInput = forwardRef<HTMLTextAreaElement, InputProps>(
     }
 
     return (
-      <FlexBox>
-        <Wrapper>
-          <TextAreaWrapper width={width}>
-            <SearchIcon />
-            <StyledTextArea
-              ref={inputRef}
-              value={content}
-              placeholder={placeholder}
-              spellCheck="false"
-              onClick={onClick}
-              onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-                onChange(e)
-                textHandler(e)
-                handleEnter(e)
-              }}
-              onFocus={inputFocus}
-              onBlur={inputFocus}
-              {...props}
-            />
-            <CancelBtn
-              onClick={() => {
-                cancelClick()
-              }}
-            />
-          </TextAreaWrapper>
-        </Wrapper>
-      </FlexBox>
+      <Wrapper>
+        <TextAreaWrapper width={width}>
+          <SearchIcon />
+          <StyledTextArea
+            width={width}
+            ref={inputRef}
+            value={content}
+            placeholder={placeholder}
+            spellCheck="false"
+            onClick={onClick}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+              onChange(e)
+              textHandler(e)
+              handleEnter(e)
+            }}
+            onFocus={inputFocus}
+            onBlur={inputFocus}
+            {...props}
+          />
+          <CancelBtn
+            onClick={() => {
+              cancelClick()
+            }}
+          />
+        </TextAreaWrapper>
+      </Wrapper>
     )
   },
 )
@@ -115,8 +114,10 @@ const TextAreaWrapper = styled.div<{
   }
 `
 
-const StyledTextArea = styled.textarea`
-  width: 254px;
+const StyledTextArea = styled.textarea<{
+  width: number | undefined
+}>`
+  width: ${({ width }) => (width ? '254px' : '100%')};
   max-height: 20px;
   border: none;
   resize: none;

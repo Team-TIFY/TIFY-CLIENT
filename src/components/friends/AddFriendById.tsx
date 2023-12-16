@@ -60,7 +60,9 @@ const AddFriendById = () => {
         onBlur={handleBlur}
         onClick={handleClickSearchInput}
         customRemoveHandler={handleRemoveSearchInput}
+        width={328}
       />
+
       <SearchedFriendList
         searchFriendData={searchFriendData}
         isSearchFriendId={searchFriendId.length !== 0}

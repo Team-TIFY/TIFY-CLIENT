@@ -81,6 +81,7 @@ const HCDIS = () => {
           category="HCDIS"
           number={5}
           max={2}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

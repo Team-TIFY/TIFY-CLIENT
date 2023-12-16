@@ -8,7 +8,6 @@ import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { authState } from '@libs/store/auth'
 import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
-import { getGender } from '@utils/getGender'
 
 const EditProfileButton = () => {
   const btnColor = useRecoilValue(isBtnColorState)
@@ -26,16 +25,13 @@ const EditProfileButton = () => {
 
   const handleClickEditComplete = () => {
     updateUserInfoMutate({
-      userId: auth.userProfile.id,
-      data: {
-        username: info.username,
-        id: info.id,
-        birth: getFormattedDateString(info.birth),
-        gender: getGender(auth.userProfile.gender),
-        onBoardingState: info.onBoardingState
-          ? info.onBoardingState
-          : auth.userProfile.onBoardingStatus,
-      },
+      username: info.username,
+      birth: getFormattedDateString(info.birth),
+      thumbnail: auth.userProfile.imageUrl,
+      userId: info.id,
+      onBoardingStatus: info.onBoardingState
+        ? info.onBoardingState
+        : auth.userProfile.onBoardingStatus,
     })
   }
 
