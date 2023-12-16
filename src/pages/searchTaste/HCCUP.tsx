@@ -82,6 +82,7 @@ const HCCUP = () => {
           }}
           category="HCCUP"
           number={5}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

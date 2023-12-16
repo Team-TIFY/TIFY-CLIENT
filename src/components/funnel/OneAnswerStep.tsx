@@ -13,6 +13,7 @@ import { favorQuestionData } from '@libs/store/dummy'
 import SquareButton from '@components/atoms/SquareButton'
 
 interface OneAnswerStepProps {
+  isLastAnswer?: boolean
   category: TasteType
   number: number
   setNextStep: () => void
@@ -22,6 +23,7 @@ const OneAnswerStep = ({
   category,
   number,
   setNextStep,
+  isLastAnswer = false,
 }: OneAnswerStepProps) => {
   const { data } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
@@ -107,7 +109,7 @@ const OneAnswerStep = ({
         onClick={submitAnswer}
         disabled={disabled}
       >
-        다음
+        {isLastAnswer ? '완료' : '다음'}
       </RoundButton>
     </OneAnswerStepWrapper>
   )

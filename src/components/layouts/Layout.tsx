@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { Outlet } from 'react-router-dom'
 import { theme } from '@styles/theme'
 import useSnackBar from '@libs/hooks/useSnackBar'
-
+import { Spacing } from '@components/atoms/Spacing'
 const Layout = () => {
   const { SnackBar } = useSnackBar()
   return (

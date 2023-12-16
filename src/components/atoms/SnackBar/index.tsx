@@ -18,7 +18,7 @@ const SnackBar = () => {
       closeButton={false}
       newestOnTop
       hideProgressBar
-      limit={3}
+      limit={1}
       toastStyle={{
         borderRadius: '12px',
         backgroundColor: `${theme.palette.gray_600}`,

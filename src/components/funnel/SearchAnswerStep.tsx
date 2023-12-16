@@ -17,6 +17,7 @@ import { theme } from '@styles/theme'
 
 interface SearchAnswerStepProps {
   category: TasteType
+  isLastAnswer?: boolean
   number: number
   setNextStep: () => void
 }
@@ -25,6 +26,7 @@ const SearchAnswerStep = ({
   category,
   number,
   setNextStep,
+  isLastAnswer = false,
 }: SearchAnswerStepProps) => {
   const { data } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
@@ -115,11 +117,19 @@ const SearchAnswerStep = ({
                   handleAnswer(data)
                 }}
               >
-                {data.split(keyword)[0]}
-                <span style={{ color: `${theme.palette.purple_500}` }}>
-                  {keyword}
-                </span>
-                {data.split(keyword)[1]}
+                <div
+                  style={{
+                    width: '100%',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {data.split(keyword)[0]}
+                  <span style={{ color: `${theme.palette.purple_500}` }}>
+                    {keyword}
+                  </span>
+                  {data.split(keyword)[1]}
+                </div>
               </SquareButton>
             ))}
 
@@ -162,7 +172,7 @@ const SearchAnswerStep = ({
         disabled={disabled}
         onClick={submitAnswer}
       >
-        다음
+        {isLastAnswer ? '완료' : '다음'}
       </RoundButton>
     </SearchContainer>
   )

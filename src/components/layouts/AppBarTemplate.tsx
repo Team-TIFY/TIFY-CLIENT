@@ -8,6 +8,7 @@ import { favorQuestionData } from '@libs/store/dummy'
 import { Navigationbar } from '@components/atoms/Navigationbar'
 import { TasteType } from '@utils/apis/favor/TasteType'
 import styled from '@emotion/styled'
+import { Spacing } from '@components/atoms/Spacing'
 
 type AppBarTemplateProps = AppBarProps<RightChildrenVariant> & {
   children: ReactNode
