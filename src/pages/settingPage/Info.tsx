@@ -13,7 +13,7 @@ const Info = () => {
   return (
     <Wrapper>
       <SettingList
-        height={106}
+        height={90}
         onClick={() => navigate('/setting/info/version')}
       >
         <Text children="앱 버전" typo="Caption_12R" color="gray_400" />

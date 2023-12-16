@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil'
 import { onboardingPageState } from '../../../libs/store/onboard'
 import { FlexBox } from './../../../components/layouts/FlexBox'
 import { RoundButton } from './../../../components/atoms/RoundButton/index'
+import { theme } from '@styles/theme'
 
 export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([])
@@ -49,36 +50,35 @@ export function Agreement() {
 
   return (
     <div style={{ minHeight: '550px' }}>
-      <FlexBox>
-        <TextWrap>
-          <Text
-            children="TIFY 이용약관에 동의해 주세요"
-            typo="SCD_Headline_20"
-            color="gray_100"
-          />
-        </TextWrap>
-      </FlexBox>
-      <CheckDiv>
+      <TextWrap>
+        <Text
+          children="TIFY 이용약관에 동의해 주세요"
+          typo="SCD_Headline_20"
+          color="gray_100"
+        />
+      </TextWrap>
+      <CheckDiv border={true}>
         <Checkbox
           children="약관 전체 동의"
           name="all"
           onChange={checkAll}
           checked={checkList.length === 4 ? true : false}
-          border={true}
           padding={16}
         />
         <Vector visible="hidden" />
       </CheckDiv>
-      <CheckDiv>
+      <Height />
+      <CheckDiv border={false}>
         <Checkbox
           children="만 14세 이상"
           name="age"
           onChange={check}
           checked={checkList.includes('age') ? true : false}
+          padding={8}
         />
         <Vector visible="hidden" />
       </CheckDiv>
-      <CheckDiv>
+      <CheckDiv border={false}>
         <Checkbox
           children="서비스 이용약관"
           name="service"
@@ -87,7 +87,7 @@ export function Agreement() {
         />
         <Vector linkUrl="db764680157346e1a5f8f757b94b543a" />
       </CheckDiv>
-      <CheckDiv>
+      <CheckDiv border={false}>
         <Checkbox
           children="개인정보 처리방침"
           name="handlePrivacy"
@@ -96,7 +96,7 @@ export function Agreement() {
         />
         <Vector linkUrl="46ff4d5c23964bd08cba01abda6f01f9" />
       </CheckDiv>
-      <CheckDiv>
+      <CheckDiv border={false}>
         <Checkbox
           children="커뮤니티 가이드라인"
           name="community"
@@ -119,13 +119,22 @@ export function Agreement() {
 }
 
 const TextWrap = styled.div`
-  margin: 32px;
+  margin: 32px 24px 32px 24px;
   /* width: 312px; */
 `
 
-const CheckDiv = styled.label`
+const CheckDiv = styled.label<{
+  border: boolean
+}>`
   display: flex;
-  justify-content: center;
+  margin: 0 24px 0 24px;
+  justify-content: space-between;
+  border-bottom: ${({ border }) => (border ? '1px solid' : 'none')};
+  border-color: ${theme.palette.gray_700};
+`
+
+const Height = styled.div`
+  height: 8px;
 `
 
 const BottomSticker = styled.div`

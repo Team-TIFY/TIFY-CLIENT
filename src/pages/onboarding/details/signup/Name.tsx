@@ -6,6 +6,7 @@ import {
   onboardingState,
 } from '@libs/store/onboard'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+import styled from '@emotion/styled'
 
 type NameProps = {
   isEdit?: boolean
@@ -15,7 +16,7 @@ type NameProps = {
 export function Name({ isEdit = false, value }: NameProps) {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const setBtnColor = useSetRecoilState(isBtnColorState)
+  const [btnColor, setBtnColor] = useState<boolean>(false)
   const infoPage = useRecoilValue(onboardingPageState)
   const isName = useRecoilValue(onboardingState)
 
@@ -44,14 +45,13 @@ export function Name({ isEdit = false, value }: NameProps) {
   }
 
   return (
-    <>
+    <Container>
       <ShortInput
         variant="default"
         maxText={10}
         explanation={isEdit ? '이름/닉네임' : '이름'}
         explanationPadding={4}
         defaultValue={isEdit ? value : undefined}
-        width={312}
         placeholder={
           isEdit ? '이름/닉네임을 입력해주세요' : '이름을 입력해주세요'
         }
@@ -60,6 +60,10 @@ export function Name({ isEdit = false, value }: NameProps) {
         onChange={handleName}
         content="username"
       />
-    </>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  margin: 0px 24px;
+`
