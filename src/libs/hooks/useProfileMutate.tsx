@@ -1,10 +1,9 @@
 import { authState } from '@libs/store/auth'
 import { onboardingState } from '@libs/store/onboard'
 import { useMutation } from '@tanstack/react-query'
-import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import useGetDate from './useGetDate'
 import useSnackBar from '@libs/hooks/useSnackBar'
 
@@ -20,7 +19,7 @@ const useProfileMutate = () => {
   )
 
   const { mutate: updateUserInfoMutate } = useMutation(
-    OnboardingApi.PUT_ONBOARD_STATUS,
+    UserApi.EDIT_USER_PROFILE,
     {
       onSuccess: () => {
         setAuth({

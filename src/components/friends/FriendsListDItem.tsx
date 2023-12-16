@@ -48,7 +48,7 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
       (requestFriend) => (
         <FriendsListD
           key={requestFriend.neighborApplicationId}
-          userId={requestFriend.toUserInfo.userName}
+          userId={requestFriend.toUserInfo.userId}
           friendsNumber={requestFriend.mutualNeighborCounts}
           isAccepted={requestFriend.neighborApplicationStatus === 'ACCEPT'}
           onClick={() => handleClickFriendsList(requestFriend.toUserInfo.id)}

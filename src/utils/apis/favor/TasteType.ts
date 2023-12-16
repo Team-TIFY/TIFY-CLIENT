@@ -40,3 +40,18 @@ export interface FavorAnswerResponse {
   statusCode: number
   data: string | null
 }
+
+export type TasteBoxVariantType =
+  | 'LIP'
+  | 'EYE'
+  | 'PERFUME'
+  | 'MOISTURE'
+  | 'PLACE'
+  | 'TOP'
+  | 'FAS_PRODUCT'
+  | 'DIG_PRODUCT'
+  | 'BAG'
+  | 'ACCESSORY'
+  | 'DISH'
+  | 'CUP'
+  | 'EXERCISE'

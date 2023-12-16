@@ -1,8 +1,5 @@
 import { axiosApi } from '../axios'
-import {
-  KakaoLoginResponse,
-  KakaoRegisterResponse,
-} from '@utils/apis/auth/AuthType'
+import { KakaoLoginResponse } from '@utils/apis/auth/AuthType'
 
 export const AuthApi = {
   KAKAO_TOKEN: async (code: string) => {
@@ -31,7 +28,7 @@ export const AuthApi = {
 
   KAKAO_VALID: async (idToken: string) => {
     const response = await axiosApi.get(
-      `/auth/oauth/register/valid?idToken=${idToken}`,
+      `/auth/oauth/register/valid/kakao?idToken=${idToken}`,
     )
     return response.data.data
   },

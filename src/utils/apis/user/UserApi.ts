@@ -9,6 +9,8 @@ import {
   UserInfoToken,
   PastTodayCategoryCountType,
   PastTodayAnswerType,
+  EditUserProfileDataType,
+  FavorBoxType,
 } from '@utils/apis/user/UserType'
 
 export const UserApi = {
@@ -27,7 +29,7 @@ export const UserApi = {
     smallCategory: SubCategoryType[],
   ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
-      `/users/${userId}/tags?smallCategory=${smallCategory}`,
+      `/users/${userId}/favors?smallCategory=${smallCategory}`,
     )
     return response.data.data
   },
@@ -67,5 +69,15 @@ export const UserApi = {
       `/users/daily-answer/${id}?dailyQuestionCategory=${category}`,
     )
     return reponse.data.data
+  },
+
+  EDIT_USER_PROFILE: async (updatedUserData: EditUserProfileDataType) => {
+    const response = await axiosApi.patch(`/users/profile`, updatedUserData)
+    return response.data.data
+  },
+
+  GET_USER_FAVOR_BOX: async (id: number): Promise<FavorBoxType[]> => {
+    const response = await axiosApi.get(`/users/${id}/tags`)
+    return response.data.data
   },
 }

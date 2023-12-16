@@ -52,6 +52,7 @@ const ProfileRouter = () => {
     }
     navigate(-1)
   }
+
   const handleClickIcon = (url: string) => {
     navigate(url)
   }
@@ -102,7 +103,7 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="backPushWithTitle"
-              label={'@' + friendData?.email}
+              label={'@' + friendData?.userId}
               hasNav={false}
               rightChildren="none"
             >

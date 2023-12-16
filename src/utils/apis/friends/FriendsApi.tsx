@@ -3,13 +3,14 @@ import {
   FriendRequestType,
   FriendsType,
   NewFriendsType,
+  ReportFriendDataType,
   PokeCountType,
   SearchedFriendType,
 } from './FriendsType'
 
 export const FriendsApi = {
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
-    const response = await axiosApi.get('/users/neighbors')
+    const response = await axiosApi.get('/users/neighbors/favors')
     return response.data.data
   },
 
@@ -68,7 +69,7 @@ export const FriendsApi = {
     return response.data.data
   },
 
-  REPORT_FRIEND: async (id: number) => {
+  REPORT_FRIEND: async (id: number): Promise<ReportFriendDataType> => {
     const response = await axiosApi.post(`/users/report/${id}`)
     return response.data.data
   },

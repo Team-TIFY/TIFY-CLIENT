@@ -9,7 +9,6 @@ import {
 } from '@utils/apis/user/UserType'
 import { subCategoryState } from '@libs/store/subCategory'
 import { UserApi } from '@utils/apis/user/UserApi'
-import { isArray } from '@utils/isArray'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
 import { subCategoryTitle } from '@utils/subCategoryTitle'
 
@@ -58,7 +57,7 @@ const NewTasteCategoryListItem = ({
 
   return (
     <StyledButtonWrapper>
-      {isArray(subCategoryList) &&
+      {Array.isArray(subCategoryList) &&
         subCategoryList?.map((category: UserNewTasteCategory, idx: number) => (
           <CubeButton
             key={idx}
