@@ -56,7 +56,8 @@ const CheckAllAnswers = () => {
       </div>
       <Spacing variant="default" height={20} />
       <AnswerListContainer>
-        {neighborAnswers?.length === 0 ? (
+        {neighborAnswers?.filter((data) => data.neighborInfo.view === true)
+          ?.length === 0 ? (
           <>
             <Text color="gray_200" typo="Caption_12R">
               아직 답변을 작성한 친구가 없어요.

@@ -15,6 +15,7 @@ const BottomSheet = ({
   return (
     <>
       <div
+        className="background"
         style={{
           position: 'fixed',
           top: '0',

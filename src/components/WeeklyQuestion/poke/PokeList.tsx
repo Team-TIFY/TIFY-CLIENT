@@ -1,6 +1,7 @@
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
 import { useQuery, useMutation } from '@tanstack/react-query'
+import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import { useRecoilState } from 'recoil'
 import { authState } from '@libs/store/auth'
@@ -20,9 +21,11 @@ const PokeList = () => {
   const [neighborId, setNeighborId] = useState(0)
   const [isTriggered, setTrigger] = useState(false)
   const { setSnackBar } = useSnackBar()
-  const { data: friendsList = [] } = useQuery(
-    ['friendsList', auth.userProfile.id],
-    FriendsApi.GET_ALL_FRIENDS_LIST,
+  const { data: friendsList = [] } = useQuery(['neighborInfo'], () =>
+    WeeklyApi.GET_NEIGHBOR_ANSWERS({
+      questionId: question.questionId,
+      userId: auth.userProfile.id,
+    }),
   )
 
   const handleTrigger = () => {
@@ -52,8 +55,8 @@ const PokeList = () => {
       const data = await getPokeCount(neighborId)
       setSnackBar({
         comment: `${friendsList.find(
-          (friend) => friend.neighborUserId === data.knockedUserId,
-        )?.neighborName}님을 ${data.knockCount}번 쿡 찔렀어요!`,
+          (friend) => friend.neighborInfo.neighborUserId === data.knockedUserId,
+        )?.neighborInfo.neighborName}님을 ${data.knockCount}번 쿡 찔렀어요!`,
         type: 'info',
       })
     },
@@ -67,38 +70,46 @@ const PokeList = () => {
       </Text>
       <GridContainer>
         {friendsList.map((data, index) => (
-          <FlexBox
-            direction="column"
-            align="center"
-            key={index}
-            gap={8}
-            onClick={() => {
-              setNeighborId(data.neighborUserId)
-              handleTrigger()
-              pokeMutation.mutate({
-                questionId: question.questionId,
-                userId: data.neighborUserId,
-              })
-            }}
-          >
-            {neighborId === data.neighborUserId && isTriggered ? (
-              <LottieWrapper>
-                <Player
-                  autoplay
-                  loop
-                  src={animationData}
-                  style={{ height: '100px', width: '100px' }}
-                ></Player>
-              </LottieWrapper>
-            ) : (
-              <div style={{ width: '100%', height: '100%' }}>
-                <Avatar imageUrl={data.neighborThumbnail} variant="medium" />
-                <Text typo="Caption_12M" color="white">
-                  {data.neighborName}
-                </Text>
-              </div>
+          <>
+            {data.answerInfo.content === null && (
+              <FlexBox
+                direction="column"
+                align="center"
+                key={index}
+                gap={8}
+                onClick={() => {
+                  setNeighborId(data.neighborInfo.neighborUserId)
+                  handleTrigger()
+                  pokeMutation.mutate({
+                    questionId: question.questionId,
+                    userId: data.neighborInfo.neighborUserId,
+                  })
+                }}
+              >
+                {neighborId === data.neighborInfo.neighborUserId &&
+                isTriggered ? (
+                  <LottieWrapper>
+                    <Player
+                      autoplay
+                      loop
+                      src={animationData}
+                      style={{ height: '100px', width: '100px' }}
+                    ></Player>
+                  </LottieWrapper>
+                ) : (
+                  <div style={{ width: '100%', height: '100%' }}>
+                    <Avatar
+                      imageUrl={data.neighborInfo.neighborThumbnail}
+                      variant="medium"
+                    />
+                    <Text typo="Caption_12M" color="white">
+                      {data.neighborInfo.neighborName}
+                    </Text>
+                  </div>
+                )}
+              </FlexBox>
             )}
-          </FlexBox>
+          </>
         ))}
       </GridContainer>
     </PokeListContainer>

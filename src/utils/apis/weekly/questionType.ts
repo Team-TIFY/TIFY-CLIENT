@@ -1,4 +1,4 @@
-import { FriendsType } from '@utils/apis/friends/FriendsType'
+import { DailyFriendsType } from '@utils/apis/friends/FriendsType'
 
 export interface DailyQuestionInfo {
   questionId: number
@@ -12,7 +12,7 @@ export interface CountDailyQuestion {
 }
 
 export interface NeighborAnswerListInfo {
-  neighborInfo: FriendsType
+  neighborInfo: DailyFriendsType
   answerInfo: DailyAnswerInfo
   neighborKnocked: boolean
 }

@@ -16,9 +16,11 @@ const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
   const [question, setQuestion] = useRecoilState(questionState)
   const navigate = useNavigate()
-  const { isBottomSheetOpen, openBottomSheet, bottomSheetRef } = useBottomSheet(
-    { initialState: false, delaytime: 3200 },
-  )
+  const { bottomSheetRef, isBottomSheetOpen } = useBottomSheet({
+    initialState:
+      localStorage.getItem('isOnboardingFavor') === 'true' ? true : false,
+    delaytime: 3200,
+  })
   const handleAnswerQuestion = async () => {
     const data = await WeeklyApi.ALREADY_ANSWERED(question.questionId)
     if (!data) navigate('answer')
@@ -29,13 +31,13 @@ const WeeklyMainQuestion = () => {
 
   return (
     <WeekContainer>
-      {localStorage.getItem('isOnboardingFavor') === 'true' ? (
-        <BottomSheet isexpanded={true} bottomSheetRef={bottomSheetRef}>
-          <GreetingOnboarding />
-        </BottomSheet>
-      ) : (
-        ''
-      )}
+      <BottomSheet
+        isexpanded={isBottomSheetOpen}
+        bottomSheetRef={bottomSheetRef}
+      >
+        <GreetingOnboarding />
+      </BottomSheet>
+
       <BackgroundImg />
       <WeekWrapper>
         <Spacing variant="default" height={48} />
