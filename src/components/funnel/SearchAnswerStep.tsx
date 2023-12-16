@@ -79,29 +79,31 @@ const SearchAnswerStep = ({
 
   return (
     <SearchContainer>
-      <Spacing height={32} />
-      <FlexBox direction="column" gap={20}>
-        <Text typo="SCD_Headline_24" color="white">
-          {data?.contents.substring(0, 18)}
-        </Text>
-      </FlexBox>
-      <Spacing height={64} />
-      <FlexBox>
-        <SearchInput
-          width={328}
-          placeholder="검색해 주세요"
-          ref={inputRef}
-          value={keyword}
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-            handleSearchProduct(e)
-          }}
-          customRemoveHandler={() => {
-            setKeyword('')
-            setAnswer('')
-            setDisabled(true)
-          }}
-        />
-      </FlexBox>
+      <div style={{ flexShrink: 0 }}>
+        <Spacing height={32} />
+        <FlexBox direction="column" gap={20}>
+          <Text typo="SCD_Headline_24" color="white">
+            {data?.contents.substring(0, 18)}
+          </Text>
+        </FlexBox>
+        <Spacing height={64} />
+        <FlexBox>
+          <SearchInput
+            width={328}
+            placeholder="검색해 주세요"
+            ref={inputRef}
+            value={keyword}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+              handleSearchProduct(e)
+            }}
+            customRemoveHandler={() => {
+              setKeyword('')
+              setAnswer('')
+              setDisabled(true)
+            }}
+          />
+        </FlexBox>
+      </div>
 
       {autoItems.length > 0 && keyword ? (
         <AutoSearchContainer>
@@ -119,7 +121,7 @@ const SearchAnswerStep = ({
               >
                 <div
                   style={{
-                    width: '100%',
+                    width: '70%',
                     overflow: 'hidden',
                     whiteSpace: 'nowrap',
                   }}
