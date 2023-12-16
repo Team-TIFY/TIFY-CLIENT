@@ -32,7 +32,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
 
         <CubeButton
           variant={info.favor.includes('FEFAS') ? 'selected' : 'unSelected'}
-          img="/images/fashionStuff.png"
+          img="/images/hat.png"
           text="패션소품"
           onClick={() => {
             updateMyFavor('FEFAS')
@@ -41,7 +41,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
         <MarginDiv />
         <CubeButton
           variant={info.favor.includes('FEDIG') ? 'selected' : 'unSelected'}
-          img="/images/fashionStuff.png"
+          img="/images/keyring.png"
           text="데코소품"
           onClick={() => {
             updateMyFavor('FEDIG')
@@ -53,7 +53,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
       <FlexBox>
         <CubeButton
           variant={info.favor.includes('FEBAG') ? 'selected' : 'unSelected'}
-          img="/images/clothes.png"
+          img="/images/bag.png"
           text="가방"
           onClick={() => {
             updateMyFavor('FEBAG')
@@ -62,7 +62,7 @@ export function FashionFavor({ updateMyFavor }: FashionFavorProps) {
         <MarginDiv />
         <CubeButton
           variant={info.favor.includes('FAACC') ? 'selected' : 'unSelected'}
-          img="/images/fashionStuff.png"
+          img="/images/ring.png"
           text="액세사리"
           onClick={() => {
             updateMyFavor('FAACC')

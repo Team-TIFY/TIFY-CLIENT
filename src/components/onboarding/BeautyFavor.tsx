@@ -32,7 +32,7 @@ export function BeautyFavor({ updateMyFavor }: BeautyFavorProps) {
         <MarginDiv />
         <CubeButton
           variant={info.favor.includes('BMEYE') ? 'selected' : 'unSelected'}
-          img="/images/makeup.png"
+          img="/images/eyeshadow.png"
           text="아이메이크업"
           onClick={() => {
             updateMyFavor('BMEYE')
@@ -52,7 +52,7 @@ export function BeautyFavor({ updateMyFavor }: BeautyFavorProps) {
       <FlexBox>
         <CubeButton
           variant={info.favor.includes('BFPLA') ? 'selected' : 'unSelected'}
-          img="/images/fragrance.png"
+          img="/images/candle2.png"
           text="캔들"
           onClick={() => {
             updateMyFavor('BFPLA')

@@ -23,7 +23,7 @@ export function HobbyFavor({ updateMyFavor }: HobbyFavorProps) {
       <FlexBox>
         <CubeButton
           variant={info.favor.includes('HCDIS') ? 'selected' : 'unSelected'}
-          img="/images/cooking.png"
+          img="/images/cup.png"
           text="요리"
           onClick={() => {
             updateMyFavor('HCDIS')
