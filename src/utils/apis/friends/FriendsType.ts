@@ -1,3 +1,5 @@
+import { TasteBoxVariantType } from '../favor/TasteType'
+
 export type FriendRequestType = {
   neighborApplicationId: number
   toUserInfo: {
@@ -17,15 +19,13 @@ export type FriendRequestType = {
 
 export type FriendsType = {
   neighborId: number
-  neighborUserId: string
   neighborThumbnail: string
-  neighborName: string
   neighborBirth: string
+  neighborName: string
+  userFavorList: TasteBoxVariantType[]
   onBoardingStatus: string
-  order: number
   updatedAt: string
   viewedAt: string
-  view: boolean
 }
 
 export type NewFriendsType = {

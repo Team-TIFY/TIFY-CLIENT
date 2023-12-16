@@ -28,6 +28,7 @@ const FriendsListCItem = ({
           currentState={friend.onBoardingStatus}
           imageUrl={friend.neighborThumbnail}
           onClick={() => handleClickFriendProfile(friend.neighborId)}
+          favorList={friend.userFavorList}
         />
       ))}
     </FriendsListWrapper>
