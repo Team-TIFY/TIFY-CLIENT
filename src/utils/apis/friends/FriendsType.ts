@@ -17,7 +17,7 @@ export type FriendRequestType = {
 
 export type FriendsType = {
   neighborId: number
-  neighborUserId: string
+  neighborUserId: number
   userId: number
   neighborThumbnail: string
   neighborName: string
@@ -50,4 +50,10 @@ export type SearchedFriendType = {
   imgUrl: string
   mutualFriends: number
   friend: boolean
+}
+
+export type PokeCountType = {
+  fromUserId: number
+  knockedUserId: number
+  knockCount: number
 }
