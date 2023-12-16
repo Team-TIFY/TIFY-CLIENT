@@ -117,3 +117,10 @@ export type EditUserProfileDataType = {
   userId: string
   onBoardingStatus: string
 }
+
+export type FavorBoxType = {
+  userFavorId: number
+  largeCategory: string
+  smallCategory: string
+  detailCategory: TasteBoxVariantType
+}

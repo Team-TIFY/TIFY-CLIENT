@@ -15,3 +15,10 @@ export const DefaultProfileBox: Story = {
     favorList: ['ACCESSORY', 'BAG', 'CUP'],
   },
 }
+
+export const ShareProfileBox: Story = {
+  args: {
+    favorList: ['ACCESSORY', 'BAG', 'CUP'],
+    variant: 'shareProfile',
+  },
+}

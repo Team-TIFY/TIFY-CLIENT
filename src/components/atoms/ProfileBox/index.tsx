@@ -18,13 +18,18 @@ const ProfileBox = ({
 }: ProfileBoxProps) => {
   return (
     <>
-      <ImageWrapper>
-        <BackgroundImage src={backgroundImage} />
-        <ProfileBackgroundImage src={profileBoxImage} />
+      <ImageWrapper variant={variant}>
+        <BackgroundImage src={backgroundImage} variant={variant} />
+        <ProfileBackgroundImage src={profileBoxImage} variant={variant} />
         {favorList.map((favor, index) => (
-          <ProfileImage index={index} key={index} src={tasteBoxImage[favor]} />
+          <ProfileImage
+            index={index}
+            variant={variant}
+            key={index}
+            src={tasteBoxImage[favor]}
+          />
         ))}
-        <Shadow src={shadow} />
+        <Shadow src={shadow} variant={variant} />
       </ImageWrapper>
     </>
   )
@@ -32,7 +37,7 @@ const ProfileBox = ({
 
 export default ProfileBox
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.div<{ variant: VariantType }>`
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -59,61 +64,90 @@ const ImageWrapper = styled.div`
   }
   position: relative;
   width: 100%;
-  height: calc(100% * (15 / 14));
+  height: ${({ variant }) =>
+    variant === 'shareProfile' ? '200px' : `calc(100% * (15 / 14))`};
 `
 
-const BackgroundImage = styled.img`
+const BackgroundImage = styled.img<{ variant: VariantType }>`
   width: 100%;
-  height: calc(100% * (15 / 14));
+  height: ${({ variant }) =>
+    variant === 'shareProfile' ? '186px' : `calc(100% * (15 / 14))`};
+  margin-top: ${({ variant }) => variant === 'shareProfile' && '14px'};
   object-fit: cover;
   z-index: 0;
 `
 
-const ProfileBackgroundImage = styled.img`
+const ProfileBackgroundImage = styled.img<{ variant: VariantType }>`
   position: absolute;
-  top: calc(50% - 147px);
-  left: calc(50% - 139.5px);
-  width: 279px;
-  height: 294px;
-  opacity: 0;
-  animation-fill-mode: forwards;
-  animation-name: fadeIn, moveToY1;
-  animation-duration: 1.5s, 1.5s;
-  animation-delay: 0.8s 0.8s;
+  top: ${({ variant }) =>
+    variant === 'shareProfile' ? 'calc(50% - 80px)' : 'calc(50% - 130px)'};
+  left: ${({ variant }) =>
+    variant === 'shareProfile' ? `calc(50% - 78px)` : `calc(50% - 139.5px)`};
+  width: ${({ variant }) => (variant === 'shareProfile' ? `155px` : `279px`)};
+  height: ${({ variant }) => (variant === 'shareProfile' ? `163px` : `294px`)};
+  opacity: 1;
   z-index: 2;
+  ${({ variant }) =>
+    variant === 'profile' &&
+    `
+    animation-fill-mode: forwards;
+    animation-name: fadeIn, moveToY1;
+    animation-duration: 1.5s, 1.5s;
+    animation-delay: 0.8s 0.8s;
+  `}
 `
 
-const ProfileImage = styled.img<{ index: number }>`
-  width: 106px;
-  height: 106px;
+const ProfileImage = styled.img<{ index: number; variant: VariantType }>`
+  width: ${({ variant }) => (variant === 'shareProfile' ? '59px' : '106px')};
+  height: ${({ variant }) => (variant === 'shareProfile' ? '59px' : '106px')};
   position: absolute;
-  top: ${({ index }) =>
+  top: ${({ index, variant }) =>
     index === 0
-      ? 'calc(50% - 52px)'
+      ? variant === 'shareProfile'
+        ? 'calc(50% - 25px)'
+        : 'calc(50% - 32px)'
       : index === 1
-      ? 'calc(50% - 106px)'
-      : '50%'};
-  left: ${({ index }) => (index === 1 || index === 2) && 'calc(50% - 12.5px)'};
-  right: ${({ index }) => index === 0 && 'calc(50% - 12.5px)'};
-  animation-fill-mode: forwards;
-  animation-name: fadeIn, moveToY1;
-  animation-duration: 1.5s, 1.5s;
-  animation-delay: 0.8s 0.8s;
+      ? variant === 'shareProfile'
+        ? 'calc(50% - 58px)'
+        : 'calc(50% - 86px)'
+      : variant === 'shareProfile'
+      ? 'calc(50%)'
+      : 'calc(50% + 20px)'};
+  left: ${({ index, variant }) =>
+    (index === 1 || index === 2) &&
+    (variant === 'shareProfile' ? 'calc(50% - 7px)' : 'calc(50% - 12.5px)')};
+  right: ${({ index, variant }) =>
+    index === 0 && variant === 'shareProfile'
+      ? 'calc(50% + 5px)'
+      : 'calc(50% + 10px)'};
   z-index: 3;
+  ${({ variant }) =>
+    variant === 'profile' &&
+    `
+    animation-fill-mode: forwards;
+    animation-name: fadeIn, moveToY1;
+    animation-duration: 1.5s, 1.5s;
+    animation-delay: 0.8s 0.8s;
+  `}
 `
 
-const Shadow = styled.img`
+const Shadow = styled.img<{ variant: VariantType }>`
   position: absolute;
   width: 199px;
   height: 37px;
   left: 0;
   right: 0;
-  top: calc(50% + 75px);
+  top: ${({ variant }) =>
+    variant === 'shareProfile' ? 'calc(50% + 58px)' : 'calc(50% + 95px)'};
   margin: auto;
-  opacity: 0;
-  animation-fill-mode: forwards;
-  animation-name: fadeIn, moveToY2;
-  animation-duration: 1.5s, 1.5s;
-  animation-delay: 0.8s 0.8s;
+  opacity: 1;
   z-index: 1;
+  ${({ variant }) =>
+    variant === 'profile' &&
+    `
+    animation-fill-mode: forwards;
+    animation-name: fadeIn, moveToY2;
+    animation-duration: 1.5s, 1.5s;
+    animation-delay: 0.8s 0.8s;
+  `}
 `
