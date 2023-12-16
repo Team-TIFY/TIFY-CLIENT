@@ -9,23 +9,20 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import DailyAnswerListContainer from '@components/WeeklyQuestion/Answer/DailyAnswerListContainer'
 import { authState } from '@libs/store/auth'
 import { getNotAnswerFriends } from '@utils/getNotAnswerFriends'
-import { useState } from 'react'
 import BottomSheet from '@components/atoms/BottomSheet'
-import { useRef } from 'react'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import PokeList from '@components/WeeklyQuestion/poke/PokeList'
-import useSnackBar from '@libs/hooks/useSnackBar'
+
 const CheckAllAnswers = () => {
   const [question, setQuestion] = useRecoilState(questionState)
   const [auth, setAuth] = useRecoilState(authState)
   const { isBottomSheetOpen, openBottomSheet, bottomSheetRef } = useBottomSheet(
     { initialState: false },
   )
-  const { setSnackBar } = useSnackBar()
   const { data: neighborAnswers } = useQuery(['neighborInfo'], () =>
     WeeklyApi.GET_NEIGHBOR_ANSWERS({
       questionId: question.questionId,

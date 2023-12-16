@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
+import { media, theme } from '@styles/theme'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 
@@ -45,5 +45,8 @@ const StyledMessage = styled(ToastContainer)`
     box-shadow:
       0px -2px 8px 0px rgba(0, 0, 0, 0.15),
       0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+    ${media.mobile} {
+      left: 8%;
+    }
   }
 `

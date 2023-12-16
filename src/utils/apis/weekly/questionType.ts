@@ -35,7 +35,7 @@ export type DailyQuestionCategoryType =
   | 'TRIP'
   | 'BEVERAGE'
   | 'CULTURE_LIFE'
-  | 'MY'
+  | 'ME'
 
 export const DailyQuestionCategory: Record<DailyQuestionCategoryType, string> =
   {
@@ -45,7 +45,7 @@ export const DailyQuestionCategory: Record<DailyQuestionCategoryType, string> =
     TRIP: '/images/passport.png',
     BEVERAGE: '/images/drink.png',
     CULTURE_LIFE: '/images/drum.png',
-    MY: '/images/my.png',
+    ME: '/images/aboutme.png',
   }
 
 export const DailyQuestionVideoCategory: Record<
@@ -58,7 +58,7 @@ export const DailyQuestionVideoCategory: Record<
   TRIP: '/videos/passport.mp4',
   BEVERAGE: '/videos/drink.mp4',
   CULTURE_LIFE: '/videos/drum.mp4',
-  MY: '/videos/my.mp4',
+  ME: '/videos/my.mp4',
 }
 
 export interface DailyQuestionReport {
