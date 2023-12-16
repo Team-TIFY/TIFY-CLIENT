@@ -10,6 +10,7 @@ import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
 import { useNavigate } from 'react-router-dom'
 import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
 import { LongInput } from '@components/atoms/Input/LongInput'
+import VideoBox from '@components/WeeklyQuestion/VideoBox'
 
 const AnswerDailyQuestion = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -73,7 +74,7 @@ const AnswerDailyQuestion = () => {
           className="QuestionImg"
           onClick={() => setToggle(false)}
         >
-          <QuestionImg category={question.category} isToggled={toggled} />
+          <VideoBox category={question.category} isToggled={toggled} />
         </div>
         <Spacing variant="default" height={64} />
       </ToggleSection>

@@ -14,7 +14,7 @@ type TodayCategoryPropsType = {
   categoryName: string
   categoryValue: TodayCategoryValueType
   infoCount: number
-  id: number
+  id?: number
 }
 
 const TodayCategory = ({

@@ -3,8 +3,10 @@ import {
   CountDailyQuestion,
   DailyQuestionInfo,
   DailyAnswerContentInfo,
+  DailyQuestionReport,
 } from '@utils/apis/weekly/questionType'
 import { axiosApi } from '../axios'
+
 export const WeeklyApi = {
   GET_QUESTIONS: async (date: string): Promise<DailyQuestionInfo> => {
     const response = await axiosApi.get(`/daily-questions?loadingDate=${date}`)
@@ -52,6 +54,18 @@ export const WeeklyApi = {
   }): Promise<NeighborAnswerListInfo[]> => {
     const response = await axiosApi.get(
       `/${questionId}/answers/${userId}/neighbors`,
+    )
+    return response.data.data
+  },
+  REPORT_ANSWER: async ({
+    questionId,
+    answerId,
+  }: {
+    questionId: number
+    answerId: number
+  }): Promise<DailyQuestionReport> => {
+    const response = await axiosApi.post(
+      `/${questionId}/answers/${answerId}/report`,
     )
     return response.data.data
   },

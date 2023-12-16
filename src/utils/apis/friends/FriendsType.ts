@@ -3,7 +3,7 @@ import { TasteBoxVariantType } from '../favor/TasteType'
 export type FriendRequestType = {
   neighborApplicationId: number
   toUserInfo: {
-    id: 0
+    id: number
     userName: string
     userId: string
     imageUrl: string
