@@ -7,7 +7,6 @@ import {
   useState,
 } from 'react'
 import { theme } from '@styles/theme'
-import { FlexBox } from '@components/layouts/FlexBox'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   isBtnColorState,

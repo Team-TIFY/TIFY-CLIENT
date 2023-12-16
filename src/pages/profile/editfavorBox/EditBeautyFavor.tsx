@@ -3,58 +3,58 @@ import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
-import { onboardingState } from '@libs/store/onboard'
-import { useRecoilState } from 'recoil'
+import { TasteType } from '@utils/apis/favor/TasteType'
 
 interface HobbyFavorProps {
-  updateMyFavor: (myFavor: string) => void
+  favorList: TasteType[]
+  updateMyFavor: (myFavor: TasteType) => void
 }
 
-export function HobbyFavor({ updateMyFavor }: HobbyFavorProps) {
-  const [info, setInfo] = useRecoilState(onboardingState)
+export function EditBeautyFavor({ updateMyFavor, favorList }: HobbyFavorProps) {
   return (
     <>
       <FlexBox>
         <TextWrap>
-          <Text children="취미" typo="Headline_16" color="white" />
+          <Text children="뷰티" typo="Headline_16" color="white" />
         </TextWrap>
       </FlexBox>
       <FlexBox>
         <CubeButton
-          variant={info.favor.includes('HCDIS') ? 'selected' : 'unSelected'}
-          img="/images/cup.png"
-          text="요리"
+          variant={favorList.includes('BMLIP') ? 'selected' : 'unSelected'}
+          img="/images/makeup.png"
+          text="립메이크업"
+          className="BMLIP"
           onClick={() => {
-            updateMyFavor('HCDIS')
+            updateMyFavor('BMLIP')
           }}
         />
         <MarginDiv />
         <CubeButton
-          variant={info.favor.includes('HEEXE') ? 'selected' : 'unSelected'}
-          img="/images/exercise.png"
-          text="운동"
+          variant={favorList.includes('BMEYE') ? 'selected' : 'unSelected'}
+          img="/images/eyeshadow.png"
+          text="아이메이크업"
           onClick={() => {
-            updateMyFavor('HEEXE')
+            updateMyFavor('BMEYE')
           }}
         />
         <MarginDiv />
         <CubeButton
-          variant="disabled"
-          img="/images/travel.png"
-          text="여행"
+          variant={favorList.includes('BFPER') ? 'selected' : 'unSelected'}
+          img="/images/fragrance.png"
+          text="향수"
           onClick={() => {
-            updateMyFavor('HEEXE')
+            updateMyFavor('BFPER')
           }}
         />
       </FlexBox>
       <Spacing height={12} />
       <FlexBox>
         <CubeButton
-          variant="disabled"
-          img="/images/culturalLife.png"
-          text="문화생활"
+          variant={favorList.includes('BFPLA') ? 'selected' : 'unSelected'}
+          img="/images/candle2.png"
+          text="캔들"
           onClick={() => {
-            updateMyFavor('HEEXE')
+            updateMyFavor('BFPLA')
           }}
         />
         <div style={{ width: '216px' }} />
