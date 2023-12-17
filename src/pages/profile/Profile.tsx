@@ -27,6 +27,7 @@ import { friendState } from '@libs/store/friend'
 import { authState } from '@libs/store/auth'
 import { profileState } from '@libs/store/profile'
 import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+import { getTagAnswerData } from '@utils/getTagAnswerData'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP', count: 0 },
@@ -39,11 +40,17 @@ const selectedProps: SelectedProps = [
     value: 'FASHION_PRODUCT',
     count: 0,
   },
-  { id: 5, active: false, name: '액세사리', value: 'ACCESSORY', count: 0 },
-  { id: 6, active: false, name: '요리', value: 'COOKING', count: 0 },
-  { id: 7, active: false, name: '운동', value: 'EXERCISE', count: 0 },
-  { id: 8, active: false, name: '여행', value: 'TRAVEL', count: 0 },
-  { id: 9, active: false, name: '문화생활', value: 'CULTURE_LIFE', count: 0 },
+  {
+    id: 5,
+    active: false,
+    name: '디지털소품',
+    value: 'DIGITAL_PRODUCT',
+    count: 0,
+  },
+  { id: 6, active: false, name: '가방', value: 'BAG', count: 0 },
+  { id: 6, active: false, name: '액세사리', value: 'ACCESSORY', count: 0 },
+  { id: 7, active: false, name: '요리', value: 'COOKING', count: 0 },
+  { id: 8, active: false, name: '운동', value: 'EXERCISE', count: 0 },
 ]
 
 export type SelectedPropType = {
@@ -219,6 +226,10 @@ const Profile = ({
       setUserTagCountSumData(userTagCount)
     }
   }, [userTagData])
+
+  useEffect(() => {
+    getTagAnswerData([])
+  }, [])
 
   const getFriendUserId = (menu: MenuButtonType) => {
     return menu.type === 'cutOffFriend' ||
