@@ -4,11 +4,7 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import {
-  isBtnColorState,
-  onboardingState,
-  IsOnboard,
-} from '@libs/store/onboard'
+import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
@@ -66,14 +62,14 @@ export function SelectFavor() {
       favorWithPriority.forEach((data) => {
         if (data.priority === 1) {
           localStorage.setItem('isOnboardingFavor', 'true')
-          // navigate(`/profile/newTaste/${data.taste}`)
+          navigate(`/profile/newTaste/${data.taste}`)
         } else if (data.priority === 2) {
           localStorage.setItem('isOnboardingFavor', 'true')
-          // navigate(`/profile/newTaste/${data.taste}`)
+          navigate(`/profile/newTaste/${data.taste}`)
           return
         } else {
           localStorage.setItem('isOnboardingFavor', 'true')
-          // navigate(`/profile/newTaste/${data.taste}`)
+          navigate(`/profile/newTaste/${data.taste}`)
         }
       })
     }
