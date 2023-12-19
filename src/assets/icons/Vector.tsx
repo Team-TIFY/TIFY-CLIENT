@@ -7,7 +7,8 @@ interface VectorProps {
 }
 
 export function Vector({ linkUrl, visible }: VectorProps) {
-  const linkToUrl = () => {
+  const linkToUrl = (e: React.MouseEvent) => {
+    e.preventDefault() //이벤트 버블링 방지
     window.open(`https://tify-thisis4u.notion.site/${linkUrl}`)
   }
 

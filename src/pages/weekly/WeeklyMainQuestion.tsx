@@ -27,7 +27,12 @@ const WeeklyMainQuestion = () => {
   return (
     <WeekContainer>
       {localStorage.getItem('isOnboardingFavor') === 'true' ? (
-        <BottomSheet isexpanded={true} delaytime={3200}>
+        <BottomSheet
+          isexpanded={true}
+          delaytime={3200}
+          isFilter={false}
+          filterType=""
+        >
           <GreetingOnboarding />
         </BottomSheet>
       ) : (

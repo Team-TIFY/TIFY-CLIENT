@@ -31,7 +31,7 @@ export const AuthApi = {
 
   KAKAO_VALID: async (idToken: string) => {
     const response = await axiosApi.get(
-      `/auth/oauth/register/valid?idToken=${idToken}`,
+      `/auth/oauth/register/valid/kakao?idToken=${idToken}`,
     )
     return response.data.data
   },

@@ -4,19 +4,29 @@ import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { theme } from '@styles/theme'
 import { motion } from 'framer-motion'
+import { useRecoilState } from 'recoil'
+import { isFilterTypeState } from '@libs/store/present'
 
 const BottomSheet = ({
   delaytime,
   children,
   isexpanded,
+  isFilter,
+  filterType,
 }: {
   delaytime?: number
+  isFilter: boolean
   children?: ReactNode
   isexpanded: boolean
+  filterType: string
 }) => {
   const [expanded, setExpanded] = useState(isexpanded)
+  const [filter, setFilter] = useRecoilState(isFilterTypeState)
   const [outsideRef, handleClickEditProfileDimmer] = useOutsideClick(() =>
     setExpanded(false),
+  )
+  const [filterRef, handleClickFilterDimmer] = useOutsideClick(() =>
+    setFilter(''),
   )
   useEffect(() => {
     if (delaytime) {
@@ -30,14 +40,27 @@ const BottomSheet = ({
     setExpanded(isexpanded)
   }, [isexpanded])
 
+  useEffect(() => {
+    setFilter(filter)
+  }, [filter])
+
   return (
     <>
       {expanded ? (
-        <Dimmer dimmerRef={outsideRef} onClick={handleClickEditProfileDimmer} />
+        isFilter ? (
+          <Dimmer dimmerRef={filterRef} onClick={handleClickFilterDimmer} />
+        ) : (
+          <Dimmer
+            dimmerRef={outsideRef}
+            onClick={handleClickEditProfileDimmer}
+          />
+        )
       ) : (
         ''
       )}
       <BottomSheetContainer
+        isFilter={isFilter}
+        filterType={filterType}
         initial={{ y: '100%' }}
         animate={{ y: expanded ? '0%' : '100%' }}
         transition={{
@@ -64,15 +87,21 @@ const BottomSheet = ({
 
 export default BottomSheet
 
-const BottomSheetContainer = styled(motion.div)`
+const BottomSheetContainer = styled(motion.div)<{
+  isFilter: boolean
+  filterType: string
+}>`
   display: flex;
-  position: absolute;
+  position: ${({ isFilter }) => (isFilter ? 'fixed' : 'absolute')};
   bottom: 0px;
+  left: 0px;
   flex-direction: column;
   align-items: center;
-  background-color: ${theme.palette.background};
+  background-color: ${({ isFilter }) =>
+    isFilter ? `${theme.palette.gray_900}` : `${theme.palette.background}`};
   width: 100%;
-  height: 330px;
+  height: ${({ isFilter, filterType }) =>
+    isFilter ? (filterType === 'filter' ? '272px' : '392px') : '330px'};
   z-index: 1000;
   border-radius: 24px 24px 0px 0px;
   padding: 16px;

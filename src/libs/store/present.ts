@@ -29,3 +29,8 @@ export const PriceState = atom<priceType>({
   key: 'priceState',
   default: initialPriceState,
 })
+
+export const isFilterTypeState = atom({
+  key: 'isFilterTypeState',
+  default: '',
+})

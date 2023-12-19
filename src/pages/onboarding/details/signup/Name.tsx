@@ -5,7 +5,7 @@ import {
   onboardingPageState,
   onboardingState,
 } from '@libs/store/onboard'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import styled from '@emotion/styled'
 
 type NameProps = {
@@ -16,7 +16,7 @@ type NameProps = {
 export function Name({ isEdit = false, value }: NameProps) {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const [btnColor, setBtnColor] = useState<boolean>(false)
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const infoPage = useRecoilValue(onboardingPageState)
   const isName = useRecoilValue(onboardingState)
 
@@ -35,12 +35,12 @@ export function Name({ isEdit = false, value }: NameProps) {
 
     if (
       e.target.value.length > 0 &&
-      e.target.value.length < 10 &&
+      e.target.value.length <= 10 &&
       regex.test(e.target.value)
     ) {
-      setBtnColor(true)
+      setBtnColor({ ...btnColor, username: true })
     } else {
-      setBtnColor(false)
+      setBtnColor({ ...btnColor, username: false })
     }
   }
 
@@ -57,7 +57,7 @@ export function Name({ isEdit = false, value }: NameProps) {
         }
         error={error}
         warning={errorMsg}
-        onChange={handleName}
+        onInput={handleName}
         content="username"
       />
     </Container>

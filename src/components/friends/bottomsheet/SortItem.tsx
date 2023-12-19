@@ -77,16 +77,10 @@ export default SortItem
 const Container = styled.div`
   width: 100vw;
   max-width: 480px;
-  background-color: ${theme.palette.gray_900};
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-  padding-bottom: 32px;
 `
 const BottomSticker = styled.div`
   position: fixed;
-  /* width: 100%; */
   text-align: center;
-  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -95,7 +89,7 @@ const BottomSticker = styled.div`
 const Wrap = styled.div`
   height: 48px;
   border-bottom: 1px solid ${theme.palette.gray_800};
-  margin-top: 36px;
+  margin-top: 16px;
   padding-top: 8px;
 `
 const Sort = styled.div<{ isselected: boolean }>`

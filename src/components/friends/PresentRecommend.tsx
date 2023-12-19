@@ -8,8 +8,8 @@ import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
 import SortItem from './bottomsheet/SortItem'
-import { useRecoilValue } from 'recoil'
-import { FilterState, PriceState } from '@libs/store/present'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { FilterState, isFilterTypeState, PriceState } from '@libs/store/present'
 import PriceFilter from './bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 import { theme } from '@styles/theme'
@@ -21,6 +21,7 @@ import bagNull from '@assets/image/bagNull.svg'
 import accessoryNull from '@assets/image/accessoryNull.svg'
 import cookingNull from '@assets/image/cookingNull.svg'
 import exerciseNull from '@assets/image/exerciseNull.svg'
+import BottomSheet from '@components/atoms/BottomSheet'
 
 type DataType = {
   productId: number
@@ -49,7 +50,7 @@ function PresentRecommend() {
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
   const [products, setProducts] = useState<DataType[]>([])
-  const [isSortOpen, setIsSortOpen] = useState<string>('')
+  const [isSortOpen, setIsSortOpen] = useRecoilState<string>(isFilterTypeState)
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
 
@@ -113,6 +114,18 @@ function PresentRecommend() {
     })
   }, [selectedTags, selectedFilter.filter, selectedPrice.price])
 
+  const handleFilterClick = () => {
+    setIsSortOpen('filter')
+  }
+
+  const handlePriceClick = () => {
+    setIsSortOpen('price')
+  }
+
+  const handleBottomSheetClick = () => {
+    setIsSortOpen('')
+  }
+
   return (
     <>
       <FilterWrapper>
@@ -124,7 +137,7 @@ function PresentRecommend() {
       </FilterWrapper>
       <ContainerFix>
         <FilterItemWrap>
-          <RecommendFilter onClick={() => setIsSortOpen('filter')}>
+          <RecommendFilter onClick={handleFilterClick}>
             <ItemFilter />
             <Margin widthProps={2} />
             <Text
@@ -134,7 +147,7 @@ function PresentRecommend() {
             />
           </RecommendFilter>
           <Margin widthProps={12} />
-          <RecommendFilter onClick={() => setIsSortOpen('price')}>
+          <RecommendFilter onClick={handlePriceClick}>
             <PriceFilterIcon />
             <Margin widthProps={2} />
             <Text
@@ -188,15 +201,15 @@ function PresentRecommend() {
       </Container>
       {isSortOpen === 'filter' && (
         <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-          <SortItem />
+          <BottomSheet isexpanded={true} isFilter={true} filterType="filter">
+            <SortItem />
+          </BottomSheet>
         </>
       )}
       {isSortOpen === 'price' && (
-        <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
+        <BottomSheet isexpanded={true} isFilter={true} filterType="price">
           <PriceFilter />
-        </>
+        </BottomSheet>
       )}
     </>
   )

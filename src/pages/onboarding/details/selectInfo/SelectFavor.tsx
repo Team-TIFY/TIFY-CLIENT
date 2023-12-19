@@ -4,22 +4,18 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import {
-  isBtnColorState,
-  onboardingState,
-  IsOnboard,
-} from '@libs/store/onboard'
+import { onboardingState, IsOnboard } from '@libs/store/onboard'
 import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { authState } from '@libs/store/auth'
 import { favorPriority } from '@libs/store/priority'
 import { useNavigate } from 'react-router-dom'
 
 export function SelectFavor() {
-  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const [btnColor, setBtnColor] = useState(false)
   const [info, setInfo] = useRecoilState(onboardingState)
   const [auth, setAuth] = useRecoilState(authState)
   const [isOnboard, setIsOnboardFavor] = useRecoilState(IsOnboard)
