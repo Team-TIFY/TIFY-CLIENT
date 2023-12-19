@@ -291,7 +291,6 @@ const Profile = ({
                 <Spacing height={20} />
                 <UserTagDataListItem
                   selectedProps={selectedProps}
-                  selectedTags={selectedTags}
                   userTagData={userTagData}
                   isFriend={false}
                 />
@@ -301,7 +300,6 @@ const Profile = ({
                 <Spacing height={24} />
                 <UserTagDataListItem
                   selectedProps={selectedProps}
-                  selectedTags={selectedTags}
                   userTagData={userTagData}
                   isFriend={friendData?.friend ?? false}
                 />

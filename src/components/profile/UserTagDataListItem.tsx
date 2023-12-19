@@ -3,23 +3,16 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Category } from '@components/atoms/Category'
 import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
-import {
-  FilteredUserTag,
-  SelectedProps,
-  SelectedTag,
-} from '@utils/apis/user/UserType'
+import { FilteredUserTag, SelectedProps } from '@utils/apis/user/UserType'
 import { getTagAnswerData } from '@utils/getTagAnswerData'
-import { useEffect, useState } from 'react'
 
 export interface UserTagDataProps {
-  selectedTags: SelectedTag[]
   selectedProps: SelectedProps
   userTagData: FilteredUserTag[]
   isFriend: boolean
 }
 
 export const UserTagDataListItem = ({
-  selectedTags,
   selectedProps,
   userTagData,
   isFriend,

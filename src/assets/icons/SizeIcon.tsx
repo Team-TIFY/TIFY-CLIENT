@@ -1,4 +1,6 @@
-const SizeIcon = () => {
+import { KeyOfPalette, theme } from '@styles/theme'
+
+const SizeIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
   return (
     <svg
       width="16"
@@ -11,7 +13,7 @@ const SizeIcon = () => {
         <path
           id="Vector"
           d="M11.3333 2L14 4.66667L4.66667 14L2 11.3333L11.3333 2Z"
-          stroke="#F74AA6"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -19,7 +21,7 @@ const SizeIcon = () => {
         <path
           id="Vector_2"
           d="M10.666 4.6665L9.66602 3.6665"
-          stroke="#F74AA6"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -27,7 +29,7 @@ const SizeIcon = () => {
         <path
           id="Vector_3"
           d="M8.66602 6.6665L7.66602 5.6665"
-          stroke="#F74AA6"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -35,7 +37,7 @@ const SizeIcon = () => {
         <path
           id="Vector_4"
           d="M6.66602 8.6665L5.66602 7.6665"
-          stroke="#F74AA6"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -43,7 +45,7 @@ const SizeIcon = () => {
         <path
           id="Vector_5"
           d="M4.66602 10.6665L3.66602 9.6665"
-          stroke="#F74AA6"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"

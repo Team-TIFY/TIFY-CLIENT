@@ -1,4 +1,6 @@
-const HatIcon = () => {
+import { KeyOfPalette } from '@styles/theme/theme'
+
+const HatPurpleIcon = () => {
   return (
     <svg
       width="16"
@@ -37,4 +39,4 @@ const HatIcon = () => {
   )
 }
 
-export default HatIcon
+export default HatPurpleIcon

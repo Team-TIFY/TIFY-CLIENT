@@ -1,4 +1,6 @@
-const RippleIcon = () => {
+import { KeyOfPalette, theme } from '@styles/theme'
+
+const RippleIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
   return (
     <svg
       width="16"
@@ -11,7 +13,7 @@ const RippleIcon = () => {
         <path
           id="Vector"
           d="M2 4.66669C4 3.33335 6 3.33335 8 4.66669C10 6.00002 12 6.00002 14 4.66669"
-          stroke="#7D40FF"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -19,7 +21,7 @@ const RippleIcon = () => {
         <path
           id="Vector_2"
           d="M2 11.3333C4 9.99998 6 9.99998 8 11.3333C10 12.6666 12 12.6666 14 11.3333"
-          stroke="#7D40FF"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -27,7 +29,7 @@ const RippleIcon = () => {
         <path
           id="Vector_3"
           d="M2 8C4 6.66667 6 6.66667 8 8C10 9.33333 12 9.33333 14 8"
-          stroke="#7D40FF"
+          stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"

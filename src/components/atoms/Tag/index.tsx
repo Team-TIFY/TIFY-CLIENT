@@ -40,31 +40,37 @@ const TAG_PADDING_TYPE = {
 
 const TAG_COLOR_TYPE: Record<
   ColorIndexVariant,
-  { variant: TagVariant; color: ColorVariant }
+  { variant: TagVariant; color: ColorVariant; iconColor: string }
 > = {
   0: {
     variant: 'main',
     color: 'purple',
+    iconColor: 'purple_500',
   },
   1: {
     variant: 'main',
     color: 'pink',
+    iconColor: 'pink_500',
   },
   2: {
     variant: 'main',
     color: 'aqua',
+    iconColor: 'aqua_300',
   },
   3: {
     variant: 'dark',
     color: 'purple',
+    iconColor: '',
   },
   4: {
     variant: 'dark',
     color: 'pink',
+    iconColor: '',
   },
   5: {
     variant: 'dark',
     color: 'aqua',
+    iconColor: '',
   },
 }
 
@@ -83,7 +89,13 @@ export const Tag = ({
       colorVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].color}
     >
       <>
-        {IconComponent && <IconComponent />}
+        {IconComponent &&
+          TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant ===
+            'main' && (
+            <IconComponent
+              fill={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant]?.iconColor}
+            />
+          )}
         {children}
       </>
     </Wrapper>
