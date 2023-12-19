@@ -8,8 +8,8 @@ export const processTagAnswerData = (
   showAll: boolean,
   answerContent: string,
   answerData: {
-    smallCategory: unknown
-    detailCategory: unknown
+    smallCategory: any
+    detailCategory: any
     number: number
     answer: string
   }[],

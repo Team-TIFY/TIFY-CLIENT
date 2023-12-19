@@ -4,8 +4,8 @@ import { processTagAnswerData } from './processTagAnswerData'
 export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
   return userTagData.map((tag) => {
     const answerData: {
-      smallCategory: unknown
-      detailCategory: unknown
+      smallCategory: any
+      detailCategory: any
       number: number
       answer: string
     }[] = []

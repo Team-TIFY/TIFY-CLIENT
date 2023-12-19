@@ -40,6 +40,8 @@ export const UserTagDataListItem = ({
               colorIndex={(index % 6) as ColorIndexVariant}
               iconIndex={tagData.number}
               children={tagData.answer}
+              smallCategory={tagData.smallCategory}
+              detailCategory={tagData.detailCategory}
             />
           ))}
           isFriend={isFriend}

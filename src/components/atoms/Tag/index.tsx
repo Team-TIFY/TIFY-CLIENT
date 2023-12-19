@@ -1,10 +1,13 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
+import { tagIconData } from '@utils/tagIconData'
 
 type TagPropsType = {
   children: string
   colorIndex: ColorIndexVariant
   iconIndex: number
+  smallCategory: any
+  detailCategory: any
 }
 
 type TagVariant = 'main' | 'dark'
@@ -65,13 +68,24 @@ const TAG_COLOR_TYPE: Record<
   },
 }
 
-export const Tag = ({ children, colorIndex, iconIndex }: TagPropsType) => {
+export const Tag = ({
+  children,
+  colorIndex,
+  iconIndex,
+  smallCategory,
+  detailCategory,
+}: TagPropsType) => {
+  const IconComponent = tagIconData[smallCategory][detailCategory][iconIndex]
+
   return (
     <Wrapper
       tagVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant}
       colorVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].color}
     >
-      {children}
+      <>
+        {IconComponent && <IconComponent />}
+        {children}
+      </>
     </Wrapper>
   )
 }
