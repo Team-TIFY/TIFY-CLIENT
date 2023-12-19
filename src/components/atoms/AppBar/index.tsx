@@ -8,7 +8,6 @@ import TifyLogo from '@assets/icons/TifyLogo'
 import LeftArrow from '@assets/icons/LeftArrow'
 import Alert from '@assets/icons/Alert'
 import ThreeDots from '@assets/icons/ThreeDots'
-import { isArray } from '@utils/isArray'
 
 export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
 
@@ -69,7 +68,6 @@ export const AppBar = ({
             onClick={onClickOption1}
             style={{ margin: '0 16px 0 0' }}
           />
-          <Svg children={<ThreeDots />} onClick={onClickOption2} />
         </FlexBox>
       )
     else if (rightElement === 'dots')
@@ -77,7 +75,7 @@ export const AppBar = ({
     else if (rightElement === 'actionButton') {
       return (
         <FlexBox gap={16} style={{ cursor: 'pointer' }}>
-          {isArray(rightChildrenIcon)
+          {Array.isArray(rightChildrenIcon)
             ? rightChildrenIcon?.map((icon, index) => (
                 <div key={index}>{icon}</div>
               ))

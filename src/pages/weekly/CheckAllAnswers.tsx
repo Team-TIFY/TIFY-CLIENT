@@ -13,11 +13,16 @@ import { useQuery } from '@tanstack/react-query'
 import DailyAnswerListContainer from '@components/WeeklyQuestion/Answer/DailyAnswerListContainer'
 import { authState } from '@libs/store/auth'
 import { getNotAnswerFriends } from '@utils/getNotAnswerFriends'
+import BottomSheet from '@components/atoms/BottomSheet'
+import useBottomSheet from '@libs/hooks/useBottomSheet'
+import PokeList from '@components/WeeklyQuestion/poke/PokeList'
 
 const CheckAllAnswers = () => {
   const [question, setQuestion] = useRecoilState(questionState)
   const [auth, setAuth] = useRecoilState(authState)
-
+  const { isBottomSheetOpen, openBottomSheet, bottomSheetRef } = useBottomSheet(
+    { initialState: false },
+  )
   const { data: neighborAnswers } = useQuery(['neighborInfo'], () =>
     WeeklyApi.GET_NEIGHBOR_ANSWERS({
       questionId: question.questionId,
@@ -26,7 +31,17 @@ const CheckAllAnswers = () => {
   )
 
   return (
-    <WeekAnswersContainer>
+    <WeekAnswersContainer
+      style={{
+        height: `${isBottomSheetOpen ? `calc(100vh - 80px)` : 'auto'}`,
+      }}
+    >
+      <BottomSheet
+        isexpanded={isBottomSheetOpen}
+        bottomSheetRef={bottomSheetRef}
+      >
+        <PokeList />
+      </BottomSheet>
       <DailyQuestionBox />
       <div
         style={{
@@ -41,7 +56,8 @@ const CheckAllAnswers = () => {
       </div>
       <Spacing variant="default" height={20} />
       <AnswerListContainer>
-        {neighborAnswers?.length === 0 ? (
+        {neighborAnswers?.filter((data) => data.neighborInfo.view === true)
+          ?.length === 0 ? (
           <>
             <Text color="gray_200" typo="Caption_12R">
               아직 답변을 작성한 친구가 없어요.
@@ -51,6 +67,9 @@ const CheckAllAnswers = () => {
               variant="smallRound"
               width={240}
               fullWidth={false}
+              onClick={() => {
+                openBottomSheet()
+              }}
             >
               <FlexBox align="center" gap={8}>
                 친구 쿡 찌르기
@@ -72,6 +91,9 @@ const CheckAllAnswers = () => {
               variant="smallRound"
               width={240}
               fullWidth={false}
+              onClick={() => {
+                openBottomSheet()
+              }}
             >
               <FlexBox align="center" gap={8}>
                 친구 쿡 찌르기

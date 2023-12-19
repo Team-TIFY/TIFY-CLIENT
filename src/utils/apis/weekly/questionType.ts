@@ -1,4 +1,4 @@
-import { FriendsType } from '@utils/apis/friends/FriendsType'
+import { DailyFriendsType } from '@utils/apis/friends/FriendsType'
 
 export interface DailyQuestionInfo {
   questionId: number
@@ -12,7 +12,7 @@ export interface CountDailyQuestion {
 }
 
 export interface NeighborAnswerListInfo {
-  neighborInfo: FriendsType
+  neighborInfo: DailyFriendsType
   answerInfo: DailyAnswerInfo
   neighborKnocked: boolean
 }
@@ -34,17 +34,32 @@ export type DailyQuestionCategoryType =
   | 'RELATIONSHIP'
   | 'TRIP'
   | 'BEVERAGE'
-  | 'MY'
+  | 'CULTURE_LIFE'
+  | 'ME'
 
 export const DailyQuestionCategory: Record<DailyQuestionCategoryType, string> =
   {
     FOOD: '/images/food.png',
     MUSIC: '/images/music1.png',
     RELATIONSHIP: '/images/relation.png',
-    TRIP: '/images/travel.png',
+    TRIP: '/images/passport.png',
     BEVERAGE: '/images/drink.png',
-    MY: '/images/my.png',
+    CULTURE_LIFE: '/images/drum.png',
+    ME: '/images/aboutme.png',
   }
+
+export const DailyQuestionVideoCategory: Record<
+  DailyQuestionCategoryType,
+  string
+> = {
+  FOOD: '/videos/food.mp4',
+  MUSIC: '/videos/music.mp4',
+  RELATIONSHIP: '/videos/relation.mp4',
+  TRIP: '/videos/passport.mp4',
+  BEVERAGE: '/videos/drink.mp4',
+  CULTURE_LIFE: '/videos/drum.mp4',
+  ME: '/videos/my.mp4',
+}
 
 export interface DailyQuestionReport {
   userId: number

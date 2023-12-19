@@ -8,20 +8,23 @@ import DragDropFriend from '@components/WeeklyQuestion/DragDropFriend'
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd'
 import Loading from '@components/atoms/Loading'
 import { useEffect, useState } from 'react'
-import { FriendsType } from '@utils/apis/friends/FriendsType'
+import { DailyFriendsType } from '@utils/apis/friends/FriendsType'
 
 const EditFriendList = () => {
   const queryClient = useQueryClient()
-  const [friendList, setFriendList] = useState<FriendsType[]>([])
+  const [friendList, setFriendList] = useState<DailyFriendsType[]>([])
   const auth = useRecoilValue(authState)
   const reorderMutation = useMutation(FriendsApi.REORDER_FRIEND_LIST, {
     onSettled: () => {
       queryClient.invalidateQueries(['friendList'])
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['neighborInfo'])
+    },
   })
   const { data, isLoading, isSuccess } = useQuery(
     ['friendList'],
-    FriendsApi.GET_FRIENDS_LIST,
+    FriendsApi.GET_ALL_FRIENDS_LIST,
   )
 
   useEffect(() => {

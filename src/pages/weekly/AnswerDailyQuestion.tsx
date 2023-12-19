@@ -10,6 +10,7 @@ import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
 import { useNavigate } from 'react-router-dom'
 import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
 import { LongInput } from '@components/atoms/Input/LongInput'
+import VideoBox from '@components/WeeklyQuestion/VideoBox'
 
 const AnswerDailyQuestion = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -37,10 +38,10 @@ const AnswerDailyQuestion = () => {
   const handleButtonDisabled = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     //TODO: debounce 이벤트 훅 걸어두기! 꼭!
     const textValue = e.target.value
-    if (textValue.length > 0) {
-      setDisabled(false)
-    } else {
+    if (textValue.length === 0 || textValue.length > 40) {
       setDisabled(true)
+    } else {
+      setDisabled(false)
     }
   }
 
@@ -73,7 +74,7 @@ const AnswerDailyQuestion = () => {
           className="QuestionImg"
           onClick={() => setToggle(false)}
         >
-          <QuestionImg category={question.category} isToggled={toggled} />
+          <VideoBox category={question.category} isToggled={toggled} />
         </div>
         <Spacing variant="default" height={64} />
       </ToggleSection>

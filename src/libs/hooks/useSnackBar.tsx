@@ -4,7 +4,7 @@ import SnackBar from '@components/atoms/SnackBar'
 import StingIcon from '@assets/icons/StingIcon'
 import CompleteIcon from '@assets/icons/CompleteIcon'
 import ErrorIcon from '@assets/icons/ErrorIcon'
-type ToastType = 'success' | 'default' | 'error'
+type ToastType = 'success' | 'info' | 'error'
 
 const useSnackBar = () => {
   const setSnackBar = ({

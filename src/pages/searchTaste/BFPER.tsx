@@ -105,6 +105,7 @@ const BFPER = () => {
           }}
           category="BFPER"
           number={8}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

@@ -90,6 +90,7 @@ const FAACC = () => {
           max={2}
           category="FAACC"
           number={6}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

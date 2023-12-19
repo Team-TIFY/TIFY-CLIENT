@@ -108,6 +108,7 @@ const FEFAS = () => {
           max={2}
           category="FEFAS"
           number={8}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

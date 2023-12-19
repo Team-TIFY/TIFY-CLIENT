@@ -69,6 +69,7 @@ const BMEYE = () => {
           }}
           category="BMEYE"
           number={4}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

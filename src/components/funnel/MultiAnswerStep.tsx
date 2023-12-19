@@ -15,6 +15,7 @@ import useStepNumberIcon from '@libs/hooks/useStepNumberIcon'
 import useSnackBar from '@libs/hooks/useSnackBar'
 
 interface MultiAnswerStepProps {
+  isLastAnswer?: boolean
   category: TasteType
   number: number
   max: number
@@ -26,6 +27,7 @@ const MultiAnswerStep = ({
   number,
   max,
   setNextStep,
+  isLastAnswer = false,
 }: MultiAnswerStepProps) => {
   const { data } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
@@ -149,7 +151,7 @@ const MultiAnswerStep = ({
         onClick={submitAnswer}
         disabled={disabled}
       >
-        다음
+        {isLastAnswer ? '완료' : '다음'}
       </RoundButton>
     </MultiAnswerStepWrapper>
   )

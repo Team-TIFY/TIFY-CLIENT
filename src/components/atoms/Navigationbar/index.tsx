@@ -9,6 +9,7 @@ import NavigationToday from '@assets/icons/NavigationToday'
 import NavigationFriends from '@assets/icons/NavigationFriends'
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
+import { media } from '@styles/theme'
 
 export const Navigationbar = () => {
   const navigate = useNavigate()
@@ -91,9 +92,6 @@ export const Navigationbar = () => {
 const NavContainer = styled.nav`
   position: absolute;
   bottom: 40px;
-  left: 50%;
-  bottom: 40px;
-  transform: translate(-50%, 0);
   box-sizing: border-box;
   z-index: 100;
 `

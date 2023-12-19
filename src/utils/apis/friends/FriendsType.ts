@@ -1,7 +1,9 @@
+import { TasteBoxVariantType } from '../favor/TasteType'
+
 export type FriendRequestType = {
   neighborApplicationId: number
   toUserInfo: {
-    id: 0
+    id: number
     userName: string
     userId: string
     imageUrl: string
@@ -15,9 +17,10 @@ export type FriendRequestType = {
   neighborApplicationStatus: string
 }
 
-export type FriendsType = {
+export type DailyFriendsType = {
   neighborId: number
-  neighborUserId: string
+  neighborUserId: number
+  userId: number
   neighborThumbnail: string
   neighborName: string
   neighborBirth: string
@@ -25,7 +28,20 @@ export type FriendsType = {
   order: number
   updatedAt: string
   viewedAt: string
+  new: boolean
   view: boolean
+}
+
+export type FriendsType = {
+  neighborId: number
+  userId: number
+  neighborThumbnail: string
+  neighborBirth: string
+  neighborName: string
+  userFavorList: TasteBoxVariantType[]
+  onBoardingStatus: string
+  updatedAt: string
+  viewedAt: string
 }
 
 export type NewFriendsType = {
@@ -49,4 +65,15 @@ export type SearchedFriendType = {
   imgUrl: string
   mutualFriends: number
   friend: boolean
+}
+
+export type ReportFriendDataType = {
+  fromUserId: number
+  toUserId: number
+  reportSuccess: boolean
+}
+export type PokeCountType = {
+  fromUserId: number
+  knockedUserId: number
+  knockCount: number
 }

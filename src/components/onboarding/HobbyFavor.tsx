@@ -4,7 +4,6 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { onboardingState } from '@libs/store/onboard'
-import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 interface HobbyFavorProps {
@@ -23,7 +22,7 @@ export function HobbyFavor({ updateMyFavor }: HobbyFavorProps) {
       <FlexBox>
         <CubeButton
           variant={info.favor.includes('HCDIS') ? 'selected' : 'unSelected'}
-          img="/images/cooking.png"
+          img="/images/cup.png"
           text="요리"
           onClick={() => {
             updateMyFavor('HCDIS')

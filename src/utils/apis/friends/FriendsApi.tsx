@@ -3,12 +3,19 @@ import {
   FriendRequestType,
   FriendsType,
   NewFriendsType,
+  ReportFriendDataType,
+  PokeCountType,
   SearchedFriendType,
+  DailyFriendsType,
 } from './FriendsType'
 
 export const FriendsApi = {
+  GET_ALL_FRIENDS_LIST: async (): Promise<DailyFriendsType[]> => {
+    const response = await axiosApi.get(`/users/neighbors`)
+    return response.data.data
+  },
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
-    const response = await axiosApi.get('/users/neighbors')
+    const response = await axiosApi.get('/users/neighbors/favors')
     return response.data.data
   },
 
@@ -67,7 +74,7 @@ export const FriendsApi = {
     return response.data.data
   },
 
-  REPORT_FRIEND: async (id: number) => {
+  REPORT_FRIEND: async (id: number): Promise<ReportFriendDataType> => {
     const response = await axiosApi.post(`/users/report/${id}`)
     return response.data.data
   },
@@ -105,5 +112,29 @@ export const FriendsApi = {
       `/users/neighbors/${neighborId}/views`,
     )
     return response.data
+  },
+  POKE_FRIEND: async ({
+    questionId,
+    userId,
+  }: {
+    questionId: number
+    userId: number
+  }) => {
+    const response = await axiosApi.post(
+      `/${questionId}/answers/${userId}/knock`,
+    )
+    return response.data
+  },
+  POKE_COUNT_MYFRIEND: async ({
+    questionId,
+    userId,
+  }: {
+    questionId: number
+    userId: number
+  }): Promise<PokeCountType> => {
+    const response = await axiosApi.get(
+      `/${questionId}/answers/${userId}/knock/count`,
+    )
+    return response.data.data
   },
 }

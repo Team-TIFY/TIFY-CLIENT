@@ -10,6 +10,7 @@ COPY yarn.lock .yarn .yarnrc.yml ./
 
 COPY . .
 RUN yarn install
+# RUN yarn install --production
 RUN yarn build
 
 # 컨테이너의 3000번 포트를 열어준다.

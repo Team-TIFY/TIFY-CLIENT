@@ -99,6 +99,7 @@ const FEDIG = () => {
           max={2}
           category="FEDIG"
           number={7}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

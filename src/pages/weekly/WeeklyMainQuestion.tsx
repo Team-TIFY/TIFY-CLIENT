@@ -9,13 +9,18 @@ import { questionState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
 import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
 import BottomSheet from '@components/atoms/BottomSheet'
+import useBottomSheet from '@libs/hooks/useBottomSheet'
 import GreetingOnboarding from '@components/onboarding/GreetingOnboarding'
 
 const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
   const [question, setQuestion] = useRecoilState(questionState)
   const navigate = useNavigate()
-
+  const { bottomSheetRef, isBottomSheetOpen } = useBottomSheet({
+    initialState:
+      localStorage.getItem('isOnboardingFavor') === 'true' ? true : false,
+    delaytime: 3200,
+  })
   const handleAnswerQuestion = async () => {
     const data = await WeeklyApi.ALREADY_ANSWERED(question.questionId)
     if (!data) navigate('answer')
@@ -26,18 +31,13 @@ const WeeklyMainQuestion = () => {
 
   return (
     <WeekContainer>
-      {localStorage.getItem('isOnboardingFavor') === 'true' ? (
-        <BottomSheet
-          isexpanded={true}
-          delaytime={3200}
-          isFilter={false}
-          filterType=""
-        >
-          <GreetingOnboarding />
-        </BottomSheet>
-      ) : (
-        ''
-      )}
+      <BottomSheet
+        isexpanded={isBottomSheetOpen}
+        bottomSheetRef={bottomSheetRef}
+      >
+        <GreetingOnboarding />
+      </BottomSheet>
+
       <BackgroundImg />
       <WeekWrapper>
         <Spacing variant="default" height={48} />
@@ -70,6 +70,7 @@ const WeekContainer = styled.div`
   height: calc(100vh - 80px);
   background-color: #2e2159;
   position: relative;
+
   @keyframes fadeIn {
     from {
       opacity: 0;

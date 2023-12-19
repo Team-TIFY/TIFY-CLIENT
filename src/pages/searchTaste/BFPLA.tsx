@@ -92,6 +92,7 @@ const BFPLA = () => {
           }}
           category="BFPLA"
           number={6}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

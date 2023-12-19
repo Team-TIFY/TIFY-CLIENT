@@ -44,7 +44,10 @@ const AllFriends = () => {
 
   const renderCubeFriendsList = () => {
     return isCubeList.value ? (
-      <FriendsListCItem friendsList={friendsList} />
+      <FriendsListCItem
+        friendsList={friendsList}
+        alignLeft={isCubeList.value && friendsList.length % 2 ? true : false}
+      />
     ) : (
       <FriendsListBItem friendsList={friendsList} />
     )
@@ -80,13 +83,8 @@ const AllFriends = () => {
         />
       </FlexBox>
       {friendsList.length ? (
-        <div style={{ width: '360px' }}>
-          <Padding
-            size={[0, 16]}
-            style={{ display: 'flex', justifyContent: 'flex-start' }}
-          >
-            {renderCubeFriendsList()}
-          </Padding>
+        <div style={{ width: isCubeList.value ? '360px' : '100%' }}>
+          <Padding size={[0, 16]}>{renderCubeFriendsList()}</Padding>
           <Spacing height={16} />
         </div>
       ) : (

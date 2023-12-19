@@ -85,6 +85,7 @@ const BMLIP = () => {
           }}
           category="BMLIP"
           number={5}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

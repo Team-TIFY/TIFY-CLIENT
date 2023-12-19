@@ -44,4 +44,8 @@ export const subCategoryTitle: Record<
     title: '문화생활',
     img: '/images/culturalLife.png',
   },
+  DIGITAL_PRODUCT: {
+    title: '패션소품',
+    img: '/images/keyring.png',
+  },
 }

@@ -92,6 +92,7 @@ const FCTOP = () => {
           max={2}
           category="FCTOP"
           number={6}
+          isLastAnswer={true}
         />
       </Funnel.Step>
     </Funnel>

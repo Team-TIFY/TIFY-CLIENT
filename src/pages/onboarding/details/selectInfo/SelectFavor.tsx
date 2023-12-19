@@ -18,10 +18,9 @@ export function SelectFavor() {
   const [btnColor, setBtnColor] = useState(false)
   const [info, setInfo] = useRecoilState(onboardingState)
   const [auth, setAuth] = useRecoilState(authState)
-  const [isOnboard, setIsOnboardFavor] = useRecoilState(IsOnboard)
   const navigate = useNavigate()
   useEffect(() => {
-    if (info.favor.length !== 0) {
+    if (info.favor.length === 3) {
       setBtnColor(true)
     } else {
       setBtnColor(false)
@@ -109,12 +108,11 @@ const TextWrap = styled.div`
 `
 
 const BottomSticker = styled.div`
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  bottom: 32px;
+  position: fixed;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  bottom: 32px;
+  left: 0;
+  height: 3rem;
+  width: 100%;
 `
