@@ -3,12 +3,19 @@ import { processTagAnswerData } from './processTagAnswerData'
 
 export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
   return userTagData.map((tag) => {
-    const answerData: { number: number; answer: string }[] = []
+    const answerData: {
+      smallCategory: unknown
+      detailCategory: unknown
+      number: number
+      answer: string
+    }[] = []
 
     if (tag.smallCategory === 'MAKEUP') {
       tag.answerContentList.map((answer) => {
         if (answer.detailCategory === 'LIP') {
           processTagAnswerData(
+            tag.smallCategory,
+            answer.detailCategory,
             answer.number,
             [2, 3, 4, 5],
             true,
@@ -26,6 +33,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
         tag.answerContentList.map((answer) => {
           if (answer.detailCategory === 'PERFUME') {
             processTagAnswerData(
+              tag.smallCategory,
+              answer.detailCategory,
               answer.number,
               [1, 4],
               false,
@@ -34,6 +43,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             )
           } else if (answer.detailCategory === 'MOISTURE') {
             processTagAnswerData(
+              tag.smallCategory,
+              answer.detailCategory,
               answer.number,
               [1],
               false,
@@ -42,6 +53,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             )
           } else if (answer.detailCategory === 'PLACE') {
             processTagAnswerData(
+              tag.smallCategory,
+              answer.detailCategory,
               answer.number,
               [2],
               true,
@@ -49,6 +62,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               answerData,
             )
             processTagAnswerData(
+              tag.smallCategory,
+              answer.detailCategory,
               answer.number,
               [3],
               false,
@@ -61,6 +76,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
         tag.answerContentList.map((answer) => {
           if (answer.detailCategory === 'PERFUME') {
             processTagAnswerData(
+              tag.smallCategory,
+              answer.detailCategory,
               answer.number,
               [1, 4],
               true,
@@ -69,6 +86,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             )
           } else if (answer.detailCategory === 'MOISTURE') {
             processTagAnswerData(
+              tag.smallCategory,
+              answer.detailCategory,
               answer.number,
               [1],
               true,
@@ -77,6 +96,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             )
           } else if (answer.detailCategory === 'PLACE') {
             processTagAnswerData(
+              tag.smallCategory,
+              answer.detailCategory,
               answer.number,
               [2, 3],
               true,
@@ -89,6 +110,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
     } else if (tag.smallCategory === 'CLOTHES') {
       tag.answerContentList.map((answer) => {
         processTagAnswerData(
+          tag.smallCategory,
+          answer.detailCategory,
           answer.number,
           [1, 2, 6],
           true,
@@ -99,6 +122,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
     } else if (tag.smallCategory === 'FASHION_PRODUCT') {
       tag.answerContentList.map((answer) => {
         processTagAnswerData(
+          tag.smallCategory,
+          answer.detailCategory,
           answer.number,
           [2, 3, 4, 6, 8],
           false,
@@ -116,6 +141,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             : answer.answerContent
 
         processTagAnswerData(
+          tag.smallCategory,
+          answer.detailCategory,
           answer.number,
           [1, 2, 5, 3, 4],
           true,
@@ -123,6 +150,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
           answerData,
         )
         processTagAnswerData(
+          tag.smallCategory,
+          answer.detailCategory,
           answer.number,
           [7],
           true,
@@ -139,6 +168,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
     } else if (tag.smallCategory === 'BAG') {
       tag.answerContentList.map((answer) => {
         processTagAnswerData(
+          tag.smallCategory,
+          answer.detailCategory,
           answer.number,
           [1, 2, 4],
           true,
@@ -156,6 +187,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
       tag.answerContentList.map((answer) => {
         if (answer.detailCategory === 'ACCESSORY') {
           processTagAnswerData(
+            tag.smallCategory,
+            answer.detailCategory,
             answer.number,
             [5, 6],
             true,
@@ -168,6 +201,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
       tag.answerContentList.map((answer) => {
         if (answer.detailCategory === 'DISH') {
           processTagAnswerData(
+            tag.smallCategory,
+            answer.detailCategory,
             answer.number,
             [1, 3, 5],
             true,
@@ -176,6 +211,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
           )
         } else if (answer.detailCategory === 'CUP') {
           processTagAnswerData(
+            tag.smallCategory,
+            answer.detailCategory,
             answer.number,
             [2, 4],
             true,
@@ -188,6 +225,8 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
       tag.answerContentList.map((answer) => {
         if (answer.detailCategory === 'EXERCISE') {
           processTagAnswerData(
+            tag.smallCategory,
+            answer.detailCategory,
             answer.number,
             [2, 4, 5, 6],
             true,
