@@ -27,6 +27,7 @@ import { friendState } from '@libs/store/friend'
 import { authState } from '@libs/store/auth'
 import { profileState } from '@libs/store/profile'
 import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+import { useParams } from 'react-router-dom'
 
 const selectedProps: SelectedProps = [
   { id: 1, active: false, name: '메이크업', value: 'MAKEUP', count: 0 },
@@ -60,8 +61,8 @@ export type SelectedPropType = {
 }
 
 export type ProfilePropsType<T extends UserInfo> = {
-  friendData?: T
-  friendId?: T extends UserInfo ? number : undefined
+  userData?: T
+  userId?: T extends UserInfo ? number : undefined
   addFriend?: boolean
 }
 
@@ -73,13 +74,15 @@ type MenuButtonType = {
 }
 
 const Profile = ({
-  friendData,
-  friendId,
+  userData,
+  userId,
   addFriend = false,
 }: ProfilePropsType<UserInfo>) => {
   const auth = useRecoilValue(authState)
   const profileStateData = useRecoilValue(profileState)
   const friendStateData = useRecoilValue(friendState)
+
+  const params = useParams()
 
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
   const [userTagCountSumData, setUserTagCountSumData] = useState<number>(0)
@@ -151,10 +154,10 @@ const Profile = ({
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
   useEffect(() => {
-    if (friendId) {
-      updateFriendProfileViewTimeMutate(friendId)
+    if (userId) {
+      updateFriendProfileViewTimeMutate(userId)
     }
-  }, [friendId])
+  }, [userId])
 
   useEffect(() => {
     // 메뉴 버튼 오픈 시 스크롤 금지
@@ -176,11 +179,11 @@ const Profile = ({
     setIsEdit(false)
   }, [])
 
-  const { data: userData = {} as UserInfo } = useQuery(
+  const { data: myData = {} as UserInfo } = useQuery(
     ['userProfile', auth.userProfile.id],
     () => UserApi.GET_USER_INFO(auth.userProfile.id),
     {
-      enabled: !friendData,
+      enabled: !userData,
     },
   )
 
@@ -196,16 +199,15 @@ const Profile = ({
   }
 
   const { data: userTagData = [] } = useQuery(
-    [
-      'filteredUserTag',
-      selectedTags,
-      !friendData ? auth.userProfile.id : friendId,
-    ],
+    ['filteredUserTag', selectedTags, !userData ? auth.userProfile.id : userId],
     () =>
       UserApi.GET_USER_TAG(
-        !friendData ? auth.userProfile.id : (friendId as number),
+        !userData ? auth.userProfile.id : (userId as number),
         getSmallCategoryData(selectedTags),
       ),
+    {
+      enabled: !!userId || !params?.id,
+    },
   )
 
   useEffect(() => {
@@ -230,7 +232,7 @@ const Profile = ({
     return menu.type === 'cutOffFriend' ||
       menu.type === 'block' ||
       menu.type === 'cancelBlock'
-      ? friendData?.userId
+      ? userData?.userId
       : undefined
   }
 
@@ -238,7 +240,7 @@ const Profile = ({
     return menu.type === 'cutOffFriend' ||
       menu.type === 'block' ||
       menu.type === 'cancelBlock'
-      ? friendData?.thumbnail
+      ? userData?.thumbnail
       : undefined
   }
 
@@ -250,7 +252,7 @@ const Profile = ({
             <Dimmer dimmerRef={menu.ref} onClick={menu.close} />
             <ProfileMenuButtons
               type={menu.type as ProfileButtonVariant}
-              friendId={friendId}
+              friendId={userId}
               friendUserId={getFriendUserId(menu)}
               friendImageUrl={getFriendImageUrl(menu)}
             />
@@ -259,55 +261,55 @@ const Profile = ({
     )
   }
 
+  const renderFilterAndTagItem = () => {
+    if (addFriend) {
+      console.log(1)
+      return <Spacing height={24} />
+    } else if (userData || myData) {
+      console.log(2)
+      return (
+        <>
+          <Spacing height={32} />
+          <FilterWrapper>
+            {userTagCountSumData ? (
+              <Filter
+                selectedTags={selectedTags}
+                setSelectedTags={setSelectedTags}
+                selectedProps={selectedProps}
+              />
+            ) : null}
+          </FilterWrapper>
+          <Spacing height={20} />
+          <UserTagDataListItem
+            selectedProps={selectedProps}
+            userTagData={userTagData}
+            isFriend={false}
+          />
+        </>
+      )
+    } else {
+      console.log(3)
+      return <Spacing height={24} />
+    }
+  }
+
   return (
     <>
       <ProfileImage
         favorList={
-          friendId
-            ? (friendData?.userFavorList as TasteBoxVariantType[])
-            : userData.userFavorList
+          userId
+            ? (userData?.userFavorList as TasteBoxVariantType[])
+            : myData.userFavorList
         }
       />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>
           <ProfileHeader
-            userData={friendData ? friendData : userData}
+            userData={userData ? userData : myData}
             addFriend={addFriend}
           />
-          {!addFriend ? (
-            !friendId ? (
-              <>
-                <Spacing height={32} />
-                <FilterWrapper>
-                  {userTagCountSumData ? (
-                    <Filter
-                      selectedTags={selectedTags}
-                      setSelectedTags={setSelectedTags}
-                      selectedProps={selectedProps}
-                    />
-                  ) : null}
-                </FilterWrapper>
-                <Spacing height={20} />
-                <UserTagDataListItem
-                  selectedProps={selectedProps}
-                  userTagData={userTagData}
-                  isFriend={false}
-                />
-              </>
-            ) : (
-              <>
-                <Spacing height={24} />
-                <UserTagDataListItem
-                  selectedProps={selectedProps}
-                  userTagData={userTagData}
-                  isFriend={friendData?.friend ?? false}
-                />
-              </>
-            )
-          ) : (
-            <Spacing height={24} />
-          )}
+          {renderFilterAndTagItem()}
         </ProfileWrapper>
       </Padding>
       <Spacing height={64} />

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { Checkbox } from './Checkbox'
@@ -6,7 +5,6 @@ import { Text } from '../../../components/atoms/Text'
 import { Vector } from '../../../assets/icons/Vector'
 import { useRecoilState } from 'recoil'
 import { onboardingPageState } from '../../../libs/store/onboard'
-import { FlexBox } from './../../../components/layouts/FlexBox'
 import { RoundButton } from './../../../components/atoms/RoundButton/index'
 import { theme } from '@styles/theme'
 
