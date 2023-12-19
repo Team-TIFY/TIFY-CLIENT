@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
 import styled from '@emotion/styled'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
 import SortItem from './bottomsheet/SortItem'
-import { useRecoilValue } from 'recoil'
-import { FilterState, PriceState } from '@libs/store/present'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { FilterState, isFilterTypeState, PriceState } from '@libs/store/present'
 import PriceFilter from './bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 import { theme } from '@styles/theme'
@@ -19,8 +18,11 @@ import clothesNull from '@assets/image/clothesNull.svg'
 import fashionNull from '@assets/image/fashionNull.svg'
 import bagNull from '@assets/image/bagNull.svg'
 import accessoryNull from '@assets/image/accessoryNull.svg'
+import digitalNull from '@assets/image/digitalNull.svg'
 import cookingNull from '@assets/image/cookingNull.svg'
 import exerciseNull from '@assets/image/exerciseNull.svg'
+import BottomSheet from '@components/atoms/BottomSheet'
+import useBottomSheet from '@libs/hooks/useBottomSheet'
 
 type DataType = {
   productId: number
@@ -39,7 +41,7 @@ function PresentRecommend() {
     { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE' },
     { id: 3, active: false, name: '의류', value: 'CLOTHES' },
     { id: 4, active: false, name: '패션소품', value: 'FASHION_PRODUCT' },
-    // { id: 5, active: false, name: '디지털 소품', value: 'DIGITAL_PRODUCT' },
+    { id: 5, active: false, name: '디지털 소품', value: 'DIGITAL_PRODUCT' },
     { id: 6, active: false, name: '가방', value: 'BAG' },
     { id: 7, active: false, name: '액세사리', value: 'ACCESSORY' },
     { id: 8, active: false, name: '요리', value: 'COOKING' },
@@ -49,7 +51,8 @@ function PresentRecommend() {
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
   const [products, setProducts] = useState<DataType[]>([])
-  const [isSortOpen, setIsSortOpen] = useState<string>('')
+  const outsideRef = useRef()
+  const [isSortOpen, setIsSortOpen] = useRecoilState<string>(isFilterTypeState)
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
 
@@ -62,10 +65,6 @@ function PresentRecommend() {
   const allCategoriesString = selectedProps
     .map((category) => `${category.value}`)
     .join(',')
-
-  const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
-    setIsSortOpen(''),
-  )
 
   const gotoSite = (siteUrl: string) => {
     window.open(`${siteUrl}`)
@@ -83,6 +82,8 @@ function PresentRecommend() {
         return fragranceNull
       case 'CLOTHES':
         return clothesNull
+      case 'DIGITAL_PRODUCT':
+        return digitalNull
       case 'FASHION_PRODUCT':
         return fashionNull
       case 'BAG':
@@ -113,6 +114,24 @@ function PresentRecommend() {
     })
   }, [selectedTags, selectedFilter.filter, selectedPrice.price])
 
+  const handleFilterClick = () => {
+    setIsSortOpen('filter')
+    openBottomSheet()
+  }
+
+  const handlePriceClick = () => {
+    setIsSortOpen('price')
+    openBottomSheet()
+  }
+
+  const {
+    bottomSheetRef,
+    isBottomSheetOpen,
+    openBottomSheet,
+    closeBottomSheet,
+  } = useBottomSheet({
+    initialState: false,
+  })
   return (
     <>
       <FilterWrapper>
@@ -124,7 +143,7 @@ function PresentRecommend() {
       </FilterWrapper>
       <ContainerFix>
         <FilterItemWrap>
-          <RecommendFilter onClick={() => setIsSortOpen('filter')}>
+          <RecommendFilter onClick={handleFilterClick}>
             <ItemFilter />
             <Margin widthProps={2} />
             <Text
@@ -134,7 +153,7 @@ function PresentRecommend() {
             />
           </RecommendFilter>
           <Margin widthProps={12} />
-          <RecommendFilter onClick={() => setIsSortOpen('price')}>
+          <RecommendFilter onClick={handlePriceClick}>
             <PriceFilterIcon />
             <Margin widthProps={2} />
             <Text
@@ -186,18 +205,17 @@ function PresentRecommend() {
           </SortItemWrap>
         )}
       </Container>
-      {isSortOpen === 'filter' && (
-        <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-          <SortItem />
-        </>
-      )}
-      {isSortOpen === 'price' && (
-        <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-          <PriceFilter />
-        </>
-      )}
+      <>
+        <BottomSheet
+          isexpanded={isBottomSheetOpen}
+          filterType={isSortOpen}
+          bottomSheetRef={bottomSheetRef}
+        >
+          {isSortOpen === 'filter' && <SortItem />}
+          {isSortOpen === 'price' && <PriceFilter />}
+        </BottomSheet>
+      </>
+      <BottomSpacing />
     </>
   )
 }
@@ -273,4 +291,8 @@ const ItemImg = styled.div<{ imageUrl: string }>`
   background-size: cover;
   border-radius: 8px;
   margin-bottom: 8px;
+`
+const BottomSpacing = styled.div`
+  width: 100%;
+  height: 56px;
 `

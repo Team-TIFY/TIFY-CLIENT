@@ -9,11 +9,13 @@ import { onboardingPageState } from '../../../libs/store/onboard'
 import { FlexBox } from './../../../components/layouts/FlexBox'
 import { RoundButton } from './../../../components/atoms/RoundButton/index'
 import { theme } from '@styles/theme'
+import { useNavigate } from 'react-router-dom'
 
 export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([])
   const [goNext, setGoNext] = useRecoilState(onboardingPageState)
   const [btnColor, setBtnColor] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   const checkAll = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.checked
@@ -53,7 +55,7 @@ export function Agreement() {
       <TextWrap>
         <Text
           children="TIFY 이용약관에 동의해 주세요"
-          typo="SCD_Headline_20"
+          typo="SCD_Headline_20B"
           color="gray_100"
         />
       </TextWrap>
@@ -103,7 +105,7 @@ export function Agreement() {
           onChange={check}
           checked={checkList.includes('community') ? true : false}
         />
-        <Vector linkUrl="9e75acf1487c481a9fe818754198b73a" />
+        <Vector linkUrl="78b9ea114e8a4fc88baa99d0072ed2be" />
       </CheckDiv>
       <BottomSticker>
         <RoundButton

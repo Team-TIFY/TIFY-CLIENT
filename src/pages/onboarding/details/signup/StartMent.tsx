@@ -16,13 +16,13 @@ export function StartMent() {
       <TextWrap>
         <Text
           children="TIFY를 시작해 볼까요?"
-          typo="SCD_Headline_20"
+          typo="SCD_Headline_20B"
           color="gray_100"
         />
       </TextWrap>
       <SmallText>
-        {infoPage.info.name ? (
-          infoPage.info.userId ? (
+        {infoPage.info.username ? (
+          infoPage.info.id ? (
             infoPage.info.birth ? (
               <Step4 />
             ) : (
@@ -37,8 +37,8 @@ export function StartMent() {
         <SmallWrap>
           <Text
             children={
-              infoPage.info.name
-                ? infoPage.info.userId
+              infoPage.info.username
+                ? infoPage.info.id
                   ? infoPage.info.birth
                     ? '성별을 알려주세요'
                     : '생년월일을 알려주세요'
