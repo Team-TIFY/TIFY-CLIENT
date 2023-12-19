@@ -8,10 +8,17 @@ import { EditHobbyFavor } from '@pages/profile/editfavorBox/EditHobbyFavor'
 import { EditFashionFavor } from '@pages/profile/editfavorBox/EditFashionFavor'
 import { EditBeautyFavor } from '@pages/profile/editfavorBox/EditBeautyFavor'
 import styled from '@emotion/styled'
+import { useMutation } from '@tanstack/react-query'
+import { useRecoilValue } from 'recoil'
+import { authState } from '@libs/store/auth'
+import { parseFavorBox } from '@utils/parseFavorBox'
+import { UserApi } from '@utils/apis/user/UserApi'
 
 const EditFavorBox = () => {
+  const auth = useRecoilValue(authState)
   const [favorList, setFavorList] = useState<TasteType[]>([])
   const [disabled, setDisabled] = useState(true)
+  const EditFavorBoxMutation = useMutation(UserApi.EDIT_FAVOR_BOX)
   useEffect(() => {
     if (favorList.length === 3) {
       setDisabled(false)
@@ -62,7 +69,10 @@ const EditFavorBox = () => {
           children="다음"
           disabled={disabled}
           onClick={() => {
-            console.log('수정')
+            EditFavorBoxMutation.mutate({
+              userId: auth.userProfile.id,
+              favorList: favorList.map((data) => parseFavorBox(data)),
+            })
           }}
         />
       </BottomSticker>

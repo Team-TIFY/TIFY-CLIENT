@@ -6,6 +6,7 @@ export interface OnboardRequest {
   birth: string
   gender: string
   onBoardingState: string
+  userFavorDtoList: string[]
 }
 
 export interface OnboardingType {
