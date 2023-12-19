@@ -9,8 +9,7 @@ import DropIcon from '@assets/icons/DropIcon'
 import EarphoneIcon from '@assets/icons/EarphoneIcon'
 import FlareIcon from '@assets/icons/FlareIcon'
 import HangerIcon from '@assets/icons/HangerIcon'
-import HatPinkIcon from '@assets/icons/HatPinkIcon'
-import HatPurpleIcon from '@assets/icons/HatPurpleIcon'
+import HatIcon from '@assets/icons/HatIcon'
 import HouseIcon from '@assets/icons/HouseIcon'
 import LaptopIcon from '@assets/icons/LaptopIcon'
 import MittenIcon from '@assets/icons/MittenIcon'
@@ -66,8 +65,8 @@ export const tagIconData: Record<
   },
   FASHION_PRODUCT: {
     FAS_PRODUCT: {
-      2: HatPurpleIcon,
-      3: HatPinkIcon,
+      2: HatIcon,
+      3: HatIcon,
       4: WalletIcon,
       6: ScarfIcon,
       8: MittenIcon,
