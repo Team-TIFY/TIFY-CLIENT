@@ -4,11 +4,7 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import {
-  isBtnColorState,
-  onboardingState,
-  IsOnboard,
-} from '@libs/store/onboard'
+import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
@@ -17,6 +13,7 @@ import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { authState } from '@libs/store/auth'
 import { favorPriority } from '@libs/store/priority'
 import { useNavigate } from 'react-router-dom'
+import { parseFavorBox } from '@utils/parseFavorBox'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
@@ -50,9 +47,14 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
+      console.log(rest)
+      console.log(favor)
       OnboardingApi.PUT_ONBOARD_STATUS({
         userId: auth.userProfile.id,
-        data: rest,
+        data: {
+          ...rest,
+          userFavorDtoList: favor.map((data) => parseFavorBox(data)),
+        },
       })
       const favorWithPriority = favorPriority.filter((data) =>
         info.favor.includes(data.taste),
