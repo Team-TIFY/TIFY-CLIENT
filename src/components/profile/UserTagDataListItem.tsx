@@ -23,13 +23,16 @@ export const UserTagDataListItem = ({
   userTagData,
   isFriend,
 }: UserTagDataProps) => {
+  console.log(selectedTags)
   const renderUserTagDataListItem = () => {
-    console.log(getTagAnswerData(userTagData))
-
     return getTagAnswerData(userTagData)?.map((tag, idx) => (
       <Category
         key={idx}
-        categoryName={selectedProps[idx]?.name}
+        categoryName={
+          selectedTags.length
+            ? selectedTags[idx]?.name
+            : selectedProps[idx].name
+        }
         children={tag.map((tagData, index) => (
           <Tag
             key={index}
