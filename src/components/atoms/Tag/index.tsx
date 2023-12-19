@@ -8,6 +8,7 @@ type TagPropsType = {
   iconIndex: number
   smallCategory: any
   detailCategory: any
+  answerNumber: number
 }
 
 type TagVariant = 'main' | 'dark'
@@ -80,12 +81,18 @@ export const Tag = ({
   iconIndex,
   smallCategory,
   detailCategory,
+  answerNumber,
 }: TagPropsType) => {
   const IconComponent = tagIconData[smallCategory][detailCategory][iconIndex]
 
   return (
     <Wrapper
-      tagVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant}
+      tagVariant={
+        (smallCategory === 'MAKEUP' && answerNumber === 5) ||
+        (smallCategory === 'EXERCISE' && answerNumber === 6)
+          ? 'dark'
+          : TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant
+      }
       colorVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].color}
     >
       <>

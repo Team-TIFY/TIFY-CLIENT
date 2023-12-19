@@ -33,11 +33,12 @@ export const UserTagDataListItem = ({
             children={tag.map((tagData, index) => (
               <Tag
                 key={index}
-                colorIndex={(index % 6) as ColorIndexVariant}
+                colorIndex={(index % 3) as ColorIndexVariant}
                 iconIndex={tagData.number}
                 children={tagData.answer}
                 smallCategory={tagData.smallCategory}
                 detailCategory={tagData.detailCategory}
+                answerNumber={tagData.number}
               />
             ))}
             isFriend={isFriend}
