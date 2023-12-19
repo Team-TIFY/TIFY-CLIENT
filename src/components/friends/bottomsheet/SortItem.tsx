@@ -1,4 +1,5 @@
 import { PurpleCheck } from '@assets/icons/PurpleCheck'
+import BottomSheetBar from '@components/atoms/BottomSheet/BottomSheetBar'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
@@ -14,61 +15,64 @@ function SortItem() {
   }
 
   return (
-    <BottomSticker>
-      <Container>
-        <Wrap>
-          <Text typo="Subhead_16" children="정렬 기준" color="gray_100" />
-        </Wrap>
-        <Sort
-          onClick={() =>
-            handleSortClick({
-              filter: '추천순',
-              filterValue: 'DEFAULT',
-            })
-          }
-          isselected={selected.filter === '추천순'}
-        >
-          추천순
-          {selected.filter === '추천순' && (
-            <>
-              <PurpleCheck />
-            </>
-          )}
-        </Sort>
-        <Sort
-          onClick={() =>
-            handleSortClick({
-              filter: '가격낮은순',
-              filterValue: 'PRICE_ASC',
-            })
-          }
-          isselected={selected.filter === '가격낮은순'}
-        >
-          가격낮은순
-          {selected.filter === '가격낮은순' && (
-            <>
-              <PurpleCheck />
-            </>
-          )}
-        </Sort>
-        <Sort
-          onClick={() =>
-            handleSortClick({
-              filter: '가격높은순',
-              filterValue: 'PRICE_DESC',
-            })
-          }
-          isselected={selected.filter === '가격높은순'}
-        >
-          가격높은순
-          {selected.filter === '가격높은순' && (
-            <>
-              <PurpleCheck />
-            </>
-          )}
-        </Sort>
-      </Container>
-    </BottomSticker>
+    <>
+      <BottomSheetBar />
+      <BottomSticker>
+        <Container>
+          <Wrap>
+            <Text typo="Subhead_16" children="정렬 기준" color="gray_100" />
+          </Wrap>
+          <Sort
+            onClick={() =>
+              handleSortClick({
+                filter: '추천순',
+                filterValue: 'DEFAULT',
+              })
+            }
+            isselected={selected.filter === '추천순'}
+          >
+            추천순
+            {selected.filter === '추천순' && (
+              <>
+                <PurpleCheck />
+              </>
+            )}
+          </Sort>
+          <Sort
+            onClick={() =>
+              handleSortClick({
+                filter: '가격낮은순',
+                filterValue: 'PRICE_ASC',
+              })
+            }
+            isselected={selected.filter === '가격낮은순'}
+          >
+            가격낮은순
+            {selected.filter === '가격낮은순' && (
+              <>
+                <PurpleCheck />
+              </>
+            )}
+          </Sort>
+          <Sort
+            onClick={() =>
+              handleSortClick({
+                filter: '가격높은순',
+                filterValue: 'PRICE_DESC',
+              })
+            }
+            isselected={selected.filter === '가격높은순'}
+          >
+            가격높은순
+            {selected.filter === '가격높은순' && (
+              <>
+                <PurpleCheck />
+              </>
+            )}
+          </Sort>
+        </Container>
+      </BottomSticker>
+    </>
   )
 }
 

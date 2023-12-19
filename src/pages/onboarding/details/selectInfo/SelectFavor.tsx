@@ -26,6 +26,7 @@ export function SelectFavor() {
       setBtnColor(false)
     }
   })
+  console.log(info)
 
   const updateMyFavor = (favorType: string) => {
     if (info.favor.includes(favorType)) {
