@@ -40,9 +40,15 @@ export type UserTag = {
   }[]
 }
 
+export type answerContentType = {
+  detailCategory: string
+  number: number
+  answerContent: string
+}
+
 export type FilteredUserTag = {
   smallCategory: SubCategoryType
-  answerContentList: string[]
+  answerContentList: answerContentType[]
 }
 
 export type SelectedTag = {
@@ -87,13 +93,11 @@ export type SubCategoryType =
   | 'FRAGRANCE'
   | 'CLOTHES'
   | 'FASHION_PRODUCT'
+  | 'DIGITAL_PRODUCT'
   | 'BAG'
   | 'ACCESSORY'
   | 'COOKING'
   | 'EXERCISE'
-  | 'TRAVEL'
-  | 'CULTURE_LIFE'
-  | 'DIGITAL_PRODUCT'
 
 export type CategoryType = 'BEAUTY' | 'FASHION' | 'HOBBY'
 
@@ -102,13 +106,11 @@ export type SubCategoryName =
   | '프레그런스'
   | '의류'
   | '패션소품'
+  | '디지털소품'
   | '가방'
   | '액세사리'
   | '요리'
   | '운동'
-  | '여행'
-  | '문화생활'
-  | '디지털 소품'
 
 export type EditUserProfileDataType = {
   username: string

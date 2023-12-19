@@ -2,39 +2,49 @@ import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Category } from '@components/atoms/Category'
-import { indexVariant, Tag } from '@components/atoms/Tag'
-import {
-  FilteredUserTag,
-  SelectedProps,
-  SelectedTag,
-} from '@utils/apis/user/UserType'
+import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
+import { FilteredUserTag, SelectedProps } from '@utils/apis/user/UserType'
+import { getTagAnswerData } from '@utils/getTagAnswerData'
 
 export interface UserTagDataProps {
-  selectedTags: SelectedTag[]
   selectedProps: SelectedProps
   userTagData: FilteredUserTag[]
   isFriend: boolean
 }
 
 export const UserTagDataListItem = ({
-  selectedTags,
   selectedProps,
   userTagData,
   isFriend,
 }: UserTagDataProps) => {
   const renderUserTagDataListItem = () => {
-    return userTagData.map((tag, idx) =>
-      tag.answerContentList?.length ? (
-        <Category
-          key={idx}
-          categoryName={selectedProps[idx]?.name}
-          children={tag?.answerContentList?.map((tagData, index) => (
-            <Tag key={index} index={index as indexVariant} children={tagData} />
-          ))}
-          isFriend={isFriend}
-        />
-      ) : null,
-    )
+    return getTagAnswerData(userTagData)
+      ?.filter((tag) => tag.length !== 0)
+      ?.map((tag, idx) => {
+        const matchingProp = selectedProps.find(
+          (selectedProp) => selectedProp.value === tag[0]?.smallCategory,
+        )
+        const categoryName = matchingProp ? matchingProp.name : ''
+
+        return (
+          <Category
+            key={idx}
+            categoryName={categoryName}
+            children={tag.map((tagData, index) => (
+              <Tag
+                key={index}
+                colorIndex={(index % 3) as ColorIndexVariant}
+                iconIndex={tagData.number}
+                children={tagData.answer}
+                smallCategory={tagData.smallCategory}
+                detailCategory={tagData.detailCategory}
+                answerNumber={tagData.number}
+              />
+            ))}
+            isFriend={isFriend}
+          />
+        )
+      })
   }
 
   return (

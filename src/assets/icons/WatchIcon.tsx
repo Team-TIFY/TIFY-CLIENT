@@ -1,6 +1,6 @@
 import { KeyOfPalette, theme } from '@styles/theme'
 
-const SizeIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
+const WatchIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
   return (
     <svg
       width="16"
@@ -9,10 +9,10 @@ const SizeIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="icon-tag-16" clipPath="url(#clip0_4856_10324)">
+      <g id="icon-tag-16" clipPath="url(#clip0_5012_7070)">
         <path
           id="Vector"
-          d="M11.3333 2L14 4.66667L4.66667 14L2 11.3333L11.3333 2Z"
+          d="M4 6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H10C10.5304 4 11.0391 4.21071 11.4142 4.58579C11.7893 4.96086 12 5.46957 12 6V10C12 10.5304 11.7893 11.0391 11.4142 11.4142C11.0391 11.7893 10.5304 12 10 12H6C5.46957 12 4.96086 11.7893 4.58579 11.4142C4.21071 11.0391 4 10.5304 4 10V6Z"
           stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
@@ -20,7 +20,7 @@ const SizeIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
         />
         <path
           id="Vector_2"
-          d="M10.666 4.6665L9.66602 3.6665"
+          d="M6 12V14H10V12"
           stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
@@ -28,23 +28,7 @@ const SizeIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
         />
         <path
           id="Vector_3"
-          d="M8.66602 6.6665L7.66602 5.6665"
-          stroke={theme.palette[fill]}
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          id="Vector_4"
-          d="M6.66602 8.6665L5.66602 7.6665"
-          stroke={theme.palette[fill]}
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          id="Vector_5"
-          d="M4.66602 10.6665L3.66602 9.6665"
+          d="M6 4V2H10V4"
           stroke={theme.palette[fill]}
           strokeWidth="1.2"
           strokeLinecap="round"
@@ -52,7 +36,7 @@ const SizeIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
         />
       </g>
       <defs>
-        <clipPath id="clip0_4856_10324">
+        <clipPath id="clip0_5012_7070">
           <rect width="16" height="16" fill="white" />
         </clipPath>
       </defs>
@@ -60,4 +44,4 @@ const SizeIcon = ({ fill = 'aqua_500' }: { fill?: KeyOfPalette }) => {
   )
 }
 
-export default SizeIcon
+export default WatchIcon
