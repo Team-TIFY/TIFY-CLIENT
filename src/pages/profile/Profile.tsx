@@ -227,10 +227,6 @@ const Profile = ({
     }
   }, [userTagData])
 
-  useEffect(() => {
-    getTagAnswerData([])
-  }, [])
-
   const getFriendUserId = (menu: MenuButtonType) => {
     return menu.type === 'cutOffFriend' ||
       menu.type === 'block' ||

@@ -2,12 +2,13 @@ import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Category } from '@components/atoms/Category'
-import { indexVariant, Tag } from '@components/atoms/Tag'
+import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
 import {
   FilteredUserTag,
   SelectedProps,
   SelectedTag,
 } from '@utils/apis/user/UserType'
+import { getTagAnswerData } from '@utils/getTagAnswerData'
 
 export interface UserTagDataProps {
   selectedTags: SelectedTag[]
@@ -23,18 +24,23 @@ export const UserTagDataListItem = ({
   isFriend,
 }: UserTagDataProps) => {
   const renderUserTagDataListItem = () => {
-    return userTagData.map((tag, idx) =>
-      tag.answerContentList?.length ? (
-        <Category
-          key={idx}
-          categoryName={selectedProps[idx]?.name}
-          children={tag?.answerContentList?.map((tagData, index) => (
-            <Tag key={index} index={index as indexVariant} children={tagData} />
-          ))}
-          isFriend={isFriend}
-        />
-      ) : null,
-    )
+    console.log(getTagAnswerData(userTagData))
+
+    return getTagAnswerData(userTagData)?.map((tag, idx) => (
+      <Category
+        key={idx}
+        categoryName={selectedProps[idx]?.name}
+        children={tag.map((tagData, index) => (
+          <Tag
+            key={index}
+            colorIndex={(index % 6) as ColorIndexVariant}
+            iconIndex={tagData.number}
+            children={tagData.answer}
+          />
+        ))}
+        isFriend={isFriend}
+      />
+    ))
   }
 
   return (

@@ -2,7 +2,7 @@ import { FilteredUserTag } from './apis/user/UserType'
 import { processTagAnswerData } from './processTagAnswerData'
 
 export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
-  userTagData.map((tag) => {
+  return userTagData.map((tag) => {
     const answerData: { number: number; answer: string }[] = []
 
     if (tag.smallCategory === 'MAKEUP') {
@@ -197,5 +197,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
         }
       })
     }
+
+    return answerData
   })
 }

@@ -74,7 +74,7 @@ const Heading = styled.div`
 
 const TagWrapper = styled.div`
   width: 100%;
-  height: 76px;
+  height: fit-content;
   margin-bottom: 24px;
   display: flex;
   flex-wrap: wrap;
