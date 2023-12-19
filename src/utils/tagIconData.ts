@@ -32,10 +32,11 @@ import WalletIcon from '@assets/icons/WalletIcon'
 import WandIcon from '@assets/icons/WandIcon'
 import WatchIcon from '@assets/icons/WatchIcon'
 import WindIcon from '@assets/icons/WindIcon'
+import { KeyOfPalette } from '@styles/theme/theme'
 
 export const tagIconData: Record<
   any,
-  Record<any, Record<number, () => JSX.Element>>
+  Record<any, Record<number, React.FC<{ fill: KeyOfPalette }>>>
 > = {
   MAKEUP: {
     LIP: {

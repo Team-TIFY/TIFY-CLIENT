@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
+import { KeyOfPalette, theme } from '@styles/theme'
 import { tagIconData } from '@utils/tagIconData'
 
 type TagPropsType = {
@@ -93,7 +93,10 @@ export const Tag = ({
           TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant ===
             'main' && (
             <IconComponent
-              fill={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant]?.iconColor}
+              fill={
+                TAG_COLOR_TYPE[colorIndex as ColorIndexVariant]
+                  ?.iconColor as KeyOfPalette
+              }
             />
           )}
         {children}
