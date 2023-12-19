@@ -14,7 +14,7 @@ export type ProfileBoxProps = {
 
 const ProfileBox = ({
   variant = 'profile',
-  favorList = ['LIP', 'EXERCISE', 'ACCESSORY'],
+  favorList = [],
 }: ProfileBoxProps) => {
   return (
     <>

@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
-import SmallRightChevron from '@assets/icons/SmallRightChevron'
 import { RoundButton } from '../RoundButton'
 import { Text } from '../Text'
 import Svg from '../Svg'
@@ -59,7 +58,7 @@ export const Category = ({
 
 const Wrapper = styled.div`
   width: 328px;
-  height: 152px;
+  height: fit-content;
   border-radius: 16px;
   padding: 16px 18px 20px 18px;
   background-color: ${theme.palette.gray_800};
@@ -75,8 +74,7 @@ const Heading = styled.div`
 
 const TagWrapper = styled.div`
   width: 100%;
-  height: 76px;
-  margin-bottom: 24px;
+  height: fit-content;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;

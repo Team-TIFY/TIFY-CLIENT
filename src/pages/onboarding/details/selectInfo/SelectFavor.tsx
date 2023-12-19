@@ -13,6 +13,7 @@ import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { authState } from '@libs/store/auth'
 import { favorPriority } from '@libs/store/priority'
 import { useNavigate } from 'react-router-dom'
+import { parseFavorBox } from '@utils/parseFavorBox'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useState(false)
@@ -47,9 +48,14 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
+      console.log(rest)
+      console.log(favor)
       OnboardingApi.PUT_ONBOARD_STATUS({
         userId: auth.userProfile.id,
-        data: rest,
+        data: {
+          ...rest,
+          userFavorDtoList: favor.map((data) => parseFavorBox(data)),
+        },
       })
       const favorWithPriority = favorPriority.filter((data) =>
         info.favor.includes(data.taste),
