@@ -23,27 +23,28 @@ export const UserTagDataListItem = ({
   userTagData,
   isFriend,
 }: UserTagDataProps) => {
-  console.log(selectedTags)
   const renderUserTagDataListItem = () => {
-    return getTagAnswerData(userTagData)?.map((tag, idx) => (
-      <Category
-        key={idx}
-        categoryName={
-          selectedTags.length
-            ? selectedTags[idx]?.name
-            : selectedProps[idx].name
-        }
-        children={tag.map((tagData, index) => (
-          <Tag
-            key={index}
-            colorIndex={(index % 6) as ColorIndexVariant}
-            iconIndex={tagData.number}
-            children={tagData.answer}
-          />
-        ))}
-        isFriend={isFriend}
-      />
-    ))
+    return getTagAnswerData(userTagData)
+      ?.filter((tagData) => tagData.length)
+      ?.map((tag, idx) => (
+        <Category
+          key={idx}
+          categoryName={
+            selectedTags.length
+              ? selectedTags[idx]?.name
+              : selectedProps[idx].name
+          }
+          children={tag.map((tagData, index) => (
+            <Tag
+              key={index}
+              colorIndex={(index % 6) as ColorIndexVariant}
+              iconIndex={tagData.number}
+              children={tagData.answer}
+            />
+          ))}
+          isFriend={isFriend}
+        />
+      ))
   }
 
   return (
