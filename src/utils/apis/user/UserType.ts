@@ -1,3 +1,4 @@
+import { CategoryNameType } from '@components/atoms/Category'
 import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
 import { TasteBoxVariantType } from '../favor/TasteType'
 
@@ -60,7 +61,7 @@ export type SelectedTag = {
 export type SelectedProps = {
   id: number
   active: boolean
-  name: SubCategoryName
+  name: CategoryNameType
   value: SubCategoryType
   count?: number
 }[]

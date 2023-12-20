@@ -1,10 +1,16 @@
 import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
-import { Category } from '@components/atoms/Category'
+import { Category, CategoryNameType } from '@components/atoms/Category'
 import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
-import { FilteredUserTag, SelectedProps } from '@utils/apis/user/UserType'
+import {
+  FilteredUserTag,
+  SelectedProps,
+  SubCategoryType,
+} from '@utils/apis/user/UserType'
 import { getTagAnswerData } from '@utils/getTagAnswerData'
+import { useNavigate } from 'react-router-dom'
+import { questionMenu } from '@utils/questionMenu'
 
 export interface UserTagDataProps {
   selectedProps: SelectedProps
@@ -17,6 +23,14 @@ export const UserTagDataListItem = ({
   userTagData,
   isFriend,
 }: UserTagDataProps) => {
+  const navigate = useNavigate()
+
+  const handleClickPlusButton = (categoryValue: SubCategoryType) => {
+    const destination = questionMenu[categoryValue]
+
+    navigate(destination)
+  }
+
   const renderUserTagDataListItem = () => {
     return getTagAnswerData(userTagData)
       ?.filter((tag) => tag.length !== 0)
@@ -24,8 +38,11 @@ export const UserTagDataListItem = ({
         const matchingProp = selectedProps.find(
           (selectedProp) => selectedProp.value === tag[0]?.smallCategory,
         )
-        const categoryName = matchingProp ? matchingProp.name : ''
-        const allCategoryAnswered = userTagData[idx].allDetailCategoryAnswered
+        const categoryName = matchingProp
+          ? matchingProp.name
+          : ('' as CategoryNameType)
+        const categoryValue = matchingProp?.value ?? ('' as SubCategoryType)
+        const allCategoryAnswered = tag[0]?.allDetailCategoryAnswered
 
         return (
           <Category
@@ -33,6 +50,7 @@ export const UserTagDataListItem = ({
             categoryName={categoryName}
             isFriend={isFriend}
             allCategoryAnswered={allCategoryAnswered}
+            onPlusButtonClick={() => handleClickPlusButton(categoryValue)}
             children={tag.map((tagData, index) =>
               tagData.answer ? (
                 <Tag

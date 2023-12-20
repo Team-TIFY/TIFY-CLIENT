@@ -5,6 +5,8 @@ import { Text } from '../Text'
 import Svg from '../Svg'
 import Plus from '@assets/icons/Plus'
 import Gift from '@assets/icons/Gift'
+import { useNavigate } from 'react-router-dom'
+import { questionMenu } from '@utils/questionMenu'
 
 /**
  * @param categoryName 카테고리명을 나타냄
@@ -13,8 +15,19 @@ import Gift from '@assets/icons/Gift'
  * @param allCategoryAnswered + 아이콘을 보여줄지 말지를 나타냄 (모든 detailCategory를 다 답변했는지 여부를 나타냄)
  * @param onPlusButtonClick + / 선물 버튼 클릭 시 발생하는 이벤트를 넘겨주는 함수임
  */
+export type CategoryNameType =
+  | 'MAKEUP'
+  | 'FRAGRANCE'
+  | 'CLOTHES'
+  | 'FASHION_PRODUCT'
+  | 'DIGITAL_PRODUCT'
+  | 'BAG'
+  | 'ACCESSORY'
+  | 'COOKING'
+  | 'EXERCISE'
+
 type CategoryPropsType = {
-  categoryName: string
+  categoryName: CategoryNameType
   isFriend: boolean
   children: React.ReactNode[]
   allCategoryAnswered?: boolean
@@ -33,7 +46,7 @@ export const Category = ({
       return <Svg children={<Gift />} />
     } else {
       if (!allCategoryAnswered) {
-        return <Svg children={<Plus />} />
+        return <Svg children={<Plus />} onClick={onPlusButtonClick} />
       } else {
         return null
       }
@@ -59,7 +72,6 @@ export const Category = ({
                 height="fit-content"
               />
             }
-            onClick={onPlusButtonClick}
           />
         ) : null}
       </Heading>
