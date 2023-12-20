@@ -49,7 +49,7 @@ export const Category = ({
           color="white"
           as="div"
         />
-        {!allCategoryAnswered ? (
+        {isFriend || !allCategoryAnswered ? (
           <RoundButton
             variant="circle"
             children={
