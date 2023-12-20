@@ -26,10 +26,20 @@ export const UserTagDataListItem = ({
 }: UserTagDataProps) => {
   const navigate = useNavigate()
 
-  const handleClickPlusButton = (categoryValue: SubCategoryType) => {
-    const destination = questionMenu[categoryValue]
-
-    navigate(destination)
+  const handleClickPlusButton = (
+    categoryName: SubCategoryName,
+    smallCategory: string,
+    categoryValue: SubCategoryType,
+  ) => {
+    if (categoryName === '프레그런스' && smallCategory === 'PERFUME') {
+      navigate(questionMenu[categoryValue][0])
+    } else if (categoryName === '프레그런스' && smallCategory === 'MOISTURE') {
+      navigate(questionMenu[categoryValue][1])
+    } else if (categoryName === '프레그런스' && smallCategory === 'PLACE') {
+      navigate(questionMenu[categoryValue][2])
+    } else {
+      navigate(questionMenu[categoryValue])
+    }
   }
 
   const renderUserTagDataListItem = () => {
@@ -43,6 +53,7 @@ export const UserTagDataListItem = ({
           ? matchingProp.name
           : ('' as SubCategoryName)
         const categoryValue = matchingProp?.value ?? ('' as SubCategoryType)
+        const smallCategory = tag[1].smallCategory ?? tag[0].smallCategory
         const allCategoryAnswered = tag[0]?.allDetailCategoryAnswered
 
         return (
@@ -51,7 +62,9 @@ export const UserTagDataListItem = ({
             categoryName={categoryName}
             isFriend={isFriend}
             allCategoryAnswered={allCategoryAnswered}
-            onPlusButtonClick={() => handleClickPlusButton(categoryValue)}
+            onPlusButtonClick={() =>
+              handleClickPlusButton(categoryName, smallCategory, categoryValue)
+            }
             children={tag.map((tagData, index) =>
               tagData.answer ? (
                 <Tag

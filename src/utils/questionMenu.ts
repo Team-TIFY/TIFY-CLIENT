@@ -1,6 +1,9 @@
 export const questionMenu = {
   MAKEUP: '/profile/newTaste/BMEYE',
-  FRAGRANCE: '/profile/newTaste/BFPLA',
+  FRAGRANCE:
+    '/profile/newTaste/BFMOI' ||
+    '/profile/newTaste/BFPLA' ||
+    '/profile/newTaste/BFMOI',
   CLOTHES: '',
   FASHION_PRODUCT: '',
   DIGITAL_PRODUCT: '',
