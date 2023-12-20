@@ -30,17 +30,19 @@ export const UserTagDataListItem = ({
           <Category
             key={idx}
             categoryName={categoryName}
-            children={tag.map((tagData, index) => (
-              <Tag
-                key={index}
-                colorIndex={(index % 3) as ColorIndexVariant}
-                iconIndex={tagData.number}
-                children={tagData.answer}
-                smallCategory={tagData.smallCategory}
-                detailCategory={tagData.detailCategory}
-                answerNumber={tagData.number}
-              />
-            ))}
+            children={tag.map((tagData, index) =>
+              tagData.answer ? (
+                <Tag
+                  key={index}
+                  colorIndex={(index % 3) as ColorIndexVariant}
+                  iconIndex={tagData.number}
+                  children={tagData.answer}
+                  smallCategory={tagData.smallCategory}
+                  detailCategory={tagData.detailCategory}
+                  answerNumber={tagData.number}
+                />
+              ) : null,
+            )}
             isFriend={isFriend}
           />
         )
