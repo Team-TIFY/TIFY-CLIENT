@@ -5,8 +5,7 @@ import { Text } from '../Text'
 import Svg from '../Svg'
 import Plus from '@assets/icons/Plus'
 import Gift from '@assets/icons/Gift'
-import { useNavigate } from 'react-router-dom'
-import { questionMenu } from '@utils/questionMenu'
+import { SubCategoryName } from '@utils/apis/user/UserType'
 
 /**
  * @param categoryName 카테고리명을 나타냄
@@ -27,7 +26,7 @@ export type CategoryNameType =
   | 'EXERCISE'
 
 type CategoryPropsType = {
-  categoryName: CategoryNameType
+  categoryName: SubCategoryName
   isFriend: boolean
   children: React.ReactNode[]
   allCategoryAnswered?: boolean

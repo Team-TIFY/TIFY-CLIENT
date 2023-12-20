@@ -61,8 +61,8 @@ export type SelectedTag = {
 export type SelectedProps = {
   id: number
   active: boolean
-  name: CategoryNameType
-  value: SubCategoryType
+  name: SubCategoryName
+  value: CategoryNameType
   count?: number
 }[]
 

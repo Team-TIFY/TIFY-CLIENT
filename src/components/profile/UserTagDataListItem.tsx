@@ -1,11 +1,12 @@
 import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
-import { Category, CategoryNameType } from '@components/atoms/Category'
+import { Category } from '@components/atoms/Category'
 import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
 import {
   FilteredUserTag,
   SelectedProps,
+  SubCategoryName,
   SubCategoryType,
 } from '@utils/apis/user/UserType'
 import { getTagAnswerData } from '@utils/getTagAnswerData'
@@ -40,7 +41,7 @@ export const UserTagDataListItem = ({
         )
         const categoryName = matchingProp
           ? matchingProp.name
-          : ('' as CategoryNameType)
+          : ('' as SubCategoryName)
         const categoryValue = matchingProp?.value ?? ('' as SubCategoryType)
         const allCategoryAnswered = tag[0]?.allDetailCategoryAnswered
 
