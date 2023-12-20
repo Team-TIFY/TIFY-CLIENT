@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { HTMLAttributes } from 'react'
+import { FlexBox } from '@components/layouts/FlexBox'
 
 /**
  * @param children 보여줄 SVG 이미지 컴포넌트를 나타냄
@@ -24,7 +25,7 @@ const Svg = ({
 }: SvgProps) => {
   return (
     <SvgWrapper onClick={onClick} width={width} height={height} {...props}>
-      {children}
+      <FlexBox>{children}</FlexBox>
     </SvgWrapper>
   )
 }

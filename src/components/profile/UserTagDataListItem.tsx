@@ -25,11 +25,14 @@ export const UserTagDataListItem = ({
           (selectedProp) => selectedProp.value === tag[0]?.smallCategory,
         )
         const categoryName = matchingProp ? matchingProp.name : ''
+        const allCategoryAnswered = userTagData[idx].allDetailCategoryAnswered
 
         return (
           <Category
             key={idx}
             categoryName={categoryName}
+            isFriend={isFriend}
+            allCategoryAnswered={allCategoryAnswered}
             children={tag.map((tagData, index) =>
               tagData.answer ? (
                 <Tag
@@ -43,7 +46,6 @@ export const UserTagDataListItem = ({
                 />
               ) : null,
             )}
-            isFriend={isFriend}
           />
         )
       })
