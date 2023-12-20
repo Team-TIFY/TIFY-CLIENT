@@ -16,7 +16,7 @@ const useFriendMutate = () => {
     FriendsApi.ACCEPT_FRIEND_REQUEST,
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['friendProfile'])
+        queryClient.invalidateQueries(['userProfile'])
       },
     },
   )
@@ -32,7 +32,7 @@ const useFriendMutate = () => {
     FriendsApi.REQUEST_FRIEND,
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['friendProfile'])
+        queryClient.invalidateQueries(['userProfile'])
         queryClient.invalidateQueries(['friendRequestList'])
         setSnackBar({
           comment: '요청이 수락되면 알려드릴게요',
@@ -58,7 +58,7 @@ const useFriendMutate = () => {
   const { mutate: blockFriendMutate } = useMutation(FriendsApi.BLOCK_FRIEND, {
     onSuccess: () => {
       setIsBlockMenuOpen(false)
-      queryClient.invalidateQueries(['friendProfile'])
+      queryClient.invalidateQueries(['userProfile'])
       queryClient.invalidateQueries(['friendsList'])
       queryClient.invalidateQueries(['birthdayFriendsList'])
       setSnackBar({
@@ -76,7 +76,7 @@ const useFriendMutate = () => {
     {
       onSuccess: () => {
         setIsCancelBlockMenuOpen(false)
-        queryClient.invalidateQueries(['friendProfile'])
+        queryClient.invalidateQueries(['userProfile'])
         queryClient.invalidateQueries(['friendRequestList'])
         setSnackBar({
           comment: '차단이 해제되었어요',
@@ -94,7 +94,7 @@ const useFriendMutate = () => {
     {
       onSuccess: () => {
         setIsCutOffMenuOpen(false)
-        queryClient.invalidateQueries(['friendProfile'])
+        queryClient.invalidateQueries(['userProfile'])
         queryClient.invalidateQueries(['friendsList'])
         queryClient.invalidateQueries(['birthdayFriendsList'])
         setSnackBar({
