@@ -114,7 +114,7 @@ const ProfileRouter = () => {
             >
               <Profile
                 userData={userData}
-                userId={userData?.friend ? userData.id : undefined}
+                userId={userData?.friend ? userId : undefined}
               />
             </AppBarTemplate>
           }
