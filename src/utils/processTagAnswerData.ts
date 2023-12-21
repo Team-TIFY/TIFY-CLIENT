@@ -7,11 +7,13 @@ export const processTagAnswerData = (
   targetAnswerNumberList: number[],
   showAll: boolean,
   answerContent: string,
+  allDetailCategoryAnswered: boolean,
   answerData: {
     smallCategory: any
     detailCategory: any
     number: number
     answer: string
+    allDetailCategoryAnswered: boolean
   }[],
 ) => {
   if (targetAnswerNumberList.includes(answerNumber)) {
@@ -22,12 +24,14 @@ export const processTagAnswerData = (
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answer1,
+        allDetailCategoryAnswered: allDetailCategoryAnswered,
       })
       answerData.push({
         smallCategory: answerSmallCategory,
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answer2,
+        allDetailCategoryAnswered: allDetailCategoryAnswered,
       })
     } else if (answerContent.includes(',') && !showAll) {
       const [answer1, _] = splitDataByComma(answerContent)
@@ -36,6 +40,7 @@ export const processTagAnswerData = (
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answer1,
+        allDetailCategoryAnswered: allDetailCategoryAnswered,
       })
     } else {
       answerData.push({
@@ -43,6 +48,7 @@ export const processTagAnswerData = (
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answerContent,
+        allDetailCategoryAnswered: allDetailCategoryAnswered,
       })
     }
   }

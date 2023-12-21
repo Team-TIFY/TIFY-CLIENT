@@ -8,6 +8,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
       detailCategory: any
       number: number
       answer: string
+      allDetailCategoryAnswered: boolean
     }[] = []
 
     if (tag.smallCategory === 'MAKEUP') {
@@ -20,6 +21,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             [2, 3, 4, 5],
             true,
             answer.answerContent,
+            tag.allDetailCategoryAnswered,
             answerData,
           )
         }
@@ -39,6 +41,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               [1, 4],
               false,
               answer.answerContent,
+              tag.allDetailCategoryAnswered,
               answerData,
             )
           } else if (answer.detailCategory === 'MOISTURE') {
@@ -49,6 +52,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               [1],
               false,
               answer.answerContent,
+              tag.allDetailCategoryAnswered,
               answerData,
             )
           } else if (answer.detailCategory === 'PLACE') {
@@ -59,6 +63,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               [2],
               true,
               answer.answerContent,
+              tag.allDetailCategoryAnswered,
               answerData,
             )
             processTagAnswerData(
@@ -68,6 +73,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               [3],
               false,
               answer.answerContent,
+              tag.allDetailCategoryAnswered,
               answerData,
             )
           }
@@ -82,6 +88,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               [1, 4],
               true,
               answer.answerContent,
+              tag.allDetailCategoryAnswered,
               answerData,
             )
           } else if (answer.detailCategory === 'MOISTURE') {
@@ -92,6 +99,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               [1],
               true,
               answer.answerContent,
+              tag.allDetailCategoryAnswered,
               answerData,
             )
           } else if (answer.detailCategory === 'PLACE') {
@@ -102,6 +110,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
               [2, 3],
               true,
               answer.answerContent,
+              tag.allDetailCategoryAnswered,
               answerData,
             )
           }
@@ -116,6 +125,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
           [1, 2, 6],
           true,
           answer.answerContent,
+          tag.allDetailCategoryAnswered,
           answerData,
         )
       })
@@ -128,6 +138,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
           [2, 3, 4, 6, 8],
           false,
           answer.answerContent,
+          tag.allDetailCategoryAnswered,
           answerData,
         )
       })
@@ -147,6 +158,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
           [1, 2, 5, 3, 4],
           true,
           answerContent,
+          tag.allDetailCategoryAnswered,
           answerData,
         )
         processTagAnswerData(
@@ -156,6 +168,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
           [7],
           true,
           answer.answerContent,
+          tag.allDetailCategoryAnswered,
           answerData,
         )
       })
@@ -174,6 +187,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
           [1, 2, 4],
           true,
           answer.answerContent,
+          tag.allDetailCategoryAnswered,
           answerData,
         )
       })
@@ -193,6 +207,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             [5, 6],
             true,
             answer.answerContent,
+            tag.allDetailCategoryAnswered,
             answerData,
           )
         }
@@ -207,6 +222,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             [1, 3, 5],
             true,
             answer.answerContent,
+            tag.allDetailCategoryAnswered,
             answerData,
           )
         } else if (answer.detailCategory === 'CUP') {
@@ -217,6 +233,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             [2, 4],
             true,
             answer.answerContent,
+            tag.allDetailCategoryAnswered,
             answerData,
           )
         }
@@ -231,6 +248,7 @@ export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {
             [2, 4, 5, 6],
             true,
             answer.answerContent,
+            tag.allDetailCategoryAnswered,
             answerData,
           )
         }
