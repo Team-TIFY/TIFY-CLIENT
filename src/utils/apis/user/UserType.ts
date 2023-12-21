@@ -1,3 +1,4 @@
+import { CategoryNameType } from '@components/atoms/Category'
 import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
 import { TasteBoxVariantType } from '../favor/TasteType'
 
@@ -49,6 +50,7 @@ export type answerContentType = {
 export type FilteredUserTag = {
   smallCategory: SubCategoryType
   answerContentList: answerContentType[]
+  allDetailCategoryAnswered: boolean
 }
 
 export type SelectedTag = {
@@ -60,7 +62,7 @@ export type SelectedProps = {
   id: number
   active: boolean
   name: SubCategoryName
-  value: SubCategoryType
+  value: CategoryNameType
   count?: number
 }[]
 

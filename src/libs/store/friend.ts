@@ -1,3 +1,4 @@
+import { CategoryNameType } from '@components/atoms/Category'
 import { atom } from 'recoil'
 
 export type FriendState = {
@@ -8,6 +9,7 @@ export type FriendState = {
   isCutOffMenuOpen: boolean
   isBlockMenuOpen: boolean
   isCancelBlockMenuOpen: boolean
+  presentRecommendFilterValue: CategoryNameType | ''
 }
 
 const initialState: FriendState = {
@@ -18,6 +20,7 @@ const initialState: FriendState = {
   isCutOffMenuOpen: false,
   isBlockMenuOpen: false,
   isCancelBlockMenuOpen: false,
+  presentRecommendFilterValue: '',
 }
 
 export const friendState = atom<FriendState>({

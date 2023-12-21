@@ -206,7 +206,7 @@ const Profile = ({
         getSmallCategoryData(selectedTags),
       ),
     {
-      enabled: !!userId || !params?.id,
+      enabled: userId !== undefined || !params?.id,
     },
   )
 
@@ -262,11 +262,7 @@ const Profile = ({
   }
 
   const renderFilterAndTagItem = () => {
-    if (addFriend) {
-      console.log(1)
-      return <Spacing height={24} />
-    } else if (userData || myData) {
-      console.log(2)
+    if (userData || myData) {
       return (
         <>
           <Spacing height={32} />
@@ -283,12 +279,11 @@ const Profile = ({
           <UserTagDataListItem
             selectedProps={selectedProps}
             userTagData={userTagData}
-            isFriend={false}
+            isFriend={userData ? true : false}
           />
         </>
       )
     } else {
-      console.log(3)
       return <Spacing height={24} />
     }
   }

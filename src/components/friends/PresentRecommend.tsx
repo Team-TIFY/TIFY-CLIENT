@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
-import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
+import { useEffect, useState } from 'react'
+import {
+  SelectedProps,
+  SelectedTag,
+  SubCategoryName,
+} from '@utils/apis/user/UserType'
 import styled from '@emotion/styled'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
 import SortItem from './bottomsheet/SortItem'
 import { useRecoilState, useRecoilValue } from 'recoil'
@@ -23,6 +26,8 @@ import cookingNull from '@assets/image/cookingNull.svg'
 import exerciseNull from '@assets/image/exerciseNull.svg'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
+import { friendState } from '@libs/store/friend'
+import { CategoryNameType } from '@components/atoms/Category'
 
 type DataType = {
   productId: number
@@ -35,26 +40,28 @@ type DataType = {
   smallCategory: string
 }
 
-function PresentRecommend() {
-  const selectedProps: SelectedProps = [
-    { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
-    { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE' },
-    { id: 3, active: false, name: '의류', value: 'CLOTHES' },
-    { id: 4, active: false, name: '패션소품', value: 'FASHION_PRODUCT' },
-    { id: 5, active: false, name: '디지털 소품', value: 'DIGITAL_PRODUCT' },
-    { id: 6, active: false, name: '가방', value: 'BAG' },
-    { id: 7, active: false, name: '액세사리', value: 'ACCESSORY' },
-    { id: 8, active: false, name: '요리', value: 'COOKING' },
-    { id: 9, active: false, name: '운동', value: 'EXERCISE' },
-  ]
+const selectedPropsData: SelectedProps = [
+  { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
+  { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE' },
+  { id: 3, active: false, name: '의류', value: 'CLOTHES' },
+  { id: 4, active: false, name: '패션소품', value: 'FASHION_PRODUCT' },
+  { id: 5, active: false, name: '디지털소품', value: 'DIGITAL_PRODUCT' },
+  { id: 6, active: false, name: '가방', value: 'BAG' },
+  { id: 7, active: false, name: '액세사리', value: 'ACCESSORY' },
+  { id: 8, active: false, name: '요리', value: 'COOKING' },
+  { id: 9, active: false, name: '운동', value: 'EXERCISE' },
+]
 
+function PresentRecommend() {
+  const [selectedProps, setSelectedProps] =
+    useState<SelectedProps>(selectedPropsData)
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
   const [dataLoaded, setDataLoaded] = useState<boolean>(false)
   const [products, setProducts] = useState<DataType[]>([])
-  const outsideRef = useRef()
   const [isSortOpen, setIsSortOpen] = useRecoilState<string>(isFilterTypeState)
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
+  const friendStateData = useRecoilValue(friendState)
 
   const selectedCategories = selectedTags.map((tag) => tag.value)
   const selectedCategoriesString = selectedCategories
@@ -114,6 +121,26 @@ function PresentRecommend() {
     })
   }, [selectedTags, selectedFilter.filter, selectedPrice.price])
 
+  useEffect(() => {
+    const selectedOption = selectedProps.find(
+      (selectedProp) =>
+        selectedProp.value === friendStateData.presentRecommendFilterValue,
+    )
+
+    setSelectedProps((prevSelectedProps) =>
+      prevSelectedProps.map((prop) =>
+        prop.value === selectedOption?.value ? { ...prop, active: true } : prop,
+      ),
+    )
+
+    setSelectedTags([
+      {
+        name: selectedOption?.name as SubCategoryName,
+        value: selectedOption?.value as CategoryNameType,
+      },
+    ])
+  }, [friendStateData.presentRecommendFilterValue])
+
   const handleFilterClick = () => {
     setIsSortOpen('filter')
     openBottomSheet()
@@ -132,6 +159,7 @@ function PresentRecommend() {
   } = useBottomSheet({
     initialState: false,
   })
+
   return (
     <>
       <FilterWrapper>
