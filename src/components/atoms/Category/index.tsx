@@ -31,6 +31,7 @@ type CategoryPropsType = {
   children: React.ReactNode[]
   allCategoryAnswered?: boolean
   onPlusButtonClick?: () => void
+  onPresentButtonClick?: () => void
 }
 
 export const Category = ({
@@ -39,10 +40,11 @@ export const Category = ({
   children,
   allCategoryAnswered = false,
   onPlusButtonClick,
+  onPresentButtonClick,
 }: CategoryPropsType) => {
   const renderIcon = () => {
     if (isFriend) {
-      return <Svg children={<Gift />} />
+      return <Svg children={<Gift />} onClick={onPresentButtonClick} />
     } else {
       if (!allCategoryAnswered) {
         return <Svg children={<Plus />} onClick={onPlusButtonClick} />

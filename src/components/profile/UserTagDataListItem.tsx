@@ -12,6 +12,8 @@ import {
 import { getTagAnswerData } from '@utils/getTagAnswerData'
 import { useNavigate } from 'react-router-dom'
 import { questionMenu } from '@utils/questionMenu'
+import { useSetRecoilState } from 'recoil'
+import { friendState } from '@libs/store/friend'
 
 export interface UserTagDataProps {
   selectedProps: SelectedProps
@@ -25,6 +27,7 @@ export const UserTagDataListItem = ({
   isFriend,
 }: UserTagDataProps) => {
   const navigate = useNavigate()
+  const setFriendStateData = useSetRecoilState(friendState)
 
   const handleClickPlusButton = (
     categoryName: SubCategoryName,
@@ -40,6 +43,15 @@ export const UserTagDataListItem = ({
     } else {
       navigate(questionMenu[categoryValue])
     }
+  }
+
+  const handleClickPresentButton = (categoryValue: SubCategoryType) => {
+    setFriendStateData((prevStateData) => ({
+      ...prevStateData,
+      presentRecommendFilterValue: categoryValue,
+    }))
+
+    navigate('/friends/presentRecommend')
   }
 
   const renderUserTagDataListItem = () => {
@@ -65,6 +77,7 @@ export const UserTagDataListItem = ({
             onPlusButtonClick={() =>
               handleClickPlusButton(categoryName, smallCategory, categoryValue)
             }
+            onPresentButtonClick={() => handleClickPresentButton(categoryValue)}
             children={tag.map((tagData, index) =>
               tagData.answer ? (
                 <Tag

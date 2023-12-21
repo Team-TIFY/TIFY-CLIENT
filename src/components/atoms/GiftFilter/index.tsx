@@ -10,6 +10,7 @@ interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selectedTags: SelectedTag[]
   setSelectedTags: React.Dispatch<React.SetStateAction<SelectedTag[]>>
 }
+
 type Props = FilterProps & Partial<FilterProps>
 
 export const GiftFilter = ({
@@ -18,7 +19,11 @@ export const GiftFilter = ({
   selectedTags,
   ...props
 }: Props) => {
-  const [selected, setSelected] = useState(selectedProps)
+  const [selected, setSelected] = useState<SelectedProps>(selectedProps)
+
+  useEffect(() => {
+    setSelected(selectedProps)
+  }, [selectedProps])
 
   useEffect(() => {
     const updatedTags = selected
@@ -30,8 +35,8 @@ export const GiftFilter = ({
         return acc
       }, [] as SelectedTag[])
 
-    setSelectedTags(updatedTags)
-  }, [selected])
+    setSelectedTags(updatedTags.length ? updatedTags : selectedTags)
+  }, [])
 
   const handleClick = (id: number) => {
     const updatedBtn = selected.map((item) => {
