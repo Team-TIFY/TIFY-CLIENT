@@ -31,13 +31,17 @@ import { CategoryNameType } from '@components/atoms/Category'
 
 type DataType = {
   productId: number
-  brand: string
   name: string
+  brand: string
+  characteristic: string
   price: number
   productOption: string
   imageUrl: string
   siteUrl: string
+  largeCategory: string
   smallCategory: string
+  detailCategory: string
+  categoryName: string
 }
 
 const selectedPropsData: SelectedProps = [
@@ -105,15 +109,20 @@ function PresentRecommend() {
         return makeupNull
     }
   }
+  console.log(selectedProps)
+  console.log('tags:', selectedTags)
 
   useEffect(() => {
     FriendsApi.GET_PRESENT_RECOMMEND(
-      selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
+      selectedTags.length > 0 &&
+        friendStateData.presentRecommendFilterValue !== ''
+        ? selectedCategoriesString
+        : allCategoriesString,
       selectedFilter.filterValue,
       selectedPrice.priceValue,
     ).then((response) => {
       if (response.statusCode === 200) {
-        setProducts(response.data)
+        setProducts(response.data.content)
         setDataLoaded(true)
       } else {
         setDataLoaded(false)
