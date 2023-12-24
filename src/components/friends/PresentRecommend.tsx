@@ -66,6 +66,7 @@ function PresentRecommend() {
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
   const friendStateData = useRecoilValue(friendState)
+  const [initialRender, setInitialRender] = useState(true)
 
   const selectedCategories = selectedTags.map((tag) => tag.value)
   const selectedCategoriesString = selectedCategories
@@ -113,22 +114,31 @@ function PresentRecommend() {
   console.log('tags:', selectedTags)
 
   useEffect(() => {
-    FriendsApi.GET_PRESENT_RECOMMEND(
-      selectedTags.length > 0 &&
-        friendStateData.presentRecommendFilterValue !== ''
-        ? selectedCategoriesString
-        : allCategoriesString,
-      selectedFilter.filterValue,
-      selectedPrice.priceValue,
-    ).then((response) => {
-      if (response.statusCode === 200) {
-        setProducts(response.data.content)
-        setDataLoaded(true)
-      } else {
-        setDataLoaded(false)
-      }
-    })
-  }, [selectedTags, selectedFilter.filter, selectedPrice.price])
+    if (!initialRender) {
+      //처음 렌더링 시 전체 카테고리 호출 방지
+      FriendsApi.GET_PRESENT_RECOMMEND(
+        selectedTags.length > 0
+          ? selectedCategoriesString
+          : allCategoriesString,
+        selectedFilter.filterValue,
+        selectedPrice.priceValue,
+      ).then((response) => {
+        if (response.statusCode === 200) {
+          setProducts(response.data.content)
+          setDataLoaded(true)
+        } else {
+          setDataLoaded(false)
+        }
+      })
+    } else {
+      setInitialRender(false)
+    }
+  }, [
+    selectedTags,
+    selectedFilter.filter,
+    selectedPrice.price,
+    friendStateData.presentRecommendFilterValue,
+  ])
 
   useEffect(() => {
     const selectedOption = selectedProps.find(
