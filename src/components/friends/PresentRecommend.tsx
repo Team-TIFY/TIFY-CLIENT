@@ -136,18 +136,29 @@ function PresentRecommend() {
         selectedProp.value === friendStateData.presentRecommendFilterValue,
     )
 
-    setSelectedProps((prevSelectedProps) =>
-      prevSelectedProps.map((prop) =>
-        prop.value === selectedOption?.value ? { ...prop, active: true } : prop,
-      ),
-    )
+    if (selectedOption) {
+      setSelectedProps((prevSelectedProps) =>
+        prevSelectedProps.map((prop) =>
+          prop.value === selectedOption.value
+            ? { ...prop, active: true }
+            : prop,
+        ),
+      )
 
-    setSelectedTags([
-      {
-        name: selectedOption?.name as SubCategoryName,
-        value: selectedOption?.value as CategoryNameType,
-      },
-    ])
+      setSelectedTags([
+        {
+          name: selectedOption.name as SubCategoryName,
+          value: selectedOption.value as CategoryNameType,
+        },
+      ])
+    } else {
+      // 만약 selectedOption이 없다면, 즉 선택된 카테고리가 없다면
+      setSelectedProps((prevSelectedProps) =>
+        prevSelectedProps.map((prop) => ({ ...prop, active: false })),
+      )
+
+      setSelectedTags([])
+    }
   }, [friendStateData.presentRecommendFilterValue])
 
   const handleFilterClick = () => {
