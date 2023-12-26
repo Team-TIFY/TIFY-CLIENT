@@ -1,6 +1,6 @@
 import {
-  KakaoLoginResponse,
-  KakaoCodeResponse,
+  OauthLoginResponse,
+  OauthCodeResponse,
 } from '@utils/apis/auth/AuthType'
 import { authState } from '@libs/store/auth'
 import { useRecoilState } from 'recoil'
@@ -11,13 +11,13 @@ import { axiosApi } from '@utils/apis/axios'
 import { setCookie } from '@utils/cookies'
 import { UserApi } from '@utils/apis/user/UserApi'
 
-const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
+const useAuthMutate = ({ idToken }: OauthCodeResponse) => {
   const [auth, setAuth] = useRecoilState(authState)
   const navigate = useNavigate()
 
   //회원가입 mutation
   const ouathKakaoRegisterMutation = useMutation(AuthApi.KAKAO_REGISTER, {
-    onSuccess: (data: KakaoLoginResponse) => {
+    onSuccess: (data: OauthLoginResponse) => {
       onSuccessLogin(data)
       navigate(auth.callbackUrl)
     },
@@ -25,7 +25,7 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
 
   //로그인 mutation
   const ouathKakaoLoginMutation = useMutation(AuthApi.KAKAO_LOGIN, {
-    onSuccess: (data: KakaoLoginResponse) => {
+    onSuccess: (data: OauthLoginResponse) => {
       onSuccessLogin(data)
       navigate(auth.callbackUrl)
     },
@@ -46,7 +46,7 @@ const useAuthMutate = ({ idToken }: KakaoCodeResponse) => {
     },
   })
 
-  const onSuccessLogin = async (loginData: KakaoLoginResponse) => {
+  const onSuccessLogin = async (loginData: OauthLoginResponse) => {
     axiosApi.defaults.headers.common[
       'Authorization'
     ] = `Bearer ${loginData.accessToken}`

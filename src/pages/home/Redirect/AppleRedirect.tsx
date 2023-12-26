@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import { KakaoCodeResponse } from '@utils/apis/auth/AuthType'
+import { OauthCodeResponse } from '@utils/apis/auth/AuthType'
 import { useMutation } from '@tanstack/react-query'
 import { useLocation } from 'react-router-dom'
 import { AuthApi } from '@utils/apis/auth/AuthApi'
 import useAuthMutate from '@libs/hooks/useAuthMutate'
 import Loading from '@components/atoms/Loading'
 
-export const Redirect = () => {
-  const [token, setToken] = useState<KakaoCodeResponse>({
+export const AppleRedirect = () => {
+  const [token, setToken] = useState<OauthCodeResponse>({
     accessToken: '',
     idToken: '',
     refreshToken: '',
@@ -15,8 +15,8 @@ export const Redirect = () => {
   const query = useLocation().search
   const code = new URLSearchParams(query).get('code')
 
-  const kakaoTokenMutation = useMutation(AuthApi.KAKAO_TOKEN, {
-    onSuccess: (data: KakaoCodeResponse) => {
+  const appleTokenMutation = useMutation(AuthApi.APPLE_TOKEN, {
+    onSuccess: (data: OauthCodeResponse) => {
       setToken(data)
     },
   })
@@ -25,7 +25,7 @@ export const Redirect = () => {
 
   useEffect(() => {
     if (code) {
-      kakaoTokenMutation.mutate(code)
+      appleTokenMutation.mutate(code)
     }
   }, [code])
 
