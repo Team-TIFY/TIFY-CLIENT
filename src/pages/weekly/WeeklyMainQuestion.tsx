@@ -37,7 +37,6 @@ const WeeklyMainQuestion = () => {
       >
         <GreetingOnboarding />
       </BottomSheet>
-
       <BackgroundImg />
       <WeekWrapper>
         <Spacing variant="default" height={48} />
@@ -45,7 +44,6 @@ const WeeklyMainQuestion = () => {
         <div className="dailyQuestionBox">
           <DailyQuestionBox />
         </div>
-
         <div
           style={{
             cursor: 'pointer',

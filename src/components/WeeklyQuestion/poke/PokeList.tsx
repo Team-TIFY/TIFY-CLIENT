@@ -18,7 +18,17 @@ import BottomSheetBar from '@components/atoms/BottomSheet/BottomSheetBar'
 const PokeList = () => {
   const [auth, setAuth] = useRecoilState(authState)
   const [question, setQuestion] = useRecoilState(questionState)
+  const [knockCount, setKnockCount] = useState<{
+    fromUserId: number
+    knockedUserId: number
+    knockCount: number
+  }>({
+    fromUserId: 0,
+    knockedUserId: 0,
+    knockCount: 0,
+  })
   const [neighborId, setNeighborId] = useState(0)
+  const [lastRequestTime, setLastRequestTime] = useState(0)
   const [isTriggered, setTrigger] = useState(false)
   const { setSnackBar } = useSnackBar()
   const { data: friendsList = [] } = useQuery(['neighborInfo'], () =>
@@ -51,16 +61,41 @@ const PokeList = () => {
     }
   }
   const pokeMutation = useMutation(FriendsApi.POKE_FRIEND, {
-    onSuccess: async () => {
+    onMutate: async () => {
       const data = await getPokeCount(neighborId)
+      setKnockCount(data)
+    },
+    onSuccess: async () => {
+      setLastRequestTime(Date.now())
       setSnackBar({
         comment: `${friendsList.find(
-          (friend) => friend.neighborInfo.neighborUserId === data.knockedUserId,
-        )?.neighborInfo.neighborName}님을 ${data.knockCount}번 쿡 찔렀어요!`,
+          (friend) =>
+            friend.neighborInfo.neighborUserId === knockCount.knockedUserId,
+        )?.neighborInfo.neighborName}님을 ${
+          knockCount.knockCount
+        }번 쿡 찔렀어요!`,
         type: 'info',
       })
     },
   })
+
+  const handlePokeButton = ({
+    questionId,
+    userId,
+  }: {
+    questionId: number
+    userId: number
+  }) => {
+    const currentTime = Date.now()
+    if (currentTime - lastRequestTime > 2000) {
+      pokeMutation.mutate({
+        questionId: questionId,
+        userId: userId,
+      })
+    } else {
+      return
+    }
+  }
 
   return (
     <PokeListContainer>
@@ -80,10 +115,14 @@ const PokeList = () => {
                 onClick={() => {
                   setNeighborId(data.neighborInfo.neighborUserId)
                   handleTrigger()
-                  pokeMutation.mutate({
+                  handlePokeButton({
                     questionId: question.questionId,
                     userId: data.neighborInfo.neighborUserId,
                   })
+                  // pokeMutation.mutate({
+                  //   questionId: question.questionId,
+                  //   userId: data.neighborInfo.neighborUserId,
+                  // })
                 }}
               >
                 {neighborId === data.neighborInfo.neighborUserId &&

@@ -12,6 +12,7 @@ import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import SquareButton from '@components/atoms/SquareButton'
 import { useMutation } from '@tanstack/react-query'
+import { Spacing } from '@components/atoms/Spacing'
 import useSnackBar from '@libs/hooks/useSnackBar'
 
 const DailyAnswerListContainer = ({
@@ -143,6 +144,7 @@ const DailyAnswerListContainer = ({
             )}
           </div>
         ))}
+      <Spacing height={32} />
     </AnswerListContainer>
   )
 }
