@@ -19,8 +19,6 @@ interface NewTasteCategoryListItemProps {
 const NewTasteCategoryListItem = ({
   subCategoryList,
 }: NewTasteCategoryListItemProps) => {
-  console.log(subCategoryList)
-
   const [subCategory, setSubCategory] = useRecoilState(subCategoryState)
 
   const navigate = useNavigate()
