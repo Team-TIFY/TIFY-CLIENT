@@ -43,6 +43,7 @@ const ProfileRouter = () => {
   const userId = parseInt(location.pathname.slice(9))
 
   const handleBack = () => {
+    console.log(step)
     if (step.favorAnswerDtos.length > 0) {
       const tempList = [...step.favorAnswerDtos]
       const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)
@@ -50,8 +51,13 @@ const ProfileRouter = () => {
         categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
+      navigate(-1)
+    } else if (localStorage.getItem('isOnboardingFavor') === 'true') {
+      localStorage.removeItem('isOnboardingFavor')
+      navigate('/onboarding')
+    } else {
+      navigate(-1)
     }
-    navigate(-1)
   }
 
   const handleClickIcon = (url: string) => {

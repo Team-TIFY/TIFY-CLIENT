@@ -87,7 +87,9 @@ export const UserApi = {
     userId: number
     favorList: string[]
   }) => {
-    const response = await axiosApi.patch(`/users/${userId}/tags`, favorList)
+    const response = await axiosApi.patch(`/users/${userId}/tags`, {
+      userFavorDtoList: [...favorList],
+    })
     return response.data.data
   },
 }
