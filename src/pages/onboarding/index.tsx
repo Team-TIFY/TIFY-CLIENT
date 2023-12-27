@@ -16,8 +16,7 @@ const OnboardingRouter = () => {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const [pageTemp, setPageTemp] = useRecoilState(pageTempState)
   const appLabel = page.agreement ? '' : '약관동의'
-  console.log(btnColor)
-  console.log(page)
+
   const backHandler = () => {
     if (!page.agreement) {
       navigate(-1)

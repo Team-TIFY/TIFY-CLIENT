@@ -51,7 +51,6 @@ export function SignUp() {
     } else {
       setInfoPage({ ...infoPage })
     }
-    console.log(content)
   }
 
   const gotoBack = (content: keyof OnboardingBtnType) => {

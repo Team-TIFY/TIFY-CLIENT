@@ -15,7 +15,6 @@ const Account = () => {
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
     setIsMenuOpen(false),
   )
-  console.log(auth.userProfile)
   return (
     <>
       <Wrapper>

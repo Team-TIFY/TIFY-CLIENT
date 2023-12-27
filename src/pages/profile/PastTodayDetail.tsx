@@ -14,8 +14,6 @@ const PastTodayDetail = () => {
   const profileStateData = useRecoilValue(profileState)
   const location = useParams()
 
-  console.log(location.id)
-
   const { data: pastTodayAnswer = [] } = useQuery(
     ['pastTodayAnswer', location.id, profileStateData.pastTodayCategory],
     () =>

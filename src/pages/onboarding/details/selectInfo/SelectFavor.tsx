@@ -47,7 +47,6 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
-      console.log(favor.map((data) => parseFavorBox(data)))
       OnboardingApi.PUT_ONBOARD_STATUS({
         userId: auth.userProfile.id,
         data: {

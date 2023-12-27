@@ -15,7 +15,8 @@ const ProfileBox = ({
   variant = 'profile',
   favorList = [],
 }: ProfileBoxProps) => {
-  const [myFavorList, setFavorList] = useState<TasteBoxVariantType[]>([])
+  const [myFavorList, setFavorList] = useState<TasteBoxVariantType[]>(favorList)
+
   useEffect(() => {
     if (favorList.length < 3) {
       setFavorList([])
