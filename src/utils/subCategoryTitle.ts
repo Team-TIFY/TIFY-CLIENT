@@ -36,14 +36,6 @@ export const subCategoryTitle: Record<
     title: '운동',
     img: '/images/exercise.png',
   },
-  TRAVEL: {
-    title: '여행',
-    img: '/images/travel.png',
-  },
-  CULTURE_LIFE: {
-    title: '문화생활',
-    img: '/images/culturalLife.png',
-  },
   DIGITAL_PRODUCT: {
     title: '패션소품',
     img: '/images/keyring.png',

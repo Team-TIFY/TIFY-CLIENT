@@ -48,12 +48,60 @@ export const MakeupCategory: Story = {
   args: {
     categoryName: '메이크업',
     children: [
-      <Tag key={0} index={0} children="여름쿨톤" />,
-      <Tag key={1} index={1} children="글로시 립" />,
-      <Tag key={2} index={2} children="페리페라" />,
-      <Tag key={3} index={3} children="페리페라" />,
-      <Tag key={4} index={4} children="페리페라" />,
-      <Tag key={5} index={5} children="페리페라" />,
+      <Tag
+        key={0}
+        children="여름쿨톤"
+        colorIndex={0}
+        iconIndex={0}
+        smallCategory={undefined}
+        detailCategory={undefined}
+        answerNumber={0}
+      />,
+      <Tag
+        key={1}
+        colorIndex={0}
+        iconIndex={0}
+        smallCategory={undefined}
+        detailCategory={undefined}
+        answerNumber={0}
+        children="글로시 립"
+      />,
+      <Tag
+        key={2}
+        colorIndex={0}
+        iconIndex={0}
+        smallCategory={undefined}
+        detailCategory={undefined}
+        answerNumber={0}
+        children="페리페라"
+      />,
+      <Tag
+        key={3}
+        colorIndex={0}
+        iconIndex={0}
+        smallCategory={undefined}
+        detailCategory={undefined}
+        answerNumber={0}
+        children="페리페라"
+      />,
+      <Tag
+        key={4}
+        colorIndex={0}
+        iconIndex={0}
+        smallCategory={undefined}
+        detailCategory={undefined}
+        answerNumber={0}
+        children="페리페라"
+      />,
+      <Tag
+        key={5}
+        colorIndex={0}
+        iconIndex={0}
+        smallCategory={undefined}
+        detailCategory={undefined}
+        answerNumber={0}
+        children="페리페라"
+      />,
     ],
   },
 }
