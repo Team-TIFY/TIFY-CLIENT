@@ -6,6 +6,7 @@ import { questionState } from '@libs/store/question'
 import { dateState } from '@libs/store/date'
 import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
+import { media } from '@styles/theme'
 
 const DailyQuestionBox = () => {
   const [date, setDate] = useRecoilState(dateState)
@@ -60,7 +61,8 @@ const DailyQuestionBox = () => {
         <Text typo="SCD_Headline_24" color="white" className="subTitle">
           {question.content}
         </Text>
-        <Spacing variant="default" height={64} />
+        <div className="ImgSpacingBox"></div>
+        {/* <Spacing variant="default" height={64} /> */}
       </FlexBox>
     </QuestionBoxContainer>
   )
@@ -104,5 +106,14 @@ const QuestionBoxContainer = styled.div`
     animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1),
       cubic-bezier(0.61, 1, 0.88, 1);
     animation-delay: 0.4s;
+  }
+  .ImgSpacingBox {
+    height: 64px;
+    width: 100%;
+  }
+  ${media.mobile} {
+    .ImgSpacingBox {
+      height: 15px;
+    }
   }
 `
