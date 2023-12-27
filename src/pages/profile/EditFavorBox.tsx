@@ -13,12 +13,21 @@ import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
 import { parseFavorBox } from '@utils/parseFavorBox'
 import { UserApi } from '@utils/apis/user/UserApi'
+import useSnackBar from '@libs/hooks/useSnackBar'
+import { useNavigate } from 'react-router-dom'
 
 const EditFavorBox = () => {
   const auth = useRecoilValue(authState)
+  const navigate = useNavigate()
+  const { setSnackBar } = useSnackBar()
   const [favorList, setFavorList] = useState<TasteType[]>([])
   const [disabled, setDisabled] = useState(true)
-  const EditFavorBoxMutation = useMutation(UserApi.EDIT_FAVOR_BOX)
+  const EditFavorBoxMutation = useMutation(UserApi.EDIT_FAVOR_BOX, {
+    onSuccess: () => {
+      setSnackBar({ comment: '취향 상자 수정 완료!', type: 'success' })
+      navigate('/profile')
+    },
+  })
   useEffect(() => {
     if (favorList.length === 3) {
       setDisabled(false)
@@ -47,12 +56,12 @@ const EditFavorBox = () => {
       <FlexBox>
         <TextWrap>
           <Text
-            children="가장 관심있는 취향 3가지를 선택해"
+            children="가장 관심있는 취향 3가지를"
             typo="SCD_Headline_20"
             color="gray_100"
           />
           <Text
-            children="나의 선물상자를 꾸며보세요"
+            children="나의 취향상자에 담아보세요"
             typo="SCD_Headline_20"
             color="gray_100"
           />
@@ -66,7 +75,7 @@ const EditFavorBox = () => {
         <RoundButton
           variant="mediumRound"
           width={312}
-          children="다음"
+          children="완료"
           disabled={disabled}
           onClick={() => {
             EditFavorBoxMutation.mutate({

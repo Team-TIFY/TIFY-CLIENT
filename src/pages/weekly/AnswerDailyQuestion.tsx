@@ -98,6 +98,7 @@ const AnswerDailyQuestion = () => {
             disabled={disabled}
             onClick={submitAnswer}
             variant="mediumRound"
+            style={{ width: '130px' }}
           >
             답변 완료
           </RoundButton>
