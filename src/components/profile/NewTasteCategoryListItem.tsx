@@ -19,6 +19,8 @@ interface NewTasteCategoryListItemProps {
 const NewTasteCategoryListItem = ({
   subCategoryList,
 }: NewTasteCategoryListItemProps) => {
+  console.log(subCategoryList)
+
   const [subCategory, setSubCategory] = useRecoilState(subCategoryState)
 
   const navigate = useNavigate()
@@ -63,8 +65,8 @@ const NewTasteCategoryListItem = ({
             key={idx}
             onClick={() => handleClickSubCategory(category)}
             variant={getVariant(category)}
-            text={subCategoryTitle[category.smallCategory]['title']}
-            img={subCategoryTitle[category.smallCategory]['img']}
+            text={subCategoryTitle[category.smallCategory]?.['title']}
+            img={subCategoryTitle[category.smallCategory]?.['img']}
           />
         ))}
     </StyledButtonWrapper>
