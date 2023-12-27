@@ -46,7 +46,7 @@ const EditUserInfo = () => {
         ),
         onboardingState: auth.userProfile.onBoardingStatus,
       }))
-      setBtnColor(true)
+      // setBtnColor(true)
     }
   }, [])
 

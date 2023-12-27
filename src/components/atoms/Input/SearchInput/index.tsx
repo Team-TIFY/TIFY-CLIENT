@@ -50,7 +50,7 @@ export const SearchInput = forwardRef<HTMLTextAreaElement, InputProps>(
         customRemoveHandler()
       }
       setContent('')
-      setBtnColor(false)
+      // setBtnColor(false)
       setSearchText('')
       setSelectedIndex(-1)
       setIsCancel(true)
