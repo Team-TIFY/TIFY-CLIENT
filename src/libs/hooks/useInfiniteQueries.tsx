@@ -20,6 +20,7 @@ export const useInfiniteQueries = <T,>(
   >,
 ) => {
   const [ref, inView] = useInView()
+
   const { data, fetchNextPage } = useInfiniteQuery<
     InfiniteResponse<T>,
     unknown
@@ -35,7 +36,7 @@ export const useInfiniteQueries = <T,>(
     const hasNext = data.pages[lastPageIdx].data.hasNext
     if (hasNext && inView) fetchNextPage()
   }, [inView])
-  console.log(data)
+
   const listElement = data?.pages.map(({ data }) =>
     data.content.map((item: any, idx: any) => (
       <ListItem {...item} className={`item-${idx}`} key={`item-${idx}`} />
@@ -83,7 +84,7 @@ const ListElementContainer = styled.div`
       transform: translateY(0px);
     }
   }
-  &:nth-child(1) {
+  &:nth-of-type(1) {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-name: movetoY, fadeIn;
@@ -92,7 +93,7 @@ const ListElementContainer = styled.div`
       cubic-bezier(0.61, 1, 0.88, 1);
     animation-delay: 0.8s;
   }
-  &:nth-child(2) {
+  &:nth-of-type(2) {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-name: movetoY, fadeIn;
@@ -101,7 +102,7 @@ const ListElementContainer = styled.div`
       cubic-bezier(0.61, 1, 0.88, 1);
     animation-delay: 1.2s;
   }
-  &:nth-child(3) {
+  &:nth-of-type(3) {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-name: movetoY, fadeIn;

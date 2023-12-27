@@ -6,11 +6,9 @@ import RightChevron from '@assets/icons/RightChevron'
 import { SecurityIcon } from '@assets/icons/SecurityIcon'
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
-import { useState } from 'react'
 import LogOutBtn from './LogOutBtn'
 
 const Setting = () => {
-  const [isLogOutOpen, setIsLogOutOpen] = useState<boolean>(false)
   const linkToUrl = (linkUrl: string) => {
     window.location.href = `setting/${linkUrl}`
   }

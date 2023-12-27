@@ -1,7 +1,5 @@
-import { TIfyLogoOnly } from '@assets/icons/TifyLogoOnly'
 import { TIfyLogoSymbol } from '@assets/icons/TifyLogoSymbol'
 import { Text } from '@components/atoms/Text'
-import SettingAppBar from '@components/settingPage/SettingAppBar'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 

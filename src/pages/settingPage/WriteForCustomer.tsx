@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ChangeEvent } from 'react'
+import { useState, useRef, useEffect, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { SmallDownChev } from '@assets/icons/SmallDownChev'
@@ -206,10 +206,9 @@ const WriteForCustomer = () => {
       )
         .then((response) => {
           if (response.status === 200) {
-            console.log('Post successful:', response)
             navigate(-1)
           } else {
-            console.error('Post failed with status:', response.status)
+            console.error('전송 실패:', response.status)
           }
         })
         .catch((error) => {

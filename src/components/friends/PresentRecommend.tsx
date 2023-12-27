@@ -15,15 +15,6 @@ import { FilterState, isFilterTypeState, PriceState } from '@libs/store/present'
 import PriceFilter from './bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 import { theme } from '@styles/theme'
-import makeupNull from '@assets/image/makeupNull.svg'
-import fragranceNull from '@assets/image/fragranceNull.svg'
-import clothesNull from '@assets/image/clothesNull.svg'
-import fashionNull from '@assets/image/fashionNull.svg'
-import bagNull from '@assets/image/bagNull.svg'
-import accessoryNull from '@assets/image/accessoryNull.svg'
-import digitalNull from '@assets/image/digitalNull.svg'
-import cookingNull from '@assets/image/cookingNull.svg'
-import exerciseNull from '@assets/image/exerciseNull.svg'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import { friendState } from '@libs/store/friend'
@@ -76,9 +67,6 @@ function PresentRecommend() {
   const allCategoriesString = selectedProps
     .map((category) => `${category.value}`)
     .join(',')
-
-  console.log(selectedProps)
-  console.log('tags:', selectedTags)
 
   const { infiniteListElement, isEmpty } = useInfiniteQueries<DataType>(
     [

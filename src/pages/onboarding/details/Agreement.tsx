@@ -13,7 +13,6 @@ export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([])
   const [goNext, setGoNext] = useRecoilState(onboardingPageState)
   const [btnColor, setBtnColor] = useState<boolean>(false)
-  const navigate = useNavigate()
 
   const checkAll = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.checked

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { RoundButton } from '@components/atoms/RoundButton'
