@@ -15,27 +15,11 @@ const meta = {
     },
   },
   argTypes: {
-    index: {
-      name: 'index',
-      description:
-        '태그 종류를 나타냅니다. 0 | 1 | 2 | 3 | 4 | 5 가 가능합니다.',
-      control: {
-        type: 'select',
-        options: [0, 1, 2, 3, 4, 5],
-      },
-    },
     children: {
       name: 'children',
       description: '태그 컴포넌트에 들어갈 텍스트를 나타냅니다.',
       control: {
         type: 'text',
-      },
-    },
-    onClick: {
-      name: 'onClick',
-      description: '태그 클릭 시 발생할 이벤트를 넘겨주는 함수입니다.',
-      control: {
-        type: 'function',
       },
     },
   },
@@ -50,7 +34,11 @@ type Story = StoryObj<typeof meta>
 export const Main: Story = {
   args: {
     children: '여름쿨톤',
-    index: 1,
+    colorIndex: 0,
+    iconIndex: 0,
+    smallCategory: '',
+    detailCategory: '',
+    answerNumber: 0,
   },
 }
 
@@ -60,6 +48,10 @@ export const Main: Story = {
 export const Dark: Story = {
   args: {
     children: '웨이크메이크',
-    index: 3,
+    colorIndex: 0,
+    iconIndex: 0,
+    smallCategory: '',
+    detailCategory: '',
+    answerNumber: 0,
   },
 }

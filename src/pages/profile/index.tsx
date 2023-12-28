@@ -50,8 +50,13 @@ const ProfileRouter = () => {
         categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
+      navigate(-1)
+    } else if (localStorage.getItem('isOnboardingFavor') === 'true') {
+      localStorage.removeItem('isOnboardingFavor')
+      navigate('/onboarding')
+    } else {
+      navigate(-1)
     }
-    navigate(-1)
   }
 
   const handleClickIcon = (url: string) => {

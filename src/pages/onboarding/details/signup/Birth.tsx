@@ -6,10 +6,8 @@ import { theme } from '@styles/theme'
 import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { ko } from 'date-fns/locale'
-import { FlexBox } from '@components/layouts/FlexBox'
 import useGetDate from '@libs/hooks/useGetDate'
 import { profileState } from '@libs/store/profile'
-import { useNavigate } from 'react-router-dom'
 
 export function Birth({
   value,

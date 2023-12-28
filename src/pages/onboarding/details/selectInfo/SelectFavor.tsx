@@ -4,7 +4,7 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import { onboardingState, IsOnboard } from '@libs/store/onboard'
+import { onboardingState } from '@libs/store/onboard'
 import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
@@ -27,7 +27,6 @@ export function SelectFavor() {
       setBtnColor(false)
     }
   })
-  console.log(info)
 
   const updateMyFavor = (favorType: string) => {
     if (info.favor.includes(favorType)) {
@@ -48,8 +47,7 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
-      console.log(rest)
-      console.log(favor)
+
       OnboardingApi.PUT_ONBOARD_STATUS({
         userId: auth.userProfile.id,
         data: {
@@ -81,12 +79,12 @@ export function SelectFavor() {
       <FlexBox>
         <TextWrap>
           <Text
-            children="가장 관심있는 취향 3가지를 선택해"
+            children="가장 관심있는 취향 3가지를"
             typo="SCD_Headline_20"
             color="gray_100"
           />
           <Text
-            children="나의 선물상자를 꾸며보세요"
+            children="나의 취향상자에 담아보세요"
             typo="SCD_Headline_20"
             color="gray_100"
           />

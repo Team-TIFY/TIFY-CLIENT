@@ -16,14 +16,16 @@ import { getNotAnswerFriends } from '@utils/getNotAnswerFriends'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import PokeList from '@components/WeeklyQuestion/poke/PokeList'
+import useSnackBar from '@libs/hooks/useSnackBar'
 
 const CheckAllAnswers = () => {
   const [question, setQuestion] = useRecoilState(questionState)
+  const { setSnackBar } = useSnackBar()
   const [auth, setAuth] = useRecoilState(authState)
   const { isBottomSheetOpen, openBottomSheet, bottomSheetRef } = useBottomSheet(
     { initialState: false },
   )
-  const { data: neighborAnswers } = useQuery(['neighborInfo'], () =>
+  const { data: neighborAnswers = [] } = useQuery(['neighborInfo'], () =>
     WeeklyApi.GET_NEIGHBOR_ANSWERS({
       questionId: question.questionId,
       userId: auth.userProfile.id,
@@ -56,56 +58,42 @@ const CheckAllAnswers = () => {
       </div>
       <Spacing variant="default" height={20} />
       <AnswerListContainer>
-        {neighborAnswers?.filter((data) => data.neighborInfo.view === true)
-          ?.length === 0 ? (
-          <>
-            <Text color="gray_200" typo="Caption_12R">
-              아직 답변을 작성한 친구가 없어요.
-            </Text>
-            <RoundButton
-              style={{ marginBottom: '32px' }}
-              variant="smallRound"
-              width={240}
-              fullWidth={false}
-              onClick={() => {
-                openBottomSheet()
-              }}
-            >
-              <FlexBox align="center" gap={8}>
-                친구 쿡 찌르기
-                <Poke />
-              </FlexBox>
-            </RoundButton>
-          </>
-        ) : (
-          <>
-            <Text
-              color="gray_200"
-              typo="Caption_12R"
-              style={{ marginBottom: '3px' }}
-            >
-              {getNotAnswerFriends(neighborAnswers ? neighborAnswers : [])}
-            </Text>
-            <RoundButton
-              style={{ marginBottom: '32px' }}
-              variant="smallRound"
-              width={240}
-              fullWidth={false}
-              onClick={() => {
-                openBottomSheet()
-              }}
-            >
-              <FlexBox align="center" gap={8}>
-                친구 쿡 찌르기
-                <Poke />
-              </FlexBox>
-            </RoundButton>
-            <DailyAnswerListContainer
-              questionId={question.questionId}
-              answerData={neighborAnswers ? neighborAnswers : []}
-            />
-          </>
-        )}
+        <Text
+          color="gray_200"
+          typo="Caption_12R"
+          style={{ marginBottom: '3px' }}
+        >
+          {getNotAnswerFriends(neighborAnswers ? neighborAnswers : [])}
+        </Text>
+        <RoundButton
+          style={{ marginBottom: '32px' }}
+          variant="smallRound"
+          width={240}
+          fullWidth={false}
+          onClick={() => {
+            const answerFriendList = neighborAnswers.filter(
+              (data) => data.neighborInfo.view,
+            )
+            if (
+              answerFriendList.filter(
+                (data) => data.answerInfo.content === null,
+              ).length === 0
+            ) {
+              setSnackBar({ comment: '쿡 찌를 친구가 없어요.', type: 'info' })
+            } else {
+              openBottomSheet()
+            }
+          }}
+        >
+          <FlexBox align="center" gap={8}>
+            친구 쿡 찌르기
+            <Poke />
+          </FlexBox>
+        </RoundButton>
+        <DailyAnswerListContainer
+          questionId={question.questionId}
+          answerData={neighborAnswers ? neighborAnswers : []}
+        />
       </AnswerListContainer>
     </WeekAnswersContainer>
   )
