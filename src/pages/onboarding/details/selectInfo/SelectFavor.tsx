@@ -4,22 +4,19 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import {
-  isBtnColorState,
-  onboardingState,
-  IsOnboard,
-} from '@libs/store/onboard'
+import { onboardingState } from '@libs/store/onboard'
 import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
 import { authState } from '@libs/store/auth'
 import { favorPriority } from '@libs/store/priority'
 import { useNavigate } from 'react-router-dom'
+import { parseFavorBox } from '@utils/parseFavorBox'
 
 export function SelectFavor() {
-  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+  const [btnColor, setBtnColor] = useState(false)
   const [info, setInfo] = useRecoilState(onboardingState)
   const [auth, setAuth] = useRecoilState(authState)
   const navigate = useNavigate()
@@ -50,9 +47,13 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
+
       OnboardingApi.PUT_ONBOARD_STATUS({
         userId: auth.userProfile.id,
-        data: rest,
+        data: {
+          ...rest,
+          userFavorDtoList: favor.map((data) => parseFavorBox(data)),
+        },
       })
       const favorWithPriority = favorPriority.filter((data) =>
         info.favor.includes(data.taste),
@@ -78,12 +79,12 @@ export function SelectFavor() {
       <FlexBox>
         <TextWrap>
           <Text
-            children="가장 관심있는 취향 3가지를 선택해"
+            children="가장 관심있는 취향 3가지를"
             typo="SCD_Headline_20"
             color="gray_100"
           />
           <Text
-            children="나의 선물상자를 꾸며보세요"
+            children="나의 취향상자에 담아보세요"
             typo="SCD_Headline_20"
             color="gray_100"
           />

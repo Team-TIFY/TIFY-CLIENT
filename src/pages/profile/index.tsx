@@ -40,7 +40,7 @@ const ProfileRouter = () => {
   const navigate = useNavigate()
   const [step, setStepAnswer] = useRecoilState(answerState)
   const location = useLocation()
-  const friendId = parseInt(location.pathname.slice(9))
+  const userId = parseInt(location.pathname.slice(9))
 
   const handleBack = () => {
     if (step.favorAnswerDtos.length > 0) {
@@ -50,22 +50,24 @@ const ProfileRouter = () => {
         categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
+      navigate(-1)
+    } else if (localStorage.getItem('isOnboardingFavor') === 'true') {
+      localStorage.removeItem('isOnboardingFavor')
+      navigate('/onboarding')
+    } else {
+      navigate(-1)
     }
-    navigate(-1)
   }
 
   const handleClickIcon = (url: string) => {
     navigate(url)
   }
 
-  const { data: friendData } = useQuery(
-    ['friendProfile', friendId],
-    () => UserApi.GET_USER_INFO(friendId),
+  const { data: userData } = useQuery(
+    ['userProfile', userId],
+    () => UserApi.GET_USER_INFO(userId),
     {
-      enabled:
-        !isNaN(friendId) &&
-        friendId !== auth.userProfile.id &&
-        auth.userProfile.id !== friendId,
+      enabled: !isNaN(userId) && userId !== auth.userProfile.id,
     },
   )
 
@@ -80,7 +82,7 @@ const ProfileRouter = () => {
               label={'@' + `${auth.userProfile.userId}`}
               hasNav={true}
               rightChildren="actionButton"
-              rightChildrenIcon={!isNaN(friendId) ? undefined : [<MenuIcon />]}
+              rightChildrenIcon={!isNaN(userId) ? undefined : [<MenuIcon />]}
             >
               <Profile />
             </AppBarTemplate>
@@ -111,11 +113,14 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="backPushWithTitle"
-              label={'@' + friendData?.userId}
+              label={'@' + userData?.userId}
               hasNav={false}
               rightChildren="none"
             >
-              <Profile friendData={friendData} friendId={friendId} />
+              <Profile
+                userData={userData}
+                userId={userData?.friend ? userId : undefined}
+              />
             </AppBarTemplate>
           }
         />
@@ -124,13 +129,13 @@ const ProfileRouter = () => {
           element={
             <AppBarTemplate
               variant="backPushWithTitle"
-              label={'@' + friendData?.userId}
+              label={'@' + userData?.userId}
               hasNav={false}
               rightChildren="none"
             >
               <Profile
-                friendData={friendData}
-                friendId={friendId}
+                userData={userData}
+                userId={userData?.friend ? userData.id : undefined}
                 addFriend={true}
               />
             </AppBarTemplate>

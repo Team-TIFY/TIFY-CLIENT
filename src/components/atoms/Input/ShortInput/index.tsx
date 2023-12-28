@@ -10,6 +10,7 @@ import { theme } from '@styles/theme'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   isBtnColorState,
+  OnboardingBtnType,
   onboardingPageState,
   onboardingState,
   OnboardingType,
@@ -65,7 +66,7 @@ export const ShortInput = ({
   const [_, setFocus] = useState(false)
   const [info, setInfo] = useRecoilState<OnboardingType>(onboardingState)
   const infoPage = useRecoilValue(onboardingPageState)
-  const setBtnColor = useSetRecoilState(isBtnColorState)
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const setProfileStateData = useSetRecoilState(profileState)
 
   useEffect(() => {
@@ -98,9 +99,9 @@ export const ShortInput = ({
     setInfo({ ...info, [content]: inputText })
   }
 
-  const cancelClick = (content: string) => {
+  const cancelClick = (content: keyof OnboardingBtnType) => {
     setInfo({ ...info, [content]: '' })
-    setBtnColor(false)
+    setBtnColor({ ...btnColor, [content]: false })
   }
 
   const focusInput = () => {
@@ -148,7 +149,7 @@ export const ShortInput = ({
         />
         <CancelBtn
           onClick={() => {
-            cancelClick(content)
+            cancelClick(content as keyof OnboardingBtnType)
           }}
         />
       </TextAreaWrapper>

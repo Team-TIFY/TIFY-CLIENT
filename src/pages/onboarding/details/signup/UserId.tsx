@@ -1,14 +1,9 @@
 import { ShortInput } from '@components/atoms/Input/ShortInput'
 import styled from '@emotion/styled'
 import { authState } from '@libs/store/auth'
-import {
-  isBtnColorState,
-  onboardingPageState,
-  onboardingState,
-} from '@libs/store/onboard'
-import { useQuery } from '@tanstack/react-query'
+import { isBtnColorState } from '@libs/store/onboard'
 import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 type UserIdPropsType = {
@@ -19,24 +14,22 @@ type UserIdPropsType = {
 export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
   const [error, setError] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const [btnColor, setBtnColor] = useState<boolean>(false)
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const auth = useRecoilValue(authState)
   const [inputValue, setInputValue] = useState<string>('')
-  const isUserId = useRecoilValue(onboardingState)
-  const infoPage = useRecoilValue(onboardingPageState)
-  const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const regex = /^[a-zA-Z0-9.-_-\n\r]+$/ //정규식
-
+  const regex = /^[a-zA-Z0-9_.-]+$/
   const handleName = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(e.target.value)
+    const newInputValue = e.target.value
 
-    if (!regex.test(e.target.value) && e.target.value.length > 0) {
+    setInputValue(newInputValue)
+
+    if (!regex.test(newInputValue) && newInputValue.length > 0) {
       setError(true)
       setErrorMsg(
         '알파벳 (a-z, A-Z), 숫자, 밑줄 (-, _) 및 마침표만 사용해 주세요.',
       )
-    } else if (regex.test(e.target.value) && e.target.value.length >= 15) {
+    } else if (regex.test(newInputValue) && newInputValue.length >= 15) {
       setError(true)
       setErrorMsg('15자 이내로 부탁해요!')
     } else {
@@ -45,33 +38,32 @@ export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
     }
 
     if (
-      e.target.value.length > 0 &&
-      e.target.value.length < 15 &&
-      regex.test(e.target.value)
+      newInputValue.length > 0 &&
+      newInputValue.length < 15 &&
+      regex.test(newInputValue)
     ) {
-      setBtnColor(true)
+      setBtnColor({ ...btnColor, id: true })
     } else {
-      setBtnColor(false)
+      setBtnColor({ ...btnColor, id: false })
     }
+
+    // 중복 확인
+    checkIdAvailability(newInputValue)
   }
 
-  const { data: isIdAvailable } = useQuery(
-    //중복확인
-    ['userIdCheck', inputValue],
-    () => OnboardingApi.GET_USERID_CHECK(inputValue),
-  )
-
-  const handleBlur = () => {
-    if (inputValue !== '') {
-      if (auth.userProfile.userId === inputValue) {
+  const checkIdAvailability = (newInputValue: string) => {
+    if (newInputValue !== '') {
+      if (auth.userProfile.userId === newInputValue) {
         return
       }
 
-      if (isIdAvailable === false) {
-        setErrorMsg('다른 사용자가 사용하고 있어요.')
-        setError(true)
-        setBtnColor(false)
-      }
+      OnboardingApi.GET_USERID_CHECK(newInputValue).then((isAvailable) => {
+        if (isAvailable === false) {
+          setErrorMsg('다른 사용자가 사용하고 있어요.')
+          setError(true)
+          setBtnColor({ ...btnColor, id: false })
+        }
+      })
     }
   }
 
@@ -86,8 +78,7 @@ export const UserId = ({ isEdit = false, value }: UserIdPropsType) => {
         placeholder={isEdit ? '아이디를 입력해주세요' : 'ID를 입력해주세요'}
         error={error}
         warning={errorMsg}
-        onChange={handleName}
-        onInput={handleBlur}
+        onInput={handleName}
         content="id"
       />
     </Container>

@@ -2,15 +2,12 @@ import { SendMsgIcon } from '@assets/icons/SendMsgIcon'
 import { SmallDownChev } from '@assets/icons/SmallDownChev'
 import { UpChevron } from '@assets/icons/UpChevron'
 import { Text } from '@components/atoms/Text'
-import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
-import { useCallback, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const CustomerCenter = () => {
-  const initialButtonStates = Array(11).fill({ istoggle: false })
-  const [buttonStates, setButtonStates] = useState(initialButtonStates)
   const [openIndex, setOpenIndex] = useState(-1)
 
   const updateState = (index: number) => {

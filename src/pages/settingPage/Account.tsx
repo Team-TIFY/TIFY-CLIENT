@@ -1,20 +1,12 @@
-import { Delete } from '@assets/icons/Delete'
 import { Text } from '@components/atoms/Text'
-import Dimmer from '@components/layouts/Dimmer'
 import styled from '@emotion/styled'
-import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { authState } from '@libs/store/auth'
 import { theme } from '@styles/theme'
-import { useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import DeleteAccountBtn from './DeleteAccountBtn'
 
 const Account = () => {
   const auth = useRecoilValue(authState)
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-  const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
-    setIsMenuOpen(false),
-  )
 
   return (
     <>

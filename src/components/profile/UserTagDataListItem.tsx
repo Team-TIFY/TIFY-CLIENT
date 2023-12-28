@@ -2,39 +2,98 @@ import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Category } from '@components/atoms/Category'
-import { indexVariant, Tag } from '@components/atoms/Tag'
+import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
 import {
   FilteredUserTag,
   SelectedProps,
-  SelectedTag,
+  SubCategoryName,
+  SubCategoryType,
 } from '@utils/apis/user/UserType'
+import { getTagAnswerData } from '@utils/getTagAnswerData'
+import { useNavigate } from 'react-router-dom'
+import { questionMenu } from '@utils/questionMenu'
+import { useSetRecoilState } from 'recoil'
+import { friendState } from '@libs/store/friend'
 
 export interface UserTagDataProps {
-  selectedTags: SelectedTag[]
   selectedProps: SelectedProps
   userTagData: FilteredUserTag[]
   isFriend: boolean
 }
 
 export const UserTagDataListItem = ({
-  selectedTags,
   selectedProps,
   userTagData,
   isFriend,
 }: UserTagDataProps) => {
+  const navigate = useNavigate()
+  const setFriendStateData = useSetRecoilState(friendState)
+
+  const handleClickPlusButton = (
+    categoryName: SubCategoryName,
+    smallCategory: string,
+    categoryValue: SubCategoryType,
+  ) => {
+    if (categoryName === '프레그런스' && smallCategory === 'PERFUME') {
+      navigate(questionMenu[categoryValue][0])
+    } else if (categoryName === '프레그런스' && smallCategory === 'MOISTURE') {
+      navigate(questionMenu[categoryValue][1])
+    } else if (categoryName === '프레그런스' && smallCategory === 'PLACE') {
+      navigate(questionMenu[categoryValue][2])
+    } else {
+      navigate(questionMenu[categoryValue])
+    }
+  }
+
+  const handleClickPresentButton = (categoryValue: SubCategoryType) => {
+    setFriendStateData((prevStateData) => ({
+      ...prevStateData,
+      presentRecommendFilterValue: categoryValue,
+    }))
+
+    navigate('/friends/presentRecommend')
+  }
+
   const renderUserTagDataListItem = () => {
-    return userTagData.map((tag, idx) =>
-      tag.answerContentList?.length ? (
-        <Category
-          key={idx}
-          categoryName={selectedProps[idx]?.name}
-          children={tag?.answerContentList?.map((tagData, index) => (
-            <Tag key={index} index={index as indexVariant} children={tagData} />
-          ))}
-          isFriend={isFriend}
-        />
-      ) : null,
-    )
+    return getTagAnswerData(userTagData)
+      ?.filter((tag) => tag.length !== 0)
+      ?.map((tag, idx) => {
+        const matchingProp = selectedProps.find(
+          (selectedProp) => selectedProp.value === tag[0]?.smallCategory,
+        )
+        const categoryName = matchingProp
+          ? matchingProp.name
+          : ('' as SubCategoryName)
+        const categoryValue = matchingProp?.value ?? ('' as SubCategoryType)
+        const smallCategory = tag[1].smallCategory ?? tag[0].smallCategory
+        const allCategoryAnswered = tag[0]?.allDetailCategoryAnswered
+
+        return (
+          <Category
+            key={idx}
+            categoryName={categoryName}
+            isFriend={isFriend}
+            allCategoryAnswered={allCategoryAnswered}
+            onPlusButtonClick={() =>
+              handleClickPlusButton(categoryName, smallCategory, categoryValue)
+            }
+            onPresentButtonClick={() => handleClickPresentButton(categoryValue)}
+            children={tag.map((tagData, index) =>
+              tagData.answer ? (
+                <Tag
+                  key={index}
+                  colorIndex={(index % 3) as ColorIndexVariant}
+                  iconIndex={tagData.number}
+                  children={tagData.answer}
+                  smallCategory={tagData.smallCategory}
+                  detailCategory={tagData.detailCategory}
+                  answerNumber={tagData.number}
+                />
+              ) : null,
+            )}
+          />
+        )
+      })
   }
 
   return (

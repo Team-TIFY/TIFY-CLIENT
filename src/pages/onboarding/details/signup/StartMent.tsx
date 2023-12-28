@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 import { useRecoilValue } from 'recoil'
 import { onboardingPageState } from '@libs/store/onboard'
 import { Text } from '@components/atoms/Text'
-import { FlexBox } from '../../../../components/layouts/FlexBox'
 import { Step1 } from '@assets/icons/SignupStep/1'
 import { Step2 } from '../../../../assets/icons/SignupStep/2'
 import { Step3 } from '@assets/icons/SignupStep/3'
@@ -16,13 +15,13 @@ export function StartMent() {
       <TextWrap>
         <Text
           children="TIFY를 시작해 볼까요?"
-          typo="SCD_Headline_20"
+          typo="SCD_Headline_20B"
           color="gray_100"
         />
       </TextWrap>
       <SmallText>
-        {infoPage.info.name ? (
-          infoPage.info.userId ? (
+        {infoPage.info.username ? (
+          infoPage.info.id ? (
             infoPage.info.birth ? (
               <Step4 />
             ) : (
@@ -37,8 +36,8 @@ export function StartMent() {
         <SmallWrap>
           <Text
             children={
-              infoPage.info.name
-                ? infoPage.info.userId
+              infoPage.info.username
+                ? infoPage.info.id
                   ? infoPage.info.birth
                     ? '성별을 알려주세요'
                     : '생년월일을 알려주세요'

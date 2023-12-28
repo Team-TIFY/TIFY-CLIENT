@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ChangeEvent } from 'react'
+import { useState, useRef, useEffect, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { SmallDownChev } from '@assets/icons/SmallDownChev'
@@ -9,6 +9,7 @@ import { Text } from '@components/atoms/Text'
 import { FileIcon } from '@assets/icons/FileIcon'
 import { RoundButton } from '@components/atoms/RoundButton'
 import { CustomerCenterApi } from '@utils/apis/setting'
+import { useNavigate } from 'react-router-dom'
 
 interface Options {
   title: boolean
@@ -28,6 +29,7 @@ const WriteForCustomer = () => {
 
   const [currentValue, setCurrentValue] = useState(Options[0].name)
   const [currentOption, setCurrentOption] = useState(Options[0].value)
+  const navigate = useNavigate()
   const [titleValue, setTitleValue] = useState<string>('')
   const [contentValue, setContentValue] = useState<string>('')
   const [emailValue, setEmailValue] = useState<string>('')
@@ -200,12 +202,13 @@ const WriteForCustomer = () => {
         titleValue,
         contentValue,
         emailValue,
+        filename,
       )
         .then((response) => {
           if (response.status === 200) {
-            console.log('Post successful:', response.data)
+            navigate(-1)
           } else {
-            console.error('Post failed with status:', response.status)
+            console.error('전송 실패:', response.status)
           }
         })
         .catch((error) => {

@@ -81,7 +81,16 @@ export const ProfileHeader = ({
       (!userData.friend && auth.userProfile.userId !== userData.userId) ||
       addFriend
     ) {
-      if (!userData.receivedApplication && !userData.sentApplication) {
+      if (userData.friend) {
+        return (
+          <SquareButton
+            variant="mediumSquare"
+            subVariant="default"
+            fullWidth={true}
+            children="수락됨"
+          />
+        )
+      } else if (!userData.receivedApplication && !userData.sentApplication) {
         return (
           <SquareButton
             variant="mediumSquare"

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { Checkbox } from './Checkbox'
@@ -6,9 +5,9 @@ import { Text } from '../../../components/atoms/Text'
 import { Vector } from '../../../assets/icons/Vector'
 import { useRecoilState } from 'recoil'
 import { onboardingPageState } from '../../../libs/store/onboard'
-import { FlexBox } from './../../../components/layouts/FlexBox'
 import { RoundButton } from './../../../components/atoms/RoundButton/index'
 import { theme } from '@styles/theme'
+import { useNavigate } from 'react-router-dom'
 
 export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([])
@@ -53,7 +52,7 @@ export function Agreement() {
       <TextWrap>
         <Text
           children="TIFY 이용약관에 동의해 주세요"
-          typo="SCD_Headline_20"
+          typo="SCD_Headline_20B"
           color="gray_100"
         />
       </TextWrap>
@@ -103,7 +102,7 @@ export function Agreement() {
           onChange={check}
           checked={checkList.includes('community') ? true : false}
         />
-        <Vector linkUrl="9e75acf1487c481a9fe818754198b73a" />
+        <Vector linkUrl="78b9ea114e8a4fc88baa99d0072ed2be" />
       </CheckDiv>
       <BottomSticker>
         <RoundButton

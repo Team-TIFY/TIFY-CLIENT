@@ -1,4 +1,3 @@
-import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { theme } from '@styles/theme'
@@ -8,7 +7,7 @@ import { useRecoilState } from 'recoil'
 export function Gender() {
   const [info, setInfo] = useRecoilState(onboardingState)
   const [isGender, setIsGender] = useState<string>('')
-  const [btnColor, setBtnColor] = useState<boolean>(false)
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
 
   const setGender = (gender: string) => {
     setInfo({
@@ -25,7 +24,7 @@ export function Gender() {
         <GenderWomanBtn
           onClick={() => {
             setGender('female')
-            setBtnColor(() => true)
+            setBtnColor({ ...btnColor, gender: true })
           }}
           gender={isGender}
         >
@@ -34,7 +33,7 @@ export function Gender() {
         <GenderManBtn
           onClick={() => {
             setGender('male')
-            setBtnColor(() => true)
+            setBtnColor({ ...btnColor, gender: true })
           }}
           gender={isGender}
         >

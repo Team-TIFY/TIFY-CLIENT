@@ -1,57 +1,62 @@
 import { useEffect, useState } from 'react'
-import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
+import {
+  SelectedProps,
+  SelectedTag,
+  SubCategoryName,
+} from '@utils/apis/user/UserType'
 import styled from '@emotion/styled'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
 import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import Dimmer from '@components/layouts/Dimmer'
-import { useOutsideClick } from '@libs/hooks/useOutsideClick'
 import { GiftFilter } from '@components/atoms/GiftFilter'
 import SortItem from './bottomsheet/SortItem'
-import { useRecoilValue } from 'recoil'
-import { FilterState, PriceState } from '@libs/store/present'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { FilterState, isFilterTypeState, PriceState } from '@libs/store/present'
 import PriceFilter from './bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 import { theme } from '@styles/theme'
-import makeupNull from '@assets/image/makeupNull.svg'
-import fragranceNull from '@assets/image/fragranceNull.svg'
-import clothesNull from '@assets/image/clothesNull.svg'
-import fashionNull from '@assets/image/fashionNull.svg'
-import bagNull from '@assets/image/bagNull.svg'
-import accessoryNull from '@assets/image/accessoryNull.svg'
-import cookingNull from '@assets/image/cookingNull.svg'
-import exerciseNull from '@assets/image/exerciseNull.svg'
+import BottomSheet from '@components/atoms/BottomSheet'
+import useBottomSheet from '@libs/hooks/useBottomSheet'
+import { friendState } from '@libs/store/friend'
+import { CategoryNameType } from '@components/atoms/Category'
+import { useInfiniteQueries } from '@libs/hooks'
+import PresentItem from './PresentItem'
 
-type DataType = {
+export type DataType = {
   productId: number
-  brand: string
   name: string
+  brand: string
+  characteristic: string
   price: number
   productOption: string
   imageUrl: string
   siteUrl: string
+  largeCategory: string
   smallCategory: string
+  detailCategory: string
+  categoryName: string
 }
 
-function PresentRecommend() {
-  const selectedProps: SelectedProps = [
-    { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
-    { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE' },
-    { id: 3, active: false, name: '의류', value: 'CLOTHES' },
-    { id: 4, active: false, name: '패션소품', value: 'FASHION_PRODUCT' },
-    // { id: 5, active: false, name: '디지털 소품', value: 'DIGITAL_PRODUCT' },
-    { id: 6, active: false, name: '가방', value: 'BAG' },
-    { id: 7, active: false, name: '액세사리', value: 'ACCESSORY' },
-    { id: 8, active: false, name: '요리', value: 'COOKING' },
-    { id: 9, active: false, name: '운동', value: 'EXERCISE' },
-  ]
+const selectedPropsData: SelectedProps = [
+  { id: 1, active: false, name: '메이크업', value: 'MAKEUP' },
+  { id: 2, active: false, name: '프레그런스', value: 'FRAGRANCE' },
+  { id: 3, active: false, name: '의류', value: 'CLOTHES' },
+  { id: 4, active: false, name: '패션소품', value: 'FASHION_PRODUCT' },
+  { id: 5, active: false, name: '디지털소품', value: 'DIGITAL_PRODUCT' },
+  { id: 6, active: false, name: '가방', value: 'BAG' },
+  { id: 7, active: false, name: '액세사리', value: 'ACCESSORY' },
+  { id: 8, active: false, name: '요리', value: 'COOKING' },
+  { id: 9, active: false, name: '운동', value: 'EXERCISE' },
+]
 
+function PresentRecommend() {
+  const [selectedProps, setSelectedProps] =
+    useState<SelectedProps>(selectedPropsData)
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
-  const [dataLoaded, setDataLoaded] = useState<boolean>(false)
-  const [products, setProducts] = useState<DataType[]>([])
-  const [isSortOpen, setIsSortOpen] = useState<string>('')
+  const [isSortOpen, setIsSortOpen] = useRecoilState<string>(isFilterTypeState)
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
+  const friendStateData = useRecoilValue(friendState)
 
   const selectedCategories = selectedTags.map((tag) => tag.value)
   const selectedCategoriesString = selectedCategories
@@ -63,55 +68,75 @@ function PresentRecommend() {
     .map((category) => `${category.value}`)
     .join(',')
 
-  const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
-    setIsSortOpen(''),
+  const { infiniteListElement, isEmpty } = useInfiniteQueries<DataType>(
+    [
+      'GET_PRESENT_RECOMMEND',
+      selectedTags,
+      selectedFilter.filter,
+      selectedPrice.price,
+      friendStateData.presentRecommendFilterValue,
+    ],
+    () =>
+      FriendsApi.GET_PRESENT_RECOMMEND({
+        smallCategory:
+          selectedTags.length > 0
+            ? selectedCategoriesString
+            : allCategoriesString,
+        priceOrder: selectedFilter.filterValue,
+        priceFilter: selectedPrice.priceValue,
+      }),
+    PresentItem,
   )
 
-  const gotoSite = (siteUrl: string) => {
-    window.open(`${siteUrl}`)
-  }
-
-  const formatPrice = (price: number) => {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
-
-  const defaultImage = (smallCategory: string) => {
-    switch (smallCategory) {
-      case 'MAKEUP':
-        return makeupNull
-      case 'FRAGRANCE':
-        return fragranceNull
-      case 'CLOTHES':
-        return clothesNull
-      case 'FASHION_PRODUCT':
-        return fashionNull
-      case 'BAG':
-        return bagNull
-      case 'ACCESSORY':
-        return accessoryNull
-      case 'COOKING':
-        return cookingNull
-      case 'EXERCISE':
-        return exerciseNull
-      default:
-        return makeupNull
-    }
-  }
-
   useEffect(() => {
-    FriendsApi.GET_PRESENT_RECOMMEND(
-      selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
-      selectedFilter.filterValue,
-      selectedPrice.priceValue,
-    ).then((response) => {
-      if (response.statusCode === 200) {
-        setProducts(response.data)
-        setDataLoaded(true)
-      } else {
-        setDataLoaded(false)
-      }
-    })
-  }, [selectedTags, selectedFilter.filter, selectedPrice.price])
+    const selectedOption = selectedProps.find(
+      (selectedProp) =>
+        selectedProp.value === friendStateData.presentRecommendFilterValue,
+    )
+
+    if (selectedOption) {
+      setSelectedProps((prevSelectedProps) =>
+        prevSelectedProps.map((prop) =>
+          prop.value === selectedOption.value
+            ? { ...prop, active: true }
+            : prop,
+        ),
+      )
+
+      setSelectedTags([
+        {
+          name: selectedOption.name as SubCategoryName,
+          value: selectedOption.value as CategoryNameType,
+        },
+      ])
+    } else {
+      // 만약 selectedOption이 없다면, 즉 선택된 카테고리가 없다면
+      setSelectedProps((prevSelectedProps) =>
+        prevSelectedProps.map((prop) => ({ ...prop, active: false })),
+      )
+
+      setSelectedTags([])
+    }
+  }, [friendStateData.presentRecommendFilterValue])
+
+  const handleFilterClick = () => {
+    setIsSortOpen('filter')
+    openBottomSheet()
+  }
+
+  const handlePriceClick = () => {
+    setIsSortOpen('price')
+    openBottomSheet()
+  }
+
+  const {
+    bottomSheetRef,
+    isBottomSheetOpen,
+    openBottomSheet,
+    closeBottomSheet,
+  } = useBottomSheet({
+    initialState: false,
+  })
 
   return (
     <>
@@ -124,7 +149,7 @@ function PresentRecommend() {
       </FilterWrapper>
       <ContainerFix>
         <FilterItemWrap>
-          <RecommendFilter onClick={() => setIsSortOpen('filter')}>
+          <RecommendFilter onClick={handleFilterClick}>
             <ItemFilter />
             <Margin widthProps={2} />
             <Text
@@ -134,7 +159,7 @@ function PresentRecommend() {
             />
           </RecommendFilter>
           <Margin widthProps={12} />
-          <RecommendFilter onClick={() => setIsSortOpen('price')}>
+          <RecommendFilter onClick={handlePriceClick}>
             <PriceFilterIcon />
             <Margin widthProps={2} />
             <Text
@@ -145,59 +170,18 @@ function PresentRecommend() {
           </RecommendFilter>
         </FilterItemWrap>
       </ContainerFix>
-      <Container>
-        {dataLoaded && (
-          <SortItemWrap>
-            {products.map((product: DataType, index: number) => (
-              <ItemDiv key={index} onClick={() => gotoSite(product.siteUrl)}>
-                <ItemImg
-                  imageUrl={
-                    product.imageUrl || defaultImage(product.smallCategory)
-                  }
-                />
-                <Text
-                  typo="Caption_12R"
-                  color="gray_400"
-                  children={product.brand}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    marginBottom: '4px',
-                  }}
-                >
-                  <Text
-                    typo="Caption_12R"
-                    color="gray_100"
-                    children={
-                      product.productOption
-                        ? `${product.productOption}` + ' - ' + `${product.name}`
-                        : `${product.name}`
-                    }
-                  />
-                </div>
-                <Text
-                  typo="Mont_Caption_12B"
-                  color="gray_100"
-                  children={formatPrice(product.price)}
-                />
-              </ItemDiv>
-            ))}
-          </SortItemWrap>
-        )}
-      </Container>
-      {isSortOpen === 'filter' && (
-        <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-          <SortItem />
-        </>
-      )}
-      {isSortOpen === 'price' && (
-        <>
-          <Dimmer dimmerRef={outsideRef} onClick={handleClickDimmer} />
-          <PriceFilter />
-        </>
-      )}
+      <Container>{!isEmpty && infiniteListElement}</Container>
+      <>
+        <BottomSheet
+          isexpanded={isBottomSheetOpen}
+          filterType={isSortOpen}
+          bottomSheetRef={bottomSheetRef}
+        >
+          {isSortOpen === 'filter' && <SortItem />}
+          {isSortOpen === 'price' && <PriceFilter />}
+        </BottomSheet>
+      </>
+      <BottomSpacing />
     </>
   )
 }
@@ -205,6 +189,7 @@ function PresentRecommend() {
 export default PresentRecommend
 
 const FilterWrapper = styled.div`
+  z-index: 1;
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -227,6 +212,7 @@ const Container = styled.div`
 const ContainerFix = styled.div`
   padding: 0px 24px 0 24px;
   position: sticky;
+  z-index: 1;
   top: 160px;
   width: 100%;
 `
@@ -252,25 +238,7 @@ const Margin = styled.div<{
   width: ${({ widthProps }) => `${widthProps}px`};
   height: 100%;
 `
-const SortItemWrap = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+const BottomSpacing = styled.div`
   width: 100%;
-  row-gap: 52px;
-  column-gap: 12px;
-  justify-items: center;
-`
-const ItemDiv = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`
-
-const ItemImg = styled.div<{ imageUrl: string }>`
-  width: 100%;
-  padding-bottom: 100%;
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-  background-size: cover;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  height: 56px;
 `

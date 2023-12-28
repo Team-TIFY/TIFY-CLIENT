@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import {
   isBtnColorState,
+  OnboardingBtnType,
   onboardingPageState,
-  onboardingState,
+  pageTempState,
 } from '@libs/store/onboard'
 import { StartMent } from './signup/StartMent'
 import { RoundButton } from '@components/atoms/RoundButton'
@@ -13,21 +14,20 @@ import { Name } from './signup/Name'
 import { UserId } from './signup/UserId'
 import { Birth } from './signup/Birth'
 import { Gender } from './signup/Gender'
-import { useNavigate } from 'react-router-dom'
 
 export function SignUp() {
   const [infoPage, setInfoPage] = useRecoilState(onboardingPageState)
-  const [page, setPage] = useState<string>('name')
-  const [btnColor, setBtnColor] = useState<boolean>(false)
-  const navigate = useNavigate()
+  const [page, setPage] = useRecoilState(pageTempState)
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+
   useEffect(() => {
-    if (infoPage.info.name) {
-      setPage('userId')
+    if (infoPage.info.username && !infoPage.info.id) {
+      setPage('id')
     }
-    if (infoPage.info.userId) {
+    if (infoPage.info.id && !infoPage.info.birth) {
       setPage('birth')
     }
-    if (infoPage.info.birth) {
+    if (infoPage.info.birth && !infoPage.info.gender) {
       setPage('gender')
     }
     if (infoPage.info.gender) {
@@ -38,8 +38,8 @@ export function SignUp() {
     }
   }, [infoPage.info])
 
-  const gotoReg = (content: string) => {
-    if (btnColor === true) {
+  const gotoReg = (content: keyof OnboardingBtnType) => {
+    if (btnColor[content]) {
       setInfoPage({
         ...infoPage,
         info: {
@@ -52,7 +52,7 @@ export function SignUp() {
     }
   }
 
-  const gotoBack = (content: string) => {
+  const gotoBack = (content: keyof OnboardingBtnType) => {
     if (content == 'gender') {
       setInfoPage({
         ...infoPage,
@@ -62,7 +62,6 @@ export function SignUp() {
         },
       })
       setPage('gender')
-      setBtnColor(true)
     } else if (content == 'birth') {
       setInfoPage({
         ...infoPage,
@@ -70,36 +69,39 @@ export function SignUp() {
           ...infoPage.info,
           birth: false,
           gender: false,
+          id: true,
+          username: true,
         },
+        agreement: true,
       })
       setPage('birth')
-      setBtnColor(true)
-    } else if (content == 'userId') {
+    } else if (content == 'id') {
       setInfoPage({
         ...infoPage,
         info: {
           ...infoPage.info,
           birth: false,
           gender: false,
-          userId: false,
+          id: false,
+          username: true,
         },
+        agreement: true,
       })
-      setBtnColor(true)
-      setPage('userId')
-    } else if (content == 'name') {
+      setPage('id')
+    } else if (content == 'username') {
       setInfoPage({
         ...infoPage,
         info: {
           ...infoPage.info,
           birth: false,
           gender: false,
-          userId: false,
-          name: false,
+          id: false,
+          username: false,
         },
+        agreement: true,
       })
+      setPage('username')
     }
-    setBtnColor(true)
-    setPage('name')
   }
 
   return (
@@ -110,14 +112,14 @@ export function SignUp() {
           <Gender />
           <Spacing height={48} />
         </StepDiv>
-        <StepDiv step={infoPage.info.userId} onClick={() => gotoBack('birth')}>
+        <StepDiv step={infoPage.info.id} onClick={() => gotoBack('birth')}>
           <Birth />
           <Spacing height={48} />
         </StepDiv>
         <StepDiv
-          step={infoPage.info.name}
+          step={infoPage.info.username}
           onClick={() => {
-            gotoBack('userId')
+            gotoBack('id')
           }}
         >
           <UserId />
@@ -125,7 +127,7 @@ export function SignUp() {
         </StepDiv>
         <div
           onClick={() => {
-            gotoBack('name')
+            gotoBack('username')
           }}
         >
           <Name />
@@ -137,10 +139,9 @@ export function SignUp() {
           width={312}
           children="다음"
           onClick={() => {
-            gotoReg(page)
-            setBtnColor(() => false)
+            gotoReg(page as keyof OnboardingBtnType)
           }}
-          disabled={!btnColor}
+          disabled={!btnColor[page as keyof OnboardingBtnType]}
         />
       </BottomSticker>
     </>

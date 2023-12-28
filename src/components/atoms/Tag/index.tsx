@@ -1,11 +1,20 @@
-import TagIcon from '@assets/icons/TagIcon'
 import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
+import { KeyOfPalette, theme } from '@styles/theme'
+import { tagIconData } from '@utils/tagIconData'
+
+type TagPropsType = {
+  children: string
+  colorIndex: ColorIndexVariant
+  iconIndex: number
+  smallCategory: any
+  detailCategory: any
+  answerNumber: number
+}
 
 type TagVariant = 'main' | 'dark'
 type ColorVariant = 'purple' | 'pink' | 'aqua'
 
-export type indexVariant = 0 | 1 | 2 | 3 | 4 | 5
+export type ColorIndexVariant = 0 | 1 | 2 | 3 | 4 | 5
 
 const TAG_BG_COLOR_TYPE = {
   main: {
@@ -20,15 +29,6 @@ const TAG_BG_COLOR_TYPE = {
   },
 }
 
-const TAG_IMG_TYPE: Record<
-  ColorVariant,
-  'purple_500' | 'pink_500' | 'aqua_300'
-> = {
-  purple: 'purple_500',
-  pink: 'pink_500',
-  aqua: 'aqua_300',
-}
-
 const TAG_TEXT_COLOR_TYPE = {
   main: `${theme.palette.gray_800}`,
   dark: `${theme.palette.white}`,
@@ -40,67 +40,87 @@ const TAG_PADDING_TYPE = {
 }
 
 const TAG_COLOR_TYPE: Record<
-  indexVariant,
-  { variant: TagVariant; color: ColorVariant }
+  ColorIndexVariant,
+  { variant: TagVariant; color: ColorVariant; iconColor: string }
 > = {
   0: {
     variant: 'main',
     color: 'purple',
+    iconColor: 'purple_500',
   },
   1: {
     variant: 'main',
     color: 'pink',
+    iconColor: 'pink_500',
   },
   2: {
-    variant: 'dark',
+    variant: 'main',
     color: 'aqua',
+    iconColor: 'aqua_300',
   },
   3: {
     variant: 'dark',
-    color: 'pink',
+    color: 'purple',
+    iconColor: '',
   },
   4: {
-    variant: 'main',
-    color: 'aqua',
+    variant: 'dark',
+    color: 'pink',
+    iconColor: '',
   },
   5: {
     variant: 'dark',
-    color: 'purple',
+    color: 'aqua',
+    iconColor: '',
   },
 }
 
-/**
- * @param index 태그 종류를 나타냄 0 | 1 | 2 | 3 | 4 | 5  중 하나 가능함
- * @param children 태그 컴포넌트에 들어갈 텍스트를 나타냄
- * @param onClick 태그 클릭 시 발생할 이벤트를 넘겨주는 함수임
- */
-interface TagProps {
-  index: 0 | 1 | 2 | 3 | 4 | 5
-  children: string
-  onClick?: () => void
-}
+export const Tag = ({
+  children,
+  colorIndex,
+  iconIndex,
+  smallCategory,
+  detailCategory,
+  answerNumber,
+}: TagPropsType) => {
+  const IconComponent = tagIconData[smallCategory][detailCategory][iconIndex]
 
-export const Tag = ({ index, children }: TagProps) => {
   return (
-    // <Wrapper
-    //   variant={TAG_COLOR_TYPE[index].variant}
-    //   color={TAG_COLOR_TYPE[index].color}
-    // >
-    //   {TAG_COLOR_TYPE[index].variant === 'main' && (
-    //     <TagIcon stroke={`${TAG_IMG_TYPE[TAG_COLOR_TYPE[index].color]}`} />
-    //   )}
-    //   {children}
-    // </Wrapper>
-    <div></div>
+    <Wrapper
+      tagVariant={
+        (smallCategory === 'MAKEUP' && answerNumber === 5) ||
+        (smallCategory === 'EXERCISE' && answerNumber === 6)
+          ? 'dark'
+          : TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant
+      }
+      colorVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].color}
+    >
+      <>
+        {IconComponent &&
+          TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant ===
+            'main' && (
+            <IconComponent
+              fill={
+                TAG_COLOR_TYPE[colorIndex as ColorIndexVariant]
+                  ?.iconColor as KeyOfPalette
+              }
+            />
+          )}
+        {children}
+      </>
+    </Wrapper>
   )
 }
 
-const Wrapper = styled.div<{ variant: TagVariant; color: ColorVariant }>`
+const Wrapper = styled.div<{
+  tagVariant: TagVariant
+  colorVariant: ColorVariant
+}>`
   ${theme.typo.Caption_12M};
-  background-color: ${({ variant, color }) =>
-    `${TAG_BG_COLOR_TYPE[variant][color]}`};
-  color: ${({ variant }) => `${TAG_TEXT_COLOR_TYPE[variant]}`};
-  padding: ${({ variant }) => `${TAG_PADDING_TYPE[variant]}`};
+  background-color: ${({ tagVariant, colorVariant }) =>
+    `${TAG_BG_COLOR_TYPE[tagVariant][colorVariant]}`};
+  color: ${({ tagVariant }) => `${TAG_TEXT_COLOR_TYPE[tagVariant]}`};
+  padding: ${({ tagVariant }) => `${TAG_PADDING_TYPE[tagVariant]}`};
   border-radius: 6px;
   display: inline-flex;
   align-items: center;

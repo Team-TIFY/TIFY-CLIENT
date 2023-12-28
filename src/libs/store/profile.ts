@@ -6,7 +6,6 @@ export type ProfileState = {
   isMenuOpen: boolean
   isEditImageMenuOpen: boolean
   isEdit: boolean
-  buttonText: string
   pastTodayCategory: TodayCategoryValueType
 }
 
@@ -15,7 +14,6 @@ const initialState: ProfileState = {
   isMenuOpen: false,
   isEditImageMenuOpen: false,
   isEdit: false,
-  buttonText: '수정 완료',
   pastTodayCategory: 'FOOD',
 }
 

@@ -80,4 +80,16 @@ export const UserApi = {
     const response = await axiosApi.get(`/users/${id}/tags`)
     return response.data.data
   },
+  EDIT_FAVOR_BOX: async ({
+    userId,
+    favorList,
+  }: {
+    userId: number
+    favorList: string[]
+  }) => {
+    const response = await axiosApi.patch(`/users/${userId}/tags`, {
+      userFavorDtoList: [...favorList],
+    })
+    return response.data.data
+  },
 }

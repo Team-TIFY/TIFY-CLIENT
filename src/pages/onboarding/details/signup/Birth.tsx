@@ -6,10 +6,8 @@ import { theme } from '@styles/theme'
 import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { ko } from 'date-fns/locale'
-import { FlexBox } from '@components/layouts/FlexBox'
 import useGetDate from '@libs/hooks/useGetDate'
 import { profileState } from '@libs/store/profile'
-import { useNavigate } from 'react-router-dom'
 
 export function Birth({
   value,
@@ -23,7 +21,7 @@ export function Birth({
     value ? new Date(getFormattedDate(value)) : new Date('2000-01-01'),
   )
   const [info, setInfo] = useRecoilState(onboardingState)
-  const [btnColor, setBtnColor] = useState<boolean>(false)
+  const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const setProfileStateData = useSetRecoilState(profileState)
   const handleDateChange = (date: Date | null) => {
     setProfileStateData((prevState) => ({ ...prevState, isEdit: true }))
@@ -40,13 +38,12 @@ export function Birth({
         birth: formattedDate,
       })
     }
-
-    setBtnColor(true)
   }
 
   useEffect(() => {
     if (info.birth) {
       setSelectedDate(new Date(info.birth))
+      setBtnColor({ ...btnColor, birth: true })
     }
   }, [value, info.birth])
 
