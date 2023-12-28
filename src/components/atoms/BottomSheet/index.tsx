@@ -1,7 +1,8 @@
-import styled from '@emotion/styled'
 import { ReactNode, RefObject } from 'react'
-import { theme } from '@styles/theme'
 import { motion } from 'framer-motion'
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
 
 const BottomSheet = ({
   children,
@@ -16,7 +17,7 @@ const BottomSheet = ({
 }) => {
   return (
     <>
-      <div
+      <BottomSheetBackground
         className="background"
         style={{
           position: 'fixed',
@@ -43,12 +44,14 @@ const BottomSheet = ({
         >
           {children}
         </BottomSheetContainer>
-      </div>
+      </BottomSheetBackground>
     </>
   )
 }
 
 export default BottomSheet
+
+const BottomSheetBackground = styled.div``
 
 const BottomSheetContainer = styled(motion.div)<{
   filterType: string | undefined
