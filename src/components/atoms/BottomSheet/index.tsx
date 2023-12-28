@@ -1,20 +1,15 @@
-import { ReactNode, RefObject } from 'react'
 import { motion } from 'framer-motion'
 import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
+import { BottomSheetPropsType } from '@models/components/atoms/BottomSheet'
 
 const BottomSheet = ({
   children,
   isexpanded,
   bottomSheetRef,
   filterType,
-}: {
-  children?: ReactNode
-  isexpanded: boolean
-  bottomSheetRef: RefObject<HTMLDivElement>
-  filterType?: string
-}) => {
+}: BottomSheetPropsType) => {
   return (
     <>
       <BottomSheetBackground

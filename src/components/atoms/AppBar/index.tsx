@@ -5,7 +5,7 @@ import { theme } from '@styles/theme'
 import {
   RightChildrenVariantType,
   AppBarPropsType,
-} from 'src/types/components/atoms/AppBar'
+} from '@models/components/atoms/AppBar'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '../Text'
 import Svg from '../Svg'

@@ -2,13 +2,13 @@ import styled from '@emotion/styled'
 import { useCallback, useEffect, useState } from 'react'
 
 import { theme } from '@styles/theme'
+import { profileVariants } from '@constants/profileVariants'
 import {
   AvatarVariantType,
   VisibleVariantType,
   AvatarShapeType,
   VisibleType,
-} from 'src/types/components/atoms/Avatar'
-import { profileVariants } from 'src/constants/profileVariants'
+} from '@models/components/atoms/Avatar'
 
 /**
  * @param variant 크기 종류를 나타냄 "xsmall" | "small" | "medium" 중 선택 가능함

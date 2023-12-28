@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import {
   AppBarPropsType,
   RightChildrenVariantType,
-} from 'src/types/components/atoms/AppBar'
+} from '@models/components/atoms/AppBar'
 import { AppBar } from '.'
 
 const meta = {
