@@ -77,9 +77,9 @@ export const Category = ({
         ) : null}
       </Heading>
       <TagWrapper>
-        {children.map((child, index) => (
-          <TagItem key={index}>{child}</TagItem>
-        ))}
+        {children.map((child, index) =>
+          child ? <TagItem key={index}>{child}</TagItem> : null,
+        )}
       </TagWrapper>
     </Wrapper>
   )
