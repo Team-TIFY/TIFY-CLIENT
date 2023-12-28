@@ -7,13 +7,13 @@ export const processTagAnswerData = (
   targetAnswerNumberList: number[],
   showAll: boolean,
   answerContent: string,
-  allDetailCategoryAnswered: boolean,
+  notAnsweredDetailCategories: any[],
   answerData: {
     smallCategory: any
     detailCategory: any
     number: number
     answer: string
-    allDetailCategoryAnswered: boolean
+    notAnsweredDetailCategories: any[]
   }[],
 ) => {
   if (targetAnswerNumberList.includes(answerNumber)) {
@@ -24,14 +24,14 @@ export const processTagAnswerData = (
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answer1,
-        allDetailCategoryAnswered: allDetailCategoryAnswered,
+        notAnsweredDetailCategories: notAnsweredDetailCategories,
       })
       answerData.push({
         smallCategory: answerSmallCategory,
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answer2,
-        allDetailCategoryAnswered: allDetailCategoryAnswered,
+        notAnsweredDetailCategories: notAnsweredDetailCategories,
       })
     } else if (answerContent.includes(',') && !showAll) {
       const [answer1, _] = splitDataByComma(answerContent)
@@ -40,7 +40,7 @@ export const processTagAnswerData = (
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answer1,
-        allDetailCategoryAnswered: allDetailCategoryAnswered,
+        notAnsweredDetailCategories: notAnsweredDetailCategories,
       })
     } else {
       answerData.push({
@@ -48,7 +48,7 @@ export const processTagAnswerData = (
         detailCategory: answerDetailCategory,
         number: answerNumber,
         answer: answerContent,
-        allDetailCategoryAnswered: allDetailCategoryAnswered,
+        notAnsweredDetailCategories: notAnsweredDetailCategories,
       })
     }
   }
