@@ -14,6 +14,7 @@ import { SubCategoryName } from '@utils/apis/user/UserType'
  * @param allCategoryAnswered + 아이콘을 보여줄지 말지를 나타냄 (모든 detailCategory를 다 답변했는지 여부를 나타냄)
  * @param onPlusButtonClick + / 선물 버튼 클릭 시 발생하는 이벤트를 넘겨주는 함수임
  */
+
 export type CategoryNameType =
   | 'MAKEUP'
   | 'FRAGRANCE'
@@ -77,9 +78,9 @@ export const Category = ({
         ) : null}
       </Heading>
       <TagWrapper>
-        {children.map((child, index) => (
-          <TagItem key={index}>{child}</TagItem>
-        ))}
+        {children.map((child, index) =>
+          child ? <TagItem key={index}>{child}</TagItem> : null,
+        )}
       </TagWrapper>
     </Wrapper>
   )
