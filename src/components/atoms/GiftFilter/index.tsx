@@ -4,6 +4,8 @@ import { theme } from '@styles/theme'
 import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { friendState } from '@libs/store/friend'
 
 interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selectedProps: SelectedProps
@@ -20,6 +22,7 @@ export const GiftFilter = ({
   ...props
 }: Props) => {
   const [selected, setSelected] = useState<SelectedProps>(selectedProps)
+  const [friendsData, setFriendsData] = useRecoilState(friendState)
 
   useEffect(() => {
     setSelected(selectedProps)
@@ -36,7 +39,7 @@ export const GiftFilter = ({
       }, [] as SelectedTag[])
 
     setSelectedTags(updatedTags.length ? updatedTags : selectedTags)
-  }, [])
+  }, [selected])
 
   const handleClick = (id: number) => {
     const updatedBtn = selected.map((item) => {
@@ -47,15 +50,31 @@ export const GiftFilter = ({
       return item
     })
     setSelected(updatedBtn)
+    setFriendsData({ ...friendsData, presentRecommendFilterValue: '' })
+
+    // 선택된 카테고리가 없으면 모든 카테고리를 선택한 상태로 업데이트
+    const updatedTags = updatedBtn
+      .filter((item) => item.active)
+      .reduce((acc, item) => {
+        if (!acc.some((tag) => tag.value === item.value)) {
+          acc.push({ name: item.name, value: item.value })
+        }
+        return acc
+      }, [] as SelectedTag[])
+
+    setSelectedTags(updatedTags.length ? updatedTags : selectedProps)
   }
 
   const handleCancel = () => {
     //전체 취소 버튼
-    const updatedBtn = selected.map((item) => ({
+    const updatedBtn = selectedProps.map((item) => ({
       ...item,
       active: false,
     }))
     setSelected(updatedBtn)
+    setFriendsData({ ...friendsData, presentRecommendFilterValue: '' })
+    // 모든 카테고리를 선택한 상태로 설정
+    setSelectedTags(selectedProps.map(({ name, value }) => ({ name, value })))
   }
 
   const sortedSelected = selected.slice().sort((a, b) => {

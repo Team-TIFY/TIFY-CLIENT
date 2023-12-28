@@ -1,3 +1,5 @@
+import { DataType } from '@components/friends/PresentRecommend'
+import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
 import { axiosApi } from '../axios'
 import {
   FriendRequestType,
@@ -53,13 +55,15 @@ export const FriendsApi = {
     return response.data.data
   },
 
-  GET_PRESENT_RECOMMEND: async (
-    smallCategory: string,
-    priceOrder: string,
-    priceFilter: string,
-  ) => {
+  GET_PRESENT_RECOMMEND: async ({
+    smallCategory,
+    priceOrder,
+    priceFilter,
+    pageParam = 0,
+    size = 9,
+  }: InfiniteRequest): Promise<InfiniteResponse<DataType>> => {
     const response = await axiosApi.get(
-      `/products/products/small-category?smallCategoryList=${smallCategory}&priceOrder=${priceOrder}&priceFilter=${priceFilter}`,
+      `/products/products/small-category?smallCategoryList=${smallCategory}&priceOrder=${priceOrder}&priceFilter=${priceFilter}&page=${pageParam}&size=${size}`,
     )
     return response.data
   },

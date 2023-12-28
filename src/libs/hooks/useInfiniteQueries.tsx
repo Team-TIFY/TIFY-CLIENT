@@ -20,11 +20,12 @@ export const useInfiniteQueries = <T,>(
   >,
 ) => {
   const [ref, inView] = useInView()
+
   const { data, fetchNextPage } = useInfiniteQuery<
     InfiniteResponse<T>,
     unknown
   >(queryKey, apiFunction, {
-    getNextPageParam: (lastPage) => lastPage.page + 1,
+    getNextPageParam: (lastPage) => lastPage.data.page + 1,
     ...options,
   })
 
@@ -32,12 +33,12 @@ export const useInfiniteQueries = <T,>(
     if (!data) return
 
     const lastPageIdx = data.pages.length - 1
-    const hasNext = data.pages[lastPageIdx].hasNext
+    const hasNext = data.pages[lastPageIdx].data.hasNext
     if (hasNext && inView) fetchNextPage()
   }, [inView])
 
-  const listElement = data?.pages.map(({ content }) =>
-    content.map((item, idx) => (
+  const listElement = data?.pages.map(({ data }) =>
+    data.content.map((item: any, idx: any) => (
       <ListItem {...item} className={`item-${idx}`} key={`item-${idx}`} />
     )),
   )
@@ -49,7 +50,7 @@ export const useInfiniteQueries = <T,>(
     />
   )
 
-  const isEmpty = data?.pages[0].content.length === 1
+  const isEmpty = data?.pages[0].data.content.length === 1
 
   return {
     infiniteListElement: (
@@ -63,6 +64,10 @@ export const useInfiniteQueries = <T,>(
 }
 
 const ListElementContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 52px;
+  column-gap: 12px;
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -79,7 +84,7 @@ const ListElementContainer = styled.div`
       transform: translateY(0px);
     }
   }
-  &:nth-child(1) {
+  &:nth-of-type(1) {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-name: movetoY, fadeIn;
@@ -88,7 +93,7 @@ const ListElementContainer = styled.div`
       cubic-bezier(0.61, 1, 0.88, 1);
     animation-delay: 0.8s;
   }
-  &:nth-child(2) {
+  &:nth-of-type(2) {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-name: movetoY, fadeIn;
@@ -97,7 +102,7 @@ const ListElementContainer = styled.div`
       cubic-bezier(0.61, 1, 0.88, 1);
     animation-delay: 1.2s;
   }
-  &:nth-child(3) {
+  &:nth-of-type(3) {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-name: movetoY, fadeIn;
@@ -109,14 +114,20 @@ const ListElementContainer = styled.div`
 `
 
 export interface InfiniteResponse<T> {
-  content: T[]
-  page: number
-  size: number
-  hasNext: boolean
+  data: {
+    content: T[]
+    page: number
+    size: number
+    hasNext: boolean
+  }
+  statusCode: number
+  success: boolean
 }
 
 export interface InfiniteRequest {
-  questionId: number
+  smallCategory: string
+  priceOrder: string
+  priceFilter: string
   pageParam?: number
   size?: number
   sort?: 'asc' | 'desc'
