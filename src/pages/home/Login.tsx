@@ -9,6 +9,10 @@ const Login = () => {
     const data = await AuthApi.KAKAO_LINK()
     window.location.href = data.link
   }
+  const appleLogin = async () => {
+    const data = await AuthApi.APPLE_LINK()
+    window.location.href = data.link
+  }
   return (
     <div>
       <MainIconContainer>
@@ -30,6 +34,7 @@ const Login = () => {
           variant="kakao"
           fullWidth={true}
           style={{ height: '49px', backgroundColor: 'white' }}
+          onClick={appleLogin}
         >
           Apple로 로그인
         </RoundButton>

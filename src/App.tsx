@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from '@components/layouts/Layout'
 import Login from '@pages/home/Login'
-import { Redirect } from '@pages/home/Redirect'
+import { KaKaoRedirect } from '@pages/home/Redirect/KaKaoRedirect'
+import { AppleRedirect } from '@pages/home/Redirect/AppleRedirect'
 import { CheckUserAuth } from '@components/auth/CheckUserAuth'
 import RequireAuth from '@components/auth/RequireAuth'
 import ProfileRouter from '@pages/profile'
@@ -24,7 +25,8 @@ function App() {
         <Route element={<CheckUserAuth />}>
           <Route path="/login" element={<Login />} />
         </Route>
-        <Route path="/kakao/callback" element={<Redirect />} />
+        <Route path="/kakao/callback" element={<KaKaoRedirect />} />
+        <Route path="/apple/callback" element={<AppleRedirect />} />
       </Route>
     </Routes>
   )
