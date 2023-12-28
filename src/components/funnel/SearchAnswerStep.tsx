@@ -33,12 +33,12 @@ const SearchAnswerStep = ({
   )
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [keyword, setKeyword] = useState<string>('')
-  const [autoItems, setAutoItems] = useState<string[]>(
-    favorQuestionData[category][number],
-  )
+  const [isFirst, setFirst] = useState<boolean>(true)
+  const [autoItems, setAutoItems] = useState<string[]>([])
   const [disabled, setDisabled] = useState<boolean>(true)
   const [answer, setAnswer] = useState<string>('')
   const [step, setStepAnswer] = useRecoilState(answerState)
+
   const handleSearchProduct = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setKeyword(e.target.value)
     setAnswer('')
@@ -47,6 +47,7 @@ const SearchAnswerStep = ({
       return
     }
   }
+  console.log(keyword)
   const submitAnswer = () => {
     setStepAnswer({
       ...step,
@@ -64,7 +65,9 @@ const SearchAnswerStep = ({
     if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
   }, [step])
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    setAutoItems(favorQuestionData[category][number])
+  }, [])
 
   useEffect(() => {
     if (keyword) {
@@ -99,6 +102,7 @@ const SearchAnswerStep = ({
             value={keyword}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
               handleSearchProduct(e)
+              setFirst(false)
             }}
             customRemoveHandler={() => {
               setKeyword('')
@@ -153,6 +157,46 @@ const SearchAnswerStep = ({
             </Text>
           </AutoSearchWrap>
         </AutoSearchContainer>
+      ) : keyword.length === 0 ? (
+        <AutoSearchContainer>
+          <AutoSearchWrap>
+            {autoItems.map((data, index) => (
+              <SquareButton
+                subVariant={answer === data ? 'selected' : 'default'}
+                variant="medium2Square"
+                fullWidth={true}
+                style={{ height: '48px' }}
+                key={index}
+                onClick={() => {
+                  handleAnswer(data)
+                }}
+              >
+                <div
+                  style={{
+                    width: '100%',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {data}
+                </div>
+              </SquareButton>
+            ))}
+
+            <Text
+              color="gray_200"
+              typo="Body_14"
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
+              as="span"
+              onClick={() => {
+                setAnswer('')
+                submitAnswer()
+              }}
+            >
+              찾는 제품이 없어요. 답변 건너뛸래요.
+            </Text>
+          </AutoSearchWrap>
+        </AutoSearchContainer>
       ) : (
         <Text
           color="gray_200"
@@ -171,6 +215,7 @@ const SearchAnswerStep = ({
           찾는 제품이 없어요. 답변 건너뛸래요.
         </Text>
       )}
+
       <Spacing height={100} />
       <RoundButton
         style={{ position: 'absolute', bottom: '32px' }}

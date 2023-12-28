@@ -30,6 +30,7 @@ const OneAnswerStep = ({
   )
   const [answer, setAnswer] = useState<string>('')
   const [step, setStepAnswer] = useRecoilState(answerState)
+  const [question, setQuestion] = useState('')
   const [disabled, setDisabled] = useState<boolean>(true)
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (answer === e.currentTarget.value) {
@@ -40,6 +41,14 @@ const OneAnswerStep = ({
       setAnswer(e.currentTarget.value)
     }
   }
+  // useEffect(() => {
+  //   const textWithEnter = data?.contents
+  //     .split('\n')
+  //     .map((line, index) => (
+  //       return (
+  //       <div>{index !== data.contents.split('\n').length - 1 && <br />}</div>)
+  //     ))
+  // }, [])
   const submitAnswer = () => {
     setStepAnswer({
       ...step,

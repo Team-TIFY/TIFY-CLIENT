@@ -98,7 +98,11 @@ const MultiAnswerStep = ({
     <MultiAnswerStepWrapper>
       <FlexBox direction="column" gap={10}>
         <Spacing height={32} />
-        <Text typo="SCD_Headline_24" color="white">
+        <Text
+          typo="SCD_Headline_24"
+          color="white"
+          style={{ whiteSpace: 'pre' }}
+        >
           {data?.contents}
         </Text>
         <Text typo="Caption_12R" color="gray_200">
