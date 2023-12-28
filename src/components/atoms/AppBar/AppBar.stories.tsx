@@ -1,16 +1,18 @@
-import OnAlert from '@assets/icons/OnAlert'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Routes, Route } from 'react-router-dom'
-import { AppBar, AppBarProps, RightChildrenVariant } from '.'
-import Svg from '../Svg'
+
+import {
+  AppBarPropsType,
+  RightChildrenVariantType,
+} from 'src/types/components/atoms/AppBar'
+import { AppBar } from '.'
 
 const meta = {
   title: 'Atom/AppBar',
   component: AppBar,
   tags: ['autodocs'],
   argTypes: {
-    onClickOption1: { action: 'clicked' },
-    onClickOption2: { action: 'clicked' },
+    onClickOption: { action: 'clicked' },
   },
   decorators: [
     (Story) => (
@@ -22,7 +24,7 @@ const meta = {
 } satisfies Meta<typeof AppBar>
 
 export default meta
-type Story = StoryObj<AppBarProps<RightChildrenVariant>>
+type Story = StoryObj<AppBarPropsType<RightChildrenVariantType>>
 
 export const BackPushWithTitleWithAlarm: Story = {
   args: {
