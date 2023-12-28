@@ -288,15 +288,13 @@ const Profile = ({
     }
   }
 
+  const favorListData = userId
+    ? (userData?.userFavorList as TasteBoxVariantType[])
+    : myData.userFavorList
+
   return (
     <>
-      <ProfileImage
-        favorList={
-          userId
-            ? (userData?.userFavorList as TasteBoxVariantType[])
-            : myData.userFavorList
-        }
-      />
+      <ProfileImage favorList={favorListData} />
       <Spacing />
       <Padding size={[0, 16]}>
         <ProfileWrapper>
