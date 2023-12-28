@@ -33,7 +33,9 @@ const SearchAnswerStep = ({
   )
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [keyword, setKeyword] = useState<string>('')
-  const [autoItems, setAutoItems] = useState<string[]>([])
+  const [autoItems, setAutoItems] = useState<string[]>(
+    favorQuestionData[category][number],
+  )
   const [disabled, setDisabled] = useState<boolean>(true)
   const [answer, setAnswer] = useState<string>('')
   const [step, setStepAnswer] = useRecoilState(answerState)
@@ -61,6 +63,8 @@ const SearchAnswerStep = ({
   useEffect(() => {
     if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
   }, [step])
+
+  useEffect(() => {}, [])
 
   useEffect(() => {
     if (keyword) {
@@ -121,7 +125,7 @@ const SearchAnswerStep = ({
               >
                 <div
                   style={{
-                    width: '70%',
+                    width: '100%',
                     overflow: 'hidden',
                     whiteSpace: 'nowrap',
                   }}

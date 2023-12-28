@@ -303,10 +303,15 @@ const SquareButton = ({
       ) : (
         <Text
           typo={`${BUTTON_SHAPE_TYPE[variant].typo}`}
-          as="span"
+          as="div"
+          style={{ width: '100%' }}
           color={variant === 'xsmallSquareP' ? `gray_900` : textColor}
         >
-          <FlexBox gap={variant === 'smallSquare' ? 37 : 0}>
+          <FlexBox
+            gap={variant === 'smallSquare' ? 37 : 0}
+            fullWidth={true}
+            style={{ padding: '0px 20px' }}
+          >
             <>{handleVariant(variant, xlargeVariant as XlargeSubVariant)}</>
           </FlexBox>
         </Text>

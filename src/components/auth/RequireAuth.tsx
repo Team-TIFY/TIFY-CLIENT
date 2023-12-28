@@ -4,8 +4,7 @@ import { getCookie } from '@utils/cookies'
 import { useRecoilState } from 'recoil'
 import { useEffect } from 'react'
 import { axiosApi } from '@utils/apis/axios'
-import { Outlet } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { IsOnboard } from '@libs/store/onboard'
 import Loading from '@components/atoms/Loading'
@@ -21,7 +20,7 @@ const RequireAuth = () => {
   const accessToken = getCookie('accessToken')
   const fetchUserData = async () => {
     const data = await UserApi.GET_USER_INFO_TOKEN()
-    if (!data.onBoardingStatus) {
+    if (!data.gender) {
       setIsOnboard(false)
     }
     setAuth({

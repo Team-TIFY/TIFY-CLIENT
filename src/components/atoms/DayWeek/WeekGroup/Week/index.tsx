@@ -20,7 +20,6 @@ export const Week = ({ today }: WeekPropsType) => {
     if (index > date.today) return;
     const calDate = date.today - index;
     setNewDate(calDate);
-    localStorage.setItem('date', String(calDate));
   };
   return (
     <Container>
