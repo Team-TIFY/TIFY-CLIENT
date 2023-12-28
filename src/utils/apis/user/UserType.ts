@@ -50,6 +50,7 @@ export type answerContentType = {
 export type FilteredUserTag = {
   smallCategory: SubCategoryType
   answerContentList: answerContentType[]
+  notAnsweredDetailCategories: any[]
   allDetailCategoryAnswered: boolean
 }
 

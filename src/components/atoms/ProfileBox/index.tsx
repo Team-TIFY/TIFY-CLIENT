@@ -5,22 +5,23 @@ import shadow from '@assets/image/profile_shadow.png'
 import backgroundImage from '@assets/image/profile_background.png'
 import profileBoxImage from '@assets/image/profile_box.png'
 import { useEffect, useState } from 'react'
+
 export type VariantType = 'profile' | 'shareProfile'
 
 export type ProfileBoxProps = {
   variant?: VariantType
   favorList: TasteBoxVariantType[]
 }
-const ProfileBox = ({
-  variant = 'profile',
-  favorList = [],
-}: ProfileBoxProps) => {
-  const [myFavorList, setFavorList] = useState<TasteBoxVariantType[]>([])
+const ProfileBox = ({ variant = 'profile', favorList }: ProfileBoxProps) => {
+  const [myFavorList, setMyFavorList] = useState<TasteBoxVariantType[]>([])
+
   useEffect(() => {
-    if (favorList.length < 3) {
-      setFavorList([])
-    } else {
-      setFavorList([...favorList.slice(-3)])
+    if (Array.isArray(favorList)) {
+      if (favorList?.length < 3) {
+        setMyFavorList([])
+      } else {
+        setMyFavorList([...favorList.slice(-3)])
+      }
     }
   }, [favorList])
 
