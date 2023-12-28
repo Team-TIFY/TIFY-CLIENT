@@ -10,7 +10,7 @@ import { Padding } from '@components/layouts/Padding'
 import OnboardingStatus from '@components/profile/OnboardingStatus'
 import EditProfileButton from './EditProfileButton'
 import { authState } from '@libs/store/auth'
-import { isBtnColorState, onboardingState } from '@libs/store/onboard'
+import { onboardingState } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
 import useGetDate from '@libs/hooks/useGetDate'
 
@@ -18,7 +18,6 @@ const EditUserInfo = () => {
   const auth = useRecoilValue(authState)
   const profileStateData = useRecoilValue(profileState)
   const [info, setInfo] = useRecoilState(onboardingState)
-  const setBtnColor = useSetRecoilState(isBtnColorState)
 
   const [userName, setUserName] = useState(auth.userProfile.userName)
   const [userId, setUserId] = useState(auth.userProfile.userId)
@@ -46,7 +45,6 @@ const EditUserInfo = () => {
         ),
         onboardingState: auth.userProfile.onBoardingStatus,
       }))
-      setBtnColor(true)
     }
   }, [])
 

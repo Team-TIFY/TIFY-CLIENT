@@ -1,12 +1,10 @@
 import styled from '@emotion/styled'
-import { ChangeEvent, TextareaHTMLAttributes, useRef, useState } from 'react'
+import { ChangeEvent, TextareaHTMLAttributes, useState } from 'react'
 import { theme } from '@styles/theme'
-import { FlexBox } from '@components/layouts/FlexBox'
 import { SearchIcon } from '@assets/icons/SearchIcon'
 import { useRecoilState } from 'recoil'
 import { forwardRef } from 'react'
 import {
-  isBtnColorState,
   isCancelState,
   isSearchActiveBtn,
   isSearchInputState,
