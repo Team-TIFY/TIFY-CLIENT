@@ -1,4 +1,3 @@
-import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { isBtnColorState, onboardingState } from '@libs/store/onboard'
 import { theme } from '@styles/theme'

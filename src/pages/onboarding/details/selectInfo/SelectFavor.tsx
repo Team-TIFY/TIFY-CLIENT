@@ -4,7 +4,7 @@ import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
-import { onboardingState, IsOnboard } from '@libs/store/onboard'
+import { onboardingState } from '@libs/store/onboard'
 import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
@@ -47,7 +47,7 @@ export function SelectFavor() {
   const gotoReg = () => {
     if (btnColor) {
       const { favor, ...rest } = info
-      console.log(favor.map((data) => parseFavorBox(data)))
+
       OnboardingApi.PUT_ONBOARD_STATUS({
         userId: auth.userProfile.id,
         data: {

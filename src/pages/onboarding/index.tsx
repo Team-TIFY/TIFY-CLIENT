@@ -1,14 +1,12 @@
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {
   isBtnColorState,
   onboardingPageState,
   pageTempState,
 } from '@libs/store/onboard'
 import Onboarding from './Onboarding'
-import { SignUp } from './details/SignUp'
-import { useEffect } from 'react'
 
 const OnboardingRouter = () => {
   const navigate = useNavigate()
@@ -16,8 +14,7 @@ const OnboardingRouter = () => {
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const [pageTemp, setPageTemp] = useRecoilState(pageTempState)
   const appLabel = page.agreement ? '' : '약관동의'
-  console.log(btnColor)
-  console.log(page)
+
   const backHandler = () => {
     if (!page.agreement) {
       navigate(-1)

@@ -33,7 +33,7 @@ export const SearchInput = forwardRef<HTMLTextAreaElement, InputProps>(
     inputRef,
   ) {
     const [focus, setFocus] = useState(false)
-    const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
+    const [btnColor, setBtnColor] = useState(false)
     const [content, setContent] = useState<string>('')
     const [searchText, setSearchText] = useRecoilState(isSearchInputState)
     const [selectedIndex, setSelectedIndex] = useRecoilState(isSearchActiveBtn)

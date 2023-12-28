@@ -1,11 +1,10 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import {
   isBtnColorState,
   OnboardingBtnType,
   onboardingPageState,
-  onboardingState,
   pageTempState,
 } from '@libs/store/onboard'
 import { StartMent } from './signup/StartMent'
@@ -51,7 +50,6 @@ export function SignUp() {
     } else {
       setInfoPage({ ...infoPage })
     }
-    console.log(content)
   }
 
   const gotoBack = (content: keyof OnboardingBtnType) => {

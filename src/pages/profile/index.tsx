@@ -43,7 +43,6 @@ const ProfileRouter = () => {
   const userId = parseInt(location.pathname.slice(9))
 
   const handleBack = () => {
-    console.log(step)
     if (step.favorAnswerDtos.length > 0) {
       const tempList = [...step.favorAnswerDtos]
       const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)

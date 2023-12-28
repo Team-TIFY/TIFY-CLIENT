@@ -15,29 +15,26 @@ import { FilterState, isFilterTypeState, PriceState } from '@libs/store/present'
 import PriceFilter from './bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 import { theme } from '@styles/theme'
-import makeupNull from '@assets/image/makeupNull.svg'
-import fragranceNull from '@assets/image/fragranceNull.svg'
-import clothesNull from '@assets/image/clothesNull.svg'
-import fashionNull from '@assets/image/fashionNull.svg'
-import bagNull from '@assets/image/bagNull.svg'
-import accessoryNull from '@assets/image/accessoryNull.svg'
-import digitalNull from '@assets/image/digitalNull.svg'
-import cookingNull from '@assets/image/cookingNull.svg'
-import exerciseNull from '@assets/image/exerciseNull.svg'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import { friendState } from '@libs/store/friend'
 import { CategoryNameType } from '@components/atoms/Category'
+import { useInfiniteQueries } from '@libs/hooks'
+import PresentItem from './PresentItem'
 
-type DataType = {
+export type DataType = {
   productId: number
-  brand: string
   name: string
+  brand: string
+  characteristic: string
   price: number
   productOption: string
   imageUrl: string
   siteUrl: string
+  largeCategory: string
   smallCategory: string
+  detailCategory: string
+  categoryName: string
 }
 
 const selectedPropsData: SelectedProps = [
@@ -56,8 +53,6 @@ function PresentRecommend() {
   const [selectedProps, setSelectedProps] =
     useState<SelectedProps>(selectedPropsData)
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
-  const [dataLoaded, setDataLoaded] = useState<boolean>(false)
-  const [products, setProducts] = useState<DataType[]>([])
   const [isSortOpen, setIsSortOpen] = useRecoilState<string>(isFilterTypeState)
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
@@ -73,53 +68,25 @@ function PresentRecommend() {
     .map((category) => `${category.value}`)
     .join(',')
 
-  const gotoSite = (siteUrl: string) => {
-    window.open(`${siteUrl}`)
-  }
-
-  const formatPrice = (price: number) => {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
-
-  const defaultImage = (smallCategory: string) => {
-    switch (smallCategory) {
-      case 'MAKEUP':
-        return makeupNull
-      case 'FRAGRANCE':
-        return fragranceNull
-      case 'CLOTHES':
-        return clothesNull
-      case 'DIGITAL_PRODUCT':
-        return digitalNull
-      case 'FASHION_PRODUCT':
-        return fashionNull
-      case 'BAG':
-        return bagNull
-      case 'ACCESSORY':
-        return accessoryNull
-      case 'COOKING':
-        return cookingNull
-      case 'EXERCISE':
-        return exerciseNull
-      default:
-        return makeupNull
-    }
-  }
-
-  useEffect(() => {
-    FriendsApi.GET_PRESENT_RECOMMEND(
-      selectedTags.length > 0 ? selectedCategoriesString : allCategoriesString,
-      selectedFilter.filterValue,
-      selectedPrice.priceValue,
-    ).then((response) => {
-      if (response.statusCode === 200) {
-        setProducts(response.data)
-        setDataLoaded(true)
-      } else {
-        setDataLoaded(false)
-      }
-    })
-  }, [selectedTags, selectedFilter.filter, selectedPrice.price])
+  const { infiniteListElement, isEmpty } = useInfiniteQueries<DataType>(
+    [
+      'GET_PRESENT_RECOMMEND',
+      selectedTags,
+      selectedFilter.filter,
+      selectedPrice.price,
+      friendStateData.presentRecommendFilterValue,
+    ],
+    () =>
+      FriendsApi.GET_PRESENT_RECOMMEND({
+        smallCategory:
+          selectedTags.length > 0
+            ? selectedCategoriesString
+            : allCategoriesString,
+        priceOrder: selectedFilter.filterValue,
+        priceFilter: selectedPrice.priceValue,
+      }),
+    PresentItem,
+  )
 
   useEffect(() => {
     const selectedOption = selectedProps.find(
@@ -127,18 +94,29 @@ function PresentRecommend() {
         selectedProp.value === friendStateData.presentRecommendFilterValue,
     )
 
-    setSelectedProps((prevSelectedProps) =>
-      prevSelectedProps.map((prop) =>
-        prop.value === selectedOption?.value ? { ...prop, active: true } : prop,
-      ),
-    )
+    if (selectedOption) {
+      setSelectedProps((prevSelectedProps) =>
+        prevSelectedProps.map((prop) =>
+          prop.value === selectedOption.value
+            ? { ...prop, active: true }
+            : prop,
+        ),
+      )
 
-    setSelectedTags([
-      {
-        name: selectedOption?.name as SubCategoryName,
-        value: selectedOption?.value as CategoryNameType,
-      },
-    ])
+      setSelectedTags([
+        {
+          name: selectedOption.name as SubCategoryName,
+          value: selectedOption.value as CategoryNameType,
+        },
+      ])
+    } else {
+      // 만약 selectedOption이 없다면, 즉 선택된 카테고리가 없다면
+      setSelectedProps((prevSelectedProps) =>
+        prevSelectedProps.map((prop) => ({ ...prop, active: false })),
+      )
+
+      setSelectedTags([])
+    }
   }, [friendStateData.presentRecommendFilterValue])
 
   const handleFilterClick = () => {
@@ -192,47 +170,7 @@ function PresentRecommend() {
           </RecommendFilter>
         </FilterItemWrap>
       </ContainerFix>
-      <Container>
-        {dataLoaded && (
-          <SortItemWrap>
-            {products.map((product: DataType, index: number) => (
-              <ItemDiv key={index} onClick={() => gotoSite(product.siteUrl)}>
-                <ItemImg
-                  imageUrl={
-                    product.imageUrl || defaultImage(product.smallCategory)
-                  }
-                />
-                <Text
-                  typo="Caption_12R"
-                  color="gray_400"
-                  children={product.brand}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    marginBottom: '4px',
-                  }}
-                >
-                  <Text
-                    typo="Caption_12R"
-                    color="gray_100"
-                    children={
-                      product.productOption
-                        ? `${product.productOption}` + ' - ' + `${product.name}`
-                        : `${product.name}`
-                    }
-                  />
-                </div>
-                <Text
-                  typo="Mont_Caption_12B"
-                  color="gray_100"
-                  children={formatPrice(product.price)}
-                />
-              </ItemDiv>
-            ))}
-          </SortItemWrap>
-        )}
-      </Container>
+      <Container>{!isEmpty && infiniteListElement}</Container>
       <>
         <BottomSheet
           isexpanded={isBottomSheetOpen}
@@ -251,6 +189,7 @@ function PresentRecommend() {
 export default PresentRecommend
 
 const FilterWrapper = styled.div`
+  z-index: 1;
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -273,6 +212,7 @@ const Container = styled.div`
 const ContainerFix = styled.div`
   padding: 0px 24px 0 24px;
   position: sticky;
+  z-index: 1;
   top: 160px;
   width: 100%;
 `
@@ -297,28 +237,6 @@ const Margin = styled.div<{
 }>`
   width: ${({ widthProps }) => `${widthProps}px`};
   height: 100%;
-`
-const SortItemWrap = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-  row-gap: 52px;
-  column-gap: 12px;
-  justify-items: center;
-`
-const ItemDiv = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`
-
-const ItemImg = styled.div<{ imageUrl: string }>`
-  width: 100%;
-  padding-bottom: 100%;
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-  background-size: cover;
-  border-radius: 8px;
-  margin-bottom: 8px;
 `
 const BottomSpacing = styled.div`
   width: 100%;
