@@ -5,6 +5,7 @@ import { recoilPersist } from 'recoil-persist'
 const { persistAtom } = recoilPersist()
 export interface AuthStateType {
   isAuthenticated: boolean
+  loginType: 'APPLE' | 'KAKAO'
   callbackUrl: string
   accessToken: string
   userProfile: UserInfoToken
@@ -12,6 +13,7 @@ export interface AuthStateType {
 
 const initialState: AuthStateType = {
   isAuthenticated: false,
+  loginType: 'KAKAO',
   callbackUrl: '/',
   accessToken: '',
   userProfile: {

@@ -27,6 +27,7 @@ const RequireAuth = () => {
     setAuth({
       isAuthenticated: true,
       callbackUrl: '/',
+      loginType: auth.loginType,
       accessToken: accessToken,
       userProfile: {
         id: data.id,
@@ -62,6 +63,7 @@ const RequireAuth = () => {
     if (accessToken) {
       if (isOnboard === false) {
         setStatus('needOnboarding')
+        setSnackBar({ comment: '온보딩이 필요해요', type: 'error' })
       } else setStatus('succeed')
     } else {
       setStatus('failed')
@@ -71,8 +73,7 @@ const RequireAuth = () => {
   if (status === 'succeed') {
     return <Outlet />
   } else if (status === 'needOnboarding') {
-    setSnackBar({ comment: '온보딩이 필요해요', type: 'error' })
-    setTimeout(() => setStatus('succeed'), 500)
+    setTimeout(() => setStatus('succeed'), 100)
     return <Navigate replace to="/onboarding" />
   } else if (status === 'failed') {
     setSnackBar({ comment: '로그인이 필요해요', type: 'error' })

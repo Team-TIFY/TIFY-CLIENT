@@ -21,7 +21,7 @@ export const AppleRedirect = () => {
     },
   })
 
-  const { ouathValidMutation } = useAuthMutate(token)
+  const { oauthAppleValidMutation } = useAuthMutate(token)
 
   useEffect(() => {
     if (code) {
@@ -31,7 +31,7 @@ export const AppleRedirect = () => {
 
   useEffect(() => {
     if (token.idToken.length > 0) {
-      ouathValidMutation.mutate(token.idToken)
+      oauthAppleValidMutation.mutate(token.idToken)
     }
   }, [token])
 

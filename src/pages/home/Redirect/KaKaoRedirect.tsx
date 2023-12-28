@@ -21,7 +21,7 @@ export const KaKaoRedirect = () => {
     },
   })
 
-  const { ouathValidMutation } = useAuthMutate(token)
+  const { ouathKakaoValidMutation } = useAuthMutate(token)
 
   useEffect(() => {
     if (code) {
@@ -31,7 +31,7 @@ export const KaKaoRedirect = () => {
 
   useEffect(() => {
     if (token.idToken.length > 0) {
-      ouathValidMutation.mutate(token.idToken)
+      ouathKakaoValidMutation.mutate(token.idToken)
     }
   }, [token])
 
