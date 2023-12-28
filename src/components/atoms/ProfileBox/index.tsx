@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
-import { tasteBoxImage } from '@utils/tasteBoxImage'
+import { tasteBoxImage } from '@constants/tasteBoxImage'
 import shadow from '@assets/image/profile_shadow.png'
 import backgroundImage from '@assets/image/profile_background.png'
 import profileBoxImage from '@assets/image/profile_box.png'

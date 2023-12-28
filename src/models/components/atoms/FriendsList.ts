@@ -1,3 +1,5 @@
+import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+
 export type FriendsListVariantType = 'visible' | 'invisible'
 
 export type FriendsListAPropsType = {
@@ -28,4 +30,22 @@ export type FriendsDescriptionType = {
 
 export type FriendsCurrentStateType = {
   currentState: string
+}
+
+export type FriendsListCPropsType = {
+  userName: string
+  currentState: string
+  imageUrl: string
+  favorList: TasteBoxVariantType[]
+  onClick?: () => void
+}
+
+export type FriendsListInfoPropsType = {
+  imageUrl: string
+  userName: string
+  currentState: string
+}
+
+export type FriendsFavorItemsPropsType = {
+  favorList: TasteBoxVariantType[]
 }
