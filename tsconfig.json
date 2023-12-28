@@ -27,7 +27,7 @@
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
       "@libs/*": ["src/libs/*"],
-      "@types/*": ["src/types/*"],
+      "@models/*": ["src/models/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"]
