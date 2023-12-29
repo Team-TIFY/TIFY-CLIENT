@@ -1,23 +1,10 @@
 import styled from '@emotion/styled'
 
-import { TextType, theme } from '@styles/theme'
-import {
-  OptionVariantType,
-  OptionPropsType,
-  OptionTextType,
-} from '@models/Option'
+import { theme } from '@styles/theme'
+import { OptionVariantType, OptionPropsType } from '@models/Option'
+import { OPTION_CHILDREN, OPTION_TEXT_COLOR } from '@constants/atoms/option'
 import { Text } from '../Text'
 import { FlexBox } from '@components/layouts/FlexBox'
-
-const OPTION_CHILDREN: Record<OptionVariantType, OptionTextType> = {
-  new: `new`,
-  account: `계정`,
-}
-
-const OPTION_TEXT_COLOR: Record<OptionVariantType, TextType['color']> = {
-  new: 'gray_800',
-  account: 'gray_200',
-}
 
 const Option = ({ variant }: OptionPropsType) => {
   return (
