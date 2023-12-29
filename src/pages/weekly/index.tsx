@@ -7,6 +7,8 @@ import CheckTodayDate from '@components/WeeklyQuestion/CheckTodayDate'
 import Svg from '@components/atoms/Svg'
 import FriendList from '@assets/icons/FriendList'
 import EditFriendList from '@pages/weekly/EditFriendList'
+import { Navigate } from 'react-router-dom'
+
 const WeeklyRouter = () => {
   const navigate = useNavigate()
   return (
@@ -61,6 +63,7 @@ const WeeklyRouter = () => {
           }
         />
       </Route>
+      <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
   )
 }
