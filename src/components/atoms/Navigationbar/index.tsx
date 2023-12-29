@@ -9,7 +9,6 @@ import NavigationToday from '@assets/icons/NavigationToday'
 import NavigationFriends from '@assets/icons/NavigationFriends'
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
-import { media } from '@styles/theme'
 
 export const Navigationbar = () => {
   const navigate = useNavigate()

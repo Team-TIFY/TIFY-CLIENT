@@ -3,6 +3,8 @@ import {
   DailyQuestionCategoryType,
 } from '@utils/apis/weekly/questionType'
 import styled from '@emotion/styled'
+import { media } from '@styles/theme'
+
 const VideoBox = ({
   category,
   isToggled = true,
@@ -11,7 +13,7 @@ const VideoBox = ({
   isToggled?: boolean
 }) => {
   return (
-    <ImgContainer isToggled={isToggled}>
+    <ImgContainer className="ImgContainer" isToggled={isToggled}>
       <video muted autoPlay>
         <source src={DailyQuestionVideoCategory[category]} type="video/mp4" />
       </video>
@@ -29,4 +31,9 @@ const ImgContainer = styled.div<{ isToggled: boolean }>`
     height: 100%;
   }
   cursor: pointer;
+  ${media.smallMobile} {
+    .ImgContainer {
+      height: 150px;
+    }
+  }
 `

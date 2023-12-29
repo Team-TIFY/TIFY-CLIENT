@@ -13,14 +13,6 @@ const WeeklyRouter = () => {
     <Routes>
       <Route element={<CheckTodayDate />}>
         <Route
-          path="/"
-          element={
-            <AppBarTemplate variant="logo" rightChildren="alarm" hasNav={true}>
-              <WeeklyMainQuestion />
-            </AppBarTemplate>
-          }
-        />
-        <Route
           path="/editFriendList"
           element={
             <AppBarTemplate
@@ -59,7 +51,7 @@ const WeeklyRouter = () => {
                   key="friendsMenuIcon"
                   children={<FriendList />}
                   onClick={() => {
-                    navigate('/editFriendList')
+                    navigate('editFriendList')
                   }}
                 />,
               ]}
