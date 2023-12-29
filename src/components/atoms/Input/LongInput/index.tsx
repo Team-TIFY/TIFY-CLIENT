@@ -1,18 +1,14 @@
 import styled from '@emotion/styled'
-import { TextareaHTMLAttributes, useEffect, useState } from 'react'
-import { theme } from '@styles/theme'
-import React from 'react'
-import { forwardRef } from 'react'
-import { authState } from '@libs/store/auth'
+import React, { useEffect, useState, forwardRef } from 'react'
 import { useRecoilState } from 'recoil'
 
-type InputVariant = 'default' | 'withInst'
-
-type InputVariantType = {
-  [key in InputVariant]: {
-    display: string
-  }
-}
+import { theme } from '@styles/theme'
+import { authState } from '@libs/store/auth'
+import {
+  InputVariantType,
+  InputVariant,
+  PropsType,
+} from '@models/components/atoms/Input'
 
 const INPUT_TYPE: InputVariantType = {
   default: {
@@ -23,19 +19,7 @@ const INPUT_TYPE: InputVariantType = {
   },
 }
 
-interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  variant: InputVariant
-  explanation: string
-  content?: string
-  value?: string
-  fullWidth: boolean
-  customEvent?: (e: any) => void
-  onClick: () => void
-}
-
-type Props = Partial<InputProps>
-
-export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
+export const LongInput = forwardRef<HTMLTextAreaElement, PropsType>(
   function LongInput(
     {
       variant = 'default',
@@ -46,7 +30,7 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
       customEvent,
       onClick,
       ...props
-    }: Props,
+    }: PropsType,
     inputRef,
   ) {
     const [line, setLine] = useState(value ? value : '')
@@ -116,7 +100,7 @@ export const LongInput = forwardRef<HTMLTextAreaElement, Props>(
           />
         </TextAreaWrapper>
         {
-          count ? null : <WarningText>2줄 이내로 부탁해요!</WarningText> //2줄 초과 입력 시 경고 문구
+          !count && <WarningText>2줄 이내로 부탁해요!</WarningText> //2줄 초과 입력 시 경고 문구
         }
       </Wrapper>
     )
