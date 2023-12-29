@@ -1,21 +1,18 @@
-import SmallRightChevron from '@assets/icons/SmallRightChevron'
-import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
-import { profileState } from '@libs/store/profile'
-import { theme } from '@styles/theme'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
-import Svg from '../Svg'
-import { Text } from '../Text'
-import { TodayCategoryValueType } from '../TodayCategoryList'
+import styled from '@emotion/styled'
 
-type TodayCategoryPropsType = {
-  categoryName: string
-  categoryValue: TodayCategoryValueType
-  infoCount: number
-  id?: number
-}
+import { theme } from '@styles/theme'
+import { profileState } from '@libs/store/profile'
+import SmallRightChevron from '@assets/icons/SmallRightChevron'
+import {
+  TodayCategoryPropsType,
+  TodayCategoryVariantType,
+} from '@models/components/atoms/TodayCategory'
+import { FlexBox } from '@components/layouts/FlexBox'
+import { Text } from '../Text'
+import Svg from '../Svg'
 
 const TodayCategory = ({
   categoryName,
@@ -51,11 +48,11 @@ const TodayCategory = ({
         </Text>
       </FlexBox>
       <FlexBox gap={8} style={{ width: '54px' }}>
-        <Text typo="Caption_12M" color="gray_300">
-          <FlexBox justify="flex-end" style={{ width: '30px', height: '20px' }}>
-            {infoCount}
-          </FlexBox>
-        </Text>
+        <FlexBox justify="flex-end" style={{ width: '30px', height: '20px' }}>
+          <Text typo="Caption_12M" color="gray_300">
+            {String(infoCount)}
+          </Text>
+        </FlexBox>
         <Svg
           width={16}
           height={16}
@@ -69,7 +66,7 @@ const TodayCategory = ({
 export default TodayCategory
 
 const TodayCategoryWrapper = styled(FlexBox)<{
-  variant: 'activate' | 'default'
+  variant: TodayCategoryVariantType
 }>`
   cursor: pointer;
   justify-content: space-between;
