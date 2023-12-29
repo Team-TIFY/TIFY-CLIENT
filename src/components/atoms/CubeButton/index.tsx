@@ -1,32 +1,34 @@
-/* eslint-disable prettier/prettier */
 import styled from '@emotion/styled'
+
+import {
+  CubeButtonPropsType,
+  CubeButtonVariantType,
+} from '@models/components/atoms/CubeButton'
 import { theme } from '@styles/theme'
 import { Text } from '../Text'
-import { ButtonHTMLAttributes } from 'react'
-
-export type cubeButtonVariant = 'unSelected' | 'selected' | 'disabled'
 
 /**
  * @param variant 종류를 나타냄 "unSelected" | "selected" | "disabled" 중 선택 가능함
  * @param img 버튼에 들어갈 이미지 url을 나타냄
  * @param text 버튼에 들어갈 텍스트를 나타냄
  */
-interface CubeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-  variant: cubeButtonVariant
-  img: string
-  text: string
-}
 
-const CubeButton = ({ variant, img, text, ...props}: CubeButtonProps) => {
+const CubeButton = ({ variant, img, text, ...props }: CubeButtonPropsType) => {
+  const getTextColor = () => {
+    if (variant === 'selected') {
+      return 'gray_800'
+    } else if (variant === 'unSelected') {
+      return 'gray_100'
+    } else {
+      return 'gray_700'
+    }
+  }
+
   return (
     <StyledButton variant={variant} onClick={props.onClick}>
       <TextWrapper variant={variant}>
         <img src={img} width={40} height={40} />
-        <Text
-          typo="Caption_12M"
-          as="div"
-          color={variant === 'selected' ? 'gray_800' : variant === 'unSelected' ? 'gray_100' : 'gray_700'}
-        >
+        <Text typo="Caption_12M" as="div" color={getTextColor()}>
           {text}
         </Text>
       </TextWrapper>
@@ -34,7 +36,7 @@ const CubeButton = ({ variant, img, text, ...props}: CubeButtonProps) => {
   )
 }
 
-const StyledButton = styled.button<{ variant: cubeButtonVariant }>`
+const StyledButton = styled.button<{ variant: CubeButtonVariantType }>`
   width: 96px;
   height: 96px;
   background-color: ${({ variant }) =>
@@ -47,7 +49,7 @@ const StyledButton = styled.button<{ variant: cubeButtonVariant }>`
   cursor: pointer;
 `
 
-const TextWrapper = styled.div<{ variant: cubeButtonVariant }>`
+const TextWrapper = styled.div<{ variant: CubeButtonVariantType }>`
   width: 80px;
   height: 64px;
   margin: auto;

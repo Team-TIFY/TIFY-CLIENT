@@ -1,21 +1,13 @@
 import styled from '@emotion/styled'
-import { HTMLAttributes } from 'react'
-import { theme } from '@styles/theme'
-import { TextType } from '@styles/theme'
+
+import { theme, TextType } from '@styles/theme'
+import { TextPropsType } from '@models/components/atoms/Text'
+
 /**
  * @param as Text 컴포넌트의 종류 : 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div';
  * @param typo Typo theme 선택
  * @param color Palette theme 선택
  */
-
-export interface TextProps extends HTMLAttributes<HTMLSpanElement> {
-  as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div'
-  typo: TextType['typo']
-  color?: TextType['color']
-  children: any
-}
-
-export type TextPropsKey = 'typo' | 'color'
 
 export const Text = ({
   typo = 'Body_14',
@@ -23,7 +15,7 @@ export const Text = ({
   color,
   children,
   ...props
-}: TextProps) => {
+}: TextPropsType) => {
   return (
     <StyledText typoKey={typo} as={as} colorKey={color} {...props}>
       {children}

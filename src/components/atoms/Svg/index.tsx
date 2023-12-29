@@ -1,6 +1,6 @@
-import React from 'react'
 import styled from '@emotion/styled'
-import { HTMLAttributes } from 'react'
+
+import { SvgPropsType } from '@models/components/atoms/Svg'
 import { FlexBox } from '@components/layouts/FlexBox'
 
 /**
@@ -9,12 +9,6 @@ import { FlexBox } from '@components/layouts/FlexBox'
  * @param width 가로 너비를 나타냄
  * @param height 높이를 나타냄
  */
-interface SvgProps extends HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  onClick?: () => void
-  width?: 'fit-content' | number
-  height?: 'fit-content' | number
-}
 
 const Svg = ({
   children,
@@ -22,7 +16,7 @@ const Svg = ({
   width = 'fit-content',
   height = 'fit-content',
   ...props
-}: SvgProps) => {
+}: SvgPropsType) => {
   return (
     <SvgWrapper onClick={onClick} width={width} height={height} {...props}>
       <FlexBox>{children}</FlexBox>

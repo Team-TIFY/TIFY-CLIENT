@@ -1,3 +1,10 @@
+import { theme } from '@styles/theme'
+import { KeyOfPalette } from '@styles/theme/theme'
+import {
+  ColorIndexVariantType,
+  TagVariantType,
+  ColorVariantType,
+} from '@models/components/atoms/Tag'
 import BagIcon from '@assets/icons/BagIcon'
 import BowlIcon from '@assets/icons/BowlIcon'
 import CookIcon from '@assets/icons/CookIcon'
@@ -32,9 +39,67 @@ import WalletIcon from '@assets/icons/WalletIcon'
 import WandIcon from '@assets/icons/WandIcon'
 import WatchIcon from '@assets/icons/WatchIcon'
 import WindIcon from '@assets/icons/WindIcon'
-import { KeyOfPalette } from '@styles/theme/theme'
 
-export const tagIconData: Record<
+export const TAG_BG_COLOR_TYPE = {
+  main: {
+    purple: `${theme.palette.purple_100}`,
+    pink: `${theme.palette.pink_100}`,
+    aqua: `${theme.palette.aqua_100}`,
+  },
+  dark: {
+    purple: `${theme.palette.purple_500}`,
+    pink: `${theme.palette.pink_300}`,
+    aqua: `${theme.palette.aqua_500}`,
+  },
+}
+
+export const TAG_TEXT_COLOR_TYPE = {
+  main: `${theme.palette.gray_800}`,
+  dark: `${theme.palette.white}`,
+}
+
+export const TAG_PADDING_TYPE = {
+  main: '6px 8px',
+  dark: '6px 10px',
+}
+
+export const TAG_COLOR_TYPE: Record<
+  ColorIndexVariantType,
+  { variant: TagVariantType; color: ColorVariantType; iconColor: string }
+> = {
+  0: {
+    variant: 'main',
+    color: 'purple',
+    iconColor: 'purple_500',
+  },
+  1: {
+    variant: 'main',
+    color: 'pink',
+    iconColor: 'pink_500',
+  },
+  2: {
+    variant: 'main',
+    color: 'aqua',
+    iconColor: 'aqua_300',
+  },
+  3: {
+    variant: 'dark',
+    color: 'purple',
+    iconColor: '',
+  },
+  4: {
+    variant: 'dark',
+    color: 'pink',
+    iconColor: '',
+  },
+  5: {
+    variant: 'dark',
+    color: 'aqua',
+    iconColor: '',
+  },
+}
+
+export const TAG_ICON_DATA: Record<
   any,
   Record<any, Record<number, React.FC<{ fill: KeyOfPalette }>>>
 > = {

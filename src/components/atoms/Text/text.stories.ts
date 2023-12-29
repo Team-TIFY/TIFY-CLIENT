@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+
 import { Text } from '.'
 
 const meta = {
@@ -15,5 +16,6 @@ export const TextComponent: Story = {
     children: 'Tify',
     typo: 'SCD_Headline_24',
     as: 'span',
+    color: 'white',
   },
 }
