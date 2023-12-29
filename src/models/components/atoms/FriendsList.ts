@@ -69,3 +69,11 @@ export type FriendsListDButtonPropsType = {
   onAcceptButtonClick?: () => void
   onDeleteButtonClick?: () => void
 }
+
+export type FriendsListEPropsType = {
+  imageUrl: string
+  userId: string
+  userName: string
+  neighborsNumber: number
+  onClick?: () => void
+}
