@@ -1,18 +1,20 @@
+import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
+
 import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
 import { tasteBoxImage } from '@constants/tasteBoxImage'
+import {
+  ProfileBoxPropsType,
+  ProfileBoxVariantType,
+} from '@models/components/atoms/ProfileBox'
 import shadow from '@assets/image/profile_shadow.png'
 import backgroundImage from '@assets/image/profile_background.png'
 import profileBoxImage from '@assets/image/profile_box.png'
-import { useEffect, useState } from 'react'
 
-export type VariantType = 'profile' | 'shareProfile'
-
-export type ProfileBoxProps = {
-  variant?: VariantType
-  favorList: TasteBoxVariantType[]
-}
-const ProfileBox = ({ variant = 'profile', favorList }: ProfileBoxProps) => {
+const ProfileBox = ({
+  variant = 'profile',
+  favorList,
+}: ProfileBoxPropsType) => {
   const [myFavorList, setMyFavorList] = useState<TasteBoxVariantType[]>([])
 
   useEffect(() => {
@@ -46,7 +48,7 @@ const ProfileBox = ({ variant = 'profile', favorList }: ProfileBoxProps) => {
 
 export default ProfileBox
 
-const ImageWrapper = styled.div<{ variant: VariantType }>`
+const ImageWrapper = styled.div<{ variant: ProfileBoxVariantType }>`
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -77,7 +79,7 @@ const ImageWrapper = styled.div<{ variant: VariantType }>`
     variant === 'shareProfile' ? '200px' : `calc(100% * (15 / 14))`};
 `
 
-const BackgroundImage = styled.img<{ variant: VariantType }>`
+const BackgroundImage = styled.img<{ variant: ProfileBoxVariantType }>`
   width: 100%;
   height: ${({ variant }) =>
     variant === 'shareProfile' ? '186px' : `calc(100% * (15 / 14))`};
@@ -86,7 +88,7 @@ const BackgroundImage = styled.img<{ variant: VariantType }>`
   z-index: 0;
 `
 
-const ProfileBackgroundImage = styled.img<{ variant: VariantType }>`
+const ProfileBackgroundImage = styled.img<{ variant: ProfileBoxVariantType }>`
   position: absolute;
   top: ${({ variant }) =>
     variant === 'shareProfile' ? 'calc(50% - 80px)' : 'calc(50% - 130px)'};
@@ -106,7 +108,10 @@ const ProfileBackgroundImage = styled.img<{ variant: VariantType }>`
   `}
 `
 
-const ProfileImage = styled.img<{ index: number; variant: VariantType }>`
+const ProfileImage = styled.img<{
+  index: number
+  variant: ProfileBoxVariantType
+}>`
   width: ${({ variant }) => (variant === 'shareProfile' ? '59px' : '106px')};
   height: ${({ variant }) => (variant === 'shareProfile' ? '59px' : '106px')};
   position: absolute;
@@ -140,7 +145,7 @@ const ProfileImage = styled.img<{ index: number; variant: VariantType }>`
   `}
 `
 
-const Shadow = styled.img<{ variant: VariantType }>`
+const Shadow = styled.img<{ variant: ProfileBoxVariantType }>`
   position: absolute;
   width: 199px;
   height: 37px;
