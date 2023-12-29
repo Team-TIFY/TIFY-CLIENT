@@ -3,101 +3,19 @@ import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
 import {
-  RoundButtonShapeType,
   RoundButtonVariantType,
   RoundButtonPropsType,
 } from '@models/components/atoms/Button'
+import {
+  ROUND_BUTTON_COLOR_TYPE,
+  ROUND_BUTTON_SHAPE_TYPE,
+  ROUND_TEXT_COLOR_TYPE,
+} from '@constants/atoms/button'
 import RightChevron from '@assets/icons/RightChevron'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '../Text'
 import Loading from '@components/atoms/Loading'
 import Svg from '../Svg'
-
-const BUTTON_COLOR_TYPE = {
-  default: {
-    xlargeRound: `${theme.palette.gray_800}`,
-    mediumRound: `${theme.palette.purple_500}`,
-    smallRound: `${theme.palette.background}`,
-    circle: `${theme.palette.gray_800}`,
-    kakao: `${theme.palette.kakao}`,
-  },
-  disabled: {
-    xlargeRound: `${theme.palette.gray_800}`,
-    mediumRound: `${theme.palette.gray_700}`,
-    smallRound: `${theme.palette.background}`,
-    circle: `${theme.palette.gray_700}`,
-    kakao: `${theme.palette.kakao}`,
-  },
-  hover: {
-    xlargeRound: `${theme.palette.gray_800}`,
-    mediumRound: `${theme.palette.purple_600}`,
-    smallRound: `${theme.palette.gray_800}`,
-    circle: `${theme.palette.gray_700}`,
-    kakao: `${theme.palette.kakao}`,
-  },
-}
-
-const TEXT_COLOR_TYPE = {
-  default: {
-    xlargeRound: `${theme.palette.gray_100}`,
-    mediumRound: `${theme.palette.white}`,
-    smallRound: `${theme.palette.gray_100}`,
-    circle: `${theme.palette.gray_100}`,
-    kakao: `${theme.palette.gray_900}`,
-  },
-  disabled: {
-    xlargeRound: `${theme.palette.gray_100}`,
-    mediumRound: `${theme.palette.gray_500}`,
-    smallRound: `${theme.palette.gray_100}`,
-    circle: `${theme.palette.gray_500}`,
-    kakao: `${theme.palette.gray_900}`,
-  },
-  hover: {
-    xlargeRound: `${theme.palette.gray_100}`,
-    mediumRound: `${theme.palette.white}`,
-    smallRound: `${theme.palette.gray_100}`,
-    circle: `${theme.palette.gray_200}`,
-    kakao: `${theme.palette.gray_900}`,
-  },
-}
-
-const BUTTON_SHAPE_TYPE: RoundButtonShapeType = {
-  xlargeRound: {
-    radius: 80,
-    typo: 'Body_16',
-    width: 312,
-    height: 65,
-    padding: [12, 24],
-  },
-  mediumRound: {
-    radius: 24,
-    typo: 'Subhead_16',
-    width: 94,
-    height: 48,
-    padding: [12, 32],
-  },
-  smallRound: {
-    radius: 18,
-    typo: 'Subhead_14',
-    width: 156,
-    height: 36,
-    padding: [8, 20],
-  },
-  circle: {
-    radius: 50,
-    typo: 'Subhead_16',
-    width: 24,
-    height: 24,
-    padding: [0, 0],
-  },
-  kakao: {
-    radius: 12,
-    typo: 'Subhead_14',
-    width: 156,
-    height: 36,
-    padding: [8, 20],
-  },
-}
 
 /**
  * @param variant 버튼의 종류 : 'circle'
@@ -143,7 +61,7 @@ export const RoundButton = ({
                 typo={
                   xlargeDescription
                     ? `Subhead_16`
-                    : `${BUTTON_SHAPE_TYPE[variant].typo}`
+                    : `${ROUND_BUTTON_SHAPE_TYPE[variant].typo}`
                 }
                 as="span"
                 style={{ marginLeft: '8px' }}
@@ -168,7 +86,7 @@ export const RoundButton = ({
       )
     } else {
       return (
-        <Text typo={`${BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
+        <Text typo={`${ROUND_BUTTON_SHAPE_TYPE[variant].typo}`} as="span">
           <FlexBox>{children}</FlexBox>
         </Text>
       )
@@ -202,7 +120,7 @@ const StyledButton = styled.button<{
   align-items: center;
   box-sizing: border-box;
   padding: ${({ variant }) =>
-    `${BUTTON_SHAPE_TYPE[variant].padding[0]}px ${BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
+    `${ROUND_BUTTON_SHAPE_TYPE[variant].padding[0]}px ${ROUND_BUTTON_SHAPE_TYPE[variant].padding[1]}px`};
   border: ${({ variant }) =>
     variant === 'circle' ? `1px solid ${theme.palette.gray_400}` : 'none'};
   width: ${({ variant, fullWidth, width }) =>
@@ -210,23 +128,26 @@ const StyledButton = styled.button<{
       ? '100%'
       : width
       ? `${width}px`
-      : `${BUTTON_SHAPE_TYPE[variant].width}px`};
-  height: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].height}px`};
-  background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.default[variant]}`};
-  border-radius: ${({ variant }) => `${BUTTON_SHAPE_TYPE[variant].radius}px`};
-  color: ${({ variant }) => `${TEXT_COLOR_TYPE.default[variant]}`};
+      : `${ROUND_BUTTON_SHAPE_TYPE[variant].width}px`};
+  height: ${({ variant }) => `${ROUND_BUTTON_SHAPE_TYPE[variant].height}px`};
+  background-color: ${({ variant }) =>
+    `${ROUND_BUTTON_COLOR_TYPE.default[variant]}`};
+  border-radius: ${({ variant }) =>
+    `${ROUND_BUTTON_SHAPE_TYPE[variant].radius}px`};
+  color: ${({ variant }) => `${ROUND_TEXT_COLOR_TYPE.default[variant]}`};
   transform: ${({ variant, isClicked }) =>
     variant === 'mediumRound' ? (isClicked ? 'scale(1.2)' : 'scale(1)') : ''};
 
   &:hover {
-    background-color: ${({ variant }) => `${BUTTON_COLOR_TYPE.hover[variant]}`};
-    color: ${({ variant }) => `${TEXT_COLOR_TYPE.hover[variant]}`};
+    background-color: ${({ variant }) =>
+      `${ROUND_BUTTON_COLOR_TYPE.hover[variant]}`};
+    color: ${({ variant }) => `${ROUND_TEXT_COLOR_TYPE.hover[variant]}`};
     border: none;
   }
 
   &:disabled {
     background-color: ${({ variant }) =>
-      `${BUTTON_COLOR_TYPE.disabled[variant]}`};
-    color: ${({ variant }) => `${TEXT_COLOR_TYPE.disabled[variant]}`};
+      `${ROUND_BUTTON_COLOR_TYPE.disabled[variant]}`};
+    color: ${({ variant }) => `${ROUND_TEXT_COLOR_TYPE.disabled[variant]}`};
   }
 `
