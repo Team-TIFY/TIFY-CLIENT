@@ -28,30 +28,24 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/**
- * index가 1인 태그를 나타냅니다.
- */
 export const Main: Story = {
   args: {
     children: '여름쿨톤',
     colorIndex: 0,
-    iconIndex: 0,
-    smallCategory: '',
-    detailCategory: '',
+    iconIndex: 2,
+    smallCategory: 'MAKEUP',
+    detailCategory: 'LIP',
     answerNumber: 0,
   },
 }
 
-/**
- * index가 3인 태그를 나타냅니다.
- */
 export const Dark: Story = {
   args: {
     children: '웨이크메이크',
-    colorIndex: 0,
-    iconIndex: 0,
-    smallCategory: '',
-    detailCategory: '',
+    colorIndex: 2,
+    iconIndex: 2,
+    smallCategory: 'MAKEUP',
+    detailCategory: 'LIP',
     answerNumber: 0,
   },
 }

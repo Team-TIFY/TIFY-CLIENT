@@ -20,6 +20,21 @@ export type SubCategoryValueType =
   | 'COOKING'
   | 'EXERCISE'
 
+export type DetailCategoryValueType =
+  | 'LIP'
+  | 'EYE'
+  | 'PERFUME'
+  | 'MOISTURE'
+  | 'PLACE'
+  | 'TOP'
+  | 'FAS_PRODUCT'
+  | 'DIG_PRODUCT'
+  | 'BAG'
+  | 'ACCESSORY'
+  | 'DISH'
+  | 'CUP'
+  | 'EXERCISE'
+
 export type SelectedTagType = {
   name: SubCategoryNameType
   value: SubCategoryValueType
