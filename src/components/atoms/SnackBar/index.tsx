@@ -42,5 +42,8 @@ const StyledMessage = styled(ToastContainer)`
     ${media.mobile} {
       left: 8%;
     }
+    .Toastify__toast-body {
+      white-space: pre-line;
+    }
   }
 `

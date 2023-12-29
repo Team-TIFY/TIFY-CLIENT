@@ -4,14 +4,15 @@ import { getCookie } from '@utils/cookies'
 import { useRecoilState } from 'recoil'
 import { useEffect } from 'react'
 import { axiosApi } from '@utils/apis/axios'
-import { Outlet } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { IsOnboard } from '@libs/store/onboard'
 import Loading from '@components/atoms/Loading'
 import useSnackBar from '@libs/hooks/useSnackBar'
+import { useLocation } from 'react-router-dom'
 
 const RequireAuth = () => {
+  const location = useLocation()
   const [auth, setAuth] = useRecoilState(authState)
   const [isOnboard, setIsOnboard] = useRecoilState(IsOnboard)
   const { setSnackBar } = useSnackBar()
@@ -21,7 +22,7 @@ const RequireAuth = () => {
   const accessToken = getCookie('accessToken')
   const fetchUserData = async () => {
     const data = await UserApi.GET_USER_INFO_TOKEN()
-    if (!data.onBoardingStatus) {
+    if (!data.gender) {
       setIsOnboard(false)
     }
     setAuth({
@@ -76,7 +77,9 @@ const RequireAuth = () => {
     setTimeout(() => setStatus('succeed'), 100)
     return <Navigate replace to="/onboarding" />
   } else if (status === 'failed') {
-    setSnackBar({ comment: '로그인이 필요해요', type: 'error' })
+    if (!location.pathname.includes('login')) {
+      setSnackBar({ comment: '로그인이 필요해요', type: 'error' })
+    }
     return <Navigate replace to="/login" />
   } else return <Loading />
 }

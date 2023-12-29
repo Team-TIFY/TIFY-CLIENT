@@ -10,6 +10,7 @@ import AlertSetting from './AlertSetting'
 import SettingAppBar from '@components/settingPage/SettingAppBar'
 import NoticeDetail from './NoticeDetail'
 import VersionInfo from './VersionInfo'
+import { Navigate } from 'react-router-dom'
 
 const SettingRouter = () => {
   return (
@@ -86,6 +87,7 @@ const SettingRouter = () => {
           </SettingAppBar>
         }
       />
+      <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
   )
 }

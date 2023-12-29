@@ -7,6 +7,11 @@ import { theme } from '@styles/theme'
 import { navigationData } from '@constants/navigationData'
 import { Text } from '../Text'
 import Svg from '../Svg'
+import NavigationMy from '@assets/icons/NavigationMy'
+import NavigationToday from '@assets/icons/NavigationToday'
+import NavigationFriends from '@assets/icons/NavigationFriends'
+import { motion } from 'framer-motion'
+import { useLocation } from 'react-router-dom'
 
 export const Navigationbar = () => {
   const navigate = useNavigate()

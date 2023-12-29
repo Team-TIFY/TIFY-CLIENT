@@ -7,6 +7,7 @@ import {
   pageTempState,
 } from '@libs/store/onboard'
 import Onboarding from './Onboarding'
+import { Navigate } from 'react-router-dom'
 
 const OnboardingRouter = () => {
   const navigate = useNavigate()
@@ -94,6 +95,7 @@ const OnboardingRouter = () => {
           </AppBarTemplate>
         }
       />
+      <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
   )
 }

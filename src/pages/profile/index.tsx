@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { Suspense } from 'react'
 import { useRecoilValue } from 'recoil'
 import Svg from '@components/atoms/Svg'
+import { Navigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
@@ -391,6 +392,7 @@ const ProfileRouter = () => {
           }
         />
       </Routes>
+      <Route path="*" element={<Navigate to="/404" />} />
     </Suspense>
   )
 }

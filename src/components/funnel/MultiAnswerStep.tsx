@@ -13,6 +13,7 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import useStepNumberIcon from '@libs/hooks/useStepNumberIcon'
 import useSnackBar from '@libs/hooks/useSnackBar'
+import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
 
 interface MultiAnswerStepProps {
   isLastAnswer?: boolean
@@ -29,7 +30,14 @@ const MultiAnswerStep = ({
   setNextStep,
   isLastAnswer = false,
 }: MultiAnswerStepProps) => {
-  const { data } = useQuery(['question', category, number], () =>
+  const {
+    data = {
+      favorQuestionId: 0,
+      favorQuestionCategoryName: '',
+      number: 0,
+      contents: '',
+    },
+  } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
   const { setSnackBar } = useSnackBar()
@@ -98,8 +106,12 @@ const MultiAnswerStep = ({
     <MultiAnswerStepWrapper>
       <FlexBox direction="column" gap={10}>
         <Spacing height={32} />
-        <Text typo="SCD_Headline_24" color="white">
-          {data?.contents}
+        <Text
+          typo="SCD_Headline_24"
+          color="white"
+          style={{ whiteSpace: 'pre' }}
+        >
+          <TextWithLineBreak data={data.contents} />
         </Text>
         <Text typo="Caption_12R" color="gray_200">
           최대 {max}개까지 선택할 수 있어요

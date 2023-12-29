@@ -16,10 +16,9 @@ export const Week = ({ today }: WeekPropsType) => {
   const week: DaysKeyType[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 
   const handleDayClick = (index: TodayKeyType) => {
-    if (index > date.today) return
-    const calDate = date.today - index
-    setNewDate(calDate)
-    localStorage.setItem('date', String(calDate))
+    if (index > date.today) return;
+    const calDate = date.today - index;
+    setNewDate(calDate);
   }
 
   const handleVariant = (idx: number) => {
@@ -31,7 +30,6 @@ export const Week = ({ today }: WeekPropsType) => {
       return 'dayAfter'
     }
   }
-
   return (
     <Container>
       <Wrapper>

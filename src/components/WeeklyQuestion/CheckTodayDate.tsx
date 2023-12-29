@@ -23,12 +23,7 @@ const CheckTodayDate = () => {
     },
   })
   useEffect(() => {
-    if (localStorage.getItem('date') && localStorage.getItem('date') !== '0') {
-      const dateIdx = parseInt(localStorage.getItem('date')!, 10)
-      setNewDate(dateIdx)
-    } else {
-      getTodayDate()
-    }
+    getTodayDate()
   }, [])
 
   useEffect(() => {
