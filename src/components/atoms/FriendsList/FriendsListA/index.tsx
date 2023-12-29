@@ -1,13 +1,16 @@
 import styled from '@emotion/styled'
+
 import { theme } from '@styles/theme'
-import { Text } from '../../Text'
-import { Avatar } from '../../Avatar'
-import Svg from '../../Svg'
+import {
+  FriendsListAPropsType,
+  FriendsListVariantType,
+} from '@models/components/atoms/FriendsList'
 import OpenEye from '@assets/icons/OpenEye'
 import CloseEye from '@assets/icons/CloseEye'
 import Ordering from '@assets/icons/Ordering'
-
-export type FriendsListVariant = 'visible' | 'invisible'
+import { Text } from '../../Text'
+import { Avatar } from '../../Avatar'
+import Svg from '../../Svg'
 
 /**
  * @param variant FriendsList visible type을 나타냄 'visible' | 'invisible'
@@ -16,19 +19,12 @@ export type FriendsListVariant = 'visible' | 'invisible'
  * @param onClick 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
-interface FriendsListAProps {
-  variant?: FriendsListVariant
-  userName: string
-  userId: string
-  onClick?: () => void
-}
-
 export const FriendsListA = ({
   variant = 'visible',
   userName,
   userId,
   onClick,
-}: FriendsListAProps) => {
+}: FriendsListAPropsType) => {
   return (
     <Wrapper variant={variant}>
       <Avatar variant="small" isVisible={`${variant}`} />
@@ -52,7 +48,7 @@ export const FriendsListA = ({
   )
 }
 
-const Wrapper = styled.div<{ variant: FriendsListVariant }>`
+const Wrapper = styled.div<{ variant: FriendsListVariantType }>`
   width: 312px;
   height: 48px;
   background-color: ${theme.palette.background};

@@ -1,52 +1,17 @@
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import styled from '@emotion/styled'
-import {
-  ChangeEvent,
-  TextareaHTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+
 import { theme } from '@styles/theme'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { ShortInputProps } from '@models/components/atoms/Input'
 import {
   isBtnColorState,
   OnboardingBtnType,
-  onboardingPageState,
   onboardingState,
   OnboardingType,
 } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
-
-type InputVariant = 'default' | 'idInput'
-
-type InputVariantType = {
-  [key in InputVariant]: {
-    isIdInput: boolean
-  }
-}
-
-const INPUT_TYPE: InputVariantType = {
-  default: {
-    isIdInput: false,
-  },
-  idInput: {
-    isIdInput: true,
-  },
-}
-
-interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  variant: InputVariant
-  maxText?: number
-  explanation?: string
-  explanationPadding?: number
-  defaultValue?: string
-  width?: number
-  placeholder?: string
-  warning?: string
-  error: boolean
-  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
-  content: string
-}
+import { SHORT_INPUT_TYPE } from '@constants/atoms/input'
 
 export const ShortInput = ({
   variant,
@@ -61,11 +26,10 @@ export const ShortInput = ({
   warning,
   content,
   ...props
-}: InputProps) => {
+}: ShortInputProps) => {
   const ref = useRef<HTMLTextAreaElement>(null)
   const [_, setFocus] = useState(false)
   const [info, setInfo] = useRecoilState<OnboardingType>(onboardingState)
-  const infoPage = useRecoilValue(onboardingPageState)
   const [btnColor, setBtnColor] = useRecoilState(isBtnColorState)
   const setProfileStateData = useSetRecoilState(profileState)
 
@@ -119,39 +83,41 @@ export const ShortInput = ({
     })
   }
 
-  const handleClick = () => {
+  const handleClickTextArea = () => {
     setProfileStateData((prevState) => ({
       ...prevState,
       buttonText: '확인',
     }))
   }
 
+  const handleChangeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    if (onChange) onChange(e)
+    textHandler(e, content)
+    handleEnter(e, content)
+  }
+
+  const handleClickCancelButton = () => {
+    cancelClick(content as keyof OnboardingBtnType)
+  }
+
   return (
     <Wrapper>
       <InstText explanationPadding={explanationPadding}>{explanation}</InstText>
       <TextAreaWrapper width={width} error={error}>
-        <IDdiv variant={INPUT_TYPE[variant].isIdInput}>@</IDdiv>
+        <IDdiv variant={SHORT_INPUT_TYPE[variant].isIdInput}>@</IDdiv>
         <StyledTextArea
           ref={ref}
           value={info[content as keyof OnboardingType]}
           placeholder={placeholder}
           spellCheck="false"
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-            if (onChange) onChange(e)
-            textHandler(e, content)
-            handleEnter(e, content)
-          }}
-          onClick={handleClick}
+          onChange={(e) => handleChangeTextArea(e)}
+          onClick={handleClickTextArea}
           maxLength={maxText}
           onFocus={focusInput}
           onBlur={focusInput}
           {...props}
         />
-        <CancelBtn
-          onClick={() => {
-            cancelClick(content as keyof OnboardingBtnType)
-          }}
-        />
+        <CancelBtn onClick={handleClickCancelButton} />
       </TextAreaWrapper>
       {
         error && <WarningText>{warning}</WarningText> //경고 문구

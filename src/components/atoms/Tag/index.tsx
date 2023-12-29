@@ -1,79 +1,19 @@
 import styled from '@emotion/styled'
+
 import { KeyOfPalette, theme } from '@styles/theme'
-import { tagIconData } from '@utils/tagIconData'
-
-type TagPropsType = {
-  children: string
-  colorIndex: ColorIndexVariant
-  iconIndex: number
-  smallCategory: any
-  detailCategory: any
-  answerNumber: number
-}
-
-type TagVariant = 'main' | 'dark'
-type ColorVariant = 'purple' | 'pink' | 'aqua'
-
-export type ColorIndexVariant = 0 | 1 | 2 | 3 | 4 | 5
-
-const TAG_BG_COLOR_TYPE = {
-  main: {
-    purple: `${theme.palette.purple_100}`,
-    pink: `${theme.palette.pink_100}`,
-    aqua: `${theme.palette.aqua_100}`,
-  },
-  dark: {
-    purple: `${theme.palette.purple_500}`,
-    pink: `${theme.palette.pink_300}`,
-    aqua: `${theme.palette.aqua_500}`,
-  },
-}
-
-const TAG_TEXT_COLOR_TYPE = {
-  main: `${theme.palette.gray_800}`,
-  dark: `${theme.palette.white}`,
-}
-
-const TAG_PADDING_TYPE = {
-  main: '6px 8px',
-  dark: '6px 10px',
-}
-
-const TAG_COLOR_TYPE: Record<
-  ColorIndexVariant,
-  { variant: TagVariant; color: ColorVariant; iconColor: string }
-> = {
-  0: {
-    variant: 'main',
-    color: 'purple',
-    iconColor: 'purple_500',
-  },
-  1: {
-    variant: 'main',
-    color: 'pink',
-    iconColor: 'pink_500',
-  },
-  2: {
-    variant: 'main',
-    color: 'aqua',
-    iconColor: 'aqua_300',
-  },
-  3: {
-    variant: 'dark',
-    color: 'purple',
-    iconColor: '',
-  },
-  4: {
-    variant: 'dark',
-    color: 'pink',
-    iconColor: '',
-  },
-  5: {
-    variant: 'dark',
-    color: 'aqua',
-    iconColor: '',
-  },
-}
+import {
+  ColorIndexVariantType,
+  ColorVariantType,
+  TagPropsType,
+  TagVariantType,
+} from '@models/components/atoms/Tag'
+import {
+  TAG_COLOR_TYPE,
+  TAG_BG_COLOR_TYPE,
+  TAG_TEXT_COLOR_TYPE,
+  TAG_PADDING_TYPE,
+  TAG_ICON_DATA,
+} from '@constants/atoms/tag'
 
 export const Tag = ({
   children,
@@ -83,7 +23,7 @@ export const Tag = ({
   detailCategory,
   answerNumber,
 }: TagPropsType) => {
-  const IconComponent = tagIconData[smallCategory][detailCategory][iconIndex]
+  const IconComponent = TAG_ICON_DATA[smallCategory][detailCategory][iconIndex]
 
   return (
     <Wrapper
@@ -91,17 +31,17 @@ export const Tag = ({
         (smallCategory === 'MAKEUP' && answerNumber === 5) ||
         (smallCategory === 'EXERCISE' && answerNumber === 6)
           ? 'dark'
-          : TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant
+          : TAG_COLOR_TYPE[colorIndex as ColorIndexVariantType].variant
       }
-      colorVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].color}
+      colorVariant={TAG_COLOR_TYPE[colorIndex as ColorIndexVariantType].color}
     >
       <>
         {IconComponent &&
-          TAG_COLOR_TYPE[colorIndex as ColorIndexVariant].variant ===
+          TAG_COLOR_TYPE[colorIndex as ColorIndexVariantType].variant ===
             'main' && (
             <IconComponent
               fill={
-                TAG_COLOR_TYPE[colorIndex as ColorIndexVariant]
+                TAG_COLOR_TYPE[colorIndex as ColorIndexVariantType]
                   ?.iconColor as KeyOfPalette
               }
             />
@@ -113,8 +53,8 @@ export const Tag = ({
 }
 
 const Wrapper = styled.div<{
-  tagVariant: TagVariant
-  colorVariant: ColorVariant
+  tagVariant: TagVariantType
+  colorVariant: ColorVariantType
 }>`
   ${theme.typo.Caption_12M};
   background-color: ${({ tagVariant, colorVariant }) =>

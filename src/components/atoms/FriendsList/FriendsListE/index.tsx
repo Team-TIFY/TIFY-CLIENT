@@ -1,8 +1,10 @@
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import { FriendsListEPropsType } from '@models/components/atoms/FriendsList'
 import { Avatar } from '@components/atoms/Avatar'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
 
 /**
  * @param imageUrl 친구 프로필 이미지 url을 나타냄
@@ -11,21 +13,13 @@ import { theme } from '@styles/theme'
  * @param neighborsNumber 해당 친구와 함께 아는 친구 수를 나타냄
  */
 
-type FriendsListEType = {
-  imageUrl: string
-  userId: string
-  userName: string
-  neighborsNumber: number
-  onClick?: () => void
-}
-
 const FriendsListE = ({
   imageUrl = '',
   userId = '',
   userName = '',
   neighborsNumber = 0,
   onClick,
-}: FriendsListEType) => {
+}: FriendsListEPropsType) => {
   return (
     <FriendsListEWrapper onClick={onClick}>
       <Avatar variant="small" imageUrl={imageUrl ? imageUrl : ''} />

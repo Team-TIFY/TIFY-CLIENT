@@ -1,7 +1,10 @@
-import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
+
+import { theme } from '@styles/theme'
+import { navigationData } from '@constants/navigationData'
 import { Text } from '../Text'
 import Svg from '../Svg'
 import NavigationMy from '@assets/icons/NavigationMy'
@@ -13,29 +16,23 @@ import { useLocation } from 'react-router-dom'
 export const Navigationbar = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
+
   const [selected, setSelect] = useState<number>(
     pathname === '/' ? 1 : pathname === '/profile' ? 2 : 0,
   )
-  const navigationData = [
-    {
-      title: '프렌즈',
-      url: '/friends',
-      icon: <NavigationFriends />,
-    },
-    {
-      title: '투데이',
-      url: '/',
-      icon: <NavigationToday />,
-    },
-    {
-      title: '마이',
-      url: '/profile',
-      icon: <NavigationMy />,
-    },
-  ]
+
   const handleClick = (index: number) => {
     setSelect(index)
   }
+
+  const handleClickNavigationButton = (
+    index: number,
+    data: (typeof navigationData)[number],
+  ) => {
+    handleClick(index)
+    navigate(data.url)
+  }
+
   return (
     <NavContainer>
       <Wrapper>
@@ -43,10 +40,7 @@ export const Navigationbar = () => {
           return (
             <NavBtn
               key={index}
-              onClick={() => {
-                handleClick(index)
-                navigate(data.url)
-              }}
+              onClick={() => handleClickNavigationButton(index, data)}
             >
               <NavBorder
                 initial={{ opacity: 0, x: 0 }}

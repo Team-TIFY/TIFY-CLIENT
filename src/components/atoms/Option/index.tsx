@@ -1,23 +1,10 @@
-import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
-import { TextType, theme } from '@styles/theme'
+
+import { theme } from '@styles/theme'
+import { OptionVariantType, OptionPropsType } from '@models/Option'
+import { OPTION_CHILDREN, OPTION_TEXT_COLOR } from '@constants/atoms/option'
 import { Text } from '../Text'
-
-type VariantType = 'new' | 'account'
-
-export type OptionPropsType = {
-  variant: VariantType
-}
-
-const OPTION_CHILDREN: Record<VariantType, string> = {
-  new: `new`,
-  account: `계정`,
-}
-
-const OPTION_TEXT_COLOR: Record<VariantType, TextType['color']> = {
-  new: 'gray_800',
-  account: 'gray_200',
-}
+import { FlexBox } from '@components/layouts/FlexBox'
 
 const Option = ({ variant }: OptionPropsType) => {
   return (
@@ -33,7 +20,7 @@ const Option = ({ variant }: OptionPropsType) => {
 
 export default Option
 
-const OptionWrapper = styled(FlexBox)<{ variant: VariantType }>`
+const OptionWrapper = styled(FlexBox)<{ variant: OptionVariantType }>`
   width: 32px;
   height: 18px;
   padding: 1px 6px;

@@ -1,5 +1,5 @@
-import { TodayKeyType } from '@components/atoms/DayWeek/WeekGroup'
 import { dateState } from '@libs/store/date'
+import { TodayKeyType } from '@models/components/atoms/DayWeek'
 import { useRecoilState } from 'recoil'
 
 const useGetDate = () => {
@@ -165,9 +165,9 @@ const useGetDate = () => {
 
   const getYearAndMonthAndDayFromDate = (dateString: string) => {
     const date = new Date(dateString)
-    const formattedYear = date.getFullYear()
-    const formattedMonth = getStringMonth(date.getMonth())
-    const formattedDate = date.getDate().toString().padStart(2, '0')
+    const formattedYear = String(date.getFullYear())
+    const formattedMonth = String(getStringMonth(date.getMonth()))
+    const formattedDate = String(date.getDate().toString().padStart(2, '0'))
 
     return { formattedYear, formattedMonth, formattedDate }
   }

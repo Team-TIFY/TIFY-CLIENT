@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
+
 import CubeButton from '.'
 
 const meta = {

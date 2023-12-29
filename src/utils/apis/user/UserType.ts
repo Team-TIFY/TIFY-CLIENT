@@ -1,5 +1,5 @@
-import { CategoryNameType } from '@components/atoms/Category'
 import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
+import { CategoryNameType } from '@models/components/atoms/Category'
 import { TasteBoxVariantType } from '../favor/TasteType'
 
 export type UserInfo = {
