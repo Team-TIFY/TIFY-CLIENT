@@ -1,51 +1,15 @@
-import styled from '@emotion/styled'
-import { profileState } from '@libs/store/profile'
-import { theme } from '@styles/theme'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import { profileState } from '@libs/store/profile'
+import {
+  TodayCategoryListPropsType,
+  TodayCategoryValueType,
+} from '@models/components/atoms/TodayCategory'
+import { categoryList } from '@constants/atoms/todayCategory'
 import { Text } from '../Text'
-
-export const categoryList = [
-  {
-    name: '음식',
-    value: 'FOOD',
-  },
-  {
-    name: '음악',
-    value: 'MUSIC',
-  },
-  {
-    name: '관계',
-    value: 'RELATIONSHIP',
-  },
-  {
-    name: '음료',
-    value: 'BEVERAGE',
-  },
-  {
-    name: '문화생활',
-    value: 'CULTURE_LIFE',
-  },
-  {
-    name: '여행',
-    value: 'TRIP',
-  },
-  {
-    name: '나',
-    value: 'ME',
-  },
-]
-
-export type TodayCategoryValueType =
-  | 'FOOD'
-  | 'MUSIC'
-  | 'RELATIONSHIP'
-  | 'BEVERAGE'
-  | 'CULTURE_LIFE'
-  | 'TRIP'
-  | 'ME'
-
-type TodayCategoryListPropsType = { defaultCategory?: TodayCategoryValueType }
 
 const TodayCategoryList = ({
   defaultCategory = 'FOOD',

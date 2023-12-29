@@ -1,5 +1,3 @@
-import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
-
 export type TodayCategoryVariantType = 'activate' | 'default'
 
 export type TodayCategoryPropsType = {
@@ -7,4 +5,17 @@ export type TodayCategoryPropsType = {
   categoryValue: TodayCategoryValueType
   infoCount: number
   id?: number
+}
+
+export type TodayCategoryValueType =
+  | 'FOOD'
+  | 'MUSIC'
+  | 'RELATIONSHIP'
+  | 'BEVERAGE'
+  | 'CULTURE_LIFE'
+  | 'TRIP'
+  | 'ME'
+
+export type TodayCategoryListPropsType = {
+  defaultCategory?: TodayCategoryValueType
 }
