@@ -42,3 +42,26 @@ export interface SearchInputPropsType
   onClick?: () => void
   customRemoveHandler?: () => void
 }
+
+export type ShortInputVariant = 'default' | 'idInput'
+
+export type ShortInputVariantType = {
+  [key in ShortInputVariant]: {
+    isIdInput: boolean
+  }
+}
+
+export interface ShortInputProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  variant: ShortInputVariant
+  maxText?: number
+  explanation?: string
+  explanationPadding?: number
+  defaultValue?: string
+  width?: number
+  placeholder?: string
+  warning?: string
+  error: boolean
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  content: string
+}
