@@ -1,19 +1,17 @@
-import { ButtonHTMLAttributes } from 'react'
-import { KeyOfTypo, theme } from '@styles/theme'
+import { useState } from 'react'
 import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import {
+  ButtonShapeType,
+  ButtonVariantType,
+  ButtonPropsType,
+} from '@models/components/atoms/Button'
+import RightChevron from '@assets/icons/RightChevron'
+import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '../Text'
 import Loading from '@components/atoms/Loading'
-import { FlexBox } from '@components/layouts/FlexBox'
 import Svg from '../Svg'
-import { useState } from 'react'
-import RightChevron from '@assets/icons/RightChevron'
-
-type ButtonVariant =
-  | 'xlargeRound'
-  | 'mediumRound'
-  | 'smallRound'
-  | 'circle'
-  | 'kakao'
 
 const BUTTON_COLOR_TYPE = {
   default: {
@@ -63,16 +61,6 @@ const TEXT_COLOR_TYPE = {
   },
 }
 
-type ButtonShapeType = {
-  [key in ButtonVariant]: {
-    radius: number
-    typo: KeyOfTypo
-    width: number
-    height: number
-    padding: [number, number]
-  }
-}
-
 const BUTTON_SHAPE_TYPE: ButtonShapeType = {
   xlargeRound: {
     radius: 80,
@@ -119,20 +107,7 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
  * @param onClick 버튼을 클릭할 때 발생하는 event 명시 (optional)
  */
 
-interface ButtonProps<T extends ButtonVariant>
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: ButtonVariant
-  xlargeDescription?: T extends 'xlargeRound' ? string | undefined : undefined
-  xlargeRightChildren?: T extends 'xlargeRound'
-    ? React.ReactNode | undefined
-    : undefined
-  fullWidth?: boolean
-  width?: number
-  isLoading?: boolean
-  onClick?: () => void
-}
-
-type Props = Partial<ButtonProps<ButtonVariant>>
+type PropsType = Partial<ButtonPropsType<ButtonVariantType>>
 
 export const RoundButton = ({
   children,
@@ -144,8 +119,20 @@ export const RoundButton = ({
   isLoading,
   onClick,
   ...props
-}: Props) => {
+}: PropsType) => {
   const [isClicked, setIsClicked] = useState(false)
+
+  const handleClickButton = () => {
+    onClick?.()
+    setIsClicked(true)
+
+    const id = setTimeout(() => {
+      setIsClicked(false)
+    }, 1000) // 1초 후 isClicked를 false로 설정하여 원래 크기로 돌아가도록 합니다.
+
+    return () => clearTimeout(id)
+  }
+
   const renderRoundButton = () => {
     if (variant === 'xlargeRound') {
       return (
@@ -195,13 +182,7 @@ export const RoundButton = ({
         variant={variant}
         fullWidth={fullWidth}
         isClicked={isClicked}
-        onClick={(e) => {
-          if (onClick) onClick()
-          setIsClicked(true)
-          setTimeout(() => {
-            setIsClicked(false)
-          }, 1000) // 1초 후 isClicked를 false로 설정하여 원래 크기로 돌아가도록 합니다.
-        }}
+        onClick={handleClickButton}
         {...props}
       >
         {isLoading ? <Loading /> : renderRoundButton()}
@@ -211,7 +192,7 @@ export const RoundButton = ({
 }
 
 const StyledButton = styled.button<{
-  variant: ButtonVariant
+  variant: ButtonVariantType
   width?: number
   fullWidth?: boolean
   isClicked?: boolean
