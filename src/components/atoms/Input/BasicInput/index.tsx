@@ -2,7 +2,7 @@ import { ChangeEvent, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
-import { InputPropsType } from '@models/components/atoms/Input'
+import { BasicInputPropsType } from '@models/components/atoms/Input'
 import { FlexBox } from '@components/layouts/FlexBox'
 
 export const BasicInput = ({
@@ -16,7 +16,7 @@ export const BasicInput = ({
   warning,
   onBlur,
   ...props
-}: InputPropsType) => {
+}: BasicInputPropsType) => {
   const ref = useRef<HTMLTextAreaElement>(null)
   const [focus, setFocus] = useState(false)
   const [inputText, setInputText] = useState('')

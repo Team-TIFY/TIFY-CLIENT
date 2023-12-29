@@ -5,12 +5,12 @@ import { useRecoilState } from 'recoil'
 import { theme } from '@styles/theme'
 import { authState } from '@libs/store/auth'
 import {
-  InputVariantType,
-  InputVariant,
+  LongInputVariantType,
+  LongInputVariant,
   PropsType,
 } from '@models/components/atoms/Input'
 
-const INPUT_TYPE: InputVariantType = {
+const INPUT_TYPE: LongInputVariantType = {
   default: {
     display: 'none',
   },
@@ -116,7 +116,7 @@ const Wrapper = styled.div`
 `
 
 const InstText = styled.div<{
-  variant: InputVariant
+  variant: LongInputVariant
 }>`
   display: ${({ variant }) => INPUT_TYPE[variant].display};
   text-align: center;

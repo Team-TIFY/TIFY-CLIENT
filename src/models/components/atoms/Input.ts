@@ -1,6 +1,6 @@
 import { TextareaHTMLAttributes, ChangeEvent } from 'react'
 
-export interface InputPropsType
+export interface BasicInputPropsType
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   maxText?: number
   explanation?: string
@@ -13,17 +13,17 @@ export interface InputPropsType
   onBlur?: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-export type InputVariant = 'default' | 'withInst'
+export type LongInputVariant = 'default' | 'withInst'
 
-export type InputVariantType = {
-  [key in InputVariant]: {
+export type LongInputVariantType = {
+  [key in LongInputVariant]: {
     display: string
   }
 }
 
-export interface InputPropsType
+export interface LongInputPropsType
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  variant: InputVariant
+  variant: LongInputVariant
   explanation?: string
   content?: string
   value?: string
@@ -32,4 +32,13 @@ export interface InputPropsType
   onClick: () => void
 }
 
-export type PropsType = Partial<InputPropsType>
+export type PropsType = Partial<LongInputPropsType>
+
+export interface SearchInputPropsType
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  width?: number
+  placeholder: string
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  onClick?: () => void
+  customRemoveHandler?: () => void
+}
