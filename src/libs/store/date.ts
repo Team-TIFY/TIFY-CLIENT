@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { TodayKeyType } from '@components/atoms/DayWeek/WeekGroup'
+import { TodayKeyType } from '@models/components/atoms/DayWeek'
 
 export interface WeeklyDate {
   today: TodayKeyType

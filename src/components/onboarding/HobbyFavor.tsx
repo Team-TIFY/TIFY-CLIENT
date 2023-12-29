@@ -1,4 +1,4 @@
-import CubeButton, { cubeButtonVariant } from '@components/atoms/CubeButton'
+import CubeButton from '@components/atoms/CubeButton'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'

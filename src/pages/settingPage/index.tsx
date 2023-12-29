@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import Setting from './Setting'
 import CustomerCenter from './CustomerCenter'
 import WriteForCustomer from './WriteForCustomer'

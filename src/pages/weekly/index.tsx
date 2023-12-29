@@ -1,4 +1,3 @@
-import WeeklyMainQuestion from './WeeklyMainQuestion'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import AnswerDailyQuestion from './AnswerDailyQuestion'

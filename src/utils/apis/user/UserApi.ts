@@ -1,4 +1,4 @@
-import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
+import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { axiosApi } from '@utils/apis/axios'
 import {
   FilteredUserTag,

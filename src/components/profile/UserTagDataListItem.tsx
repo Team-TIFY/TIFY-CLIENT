@@ -2,7 +2,8 @@ import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Category } from '@components/atoms/Category'
-import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
+import { Tag } from '@components/atoms/Tag'
+import { ColorIndexVariantType } from '@models/components/atoms/Tag'
 import {
   FilteredUserTag,
   SelectedProps,
@@ -75,7 +76,7 @@ export const UserTagDataListItem = ({
               tagData.answer ? (
                 <Tag
                   key={index}
-                  colorIndex={(index % 3) as ColorIndexVariant}
+                  colorIndex={(index % 3) as ColorIndexVariantType}
                   iconIndex={tagData.number}
                   children={tagData.answer}
                   smallCategory={tagData.smallCategory}
