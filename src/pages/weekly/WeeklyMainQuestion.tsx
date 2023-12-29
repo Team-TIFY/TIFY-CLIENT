@@ -23,9 +23,9 @@ const WeeklyMainQuestion = () => {
   })
   const handleAnswerQuestion = async () => {
     const data = await WeeklyApi.ALREADY_ANSWERED(question.questionId)
-    if (!data) navigate('answer')
+    if (!data) navigate('weekly/answer')
     else {
-      navigate('answers')
+      navigate('weekly/answers')
     }
   }
 

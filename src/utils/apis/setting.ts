@@ -5,6 +5,13 @@ export const SettingApi = {
     const response = await axiosApi.post(`/auth/logout`)
     return response
   },
+  GET_VERSION: async (): Promise<{
+    iosVersion: 'string'
+    aosVersion: 'string'
+  }> => {
+    const response = await axiosApi.get(`/version`)
+    return response.data
+  },
 }
 
 export const CustomerCenterApi = {

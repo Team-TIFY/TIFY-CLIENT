@@ -17,7 +17,7 @@ const Login = () => {
     <div>
       <MainIconContainer>
         <Text typo="Subhead_16" color="white">
-          취향을 찾는 여정,
+          취향을 찾다, 마음이 닿다
         </Text>
         <Svg width={160} children={<TifyLogo />} />
       </MainIconContainer>

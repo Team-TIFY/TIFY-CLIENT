@@ -62,7 +62,6 @@ const DailyQuestionBox = () => {
           {question.content}
         </Text>
         <div className="ImgSpacingBox"></div>
-        {/* <Spacing variant="default" height={64} /> */}
       </FlexBox>
     </QuestionBoxContainer>
   )
@@ -111,9 +110,9 @@ const QuestionBoxContainer = styled.div`
     height: 64px;
     width: 100%;
   }
-  ${media.mobile} {
+  ${media.smallMobile} {
     .ImgSpacingBox {
-      height: 15px;
+      height: 20px;
     }
   }
 `

@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
+
 import FriendsListD from '.'
 
 const meta: Meta<typeof FriendsListD> = {

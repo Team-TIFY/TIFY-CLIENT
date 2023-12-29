@@ -7,6 +7,7 @@ import Friends from './Friends'
 import SearchFriends from './SearchFriends'
 import AddUserIcon from '@assets/icons/AddUserIcon'
 import SearchIcon from '@assets/icons/FriendSearchIcon'
+import { Navigate } from 'react-router-dom'
 
 const FriendsRouter = () => {
   const navigate = useNavigate()
@@ -81,6 +82,7 @@ const FriendsRouter = () => {
           </AppBarTemplate>
         }
       />
+      <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
   )
 }

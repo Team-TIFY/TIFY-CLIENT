@@ -1,4 +1,4 @@
-import { TodayCategoryValueType } from '@components/atoms/TodayCategoryList'
+import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { atom } from 'recoil'
 
 export type ProfileState = {

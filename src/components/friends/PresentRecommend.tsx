@@ -18,7 +18,7 @@ import { theme } from '@styles/theme'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import { friendState } from '@libs/store/friend'
-import { CategoryNameType } from '@components/atoms/Category'
+import { SubCategoryValueType } from '@models/favor'
 import { useInfiniteQueries } from '@libs/hooks'
 import PresentItem from './PresentItem'
 
@@ -106,7 +106,7 @@ function PresentRecommend() {
       setSelectedTags([
         {
           name: selectedOption.name as SubCategoryName,
-          value: selectedOption.value as CategoryNameType,
+          value: selectedOption.value as SubCategoryValueType,
         },
       ])
     } else {

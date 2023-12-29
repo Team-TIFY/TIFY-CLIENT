@@ -1,6 +1,6 @@
 import { Spacing } from '@components/atoms/Spacing'
 import TodayCategory from '@components/atoms/TodayCategory'
-import { categoryList } from '@components/atoms/TodayCategoryList'
+import { categoryList } from '@constants/atoms/todayCategory'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { useQuery } from '@tanstack/react-query'
 import { UserApi } from '@utils/apis/user/UserApi'

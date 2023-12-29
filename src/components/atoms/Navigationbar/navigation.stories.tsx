@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Navigationbar } from '.'
 import { Routes, Route } from 'react-router-dom'
+
+import { Navigationbar } from '.'
+
 const meta = {
   title: 'Atom/Navigationbar',
   component: Navigationbar,

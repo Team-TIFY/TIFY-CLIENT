@@ -1,4 +1,4 @@
-import { CategoryNameType } from '@components/atoms/Category'
+import { SubCategoryValueType } from '@models/favor'
 import { atom } from 'recoil'
 
 export type FriendState = {
@@ -9,7 +9,7 @@ export type FriendState = {
   isCutOffMenuOpen: boolean
   isBlockMenuOpen: boolean
   isCancelBlockMenuOpen: boolean
-  presentRecommendFilterValue: CategoryNameType | ''
+  presentRecommendFilterValue: SubCategoryValueType | ''
 }
 
 const initialState: FriendState = {

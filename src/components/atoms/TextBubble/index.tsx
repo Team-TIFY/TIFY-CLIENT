@@ -1,43 +1,14 @@
 import styled from '@emotion/styled'
-import { KeyOfPalette, theme } from '@styles/theme'
+
+import {
+  BubblePropsType,
+  BubbleVariantType,
+} from '@models/components/atoms/TextBubble'
+import { BUBBLE_COLOR_TYPE } from '@constants/atoms/textBubble'
 import { Avatar } from '../Avatar'
 import { Text } from '../Text'
 
-type BubbleVariant = 'new' | 'old' | 'older'
-
-type ButtonColor = {
-  [key in BubbleVariant]: {
-    background: string
-    nickname: KeyOfPalette
-    reply: KeyOfPalette
-  }
-}
-
-const BUBBLE_COLOR_TYPE: ButtonColor = {
-  new: {
-    background: `${theme.palette.purple_500}`,
-    nickname: 'gray_100',
-    reply: 'white',
-  },
-  old: {
-    background: `${theme.palette.gray_700}`,
-    nickname: 'gray_100',
-    reply: 'white',
-  },
-  older: {
-    background: `${theme.palette.gray_800}`,
-    nickname: 'gray_200',
-    reply: 'gray_500',
-  },
-}
-
-type BubbleProps = {
-  variant: BubbleVariant
-  nickname: string
-  reply: string
-}
-
-export const TextBubble = ({ variant, nickname, reply }: BubbleProps) => {
+export const TextBubble = ({ variant, nickname, reply }: BubblePropsType) => {
   return (
     <Wrapper>
       <Bubble variant={variant}>
@@ -66,7 +37,7 @@ export const TextBubble = ({ variant, nickname, reply }: BubbleProps) => {
 const Wrapper = styled.div``
 
 const Bubble = styled.div<{
-  variant: BubbleVariant
+  variant: BubbleVariantType
 }>`
   display: inline-block;
   background-color: ${({ variant }) =>
