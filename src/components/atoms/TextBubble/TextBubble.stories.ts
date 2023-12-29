@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+
 import { TextBubble } from '.'
 
 const meta = {
