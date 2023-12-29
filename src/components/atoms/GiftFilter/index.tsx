@@ -1,27 +1,21 @@
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import styled from '@emotion/styled'
-import { ButtonHTMLAttributes, useEffect, useState } from 'react'
+
 import { theme } from '@styles/theme'
-import { SelectedProps, SelectedTag } from '@utils/apis/user/UserType'
+import { SelectedPropsType, SelectedTagType } from '@models/favor'
+import { PropsType } from '@models/components/atoms/GiftFiler'
+import { friendState } from '@libs/store/friend'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { friendState } from '@libs/store/friend'
-
-interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  selectedProps: SelectedProps
-  selectedTags: SelectedTag[]
-  setSelectedTags: React.Dispatch<React.SetStateAction<SelectedTag[]>>
-}
-
-type Props = FilterProps & Partial<FilterProps>
 
 export const GiftFilter = ({
   selectedProps,
   setSelectedTags,
   selectedTags,
   ...props
-}: Props) => {
-  const [selected, setSelected] = useState<SelectedProps>(selectedProps)
+}: PropsType) => {
+  const [selected, setSelected] = useState<SelectedPropsType>(selectedProps)
   const [friendsData, setFriendsData] = useRecoilState(friendState)
 
   useEffect(() => {
@@ -36,7 +30,7 @@ export const GiftFilter = ({
           acc.push({ name: item.name, value: item.value })
         }
         return acc
-      }, [] as SelectedTag[])
+      }, [] as SelectedTagType[])
 
     setSelectedTags(updatedTags.length ? updatedTags : selectedTags)
   }, [selected])
@@ -60,7 +54,7 @@ export const GiftFilter = ({
           acc.push({ name: item.name, value: item.value })
         }
         return acc
-      }, [] as SelectedTag[])
+      }, [] as SelectedTagType[])
 
     setSelectedTags(updatedTags.length ? updatedTags : selectedProps)
   }

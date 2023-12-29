@@ -1,16 +1,5 @@
 import { SubCategoryNameType } from '@models/favor'
 
-export type CategoryNameType =
-  | 'MAKEUP'
-  | 'FRAGRANCE'
-  | 'CLOTHES'
-  | 'FASHION_PRODUCT'
-  | 'DIGITAL_PRODUCT'
-  | 'BAG'
-  | 'ACCESSORY'
-  | 'COOKING'
-  | 'EXERCISE'
-
 export type CategoryPropsType = {
   categoryName: SubCategoryNameType
   isFriend: boolean
