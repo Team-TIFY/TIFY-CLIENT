@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { theme } from '@styles/theme'
+import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
 
 interface SearchAnswerStepProps {
   category: TasteType
@@ -28,7 +29,14 @@ const SearchAnswerStep = ({
   setNextStep,
   isLastAnswer = false,
 }: SearchAnswerStepProps) => {
-  const { data } = useQuery(['question', category, number], () =>
+  const {
+    data = {
+      favorQuestionId: 0,
+      favorQuestionCategoryName: '',
+      number: 0,
+      contents: '',
+    },
+  } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -90,7 +98,7 @@ const SearchAnswerStep = ({
         <Spacing height={32} />
         <FlexBox direction="column" gap={20}>
           <Text typo="SCD_Headline_24" color="white">
-            {data?.contents.substring(0, 18)}
+            <TextWithLineBreak data={data.contents} />
           </Text>
         </FlexBox>
         <Spacing height={64} />

@@ -8,9 +8,11 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
+import React from 'react'
 import { Spacing } from '@components/atoms/Spacing'
 import { favorQuestionData } from '@libs/store/dummy'
 import SquareButton from '@components/atoms/SquareButton'
+import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
 
 interface OneAnswerStepProps {
   isLastAnswer?: boolean
@@ -25,12 +27,18 @@ const OneAnswerStep = ({
   setNextStep,
   isLastAnswer = false,
 }: OneAnswerStepProps) => {
-  const { data } = useQuery(['question', category, number], () =>
+  const {
+    data = {
+      favorQuestionId: 0,
+      favorQuestionCategoryName: '',
+      number: 0,
+      contents: '',
+    },
+  } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
   const [answer, setAnswer] = useState<string>('')
   const [step, setStepAnswer] = useRecoilState(answerState)
-  const [question, setQuestion] = useState('')
   const [disabled, setDisabled] = useState<boolean>(true)
   const handleAnswerValue = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (answer === e.currentTarget.value) {
@@ -41,14 +49,7 @@ const OneAnswerStep = ({
       setAnswer(e.currentTarget.value)
     }
   }
-  // useEffect(() => {
-  //   const textWithEnter = data?.contents
-  //     .split('\n')
-  //     .map((line, index) => (
-  //       return (
-  //       <div>{index !== data.contents.split('\n').length - 1 && <br />}</div>)
-  //     ))
-  // }, [])
+
   const submitAnswer = () => {
     setStepAnswer({
       ...step,
@@ -71,7 +72,7 @@ const OneAnswerStep = ({
       <Spacing height={32} />
       <FlexBox direction="column" gap={20}>
         <Text typo="SCD_Headline_24" color="white">
-          {data?.contents}
+          <TextWithLineBreak data={data.contents} />
         </Text>
       </FlexBox>
       <Spacing height={64} />
