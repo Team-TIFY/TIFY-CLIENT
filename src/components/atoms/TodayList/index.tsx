@@ -1,21 +1,13 @@
-import { FlexBox } from '@components/layouts/FlexBox'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import useGetDate from '@libs/hooks/useGetDate'
+
 import { theme } from '@styles/theme'
+import useGetDate from '@libs/hooks/useGetDate'
+import { TodayListPropsType } from '@models/components/atoms/TodayCategory'
+import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '../Spacing'
-import { Text } from '../Text'
-
-type TodayAnswerType = {
-  answerTime: string
-  question: string
-  answer: string
-}
-
-type TodayListPropsType = {
-  todayAnswerList: TodayAnswerType[]
-  isLastMonth: boolean
-}
+import TodayListHeader from './TodayListHeader'
+import TodayQnA from './TodayQnA'
 
 const TodayList = ({ todayAnswerList, isLastMonth }: TodayListPropsType) => {
   const { getYearAndMonthAndDayFromDate } = useGetDate()
@@ -28,43 +20,13 @@ const TodayList = ({ todayAnswerList, isLastMonth }: TodayListPropsType) => {
 
         return (
           <TodayListWrapper key={index}>
-            <FlexBox justify="space-between" style={{ width: '100%' }}>
-              {index === 0 && (
-                <>
-                  <Text typo="Mont_Caption_12B" color="gray_300">
-                    {formattedMonth}
-                  </Text>
-                  <Text typo="Mont_Caption_12B" color="gray_300">
-                    {formattedYear}
-                  </Text>
-                </>
-              )}
-            </FlexBox>
-            <Text
-              typo="Body_16"
-              color="gray_300"
-              style={{ marginRight: 'auto' }}
-            >
-              {formattedDate}
-            </Text>
-            <FlexBox
-              direction="column"
-              gap={12}
-              align="flex-start"
-              style={{
-                borderLeft: `1px dashed ${theme.palette.gray_500}`,
-                width: '100%',
-                marginLeft: '16px',
-                padding: `2px 12px`,
-              }}
-            >
-              <Text typo="SCD_Body_12L" color="gray_100">
-                {`Q. ` + answer.question}
-              </Text>
-              <Text typo="SCD_Body_12M" color="gray_100">
-                {`A. ` + answer.answer}
-              </Text>
-            </FlexBox>
+            <TodayListHeader
+              index={index}
+              formattedYear={formattedYear}
+              formattedMonth={formattedMonth}
+              formattedDate={formattedDate}
+            />
+            <TodayQnA answer={answer} />
           </TodayListWrapper>
         )
       })}
