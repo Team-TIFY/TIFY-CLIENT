@@ -1,10 +1,10 @@
-import { Avatar } from '@components/atoms/Avatar'
-import SquareButton from '@components/atoms/SquareButton'
-import { Text } from '@components/atoms/Text'
-import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
+
 import { palette } from '@styles/theme/palette'
-import { sliceString } from '@utils/sliceString'
+import { FriendsListDPropsType } from '@models/components/atoms/FriendsList'
+import { FlexBox } from '@components/layouts/FlexBox'
+import FriendsListInfo from './FriendsListInfo'
+import FriendsListButton from './FriendsListButton'
 
 /**
  * @param userId 친구 아이디를 나타냄
@@ -15,15 +15,6 @@ import { sliceString } from '@utils/sliceString'
  * @param onDeleteButtonClick 삭제 버튼을 눌렀을 때 발생할 이벤트를 넘겨주는 함수를 나타냄
  */
 
-interface FriendsListDProps {
-  userId: string
-  friendsNumber: number
-  isAccepted?: boolean
-  onClick?: () => void
-  onAcceptButtonClick?: () => void
-  onDeleteButtonClick?: () => void
-}
-
 const FriendsListD = ({
   userId,
   friendsNumber,
@@ -31,55 +22,15 @@ const FriendsListD = ({
   onClick,
   onAcceptButtonClick,
   onDeleteButtonClick,
-}: FriendsListDProps) => {
+}: FriendsListDPropsType) => {
   return (
     <Wrapper onClick={onClick}>
-      <ProfileWrapper>
-        <Avatar variant="small" />
-        <InfoWrapper>
-          <Text typo="Subhead_14" color="white">
-            @{sliceString(userId, 12)}
-          </Text>
-          <Text typo="Caption_10" color="gray_400">
-            함께 아는 친구 {friendsNumber}명
-          </Text>
-        </InfoWrapper>
-      </ProfileWrapper>
-      <ButtonWrapper>
-        {isAccepted ? (
-          <SquareButton
-            variant="xsmallSquareS"
-            fullWidth={true}
-            onClick={onAcceptButtonClick}
-            subVariant="default"
-          >
-            팔로잉
-          </SquareButton>
-        ) : (
-          <>
-            <SquareButton
-              variant="xsmallSquareP"
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                event.stopPropagation()
-                onAcceptButtonClick && onAcceptButtonClick()
-              }}
-              subVariant="default"
-            >
-              수락
-            </SquareButton>
-            <SquareButton
-              variant="xsmallSquareS"
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                event.stopPropagation()
-                onDeleteButtonClick && onDeleteButtonClick()
-              }}
-              subVariant="default"
-            >
-              삭제
-            </SquareButton>
-          </>
-        )}
-      </ButtonWrapper>
+      <FriendsListInfo userId={userId} friendsNumber={friendsNumber} />
+      <FriendsListButton
+        isAccepted={isAccepted}
+        onAcceptButtonClick={onAcceptButtonClick}
+        onDeleteButtonClick={onDeleteButtonClick}
+      />
     </Wrapper>
   )
 }
@@ -92,23 +43,4 @@ const Wrapper = styled(FlexBox)`
   background-color: ${palette.background};
   justify-content: space-between;
   cursor: pointer;
-`
-
-const ProfileWrapper = styled(FlexBox)`
-  width: 180px;
-  height: 100%;
-  gap: 12px;
-  justify-content: flex-start;
-`
-
-const InfoWrapper = styled(FlexBox)`
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-`
-
-const ButtonWrapper = styled(FlexBox)`
-  width: 132px;
-  height: 100%;
-  gap: 4px;
 `

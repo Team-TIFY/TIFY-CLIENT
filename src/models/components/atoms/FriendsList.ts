@@ -49,3 +49,23 @@ export type FriendsListInfoPropsType = {
 export type FriendsFavorItemsPropsType = {
   favorList: TasteBoxVariantType[]
 }
+
+export type FriendsListDPropsType = {
+  userId: string
+  friendsNumber: number
+  isAccepted?: boolean
+  onClick?: () => void
+  onAcceptButtonClick?: () => void
+  onDeleteButtonClick?: () => void
+}
+
+export type FriendsListDInfoPropsType = {
+  userId: string
+  friendsNumber: number
+}
+
+export type FriendsListDButtonPropsType = {
+  isAccepted: boolean
+  onAcceptButtonClick?: () => void
+  onDeleteButtonClick?: () => void
+}
