@@ -1,14 +1,12 @@
 import styled from '@emotion/styled'
 import { useCallback, useEffect, useState } from 'react'
 
-import { theme } from '@styles/theme'
 import { profileVariants } from '@constants/profileVariants'
 import {
   AvatarVariantType,
   VisibleVariantType,
-  AvatarShapeType,
-  VisibleType,
 } from '@models/components/atoms/Avatar'
+import { AVATAR_SIZE_TYPE, VISIBLE_TYPE } from '@constants/avatar'
 
 /**
  * @param variant 크기 종류를 나타냄 "xsmall" | "small" | "medium" 중 선택 가능함
@@ -20,29 +18,6 @@ export type AvatarPropsType = {
   variant: AvatarVariantType
   isVisible?: VisibleVariantType
   imageUrl?: string
-}
-
-const AVATAR_SIZE_TYPE: AvatarShapeType = {
-  xsmall: {
-    size: 36,
-  },
-  small: {
-    size: 48,
-  },
-  medium: {
-    size: 60,
-  },
-}
-
-const VISIBLE_TYPE: VisibleType = {
-  visible: {
-    bgColor: 'transparent',
-    display: 'none',
-  },
-  invisible: {
-    bgColor: `${theme.palette.dim_500}`,
-    display: 'block',
-  },
 }
 
 export const Avatar = ({
