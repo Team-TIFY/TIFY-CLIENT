@@ -1,11 +1,14 @@
-import styled from '@emotion/styled'
-import { Text } from '@components/atoms/Text'
-import giftBoxImage from '@assets/image/modalGiftBox.png'
 import { useNavigate } from 'react-router-dom'
-import { RoundButton } from '@components/atoms/RoundButton'
+import styled from '@emotion/styled'
+
 import { theme } from '@styles/theme'
+import giftBoxImage from '@assets/image/modalGiftBox.png'
+import { Text } from '@components/atoms/Text'
+import { RoundButton } from '@components/atoms/RoundButton'
+
 const FullModal = () => {
   const navigate = useNavigate()
+
   return (
     <ModalContainer>
       <ModalContent>
