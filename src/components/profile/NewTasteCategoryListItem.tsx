@@ -63,8 +63,8 @@ const NewTasteCategoryListItem = ({
             key={idx}
             onClick={() => handleClickSubCategory(category)}
             variant={getVariant(category)}
-            text={subCategoryTitle[category.smallCategory]['title']}
-            img={subCategoryTitle[category.smallCategory]['img']}
+            text={subCategoryTitle[category.smallCategory]?.['title']}
+            img={subCategoryTitle[category.smallCategory]?.['img']}
           />
         ))}
     </StyledButtonWrapper>

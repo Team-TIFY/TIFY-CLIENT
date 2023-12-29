@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import Setting from './Setting'
 import CustomerCenter from './CustomerCenter'
 import WriteForCustomer from './WriteForCustomer'
@@ -10,6 +9,7 @@ import AlertSetting from './AlertSetting'
 import SettingAppBar from '@components/settingPage/SettingAppBar'
 import NoticeDetail from './NoticeDetail'
 import VersionInfo from './VersionInfo'
+import { Navigate } from 'react-router-dom'
 
 const SettingRouter = () => {
   return (
@@ -86,6 +86,7 @@ const SettingRouter = () => {
           </SettingAppBar>
         }
       />
+      <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
   )
 }

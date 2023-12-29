@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
+
 import { Category } from '.'
 import { Tag } from '../Tag'
 
@@ -52,53 +53,53 @@ export const MakeupCategory: Story = {
         key={0}
         children="여름쿨톤"
         colorIndex={0}
-        iconIndex={0}
-        smallCategory={undefined}
-        detailCategory={undefined}
+        iconIndex={2}
+        smallCategory="MAKEUP"
+        detailCategory="LIP"
         answerNumber={0}
       />,
       <Tag
         key={1}
-        colorIndex={0}
-        iconIndex={0}
-        smallCategory={undefined}
-        detailCategory={undefined}
+        colorIndex={1}
+        iconIndex={3}
+        smallCategory="MAKEUP"
+        detailCategory="LIP"
         answerNumber={0}
         children="글로시 립"
       />,
       <Tag
         key={2}
-        colorIndex={0}
-        iconIndex={0}
-        smallCategory={undefined}
-        detailCategory={undefined}
+        colorIndex={2}
+        iconIndex={2}
+        smallCategory="MAKEUP"
+        detailCategory="LIP"
         answerNumber={0}
         children="페리페라"
       />,
       <Tag
         key={3}
-        colorIndex={0}
-        iconIndex={0}
-        smallCategory={undefined}
-        detailCategory={undefined}
+        colorIndex={3}
+        iconIndex={3}
+        smallCategory="MAKEUP"
+        detailCategory="LIP"
         answerNumber={0}
         children="페리페라"
       />,
       <Tag
         key={4}
-        colorIndex={0}
-        iconIndex={0}
-        smallCategory={undefined}
-        detailCategory={undefined}
+        colorIndex={4}
+        iconIndex={2}
+        smallCategory="MAKEUP"
+        detailCategory="LIP"
         answerNumber={0}
         children="페리페라"
       />,
       <Tag
         key={5}
-        colorIndex={0}
-        iconIndex={0}
-        smallCategory={undefined}
-        detailCategory={undefined}
+        colorIndex={5}
+        iconIndex={3}
+        smallCategory="MAKEUP"
+        detailCategory="LIP"
         answerNumber={0}
         children="페리페라"
       />,

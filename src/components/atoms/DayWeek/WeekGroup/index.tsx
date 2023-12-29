@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
+
+import { todayList } from '@constants/todayList'
 import { Week } from './Week'
-
-export type TodayKeyType = -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6
-
-const todayList: TodayKeyType[] = [0, 1, 2, 3, 4, 5, 6]
 
 export const WeekGroup = () => {
   return (

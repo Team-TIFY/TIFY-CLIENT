@@ -32,7 +32,7 @@ const AnswerDailyQuestion = () => {
       questionId: question.questionId,
       answer: inputRef.current!.value,
     })
-    navigate('/answers')
+    navigate('weekly/answers')
   }
 
   const handleButtonDisabled = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

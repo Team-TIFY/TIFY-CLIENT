@@ -1006,7 +1006,7 @@ export const favorQuestionData: FavorQuestionDataType = {
       '버즈2',
       '사용안함',
     ],
-    3: ['7in', '16in', '15in', '14in', '13in', '11in', '사용안함'],
+    3: ['17in', '16in', '15in', '14in', '13in', '11in', '사용안함'],
     4: ['13in', '11in', '11in 미만', '사용안함'],
     5: [
       '애플워치 큰사이즈 (42-49mm)',

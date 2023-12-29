@@ -7,6 +7,7 @@ import { AuthApi } from '@utils/apis/auth/AuthApi'
 
 const useRefresh = () => {
   const [auth, setAuth] = useRecoilState(authState)
+
   const { mutate: refreshMutate, status } = useMutation(AuthApi.REFRESH, {
     onSuccess: (data) => {
       axiosApi.defaults.headers.common[
@@ -14,6 +15,7 @@ const useRefresh = () => {
       ] = `Bearer ${data.accessToken}`
       setAuth({
         userProfile: { ...auth.userProfile },
+        loginType: 'KAKAO',
         accessToken: data.accessToken,
         isAuthenticated: true,
         callbackUrl: '/',

@@ -1,14 +1,8 @@
 import styled from '@emotion/styled'
-import { media, theme } from '@styles/theme'
-import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-export type SnackBarVariantType = 'complete' | 'error' | 'sting'
-
-type SnackBarPropsType = {
-  variant: SnackBarVariantType
-  message: string
-}
+import { media, theme } from '@styles/theme'
 
 const SnackBar = () => {
   return (
@@ -47,6 +41,9 @@ const StyledMessage = styled(ToastContainer)`
       0px 0px 2px 0px rgba(0, 0, 0, 0.3);
     ${media.mobile} {
       left: 8%;
+    }
+    .Toastify__toast-body {
+      white-space: pre-line;
     }
   }
 `

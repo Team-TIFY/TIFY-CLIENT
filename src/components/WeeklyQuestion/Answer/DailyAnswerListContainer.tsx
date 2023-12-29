@@ -33,7 +33,7 @@ const DailyAnswerListContainer = ({
     onSuccess: (data: DailyQuestionReport) => {
       if (data.reportSuccess) {
         setSnackBar({
-          comment: '신고가 완료되었어요. 빠르게 확인 후 처리할게요.',
+          comment: '신고가 완료되었어요.\n빠르게 확인 후 처리할게요.',
           type: 'success',
         })
       } else {

@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { theme } from '@styles/theme'
+import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
 
 interface SearchAnswerStepProps {
   category: TasteType
@@ -28,15 +29,24 @@ const SearchAnswerStep = ({
   setNextStep,
   isLastAnswer = false,
 }: SearchAnswerStepProps) => {
-  const { data } = useQuery(['question', category, number], () =>
+  const {
+    data = {
+      favorQuestionId: 0,
+      favorQuestionCategoryName: '',
+      number: 0,
+      contents: '',
+    },
+  } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [keyword, setKeyword] = useState<string>('')
+  const [isFirst, setFirst] = useState<boolean>(true)
   const [autoItems, setAutoItems] = useState<string[]>([])
   const [disabled, setDisabled] = useState<boolean>(true)
   const [answer, setAnswer] = useState<string>('')
   const [step, setStepAnswer] = useRecoilState(answerState)
+
   const handleSearchProduct = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setKeyword(e.target.value)
     setAnswer('')
@@ -45,6 +55,7 @@ const SearchAnswerStep = ({
       return
     }
   }
+  console.log(keyword)
   const submitAnswer = () => {
     setStepAnswer({
       ...step,
@@ -61,6 +72,10 @@ const SearchAnswerStep = ({
   useEffect(() => {
     if (number === step.favorAnswerDtos.at(-1)?.num) setNextStep()
   }, [step])
+
+  useEffect(() => {
+    setAutoItems(favorQuestionData[category][number])
+  }, [])
 
   useEffect(() => {
     if (keyword) {
@@ -83,7 +98,7 @@ const SearchAnswerStep = ({
         <Spacing height={32} />
         <FlexBox direction="column" gap={20}>
           <Text typo="SCD_Headline_24" color="white">
-            {data?.contents.substring(0, 18)}
+            <TextWithLineBreak data={data.contents} />
           </Text>
         </FlexBox>
         <Spacing height={64} />
@@ -95,6 +110,7 @@ const SearchAnswerStep = ({
             value={keyword}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
               handleSearchProduct(e)
+              setFirst(false)
             }}
             customRemoveHandler={() => {
               setKeyword('')
@@ -121,7 +137,7 @@ const SearchAnswerStep = ({
               >
                 <div
                   style={{
-                    width: '70%',
+                    width: '100%',
                     overflow: 'hidden',
                     whiteSpace: 'nowrap',
                   }}
@@ -131,6 +147,46 @@ const SearchAnswerStep = ({
                     {keyword}
                   </span>
                   {data.split(keyword)[1]}
+                </div>
+              </SquareButton>
+            ))}
+
+            <Text
+              color="gray_200"
+              typo="Body_14"
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
+              as="span"
+              onClick={() => {
+                setAnswer('')
+                submitAnswer()
+              }}
+            >
+              찾는 제품이 없어요. 답변 건너뛸래요.
+            </Text>
+          </AutoSearchWrap>
+        </AutoSearchContainer>
+      ) : keyword.length === 0 ? (
+        <AutoSearchContainer>
+          <AutoSearchWrap>
+            {autoItems.map((data, index) => (
+              <SquareButton
+                subVariant={answer === data ? 'selected' : 'default'}
+                variant="medium2Square"
+                fullWidth={true}
+                style={{ height: '48px' }}
+                key={index}
+                onClick={() => {
+                  handleAnswer(data)
+                }}
+              >
+                <div
+                  style={{
+                    width: '100%',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {data}
                 </div>
               </SquareButton>
             ))}
@@ -167,6 +223,7 @@ const SearchAnswerStep = ({
           찾는 제품이 없어요. 답변 건너뛸래요.
         </Text>
       )}
+
       <Spacing height={100} />
       <RoundButton
         style={{ position: 'absolute', bottom: '32px' }}

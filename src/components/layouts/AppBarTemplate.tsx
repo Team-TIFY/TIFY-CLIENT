@@ -1,16 +1,15 @@
+import { AppBar } from '@components/atoms/AppBar'
 import {
-  AppBar,
-  AppBarProps,
-  RightChildrenVariant,
-} from '@components/atoms/AppBar'
+  AppBarPropsType,
+  RightChildrenVariantType,
+} from '@models/components/atoms/AppBar'
 import { ReactNode } from 'react'
 import { favorQuestionData } from '@libs/store/dummy'
 import { Navigationbar } from '@components/atoms/Navigationbar'
 import { TasteType } from '@utils/apis/favor/TasteType'
 import styled from '@emotion/styled'
-import { Spacing } from '@components/atoms/Spacing'
 
-type AppBarTemplateProps = AppBarProps<RightChildrenVariant> & {
+type AppBarTemplateProps = AppBarPropsType<RightChildrenVariantType> & {
   children: ReactNode
   hasNav: boolean
 }
@@ -19,8 +18,7 @@ const AppBarTemplate = ({
   label,
   variant,
   beforeUrl,
-  onClickOption1,
-  onClickOption2,
+  onClickOption,
   rightChildren,
   rightChildrenIcon,
   customHandler,
@@ -51,8 +49,7 @@ const AppBarTemplate = ({
           label={label}
           variant={variant}
           beforeUrl={beforeUrl}
-          onClickOption1={onClickOption1}
-          onClickOption2={onClickOption2}
+          onClickOption={onClickOption}
           customHandler={customHandler}
           isLabelAlignCenter={isLabelAlignCenter}
           rightChildren="actionButton"
@@ -63,8 +60,7 @@ const AppBarTemplate = ({
           label={label}
           variant={variant}
           beforeUrl={beforeUrl}
-          onClickOption1={onClickOption1}
-          onClickOption2={onClickOption2}
+          onClickOption={onClickOption}
           customHandler={customHandler}
           isLabelAlignCenter={isLabelAlignCenter}
           rightChildren={rightChildren}

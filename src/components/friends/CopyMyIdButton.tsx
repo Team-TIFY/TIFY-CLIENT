@@ -12,7 +12,7 @@ const CopyMyIdButton = () => {
 
   const handleClickCopyToClipboard = () => {
     setSnackBar({
-      comment: '아이디를 복사했어요. 친구에게 전달해 주세요.',
+      comment: '아이디를 복사했어요.\n 친구에게 전달해 주세요.',
       type: 'success',
     })
   }

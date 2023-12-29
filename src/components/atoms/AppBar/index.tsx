@@ -1,37 +1,18 @@
+import { useNavigate } from 'react-router-dom'
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import {
+  RightChildrenVariantType,
+  AppBarPropsType,
+} from '@models/components/atoms/AppBar'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '../Text'
-import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
-import { useNavigate } from 'react-router-dom'
 import Svg from '../Svg'
 import TifyLogo from '@assets/icons/TifyLogo'
 import LeftArrow from '@assets/icons/LeftArrow'
 import Alert from '@assets/icons/Alert'
 import ThreeDots from '@assets/icons/ThreeDots'
-
-export type AppBarType = 'backPushWithTitle' | 'title' | 'backPush' | 'logo'
-
-export type RightChildrenVariant =
-  | 'alarm'
-  | 'dots'
-  | 'none'
-  | 'actionButton'
-  | 'stepNum'
-
-export type AppBarProps<T extends RightChildrenVariant> = {
-  variant: AppBarType
-  label?: string
-  beforeUrl?: string
-  onClickOption1?: () => void
-  onClickOption2?: () => void
-  customHandler?: () => void
-  stepNum?: [number, number]
-  rightChildren: T
-  rightChildrenIcon?: T extends 'alarm' | 'dots' | 'none'
-    ? undefined
-    : React.ReactNode[]
-  isLabelAlignCenter?: boolean
-}
 
 export const AppBar = ({
   variant = 'logo',
@@ -40,11 +21,10 @@ export const AppBar = ({
   stepNum = [0, 0],
   rightChildren = 'alarm',
   rightChildrenIcon,
-  onClickOption1,
-  onClickOption2,
+  onClickOption,
   customHandler,
   isLabelAlignCenter = false,
-}: AppBarProps<RightChildrenVariant>) => {
+}: AppBarPropsType<RightChildrenVariantType>) => {
   const navigate = useNavigate()
 
   const onClickBackBar = () => {
@@ -59,27 +39,26 @@ export const AppBar = ({
     navigate('/')
   }
 
-  const handleRightChildren = (rightElement: RightChildrenVariant) => {
+  const handleRightChildren = (rightElement: RightChildrenVariantType) => {
     if (rightElement === 'alarm')
       return (
         <FlexBox>
           <Svg
             children={<Alert />}
-            onClick={onClickOption1}
+            onClick={onClickOption}
             style={{ margin: '0 16px 0 0' }}
           />
         </FlexBox>
       )
     else if (rightElement === 'dots')
-      return <Svg children={<ThreeDots />} onClick={onClickOption1} />
+      return <Svg children={<ThreeDots />} onClick={onClickOption} />
     else if (rightElement === 'actionButton') {
       return (
         <FlexBox gap={16} style={{ cursor: 'pointer' }}>
-          {Array.isArray(rightChildrenIcon)
-            ? rightChildrenIcon?.map((icon, index) => (
-                <div key={index}>{icon}</div>
-              ))
-            : null}
+          {Array.isArray(rightChildrenIcon) &&
+            rightChildrenIcon.map((icon, index) => (
+              <div key={index}>{icon}</div>
+            ))}
         </FlexBox>
       )
     } else if (rightElement === 'stepNum') {
@@ -89,13 +68,21 @@ export const AppBar = ({
             {stepNum[0]}
           </Text>
           <Text typo="Body_14" color="gray_100">
-            /{stepNum[1]}
+            {stepNum[1]}
           </Text>
         </FlexBox>
       )
     } else {
       return null
     }
+  }
+
+  const labelTextStyle: React.CSSProperties = {
+    position: isLabelAlignCenter ? 'absolute' : undefined,
+    margin: isLabelAlignCenter ? 'auto' : undefined,
+    left: isLabelAlignCenter ? '0' : undefined,
+    right: isLabelAlignCenter ? '0' : undefined,
+    width: 'fit-content',
   }
 
   return (
@@ -107,17 +94,7 @@ export const AppBar = ({
           {(variant === 'backPush' || variant === 'backPushWithTitle') && (
             <Svg children={<LeftArrow />} onClick={onClickBackBar} />
           )}
-          <Text
-            typo="Subhead_16"
-            color="gray_200"
-            style={{
-              position: isLabelAlignCenter ? 'absolute' : undefined,
-              margin: isLabelAlignCenter ? 'auto' : undefined,
-              left: isLabelAlignCenter ? '0' : undefined,
-              right: isLabelAlignCenter ? '0' : undefined,
-              width: 'fit-content',
-            }}
-          >
+          <Text typo="Subhead_16" color="gray_200" style={labelTextStyle}>
             {label}
           </Text>
         </FirstElement>

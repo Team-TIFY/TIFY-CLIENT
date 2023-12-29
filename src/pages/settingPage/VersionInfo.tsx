@@ -2,8 +2,21 @@ import { TIfyLogoSymbol } from '@assets/icons/TifyLogoSymbol'
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
+import { useQuery } from '@tanstack/react-query'
+import { SettingApi } from '@utils/apis/setting'
+import { useEffect, useState } from 'react'
 
 const VersionInfo = () => {
+  const {
+    data = {
+      iosVersion: '1.0.0',
+      aosVersion: '1.0.0',
+    },
+  } = useQuery(['version'], () => SettingApi.GET_VERSION())
+  const [OSground, setOSGround] = useState<'IOS' | 'AOS'>('IOS')
+  useEffect(() => {
+    setOSGround('IOS')
+  }, [])
   return (
     <Wrapper>
       <Wrap>
@@ -14,7 +27,9 @@ const VersionInfo = () => {
         typo="Subhead_14"
         color="gray_100"
       />
-      <VerText>현재 버전 2.28.0 </VerText>
+      <VerText>
+        현재 버전 {data[OSground === 'AOS' ? 'aosVersion' : 'iosVersion']}
+      </VerText>
     </Wrapper>
   )
 }

@@ -1,32 +1,18 @@
+import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import { ButtonHTMLAttributes, useEffect, useState } from 'react'
+
 import { theme } from '@styles/theme'
-import {
-  SelectedProps,
-  SelectedTag,
-  SubCategoryType,
-} from '@utils/apis/user/UserType'
+import { PropsType } from '@models/components/atoms/Filter'
+import { SelectedTag } from '@utils/apis/user/UserType'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'
-
-export type CategoryAnswerCountType = {
-  smallCategory: SubCategoryType
-  answerCount: number
-}
-
-interface FilterProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  selectedProps: SelectedProps
-  selectedTags: SelectedTag[]
-  setSelectedTags: React.Dispatch<React.SetStateAction<SelectedTag[]>>
-}
-type Props = FilterProps & Partial<FilterProps>
 
 export const Filter = ({
   selectedProps,
   setSelectedTags,
   selectedTags,
   ...props
-}: Props) => {
+}: PropsType) => {
   const [selected, setSelected] = useState(selectedProps)
 
   useEffect(() => {

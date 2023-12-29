@@ -2,7 +2,8 @@ import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Category } from '@components/atoms/Category'
-import { ColorIndexVariant, Tag } from '@components/atoms/Tag'
+import { Tag } from '@components/atoms/Tag'
+import { ColorIndexVariantType } from '@models/components/atoms/Tag'
 import {
   FilteredUserTag,
   SelectedProps,
@@ -14,6 +15,8 @@ import { useNavigate } from 'react-router-dom'
 import { questionMenu } from '@utils/questionMenu'
 import { useSetRecoilState } from 'recoil'
 import { friendState } from '@libs/store/friend'
+import { question } from '@utils/question'
+import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
 
 export interface UserTagDataProps {
   selectedProps: SelectedProps
@@ -30,19 +33,11 @@ export const UserTagDataListItem = ({
   const setFriendStateData = useSetRecoilState(friendState)
 
   const handleClickPlusButton = (
-    categoryName: SubCategoryName,
-    smallCategory: string,
-    categoryValue: SubCategoryType,
+    notAnsweredDetailCategories: TasteBoxVariantType[],
   ) => {
-    if (categoryName === '프레그런스' && smallCategory === 'PERFUME') {
-      navigate(questionMenu[categoryValue][0])
-    } else if (categoryName === '프레그런스' && smallCategory === 'MOISTURE') {
-      navigate(questionMenu[categoryValue][1])
-    } else if (categoryName === '프레그런스' && smallCategory === 'PLACE') {
-      navigate(questionMenu[categoryValue][2])
-    } else {
-      navigate(questionMenu[categoryValue])
-    }
+    console.log(notAnsweredDetailCategories)
+
+    navigate(`/profile/newTaste/${question[notAnsweredDetailCategories[0]]}`)
   }
 
   const handleClickPresentButton = (categoryValue: SubCategoryType) => {
@@ -65,24 +60,23 @@ export const UserTagDataListItem = ({
           ? matchingProp.name
           : ('' as SubCategoryName)
         const categoryValue = matchingProp?.value ?? ('' as SubCategoryType)
-        const smallCategory = tag[1].smallCategory ?? tag[0].smallCategory
-        const allCategoryAnswered = tag[0]?.allDetailCategoryAnswered
+        const notAnsweredDetailCategories = tag[0]?.notAnsweredDetailCategories
 
         return (
           <Category
             key={idx}
             categoryName={categoryName}
             isFriend={isFriend}
-            allCategoryAnswered={allCategoryAnswered}
+            allCategoryAnswered={notAnsweredDetailCategories.length === 0}
             onPlusButtonClick={() =>
-              handleClickPlusButton(categoryName, smallCategory, categoryValue)
+              handleClickPlusButton(notAnsweredDetailCategories)
             }
             onPresentButtonClick={() => handleClickPresentButton(categoryValue)}
             children={tag.map((tagData, index) =>
               tagData.answer ? (
                 <Tag
                   key={index}
-                  colorIndex={(index % 3) as ColorIndexVariant}
+                  colorIndex={(index % 3) as ColorIndexVariantType}
                   iconIndex={tagData.number}
                   children={tagData.answer}
                   smallCategory={tagData.smallCategory}

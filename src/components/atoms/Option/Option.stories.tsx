@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
+
 import Option from '.'
 
 const meta: Meta<typeof Option> = {

@@ -1,105 +1,96 @@
-import styled from '@emotion/styled'
-import { ChangeEvent, TextareaHTMLAttributes, useRef, useState } from 'react'
-import { theme } from '@styles/theme'
-import { FlexBox } from '@components/layouts/FlexBox'
-import { SearchIcon } from '@assets/icons/SearchIcon'
+import { ChangeEvent, useState, forwardRef } from 'react'
 import { useRecoilState } from 'recoil'
-import { forwardRef } from 'react'
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import { SearchInputPropsType } from '@models/components/atoms/Input'
+import { SearchIcon } from '@assets/icons/SearchIcon'
 import {
-  isBtnColorState,
   isCancelState,
   isSearchActiveBtn,
   isSearchInputState,
 } from '@libs/store/onboard'
 
-interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  width?: number
-  placeholder: string
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
-  onClick?: () => void
-  customRemoveHandler?: () => void
-}
+export const SearchInput = forwardRef<
+  HTMLTextAreaElement,
+  SearchInputPropsType
+>(function SearchInput(
+  {
+    width,
+    placeholder,
+    onChange,
+    onClick,
+    customRemoveHandler,
+    ...props
+  }: SearchInputPropsType,
+  inputRef,
+) {
+  const [, setFocus] = useState(false)
+  const [, setBtnColor] = useState(false)
+  const [content, setContent] = useState<string>('')
+  const [, setSearchText] = useRecoilState(isSearchInputState)
+  const [, setSelectedIndex] = useRecoilState(isSearchActiveBtn)
+  const [, setIsCancel] = useRecoilState(isCancelState)
 
-export const SearchInput = forwardRef<HTMLTextAreaElement, InputProps>(
-  function SearchInput(
-    {
-      width,
-      placeholder,
-      onChange,
-      onClick,
-      customRemoveHandler,
-      ...props
-    }: InputProps,
-    inputRef,
-  ) {
-    const [focus, setFocus] = useState(false)
-    const [btnColor, setBtnColor] = useState(false)
-    const [content, setContent] = useState<string>('')
-    const [searchText, setSearchText] = useRecoilState(isSearchInputState)
-    const [selectedIndex, setSelectedIndex] = useRecoilState(isSearchActiveBtn)
-    const [isCancel, setIsCancel] = useRecoilState(isCancelState)
+  const textHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const inputText = e.target.value
 
-    const textHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      const inputText = e.target.value
-      setContent(inputText)
-      setIsCancel(false)
-    }
+    setContent(inputText)
+    setIsCancel(false)
+  }
 
-    const cancelClick = () => {
-      if (customRemoveHandler) {
-        customRemoveHandler()
-      }
-      setContent('')
-      setBtnColor(false)
-      setSearchText('')
-      setSelectedIndex(-1)
-      setIsCancel(true)
-    }
+  const cancelClick = () => {
+    customRemoveHandler?.()
 
-    const inputFocus = () => {
-      setFocus((prev) => !prev)
-    }
+    setContent('')
+    setBtnColor(false)
+    setSearchText('')
+    setSelectedIndex(-1)
+    setIsCancel(true)
+  }
 
-    const handleEnter = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      const filteredText = e.target.value.replace(/[\r\n]/g, '')
-      setContent(filteredText)
-    }
+  const inputFocus = () => {
+    setFocus((prev) => !prev)
+  }
 
-    return (
-      <Wrapper>
-        <TextAreaWrapper width={width}>
-          <SearchIcon />
-          <StyledTextArea
-            width={width}
-            ref={inputRef}
-            value={content}
-            placeholder={placeholder}
-            spellCheck="false"
-            onClick={onClick}
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              onChange(e)
-              textHandler(e)
-              handleEnter(e)
-            }}
-            onFocus={inputFocus}
-            onBlur={inputFocus}
-            {...props}
-          />
-          <CancelBtn
-            onClick={() => {
-              cancelClick()
-            }}
-          />
-        </TextAreaWrapper>
-      </Wrapper>
-    )
-  },
-)
+  const handleEnter = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const filteredText = e.target.value.replace(/[\r\n]/g, '')
+
+    setContent(filteredText)
+  }
+
+  const handleChangeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(e)
+    textHandler(e)
+    handleEnter(e)
+  }
+
+  return (
+    <Wrapper>
+      <TextAreaWrapper width={width}>
+        <SearchIcon />
+        <StyledTextArea
+          width={width}
+          ref={inputRef}
+          value={content}
+          placeholder={placeholder}
+          spellCheck="false"
+          onClick={onClick}
+          onChange={(e) => handleChangeTextArea(e)}
+          onFocus={inputFocus}
+          onBlur={inputFocus}
+          {...props}
+        />
+        <CancelBtn onClick={cancelClick} />
+      </TextAreaWrapper>
+    </Wrapper>
+  )
+})
 
 const Wrapper = styled.div``
 
 const TextAreaWrapper = styled.div<{
-  width: number | undefined
+  width?: number
 }>`
   border-radius: 12px;
   padding: 14px;
@@ -115,7 +106,7 @@ const TextAreaWrapper = styled.div<{
 `
 
 const StyledTextArea = styled.textarea<{
-  width: number | undefined
+  width?: number
 }>`
   width: ${({ width }) => (width ? '254px' : '100%')};
   max-height: 20px;

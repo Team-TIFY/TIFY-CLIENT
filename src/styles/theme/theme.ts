@@ -27,4 +27,5 @@ export const media = {
   custom: customMediaQuery,
   pc: customMediaQuery(768),
   mobile: `@media (max-width : 767px)`,
+  smallMobile: `@media (max-width : 400px)`,
 }
