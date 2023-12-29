@@ -1,17 +1,10 @@
-import animationData from '@assets/lotties/tify_loading.json'
 import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
 import { Player } from '@lottiefiles/react-lottie-player'
 
+import { theme } from '@styles/theme'
+import animationData from '@assets/lotties/tify_loading.json'
+
 const Loading = () => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  }
   return (
     <LottieWrapper>
       <Player
