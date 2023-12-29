@@ -391,8 +391,8 @@ const ProfileRouter = () => {
             </AppBarTemplate>
           }
         />
+        <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
-      <Route path="*" element={<Navigate to="/404" />} />
     </Suspense>
   )
 }
