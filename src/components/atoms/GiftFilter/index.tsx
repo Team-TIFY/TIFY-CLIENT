@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
 import { SelectedPropsType, SelectedTagType } from '@models/favor'
-import { PropsType } from '@models/components/atoms/GiftFiler'
+import { PropsType } from '@models/components/atoms/GiftFilter'
 import { friendState } from '@libs/store/friend'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'

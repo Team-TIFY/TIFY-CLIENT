@@ -1,19 +1,9 @@
+import { ChangeEvent, useRef, useState } from 'react'
 import styled from '@emotion/styled'
-import { ChangeEvent, TextareaHTMLAttributes, useRef, useState } from 'react'
-import { theme } from '@styles/theme'
-import { FlexBox } from '@components/layouts/FlexBox'
 
-interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  maxText?: number
-  explanation?: string
-  explanationPadding?: number
-  placeholder?: string
-  warning?: string
-  height: number
-  error: boolean
-  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
-  onBlur?: (e: ChangeEvent<HTMLTextAreaElement>) => void
-}
+import { theme } from '@styles/theme'
+import { InputPropsType } from '@models/components/atoms/Input'
+import { FlexBox } from '@components/layouts/FlexBox'
 
 export const BasicInput = ({
   maxText,
@@ -26,10 +16,11 @@ export const BasicInput = ({
   warning,
   onBlur,
   ...props
-}: InputProps) => {
+}: InputPropsType) => {
   const ref = useRef<HTMLTextAreaElement>(null)
   const [focus, setFocus] = useState(false)
   const [inputText, setInputText] = useState('')
+
   const textHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= maxText!) {
       setInputText(e.target.value)
@@ -38,6 +29,16 @@ export const BasicInput = ({
 
   const focusInput = () => {
     setFocus((prev) => !prev)
+  }
+
+  const handleChangeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    onChange?.(e)
+    textHandler(e)
+  }
+
+  const handleBlurTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    onBlur?.(e)
+    focusInput()
   }
 
   return (
@@ -52,16 +53,10 @@ export const BasicInput = ({
             value={inputText}
             placeholder={placeholder}
             spellCheck="false"
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              if (onChange) onChange(e)
-              textHandler(e)
-            }}
+            onChange={(e) => handleChangeTextArea(e)}
             maxLength={maxText}
             onFocus={focusInput}
-            onBlur={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              if (onBlur) onBlur(e)
-              focusInput()
-            }}
+            onBlur={(e) => handleBlurTextArea(e)}
             {...props}
           />
         </TextAreaWrapper>
