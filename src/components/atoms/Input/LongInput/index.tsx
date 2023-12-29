@@ -4,20 +4,8 @@ import { useRecoilState } from 'recoil'
 
 import { theme } from '@styles/theme'
 import { authState } from '@libs/store/auth'
-import {
-  LongInputVariantType,
-  LongInputVariant,
-  PropsType,
-} from '@models/components/atoms/Input'
-
-const INPUT_TYPE: LongInputVariantType = {
-  default: {
-    display: 'none',
-  },
-  withInst: {
-    display: 'block',
-  },
-}
+import { LongInputVariant, PropsType } from '@models/components/atoms/Input'
+import { LONG_INPUT_TYPE } from '@constants/atoms/input'
 
 export const LongInput = forwardRef<HTMLTextAreaElement, PropsType>(
   function LongInput(
@@ -118,7 +106,7 @@ const Wrapper = styled.div`
 const InstText = styled.div<{
   variant: LongInputVariant
 }>`
-  display: ${({ variant }) => INPUT_TYPE[variant].display};
+  display: ${({ variant }) => LONG_INPUT_TYPE[variant].display};
   text-align: center;
   width: 280px;
   height: 20px;

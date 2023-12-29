@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
 import { DayPropsType, DayVariantType } from '@models/components/atoms/DayWeek'
-import { TEXT_COLOR_TYPE } from '@constants/day'
+import { TEXT_COLOR_TYPE } from '@constants/atoms/day'
 import DayAfterLeftDown from '@assets/icons/DayAfterLeftDown'
 import DayAfterRightUp from '@assets/icons/DayAfterRightUp'
 import DayBeforeLeftDown from '@assets/icons/DayBeforeLeftDown'

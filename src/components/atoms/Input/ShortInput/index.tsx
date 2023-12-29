@@ -1,36 +1,17 @@
-import {
-  ChangeEvent,
-  TextareaHTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
-import {
-  ShortInputVariantType,
-  ShortInputVariant,
-  ShortInputProps,
-} from '@models/components/atoms/Input'
+import { ShortInputProps } from '@models/components/atoms/Input'
 import {
   isBtnColorState,
   OnboardingBtnType,
-  onboardingPageState,
   onboardingState,
   OnboardingType,
 } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
-
-const INPUT_TYPE: ShortInputVariantType = {
-  default: {
-    isIdInput: false,
-  },
-  idInput: {
-    isIdInput: true,
-  },
-}
+import { SHORT_INPUT_TYPE } from '@constants/atoms/input'
 
 export const ShortInput = ({
   variant,
@@ -123,7 +104,7 @@ export const ShortInput = ({
     <Wrapper>
       <InstText explanationPadding={explanationPadding}>{explanation}</InstText>
       <TextAreaWrapper width={width} error={error}>
-        <IDdiv variant={INPUT_TYPE[variant].isIdInput}>@</IDdiv>
+        <IDdiv variant={SHORT_INPUT_TYPE[variant].isIdInput}>@</IDdiv>
         <StyledTextArea
           ref={ref}
           value={info[content as keyof OnboardingType]}

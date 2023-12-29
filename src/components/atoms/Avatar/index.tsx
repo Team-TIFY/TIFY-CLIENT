@@ -6,7 +6,7 @@ import {
   AvatarVariantType,
   VisibleVariantType,
 } from '@models/components/atoms/Avatar'
-import { AVATAR_SIZE_TYPE, VISIBLE_TYPE } from '@constants/avatar'
+import { AVATAR_SIZE_TYPE, VISIBLE_TYPE } from '@constants/atoms/avatar'
 
 /**
  * @param variant 크기 종류를 나타냄 "xsmall" | "small" | "medium" 중 선택 가능함
