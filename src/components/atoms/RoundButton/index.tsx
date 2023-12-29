@@ -3,9 +3,9 @@ import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
 import {
-  ButtonShapeType,
-  ButtonVariantType,
-  ButtonPropsType,
+  RoundButtonShapeType,
+  RoundButtonVariantType,
+  RoundButtonPropsType,
 } from '@models/components/atoms/Button'
 import RightChevron from '@assets/icons/RightChevron'
 import { FlexBox } from '@components/layouts/FlexBox'
@@ -61,7 +61,7 @@ const TEXT_COLOR_TYPE = {
   },
 }
 
-const BUTTON_SHAPE_TYPE: ButtonShapeType = {
+const BUTTON_SHAPE_TYPE: RoundButtonShapeType = {
   xlargeRound: {
     radius: 80,
     typo: 'Body_16',
@@ -107,7 +107,7 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
  * @param onClick 버튼을 클릭할 때 발생하는 event 명시 (optional)
  */
 
-type PropsType = Partial<ButtonPropsType<ButtonVariantType>>
+type PropsType = Partial<RoundButtonPropsType<RoundButtonVariantType>>
 
 export const RoundButton = ({
   children,
@@ -192,7 +192,7 @@ export const RoundButton = ({
 }
 
 const StyledButton = styled.button<{
-  variant: ButtonVariantType
+  variant: RoundButtonVariantType
   width?: number
   fullWidth?: boolean
   isClicked?: boolean

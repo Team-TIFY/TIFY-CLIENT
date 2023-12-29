@@ -1,31 +1,18 @@
-import { ButtonHTMLAttributes } from 'react'
 import styled from '@emotion/styled'
-import { theme, KeyOfTypo, TextType } from '@styles/theme'
+
+import { theme } from '@styles/theme'
 import { Text } from '../Text'
 import { FlexBox } from '@components/layouts/FlexBox'
+import { Avatar } from '../Avatar'
 import Svg from '../Svg'
 import Siren from '@assets/icons/Siren'
-import { Avatar } from '../Avatar'
-
-type ButtonVariant =
-  | 'xlargeSquare'
-  | 'largeSquare'
-  | 'mediumSquare'
-  | 'medium2Square'
-  | 'medium3Square'
-  | 'smallSquare'
-  | 'xsmallSquareP'
-  | 'xsmallSquareS'
-
-type ButtonSubVariant = 'default' | 'selected' | 'selectedMultiple'
-type XlargeSubVariant =
-  | 'alone'
-  | 'top'
-  | 'middle'
-  | 'foot'
-  | 'withProfile'
-  | 'LogOutBtn'
-  | 'DeleteBtn'
+import {
+  ButtonProps,
+  SquareButtonShapeType,
+  SquareButtonSubVariantType,
+  SquareButtonVariantType,
+  SquareXlargeSubVariantType,
+} from '@models/components/atoms/Button'
 
 const BUTTON_COLOR_TYPE = {
   default: {
@@ -101,16 +88,7 @@ const TEXT_COLOR_TYPE = {
   },
 }
 
-type ButtonShapeType = {
-  [key in ButtonVariant]: {
-    radius: number
-    typo: KeyOfTypo
-    width: number
-    height: number
-  }
-}
-
-const BUTTON_SHAPE_TYPE: ButtonShapeType = {
+const BUTTON_SHAPE_TYPE: SquareButtonShapeType = {
   xlargeSquare: {
     radius: 16,
     typo: 'Body_16',
@@ -161,7 +139,7 @@ const BUTTON_SHAPE_TYPE: ButtonShapeType = {
   },
 }
 
-const getRadius = (variant: XlargeSubVariant) => {
+const getRadius = (variant: SquareXlargeSubVariantType) => {
   switch (variant) {
     case 'alone':
       return '16px'
@@ -190,26 +168,6 @@ const getRadius = (variant: XlargeSubVariant) => {
  * @param profileUrl variant가 'xlargeSquare', xlargeVariant가 'withProfile'인 경우 들어갈 이미지 url을 나타냄
  */
 
-interface ButtonProps<
-  T extends ButtonSubVariant,
-  K extends ButtonVariant,
-  G extends XlargeSubVariant,
-> extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: ButtonVariant
-  subVariant: T
-  textColor?: TextType['color']
-  xlargeChildren?: K extends 'xlargeSquare' ? React.ReactNode : undefined
-  xlargeChildrenTwo?: K extends 'xlargeSquare' ? React.ReactNode : undefined
-  fullWidth?: boolean
-  isLoading?: boolean
-  selectedCount?: T extends 'selectedMultiple' ? React.ReactNode : undefined
-  xlargeVariant?: K extends 'xlargeSquare' ? XlargeSubVariant : undefined
-  imageUrl?: G extends 'withProfile' ? string : undefined
-  onClick?:
-    | (() => void)
-    | ((event: React.MouseEvent<HTMLButtonElement>) => void)
-}
-
 const SquareButton = ({
   children,
   xlargeChildren,
@@ -223,10 +181,14 @@ const SquareButton = ({
   xlargeVariant,
   imageUrl,
   ...props
-}: ButtonProps<ButtonSubVariant, ButtonVariant, XlargeSubVariant>) => {
+}: ButtonProps<
+  SquareButtonSubVariantType,
+  SquareButtonVariantType,
+  SquareXlargeSubVariantType
+>) => {
   const handleVariant = (
-    variant: ButtonVariant,
-    xlargeVariant: XlargeSubVariant,
+    variant: SquareButtonVariantType,
+    xlargeVariant: SquareXlargeSubVariantType,
   ) => {
     if (variant === 'xlargeSquare' && xlargeVariant === 'withProfile') {
       return (
@@ -307,7 +269,12 @@ const SquareButton = ({
           color={variant === 'xsmallSquareP' ? `gray_900` : textColor}
         >
           <FlexBox gap={variant === 'smallSquare' ? 37 : 0}>
-            <>{handleVariant(variant, xlargeVariant as XlargeSubVariant)}</>
+            <>
+              {handleVariant(
+                variant,
+                xlargeVariant as SquareXlargeSubVariantType,
+              )}
+            </>
           </FlexBox>
         </Text>
       )}
@@ -318,9 +285,9 @@ const SquareButton = ({
 export default SquareButton
 
 export const StyledButton = styled.button<{
-  variant: ButtonVariant
-  subVariant: ButtonSubVariant
-  xlargeVariant?: XlargeSubVariant
+  variant: SquareButtonVariantType
+  subVariant: SquareButtonSubVariantType
+  xlargeVariant?: SquareXlargeSubVariantType
   fullWidth?: boolean
 }>`
   display: flex;
@@ -352,7 +319,7 @@ export const StyledButton = styled.button<{
     `${BUTTON_COLOR_TYPE[subVariant][variant]}`};
   border-radius: ${({ variant, xlargeVariant }) =>
     variant === 'xlargeSquare'
-      ? getRadius(xlargeVariant as XlargeSubVariant)
+      ? getRadius(xlargeVariant as SquareXlargeSubVariantType)
       : `${BUTTON_SHAPE_TYPE[variant].radius}px`};
   color: ${({ variant, subVariant }) =>
     `${TEXT_COLOR_TYPE[subVariant][variant]}`};
