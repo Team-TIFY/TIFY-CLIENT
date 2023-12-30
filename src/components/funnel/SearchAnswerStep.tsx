@@ -15,6 +15,7 @@ import { useRecoilState } from 'recoil'
 import { answerState } from '@libs/store/question'
 import { theme } from '@styles/theme'
 import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
+import { motion } from 'framer-motion'
 
 interface SearchAnswerStepProps {
   category: TasteType
@@ -225,14 +226,21 @@ const SearchAnswerStep = ({
       )}
 
       <Spacing height={100} />
-      <RoundButton
+      <motion.button
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 5, transition: { duration: 0.3 } }}
+        whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
         style={{ position: 'absolute', bottom: '32px' }}
-        variant="mediumRound"
-        disabled={disabled}
-        onClick={submitAnswer}
       >
-        {isLastAnswer ? '완료' : '다음'}
-      </RoundButton>
+        <RoundButton
+          variant="mediumRound"
+          disabled={disabled}
+          onClick={submitAnswer}
+        >
+          {isLastAnswer ? '완료' : '다음'}
+        </RoundButton>
+      </motion.button>
     </SearchContainer>
   )
 }
