@@ -54,7 +54,7 @@ const WeeklyMainQuestion = () => {
           className="QuestionImg"
           onClick={handleAnswerQuestion}
         >
-          <QuestionImg category={question.category} />
+          <QuestionImg className="QuestionImg" />
         </div>
       </WeekWrapper>
     </WeekContainer>
