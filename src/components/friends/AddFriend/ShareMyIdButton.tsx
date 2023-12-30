@@ -1,6 +1,6 @@
+import ShareIcon from '@assets/icons/ShareIcon'
 import SquareButton from '@components/atoms/SquareButton'
 import Svg from '@components/atoms/Svg'
-import ShareIcon from '@assets/icons/ShareIcon'
 
 const ShareMyIdButton = () => {
   return (
