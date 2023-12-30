@@ -6,11 +6,11 @@ import { Padding } from '@components/layouts/Padding'
 import Dimmer from '@components/layouts/Dimmer'
 import { Spacing } from '@components/atoms/Spacing'
 import { Filter } from '@components/atoms/Filter'
-import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
-import { ProfileImage } from '@components/profile/ProfileImage'
-import { ProfileHeader } from '@components/profile/ProfileHeader'
-import ProfileMenuButtons from '@components/profile/ProfileMenuButtons'
-import { UserTagDataListItem } from '@components/profile/UserTagDataListItem'
+import { ProfileButtonVariant } from '@components/profile/ProfileInfo/ProfileMenuButtons'
+import { ProfileImage } from '@components/profile/ProfileInfo/ProfileImage'
+import { ProfileHeader } from '@components/profile/ProfileInfo/ProfileHeader'
+import ProfileMenuButtons from '@components/profile/ProfileInfo/ProfileMenuButtons'
+import { UserTagDataListItem } from '@components/profile/ProfileInfo/UserTagDataListItem'
 import {
   SelectedProps,
   SelectedTag,

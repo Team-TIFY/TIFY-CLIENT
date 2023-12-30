@@ -1,4 +1,4 @@
-import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
+import { ProfileButtonVariant } from '@components/profile/ProfileInfo/ProfileMenuButtons'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
