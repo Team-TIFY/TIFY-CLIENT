@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
@@ -38,19 +37,6 @@ export const RoundButton = ({
   onClick,
   ...props
 }: PropsType) => {
-  const [isClicked, setIsClicked] = useState(false)
-
-  const handleClickButton = () => {
-    onClick?.()
-    setIsClicked(true)
-
-    const id = setTimeout(() => {
-      setIsClicked(false)
-    }, 1000) // 1초 후 isClicked를 false로 설정하여 원래 크기로 돌아가도록 합니다.
-
-    return () => clearTimeout(id)
-  }
-
   const renderRoundButton = () => {
     if (variant === 'xlargeRound') {
       return (
@@ -99,8 +85,7 @@ export const RoundButton = ({
         width={width}
         variant={variant}
         fullWidth={fullWidth}
-        isClicked={isClicked}
-        onClick={handleClickButton}
+        onClick={onClick}
         {...props}
       >
         {isLoading ? <Loading /> : renderRoundButton()}
@@ -135,8 +120,6 @@ const StyledButton = styled.button<{
   border-radius: ${({ variant }) =>
     `${ROUND_BUTTON_SHAPE_TYPE[variant].radius}px`};
   color: ${({ variant }) => `${ROUND_TEXT_COLOR_TYPE.default[variant]}`};
-  transform: ${({ variant, isClicked }) =>
-    variant === 'mediumRound' ? (isClicked ? 'scale(1.2)' : 'scale(1)') : ''};
 
   &:hover {
     background-color: ${({ variant }) =>

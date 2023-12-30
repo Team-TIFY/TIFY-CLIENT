@@ -13,6 +13,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import { favorQuestionData } from '@libs/store/dummy'
 import SquareButton from '@components/atoms/SquareButton'
 import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
+import { motion } from 'framer-motion'
 
 interface OneAnswerStepProps {
   isLastAnswer?: boolean
@@ -37,6 +38,7 @@ const OneAnswerStep = ({
   } = useQuery(['question', category, number], () =>
     FavorApi.GET_FAVOR_QUESTION({ category, number }),
   )
+  const spring = { type: 'spring', stiffness: 300, damping: 15 }
   const [answer, setAnswer] = useState<string>('')
   const [step, setStepAnswer] = useRecoilState(answerState)
   const [disabled, setDisabled] = useState<boolean>(true)
@@ -113,14 +115,21 @@ const OneAnswerStep = ({
           })}
         </FlexBox>
       )}
-      <RoundButton
+      <motion.button
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 5, transition: { duration: 0.3 } }}
+        whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
         style={{ position: 'absolute', bottom: '32px' }}
-        variant="mediumRound"
-        onClick={submitAnswer}
-        disabled={disabled}
       >
-        {isLastAnswer ? '완료' : '다음'}
-      </RoundButton>
+        <RoundButton
+          variant="mediumRound"
+          onClick={submitAnswer}
+          disabled={disabled}
+        >
+          {isLastAnswer ? '완료' : '다음'}
+        </RoundButton>
+      </motion.button>
     </OneAnswerStepWrapper>
   )
 }

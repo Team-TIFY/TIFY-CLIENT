@@ -11,6 +11,7 @@ import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import GreetingOnboarding from '@components/onboarding/GreetingOnboarding'
+import { media } from '@styles/theme'
 
 const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
@@ -53,7 +54,7 @@ const WeeklyMainQuestion = () => {
           className="QuestionImg"
           onClick={handleAnswerQuestion}
         >
-          <QuestionImg category={question.category} />
+          <QuestionImg className="QuestionImg" />
         </div>
       </WeekWrapper>
     </WeekContainer>
@@ -64,6 +65,7 @@ export default WeeklyMainQuestion
 const WeekContainer = styled.div`
   width: 100%;
   display: flex;
+  overflow-x: hidden;
   flex-direction: column;
   height: calc(100vh - 80px);
   background-color: #2e2159;
@@ -87,11 +89,14 @@ const WeekContainer = styled.div`
 `
 const BackgroundImg = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-image: url('/weekly_background.png');
   background-size: cover;
   position: absolute;
-  top: 0;
+  ${media.mobile} {
+    top: -80px;
+  }
+  top: -20px;
 `
 const WeekWrapper = styled.div`
   width: 100%;
