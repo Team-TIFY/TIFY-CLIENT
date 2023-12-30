@@ -1,22 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
+
+import useGetDate from '@libs/hooks/useGetDate'
+import useFriendMutate from '@libs/hooks/useFriendMutate'
+import { FriendsType, NewFriendsType } from '@models/apis/friends/FriendsType'
+import { FriendsListBItemPropsType } from '@models/components/friends/friends'
 import { FlexBox } from '@components/layouts/FlexBox'
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
-import useGetDate from '@libs/hooks/useGetDate'
-import { FriendsType, NewFriendsType } from '@models/apis/friends/FriendsType'
-import useFriendMutate from '@libs/hooks/useFriendMutate'
-
-export type FriendsListBItemProps = {
-  friendsList: FriendsType[] | NewFriendsType[]
-  description?: 'birthday'
-  isNewFriendsList?: boolean
-}
 
 const FriendsListBItem = ({
   friendsList,
   description,
   isNewFriendsList = false,
-}: FriendsListBItemProps) => {
+}: FriendsListBItemPropsType) => {
   const navigate = useNavigate()
   const { getDayStatus, parseDateFromString, parseMonthAndDayFromString } =
     useGetDate()
@@ -28,6 +24,13 @@ const FriendsListBItem = ({
     } else {
       navigate(`/profile/${friendId}`)
     }
+  }
+
+  const getFriendsListDescription = (friend: FriendsType | NewFriendsType) => {
+    return new Date(friend.updatedAt).getTime() >
+      new Date(friend.viewedAt).getTime()
+      ? 'newUpdate'
+      : 'none'
   }
 
   const renderFriend = (friend: FriendsType | NewFriendsType) => {
@@ -54,12 +57,7 @@ const FriendsListBItem = ({
       return (
         <FriendsListB
           {...commonProps}
-          description={
-            new Date(friend.updatedAt).getTime() >
-            new Date(friend.viewedAt).getTime()
-              ? 'newUpdate'
-              : 'none'
-          }
+          description={getFriendsListDescription(friend)}
         />
       )
     }
