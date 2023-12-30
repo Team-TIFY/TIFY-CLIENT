@@ -1,3 +1,4 @@
 export const enum friendsQueryKeys {
-  FRIENDS_LIST_QUERY_KEY = 'friendsList',
+  FRIENDS_LIST = 'friendsList',
+  SEARCH_FRIEND = 'searchFriend',
 }

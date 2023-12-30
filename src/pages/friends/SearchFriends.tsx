@@ -16,7 +16,7 @@ const SearchFriends = () => {
   const auth = useRecoilValue(authState)
 
   const { data: friendsList = [] } = useQuery(
-    [friendsQueryKeys.FRIENDS_LIST_QUERY_KEY, auth.userProfile.id],
+    [friendsQueryKeys.FRIENDS_LIST, auth.userProfile.id],
     FriendsApi.GET_FRIENDS_LIST,
   )
 
