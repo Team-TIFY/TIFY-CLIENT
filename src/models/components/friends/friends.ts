@@ -18,3 +18,8 @@ export type FriendsListBItemPropsType = {
   description?: 'birthday'
   isNewFriendsList?: boolean
 }
+
+export type FriendsListCItemPropsType = {
+  friendsList: FriendsType[]
+  alignLeft: boolean
+}
