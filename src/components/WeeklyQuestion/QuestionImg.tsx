@@ -1,13 +1,16 @@
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
 import { dateState } from '@libs/store/date'
+import { DailyQuestionCategoryType } from '@utils/apis/weekly/questionType'
 
 const QuestionImg = ({
   className,
+  category,
   isToggled = true,
 }: {
   className: string
   isToggled?: boolean
+  category?: DailyQuestionCategoryType
 }) => {
   const [date, setDate] = useRecoilState(dateState)
 

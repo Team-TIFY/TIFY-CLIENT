@@ -54,7 +54,7 @@ const CheckAllAnswers = () => {
           textAlign: 'center',
         }}
       >
-        <QuestionImg category={question.category} />
+        <QuestionImg className="" category={question.category} />
       </div>
       <Spacing variant="default" height={20} />
       <AnswerListContainer>
