@@ -1,7 +1,10 @@
 import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
-import { OptionVariantType, OptionPropsType } from '@models/Option'
+import {
+  OptionVariantType,
+  OptionPropsType,
+} from '@models/components/atoms/Option'
 import { OPTION_CHILDREN, OPTION_TEXT_COLOR } from '@constants/atoms/option'
 import { Text } from '../Text'
 import { FlexBox } from '@components/layouts/FlexBox'
