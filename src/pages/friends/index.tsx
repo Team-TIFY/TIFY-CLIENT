@@ -1,13 +1,13 @@
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+
+import AddUserIcon from '@assets/icons/AddUserIcon'
+import SearchIcon from '@assets/icons/FriendSearchIcon'
 import Svg from '@components/atoms/Svg'
 import PresentRecommend from '@components/friends/PresentRecommend/PresentRecommend'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import AddFriend from './AddFriend'
 import Friends from './Friends'
 import SearchFriends from './SearchFriends'
-import AddUserIcon from '@assets/icons/AddUserIcon'
-import SearchIcon from '@assets/icons/FriendSearchIcon'
-import { Navigate } from 'react-router-dom'
 
 const FriendsRouter = () => {
   const navigate = useNavigate()
