@@ -1,4 +1,5 @@
 import {
+  FriendRequestType,
   FriendsType,
   NewFriendsType,
   SearchedFriendType,
@@ -22,4 +23,8 @@ export type FriendsListBItemPropsType = {
 export type FriendsListCItemPropsType = {
   friendsList: FriendsType[]
   alignLeft: boolean
+}
+
+export type FriendsListDItemPropsType = {
+  friendsList: FriendRequestType[]
 }
