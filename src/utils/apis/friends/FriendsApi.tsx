@@ -9,7 +9,7 @@ import {
   PokeCountType,
   SearchedFriendType,
   DailyFriendsType,
-} from './FriendsType'
+} from '../../../models/apis/friends/FriendsType'
 
 export const FriendsApi = {
   GET_ALL_FRIENDS_LIST: async (): Promise<DailyFriendsType[]> => {

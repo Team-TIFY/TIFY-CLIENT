@@ -1,4 +1,4 @@
-import { SearchedFriendType } from '@utils/apis/friends/FriendsType'
+import { SearchedFriendType } from '@models/apis/friends/FriendsType'
 
 export type SearchedFriendItemPropsType = {
   friendData: SearchedFriendType

@@ -1,4 +1,4 @@
-import { TasteBoxVariantType } from '../favor/TasteType'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/favor'
 
 export type FriendRequestType = {
   neighborApplicationId: number
@@ -72,6 +72,7 @@ export type ReportFriendDataType = {
   toUserId: number
   reportSuccess: boolean
 }
+
 export type PokeCountType = {
   fromUserId: number
   knockedUserId: number
