@@ -1,7 +1,7 @@
 import { FlexBox } from '@components/layouts/FlexBox'
-import NewFriends from '@components/friends/NewFriends'
-import AllFriends from '../../components/friends/AllFriends'
-import BirthdayFriends from '../../components/friends/BirthdayFriends'
+import NewFriends from '@components/friends/FriendsList/NewFriends'
+import AllFriends from '../../components/friends/FriendsList/AllFriends'
+import BirthdayFriends from '../../components/friends/FriendsList/BirthdayFriends'
 import { Spacing } from '@components/atoms/Spacing'
 
 const Friends = () => {

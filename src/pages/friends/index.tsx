@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Svg from '@components/atoms/Svg'
-import PresentRecommend from '@components/friends/PresentRecommend'
+import PresentRecommend from '@components/friends/PresentRecommend/PresentRecommend'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import AddFriend from './AddFriend'
 import Friends from './Friends'

@@ -1,4 +1,4 @@
-import { DataType } from '@components/friends/PresentRecommend'
+import { DataType } from '@components/friends/PresentRecommend/PresentRecommend'
 import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
 import { axiosApi } from '../axios'
 import {
