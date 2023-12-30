@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil'
 import { questionState } from '@libs/store/question'
 import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
 import { useNavigate } from 'react-router-dom'
-import QuestionImg from '@components/WeeklyQuestion/QuestionImg'
+import { motion } from 'framer-motion'
 import { LongInput } from '@components/atoms/Input/LongInput'
 import VideoBox from '@components/WeeklyQuestion/VideoBox'
 
@@ -94,14 +94,22 @@ const AnswerDailyQuestion = () => {
       </InputSticker>
       <BottomSticker>
         {!toggled && (
-          <RoundButton
-            disabled={disabled}
-            onClick={submitAnswer}
-            variant="mediumRound"
-            style={{ width: '130px' }}
+          <motion.button
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 5, transition: { duration: 0.3 } }}
+            whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+            style={{ position: 'absolute', bottom: '32px' }}
           >
-            답변 완료
-          </RoundButton>
+            <RoundButton
+              disabled={disabled}
+              onClick={submitAnswer}
+              variant="mediumRound"
+              style={{ width: '130px' }}
+            >
+              답변 완료
+            </RoundButton>
+          </motion.button>
         )}
       </BottomSticker>
     </AnswerDailyQuestionContainer>

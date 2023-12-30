@@ -5,6 +5,8 @@ import styled from '@emotion/styled'
 import { RoundButton } from '@components/atoms/RoundButton'
 import { onboardingPageState, onboardingState } from '@libs/store/onboard'
 import onBoardingImg from '@assets/image/onBoardingImg.png'
+import VideoBox from '@components/WeeklyQuestion/VideoBox'
+import { question } from '@utils/question'
 export function HalfSuccess() {
   const [info, setInfo] = useRecoilState(onboardingState)
   const [goNext, setGoNext] = useRecoilState(onboardingPageState)
@@ -20,9 +22,7 @@ export function HalfSuccess() {
         <Text typo="SCD_Headline_20">나의 취향 프로필을 꾸며볼까요?</Text>
       </TextDiv>
       <Spacing height={100} />
-      <div style={{ textAlign: 'center' }}>
-        <img src={onBoardingImg} alt="온보딩 이미지" width={360} height={242} />
-      </div>
+      <VideoBox category="ME" />
       <BottomSticker>
         <RoundButton
           variant="mediumRound"

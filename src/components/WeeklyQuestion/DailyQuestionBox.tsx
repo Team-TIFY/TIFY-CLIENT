@@ -70,6 +70,8 @@ const DailyQuestionBox = () => {
 export default DailyQuestionBox
 
 const QuestionBoxContainer = styled.div`
+  flex-shrink: 0;
+  height: 140px;
   @keyframes fadeIn1 {
     from {
       opacity: 0;
