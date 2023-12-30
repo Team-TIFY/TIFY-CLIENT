@@ -30,7 +30,7 @@ export const subCategoryTitle: Record<
   },
   COOKING: {
     title: '요리',
-    img: '/images/cooking.png',
+    img: '/images/cup.png',
   },
   EXERCISE: {
     title: '운동',

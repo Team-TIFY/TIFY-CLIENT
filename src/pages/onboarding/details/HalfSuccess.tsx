@@ -22,7 +22,7 @@ export function HalfSuccess() {
         <Text typo="SCD_Headline_20">나의 취향 프로필을 꾸며볼까요?</Text>
       </TextDiv>
       <Spacing height={100} />
-      <VideoBox category={'ME'} />
+      <VideoBox category="ME" />
       <BottomSticker>
         <RoundButton
           variant="mediumRound"
