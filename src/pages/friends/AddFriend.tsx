@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { friendState } from '@libs/store/friend'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { Spacing } from '@components/atoms/Spacing'
@@ -15,22 +16,16 @@ const AddFriend = () => {
     setIsToggle(false)
   }, [])
 
-  const renderFriendRequestAndShareMyId = () => {
-    if (!friendStateData.isToggle) {
-      return (
+  return (
+    <>
+      <AddFriendById />
+      {friendStateData.isToggle || (
         <>
           <Spacing height={32} />
           <FriendRequest />
           <ShareMyId />
         </>
-      )
-    }
-  }
-
-  return (
-    <>
-      <AddFriendById />
-      {renderFriendRequestAndShareMyId()}
+      )}
     </>
   )
 }
