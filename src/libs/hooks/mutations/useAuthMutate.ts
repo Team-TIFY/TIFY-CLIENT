@@ -1,27 +1,31 @@
-import { OauthLoginResponse, OauthCodeResponse } from '@models/apis/AuthType'
-import { authState } from '@libs/store/auth'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { AuthApi } from '@apis/auth/AuthApi'
 import { axiosApi } from '@apis/axios'
-import { setCookie } from '@utils/cookies'
-import { UserApi } from '@apis/user/UserApi'
 
-const useAuthMutate = ({ idToken, refreshToken }: OauthCodeResponse) => {
+import { authState } from '@libs/store/auth'
+import { AuthApi } from '@apis/auth/AuthApi'
+import { UserApi } from '@apis/user/UserApi'
+import {
+  OauthLoginResponseType,
+  OauthCodeResponseType,
+} from '@models/apis/AuthType'
+import { setCookie } from '@utils/cookies'
+
+const useAuthMutate = ({ idToken, refreshToken }: OauthCodeResponseType) => {
   const [auth, setAuth] = useRecoilState(authState)
   const navigate = useNavigate()
 
   //회원가입 mutation
   const ouathKakaoRegisterMutation = useMutation(AuthApi.KAKAO_REGISTER, {
-    onSuccess: (data: OauthLoginResponse) => {
+    onSuccess: (data: OauthLoginResponseType) => {
       onSuccessLogin({ loginData: data, loginType: 'KAKAO' })
       navigate(auth.callbackUrl)
     },
   })
 
   const oauthAppleRegisterMutation = useMutation(AuthApi.APPLE_REGISTER, {
-    onSuccess: (data: OauthLoginResponse) => {
+    onSuccess: (data: OauthLoginResponseType) => {
       onSuccessLogin({ loginData: data, loginType: 'APPLE' })
       navigate(auth.callbackUrl)
     },
@@ -29,14 +33,14 @@ const useAuthMutate = ({ idToken, refreshToken }: OauthCodeResponse) => {
 
   //로그인 mutation
   const ouathKakaoLoginMutation = useMutation(AuthApi.KAKAO_LOGIN, {
-    onSuccess: (data: OauthLoginResponse) => {
+    onSuccess: (data: OauthLoginResponseType) => {
       onSuccessLogin({ loginData: data, loginType: 'KAKAO' })
       navigate(auth.callbackUrl)
     },
   })
 
   const ouathAppleLoginMutation = useMutation(AuthApi.APPLE_LOGIN, {
-    onSuccess: (data: OauthLoginResponse) => {
+    onSuccess: (data: OauthLoginResponseType) => {
       onSuccessLogin({ loginData: data, loginType: 'APPLE' })
       navigate(auth.callbackUrl)
     },
@@ -78,7 +82,7 @@ const useAuthMutate = ({ idToken, refreshToken }: OauthCodeResponse) => {
     loginData,
     loginType,
   }: {
-    loginData: OauthLoginResponse
+    loginData: OauthLoginResponseType
     loginType: 'KAKAO' | 'APPLE'
   }) => {
     axiosApi.defaults.headers.common[

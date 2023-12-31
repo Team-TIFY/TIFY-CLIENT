@@ -1,8 +1,6 @@
-import { MouseEventHandler, RefObject, useEffect, useRef } from 'react'
+import { RefObject, useEffect, useRef } from 'react'
 
-type UseOutsideFuncType = (
-  close: () => void,
-) => [RefObject<HTMLDivElement>, MouseEventHandler<HTMLDivElement>]
+import { UseOutsideFuncType } from '@models/hooks/useOutsideClick'
 
 export const useOutsideClick: UseOutsideFuncType = (close) => {
   const outsideRef: RefObject<HTMLDivElement> = useRef(null)

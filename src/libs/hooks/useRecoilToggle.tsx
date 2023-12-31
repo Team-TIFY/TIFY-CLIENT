@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { RecoilState, useRecoilState } from 'recoil'
 
-type UseToggleReturnType<T> = readonly [T, () => void]
-
-type HasValueProperty<T> = T extends { value: boolean } ? T : never
+import {
+  HasValueProperty,
+  UseToggleReturnType,
+} from '@models/hooks/useRecoilToggle'
 
 const useRecoilToggle = <T,>(
   toggleState: RecoilState<HasValueProperty<T>>,

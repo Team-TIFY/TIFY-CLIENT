@@ -1,7 +1,7 @@
+import { useEffect, useMemo } from 'react'
+import { useSearchParams, useNavigate } from 'react-router-dom'
+
 import { assert } from '@utils/assert'
-import { useNavigate } from 'react-router-dom'
-import { useCallback, useEffect, useMemo } from 'react'
-import { useSearchParams, useLocation } from 'react-router-dom'
 import { Funnel, FunnelProps, StepProps, Step } from '@components/funnel/Funnel'
 
 export type NonEmptyArray<T> = readonly [T, ...T[]]

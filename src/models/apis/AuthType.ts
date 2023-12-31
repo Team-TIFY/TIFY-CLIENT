@@ -4,13 +4,13 @@ export type OauthCodeResponseType = {
   idToken: string
 }
 
-export type OauthLoginResponse = {
+export type OauthLoginResponseType = {
   accessToken: string
   refreshToken: string
   userId: number
 }
 
-export type OauthRegisterResponse = {
+export type OauthRegisterResponseType = {
   email: string
   phoneNumber: string
   profileImage: string

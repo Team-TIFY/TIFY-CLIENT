@@ -1,11 +1,14 @@
-import { dateState } from '@libs/store/date'
-import { TodayKeyType } from '@models/components/atoms/DayWeek'
 import { useRecoilState } from 'recoil'
 
+import { dateState } from '@libs/store/date'
+import { TodayKeyType } from '@models/components/atoms/DayWeek'
+
 const useGetDate = () => {
-  const [date, setDate] = useRecoilState(dateState)
+  const [, setDate] = useRecoilState(dateState)
+
   const getTodayWeek = (date: string): TodayKeyType => {
     const dayOfWeek = new Date(date).getDay() as TodayKeyType
+
     return dayOfWeek
   }
 
@@ -14,6 +17,7 @@ const useGetDate = () => {
     const month = ('0' + (date.getMonth() + 1)).slice(-2)
     const day = ('0' + date.getDate()).slice(-2)
     const dateString = year + '-' + month + '-' + day
+
     return dateString
   }
 
@@ -43,12 +47,14 @@ const useGetDate = () => {
     const today = new Date()
     const dateString = parseDate(today)
     let todayKey = (getTodayWeek(dateString) - 1) as TodayKeyType
+
     if (todayKey === -1) todayKey = 6
     setDate({
       selectedDate: todayKey,
       today: todayKey,
       dateString: dateString,
     })
+
     return [dateString, todayKey]
   }
 
@@ -59,8 +65,10 @@ const useGetDate = () => {
     let selectedKey = (getTodayWeek(dateString) - 1) as TodayKeyType
     const todayString = parseDate(new Date())
     let todayKey = (getTodayWeek(todayString) - 1) as TodayKeyType
+
     if (todayKey === -1) todayKey = 6
     if (selectedKey === -1) selectedKey = 6
+
     setDate({
       today: todayKey,
       selectedDate: selectedKey,

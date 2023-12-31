@@ -1,16 +1,18 @@
-import { authState } from '@libs/store/auth'
-import { onboardingState } from '@libs/store/onboard'
-import { useMutation } from '@tanstack/react-query'
-import { UserApi } from '@apis/user/UserApi'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import useGetDate from '../useGetDate'
+import { useMutation } from '@tanstack/react-query'
+
+import { authState } from '@libs/store/auth'
+import { onboardingState } from '@libs/store/onboard'
 import useSnackBar from '@libs/hooks/useSnackBar'
+import { UserApi } from '@apis/user/UserApi'
+import useGetDate from '../useGetDate'
 
 const useProfileMutate = () => {
   const [auth, setAuth] = useRecoilState(authState)
-  const { setSnackBar } = useSnackBar()
   const info = useRecoilValue(onboardingState)
+
+  const { setSnackBar } = useSnackBar()
   const { getFormattedDateString } = useGetDate()
   const navigate = useNavigate()
 

@@ -9,6 +9,7 @@ const useBottomSheet = ({
 }) => {
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(initialState)
   const bottomSheetRef = useRef<HTMLDivElement>(null)
+
   const openBottomSheet = () => {
     setBottomSheetOpen(true)
   }
@@ -18,10 +19,16 @@ const useBottomSheet = ({
   }
 
   useEffect(() => {
+    let id: NodeJS.Timeout
+
     if (delaytime) {
-      setTimeout(() => {
+      id = setTimeout(() => {
         closeBottomSheet()
       }, delaytime)
+    }
+
+    return () => {
+      clearTimeout(id)
     }
   }, [delaytime])
 

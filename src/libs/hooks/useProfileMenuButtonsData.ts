@@ -1,11 +1,10 @@
-import { ProfileButtonVariantType } from '@components/profile/ProfileInfo/ProfileMenuButton'
-import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
-import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
+
+import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import useFriendMutate from './mutations/useFriendMutate'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
-
-type ButtonTextType = { text: string; color: TextType['color'] }
+import { ProfileButtonVariantType } from '@models/components/Profile/profile'
+import { ButtonTextType } from '@models/hooks/useProfileMenuButtonsData'
 
 const useProfileMenuButtonsData = (
   type: ProfileButtonVariantType,
@@ -25,6 +24,7 @@ const useProfileMenuButtonsData = (
     cutOffFriendMutate,
     cancelBlockFriendMutate,
   } = useFriendMutate()
+
   const navigate = useNavigate()
 
   if (type === 'myProfile') {
