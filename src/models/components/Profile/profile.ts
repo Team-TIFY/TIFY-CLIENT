@@ -7,7 +7,6 @@ import {
   SubCategoryValueType,
 } from '@models/favor'
 import { ProfileButtonVariantType } from '@components/profile/ProfileInfo/ProfileMenuButton'
-import { RightChildrenVariantType, AppBarType } from '../atoms/AppBar'
 
 export type SelectedPropType = {
   id: number
@@ -48,16 +47,3 @@ export type UserTastesPropsType = {
   userTagData: FilteredUserTag[]
   userData: UserInfoType
 }
-
-export type ProfileRoutesType = {
-  path: string
-  label?: string
-  hasNav?: boolean
-  rightChildren?: RightChildrenVariantType
-  rightChildrenIcon?: React.ReactNode[]
-  isLabelAlignCenter?: boolean
-  variant?: AppBarType
-  beforeUrl?: string
-  customHandler?: () => void
-  element: React.ReactNode
-}[]
