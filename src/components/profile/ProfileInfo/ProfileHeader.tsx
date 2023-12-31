@@ -1,24 +1,19 @@
 import { useNavigate, useParams } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 import styled from '@emotion/styled'
-import { FlexBox } from '@components/layouts/FlexBox'
-import { Spacing } from '@components/atoms/Spacing'
-import SquareButton from '@components/atoms/SquareButton'
-import { UserDetail } from './UserDetail'
+
 import useFriendMutate from '@libs/hooks/useFriendMutate'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
-import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
-import { UserInfoType } from '@models/apis/UserType'
-
-interface ProfileHeaderProps {
-  userData: UserInfoType
-  addFriend?: boolean
-}
+import { ProfileHeaderPropsType } from '@models/components/Profile/profile'
+import { Spacing } from '@components/atoms/Spacing'
+import { UserDetail } from './UserDetail'
+import ProfileHeaderButtonListItem from './ProfileHeaderButtonListItem'
 
 export const ProfileHeader = ({
   userData,
   addFriend = false,
-}: ProfileHeaderProps) => {
+}: ProfileHeaderPropsType) => {
   const { setIsCutOffMenuOpen, setIsCancelBlockMenuOpen } =
     useSetFriendRecoilState()
   const auth = useRecoilValue(authState)
@@ -58,93 +53,61 @@ export const ProfileHeader = ({
   const renderProfileHeaderButton = () => {
     if (userData.blocked) {
       return (
-        <ButtonWrapper>
-          <FlexBox justify="space-between" gap={12}>
-            <SquareButton
-              variant="mediumSquare"
-              subVariant="default"
-              children="지난 투데이"
-              fullWidth={true}
-              onClick={handleClickPastToday}
-            />
-            <SquareButton
-              variant="mediumSquare"
-              subVariant="default"
-              children="차단 해제"
-              fullWidth={true}
-              onClick={handleClickCancelBlockFriend}
-            />
-          </FlexBox>
-        </ButtonWrapper>
+        <ProfileHeaderButtonListItem
+          buttons={[
+            { text: '지난 투데이', onClick: handleClickPastToday },
+            { text: '차단 해제', onClick: handleClickCancelBlockFriend },
+          ]}
+        />
       )
-    } else if (
+    }
+
+    if (
       (!userData.friend && auth.userProfile.userId !== userData.userId) ||
       addFriend
     ) {
       if (userData.friend) {
+        return <ProfileHeaderButtonListItem buttons={[{ text: '수락됨' }]} />
+      }
+
+      if (!userData.receivedApplication && !userData.sentApplication) {
         return (
-          <SquareButton
-            variant="mediumSquare"
-            subVariant="default"
-            fullWidth={true}
-            children="수락됨"
-          />
-        )
-      } else if (!userData.receivedApplication && !userData.sentApplication) {
-        return (
-          <SquareButton
-            variant="mediumSquare"
-            subVariant="default"
-            fullWidth={true}
-            children="친구 신청하기"
-            onClick={handleClickRequestFriend}
-          />
-        )
-      } else if (userData.receivedApplication && !userData.sentApplication) {
-        return (
-          <SquareButton
-            variant="mediumSquare"
-            subVariant="default"
-            fullWidth={true}
-            children="수락하기"
-            onClick={handleClickAcceptFriend}
-          />
-        )
-      } else if (!userData.receivedApplication && userData.sentApplication) {
-        return (
-          <SquareButton
-            variant="mediumSquare"
-            subVariant="default"
-            fullWidth={true}
-            children="요청됨"
-            onClick={handleClickRequestedFriend}
+          <ProfileHeaderButtonListItem
+            buttons={[
+              { text: '친구 신청하기', onClick: handleClickRequestFriend },
+            ]}
           />
         )
       }
-    } else {
-      return (
-        <ButtonWrapper>
-          <FlexBox justify="space-between" gap={12}>
-            <SquareButton
-              variant="mediumSquare"
-              subVariant="default"
-              children="지난 투데이"
-              fullWidth={true}
-              onClick={handleClickPastToday}
-            />
-            <SquareButton
-              variant="mediumSquare"
-              subVariant="default"
-              children={userData.friend ? '친구' : '새로운 취향 답변'}
-              fullWidth={true}
-              onClick={
-                userData.friend ? handleClickFriend : handleClickNewTaste
-              }
-            />
-          </FlexBox>
-        </ButtonWrapper>
-      )
+
+      if (userData.receivedApplication && !userData.sentApplication) {
+        return (
+          <ProfileHeaderButtonListItem
+            buttons={[{ text: '수락하기', onClick: handleClickAcceptFriend }]}
+          />
+        )
+      }
+
+      if (!userData.receivedApplication && userData.sentApplication) {
+        return (
+          <ProfileHeaderButtonListItem
+            buttons={[{ text: '요청됨', onClick: handleClickRequestedFriend }]}
+          />
+        )
+      }
     }
+
+    return (
+      <ProfileHeaderButtonListItem
+        buttons={[
+          { text: '지난 투데이', onClick: handleClickPastToday },
+          {
+            text: userData.friend ? '친구' : '새로운 취향 답변',
+            onClick: userData.friend ? handleClickFriend : handleClickNewTaste,
+          },
+        ]}
+      />
+    )
   }
 
   return (
@@ -157,5 +120,3 @@ export const ProfileHeader = ({
 }
 
 const ProfileHeaderWrapper = styled.div``
-
-const ButtonWrapper = styled.div``

@@ -69,3 +69,15 @@ export type NewTasteCategoryPropsType = {
 export type NewTasteCategoryListItemPropsType = {
   subCategoryList: UserNewTasteCategoryType[]
 }
+
+export type ProfileHeaderPropsType = {
+  userData: UserInfoType
+  addFriend?: boolean
+}
+
+export type ProfileHeaderButtonListItemPropsType = {
+  buttons: {
+    text: string
+    onClick?: () => void
+  }[]
+}

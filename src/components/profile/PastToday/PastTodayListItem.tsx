@@ -1,5 +1,4 @@
 import { PastTodayListItemPropsType } from '@models/components/Profile/profile'
-
 import TodayList from '@components/atoms/TodayList'
 
 const PastTodayListItem = ({ pastTodayAnswer }: PastTodayListItemPropsType) => {
