@@ -30,7 +30,8 @@
       "@models/*": ["src/models/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@apis/*": ["src/apis/*"],
     }
   },
   "include": ["src"],

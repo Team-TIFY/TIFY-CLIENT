@@ -16,6 +16,7 @@ export default defineConfig({
       { find: '@assets', replacement: '/src/assets' },
       { find: '@styles', replacement: '/src/styles' },
       { find: '@utils', replacement: '/src/utils' },
+      { find: '@apis', replacement: '/src/apis' },
     ],
   },
   server: {
