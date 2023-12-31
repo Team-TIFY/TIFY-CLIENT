@@ -1,30 +1,29 @@
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from '@emotion/styled'
-import { FlexBox } from '@components/layouts/FlexBox'
-import CubeButton from '@components/atoms/CubeButton'
+
 import {
   IsAnsweredCategory,
   UserNewTasteCategoryType,
 } from '@models/apis/UserType'
 import { subCategoryState } from '@libs/store/subCategory'
+import { NewTasteCategoryListItemPropsType } from '@models/components/Profile/profile'
 import { UserApi } from '@apis/user/UserApi'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
 import { subCategoryTitle } from '@utils/subCategoryTitle'
-
-interface NewTasteCategoryListItemProps {
-  subCategoryList: UserNewTasteCategoryType[]
-}
+import { FlexBox } from '@components/layouts/FlexBox'
+import CubeButton from '@components/atoms/CubeButton'
 
 const NewTasteCategoryListItem = ({
   subCategoryList,
-}: NewTasteCategoryListItemProps) => {
+}: NewTasteCategoryListItemPropsType) => {
   const [subCategory, setSubCategory] = useRecoilState(subCategoryState)
 
   const navigate = useNavigate()
 
   const handleClickSubCategory = async (category: UserNewTasteCategoryType) => {
     const answerList = await fetchAnswerList(category)
+
     routeToNotAnsweredCategory(answerList)
   }
 
@@ -42,17 +41,19 @@ const NewTasteCategoryListItem = ({
         (data) => data.answered === false,
       )[0].detailCategory
       setSubCategory(favorQuestionCategory)
+
       const routerName = parseTotasteQuestion(favorQuestionCategory)
       routerName && navigate(routerName)
     }
   }
 
   const getVariant = (category: UserNewTasteCategoryType) => {
-    return category.isAnswered === true
-      ? 'disabled'
-      : subCategory === category.smallCategory
-      ? 'selected'
-      : 'unSelected'
+    if (category.isAnswered) {
+      return 'disabled'
+    } else if (subCategory === category.smallCategory) {
+      return 'selected'
+    }
+    return 'unSelected'
   }
 
   return (

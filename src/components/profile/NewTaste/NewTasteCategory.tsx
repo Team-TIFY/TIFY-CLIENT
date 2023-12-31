@@ -1,15 +1,12 @@
+import { NewTasteCategoryPropsType } from '@models/components/Profile/profile'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
-import { UserNewTasteCategoryType } from '@models/apis/UserType'
 import NewTasteCategoryList from './NewTasteCategoryListItem'
 
 const NewTasteCategory = ({
   categoryName,
   subCategoryList,
-}: {
-  categoryName: string
-  subCategoryList: UserNewTasteCategoryType[]
-}) => {
+}: NewTasteCategoryPropsType) => {
   return (
     <>
       <Text typo="Headline_16" as="div" color="white">

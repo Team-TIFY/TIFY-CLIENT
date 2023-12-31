@@ -4,6 +4,7 @@ import {
   FilteredUserTag,
   PastTodayAnswerType,
   UserInfoType,
+  UserNewTasteCategoryType,
 } from '@models/apis/UserType'
 import {
   SelectedTagType,
@@ -58,4 +59,13 @@ export type PastTodayListItemPropsType = {
 
 export type EditOnboardingStatusType = {
   value: string
+}
+
+export type NewTasteCategoryPropsType = {
+  categoryName: string
+  subCategoryList: UserNewTasteCategoryType[]
+}
+
+export type NewTasteCategoryListItemPropsType = {
+  subCategoryList: UserNewTasteCategoryType[]
 }
