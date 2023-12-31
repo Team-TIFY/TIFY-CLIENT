@@ -1,7 +1,7 @@
 import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { atom } from 'recoil'
 
-export type ProfileState = {
+export type ProfileStateType = {
   value: boolean
   isMenuOpen: boolean
   isEditImageMenuOpen: boolean
@@ -9,7 +9,7 @@ export type ProfileState = {
   pastTodayCategory: TodayCategoryValueType
 }
 
-const initialState: ProfileState = {
+const initialState: ProfileStateType = {
   value: true,
   isMenuOpen: false,
   isEditImageMenuOpen: false,
@@ -17,7 +17,7 @@ const initialState: ProfileState = {
   pastTodayCategory: 'FOOD',
 }
 
-export const profileState = atom<ProfileState>({
+export const profileState = atom<ProfileStateType>({
   key: 'profileState',
   default: initialState,
 })

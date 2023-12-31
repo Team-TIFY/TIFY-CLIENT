@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
-import styled from '@emotion/styled'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import styled from '@emotion/styled'
+
+import { authState } from '@libs/store/auth'
+import { onboardingState } from '@libs/store/onboard'
+import { profileState } from '@libs/store/profile'
+import useGetDate from '@libs/hooks/useGetDate'
 import { Name } from '@pages/onboarding/details/signup/Name'
 import { UserId } from '@pages/onboarding/details/signup/UserId'
 import { Birth } from '@pages/onboarding/details/signup/Birth'
@@ -8,11 +13,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Padding } from '@components/layouts/Padding'
 import OnboardingStatus from '@components/profile/EditProfile/OnboardingStatus'
-import EditProfileButton from '../../../components/profile/EditProfile/EditProfileButton'
-import { authState } from '@libs/store/auth'
-import { onboardingState } from '@libs/store/onboard'
-import { profileState } from '@libs/store/profile'
-import useGetDate from '@libs/hooks/useGetDate'
+import EditProfileButton from '@components/profile/EditProfile/EditProfileButton'
 
 const EditUserInfo = () => {
   const auth = useRecoilValue(authState)
@@ -28,7 +29,7 @@ const EditUserInfo = () => {
 
   const { parseDate, getFormattedDate } = useGetDate()
 
-  useEffect(() => {
+  const initializeState = () => {
     if (!profileStateData.isEdit) {
       setUserName(auth.userProfile.userName)
       setUserId(auth.userProfile.userId)
@@ -46,10 +47,14 @@ const EditUserInfo = () => {
         onboardingState: auth.userProfile.onBoardingStatus,
       }))
     }
+  }
+
+  useEffect(() => {
+    initializeState()
   }, [])
 
   useEffect(() => {
-    if (profileStateData.isEdit) setOnBoardingStatus(info.onBoardingState)
+    profileStateData.isEdit && setOnBoardingStatus(info.onBoardingState)
   }, [info.onBoardingState, auth.userProfile.onBoardingStatus])
 
   return (

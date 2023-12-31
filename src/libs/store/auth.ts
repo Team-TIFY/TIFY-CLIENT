@@ -3,7 +3,8 @@ import { atom } from 'recoil'
 import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist()
-export interface AuthStateType {
+
+export type AuthStateType = {
   isAuthenticated: boolean
   loginType: 'APPLE' | 'KAKAO'
   callbackUrl: string
