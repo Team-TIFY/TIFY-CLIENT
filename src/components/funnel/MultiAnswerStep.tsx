@@ -1,6 +1,6 @@
 import { TasteType } from '@models/apis/TasteType'
 import { useQuery } from '@tanstack/react-query'
-import { FavorApi } from '@utils/apis/favor/FavorApi'
+import { FavorApi } from '@apis/favor/FavorApi'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'

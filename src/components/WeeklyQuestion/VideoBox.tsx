@@ -1,7 +1,7 @@
 import {
   DailyQuestionVideoCategory,
   DailyQuestionCategoryType,
-} from '@utils/apis/weekly/questionType'
+} from '@apis/weekly/questionType'
 import styled from '@emotion/styled'
 import { media } from '@styles/theme'
 

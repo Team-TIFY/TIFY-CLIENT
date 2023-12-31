@@ -8,7 +8,7 @@ import { Text } from '@components/atoms/Text'
 import Plus from '@assets/icons/Plus'
 import useFriendMutate from '@libs/hooks/useFriendMutate'
 import { friendState } from '@libs/store/friend'
-import { FriendRequestType } from '@utils/apis/friends/FriendsType'
+import { FriendRequestType } from '@apis/friends/FriendsType'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { useNavigate } from 'react-router-dom'
 

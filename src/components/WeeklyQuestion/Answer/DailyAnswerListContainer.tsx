@@ -3,10 +3,10 @@ import {
   NeighborAnswerListInfo,
   DailyAnswerContentInfo,
   DailyQuestionReport,
-} from '@utils/apis/weekly/questionType'
+} from '@apis/weekly/questionType'
 import styled from '@emotion/styled'
 import { useQuery } from '@tanstack/react-query'
-import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
+import { WeeklyApi } from '@apis/weekly/WeeklyApi'
 import { useEffect, useState } from 'react'
 import Dimmer from '@components/layouts/Dimmer'
 import { useOutsideClick } from '@libs/hooks/useOutsideClick'

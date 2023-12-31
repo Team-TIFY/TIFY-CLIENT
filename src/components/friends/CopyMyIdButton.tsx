@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import SquareButton from '@components/atoms/SquareButton'
 import Svg from '@components/atoms/Svg'
 import CopyIcon from '@assets/icons/CopyIcon'

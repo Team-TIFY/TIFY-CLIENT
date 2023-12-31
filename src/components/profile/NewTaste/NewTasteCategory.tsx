@@ -1,14 +1,14 @@
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
+import { UserNewTasteCategoryType } from '@models/apis/UserType'
 import NewTasteCategoryList from './NewTasteCategoryListItem'
-import { UserNewTasteCategory } from '@models/apis/UserType'
 
 const NewTasteCategory = ({
   categoryName,
   subCategoryList,
 }: {
   categoryName: string
-  subCategoryList: UserNewTasteCategory[]
+  subCategoryList: UserNewTasteCategoryType[]
 }) => {
   return (
     <>

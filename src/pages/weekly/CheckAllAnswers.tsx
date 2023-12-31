@@ -1,6 +1,6 @@
 import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
 import styled from '@emotion/styled'
-import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
+import { WeeklyApi } from '@apis/weekly/WeeklyApi'
 import { useRecoilState } from 'recoil'
 import { questionState } from '@libs/store/question'
 import { RoundButton } from '@components/atoms/RoundButton'

@@ -1,4 +1,4 @@
-import { TasteBoxVariantType } from '../../../models/apis/TasteType'
+import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 export type FriendRequestType = {
   neighborApplicationId: number

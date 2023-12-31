@@ -14,4 +14,4 @@ export const tasteBoxImage: Record<TasteBoxVariantType, string> = {
   DISH: '/images/cup.png',
   CUP: '/images/cup.png',
   EXERCISE: '/images/exercise.png',
-}
+} as const

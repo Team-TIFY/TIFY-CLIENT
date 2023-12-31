@@ -4,7 +4,7 @@ import { Avatar } from '@components/atoms/Avatar'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import Svg from '@components/atoms/Svg'
-import { UserInfo } from '@models/apis/UserType'
+import { UserInfoType } from '@models/apis/UserType'
 import useGetDate from '@libs/hooks/useGetDate'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
@@ -13,7 +13,7 @@ import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
 
 export interface UserDetailProps {
-  userData: UserInfo
+  userData: UserInfoType
 }
 
 export const UserDetail = ({ userData }: UserDetailProps) => {

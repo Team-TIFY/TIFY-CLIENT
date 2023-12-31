@@ -6,8 +6,8 @@ import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { Spacing } from '@components/atoms/Spacing'
 import FriendsListBItem from '@components/friends/FriendsListBItem'
 import FriendNotFound from '@components/friends/FriendNotFound'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import { FriendsType } from '@utils/apis/friends/FriendsType'
+import { FriendsApi } from '@apis/friends/FriendsApi'
+import { FriendsType } from '@apis/friends/FriendsType'
 import styled from '@emotion/styled'
 
 const SearchFriends = () => {

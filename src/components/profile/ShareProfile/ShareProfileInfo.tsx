@@ -8,7 +8,7 @@ import { useRecoilValue } from 'recoil'
 import { Text } from '@components/atoms/Text'
 import ProfileBox from '@components/atoms/ProfileBox'
 import { useQuery } from '@tanstack/react-query'
-import { UserApi } from '@utils/apis/user/UserApi'
+import { UserApi } from '@apis/user/UserApi'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 const ShareProfileInfo = () => {

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
+
 import { theme } from '@styles/theme'
 import { navigationData } from '@constants/atoms/navigationData'
 import { Text } from '../Text'

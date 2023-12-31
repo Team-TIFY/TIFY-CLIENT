@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { Suspense } from 'react'
 import {
   Route,
@@ -11,7 +12,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { authState } from '@libs/store/auth'
 import { answerState } from '@libs/store/question'
-import { UserApi } from '@utils/apis/user/UserApi'
+import { UserApi } from '@apis/user/UserApi'
 import BigX from '@assets/icons/BigX'
 import MenuIcon from '@assets/icons/MenuIcon'
 import BMLIP from '@pages/searchTaste/BMLIP'

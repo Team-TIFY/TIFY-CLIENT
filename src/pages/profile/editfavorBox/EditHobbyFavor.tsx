@@ -3,7 +3,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
-import { TasteType } from '@utils/apis/favor/TasteType'
+import { TasteType } from '@apis/favor/TasteType'
 
 interface HobbyFavorProps {
   favorList: TasteType[]

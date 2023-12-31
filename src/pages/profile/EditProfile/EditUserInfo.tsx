@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { Name } from '@pages/onboarding/details/signup/Name'
 import { UserId } from '@pages/onboarding/details/signup/UserId'
 import { Birth } from '@pages/onboarding/details/signup/Birth'

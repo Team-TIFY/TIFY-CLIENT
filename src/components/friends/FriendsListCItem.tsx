@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import FriendsListC from '@components/atoms/FriendsList/FriendsListC'
-import { FriendsType } from '@utils/apis/friends/FriendsType'
+import { FriendsType } from '@apis/friends/FriendsType'
 
 export type FriendsListCItemProps = {
   friendsList: FriendsType[]

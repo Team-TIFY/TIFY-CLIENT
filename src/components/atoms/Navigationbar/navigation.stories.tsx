@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
 import { Routes, Route } from 'react-router-dom'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Navigationbar } from '.'
 

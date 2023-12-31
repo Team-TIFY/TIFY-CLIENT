@@ -4,7 +4,7 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
 import FriendsListDItem from './FriendsListDItem'
 import { authState } from '@libs/store/auth'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/friends/FriendsApi'
 import { Spacing } from '@components/atoms/Spacing'
 import { friendState } from '@libs/store/friend'
 

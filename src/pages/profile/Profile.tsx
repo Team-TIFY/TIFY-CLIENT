@@ -14,7 +14,7 @@ import {
 } from '@models/components/Profile/profile'
 import { SelectedTagType, SubCategoryValueType } from '@models/favor'
 import { UserInfoType } from '@models/apis/UserType'
-import { UserApi } from '@utils/apis/user/UserApi'
+import { UserApi } from '@apis/user/UserApi'
 import { selectedProps } from '@constants/Profile/selectedProps'
 import { Padding } from '@components/layouts/Padding'
 import { Spacing } from '@components/atoms/Spacing'

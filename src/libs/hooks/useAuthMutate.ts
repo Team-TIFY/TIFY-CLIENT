@@ -1,15 +1,12 @@
-import {
-  OauthLoginResponse,
-  OauthCodeResponse,
-} from '@utils/apis/auth/AuthType'
+import { OauthLoginResponse, OauthCodeResponse } from '@apis/auth/AuthType'
 import { authState } from '@libs/store/auth'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { AuthApi } from '@utils/apis/auth/AuthApi'
-import { axiosApi } from '@utils/apis/axios'
+import { AuthApi } from '@apis/auth/AuthApi'
+import { axiosApi } from '@apis/axios'
 import { setCookie } from '@utils/cookies'
-import { UserApi } from '@utils/apis/user/UserApi'
+import { UserApi } from '@apis/user/UserApi'
 
 const useAuthMutate = ({ idToken, refreshToken }: OauthCodeResponse) => {
   const [auth, setAuth] = useRecoilState(authState)

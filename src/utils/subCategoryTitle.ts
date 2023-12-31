@@ -1,8 +1,8 @@
-import { SubCategoryType, SubCategoryName } from '../models/apis/UserType'
+import { SubCategoryValueType, SubCategoryNameType } from '@models/favor'
 
 export const subCategoryTitle: Record<
-  SubCategoryType,
-  { title: SubCategoryName; img: string }
+  SubCategoryValueType,
+  { title: SubCategoryNameType; img: string }
 > = {
   MAKEUP: {
     title: '메이크업',

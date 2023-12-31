@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { FlexBox } from '@components/layouts/FlexBox'
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
 import useGetDate from '@libs/hooks/useGetDate'
-import { FriendsType, NewFriendsType } from '@utils/apis/friends/FriendsType'
+import { FriendsType, NewFriendsType } from '@apis/friends/FriendsType'
 import useFriendMutate from '@libs/hooks/useFriendMutate'
 
 export type FriendsListBItemProps = {

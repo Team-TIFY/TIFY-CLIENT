@@ -1,7 +1,7 @@
 import { authState } from '@libs/store/auth'
 import { onboardingState } from '@libs/store/onboard'
 import { useMutation } from '@tanstack/react-query'
-import { UserApi } from '@utils/apis/user/UserApi'
+import { UserApi } from '@apis/user/UserApi'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import useGetDate from './useGetDate'

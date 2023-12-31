@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil'
 
 import { friendState } from '@libs/store/friend'
 import { profileState } from '@libs/store/profile'
-import { ProfileButtonVariant } from '@components/profile/ProfileInfo/ProfileMenuButton'
+import { ProfileButtonVariantType } from '@components/profile/ProfileInfo/ProfileMenuButton'
 import { useOutsideClick } from './useOutsideClick'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 import useSetProfileRecoilState from './useSetProfileRecoilState'
@@ -46,7 +46,7 @@ export const useProfileMenus = () => {
 
   const menus: {
     menuOpen: boolean
-    type: ProfileButtonVariant
+    type: ProfileButtonVariantType
     ref: React.RefObject<HTMLDivElement>
     close: React.MouseEventHandler<HTMLDivElement>
   }[] = [

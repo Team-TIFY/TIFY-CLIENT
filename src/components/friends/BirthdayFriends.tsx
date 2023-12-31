@@ -6,7 +6,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import FriendsListBItem from './FriendsListBItem'
 import { authState } from '@libs/store/auth'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/friends/FriendsApi'
 import { useEffect } from 'react'
 
 const BirthdayFriends = () => {

@@ -4,14 +4,14 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import SquareButton from '@components/atoms/SquareButton'
 import { UserDetail } from './UserDetail'
-import { UserInfo } from '@models/apis/UserType'
 import useFriendMutate from '@libs/hooks/useFriendMutate'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
+import { UserInfoType } from '@models/apis/UserType'
 
 interface ProfileHeaderProps {
-  userData: UserInfo
+  userData: UserInfoType
   addFriend?: boolean
 }
 

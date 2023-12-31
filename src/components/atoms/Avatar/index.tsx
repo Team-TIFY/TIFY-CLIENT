@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
 import { useCallback, useEffect, useState } from 'react'
+import styled from '@emotion/styled'
 
 import { profileVariants } from '@constants/atoms/profileVariants'
 import {

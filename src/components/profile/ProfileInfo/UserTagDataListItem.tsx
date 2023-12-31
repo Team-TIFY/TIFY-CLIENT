@@ -4,12 +4,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import { Category } from '@components/atoms/Category'
 import { Tag } from '@components/atoms/Tag'
 import { ColorIndexVariantType } from '@models/components/atoms/Tag'
-import {
-  FilteredUserTag,
-  SelectedProps,
-  SubCategoryName,
-  SubCategoryType,
-} from '@models/apis/UserType'
+import { FilteredUserTag, SelectedProps } from '@models/apis/UserType'
 import { getTagAnswerData } from '@utils/getTagAnswerData'
 import { useNavigate } from 'react-router-dom'
 import { questionMenu } from '@utils/questionMenu'
@@ -17,6 +12,7 @@ import { useSetRecoilState } from 'recoil'
 import { friendState } from '@libs/store/friend'
 import { question } from '@utils/question'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
+import { SubCategoryNameType, SubCategoryValueType } from '@models/favor'
 
 export interface UserTagDataProps {
   selectedProps: SelectedProps
@@ -40,7 +36,7 @@ export const UserTagDataListItem = ({
     navigate(`/profile/newTaste/${question[notAnsweredDetailCategories[0]]}`)
   }
 
-  const handleClickPresentButton = (categoryValue: SubCategoryType) => {
+  const handleClickPresentButton = (categoryValue: SubCategoryValueType) => {
     setFriendStateData((prevStateData) => ({
       ...prevStateData,
       presentRecommendFilterValue: categoryValue,
@@ -58,8 +54,9 @@ export const UserTagDataListItem = ({
         )
         const categoryName = matchingProp
           ? matchingProp.name
-          : ('' as SubCategoryName)
-        const categoryValue = matchingProp?.value ?? ('' as SubCategoryType)
+          : ('' as SubCategoryNameType)
+        const categoryValue =
+          matchingProp?.value ?? ('' as SubCategoryValueType)
         const notAnsweredDetailCategories = tag[0]?.notAnsweredDetailCategories
 
         return (

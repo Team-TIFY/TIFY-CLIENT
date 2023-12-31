@@ -1,7 +1,7 @@
-import { DailyAnswerContentInfo } from '@utils/apis/weekly/questionType'
+import { DailyAnswerContentInfo } from '@apis/weekly/questionType'
 import { TextBubble } from '@components/atoms/TextBubble'
 import { useEffect, useState } from 'react'
-import { UserApi } from '@utils/apis/user/UserApi'
+import { UserApi } from '@apis/user/UserApi'
 import styled from '@emotion/styled'
 
 interface BubbleProfile {

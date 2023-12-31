@@ -1,4 +1,4 @@
-import { axiosApi } from '@utils/apis/axios'
+import { axiosApi } from '@apis/axios'
 import {
   FavorAnswerRequest,
   FavorQuestionRequest,

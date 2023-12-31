@@ -1,4 +1,4 @@
-import { ProfileButtonVariant } from '@components/profile/ProfileInfo/ProfileMenuButton'
+import { ProfileButtonVariantType } from '@components/profile/ProfileInfo/ProfileMenuButton'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 type ButtonTextType = { text: string; color: TextType['color'] }
 
 const useProfileMenuButtonsData = (
-  type: ProfileButtonVariant,
+  type: ProfileButtonVariantType,
   friendId?: number,
 ) => {
   const { setIsMenuOpen, setIsEditImageMenuOpen } = useSetProfileRecoilState()

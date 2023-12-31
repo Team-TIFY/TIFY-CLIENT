@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
 import { PropsType } from '@models/components/atoms/Filter'
-import { SelectedTag } from '@models/apis/UserType'
+import { SelectedTagType } from '@models/favor'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'
 
@@ -23,7 +23,7 @@ export const Filter = ({
           acc.push({ name: item.name, value: item.value })
         }
         return acc
-      }, [] as SelectedTag[])
+      }, [] as SelectedTagType[])
 
     setSelectedTags(updatedTags)
   }, [selected])
