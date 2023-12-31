@@ -1,38 +1,31 @@
-import styled from '@emotion/styled'
-import { FlexBox } from '@components/layouts/FlexBox'
-import { Spacing } from '@components/atoms/Spacing'
-import { Category } from '@components/atoms/Category'
-import { Tag } from '@components/atoms/Tag'
-import { ColorIndexVariantType } from '@models/components/atoms/Tag'
-import { FilteredUserTag, SelectedProps } from '@models/apis/UserType'
-import { getTagAnswerData } from '@utils/getTagAnswerData'
 import { useNavigate } from 'react-router-dom'
-import { questionMenu } from '@utils/questionMenu'
 import { useSetRecoilState } from 'recoil'
+import styled from '@emotion/styled'
+
+import { getTagAnswerData } from '@utils/getTagAnswerData'
 import { friendState } from '@libs/store/friend'
 import { question } from '@utils/question'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
 import { SubCategoryNameType, SubCategoryValueType } from '@models/favor'
-
-export interface UserTagDataProps {
-  selectedProps: SelectedProps
-  userTagData: FilteredUserTag[]
-  isFriend: boolean
-}
+import { ColorIndexVariantType } from '@models/components/atoms/Tag'
+import { UserTagDataPropsType } from '@models/components/Profile/profile'
+import { FlexBox } from '@components/layouts/FlexBox'
+import { Spacing } from '@components/atoms/Spacing'
+import { Category } from '@components/atoms/Category'
+import { Tag } from '@components/atoms/Tag'
 
 export const UserTagDataListItem = ({
   selectedProps,
   userTagData,
   isFriend,
-}: UserTagDataProps) => {
-  const navigate = useNavigate()
+}: UserTagDataPropsType) => {
   const setFriendStateData = useSetRecoilState(friendState)
+
+  const navigate = useNavigate()
 
   const handleClickPlusButton = (
     notAnsweredDetailCategories: TasteBoxVariantType[],
   ) => {
-    console.log(notAnsweredDetailCategories)
-
     navigate(`/profile/newTaste/${question[notAnsweredDetailCategories[0]]}`)
   }
 
@@ -69,18 +62,19 @@ export const UserTagDataListItem = ({
               handleClickPlusButton(notAnsweredDetailCategories)
             }
             onPresentButtonClick={() => handleClickPresentButton(categoryValue)}
-            children={tag.map((tagData, index) =>
-              tagData.answer ? (
-                <Tag
-                  key={index}
-                  colorIndex={(index % 3) as ColorIndexVariantType}
-                  iconIndex={tagData.number}
-                  children={tagData.answer}
-                  smallCategory={tagData.smallCategory}
-                  detailCategory={tagData.detailCategory}
-                  answerNumber={tagData.number}
-                />
-              ) : null,
+            children={tag.map(
+              (tagData, index) =>
+                tagData.answer && (
+                  <Tag
+                    key={index}
+                    colorIndex={(index % 3) as ColorIndexVariantType}
+                    iconIndex={tagData.number}
+                    children={tagData.answer}
+                    smallCategory={tagData.smallCategory}
+                    detailCategory={tagData.detailCategory}
+                    answerNumber={tagData.number}
+                  />
+                ),
             )}
           />
         )

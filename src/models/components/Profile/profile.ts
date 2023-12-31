@@ -7,6 +7,7 @@ import {
   UserNewTasteCategoryType,
 } from '@models/apis/UserType'
 import {
+  SelectedPropsType,
   SelectedTagType,
   SubCategoryNameType,
   SubCategoryValueType,
@@ -107,4 +108,10 @@ export type ProfileMenuButtonPropsType<T extends ProfileButtonVariantType> = {
 
 export type UserDetailPropsType = {
   userData: UserInfoType
+}
+
+export type UserTagDataPropsType = {
+  selectedProps: SelectedPropsType
+  userTagData: FilteredUserTag[]
+  isFriend: boolean
 }
