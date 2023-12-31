@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil'
 
 import { friendState } from '@libs/store/friend'
 import { profileState } from '@libs/store/profile'
-import { ProfileButtonVariant } from '@components/profile/ProfileInfo/ProfileMenuButtons'
+import { ProfileButtonVariant } from '@components/profile/ProfileInfo/ProfileMenuButton'
 import { useOutsideClick } from './useOutsideClick'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 import useSetProfileRecoilState from './useSetProfileRecoilState'

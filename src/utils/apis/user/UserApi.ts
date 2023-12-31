@@ -2,9 +2,9 @@ import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { axiosApi } from '@utils/apis/axios'
 import {
   FilteredUserTag,
-  UserNewTasteCategory,
+  UserNewTasteCategoryType,
   IsAnsweredCategory,
-  UserInfo,
+  UserInfoType,
   UserInfoToken,
   PastTodayCategoryCountType,
   PastTodayAnswerType,
@@ -19,7 +19,7 @@ export const UserApi = {
     return response.data.data
   },
 
-  GET_USER_INFO: async (userId: number): Promise<UserInfo> => {
+  GET_USER_INFO: async (userId: number): Promise<UserInfoType> => {
     const response = await axiosApi.get(`/users/${userId}`)
     return response.data.data
   },
@@ -34,7 +34,7 @@ export const UserApi = {
     return response.data.data
   },
 
-  GET_ISANSWERED_QUESTION: async (): Promise<UserNewTasteCategory[]> => {
+  GET_ISANSWERED_QUESTION: async (): Promise<UserNewTasteCategoryType[]> => {
     const response = await axiosApi.get(`/favor-questions/isAnswered`)
     return response.data.data
   },
@@ -44,7 +44,7 @@ export const UserApi = {
   },
 
   GET_SMALL_CATEGORY_ISANSWERED_QUESTION: async (
-    category: SubCategoryType,
+    category: SubCategoryValueType,
   ): Promise<IsAnsweredCategory[]> => {
     const response = await axiosApi.get(
       `favor-questions/isAnswered/detail-category?smallCategory=${category}`,

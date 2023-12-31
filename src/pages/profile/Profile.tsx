@@ -8,29 +8,26 @@ import useProfileMutate from '@libs/hooks/useProfileMutate'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { useProfileMenus } from '@libs/hooks/useProfileMenus'
 import { authState } from '@libs/store/auth'
-import { SelectedTag, UserInfo } from '@models/apis/UserType'
 import {
   ProfilePropsType,
   SelectedPropType,
-  MenuButtonType,
 } from '@models/components/Profile/profile'
-import { SubCategoryValueType } from '@models/favor'
+import { SelectedTagType, SubCategoryValueType } from '@models/favor'
+import { UserInfoType } from '@models/apis/UserType'
 import { UserApi } from '@utils/apis/user/UserApi'
 import { selectedProps } from '@constants/Profile/selectedProps'
 import { Padding } from '@components/layouts/Padding'
-import Dimmer from '@components/layouts/Dimmer'
-import ProfileMenuButtons from '@components/profile/ProfileInfo/ProfileMenuButtons'
 import { Spacing } from '@components/atoms/Spacing'
-import { Filter } from '@components/atoms/Filter'
 import { ProfileImage } from '@components/profile/ProfileInfo/ProfileImage'
 import { ProfileHeader } from '@components/profile/ProfileInfo/ProfileHeader'
-import { UserTagDataListItem } from '@components/profile/ProfileInfo/UserTagDataListItem'
+import ProfileMenuButtonListItem from '@components/profile/ProfileInfo/ProfileMenuButtonListItem'
+import UserTastes from '@components/profile/ProfileInfo/UserTastes'
 
 const Profile = ({
   userData,
   userId,
   addFriend = false,
-}: ProfilePropsType<UserInfo>) => {
+}: ProfilePropsType<UserInfoType>) => {
   const auth = useRecoilValue(authState)
 
   const params = useParams()
@@ -42,13 +39,13 @@ const Profile = ({
     isBlockMenuOpen,
   } = useProfileMenus()
 
-  const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
+  const [selectedTags, setSelectedTags] = useState<SelectedTagType[]>([])
   const [userTagCountSumData, setUserTagCountSumData] = useState<number>(0)
 
   const { setIsEdit } = useSetProfileRecoilState()
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
-  const { data: myData = {} as UserInfo } = useQuery(
+  const { data: myData = {} as UserInfoType } = useQuery(
     ['userProfile', auth.userProfile.id],
     () => UserApi.GET_USER_INFO(auth.userProfile.id),
     {
@@ -57,10 +54,10 @@ const Profile = ({
   )
 
   const getSmallCategoryData = (
-    selectedTags: SelectedTag[],
+    selectedTags: SelectedTagType[],
   ): SubCategoryValueType[] => {
     return selectedTags.length
-      ? selectedTags.map((tag: SelectedTag) => tag.value)
+      ? selectedTags.map((tag: SelectedTagType) => tag.value)
       : selectedProps.map(
           (selectedProp: SelectedPropType) => selectedProp.value,
         )
@@ -122,39 +119,17 @@ const Profile = ({
     }
   }, [userTagData])
 
-  const getFriendUserId = (menu: MenuButtonType) => {
-    if (
-      menu.type === 'cutOffFriend' ||
-      menu.type === 'block' ||
-      menu.type === 'cancelBlock'
-    ) {
-      return userData?.userId
-    }
-  }
-
-  const getFriendImageUrl = (menu: MenuButtonType) => {
-    if (
-      menu.type === 'cutOffFriend' ||
-      menu.type === 'block' ||
-      menu.type === 'cancelBlock'
-    ) {
-      return userData?.thumbnail
-    }
-  }
-
   const renderMenuButtons = () => {
     return menus.map(
       (menu, idx) =>
         menu.menuOpen && (
-          <ProfileMenuButtonWrapper key={idx}>
-            <Dimmer dimmerRef={menu.ref} onClick={menu.close} />
-            <ProfileMenuButtons
-              type={menu.type}
-              friendId={userId}
-              friendUserId={getFriendUserId(menu)}
-              friendImageUrl={getFriendImageUrl(menu)}
-            />
-          </ProfileMenuButtonWrapper>
+          <ProfileMenuButtonListItem
+            key={idx}
+            userData={userData!}
+            userId={userId!}
+            idx={idx}
+            menu={menu}
+          />
         ),
     )
   }
@@ -162,24 +137,13 @@ const Profile = ({
   const renderFilterAndTagItem = () => {
     if (userData || myData) {
       return (
-        <>
-          <Spacing height={32} />
-          <FilterWrapper>
-            {userTagCountSumData && (
-              <Filter
-                selectedTags={selectedTags}
-                setSelectedTags={setSelectedTags}
-                selectedProps={selectedProps}
-              />
-            )}
-          </FilterWrapper>
-          <Spacing height={20} />
-          <UserTagDataListItem
-            selectedProps={selectedProps}
-            userTagData={userTagData}
-            isFriend={userData ? true : false}
-          />
-        </>
+        <UserTastes
+          userTagCountSumData={userTagCountSumData}
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+          userTagData={userTagData}
+          userData={userData!}
+        />
       )
     } else {
       return <Spacing height={24} />
@@ -208,17 +172,3 @@ const Profile = ({
 export default Profile
 
 const ProfileWrapper = styled.div``
-
-const FilterWrapper = styled.div`
-  width: 100%;
-  overflow-x: auto;
-  white-space: nowrap;
-  display: flex;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-`
-
-const ProfileMenuButtonWrapper = styled.div``

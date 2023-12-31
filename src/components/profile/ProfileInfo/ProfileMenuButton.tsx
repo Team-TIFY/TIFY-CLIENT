@@ -4,7 +4,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import SquareButton from '@components/atoms/SquareButton'
 import useProfileMenuButtonsData from '@libs/hooks/useProfileMenuButtonsData'
 
-export type ProfileButtonVariant =
+export type ProfileButtonVariantType =
   | 'myProfile'
   | 'cutOffFriend'
   | 'report'
@@ -12,7 +12,7 @@ export type ProfileButtonVariant =
   | 'cancelBlock'
   | 'editProfile'
 
-const ProfileMenuButtons = <T extends ProfileButtonVariant>({
+const ProfileMenuButton = <T extends ProfileButtonVariantType>({
   type,
   friendUserId,
   friendImageUrl,
@@ -147,9 +147,11 @@ const ProfileMenuButtons = <T extends ProfileButtonVariant>({
   )
 }
 
-export default ProfileMenuButtons
+export default ProfileMenuButton
 
-const ProfileButtonsWrapper = styled(FlexBox)<{ type: ProfileButtonVariant }>`
+const ProfileButtonsWrapper = styled(FlexBox)<{
+  type: ProfileButtonVariantType
+}>`
   flex-direction: column;
   z-index: 999;
   position: fixed;

@@ -2,7 +2,7 @@ import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { SubCategoryNameType, SubCategoryValueType } from '@models/favor'
 import { TasteBoxVariantType } from './TasteType'
 
-export type UserInfo = {
+export type UserInfoType = {
   id: number
   userId: string
   userName: string
@@ -52,11 +52,6 @@ export type FilteredUserTag = {
   answerContentList: answerContentType[]
   notAnsweredDetailCategories: any[]
   allDetailCategoryAnswered: boolean
-}
-
-export type SelectedTag = {
-  name: SubCategoryNameType
-  value: SubCategoryValueType
 }
 
 export type SelectedProps = {
