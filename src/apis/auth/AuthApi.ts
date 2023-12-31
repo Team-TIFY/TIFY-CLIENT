@@ -1,4 +1,5 @@
 import { axiosApi } from '../axios'
+
 import { OauthLoginResponse } from '@models/apis/AuthType'
 
 export const AuthApi = {
@@ -6,10 +7,12 @@ export const AuthApi = {
     const response = await axiosApi.get(`/auth/oauth/kakao?code=${code}`)
     return response.data.data
   },
+
   APPLE_TOKEN: async (code: string) => {
     const response = await axiosApi.get(`/auth/oauth/apple?code=${code}`)
     return response.data.data
   },
+
   KAKAO_LINK: async () => {
     const response = await axiosApi.get('/auth/oauth/kakao/link')
     return response.data.data
@@ -33,6 +36,7 @@ export const AuthApi = {
     )
     return response.data.data
   },
+
   KAKAO_REGISTER: async (idToken: string): Promise<OauthLoginResponse> => {
     const response = await axiosApi.post(
       `/auth/oauth/kakao/register?id_token=${idToken}`,

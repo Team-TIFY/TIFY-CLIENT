@@ -3,7 +3,7 @@ import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
 import { theme } from '@styles/theme'
 import { useQuery } from '@tanstack/react-query'
-import { SettingApi } from '@apis/setting'
+import { SettingApi } from '@apis/setting/SettingApi'
 import { useEffect, useState } from 'react'
 
 const VersionInfo = () => {

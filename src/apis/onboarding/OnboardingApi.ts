@@ -1,4 +1,5 @@
 import { axiosApi } from '../axios'
+
 import { OnboardRequest } from '@libs/store/onboard'
 
 export const OnboardingApi = {

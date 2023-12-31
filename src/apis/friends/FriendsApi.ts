@@ -1,6 +1,6 @@
-import { DataType } from '@components/friends/PresentRecommend'
-import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
 import { axiosApi } from '../axios'
+
+import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
 import {
   FriendRequestType,
   FriendsType,
@@ -10,12 +10,14 @@ import {
   SearchedFriendType,
   DailyFriendsType,
 } from '../../models/apis/FriendsType'
+import { DataType } from '@components/friends/PresentRecommend'
 
 export const FriendsApi = {
   GET_ALL_FRIENDS_LIST: async (): Promise<DailyFriendsType[]> => {
     const response = await axiosApi.get(`/users/neighbors`)
     return response.data.data
   },
+
   GET_FRIENDS_LIST: async (): Promise<FriendsType[]> => {
     const response = await axiosApi.get('/users/neighbors/favors')
     return response.data.data
@@ -111,12 +113,14 @@ export const FriendsApi = {
     })
     return response.data
   },
+
   VIEW_FRIEND: async (neighborId: number) => {
     const response = await axiosApi.patch(
       `/users/neighbors/${neighborId}/views`,
     )
     return response.data
   },
+
   POKE_FRIEND: async ({
     questionId,
     userId,
@@ -129,6 +133,7 @@ export const FriendsApi = {
     )
     return response.data
   },
+
   POKE_COUNT_MYFRIEND: async ({
     questionId,
     userId,

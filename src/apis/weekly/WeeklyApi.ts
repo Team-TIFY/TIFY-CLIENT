@@ -1,3 +1,5 @@
+import { axiosApi } from '../axios'
+
 import { NeighborAnswerListInfo } from '@models/apis/questionType'
 import {
   CountDailyQuestion,
@@ -5,13 +7,13 @@ import {
   DailyAnswerContentInfo,
   DailyQuestionReport,
 } from '@models/apis/questionType'
-import { axiosApi } from '../axios'
 
 export const WeeklyApi = {
   GET_QUESTIONS: async (date: string): Promise<DailyQuestionInfo> => {
     const response = await axiosApi.get(`/daily-questions?loadingDate=${date}`)
     return response.data.data.dailyQuestionInfo
   },
+
   ANSWER_QUESTION: async ({
     questionId,
     answer,
@@ -27,16 +29,19 @@ export const WeeklyApi = {
     )
     return response.data
   },
+
   ALREADY_ANSWERED: async (questionId: number): Promise<boolean> => {
     const response = await axiosApi.get(
       `/daily-questions/${questionId}/user/answers/exists`,
     )
     return response.data.data
   },
+
   COUNT_ANSWER: async (questionId: number): Promise<CountDailyQuestion> => {
     const response = await axiosApi.get(`/${questionId}/answers/counts`)
     return response.data.data
   },
+
   GET_ANSWERS: async ({
     questionId,
   }: {
@@ -45,6 +50,7 @@ export const WeeklyApi = {
     const response = await axiosApi.get(`/${questionId}/answers`)
     return response.data.data
   },
+
   GET_NEIGHBOR_ANSWERS: async ({
     questionId,
     userId,
@@ -57,6 +63,7 @@ export const WeeklyApi = {
     )
     return response.data.data
   },
+
   REPORT_ANSWER: async ({
     questionId,
     answerId,

@@ -1,10 +1,11 @@
-import { axiosApi } from './axios'
+import { axiosApi } from '../axios'
 
 export const SettingApi = {
   POST_LOGOUT: async () => {
     const response = await axiosApi.post(`/auth/logout`)
     return response
   },
+
   GET_VERSION: async (): Promise<{
     iosVersion: 'string'
     aosVersion: 'string'
@@ -29,6 +30,7 @@ export const CustomerCenterApi = {
   //   const response = await axiosApi.post(url)
   //   return response
   // },
+
   POST_OPINION: async (
     opinionType: string,
     title: string,

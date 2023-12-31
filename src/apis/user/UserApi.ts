@@ -1,5 +1,5 @@
-import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { axiosApi } from '@apis/axios'
+
 import {
   FilteredUserTag,
   UserNewTasteCategoryType,
@@ -11,6 +11,7 @@ import {
   EditUserProfileDataType,
   FavorBoxType,
 } from '@models/apis/UserType'
+import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { SubCategoryValueType } from '@models/favor'
 
 export const UserApi = {
@@ -80,6 +81,7 @@ export const UserApi = {
     const response = await axiosApi.get(`/users/${id}/tags`)
     return response.data.data
   },
+
   EDIT_FAVOR_BOX: async ({
     userId,
     favorList,
