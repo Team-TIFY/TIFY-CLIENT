@@ -53,21 +53,20 @@ const ProfileRouter = () => {
     if (step.favorAnswerDtos.length > 0) {
       const tempList = [...step.favorAnswerDtos]
       const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)
+
       setStepAnswer({
         categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
+
       navigate(-1)
     } else if (localStorage.getItem('isOnboardingFavor') === 'true') {
       localStorage.removeItem('isOnboardingFavor')
+
       navigate('/onboarding')
     } else {
       navigate(-1)
     }
-  }
-
-  const handleClickIcon = (url: string) => {
-    navigate(url)
   }
 
   const { data: userData } = useQuery(
@@ -107,7 +106,7 @@ const ProfileRouter = () => {
                 <Svg
                   key="searchFriends"
                   children={<BigX />}
-                  onClick={() => handleClickIcon('/profile')}
+                  onClick={() => navigate('/profile')}
                 />,
               ]}
             >
@@ -206,7 +205,7 @@ const ProfileRouter = () => {
                 <Svg
                   key="searchFriends"
                   children={<BigX />}
-                  onClick={() => handleClickIcon('/profile')}
+                  onClick={() => navigate('/profile')}
                 />,
               ]}
             >

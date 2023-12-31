@@ -30,11 +30,13 @@ const AppBarTemplate = ({
     if (rightChildren !== 'stepNum') {
       return [0, 0]
     }
+
     const favorType = window.location.href
       .split('/')[5]
       .split('?')[0] as TasteType
     const totalNum = Object.keys(favorQuestionData[favorType]).length
     const stepNum = parseInt(window.location.href.slice(-1), 10)
+
     if (isNaN(stepNum)) {
       return [1, totalNum]
     } else {
