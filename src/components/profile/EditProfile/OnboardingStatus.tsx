@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom'
+
+import { EditOnboardingStatusType } from '@models/components/Profile/profile'
 import { Padding } from '@components/layouts/Padding'
 import { LongInput } from '@components/atoms/Input/LongInput'
 import { Text } from '@components/atoms/Text'
-
-export type EditOnboardingStatusType = {
-  value: string
-}
 
 const OnboardingStatus = ({ value }: EditOnboardingStatusType) => {
   const navigate = useNavigate()

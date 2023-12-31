@@ -55,3 +55,7 @@ export type UserTastesPropsType = {
 export type PastTodayListItemPropsType = {
   pastTodayAnswer: PastTodayAnswerType[][]
 }
+
+export type EditOnboardingStatusType = {
+  value: string
+}

@@ -1,8 +1,9 @@
 import { useRecoilValue } from 'recoil'
-import { Avatar } from '@components/atoms/Avatar'
-import { Text } from '@components/atoms/Text'
+
 import { authState } from '@libs/store/auth'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
+import { Avatar } from '@components/atoms/Avatar'
+import { Text } from '@components/atoms/Text'
 
 const EditProfileImage = () => {
   const auth = useRecoilValue(authState)
