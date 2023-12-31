@@ -46,7 +46,7 @@ export type UserTag = {
 }
 
 export type answerContentType = {
-  detailCategory: string
+  detailCategory: DetailCategoryValueType
   number: number
   answerContent: string
 }
