@@ -1,4 +1,7 @@
-import { SubCategoryValueType, DetailCategoryValueType } from '@models/favor'
+import {
+  SubCategoryValueType,
+  DetailCategoryValueType,
+} from '@models/common/favor'
 import { splitDataByComma } from './splitDataByComma'
 
 export const processTagAnswerData = (

@@ -1,22 +1,10 @@
 import { atom } from 'recoil'
 
-export type OnboardRequestType = {
-  username: string
-  id: string
-  birth: string
-  gender: string
-  onBoardingState: string
-  userFavorDtoList: string[]
-}
-
-export interface OnboardingType {
-  username: string
-  id: string
-  birth: string
-  gender: string
-  onBoardingState: string
-  favor: string[]
-}
+import {
+  OnboardingBtnType,
+  OnboardingPageType,
+  OnboardingType,
+} from '@models/stores/onboard'
 
 const initialState: OnboardingType = {
   username: '',
@@ -31,19 +19,6 @@ export const onboardingState = atom<OnboardingType>({
   key: 'onboardingState',
   default: initialState,
 })
-
-export interface OnboardingPageType {
-  agreement: boolean
-  info: {
-    username: boolean
-    id: boolean
-    birth: boolean
-    gender: boolean
-  }
-  interestStart: boolean
-  onboardStatus: boolean
-  favor: boolean
-}
 
 const initialPageState: OnboardingPageType = {
   agreement: false,
@@ -67,13 +42,6 @@ export const pageTempState = atom({
   key: 'pageTempState',
   default: '',
 })
-
-export interface OnboardingBtnType {
-  username: boolean
-  id: boolean
-  birth: boolean
-  gender: boolean
-}
 
 const initialBtnState: OnboardingBtnType = {
   username: false,

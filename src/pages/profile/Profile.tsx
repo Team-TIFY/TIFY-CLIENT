@@ -12,7 +12,7 @@ import {
   ProfilePropsType,
   SelectedPropType,
 } from '@models/components/Profile/profile'
-import { SelectedTagType, SubCategoryValueType } from '@models/favor'
+import { SelectedTagType, SubCategoryValueType } from '@models/common/favor'
 import { UserInfoType } from '@models/apis/UserType'
 import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
 import { UserApi } from '@apis/user/UserApi'

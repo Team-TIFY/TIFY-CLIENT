@@ -1,5 +1,6 @@
-import { SubCategoryValueType } from '@models/favor'
 import { atom } from 'recoil'
+
+import { SubCategoryValueType } from '@models/common/favor'
 
 export const subCategoryState = atom<SubCategoryValueType | ''>({
   key: 'subCategoryState',

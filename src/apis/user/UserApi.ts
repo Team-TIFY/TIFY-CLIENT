@@ -12,7 +12,7 @@ import {
   FavorBoxType,
 } from '@models/apis/UserType'
 import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
-import { SubCategoryValueType } from '@models/favor'
+import { SubCategoryValueType } from '@models/common/favor'
 
 export const UserApi = {
   GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {

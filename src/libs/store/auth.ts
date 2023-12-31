@@ -1,16 +1,9 @@
-import { UserInfoToken } from '@models/apis/UserType'
 import { atom } from 'recoil'
 import { recoilPersist } from 'recoil-persist'
 
-const { persistAtom } = recoilPersist()
+import { AuthStateType } from '@models/stores/auth'
 
-export type AuthStateType = {
-  isAuthenticated: boolean
-  loginType: 'APPLE' | 'KAKAO'
-  callbackUrl: string
-  accessToken: string
-  userProfile: UserInfoToken
-}
+const { persistAtom } = recoilPersist()
 
 const initialState: AuthStateType = {
   isAuthenticated: false,

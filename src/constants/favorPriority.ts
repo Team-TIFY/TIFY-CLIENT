@@ -1,4 +1,4 @@
-import { TasteType } from '@utils/apis/favor/TasteType'
+import { FavorPriorityType } from '@models/common/favorPriority'
 
 export const favorPriority: FavorPriorityType[] = [
   {
@@ -42,8 +42,3 @@ export const favorPriority: FavorPriorityType[] = [
     priority: 1,
   },
 ]
-
-type FavorPriorityType = {
-  taste: TasteType
-  priority: number
-}

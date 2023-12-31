@@ -1,13 +1,6 @@
-import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { atom } from 'recoil'
 
-export type ProfileStateType = {
-  value: boolean
-  isMenuOpen: boolean
-  isEditImageMenuOpen: boolean
-  isEdit: boolean
-  pastTodayCategory: TodayCategoryValueType
-}
+import { ProfileStateType } from '@models/stores/profile'
 
 const initialState: ProfileStateType = {
   value: true,

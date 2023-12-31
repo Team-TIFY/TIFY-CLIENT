@@ -11,7 +11,7 @@ import {
   SelectedTagType,
   SubCategoryNameType,
   SubCategoryValueType,
-} from '@models/favor'
+} from '@models/common/favor'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 export type SelectedPropType = {

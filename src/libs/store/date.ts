@@ -1,11 +1,6 @@
 import { atom } from 'recoil'
-import { TodayKeyType } from '@models/components/atoms/DayWeek'
 
-export type WeeklyDateType = {
-  today: TodayKeyType
-  selectedDate: TodayKeyType
-  dateString: string
-}
+import { WeeklyDateType } from '@models/stores/date'
 
 const initialState: WeeklyDateType = {
   today: 0,

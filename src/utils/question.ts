@@ -1,4 +1,4 @@
-import { QuestionCategoryType } from '@models/favor'
+import { QuestionCategoryType } from '@models/common/favor'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 export const question: Record<TasteBoxVariantType, QuestionCategoryType> = {

@@ -3,7 +3,7 @@ import {
   DetailCategoryValueType,
   SubCategoryNameType,
   SubCategoryValueType,
-} from '@models/favor'
+} from '@models/common/favor'
 import { TasteBoxVariantType } from './TasteType'
 
 export type UserInfoType = {
@@ -23,7 +23,7 @@ export type UserInfoType = {
   userFavorList: TasteBoxVariantType[]
 }
 
-export type UserInfoToken = {
+export type UserInfoTokenType = {
   id: number
   userName: string
   userId: string

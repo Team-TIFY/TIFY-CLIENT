@@ -1,4 +1,4 @@
-import { SubCategoryValueType, SubCategoryNameType } from '@models/favor'
+import { SubCategoryValueType, SubCategoryNameType } from '@models/common/favor'
 
 export const subCategoryTitle: Record<
   SubCategoryValueType,

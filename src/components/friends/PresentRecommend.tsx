@@ -18,7 +18,7 @@ import {
   SelectedTagType,
   SubCategoryNameType,
   SubCategoryValueType,
-} from '@models/favor'
+} from '@models/common/favor'
 import { useInfiniteQueries } from '@libs/hooks'
 import PresentItem from './PresentItem'
 

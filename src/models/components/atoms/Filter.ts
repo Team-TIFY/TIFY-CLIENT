@@ -1,5 +1,5 @@
 import { SelectedProps } from '@models/apis/UserType'
-import { SubCategoryValueType, SelectedTagType } from '@models/favor'
+import { SubCategoryValueType, SelectedTagType } from '@models/common/favor'
 import { ButtonHTMLAttributes } from 'react'
 
 export type CategoryAnswerCountType = {

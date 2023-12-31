@@ -1,5 +1,8 @@
 import { FilteredUserTag } from '@models/apis/UserType'
-import { DetailCategoryValueType, SubCategoryValueType } from '@models/favor'
+import {
+  DetailCategoryValueType,
+  SubCategoryValueType,
+} from '@models/common/favor'
 import { processTagAnswerData } from './processTagAnswerData'
 
 export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {

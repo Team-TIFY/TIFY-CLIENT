@@ -1,16 +1,6 @@
-import { SubCategoryValueType } from '@models/favor'
 import { atom } from 'recoil'
 
-export type FriendStateType = {
-  isToggle: boolean
-  isAllRequest: boolean
-  showPartialRequest: boolean
-  isMenuOpen: boolean
-  isCutOffMenuOpen: boolean
-  isBlockMenuOpen: boolean
-  isCancelBlockMenuOpen: boolean
-  presentRecommendFilterValue: SubCategoryValueType | ''
-}
+import { FriendStateType } from '@models/stores/friend'
 
 const initialState: FriendStateType = {
   isToggle: false,
