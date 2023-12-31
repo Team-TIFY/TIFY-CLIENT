@@ -12,6 +12,7 @@ import {
   SubCategoryValueType,
 } from '@models/favor'
 import { ProfileButtonVariantType } from '@components/profile/ProfileInfo/ProfileMenuButton'
+import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 export type SelectedPropType = {
   id: number
@@ -80,4 +81,8 @@ export type ProfileHeaderButtonListItemPropsType = {
     text: string
     onClick?: () => void
   }[]
+}
+
+export type ProfileImagePropsType = {
+  favorList: TasteBoxVariantType[]
 }
