@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { OauthCodeResponse } from '@apis/auth/AuthType'
+import { OauthCodeResponse } from '@models/apis/AuthType'
 import { useMutation } from '@tanstack/react-query'
 import { useLocation } from 'react-router-dom'
 import { AuthApi } from '@apis/auth/AuthApi'

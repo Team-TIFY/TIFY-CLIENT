@@ -1,10 +1,10 @@
-import { NeighborAnswerListInfo } from '@apis/weekly/questionType'
+import { NeighborAnswerListInfo } from '@models/apis/questionType'
 import {
   CountDailyQuestion,
   DailyQuestionInfo,
   DailyAnswerContentInfo,
   DailyQuestionReport,
-} from '@apis/weekly/questionType'
+} from '@models/apis/questionType'
 import { axiosApi } from '../axios'
 
 export const WeeklyApi = {

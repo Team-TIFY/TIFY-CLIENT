@@ -1,4 +1,4 @@
-import { OauthLoginResponse, OauthCodeResponse } from '@apis/auth/AuthType'
+import { OauthLoginResponse, OauthCodeResponse } from '@models/apis/AuthType'
 import { authState } from '@libs/store/auth'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'

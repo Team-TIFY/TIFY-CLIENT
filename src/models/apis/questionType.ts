@@ -1,4 +1,4 @@
-import { DailyFriendsType } from '@apis/friends/FriendsType'
+import { DailyFriendsType } from '@models/apis/FriendsType'
 
 export interface DailyQuestionInfo {
   questionId: number

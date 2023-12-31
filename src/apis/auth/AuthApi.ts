@@ -1,5 +1,5 @@
 import { axiosApi } from '../axios'
-import { OauthLoginResponse } from '@apis/auth/AuthType'
+import { OauthLoginResponse } from '@models/apis/AuthType'
 
 export const AuthApi = {
   KAKAO_TOKEN: async (code: string) => {

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
 import { dateState } from '@libs/store/date'
-import { DailyQuestionCategoryType } from '@apis/weekly/questionType'
+import { DailyQuestionCategoryType } from '@models/apis/questionType'
 
 const QuestionImg = ({
   className,

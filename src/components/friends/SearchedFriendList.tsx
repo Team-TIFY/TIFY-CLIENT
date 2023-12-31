@@ -2,7 +2,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import SearchedFriend from './SearchedFriendItem'
 import { friendState } from '@libs/store/friend'
 import { useRecoilValue } from 'recoil'
-import { SearchedFriendType } from '@apis/friends/FriendsType'
+import { SearchedFriendType } from '@models/apis/FriendsType'
 import { Text } from '@components/atoms/Text'
 import { authState } from '@libs/store/auth'
 
