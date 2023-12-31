@@ -104,3 +104,7 @@ export type ProfileMenuButtonPropsType<T extends ProfileButtonVariantType> = {
     : undefined
   friendId?: number
 }
+
+export type UserDetailPropsType = {
+  userData: UserInfoType
+}

@@ -1,22 +1,19 @@
+import { useRecoilValue } from 'recoil'
 import styled from '@emotion/styled'
+
+import useGetDate from '@libs/hooks/useGetDate'
+import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
+import { authState } from '@libs/store/auth'
+import ThreeDots from '@assets/icons/ThreeDots'
+import { UserDetailPropsType } from '@models/components/Profile/profile'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Avatar } from '@components/atoms/Avatar'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import Svg from '@components/atoms/Svg'
-import { UserInfoType } from '@models/apis/UserType'
-import useGetDate from '@libs/hooks/useGetDate'
-import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
-import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
-import ThreeDots from '@assets/icons/ThreeDots'
-import { useRecoilValue } from 'recoil'
-import { authState } from '@libs/store/auth'
 
-export interface UserDetailProps {
-  userData: UserInfoType
-}
-
-export const UserDetail = ({ userData }: UserDetailProps) => {
+export const UserDetail = ({ userData }: UserDetailPropsType) => {
   const { formatDate } = useGetDate()
 
   const { setIsMenuOpen } = useSetProfileRecoilState()
@@ -28,6 +25,15 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
 
   const getUserInfoText = () => {
     return formatDate(userData?.birth) + ' | ' + userData?.onBoardingStatus
+  }
+
+  const handleClickMenuButton = () => {
+    if (userData.userId === auth.userProfile.userId) {
+      return setIsMenuOpen(true)
+    } else if (userData.blocked) {
+      return setIsFriendCancelBlockMenuOpen(true)
+    }
+    return setIsFriendMenuOpen(true)
   }
 
   return (
@@ -50,13 +56,7 @@ export const UserDetail = ({ userData }: UserDetailProps) => {
           <Svg
             children={<ThreeDots />}
             style={{ cursor: 'pointer' }}
-            onClick={() =>
-              userData.userId === auth.userProfile.userId
-                ? setIsMenuOpen(true)
-                : userData.blocked
-                ? setIsFriendCancelBlockMenuOpen(true)
-                : setIsFriendMenuOpen(true)
-            }
+            onClick={handleClickMenuButton}
           />
         </FlexBox>
         <Text
