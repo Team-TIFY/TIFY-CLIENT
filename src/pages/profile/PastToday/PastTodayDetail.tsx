@@ -1,21 +1,28 @@
-import { Spacing } from '@components/atoms/Spacing'
-import TodayCategoryList from '@components/atoms/TodayCategoryList'
-import TodayList from '@components/atoms/TodayList'
-import { FlexBox } from '@components/layouts/FlexBox'
 import styled from '@emotion/styled'
 import { useQuery } from '@tanstack/react-query'
-import { UserApi } from '@apis/user/UserApi'
 import { useRecoilValue } from 'recoil'
-import { profileState } from '@libs/store/profile'
 import { useParams } from 'react-router-dom'
-import { Text } from '@components/atoms/Text'
+
+import { profileState } from '@libs/store/profile'
+import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
+import { UserApi } from '@apis/user/UserApi'
+import { Spacing } from '@components/atoms/Spacing'
+import TodayCategoryList from '@components/atoms/TodayCategoryList'
+import { FlexBox } from '@components/layouts/FlexBox'
+import NoAnswer from '@components/profile/PastToday/NoAnswer'
+import PastTodayListItem from '@components/profile/PastToday/PastTodayListItem'
 
 const PastTodayDetail = () => {
   const profileStateData = useRecoilValue(profileState)
+
   const location = useParams()
 
   const { data: pastTodayAnswer = [] } = useQuery(
-    ['pastTodayAnswer', location.id, profileStateData.pastTodayCategory],
+    [
+      profileQueryKeys.PAST_TODAY_ANSWER,
+      location.id,
+      profileStateData.pastTodayCategory,
+    ],
     () =>
       UserApi.GET_PAST_TODAY_ANSWER(
         Number(location.id),
@@ -31,25 +38,9 @@ const PastTodayDetail = () => {
       <Spacing height={20} />
       <TodayAnswerListWrapper>
         {pastTodayAnswer.length ? (
-          pastTodayAnswer.map((todayList, index) => (
-            <>
-              <TodayList
-                key={index}
-                todayAnswerList={todayList}
-                isLastMonth={index === pastTodayAnswer.length - 1}
-              />
-            </>
-          ))
+          <PastTodayListItem pastTodayAnswer={pastTodayAnswer} />
         ) : (
-          <>
-            <Spacing height={64} />
-            <Text typo="Subhead_14" color="gray_200">
-              아직 답변이 없어요.
-            </Text>
-            <Text typo="Subhead_14" color="gray_200">
-              투데이 질문에 답변해보세요.
-            </Text>
-          </>
+          <NoAnswer />
         )}
       </TodayAnswerListWrapper>
     </PastTodayDetailWrapper>

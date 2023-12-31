@@ -1,6 +1,10 @@
 import { RefObject, MouseEventHandler } from 'react'
 
-import { FilteredUserTag, UserInfoType } from '@models/apis/UserType'
+import {
+  FilteredUserTag,
+  PastTodayAnswerType,
+  UserInfoType,
+} from '@models/apis/UserType'
 import {
   SelectedTagType,
   SubCategoryNameType,
@@ -46,4 +50,8 @@ export type UserTastesPropsType = {
   setSelectedTags: React.Dispatch<React.SetStateAction<SelectedTagType[]>>
   userTagData: FilteredUserTag[]
   userData: UserInfoType
+}
+
+export type PastTodayListItemPropsType = {
+  pastTodayAnswer: PastTodayAnswerType[][]
 }
