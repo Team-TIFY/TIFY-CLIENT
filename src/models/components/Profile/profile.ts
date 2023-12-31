@@ -115,3 +115,13 @@ export type UserTagDataPropsType = {
   userTagData: FilteredUserTag[]
   isFriend: boolean
 }
+
+export type BackgroundColorVariantType = 'gray_900' | 'purple_500' | 'pink_300'
+
+export type ShareProfileIconsPropsType = {
+  backgroundColor: BackgroundColorVariantType
+  setBackgroundColor: React.Dispatch<
+    React.SetStateAction<BackgroundColorVariantType>
+  >
+  setBackgroundImage: React.Dispatch<React.SetStateAction<boolean>>
+}

@@ -1,16 +1,16 @@
-import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
 import { useState } from 'react'
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import backgroundImageUrl from '@assets/image/share_profile_background.png'
+import { BackgroundColorVariantType } from '@models/components/Profile/profile'
+import { FlexBox } from '@components/layouts/FlexBox'
 import ShareProfileIcons from './ShareProfileIcons'
 import ShareProfileInfo from './ShareProfileInfo'
-import backgroundImageUrl from '@assets/image/share_profile_background.png'
-
-export type BackgroundColorVariant = 'gray_900' | 'purple_500' | 'pink_300'
 
 const ShareProfileImage = () => {
   const [backgroundColor, setBackgroundColor] =
-    useState<BackgroundColorVariant>('gray_900')
+    useState<BackgroundColorVariantType>('gray_900')
   const [backgroundImage, setBackgroundImage] = useState(true)
 
   return (
@@ -31,7 +31,7 @@ const ShareProfileImage = () => {
 export default ShareProfileImage
 
 const ProfileImageWrapper = styled(FlexBox)<{
-  color: BackgroundColorVariant
+  color: BackgroundColorVariantType
 }>`
   position: relative;
   flex-direction: column;

@@ -1,11 +1,12 @@
+import CopyToClipboard from 'react-copy-to-clipboard'
+import styled from '@emotion/styled'
+
+import useSnackBar from '@libs/hooks/useSnackBar'
 import LinkIcon from '@assets/icons/LinkIcon'
 import SaveIcon from '@assets/icons/SaveIcon'
 import SquareButton from '@components/atoms/SquareButton'
 import Svg from '@components/atoms/Svg'
 import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
-import useSnackBar from '@libs/hooks/useSnackBar'
-import CopyToClipboard from 'react-copy-to-clipboard'
 
 const ShareProfileButtons = () => {
   const { setSnackBar } = useSnackBar()
@@ -29,7 +30,7 @@ const ShareProfileButtons = () => {
         이미지 저장하기
       </SquareButton>
       <CopyToClipboard
-        text="http://localhost:3000/profile"
+        text="https://tify-client.vercel.app/profile"
         onCopy={handleClickCopyToClipboard}
       >
         <SquareButton variant="mediumSquare" subVariant="default">

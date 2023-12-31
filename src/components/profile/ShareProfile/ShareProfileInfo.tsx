@@ -1,27 +1,29 @@
-import TifySmallLogo from '@assets/icons/TifySmallLogo'
-import Svg from '@components/atoms/Svg'
+import { useRecoilValue } from 'recoil'
+import { useQuery } from '@tanstack/react-query'
 import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
 import useGetDate from '@libs/hooks/useGetDate'
 import { authState } from '@libs/store/auth'
-import { theme } from '@styles/theme'
-import { useRecoilValue } from 'recoil'
-import { Text } from '@components/atoms/Text'
-import ProfileBox from '@components/atoms/ProfileBox'
-import { useQuery } from '@tanstack/react-query'
+import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
 import { UserApi } from '@apis/user/UserApi'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
+import TifySmallLogo from '@assets/icons/TifySmallLogo'
+import Svg from '@components/atoms/Svg'
+import { Text } from '@components/atoms/Text'
+import ProfileBox from '@components/atoms/ProfileBox'
 
 const ShareProfileInfo = () => {
   const auth = useRecoilValue(authState)
   const { getFormattedDate } = useGetDate()
 
   const { data: userFavorList = [] } = useQuery(
-    ['userFavorList', auth.userProfile.id],
+    [profileQueryKeys.USER_FAVOR_LIST, auth.userProfile.id],
     () => UserApi.GET_USER_FAVOR_BOX(auth.userProfile.id),
   )
 
   const filteredUserFavorList: TasteBoxVariantType[] = userFavorList?.map(
-    (favor) => favor.detailCategory as TasteBoxVariantType,
+    (favor) => favor.detailCategory,
   )
 
   return (

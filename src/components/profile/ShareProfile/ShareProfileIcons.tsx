@@ -1,18 +1,11 @@
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import { ShareProfileIconsPropsType } from '@models/components/Profile/profile'
 import BackgroundIcon from '@assets/icons/BackgroundIcon'
 import ColorIcon from '@assets/icons/ColorIcon'
 import Svg from '@components/atoms/Svg'
 import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
-import { theme } from '@styles/theme'
-import { BackgroundColorVariant } from './ShareProfileImage'
-
-type ShareProfileIconsPropsType = {
-  backgroundColor: BackgroundColorVariant
-  setBackgroundColor: React.Dispatch<
-    React.SetStateAction<BackgroundColorVariant>
-  >
-  setBackgroundImage: React.Dispatch<React.SetStateAction<boolean>>
-}
 
 const ShareProfileIcons = ({
   backgroundColor,
