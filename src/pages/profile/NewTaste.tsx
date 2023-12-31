@@ -1,26 +1,28 @@
 import { useRecoilValue } from 'recoil'
-import { theme } from '@styles/theme'
 import { useQuery } from '@tanstack/react-query'
 import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import { authState } from '@libs/store/auth'
+import { UserApi } from '@utils/apis/user/UserApi'
+import { UserNewTasteCategoryType } from '@models/apis/UserType'
 import { Padding } from '@components/layouts/Padding'
 import { Spacing } from '@components/atoms/Spacing'
 import NewTasteCategory from '@components/profile/NewTaste/NewTasteCategory'
-import { authState } from '@libs/store/auth'
-import { UserApi } from '@utils/apis/user/UserApi'
-import { UserNewTasteCategory } from '@models/apis/UserType'
 
 const NewTaste = () => {
   const auth = useRecoilValue(authState)
-  const { data: isAnsweredQuestion } = useQuery(
+
+  const { data: isAnsweredQuestion = [] } = useQuery(
     ['newTasteCategory', auth.userProfile.id],
     () => UserApi.GET_ISANSWERED_QUESTION(),
   )
 
-  const getSubCategoryList = (startIndex: number, endIndex: number) => {
-    return isAnsweredQuestion?.slice(
-      startIndex,
-      endIndex,
-    ) as UserNewTasteCategory[]
+  const getSubCategoryList = (
+    startIndex: number,
+    endIndex: number,
+  ): UserNewTasteCategoryType[] => {
+    return isAnsweredQuestion?.slice(startIndex, endIndex)
   }
 
   return (

@@ -67,7 +67,7 @@ export type SelectedProps = {
   count?: number
 }[]
 
-export type UserNewTasteCategory = {
+export type UserNewTasteCategoryType = {
   smallCategory: SubCategoryValueType
   isAnswered: boolean
 }
