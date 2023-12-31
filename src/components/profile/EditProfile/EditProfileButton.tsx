@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil'
 import styled from '@emotion/styled'
 
 import useGetDate from '@libs/hooks/useGetDate'
-import useProfileMutate from '@libs/hooks/useProfileMutate'
+import useProfileMutate from '@libs/hooks/mutations/useProfileMutate'
 import { authState } from '@libs/store/auth'
 import { onboardingState } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'

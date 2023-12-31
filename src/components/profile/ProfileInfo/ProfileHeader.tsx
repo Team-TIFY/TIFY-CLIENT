@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import styled from '@emotion/styled'
 
-import useFriendMutate from '@libs/hooks/useFriendMutate'
+import useFriendMutate from '@libs/hooks/mutations/useFriendMutate'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { authState } from '@libs/store/auth'
 import { ProfileHeaderPropsType } from '@models/components/Profile/profile'

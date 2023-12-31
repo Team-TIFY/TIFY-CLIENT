@@ -11,9 +11,9 @@ import { HobbyFavor } from '@components/onboarding/HobbyFavor'
 import { useEffect, useState } from 'react'
 import { OnboardingApi } from '@apis/onboarding/OnboardingApi'
 import { authState } from '@libs/store/auth'
-import { favorPriority } from '@libs/store/priority'
 import { useNavigate } from 'react-router-dom'
 import { parseFavorBox } from '@utils/parseFavorBox'
+import { favorPriority } from '@constants/favorPriority'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useState(false)

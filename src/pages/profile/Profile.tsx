@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
 import styled from '@emotion/styled'
 
-import useProfileMutate from '@libs/hooks/useProfileMutate'
+import useProfileMutate from '@libs/hooks/mutations/useProfileMutate'
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { useProfileMenus } from '@libs/hooks/useProfileMenus'
 import { authState } from '@libs/store/auth'

@@ -4,7 +4,7 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
 import useGetDate from '@libs/hooks/useGetDate'
 import { FriendsType, NewFriendsType } from '@models/apis/FriendsType'
-import useFriendMutate from '@libs/hooks/useFriendMutate'
+import useFriendMutate from '@libs/hooks/mutations/useFriendMutate'
 
 export type FriendsListBItemProps = {
   friendsList: FriendsType[] | NewFriendsType[]

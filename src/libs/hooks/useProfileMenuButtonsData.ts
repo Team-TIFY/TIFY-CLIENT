@@ -2,7 +2,7 @@ import { ProfileButtonVariantType } from '@components/profile/ProfileInfo/Profil
 import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
 import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
-import useFriendMutate from './useFriendMutate'
+import useFriendMutate from './mutations/useFriendMutate'
 import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 
 type ButtonTextType = { text: string; color: TextType['color'] }
