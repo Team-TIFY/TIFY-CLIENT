@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { selectedProps } from '@constants/Profile/selectedProps'
+import { selectedProps } from '@constants/profile/selectedProps'
 import { Filter } from '@components/atoms/Filter'
 import { Spacing } from '@components/atoms/Spacing'
 import { UserTagDataListItem } from './UserTagDataListItem'

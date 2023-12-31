@@ -4,7 +4,7 @@ import { theme } from '@styles/theme'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
 import { FriendsFavorItemsPropsType } from '@models/components/atoms/FriendsList'
 
-import { tasteBoxImage } from '@constants/Profile/tasteBoxImage'
+import { tasteBoxImage } from '@constants/profile/tasteBoxImage'
 
 const FriendsFavorItems = ({ favorList }: FriendsFavorItemsPropsType) => {
   return (

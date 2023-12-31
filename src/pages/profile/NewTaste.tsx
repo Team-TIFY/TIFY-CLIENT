@@ -6,6 +6,15 @@ import { theme } from '@styles/theme'
 import { authState } from '@libs/store/auth'
 import { UserApi } from '@apis/user/UserApi'
 import { UserNewTasteCategoryType } from '@models/apis/UserType'
+import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
+import {
+  BEUTY_CATEGORY_END_INDEX,
+  BEUTY_CATEGORY_START_INDEX,
+  FASHION_CATEGORY_END_INDEX,
+  FASHION_CATEGORY_START_INDEX,
+  HOBBY_CATEGORY_END_INDEX,
+  HOBBY_CATEGORY_START_INDEX,
+} from '@constants/profile/newTasteCategoryIndex'
 import { Padding } from '@components/layouts/Padding'
 import { Spacing } from '@components/atoms/Spacing'
 import NewTasteCategory from '@components/profile/NewTaste/NewTasteCategory'
@@ -14,7 +23,7 @@ const NewTaste = () => {
   const auth = useRecoilValue(authState)
 
   const { data: isAnsweredQuestion = [] } = useQuery(
-    ['newTasteCategory', auth.userProfile.id],
+    [profileQueryKeys.NEW_TASTE_ISANSWERED_CATEGORY, auth.userProfile.id],
     () => UserApi.GET_ISANSWERED_QUESTION(),
   )
 
@@ -36,17 +45,26 @@ const NewTaste = () => {
         <Spacing height={48} />
         <NewTasteCategory
           categoryName="뷰티"
-          subCategoryList={getSubCategoryList(0, 2)}
+          subCategoryList={getSubCategoryList(
+            BEUTY_CATEGORY_START_INDEX,
+            BEUTY_CATEGORY_END_INDEX,
+          )}
         />
         <Spacing height={24} />
         <NewTasteCategory
           categoryName="패션"
-          subCategoryList={getSubCategoryList(2, 6)}
+          subCategoryList={getSubCategoryList(
+            FASHION_CATEGORY_START_INDEX,
+            FASHION_CATEGORY_END_INDEX,
+          )}
         />
         <Spacing height={24} />
         <NewTasteCategory
           categoryName="취미"
-          subCategoryList={getSubCategoryList(6, 10)}
+          subCategoryList={getSubCategoryList(
+            HOBBY_CATEGORY_START_INDEX,
+            HOBBY_CATEGORY_END_INDEX,
+          )}
         />
       </Padding>
     </>

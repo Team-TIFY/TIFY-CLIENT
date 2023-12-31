@@ -14,8 +14,9 @@ import {
 } from '@models/components/Profile/profile'
 import { SelectedTagType, SubCategoryValueType } from '@models/favor'
 import { UserInfoType } from '@models/apis/UserType'
+import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
 import { UserApi } from '@apis/user/UserApi'
-import { selectedProps } from '@constants/Profile/selectedProps'
+import { selectedProps } from '@constants/profile/selectedProps'
 import { Padding } from '@components/layouts/Padding'
 import { Spacing } from '@components/atoms/Spacing'
 import { ProfileImage } from '@components/profile/ProfileInfo/ProfileImage'
@@ -46,7 +47,7 @@ const Profile = ({
   const { updateFriendProfileViewTimeMutate } = useProfileMutate()
 
   const { data: myData = {} as UserInfoType } = useQuery(
-    ['userProfile', auth.userProfile.id],
+    [profileQueryKeys.USER_INFO, auth.userProfile.id],
     () => UserApi.GET_USER_INFO(auth.userProfile.id),
     {
       enabled: !userData,
@@ -64,7 +65,11 @@ const Profile = ({
   }
 
   const { data: userTagData = [] } = useQuery(
-    ['filteredUserTag', selectedTags, !userData ? auth.userProfile.id : userId],
+    [
+      profileQueryKeys.USER_TAG,
+      selectedTags,
+      !userData ? auth.userProfile.id : userId,
+    ],
     () =>
       UserApi.GET_USER_TAG(
         !userData ? auth.userProfile.id : userId!,
