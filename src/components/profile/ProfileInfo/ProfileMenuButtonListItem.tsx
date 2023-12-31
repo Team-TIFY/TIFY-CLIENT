@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import {
   MenuButtonType,
-  ProfileMenuButtonListItemProps,
+  ProfileMenuButtonListItemPropsType,
 } from '@models/components/Profile/profile'
 import Dimmer from '@components/layouts/Dimmer'
 import ProfileMenuButton from './ProfileMenuButton'
@@ -12,7 +12,7 @@ const ProfileMenuButtonListItem = ({
   userId,
   idx,
   menu,
-}: ProfileMenuButtonListItemProps) => {
+}: ProfileMenuButtonListItemPropsType) => {
   const getFriendUserId = (menu: MenuButtonType) => {
     if (
       menu.type === 'cutOffFriend' ||

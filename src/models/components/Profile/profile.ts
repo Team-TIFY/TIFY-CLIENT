@@ -11,7 +11,6 @@ import {
   SubCategoryNameType,
   SubCategoryValueType,
 } from '@models/favor'
-import { ProfileButtonVariantType } from '@components/profile/ProfileInfo/ProfileMenuButton'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 export type SelectedPropType = {
@@ -34,7 +33,7 @@ export type MenuButtonType = {
   close: MouseEventHandler<HTMLDivElement>
 }
 
-export type ProfileMenuButtonListItemProps = {
+export type ProfileMenuButtonListItemPropsType = {
   userData: UserInfoType
   userId: number
   idx: number
@@ -85,4 +84,23 @@ export type ProfileHeaderButtonListItemPropsType = {
 
 export type ProfileImagePropsType = {
   favorList: TasteBoxVariantType[]
+}
+
+export type ProfileButtonVariantType =
+  | 'myProfile'
+  | 'cutOffFriend'
+  | 'report'
+  | 'block'
+  | 'cancelBlock'
+  | 'editProfile'
+
+export type ProfileMenuButtonPropsType<T extends ProfileButtonVariantType> = {
+  type: T
+  friendUserId?: T extends 'cutOffFriend' | 'block' | 'cancelBlock'
+    ? string
+    : undefined
+  friendImageUrl?: T extends 'cutOffFriend' | 'block' | 'cancelBlock'
+    ? string
+    : undefined
+  friendId?: number
 }

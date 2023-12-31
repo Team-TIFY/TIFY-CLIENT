@@ -1,32 +1,20 @@
 import styled from '@emotion/styled'
+
+import useProfileMenuButtonsData from '@libs/hooks/useProfileMenuButtonsData'
+import {
+  ProfileButtonVariantType,
+  ProfileMenuButtonPropsType,
+} from '@models/components/Profile/profile'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import SquareButton from '@components/atoms/SquareButton'
-import useProfileMenuButtonsData from '@libs/hooks/useProfileMenuButtonsData'
-
-export type ProfileButtonVariantType =
-  | 'myProfile'
-  | 'cutOffFriend'
-  | 'report'
-  | 'block'
-  | 'cancelBlock'
-  | 'editProfile'
 
 const ProfileMenuButton = <T extends ProfileButtonVariantType>({
   type,
   friendUserId,
   friendImageUrl,
   friendId,
-}: {
-  type: T
-  friendUserId?: T extends 'cutOffFriend' | 'block' | 'cancelBlock'
-    ? string
-    : undefined
-  friendImageUrl?: T extends 'cutOffFriend' | 'block' | 'cancelBlock'
-    ? string
-    : undefined
-  friendId?: number
-}) => {
+}: ProfileMenuButtonPropsType<T>) => {
   const buttonData = useProfileMenuButtonsData(type, friendId)
 
   const renderMenuButtons = () => {
