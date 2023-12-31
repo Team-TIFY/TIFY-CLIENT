@@ -20,7 +20,7 @@ const FriendsListCItem = ({
   }
 
   return (
-    <FriendsListWrapper alignLeft={alignLeft}>
+    <FriendsListWrapper left={alignLeft ? 1 : 0}>
       {friendsList.map((friend) => (
         <FriendsListC
           key={friend.neighborId}
@@ -37,8 +37,8 @@ const FriendsListCItem = ({
 
 export default FriendsListCItem
 
-const FriendsListWrapper = styled(FlexBox)<{ alignLeft: boolean }>`
+const FriendsListWrapper = styled(FlexBox)<{ left: number }>`
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: ${({ alignLeft }) => (alignLeft ? 'flex-start' : 'center')};
+  justify-content: ${({ left }) => (left ? 'flex-start' : 'center')};
 `
