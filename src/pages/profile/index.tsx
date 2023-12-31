@@ -34,7 +34,7 @@ import PastTodayDetail from './PastToday/PastTodayDetail'
 import FullModal from '@components/atoms/Modal/FullModal'
 import BigX from '@assets/icons/BigX'
 import ShareProfile from './ShareProfile'
-import EditFavorBox from './EditfavorBox/EditFavorBox'
+import EditFavorBox from './EditFavorBox/EditFavorBox'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)

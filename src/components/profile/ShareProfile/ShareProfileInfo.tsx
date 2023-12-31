@@ -9,7 +9,7 @@ import { Text } from '@components/atoms/Text'
 import ProfileBox from '@components/atoms/ProfileBox'
 import { useQuery } from '@tanstack/react-query'
 import { UserApi } from '@utils/apis/user/UserApi'
-import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 const ShareProfileInfo = () => {
   const auth = useRecoilValue(authState)

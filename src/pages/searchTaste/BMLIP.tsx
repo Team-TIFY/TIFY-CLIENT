@@ -8,7 +8,7 @@ import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { FavorApi } from '@utils/apis/favor/FavorApi'
-import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
+import { FavorAnswerResponse } from '@models/apis/TasteType'
 
 const BMLIP = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)

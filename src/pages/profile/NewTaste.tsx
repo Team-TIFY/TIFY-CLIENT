@@ -7,7 +7,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import NewTasteCategory from '@components/profile/NewTaste/NewTasteCategory'
 import { authState } from '@libs/store/auth'
 import { UserApi } from '@utils/apis/user/UserApi'
-import { UserNewTasteCategory } from '@utils/apis/user/UserType'
+import { UserNewTasteCategory } from '@models/apis/UserType'
 
 const NewTaste = () => {
   const auth = useRecoilValue(authState)

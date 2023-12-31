@@ -1,4 +1,4 @@
-import { UserInfoToken } from '@utils/apis/user/UserType'
+import { UserInfoToken } from '@models/apis/UserType'
 import { atom } from 'recoil'
 import { recoilPersist } from 'recoil-persist'
 

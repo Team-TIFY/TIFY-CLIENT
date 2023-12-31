@@ -6,7 +6,7 @@ import {
 import { ReactNode } from 'react'
 import { favorQuestionData } from '@libs/store/dummy'
 import { Navigationbar } from '@components/atoms/Navigationbar'
-import { TasteType } from '@utils/apis/favor/TasteType'
+import { TasteType } from '@models/apis/TasteType'
 import styled from '@emotion/styled'
 
 type AppBarTemplateProps = AppBarPropsType<RightChildrenVariantType> & {

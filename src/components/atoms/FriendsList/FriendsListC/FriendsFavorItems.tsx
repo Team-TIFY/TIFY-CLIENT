@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { FriendsFavorItemsPropsType } from '@models/components/atoms/FriendsList'
 
 import { theme } from '@styles/theme'
-import { tasteBoxImage } from '@constants/tasteBoxImage'
+import { tasteBoxImage } from '@constants/Profile/tasteBoxImage'
 
 const FriendsFavorItems = ({ favorList }: FriendsFavorItemsPropsType) => {
   return (

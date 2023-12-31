@@ -1,7 +1,7 @@
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import NewTasteCategoryList from './NewTasteCategoryListItem'
-import { UserNewTasteCategory } from '@utils/apis/user/UserType'
+import { UserNewTasteCategory } from '@models/apis/UserType'
 
 const NewTasteCategory = ({
   categoryName,

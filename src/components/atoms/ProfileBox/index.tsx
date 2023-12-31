@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 
-import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
-import { tasteBoxImage } from '@constants/tasteBoxImage'
+import { TasteBoxVariantType } from '@models/apis/TasteType'
+import { tasteBoxImage } from '@constants/Profile/tasteBoxImage'
 import {
   ProfileBoxPropsType,
   ProfileBoxVariantType,

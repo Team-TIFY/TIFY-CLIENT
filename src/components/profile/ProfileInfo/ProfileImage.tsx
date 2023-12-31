@@ -1,5 +1,5 @@
 import ProfileBox from '@components/atoms/ProfileBox'
-import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 export type ProfileImageProps = {
   favorList: TasteBoxVariantType[]

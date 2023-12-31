@@ -6,7 +6,7 @@ import CubeButton from '@components/atoms/CubeButton'
 import {
   IsAnsweredCategory,
   UserNewTasteCategory,
-} from '@utils/apis/user/UserType'
+} from '@models/apis/UserType'
 import { subCategoryState } from '@libs/store/subCategory'
 import { UserApi } from '@utils/apis/user/UserApi'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'

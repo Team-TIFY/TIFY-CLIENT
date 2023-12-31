@@ -9,14 +9,14 @@ import {
   SelectedProps,
   SubCategoryName,
   SubCategoryType,
-} from '@utils/apis/user/UserType'
+} from '@models/apis/UserType'
 import { getTagAnswerData } from '@utils/getTagAnswerData'
 import { useNavigate } from 'react-router-dom'
 import { questionMenu } from '@utils/questionMenu'
 import { useSetRecoilState } from 'recoil'
 import { friendState } from '@libs/store/friend'
 import { question } from '@utils/question'
-import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+import { TasteBoxVariantType } from '@models/apis/TasteType'
 
 export interface UserTagDataProps {
   selectedProps: SelectedProps

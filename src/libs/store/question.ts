@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 import { DailyQuestionInfo } from '@utils/apis/weekly/questionType'
-import { FavorAnswerRequest } from '@utils/apis/favor/TasteType'
+import { FavorAnswerRequest } from '@models/apis/TasteType'
 import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist()

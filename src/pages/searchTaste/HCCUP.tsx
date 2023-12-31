@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil'
 import { useMutation } from '@tanstack/react-query'
 import { FavorApi } from '@utils/apis/favor/FavorApi'
-import { FavorAnswerResponse } from '@utils/apis/favor/TasteType'
+import { FavorAnswerResponse } from '@models/apis/TasteType'
 import { answerState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
 import { useFunnel } from '@libs/hooks/useFunnel'

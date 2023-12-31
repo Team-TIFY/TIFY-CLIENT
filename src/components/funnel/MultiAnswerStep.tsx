@@ -1,4 +1,4 @@
-import { TasteType } from '@utils/apis/favor/TasteType'
+import { TasteType } from '@models/apis/TasteType'
 import { useQuery } from '@tanstack/react-query'
 import { FavorApi } from '@utils/apis/favor/FavorApi'
 import { Text } from '@components/atoms/Text'

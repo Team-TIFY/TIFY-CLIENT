@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useCallback, useEffect, useState } from 'react'
 
-import { profileVariants } from '@constants/profileVariants'
+import { profileVariants } from '@constants/atoms/profileVariants'
 import {
   AvatarVariantType,
   VisibleVariantType,

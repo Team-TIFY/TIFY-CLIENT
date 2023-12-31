@@ -1,5 +1,5 @@
-import { TasteBoxVariantType } from './apis/favor/TasteType'
-import { FilteredUserTag } from './apis/user/UserType'
+import { TasteBoxVariantType } from '../models/apis/TasteType'
+import { FilteredUserTag } from '../models/apis/UserType'
 import { processTagAnswerData } from './processTagAnswerData'
 
 export const getTagAnswerData = (userTagData: FilteredUserTag[]) => {

@@ -3,7 +3,7 @@ import {
   SelectedProps,
   SelectedTag,
   SubCategoryName,
-} from '@utils/apis/user/UserType'
+} from '@models/apis/UserType'
 import styled from '@emotion/styled'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'

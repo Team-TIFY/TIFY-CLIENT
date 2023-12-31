@@ -2,7 +2,7 @@ import {
   SubCategoryType,
   SelectedProps,
   SelectedTag,
-} from '@utils/apis/user/UserType'
+} from '@models/apis/UserType'
 import { ButtonHTMLAttributes } from 'react'
 
 export type CategoryAnswerCountType = {

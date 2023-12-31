@@ -1,4 +1,4 @@
-import { TasteBoxVariantType } from '../utils/apis/favor/TasteType'
+import { TasteBoxVariantType } from '../../models/apis/TasteType'
 
 export const tasteBoxImage: Record<TasteBoxVariantType, string> = {
   LIP: '/images/makeup.png',

@@ -4,14 +4,14 @@ import {
   FilteredUserTag,
   UserNewTasteCategory,
   IsAnsweredCategory,
-  SubCategoryType,
   UserInfo,
   UserInfoToken,
   PastTodayCategoryCountType,
   PastTodayAnswerType,
   EditUserProfileDataType,
   FavorBoxType,
-} from '@utils/apis/user/UserType'
+} from '@models/apis/UserType'
+import { SubCategoryValueType } from '@models/favor'
 
 export const UserApi = {
   GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {
@@ -26,7 +26,7 @@ export const UserApi = {
 
   GET_USER_TAG: async (
     userId: number,
-    smallCategory: SubCategoryType[],
+    smallCategory: SubCategoryValueType[],
   ): Promise<FilteredUserTag[]> => {
     const response = await axiosApi.get(
       `/users/${userId}/favors?smallCategory=${smallCategory}`,

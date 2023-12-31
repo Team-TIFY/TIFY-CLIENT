@@ -4,7 +4,7 @@ import {
   FavorQuestionRequest,
   FavorQuestionResponse,
   FavorAnswerResponse,
-} from '@utils/apis/favor/TasteType'
+} from '@models/apis/TasteType'
 
 export const FavorApi = {
   GET_FAVOR_QUESTION: async (

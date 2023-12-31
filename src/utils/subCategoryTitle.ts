@@ -1,4 +1,4 @@
-import { SubCategoryType, SubCategoryName } from './apis/user/UserType'
+import { SubCategoryType, SubCategoryName } from '../models/apis/UserType'
 
 export const subCategoryTitle: Record<
   SubCategoryType,

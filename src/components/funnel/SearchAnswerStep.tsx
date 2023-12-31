@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { TasteType } from '@utils/apis/favor/TasteType'
+import { TasteType } from '@models/apis/TasteType'
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'

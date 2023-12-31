@@ -1,4 +1,4 @@
-import { TasteBoxVariantType } from './apis/favor/TasteType'
+import { TasteBoxVariantType } from '../models/apis/TasteType'
 
 export const question: Record<TasteBoxVariantType, string> = {
   LIP: 'BMLIP',
