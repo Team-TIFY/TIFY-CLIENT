@@ -1,15 +1,14 @@
 import { axiosApi } from '../axios'
-
-import { NeighborAnswerListInfo } from '@models/apis/QuestionType'
 import {
-  CountDailyQuestion,
-  DailyQuestionInfo,
-  DailyAnswerContentInfo,
-  DailyQuestionReport,
+  CountDailyQuestionType,
+  DailyAnswerContentInfoType,
+  DailyQuestionInfoType,
+  DailyQuestionReportType,
+  NeighborAnswerListInfoType,
 } from '@models/apis/QuestionType'
 
 export const WeeklyApi = {
-  GET_QUESTIONS: async (date: string): Promise<DailyQuestionInfo> => {
+  GET_QUESTIONS: async (date: string): Promise<DailyQuestionInfoType> => {
     const response = await axiosApi.get(`/daily-questions?loadingDate=${date}`)
     return response.data.data.dailyQuestionInfo
   },
@@ -37,7 +36,7 @@ export const WeeklyApi = {
     return response.data.data
   },
 
-  COUNT_ANSWER: async (questionId: number): Promise<CountDailyQuestion> => {
+  COUNT_ANSWER: async (questionId: number): Promise<CountDailyQuestionType> => {
     const response = await axiosApi.get(`/${questionId}/answers/counts`)
     return response.data.data
   },
@@ -46,7 +45,7 @@ export const WeeklyApi = {
     questionId,
   }: {
     questionId: number
-  }): Promise<DailyAnswerContentInfo[]> => {
+  }): Promise<DailyAnswerContentInfoType[]> => {
     const response = await axiosApi.get(`/${questionId}/answers`)
     return response.data.data
   },
@@ -57,7 +56,7 @@ export const WeeklyApi = {
   }: {
     questionId: number
     userId: number
-  }): Promise<NeighborAnswerListInfo[]> => {
+  }): Promise<NeighborAnswerListInfoType[]> => {
     const response = await axiosApi.get(
       `/${questionId}/answers/${userId}/neighbors`,
     )
@@ -70,7 +69,7 @@ export const WeeklyApi = {
   }: {
     questionId: number
     answerId: number
-  }): Promise<DailyQuestionReport> => {
+  }): Promise<DailyQuestionReportType> => {
     const response = await axiosApi.post(
       `/${questionId}/answers/${answerId}/report`,
     )

@@ -72,6 +72,7 @@ export type ReportFriendDataType = {
   toUserId: number
   reportSuccess: boolean
 }
+
 export type PokeCountType = {
   fromUserId: number
   knockedUserId: number

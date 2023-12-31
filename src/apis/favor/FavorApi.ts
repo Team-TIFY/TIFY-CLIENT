@@ -1,23 +1,22 @@
 import { axiosApi } from '@apis/axios'
-
 import {
-  FavorAnswerRequest,
-  FavorQuestionRequest,
-  FavorQuestionResponse,
-  FavorAnswerResponse,
+  FavorQuestionRequestType,
+  FavorQuestionResponseType,
+  FavorAnswerRequestType,
+  FavorAnswerResponseType,
 } from '@models/apis/TasteType'
 
 export const FavorApi = {
   GET_FAVOR_QUESTION: async (
-    payload: FavorQuestionRequest,
-  ): Promise<FavorQuestionResponse> => {
+    payload: FavorQuestionRequestType,
+  ): Promise<FavorQuestionResponseType> => {
     const response = await axiosApi.get('/favor-questions', { params: payload })
     return response.data.data
   },
 
   POST_FAVOR_QUESTION: async (
-    payload: FavorAnswerRequest,
-  ): Promise<FavorAnswerResponse> => {
+    payload: FavorAnswerRequestType,
+  ): Promise<FavorAnswerResponseType> => {
     const response = await axiosApi.post('/favor-questions/answers', payload)
     return response.data.data
   },

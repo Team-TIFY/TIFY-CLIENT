@@ -13,29 +13,29 @@ export type TasteType =
   | 'HCCUP'
   | 'HEEXE'
 
-export interface FavorQuestionRequest {
+export type FavorQuestionRequestType = {
   category: TasteType
   number: number
 }
 
-export interface FavorQuestionResponse {
+export type FavorQuestionResponseType = {
   favorQuestionId: number
   favorQuestionCategoryName: string
   number: number
   contents: string
 }
 
-export interface FavorAnswerDetailRequest {
+export type FavorAnswerDetailRequest = {
   num: number
   answer: string
 }
 
-export interface FavorAnswerRequest {
+export type FavorAnswerRequestType = {
   categoryName: string
   favorAnswerDtos: FavorAnswerDetailRequest[]
 }
 
-export interface FavorAnswerResponse {
+export type FavorAnswerResponseType = {
   success: boolean
   statusCode: number
   data: string | null

@@ -1,6 +1,6 @@
 import { axiosApi } from '../axios'
 
-import { OnboardRequest } from '@libs/store/onboard'
+import { OnboardRequestType } from '@libs/store/onboard'
 
 export const OnboardingApi = {
   GET_USERID_CHECK: async (id: string) => {
@@ -20,7 +20,7 @@ export const OnboardingApi = {
     data,
   }: {
     userId: number
-    data: OnboardRequest
+    data: OnboardRequestType
   }) => {
     const response = await axiosApi.put(`/users/${userId}`, data)
     return response.data
