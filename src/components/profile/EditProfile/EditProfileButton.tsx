@@ -1,12 +1,13 @@
 import { useRecoilValue } from 'recoil'
 import styled from '@emotion/styled'
-import { RoundButton } from '@components/atoms/RoundButton'
-import { Spacing } from '@components/atoms/Spacing'
+
 import useGetDate from '@libs/hooks/useGetDate'
 import useProfileMutate from '@libs/hooks/useProfileMutate'
 import { authState } from '@libs/store/auth'
 import { onboardingState } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
+import { RoundButton } from '@components/atoms/RoundButton'
+import { Spacing } from '@components/atoms/Spacing'
 
 const EditProfileButton = () => {
   const auth = useRecoilValue(authState)
