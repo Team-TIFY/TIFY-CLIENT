@@ -1,4 +1,5 @@
 import { TasteType } from '@models/apis/TasteType'
+
 export type FavorQuestionDataType = {
   [key in TasteType]: {
     [key: number]: string[]

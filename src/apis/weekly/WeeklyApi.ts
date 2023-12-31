@@ -1,12 +1,12 @@
 import { axiosApi } from '../axios'
 
-import { NeighborAnswerListInfo } from '@models/apis/questionType'
+import { NeighborAnswerListInfo } from '@models/apis/QuestionType'
 import {
   CountDailyQuestion,
   DailyQuestionInfo,
   DailyAnswerContentInfo,
   DailyQuestionReport,
-} from '@models/apis/questionType'
+} from '@models/apis/QuestionType'
 
 export const WeeklyApi = {
   GET_QUESTIONS: async (date: string): Promise<DailyQuestionInfo> => {

@@ -3,7 +3,7 @@ import {
   NeighborAnswerListInfo,
   DailyAnswerContentInfo,
   DailyQuestionReport,
-} from '@models/apis/questionType'
+} from '@models/apis/QuestionType'
 import styled from '@emotion/styled'
 import { useQuery } from '@tanstack/react-query'
 import { WeeklyApi } from '@apis/weekly/WeeklyApi'

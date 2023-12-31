@@ -1,4 +1,4 @@
-import { assert } from '@utils/asset'
+import { assert } from '@utils/assert'
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useEffect, useMemo } from 'react'
 import { useSearchParams, useLocation } from 'react-router-dom'

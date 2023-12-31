@@ -1,7 +1,7 @@
 import { SubCategoryValueType } from '@models/favor'
 import { atom } from 'recoil'
 
-export type FriendState = {
+export type FriendStateType = {
   isToggle: boolean
   isAllRequest: boolean
   showPartialRequest: boolean
@@ -12,7 +12,7 @@ export type FriendState = {
   presentRecommendFilterValue: SubCategoryValueType | ''
 }
 
-const initialState: FriendState = {
+const initialState: FriendStateType = {
   isToggle: false,
   isAllRequest: false,
   showPartialRequest: false,
@@ -23,7 +23,7 @@ const initialState: FriendState = {
   presentRecommendFilterValue: '',
 }
 
-export const friendState = atom<FriendState>({
+export const friendState = atom<FriendStateType>({
   key: 'friendState',
   default: initialState,
 })

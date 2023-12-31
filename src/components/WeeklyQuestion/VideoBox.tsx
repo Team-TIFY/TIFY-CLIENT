@@ -1,9 +1,8 @@
-import {
-  DailyQuestionVideoCategory,
-  DailyQuestionCategoryType,
-} from '@models/apis/questionType'
 import styled from '@emotion/styled'
+
 import { media } from '@styles/theme'
+import { DailyQuestionVideoCategory } from '@constants/dailyQuestion/dailyQuestion'
+import { DailyQuestionCategoryType } from '@models/apis/QuestionType'
 
 const VideoBox = ({
   category,

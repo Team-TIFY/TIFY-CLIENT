@@ -1,5 +1,4 @@
 import { theme } from '@styles/theme'
-import { KeyOfPalette } from '@styles/theme/theme'
 import {
   ColorIndexVariantType,
   TagVariantType,
@@ -99,10 +98,7 @@ export const TAG_COLOR_TYPE: Record<
   },
 }
 
-export const TAG_ICON_DATA: Record<
-  any,
-  Record<any, Record<number, React.FC<{ fill: KeyOfPalette }>>>
-> = {
+export const TAG_ICON_DATA = {
   MAKEUP: {
     LIP: {
       2: SwatchIcon,

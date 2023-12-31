@@ -1,6 +1,7 @@
-import { TasteBoxVariantType } from '../models/apis/TasteType'
+import { QuestionCategoryType } from '@models/favor'
+import { TasteBoxVariantType } from '@models/apis/TasteType'
 
-export const question: Record<TasteBoxVariantType, string> = {
+export const question: Record<TasteBoxVariantType, QuestionCategoryType> = {
   LIP: 'BMLIP',
   EYE: 'BMEYE',
   MOISTURE: 'BFMOI',

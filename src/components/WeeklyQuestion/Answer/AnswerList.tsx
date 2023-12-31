@@ -1,4 +1,4 @@
-import { DailyAnswerContentInfo } from '@models/apis/questionType'
+import { DailyAnswerContentInfo } from '@models/apis/QuestionType'
 import { TextBubble } from '@components/atoms/TextBubble'
 import { useEffect, useState } from 'react'
 import { UserApi } from '@apis/user/UserApi'

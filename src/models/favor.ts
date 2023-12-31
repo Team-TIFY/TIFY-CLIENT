@@ -35,6 +35,21 @@ export type DetailCategoryValueType =
   | 'CUP'
   | 'EXERCISE'
 
+export type QuestionCategoryType =
+  | 'BMLIP'
+  | 'BMEYE'
+  | 'BFMOI'
+  | 'BFPER'
+  | 'BFPLA'
+  | 'HCCUP'
+  | 'HCDIS'
+  | 'FCTOP'
+  | 'FEFAS'
+  | 'FEDIG'
+  | 'FEBAG'
+  | 'FAACC'
+  | ''
+
 export type SelectedTagType = {
   name: SubCategoryNameType
   value: SubCategoryValueType

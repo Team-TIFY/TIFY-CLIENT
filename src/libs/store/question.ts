@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { DailyQuestionInfo } from '@models/apis/questionType'
+import { DailyQuestionInfo } from '@models/apis/QuestionType'
 import { FavorAnswerRequest } from '@models/apis/TasteType'
 import { recoilPersist } from 'recoil-persist'
 

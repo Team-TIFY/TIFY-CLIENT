@@ -19,10 +19,10 @@ import { UserApi } from '@apis/user/UserApi'
 import { selectedProps } from '@constants/profile/selectedProps'
 import { Padding } from '@components/layouts/Padding'
 import { Spacing } from '@components/atoms/Spacing'
-import { ProfileImage } from '@components/profile/ProfileInfo/ProfileImage'
 import { ProfileHeader } from '@components/profile/ProfileInfo/ProfileHeader'
 import ProfileMenuButtonListItem from '@components/profile/ProfileInfo/ProfileMenuButtonListItem'
 import UserTastes from '@components/profile/ProfileInfo/UserTastes'
+import ProfileImage from '@components/profile/ProfileInfo/ProfileImage'
 
 const Profile = ({
   userData,

@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-export interface OnboardRequest {
+export type OnboardRequestType = {
   username: string
   id: string
   birth: string

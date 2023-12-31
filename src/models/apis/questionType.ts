@@ -1,33 +1,34 @@
 import { DailyFriendsType } from '@models/apis/FriendsType'
 
-export interface DailyQuestionInfo {
+export type DailyQuestionInfoType = {
   questionId: number
   content: string
   category: DailyQuestionCategoryType
   loadingData: string
 }
 
-export interface CountDailyQuestion {
+export type CountDailyQuestionType = {
   answerCount: number
 }
 
-export interface NeighborAnswerListInfo {
+export type NeighborAnswerListInfoType = {
   neighborInfo: DailyFriendsType
-  answerInfo: DailyAnswerInfo
+  answerInfo: DailyAnswerInfoType
   neighborKnocked: boolean
 }
 
-export interface DailyAnswerInfo {
+export type DailyAnswerInfoType = {
   id: number
   questionId: number
   userId: number
   content: string
 }
 
-export interface DailyAnswerContentInfo {
-  answerInfo: DailyAnswerInfo
+export type DailyAnswerContentInfoType = {
+  answerInfo: DailyAnswerInfoType
   isMine: boolean
 }
+
 export type DailyQuestionCategoryType =
   | 'FOOD'
   | 'MUSIC'
@@ -37,31 +38,7 @@ export type DailyQuestionCategoryType =
   | 'CULTURE_LIFE'
   | 'ME'
 
-export const DailyQuestionCategory: Record<DailyQuestionCategoryType, string> =
-  {
-    FOOD: '/images/food.png',
-    MUSIC: '/images/music1.png',
-    RELATIONSHIP: '/images/relation.png',
-    TRIP: '/images/passport.png',
-    BEVERAGE: '/images/drink.png',
-    CULTURE_LIFE: '/images/drum.png',
-    ME: '/images/aboutme.png',
-  }
-
-export const DailyQuestionVideoCategory: Record<
-  DailyQuestionCategoryType,
-  string
-> = {
-  FOOD: '/videos/food.mp4',
-  MUSIC: '/videos/music.mp4',
-  RELATIONSHIP: '/videos/relation.mp4',
-  TRIP: '/videos/passport.mp4',
-  BEVERAGE: '/videos/drink.mp4',
-  CULTURE_LIFE: '/videos/drum.mp4',
-  ME: '/videos/my.mp4',
-}
-
-export interface DailyQuestionReport {
+export type DailyQuestionReportType = {
   userId: number
   answerId: number
   reportSuccess: boolean
