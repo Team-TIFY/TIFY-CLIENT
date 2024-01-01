@@ -1,10 +1,20 @@
 /* eslint-disable react/jsx-key */
-import { Route, Routes, useLocation } from 'react-router-dom'
 import { Suspense } from 'react'
-import { useRecoilValue } from 'recoil'
-import Svg from '@components/atoms/Svg'
-import { Navigate } from 'react-router-dom'
+import {
+  Route,
+  Routes,
+  useLocation,
+  Navigate,
+  useNavigate,
+} from 'react-router-dom'
+import { useRecoilValue, useRecoilState } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
+
+import { authState } from '@libs/store/auth'
+import { answerState } from '@libs/store/question'
+import { UserApi } from '@apis/UserApi'
+import BigX from '@assets/icons/BigX'
+import MenuIcon from '@assets/icons/MenuIcon'
 import BMLIP from '@pages/searchTaste/BMLIP'
 import BMEYE from '@pages/searchTaste/BMEYE'
 import FCTOP from '@pages/searchTaste/FCTOP'
@@ -17,51 +27,46 @@ import FEBAG from '@pages/searchTaste/FEBAG'
 import FAACC from '@pages/searchTaste/FAACC'
 import HCDIS from '@pages/searchTaste/HCDIS'
 import HCCUP from '@pages/searchTaste/HCCUP'
+import Svg from '@components/atoms/Svg'
+import FullModal from '@components/atoms/Modal/FullModal'
 import AppBarTemplate from '@components/layouts/AppBarTemplate'
 import Loading from '@components/atoms/Loading'
-import { useNavigate } from 'react-router-dom'
-import EditProfile from './EditProfile'
-import EditOnboardingStatus from './EditOnboardingStatus'
+import EditProfile from './EditProfile/EditProfile'
+import EditOnboardingStatus from './EditProfile/EditOnboardingStatus'
 import Profile from './Profile'
 import NewTaste from './NewTaste'
-import { authState } from '@libs/store/auth'
-import MenuIcon from '@assets/icons/MenuIcon'
-import { useRecoilState } from 'recoil'
-import { answerState } from '@libs/store/question'
-import { UserApi } from '@utils/apis/user/UserApi'
-import PastToday from './PastToday'
-import PastTodayDetail from './PastTodayDetail'
-import FullModal from '@components/atoms/Modal/FullModal'
-import BigX from '@assets/icons/BigX'
+import PastToday from './PastToday/PastToday'
+import PastTodayDetail from './PastToday/PastTodayDetail'
 import ShareProfile from './ShareProfile'
-import EditFavorBox from '@pages/profile/EditFavorBox'
+import EditFavorBox from './EditFavorBox/EditFavorBox'
 
 const ProfileRouter = () => {
   const auth = useRecoilValue(authState)
-  const navigate = useNavigate()
   const [step, setStepAnswer] = useRecoilState(answerState)
+
+  const navigate = useNavigate()
   const location = useLocation()
+
   const userId = parseInt(location.pathname.slice(9))
 
   const handleBack = () => {
     if (step.favorAnswerDtos.length > 0) {
       const tempList = [...step.favorAnswerDtos]
       const newFavorAnswerDtos = tempList.slice(0, tempList.length - 1)
+
       setStepAnswer({
         categoryName: step.categoryName,
         favorAnswerDtos: [...newFavorAnswerDtos],
       })
+
       navigate(-1)
     } else if (localStorage.getItem('isOnboardingFavor') === 'true') {
       localStorage.removeItem('isOnboardingFavor')
+
       navigate('/onboarding')
     } else {
       navigate(-1)
     }
-  }
-
-  const handleClickIcon = (url: string) => {
-    navigate(url)
   }
 
   const { data: userData } = useQuery(
@@ -101,7 +106,7 @@ const ProfileRouter = () => {
                 <Svg
                   key="searchFriends"
                   children={<BigX />}
-                  onClick={() => handleClickIcon('/profile')}
+                  onClick={() => navigate('/profile')}
                 />,
               ]}
             >
@@ -200,7 +205,7 @@ const ProfileRouter = () => {
                 <Svg
                   key="searchFriends"
                   children={<BigX />}
-                  onClick={() => handleClickIcon('/profile')}
+                  onClick={() => navigate('/profile')}
                 />,
               ]}
             >

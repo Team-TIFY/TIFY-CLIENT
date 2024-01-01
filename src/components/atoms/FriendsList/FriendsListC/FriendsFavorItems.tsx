@@ -1,21 +1,23 @@
 import styled from '@emotion/styled'
-import { FriendsFavorItemsPropsType } from '@models/components/atoms/FriendsList'
 
 import { theme } from '@styles/theme'
-import { tasteBoxImage } from '@constants/tasteBoxImage'
+import { FriendsFavorItemsPropsType } from '@models/components/atoms/FriendsList'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
+
+import { tasteBoxImage } from '@constants/profile/tasteBoxImage'
 
 const FriendsFavorItems = ({ favorList }: FriendsFavorItemsPropsType) => {
   return (
     <>
       <TopWrapper>
         <StyledImg left={12} top={12}>
-          <img src={tasteBoxImage[favorList[0]]} />
+          <img src={tasteBoxImage[favorList[0] as TasteBoxVariantType]} />
         </StyledImg>
         <StyledImg left={96} top={12}>
-          <img src={tasteBoxImage[favorList[1]]} />
+          <img src={tasteBoxImage[favorList[1] as TasteBoxVariantType]} />
         </StyledImg>
         <StyledImg left={54} top={41}>
-          <img src={tasteBoxImage[favorList[2]]} />
+          <img src={tasteBoxImage[favorList[2] as TasteBoxVariantType]} />
         </StyledImg>
       </TopWrapper>
       <BottomWrapper />

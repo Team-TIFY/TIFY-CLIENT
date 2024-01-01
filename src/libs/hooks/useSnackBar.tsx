@@ -1,10 +1,11 @@
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import SnackBar from '@components/atoms/SnackBar'
+
+import { ToastType } from '@models/hooks/useSnackBar'
 import StingIcon from '@assets/icons/StingIcon'
 import CompleteIcon from '@assets/icons/CompleteIcon'
 import ErrorIcon from '@assets/icons/ErrorIcon'
-type ToastType = 'success' | 'info' | 'error'
+import SnackBar from '@components/atoms/SnackBar'
 
 const useSnackBar = () => {
   const setSnackBar = ({

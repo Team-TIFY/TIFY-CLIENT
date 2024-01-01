@@ -1,55 +1,41 @@
+import {
+  SubCategoryValueType,
+  DetailCategoryValueType,
+} from '@models/common/favor'
 import { splitDataByComma } from './splitDataByComma'
 
 export const processTagAnswerData = (
-  answerSmallCategory: unknown,
-  answerDetailCategory: unknown,
+  answerSmallCategory: SubCategoryValueType,
+  answerDetailCategory: DetailCategoryValueType,
   answerNumber: number,
   targetAnswerNumberList: number[],
   showAll: boolean,
   answerContent: string,
-  notAnsweredDetailCategories: any[],
+  notAnsweredDetailCategories: DetailCategoryValueType[],
   answerData: {
-    smallCategory: any
-    detailCategory: any
+    smallCategory: SubCategoryValueType
+    detailCategory: DetailCategoryValueType
     number: number
     answer: string
-    notAnsweredDetailCategories: any[]
+    notAnsweredDetailCategories: DetailCategoryValueType[]
   }[],
 ) => {
-  if (targetAnswerNumberList.includes(answerNumber)) {
-    if (answerContent.includes(',') && showAll) {
-      const [answer1, answer2] = splitDataByComma(answerContent)
-      answerData.push({
-        smallCategory: answerSmallCategory,
-        detailCategory: answerDetailCategory,
-        number: answerNumber,
-        answer: answer1,
-        notAnsweredDetailCategories: notAnsweredDetailCategories,
-      })
-      answerData.push({
-        smallCategory: answerSmallCategory,
-        detailCategory: answerDetailCategory,
-        number: answerNumber,
-        answer: answer2,
-        notAnsweredDetailCategories: notAnsweredDetailCategories,
-      })
-    } else if (answerContent.includes(',') && !showAll) {
-      const [answer1, _] = splitDataByComma(answerContent)
-      answerData.push({
-        smallCategory: answerSmallCategory,
-        detailCategory: answerDetailCategory,
-        number: answerNumber,
-        answer: answer1,
-        notAnsweredDetailCategories: notAnsweredDetailCategories,
-      })
-    } else {
-      answerData.push({
-        smallCategory: answerSmallCategory,
-        detailCategory: answerDetailCategory,
-        number: answerNumber,
-        answer: answerContent,
-        notAnsweredDetailCategories: notAnsweredDetailCategories,
-      })
-    }
+  if (!targetAnswerNumberList.includes(answerNumber)) {
+    return
   }
+
+  const splitAnswers = answerContent.includes(',')
+    ? splitDataByComma(answerContent)
+    : [answerContent]
+  const answers = showAll ? splitAnswers : [splitAnswers[0]]
+
+  answers.forEach((answer) => {
+    answerData.push({
+      smallCategory: answerSmallCategory,
+      detailCategory: answerDetailCategory,
+      number: answerNumber,
+      answer: answer.trim(),
+      notAnsweredDetailCategories: notAnsweredDetailCategories,
+    })
+  })
 }

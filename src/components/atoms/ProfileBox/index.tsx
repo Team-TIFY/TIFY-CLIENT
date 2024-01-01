@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 
-import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
-import { tasteBoxImage } from '@constants/tasteBoxImage'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 import {
   ProfileBoxPropsType,
   ProfileBoxVariantType,
@@ -10,6 +9,7 @@ import {
 import shadow from '@assets/image/profile_shadow.png'
 import backgroundImage from '@assets/image/profile_background.png'
 import profileBoxImage from '@assets/image/profile_box.png'
+import { tasteBoxImage } from '@constants/profile/tasteBoxImage'
 
 const ProfileBox = ({
   variant = 'profile',

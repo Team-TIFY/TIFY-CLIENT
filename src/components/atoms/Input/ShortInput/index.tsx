@@ -3,14 +3,10 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
-import { ShortInputProps } from '@models/components/atoms/Input'
-import {
-  isBtnColorState,
-  OnboardingBtnType,
-  onboardingState,
-  OnboardingType,
-} from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
+import { onboardingState, isBtnColorState } from '@libs/store/onboard'
+import { ShortInputProps } from '@models/components/atoms/Input'
+import { OnboardingType, OnboardingBtnType } from '@models/stores/onboard'
 import { SHORT_INPUT_TYPE } from '@constants/atoms/input'
 
 export const ShortInput = ({

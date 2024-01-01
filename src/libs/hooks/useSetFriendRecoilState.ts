@@ -1,5 +1,6 @@
-import { friendState } from '@libs/store/friend'
 import { useSetRecoilState } from 'recoil'
+
+import { friendState } from '@libs/store/friend'
 
 export const useSetFriendRecoilState = () => {
   const setFriendStateData = useSetRecoilState(friendState)

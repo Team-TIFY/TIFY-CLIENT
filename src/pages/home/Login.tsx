@@ -1,4 +1,4 @@
-import { AuthApi } from '@utils/apis/auth/AuthApi'
+import { AuthApi } from '@apis/AuthApi'
 import { RoundButton } from '@components/atoms/RoundButton'
 import Svg from '@components/atoms/Svg'
 import TifyLogo from '@assets/icons/TifyLogo'

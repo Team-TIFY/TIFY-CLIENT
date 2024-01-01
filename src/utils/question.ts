@@ -1,6 +1,7 @@
-import { TasteBoxVariantType } from './apis/favor/TasteType'
+import { QuestionCategoryType } from '@models/common/favor'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 
-export const question: Record<TasteBoxVariantType, string> = {
+export const question: Record<TasteBoxVariantType, QuestionCategoryType> = {
   LIP: 'BMLIP',
   EYE: 'BMEYE',
   MOISTURE: 'BFMOI',

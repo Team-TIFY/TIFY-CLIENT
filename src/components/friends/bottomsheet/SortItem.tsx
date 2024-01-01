@@ -1,16 +1,16 @@
+import { useRecoilState } from 'recoil'
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import { FilterState } from '@libs/store/present'
+import { FilterType } from '@models/stores/present'
 import { PurpleCheck } from '@assets/icons/PurpleCheck'
 import BottomSheetBar from '@components/atoms/BottomSheet/BottomSheetBar'
 import { Text } from '@components/atoms/Text'
-import { FlexBox } from '@components/layouts/FlexBox'
-import styled from '@emotion/styled'
-import { FilterState, filterType } from '@libs/store/present'
-import { theme } from '@styles/theme'
-import { useState } from 'react'
-import { useRecoilState } from 'recoil'
 
 function SortItem() {
   const [selected, setSelected] = useRecoilState(FilterState)
-  const handleSortClick = (sortType: filterType) => {
+  const handleSortClick = (sortType: FilterType) => {
     setSelected(sortType)
   }
 

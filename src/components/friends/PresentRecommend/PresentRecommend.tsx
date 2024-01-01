@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react'
-import {
-  SelectedProps,
-  SelectedTag,
-  SubCategoryName,
-} from '@utils/apis/user/UserType'
+import { SelectedProps } from '@models/apis/UserType'
 import styled from '@emotion/styled'
 import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/FriendsApi'
 import { GiftFilter } from '@components/atoms/GiftFilter'
-import SortItem from '../Bottomsheet/SortItem'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { FilterState, isFilterTypeState, PriceState } from '@libs/store/present'
-import PriceFilter from '../Bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 import { theme } from '@styles/theme'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import { friendState } from '@libs/store/friend'
-import { SubCategoryValueType } from '@models/favor'
+import {
+  SelectedTagType,
+  SubCategoryNameType,
+  SubCategoryValueType,
+} from '@models/common/favor'
 import { useInfiniteQueries } from '@libs/hooks'
 import PresentItem from './PresentItem'
+import PriceFilter from '../Bottomsheet/PriceFilter'
+import SortItem from '../Bottomsheet/SortItem'
 
 export type DataType = {
   productId: number
@@ -52,7 +52,7 @@ const selectedPropsData: SelectedProps = [
 function PresentRecommend() {
   const [selectedProps, setSelectedProps] =
     useState<SelectedProps>(selectedPropsData)
-  const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([])
+  const [selectedTags, setSelectedTags] = useState<SelectedTagType[]>([])
   const [isSortOpen, setIsSortOpen] = useRecoilState<string>(isFilterTypeState)
   const selectedFilter = useRecoilValue(FilterState)
   const selectedPrice = useRecoilValue(PriceState)
@@ -105,7 +105,7 @@ function PresentRecommend() {
 
       setSelectedTags([
         {
-          name: selectedOption.name as SubCategoryName,
+          name: selectedOption.name as SubCategoryNameType,
           value: selectedOption.value as SubCategoryValueType,
         },
       ])

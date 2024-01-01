@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react'
+
 import { Tag } from '.'
 
 const meta = {

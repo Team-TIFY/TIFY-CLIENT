@@ -1,6 +1,6 @@
 import DailyQuestionBox from '@components/WeeklyQuestion/DailyQuestionBox'
 import styled from '@emotion/styled'
-import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
+import { WeeklyApi } from '@apis/WeeklyApi'
 import { useRecoilState } from 'recoil'
 import { questionState } from '@libs/store/question'
 import { RoundButton } from '@components/atoms/RoundButton'
@@ -15,7 +15,7 @@ import { authState } from '@libs/store/auth'
 import { getNotAnswerFriends } from '@utils/getNotAnswerFriends'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
-import PokeList from '@components/WeeklyQuestion/poke/PokeList'
+import PokeList from '@components/WeeklyQuestion/Poke/PokeList'
 import useSnackBar from '@libs/hooks/useSnackBar'
 
 const CheckAllAnswers = () => {

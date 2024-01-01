@@ -1,4 +1,4 @@
-import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 
 export type ProfileBoxVariantType = 'profile' | 'shareProfile'
 

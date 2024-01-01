@@ -1,14 +1,14 @@
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/FriendsApi'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
 import DragDropFriend from '@components/WeeklyQuestion/DragDropFriend'
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd'
 import Loading from '@components/atoms/Loading'
 import { useEffect, useState } from 'react'
-import { DailyFriendsType } from '@models/apis/friends/FriendsType'
+import { DailyFriendsType } from '@models/apis/FriendsType'
 
 const EditFriendList = () => {
   const queryClient = useQueryClient()

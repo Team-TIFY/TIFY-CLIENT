@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil'
 import { dateState } from '@libs/store/date'
-import { DailyQuestionCategoryType } from '@utils/apis/weekly/questionType'
+import { DailyQuestionCategoryType } from '@models/apis/QuestionType'
 
 const QuestionImg = ({
   className,
@@ -28,7 +28,7 @@ const QuestionImg = ({
     const diff = index - date.selectedDate
     const translateX = diff * 97 // 가로 이동 거리
     const translateY = diff * (diff > 0 ? -68 : 68) // 세로 이동 거리
-    console.log(translateX)
+
     return `translate(${translateX}px, ${translateY}px)`
   }
 

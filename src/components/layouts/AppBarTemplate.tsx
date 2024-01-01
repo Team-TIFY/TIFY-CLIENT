@@ -4,9 +4,9 @@ import {
   RightChildrenVariantType,
 } from '@models/components/atoms/AppBar'
 import { ReactNode } from 'react'
-import { favorQuestionData } from '@libs/store/dummy'
+import { favorQuestionData } from '@constants/favorQuestion/favorQuestionData'
 import { Navigationbar } from '@components/atoms/Navigationbar'
-import { TasteType } from '@utils/apis/favor/TasteType'
+import { TasteType } from '@models/apis/TasteType'
 import styled from '@emotion/styled'
 
 type AppBarTemplateProps = AppBarPropsType<RightChildrenVariantType> & {
@@ -30,11 +30,13 @@ const AppBarTemplate = ({
     if (rightChildren !== 'stepNum') {
       return [0, 0]
     }
+
     const favorType = window.location.href
       .split('/')[5]
       .split('?')[0] as TasteType
     const totalNum = Object.keys(favorQuestionData[favorType]).length
     const stepNum = parseInt(window.location.href.slice(-1), 10)
+
     if (isNaN(stepNum)) {
       return [1, totalNum]
     } else {

@@ -1,5 +1,6 @@
-import { profileState } from '@libs/store/profile'
 import { useSetRecoilState } from 'recoil'
+
+import { profileState } from '@libs/store/profile'
 
 const useSetProfileRecoilState = () => {
   const setProfileStateData = useSetRecoilState(profileState)

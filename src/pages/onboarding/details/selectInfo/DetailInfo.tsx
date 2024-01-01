@@ -12,7 +12,7 @@ import {
 } from '@libs/store/onboard'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
+import { OnboardingApi } from '@apis/OnboardingApi'
 import { Spacing } from '@components/atoms/Spacing'
 import { ChangeStatus } from '@assets/icons/ChangeStatus'
 import { theme } from '@styles/theme'

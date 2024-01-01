@@ -1,6 +1,5 @@
 import { useRecoilValue } from 'recoil'
 
-import { friendState } from '@libs/store/friend'
 import { authState } from '@libs/store/auth'
 import { SearchedFriendListPropsType } from '@models/components/friends/friends'
 import { Spacing } from '@components/atoms/Spacing'
@@ -11,12 +10,7 @@ const SearchedFriendList = ({
   searchFriendData,
   isSearchFriendId,
 }: SearchedFriendListPropsType) => {
-  const friendStateData = useRecoilValue(friendState)
   const auth = useRecoilValue(authState)
-
-  if (!friendStateData.isToggle) {
-    return null
-  }
 
   if (!searchFriendData && isSearchFriendId) {
     return (
@@ -64,6 +58,8 @@ const SearchedFriendList = ({
       )
     }
   }
+
+  return null
 }
 
 export default SearchedFriendList

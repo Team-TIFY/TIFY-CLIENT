@@ -1,12 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
 
+import useFriendMutate from '@libs/hooks/mutations/useFriendMutate'
 import useGetDate from '@libs/hooks/useGetDate'
-import useFriendMutate from '@libs/hooks/useFriendMutate'
-import { FriendsType, NewFriendsType } from '@models/apis/friends/FriendsType'
+import { FriendsType, NewFriendsType } from '@models/apis/FriendsType'
 import { FriendsListBItemPropsType } from '@models/components/friends/friends'
-import { FlexBox } from '@components/layouts/FlexBox'
 import FriendsListB from '@components/atoms/FriendsList/FriendsListB'
+import { FlexBox } from '@components/layouts/FlexBox'
+
+export type FriendsListBItemProps = {
+  friendsList: FriendsType[] | NewFriendsType[]
+  description?: 'birthday'
+  isNewFriendsList?: boolean
+}
 
 const FriendsListBItem = ({
   friendsList,

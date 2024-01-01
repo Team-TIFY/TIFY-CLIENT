@@ -1,7 +1,8 @@
-import { SubCategoryType } from '@utils/apis/user/UserType'
 import { atom } from 'recoil'
 
-export const subCategoryState = atom<SubCategoryType | ''>({
+import { SubCategoryValueType } from '@models/common/favor'
+
+export const subCategoryState = atom<SubCategoryValueType | ''>({
   key: 'subCategoryState',
   default: '',
 })

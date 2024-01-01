@@ -2,7 +2,7 @@ import { ShortInput } from '@components/atoms/Input/ShortInput'
 import styled from '@emotion/styled'
 import { authState } from '@libs/store/auth'
 import { isBtnColorState } from '@libs/store/onboard'
-import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
+import { OnboardingApi } from '@apis/OnboardingApi'
 import { ChangeEvent, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 

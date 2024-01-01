@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import {
   isBtnColorState,
-  OnboardingBtnType,
   onboardingPageState,
   pageTempState,
 } from '@libs/store/onboard'
@@ -14,6 +13,7 @@ import { Name } from './signup/Name'
 import { UserId } from './signup/UserId'
 import { Birth } from './signup/Birth'
 import { Gender } from './signup/Gender'
+import { OnboardingBtnType } from '@models/stores/onboard'
 
 export function SignUp() {
   const [infoPage, setInfoPage] = useRecoilState(onboardingPageState)

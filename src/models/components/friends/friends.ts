@@ -1,9 +1,9 @@
 import {
-  FriendRequestType,
+  SearchedFriendType,
   FriendsType,
   NewFriendsType,
-  SearchedFriendType,
-} from '@models/apis/friends/FriendsType'
+  FriendRequestType,
+} from '@models/apis/FriendsType'
 
 export type SearchedFriendItemPropsType = {
   friendData: SearchedFriendType

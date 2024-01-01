@@ -1,23 +1,23 @@
-import { ProfileButtonVariant } from '@components/profile/ProfileMenuButtons'
-import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
-import { TextType } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
-import useFriendMutate from './useFriendMutate'
-import { useSetFriendRecoilState } from './useSetFriendRecoilState'
 
-type ButtonTextType = { text: string; color: TextType['color'] }
+import useSetProfileRecoilState from '@libs/hooks/useSetProfileRecoilState'
+import useFriendMutate from './mutations/useFriendMutate'
+import { useSetFriendRecoilState } from './useSetFriendRecoilState'
+import { ProfileButtonVariantType } from '@models/components/Profile/profile'
+import { ButtonTextType } from '@models/hooks/useProfileMenuButtonsData'
 
 const useProfileMenuButtonsData = (
-  type: ProfileButtonVariant,
+  type: ProfileButtonVariantType,
   friendId?: number,
 ) => {
-  const { setIsMenuOpen, setIsEditImageMenuOpen } = useSetProfileRecoilState()
   const {
+    setIsMenuOpen,
+    setIsEditImageMenuOpen,
     setIsMenuOpen: setIsFriendMenuOpen,
     setIsCutOffMenuOpen,
     setIsBlockMenuOpen,
     setIsCancelBlockMenuOpen,
-  } = useSetFriendRecoilState()
+  } = { ...useSetProfileRecoilState(), ...useSetFriendRecoilState() }
 
   const {
     reportFriendMutate,
@@ -25,6 +25,7 @@ const useProfileMenuButtonsData = (
     cutOffFriendMutate,
     cancelBlockFriendMutate,
   } = useFriendMutate()
+
   const navigate = useNavigate()
 
   if (type === 'myProfile') {
@@ -53,6 +54,7 @@ const useProfileMenuButtonsData = (
     }
     const onClickThirdButton = () => {
       navigate('/profile/editFavorBox')
+
       setIsMenuOpen(false)
     }
     const onClickCancelButton = () => {

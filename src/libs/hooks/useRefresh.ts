@@ -1,9 +1,10 @@
 import { useRecoilState } from 'recoil'
-import { authState } from '@libs/store/auth'
 import { useMutation } from '@tanstack/react-query'
-import { axiosApi } from '@utils/apis/axios'
+
+import { axiosApi } from '@apis/axios'
+import { AuthApi } from '@apis/AuthApi'
+import { authState } from '@libs/store/auth'
 import { setCookie, removeCookie } from '@utils/cookies'
-import { AuthApi } from '@utils/apis/auth/AuthApi'
 
 const useRefresh = () => {
   const [auth, setAuth] = useRecoilState(authState)

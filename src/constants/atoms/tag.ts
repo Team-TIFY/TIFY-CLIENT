@@ -1,10 +1,10 @@
 import { theme } from '@styles/theme'
-import { KeyOfPalette } from '@styles/theme/theme'
 import {
   ColorIndexVariantType,
   TagVariantType,
   ColorVariantType,
 } from '@models/components/atoms/Tag'
+import { TagIconDataType } from '@models/components/Profile/profile'
 import BagIcon from '@assets/icons/BagIcon'
 import BowlIcon from '@assets/icons/BowlIcon'
 import CookIcon from '@assets/icons/CookIcon'
@@ -99,10 +99,7 @@ export const TAG_COLOR_TYPE: Record<
   },
 }
 
-export const TAG_ICON_DATA: Record<
-  any,
-  Record<any, Record<number, React.FC<{ fill: KeyOfPalette }>>>
-> = {
+export const TAG_ICON_DATA: TagIconDataType = {
   MAKEUP: {
     LIP: {
       2: SwatchIcon,

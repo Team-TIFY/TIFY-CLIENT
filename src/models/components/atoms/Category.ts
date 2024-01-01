@@ -1,4 +1,4 @@
-import { SubCategoryNameType } from '@models/favor'
+import { SubCategoryNameType } from '@models/common/favor'
 
 export type CategoryPropsType = {
   categoryName: SubCategoryNameType

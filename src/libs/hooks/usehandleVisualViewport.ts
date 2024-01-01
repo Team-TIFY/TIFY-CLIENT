@@ -1,4 +1,4 @@
-const usehandleVisualViewport = <T>({
+const usehandleVisualViewport = ({
   divRef,
   height,
 }: {
@@ -12,9 +12,11 @@ const usehandleVisualViewport = <T>({
       window.scrollTo(0, height)
     }
   }
+
   if (window.visualViewport) {
     window.visualViewport.onresize = handleVisualViewPortResize
   }
+
   return [() => handleVisualViewPortResize]
 }
 

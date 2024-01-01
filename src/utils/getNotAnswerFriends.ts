@@ -1,5 +1,8 @@
-import { NeighborAnswerListInfo } from '@utils/apis/weekly/questionType'
-export const getNotAnswerFriends = (answerList: NeighborAnswerListInfo[]) => {
+import { NeighborAnswerListInfoType } from '@models/apis/QuestionType'
+
+export const getNotAnswerFriends = (
+  answerList: NeighborAnswerListInfoType[],
+) => {
   if (answerList) {
     const nonAnswerList = answerList.filter(
       (data) => data.answerInfo.content === null,

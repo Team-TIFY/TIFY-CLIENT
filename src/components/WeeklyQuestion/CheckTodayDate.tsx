@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { WeeklyApi } from '@utils/apis/weekly/WeeklyApi'
-import { DailyQuestionInfo } from '@utils/apis/weekly/questionType'
+import { WeeklyApi } from '@apis/WeeklyApi'
+import { DailyQuestionInfoType } from '@models/apis/QuestionType'
 import { useRecoilState } from 'recoil'
 import { questionState } from '@libs/store/question'
 import { dateState } from '@libs/store/date'
@@ -13,7 +13,7 @@ const CheckTodayDate = () => {
   const { getTodayDate, setNewDate } = useGetDate()
   const [question, setQuestion] = useRecoilState(questionState)
   const getQuestionMutation = useMutation(WeeklyApi.GET_QUESTIONS, {
-    onSuccess: (data: DailyQuestionInfo) => {
+    onSuccess: (data: DailyQuestionInfoType) => {
       setQuestion({
         questionId: data.questionId,
         content: data.content,

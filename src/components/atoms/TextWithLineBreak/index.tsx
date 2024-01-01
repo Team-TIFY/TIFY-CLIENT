@@ -1,12 +1,10 @@
 import React, { ReactElement } from 'react'
 
-interface TextWithLineBreakInterface {
-  data: string
-}
+import { TextWithLineBreakPropsType } from '@models/components/atoms/TextWithLineBreak'
 
 const TextWithLineBreak = ({
   data,
-}: TextWithLineBreakInterface): ReactElement => {
+}: TextWithLineBreakPropsType): ReactElement => {
   const textWithEnter = data.split('\\n').map((line, index) => (
     <React.Fragment key={index}>
       {line}

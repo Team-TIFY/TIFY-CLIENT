@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { Text } from '@components/atoms/Text'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
+import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
+import { FriendsApi } from '@apis/FriendsApi'
 import SearchedFriendList from './SearchedFriendList'
 
 const AddFriendById = () => {

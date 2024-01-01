@@ -1,4 +1,7 @@
-import { SubCategoryValueType, DetailCategoryValueType } from '@models/favor'
+import {
+  SubCategoryValueType,
+  DetailCategoryValueType,
+} from '@models/common/favor'
 
 export type TagPropsType = {
   children: string

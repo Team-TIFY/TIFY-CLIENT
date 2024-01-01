@@ -9,11 +9,11 @@ import { BeautyFavor } from '@components/onboarding/BeautyFavor'
 import { FashionFavor } from '@components/onboarding/FashionFavor'
 import { HobbyFavor } from '@components/onboarding/HobbyFavor'
 import { useEffect, useState } from 'react'
-import { OnboardingApi } from '@utils/apis/onboarding/OnboardingApi'
+import { OnboardingApi } from '@apis/OnboardingApi'
 import { authState } from '@libs/store/auth'
-import { favorPriority } from '@libs/store/priority'
 import { useNavigate } from 'react-router-dom'
 import { parseFavorBox } from '@utils/parseFavorBox'
+import { favorPriority } from '@constants/common/favorPriority'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useState(false)

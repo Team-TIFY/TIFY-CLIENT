@@ -8,7 +8,7 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
 import { FileIcon } from '@assets/icons/FileIcon'
 import { RoundButton } from '@components/atoms/RoundButton'
-import { CustomerCenterApi } from '@utils/apis/setting'
+import { CustomerCenterApi } from '@apis/SettingApi'
 import { useNavigate } from 'react-router-dom'
 
 interface Options {

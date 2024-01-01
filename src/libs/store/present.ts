@@ -1,31 +1,23 @@
 import { atom } from 'recoil'
 
-export interface filterType {
-  filter: string
-  filterValue: string
-}
+import { FilterType, PriceType } from '@models/stores/present'
 
-const initialFilterState: filterType = {
+const initialFilterState: FilterType = {
   filter: '추천순',
   filterValue: 'DEFAULT',
 }
 
-export const FilterState = atom<filterType>({
+export const FilterState = atom<FilterType>({
   key: 'filterState',
   default: initialFilterState,
 })
 
-export interface priceType {
-  price: string
-  priceValue: string
-}
-
-const initialPriceState: priceType = {
+const initialPriceState: PriceType = {
   price: '가격',
   priceValue: 'DEFAULT',
 }
 
-export const PriceState = atom<priceType>({
+export const PriceState = atom<PriceType>({
   key: 'priceState',
   default: initialPriceState,
 })

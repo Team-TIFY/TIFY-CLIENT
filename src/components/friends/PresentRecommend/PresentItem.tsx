@@ -10,7 +10,6 @@ import accessoryNull from '@assets/image/accessoryNull.svg'
 import digitalNull from '@assets/image/digitalNull.svg'
 import cookingNull from '@assets/image/cookingNull.svg'
 import exerciseNull from '@assets/image/exerciseNull.svg'
-import { theme } from '@styles/theme'
 
 const PresentItem = (data: DataType) => {
   const gotoSite = (siteUrl: string) => {

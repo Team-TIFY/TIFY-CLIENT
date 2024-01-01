@@ -5,11 +5,12 @@ import { useQuery } from '@tanstack/react-query'
 import styled from '@emotion/styled'
 
 import { authState } from '@libs/store/auth'
-import { ProfileState, profileState } from '@libs/store/profile'
+import { profileState } from '@libs/store/profile'
 import useRecoilToggle from '@libs/hooks/useRecoilToggle'
-import { FriendsType } from '@models/apis/friends/FriendsType'
+import { FriendsApi } from '@apis/FriendsApi'
+import { ProfileStateType } from '@models/stores/profile'
+import { FriendsType } from '@models/apis/FriendsType'
 import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
 import ListIcon from '@assets/icons/ListIcon'
 import ShareIcon from '@assets/icons/ShareIcon'
 import FriendsMenuIcon from '@assets/icons/FriendsMenuIcon'
@@ -25,7 +26,7 @@ import FriendsListBItem from './FriendsListBItem'
 const AllFriends = () => {
   const navigate = useNavigate()
   const [isCubeList, toggleListOption] =
-    useRecoilToggle<ProfileState>(profileState)
+    useRecoilToggle<ProfileStateType>(profileState)
 
   const auth = useRecoilValue(authState)
 
@@ -123,6 +124,8 @@ const AllFriends = () => {
 
 export default AllFriends
 
-const StyledCubeFriendsListWrapper = styled.div<{ isCubeList: ProfileState }>`
+const StyledCubeFriendsListWrapper = styled.div<{
+  isCubeList: ProfileStateType
+}>`
   width: ${({ isCubeList }) => (isCubeList.value ? '360px' : '100%')};
 `

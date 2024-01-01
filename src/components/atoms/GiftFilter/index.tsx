@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import styled from '@emotion/styled'
+
 import { theme } from '@styles/theme'
-import { SelectedPropsType, SelectedTagType } from '@models/favor'
+import { SelectedPropsType, SelectedTagType } from '@models/common/favor'
 import { PropsType } from '@models/components/atoms/GiftFilter'
 import { friendState } from '@libs/store/friend'
 import { FilterIcon } from '@assets/icons/FilterIcon'
 import Svg from '../Svg'
-import { useRecoilState, useRecoilValue } from 'recoil'
 
 export const GiftFilter = ({
   selectedProps,

@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react'
 
-import { SelectedPropsType, SelectedTagType } from '@models/favor'
+import { SelectedPropsType, SelectedTagType } from '@models/common/favor'
 
 export interface FilterPropsType
   extends ButtonHTMLAttributes<HTMLButtonElement> {

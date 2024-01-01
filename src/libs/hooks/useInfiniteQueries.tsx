@@ -1,11 +1,11 @@
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 import styled from '@emotion/styled'
 import {
   QueryKey,
   useInfiniteQuery,
   UseInfiniteQueryOptions,
 } from '@tanstack/react-query'
-import { useEffect } from 'react'
-import { useInView } from 'react-intersection-observer'
 
 export const useInfiniteQueries = <T,>(
   queryKey: QueryKey,
@@ -34,6 +34,7 @@ export const useInfiniteQueries = <T,>(
 
     const lastPageIdx = data.pages.length - 1
     const hasNext = data.pages[lastPageIdx].data.hasNext
+
     if (hasNext && inView) fetchNextPage()
   }, [inView])
 
@@ -42,6 +43,7 @@ export const useInfiniteQueries = <T,>(
       <ListItem {...item} className={`item-${idx}`} key={`item-${idx}`} />
     )),
   )
+
   const observer = (
     <div
       className="observer"
