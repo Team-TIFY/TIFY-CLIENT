@@ -1,28 +1,38 @@
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import { useQuery } from '@tanstack/react-query'
+import styled from '@emotion/styled'
+
+import { authState } from '@libs/store/auth'
+import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
+import { FriendsApi } from '@apis/FriendsApi'
+import { NewFriendsType } from '@models/apis/FriendsType'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Text } from '@components/atoms/Text'
-import Option from '@components/atoms/Option'
-import styled from '@emotion/styled'
-import FriendsListBItem from './FriendsListBItem'
 import { Spacing } from '@components/atoms/Spacing'
-import { useQuery } from '@tanstack/react-query'
-import { useRecoilValue } from 'recoil'
-import { authState } from '@libs/store/auth'
-import { FriendsApi } from '@apis/FriendsApi'
-import { useEffect } from 'react'
+import Option from '@components/atoms/Option'
+import FriendsListBItem from './FriendsListBItem'
 
 const NewFriends = () => {
   const auth = useRecoilValue(authState)
 
+  const [sortedNewFriendsList, setSortedNewFriendsList] = useState<
+    NewFriendsType[]
+  >([])
+
   const { data: newFriendsList = [] } = useQuery(
-    ['newFriendsList', auth.userProfile.id],
+    [friendsQueryKeys.NEW_FRIENDS_LIST, auth.userProfile.id],
     FriendsApi.GET_NEW_FRIENDS_LIST,
   )
 
   useEffect(() => {
-    newFriendsList.sort((a, b) => a.neighborName.localeCompare(b.neighborName))
+    const sortedNewFriendsListData = [...newFriendsList].sort((a, b) =>
+      a.neighborName.localeCompare(b.neighborName),
+    )
+    setSortedNewFriendsList(sortedNewFriendsListData)
   }, [newFriendsList])
 
-  return newFriendsList.length ? (
+  return sortedNewFriendsList.length ? (
     <>
       <FlexBox justify="flex-start" style={{ width: '100%', padding: '16px' }}>
         <Text
@@ -35,7 +45,7 @@ const NewFriends = () => {
         />
         <Text
           typo="Mont_Caption_12M"
-          children={newFriendsList.length}
+          children={sortedNewFriendsList.length}
           color="gray_400"
           style={{ marginRight: '8px' }}
         />
@@ -43,7 +53,7 @@ const NewFriends = () => {
       </FlexBox>
       <FriendsListBItemWrapper>
         <FriendsListBItem
-          friendsList={newFriendsList}
+          friendsList={sortedNewFriendsList}
           isNewFriendsList={true}
         />
       </FriendsListBItemWrapper>

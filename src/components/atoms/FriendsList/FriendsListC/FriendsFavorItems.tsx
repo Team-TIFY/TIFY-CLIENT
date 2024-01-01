@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
-import { TasteBoxVariantType } from '@models/apis/TasteType'
 import { FriendsFavorItemsPropsType } from '@models/components/atoms/FriendsList'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 
 import { tasteBoxImage } from '@constants/profile/tasteBoxImage'
 

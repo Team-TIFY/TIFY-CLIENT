@@ -5,10 +5,8 @@ import { ItemFilter } from '@assets/icons/ItemFilter'
 import { Text } from '@components/atoms/Text'
 import { FriendsApi } from '@apis/FriendsApi'
 import { GiftFilter } from '@components/atoms/GiftFilter'
-import SortItem from './Bottomsheet/SortItem'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { FilterState, isFilterTypeState, PriceState } from '@libs/store/present'
-import PriceFilter from './Bottomsheet/PriceFilter'
 import { PriceFilterIcon } from '@assets/icons/PriceFilterIcon'
 import { theme } from '@styles/theme'
 import BottomSheet from '@components/atoms/BottomSheet'
@@ -21,6 +19,8 @@ import {
 } from '@models/common/favor'
 import { useInfiniteQueries } from '@libs/hooks'
 import PresentItem from './PresentItem'
+import PriceFilter from '../Bottomsheet/PriceFilter'
+import SortItem from '../Bottomsheet/SortItem'
 
 export type DataType = {
   productId: number

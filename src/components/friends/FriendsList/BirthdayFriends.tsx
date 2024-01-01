@@ -1,29 +1,37 @@
+import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
 import styled from '@emotion/styled'
+
+import { authState } from '@libs/store/auth'
+import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
+import { FriendsApi } from '@apis/FriendsApi'
+import { FriendsType } from '@models/apis/FriendsType'
 import { FlexBox } from '@components/layouts/FlexBox'
 import { Spacing } from '@components/atoms/Spacing'
 import { Text } from '@components/atoms/Text'
 import FriendsListBItem from './FriendsListBItem'
-import { authState } from '@libs/store/auth'
-import { FriendsApi } from '@apis/FriendsApi'
-import { useEffect } from 'react'
 
 const BirthdayFriends = () => {
   const auth = useRecoilValue(authState)
 
+  const [sortedBirthdayFriendsList, setSortedBirthdayFriendsList] = useState<
+    FriendsType[]
+  >([])
+
   const { data: birthdayFriendsList = [] } = useQuery(
-    ['birthdayFriendsList', auth.userProfile.id],
+    [friendsQueryKeys.BIRTHDAY_FRIENDS_LIST, auth.userProfile.id],
     FriendsApi.GET_BIRTHDAY_FRIENDS_LIST,
   )
 
   useEffect(() => {
-    birthdayFriendsList.sort((a, b) =>
-      a.neighborName.localeCompare(b.neighborName),
+    const sortedBirthdayFriendsListData = [...birthdayFriendsList].sort(
+      (a, b) => a.neighborName.localeCompare(b.neighborName),
     )
+    setSortedBirthdayFriendsList(sortedBirthdayFriendsListData)
   }, [birthdayFriendsList])
 
-  return birthdayFriendsList.length ? (
+  return sortedBirthdayFriendsList.length ? (
     <>
       <FlexBox justify="flex-start" style={{ padding: '16px', width: '100%' }}>
         <Text

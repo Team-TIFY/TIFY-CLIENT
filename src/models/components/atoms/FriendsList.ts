@@ -1,4 +1,4 @@
-import { TasteBoxVariantType } from '@models/apis/TasteType'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 
 export type FriendsListVariantType = 'visible' | 'invisible'
 

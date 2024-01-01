@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
+
+import { FriendsListCItemPropsType } from '@models/components/friends/friends'
 import { FlexBox } from '@components/layouts/FlexBox'
 import FriendsListC from '@components/atoms/FriendsList/FriendsListC'
 import { FriendsType } from '@models/apis/FriendsType'
@@ -12,7 +14,7 @@ export type FriendsListCItemProps = {
 const FriendsListCItem = ({
   friendsList,
   alignLeft,
-}: FriendsListCItemProps) => {
+}: FriendsListCItemPropsType) => {
   const navigate = useNavigate()
 
   const handleClickFriendProfile = (friendId: number) => {

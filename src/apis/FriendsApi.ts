@@ -1,16 +1,16 @@
 import { axiosApi } from '@apis/axios'
+import { DataType } from '@components/friends/PresentRecommend/PresentRecommend'
 
 import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
 import {
-  FriendRequestType,
-  FriendsType,
-  NewFriendsType,
-  ReportFriendDataType,
-  PokeCountType,
-  SearchedFriendType,
   DailyFriendsType,
-} from '../models/apis/FriendsType'
-import { DataType } from '@components/friends/PresentRecommend'
+  FriendsType,
+  FriendRequestType,
+  SearchedFriendType,
+  ReportFriendDataType,
+  NewFriendsType,
+  PokeCountType,
+} from '@models/apis/FriendsType'
 
 export const FriendsApi = {
   GET_ALL_FRIENDS_LIST: async (): Promise<DailyFriendsType[]> => {

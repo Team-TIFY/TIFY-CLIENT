@@ -68,12 +68,12 @@ const PokeList = () => {
     onSuccess: async () => {
       setLastRequestTime(Date.now())
       setSnackBar({
-        comment: `${
-          friendsList.find(
-            (friend) =>
-              friend.neighborInfo.neighborUserId === knockCount.knockedUserId,
-          )?.neighborInfo.neighborName
-        }님을 ${knockCount.knockCount}번 쿡 찔렀어요!`,
+        comment: `${friendsList.find(
+          (friend) =>
+            friend.neighborInfo.neighborUserId === knockCount.knockedUserId,
+        )?.neighborInfo.neighborName}님을 ${
+          knockCount.knockCount
+        }번 쿡 찔렀어요!`,
         type: 'info',
       })
     },

@@ -1,5 +1,5 @@
 import { QuestionCategoryType } from '@models/common/favor'
-import { TasteBoxVariantType } from '@models/apis/TasteType'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 
 export const question: Record<TasteBoxVariantType, QuestionCategoryType> = {
   LIP: 'BMLIP',

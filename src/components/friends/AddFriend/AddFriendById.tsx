@@ -5,19 +5,17 @@ import { FlexBox } from '@components/layouts/FlexBox'
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { Text } from '@components/atoms/Text'
 import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
+import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
 import { FriendsApi } from '@apis/FriendsApi'
 import SearchedFriendList from './SearchedFriendList'
-import { authState } from '@libs/store/auth'
-import { useRecoilValue } from 'recoil'
 
 const AddFriendById = () => {
   const [searchFriendId, setSearchFriendId] = useState('')
 
   const { setIsToggle } = useSetFriendRecoilState()
-  const auth = useRecoilValue(authState)
 
   const { data: searchFriendData } = useQuery(
-    ['searchFriend', searchFriendId],
+    [friendsQueryKeys.SEARCH_FRIEND, searchFriendId],
     () => FriendsApi.SEARCH_FRIEND(searchFriendId),
     {
       enabled: !!searchFriendId.length,
@@ -37,11 +35,7 @@ const AddFriendById = () => {
   }
 
   const handleBlur = () => {
-    if (searchFriendData) {
-      return
-    } else {
-      setIsToggle(false)
-    }
+    return !searchFriendData && setIsToggle(false)
   }
 
   return (
@@ -63,7 +57,6 @@ const AddFriendById = () => {
         customRemoveHandler={handleRemoveSearchInput}
         width={328}
       />
-
       <SearchedFriendList
         searchFriendData={searchFriendData}
         isSearchFriendId={searchFriendId.length !== 0}

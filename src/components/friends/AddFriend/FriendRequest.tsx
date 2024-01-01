@@ -1,19 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
-import { FlexBox } from '@components/layouts/FlexBox'
-import { Text } from '@components/atoms/Text'
-import FriendsListDItem from './FriendsListDItem'
+import { useQuery } from '@tanstack/react-query'
+
 import { authState } from '@libs/store/auth'
+import { friendState } from '@libs/store/friend'
+import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
 import { FriendsApi } from '@apis/FriendsApi'
 import { Spacing } from '@components/atoms/Spacing'
-import { friendState } from '@libs/store/friend'
+import { FlexBox } from '@components/layouts/FlexBox'
+import { Text } from '@components/atoms/Text'
+import FriendsListDItem from '../FriendsList/FriendsListDItem'
 
 const FriendRequest = () => {
   const auth = useRecoilValue(authState)
   const friendStateData = useRecoilValue(friendState)
 
   const { data: friendRequestList = [] } = useQuery(
-    ['friendRequestList', auth.userProfile.id],
+    [friendsQueryKeys.FRIEND_REQUEST_LIST, auth.userProfile.id],
     FriendsApi.GET_FRIEND_REQUEST_LIST,
   )
 

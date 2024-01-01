@@ -1,22 +1,20 @@
 import { useCallback, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import styled from '@emotion/styled'
-import { FlexBox } from '@components/layouts/FlexBox'
-import FriendsListD from '@components/atoms/FriendsList/FriendsListD'
-import Svg from '@components/atoms/Svg'
-import { Text } from '@components/atoms/Text'
-import Plus from '@assets/icons/Plus'
+
 import useFriendMutate from '@libs/hooks/mutations/useFriendMutate'
+import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
 import { friendState } from '@libs/store/friend'
 import { FriendRequestType } from '@models/apis/FriendsType'
-import { useSetFriendRecoilState } from '@libs/hooks/useSetFriendRecoilState'
-import { useNavigate } from 'react-router-dom'
+import { FriendsListDItemPropsType } from '@models/components/friends/friends'
+import Plus from '@assets/icons/Plus'
+import FriendsListD from '@components/atoms/FriendsList/FriendsListD'
+import Svg from '@components/atoms/Svg'
+import { FlexBox } from '@components/layouts/FlexBox'
+import { Text } from '@components/atoms/Text'
 
-export type FriendsListDItemProps = {
-  friendsList: FriendRequestType[]
-}
-
-const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
+const FriendsListDItem = ({ friendsList }: FriendsListDItemPropsType) => {
   const friendStateData = useRecoilValue(friendState)
 
   const { acceptFriendRequestMutate, rejectFriendRequestMutate } =
@@ -74,8 +72,8 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
   }, [friendStateData.isAllRequest, friendsList])
 
   const renderAllRequests = () => {
-    if (friendStateData.showPartialRequest) {
-      return (
+    return (
+      friendStateData.showPartialRequest && (
         <AllRequestWrapper onClick={handleClickAllRequest}>
           <Text typo="Caption_12R" children="모든 요청 보기" color="gray_400" />
           <Svg
@@ -84,7 +82,7 @@ const FriendsListDItem = ({ friendsList }: FriendsListDItemProps) => {
           />
         </AllRequestWrapper>
       )
-    }
+    )
   }
 
   return (

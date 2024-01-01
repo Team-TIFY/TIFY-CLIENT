@@ -1,5 +1,6 @@
 import { RefObject, MouseEventHandler } from 'react'
 
+import { KeyOfPalette } from '@styles/theme'
 import {
   FilteredUserTag,
   PastTodayAnswerType,
@@ -12,8 +13,7 @@ import {
   SubCategoryNameType,
   SubCategoryValueType,
 } from '@models/common/favor'
-import { TasteBoxVariantType } from '@models/apis/TasteType'
-import { KeyOfPalette } from '@styles/theme'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 
 export type SelectedPropType = {
   id: number

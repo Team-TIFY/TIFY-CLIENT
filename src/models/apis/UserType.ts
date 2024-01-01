@@ -4,7 +4,7 @@ import {
   SubCategoryNameType,
   SubCategoryValueType,
 } from '@models/common/favor'
-import { TasteBoxVariantType } from './TasteType'
+import { DetailCategoryValueType as TasteBoxVariantType } from '@models/common/favor'
 
 export type UserInfoType = {
   id: number
