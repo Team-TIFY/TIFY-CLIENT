@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil'
 import { useMutation } from '@tanstack/react-query'
 import { FavorApi } from '@apis/FavorApi'
-import { FavorAnswerResponse } from '@models/apis/TasteType'
+import { FavorAnswerResponseType } from '@models/apis/TasteType'
 import { answerState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'
 import { useFunnel } from '@libs/hooks/useFunnel'
@@ -13,7 +13,7 @@ import OneAnswerStep from '@components/funnel/OneAnswerStep'
 const FEDIG = () => {
   const [step, setStepAnswer] = useRecoilState(answerState)
   const favorAnswerMutation = useMutation(FavorApi.POST_FAVOR_QUESTION, {
-    onSuccess: (data: FavorAnswerResponse) => {
+    onSuccess: (data: FavorAnswerResponseType) => {
       if (localStorage.getItem('isOnboardingFavor') === 'true') {
         navigate('/')
         setTimeout(() => {

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+
 import { FlexBox } from '@components/layouts/FlexBox'
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { Text } from '@components/atoms/Text'

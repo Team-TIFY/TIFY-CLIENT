@@ -1,4 +1,4 @@
-import { DailyAnswerContentInfo } from '@models/apis/QuestionType'
+import { DailyAnswerContentInfoType } from '@models/apis/QuestionType'
 import { TextBubble } from '@components/atoms/TextBubble'
 import { useEffect, useState } from 'react'
 import { UserApi } from '@apis/UserApi'
@@ -9,7 +9,7 @@ interface BubbleProfile {
   nickname: string
 }
 
-const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfo) => {
+const AnswerList = ({ answerInfo, isMine }: DailyAnswerContentInfoType) => {
   const [profile, setProfile] = useState<BubbleProfile>({
     profileImg: '',
     nickname: '',

@@ -5,7 +5,7 @@ import {
   UserNewTasteCategoryType,
   IsAnsweredCategory,
   UserInfoType,
-  UserInfoToken,
+  UserInfoTokenType,
   PastTodayCategoryCountType,
   PastTodayAnswerType,
   EditUserProfileDataType,
@@ -15,7 +15,7 @@ import { TodayCategoryValueType } from '@models/components/atoms/TodayCategory'
 import { SubCategoryValueType } from '@models/common/favor'
 
 export const UserApi = {
-  GET_USER_INFO_TOKEN: async (): Promise<UserInfoToken> => {
+  GET_USER_INFO_TOKEN: async (): Promise<UserInfoTokenType> => {
     const response = await axiosApi.get('/users/me')
     return response.data.data
   },

@@ -11,17 +11,18 @@ import FriendsListBItem from './FriendsListBItem'
 import ListIcon from '@assets/icons/ListIcon'
 import FriendsMenuIcon from '@assets/icons/FriendsMenuIcon'
 import { authState } from '@libs/store/auth'
-import { ProfileState, profileState } from '@libs/store/profile'
+import { profileState } from '@libs/store/profile'
 import { FriendsApi } from '@apis/FriendsApi'
 import useRecoilToggle from '@libs/hooks/useRecoilToggle'
 import { RoundButton } from '@components/atoms/RoundButton'
 import ShareIcon from '@assets/icons/ShareIcon'
 import { useNavigate } from 'react-router-dom'
+import { ProfileStateType } from '@models/stores/profile'
 
 const AllFriends = () => {
   const navigate = useNavigate()
   const [isCubeList, toggleListOption] =
-    useRecoilToggle<ProfileState>(profileState)
+    useRecoilToggle<ProfileStateType>(profileState)
 
   const auth = useRecoilValue(authState)
 

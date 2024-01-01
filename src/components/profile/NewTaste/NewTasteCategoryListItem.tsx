@@ -10,7 +10,7 @@ import { subCategoryState } from '@libs/store/subCategory'
 import { NewTasteCategoryListItemPropsType } from '@models/components/Profile/profile'
 import { UserApi } from '@apis/UserApi'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
-import { subCategoryTitle } from '@utils/subCategoryTitle'
+import { subCategoryTitle } from '@constants/common/subCategoryTitle'
 import { FlexBox } from '@components/layouts/FlexBox'
 import CubeButton from '@components/atoms/CubeButton'
 

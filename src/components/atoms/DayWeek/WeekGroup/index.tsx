@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { todayList } from '@constants/todayList'
+import { todayList } from '@constants/common/todayList'
 import { Week } from './Week'
 
 export const WeekGroup = () => {

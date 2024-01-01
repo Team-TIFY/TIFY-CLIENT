@@ -1,4 +1,5 @@
 import { axiosApi } from '@apis/axios'
+
 import {
   FavorQuestionRequestType,
   FavorQuestionResponseType,

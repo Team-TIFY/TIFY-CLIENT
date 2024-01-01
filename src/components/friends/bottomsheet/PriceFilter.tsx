@@ -1,14 +1,16 @@
+import { useRecoilState } from 'recoil'
+import styled from '@emotion/styled'
+
+import { theme } from '@styles/theme'
+import { PriceState } from '@libs/store/present'
+import { PriceType } from '@models/stores/present'
 import { PurpleCheck } from '@assets/icons/PurpleCheck'
 import BottomSheetBar from '@components/atoms/BottomSheet/BottomSheetBar'
 import { Text } from '@components/atoms/Text'
-import styled from '@emotion/styled'
-import { PriceState, priceType } from '@libs/store/present'
-import { theme } from '@styles/theme'
-import { useRecoilState } from 'recoil'
 
 function PriceFilter() {
   const [selected, setSelected] = useRecoilState(PriceState)
-  const handleSortClick = (sortType: priceType) => {
+  const handleSortClick = (sortType: PriceType) => {
     setSelected(sortType)
   }
 

@@ -1,6 +1,6 @@
-import { axiosApi } from './axios'
+import { axiosApi } from '@apis/axios'
 
-import { OauthLoginResponse } from '@models/apis/AuthType'
+import { OauthLoginResponseType } from '@models/apis/AuthType'
 
 export const AuthApi = {
   KAKAO_TOKEN: async (code: string) => {
@@ -23,21 +23,21 @@ export const AuthApi = {
     return response.data.data
   },
 
-  KAKAO_LOGIN: async (idToken: string): Promise<OauthLoginResponse> => {
+  KAKAO_LOGIN: async (idToken: string): Promise<OauthLoginResponseType> => {
     const response = await axiosApi.post(
       `/auth/oauth/kakao/login?idToken=${idToken}`,
     )
     return response.data.data
   },
 
-  APPLE_LOGIN: async (idToken: string): Promise<OauthLoginResponse> => {
+  APPLE_LOGIN: async (idToken: string): Promise<OauthLoginResponseType> => {
     const response = await axiosApi.post(
       `auth/oauth/apple/login?idToken=${idToken}`,
     )
     return response.data.data
   },
 
-  KAKAO_REGISTER: async (idToken: string): Promise<OauthLoginResponse> => {
+  KAKAO_REGISTER: async (idToken: string): Promise<OauthLoginResponseType> => {
     const response = await axiosApi.post(
       `/auth/oauth/kakao/register?id_token=${idToken}`,
     )
@@ -71,7 +71,7 @@ export const AuthApi = {
     return response.data.data
   },
 
-  REFRESH: async (refreshToken: string): Promise<OauthLoginResponse> => {
+  REFRESH: async (refreshToken: string): Promise<OauthLoginResponseType> => {
     axiosApi.interceptors.request.use(function (config) {
       config.headers.set('refresh-token', refreshToken)
       return config

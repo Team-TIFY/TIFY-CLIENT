@@ -1,4 +1,4 @@
-import { axiosApi } from './axios'
+import { axiosApi } from '@apis/axios'
 import {
   CountDailyQuestionType,
   DailyAnswerContentInfoType,

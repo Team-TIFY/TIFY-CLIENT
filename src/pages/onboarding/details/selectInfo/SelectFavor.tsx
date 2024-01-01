@@ -13,7 +13,7 @@ import { OnboardingApi } from '@apis/OnboardingApi'
 import { authState } from '@libs/store/auth'
 import { useNavigate } from 'react-router-dom'
 import { parseFavorBox } from '@utils/parseFavorBox'
-import { favorPriority } from '@constants/favorPriority'
+import { favorPriority } from '@constants/common/favorPriority'
 
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useState(false)

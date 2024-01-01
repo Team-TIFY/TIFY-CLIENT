@@ -1,8 +1,8 @@
 import AnswerList from '@components/WeeklyQuestion/Answer/AnswerList'
 import {
-  NeighborAnswerListInfo,
-  DailyAnswerContentInfo,
-  DailyQuestionReport,
+  NeighborAnswerListInfoType,
+  DailyAnswerContentInfoType,
+  DailyQuestionReportType,
 } from '@models/apis/QuestionType'
 import styled from '@emotion/styled'
 import { useQuery } from '@tanstack/react-query'
@@ -19,10 +19,10 @@ const DailyAnswerListContainer = ({
   answerData,
   questionId,
 }: {
-  answerData: NeighborAnswerListInfo[]
+  answerData: NeighborAnswerListInfoType[]
   questionId: number
 }) => {
-  const [myAnswer, setMyAnswer] = useState<DailyAnswerContentInfo>()
+  const [myAnswer, setMyAnswer] = useState<DailyAnswerContentInfoType>()
   const [dimmer, setDimmer] = useState<boolean>(false)
   const [selectedAnswer, setSelectedAnswer] = useState(-1)
   const [outsideRef, handleClickDimmer] = useOutsideClick(() =>
@@ -30,7 +30,7 @@ const DailyAnswerListContainer = ({
   )
   const { setSnackBar } = useSnackBar()
   const reportMutation = useMutation(WeeklyApi.REPORT_ANSWER, {
-    onSuccess: (data: DailyQuestionReport) => {
+    onSuccess: (data: DailyQuestionReportType) => {
       if (data.reportSuccess) {
         setSnackBar({
           comment: '신고가 완료되었어요.\n빠르게 확인 후 처리할게요.',

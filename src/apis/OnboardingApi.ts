@@ -1,6 +1,6 @@
-import { axiosApi } from './axios'
+import { axiosApi } from '@apis/axios'
 
-import { OnboardRequestType } from '@libs/store/onboard'
+import { OnboardRequestType } from '@models/stores/onboard'
 
 export const OnboardingApi = {
   GET_USERID_CHECK: async (id: string) => {
