@@ -68,7 +68,7 @@ export const AppBar = ({
             {stepNum[0]}
           </Text>
           <Text typo="Body_14" color="gray_100">
-            {stepNum[1]}
+            /{stepNum[1]}
           </Text>
         </FlexBox>
       )

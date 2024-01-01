@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import FriendsListE from '@components/atoms/FriendsList/FriendsListE'
-import { SearchedFriendType } from '@utils/apis/friends/FriendsType'
 
-type SearchedFriendItemPropsType = {
-  friendData: SearchedFriendType
-}
+import { SearchedFriendItemPropsType } from '@models/components/friends/friends'
+import FriendsListE from '@components/atoms/FriendsList/FriendsListE'
 
 const SearchedFriendItem = ({ friendData }: SearchedFriendItemPropsType) => {
   const navigate = useNavigate()

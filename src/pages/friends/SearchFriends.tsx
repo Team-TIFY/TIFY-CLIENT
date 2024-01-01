@@ -1,20 +1,22 @@
 import { ChangeEvent, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
+import styled from '@emotion/styled'
+
 import { authState } from '@libs/store/auth'
+import { FriendsApi } from '@utils/apis/friends/FriendsApi'
+import { FriendsType } from '@models/apis/friends/FriendsType'
+import { friendsQueryKeys } from '@constants/queryKeys/friendsQueryKeys'
 import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { Spacing } from '@components/atoms/Spacing'
-import FriendsListBItem from '@components/friends/FriendsListBItem'
-import FriendNotFound from '@components/friends/FriendNotFound'
-import { FriendsApi } from '@utils/apis/friends/FriendsApi'
-import { FriendsType } from '@utils/apis/friends/FriendsType'
-import styled from '@emotion/styled'
+import FriendsListBItem from '@components/friends/FriendsList/FriendsListBItem'
+import FriendNotFound from '@components/friends/SearchFriend/FriendNotFound'
 
 const SearchFriends = () => {
   const auth = useRecoilValue(authState)
 
   const { data: friendsList = [] } = useQuery(
-    ['friendsList', auth.userProfile.id],
+    [friendsQueryKeys.FRIENDS_LIST, auth.userProfile.id],
     FriendsApi.GET_FRIENDS_LIST,
   )
 

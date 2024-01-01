@@ -1,4 +1,4 @@
-import { OptionVariantType, OptionTextType } from '@models/Option'
+import { OptionVariantType, OptionTextType } from '@models/components/atoms/Option'
 import { TextType } from '@styles/theme'
 
 export const OPTION_CHILDREN: Record<OptionVariantType, OptionTextType> = {

@@ -8,7 +8,7 @@ import DragDropFriend from '@components/WeeklyQuestion/DragDropFriend'
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd'
 import Loading from '@components/atoms/Loading'
 import { useEffect, useState } from 'react'
-import { DailyFriendsType } from '@utils/apis/friends/FriendsType'
+import { DailyFriendsType } from '@models/apis/friends/FriendsType'
 
 const EditFriendList = () => {
   const queryClient = useQueryClient()
