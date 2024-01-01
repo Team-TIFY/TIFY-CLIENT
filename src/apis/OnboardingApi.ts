@@ -1,4 +1,4 @@
-import { axiosApi } from '../axios'
+import { axiosApi } from './axios'
 
 import { OnboardRequestType } from '@libs/store/onboard'
 

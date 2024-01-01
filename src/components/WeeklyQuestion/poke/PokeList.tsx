@@ -1,8 +1,8 @@
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { WeeklyApi } from '@apis/weekly/WeeklyApi'
-import { FriendsApi } from '@apis/friends/FriendsApi'
+import { WeeklyApi } from '@apis/WeeklyApi'
+import { FriendsApi } from '@apis/FriendsApi'
 import { useRecoilState } from 'recoil'
 import { authState } from '@libs/store/auth'
 import { Avatar } from '@components/atoms/Avatar'
@@ -68,12 +68,12 @@ const PokeList = () => {
     onSuccess: async () => {
       setLastRequestTime(Date.now())
       setSnackBar({
-        comment: `${friendsList.find(
-          (friend) =>
-            friend.neighborInfo.neighborUserId === knockCount.knockedUserId,
-        )?.neighborInfo.neighborName}님을 ${
-          knockCount.knockCount
-        }번 쿡 찔렀어요!`,
+        comment: `${
+          friendsList.find(
+            (friend) =>
+              friend.neighborInfo.neighborUserId === knockCount.knockedUserId,
+          )?.neighborInfo.neighborName
+        }님을 ${knockCount.knockCount}번 쿡 찔렀어요!`,
         type: 'info',
       })
     },

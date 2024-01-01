@@ -7,7 +7,7 @@ import { Spacing } from '@components/atoms/Spacing'
 import { useQuery } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
-import { FriendsApi } from '@apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/FriendsApi'
 import { useEffect } from 'react'
 
 const NewFriends = () => {

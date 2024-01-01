@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 import { profileState } from '@libs/store/profile'
 import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
-import { UserApi } from '@apis/user/UserApi'
+import { UserApi } from '@apis/UserApi'
 import { Spacing } from '@components/atoms/Spacing'
 import TodayCategoryList from '@components/atoms/TodayCategoryList'
 import { FlexBox } from '@components/layouts/FlexBox'

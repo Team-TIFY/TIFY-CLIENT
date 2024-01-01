@@ -4,8 +4,8 @@ import { useMutation } from '@tanstack/react-query'
 import { axiosApi } from '@apis/axios'
 
 import { authState } from '@libs/store/auth'
-import { AuthApi } from '@apis/auth/AuthApi'
-import { UserApi } from '@apis/user/UserApi'
+import { AuthApi } from '@apis/AuthApi'
+import { UserApi } from '@apis/UserApi'
 import {
   OauthLoginResponseType,
   OauthCodeResponseType,

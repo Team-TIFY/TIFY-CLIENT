@@ -1,4 +1,4 @@
-import { axiosApi } from '../axios'
+import { axiosApi } from './axios'
 
 export const SettingApi = {
   POST_LOGOUT: async () => {

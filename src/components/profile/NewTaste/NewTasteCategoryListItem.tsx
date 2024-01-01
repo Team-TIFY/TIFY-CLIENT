@@ -8,7 +8,7 @@ import {
 } from '@models/apis/UserType'
 import { subCategoryState } from '@libs/store/subCategory'
 import { NewTasteCategoryListItemPropsType } from '@models/components/Profile/profile'
-import { UserApi } from '@apis/user/UserApi'
+import { UserApi } from '@apis/UserApi'
 import parseTotasteQuestion from '@utils/parseTotasteQuestion'
 import { subCategoryTitle } from '@utils/subCategoryTitle'
 import { FlexBox } from '@components/layouts/FlexBox'

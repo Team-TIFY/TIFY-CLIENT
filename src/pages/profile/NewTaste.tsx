@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 
 import { theme } from '@styles/theme'
 import { authState } from '@libs/store/auth'
-import { UserApi } from '@apis/user/UserApi'
+import { UserApi } from '@apis/UserApi'
 import { UserNewTasteCategoryType } from '@models/apis/UserType'
 import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
 import {

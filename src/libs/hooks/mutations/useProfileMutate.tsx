@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query'
 import { authState } from '@libs/store/auth'
 import { onboardingState } from '@libs/store/onboard'
 import useSnackBar from '@libs/hooks/useSnackBar'
-import { UserApi } from '@apis/user/UserApi'
+import { UserApi } from '@apis/UserApi'
 import useGetDate from '../useGetDate'
 
 const useProfileMutate = () => {

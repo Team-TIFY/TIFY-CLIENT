@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil'
 import { useMutation } from '@tanstack/react-query'
-import { FavorApi } from '@apis/favor/FavorApi'
+import { FavorApi } from '@apis/FavorApi'
 import { FavorAnswerResponse } from '@models/apis/TasteType'
 import { answerState } from '@libs/store/question'
 import { useNavigate } from 'react-router-dom'

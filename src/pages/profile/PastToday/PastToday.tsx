@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 
-import { UserApi } from '@apis/user/UserApi'
+import { UserApi } from '@apis/UserApi'
 import TodayCategory from '@components/atoms/TodayCategory'
 import { Spacing } from '@components/atoms/Spacing'
 import { categoryList } from '@constants/atoms/todayCategory'

@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil'
 import { useMutation } from '@tanstack/react-query'
 
 import { axiosApi } from '@apis/axios'
-import { AuthApi } from '@apis/auth/AuthApi'
+import { AuthApi } from '@apis/AuthApi'
 import { authState } from '@libs/store/auth'
 import { setCookie, removeCookie } from '@utils/cookies'
 

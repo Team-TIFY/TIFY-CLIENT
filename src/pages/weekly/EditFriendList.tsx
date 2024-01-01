@@ -1,7 +1,7 @@
 import { Text } from '@components/atoms/Text'
 import styled from '@emotion/styled'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { FriendsApi } from '@apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/FriendsApi'
 import { useRecoilValue } from 'recoil'
 import { authState } from '@libs/store/auth'
 import DragDropFriend from '@components/WeeklyQuestion/DragDropFriend'

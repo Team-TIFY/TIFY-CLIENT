@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import useSnackBar from '@libs/hooks/useSnackBar'
-import { FriendsApi } from '@apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/FriendsApi'
 import { profileQueryKeys } from '@constants/queryKeys/profileQueryKeys'
 import { useSetFriendRecoilState } from '../useSetFriendRecoilState'
 

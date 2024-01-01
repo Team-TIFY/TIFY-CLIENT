@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { WeeklyApi } from '@apis/weekly/WeeklyApi'
+import { WeeklyApi } from '@apis/WeeklyApi'
 import { DailyQuestionInfoType } from '@models/apis/QuestionType'
 import { useRecoilState } from 'recoil'
 import { questionState } from '@libs/store/question'

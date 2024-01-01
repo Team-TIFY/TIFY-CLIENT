@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import SearchAnswerStep from '@components/funnel/SearchAnswerStep'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { FavorApi } from '@apis/favor/FavorApi'
+import { FavorApi } from '@apis/FavorApi'
 import { FavorAnswerResponse } from '@models/apis/TasteType'
 
 const BMLIP = () => {

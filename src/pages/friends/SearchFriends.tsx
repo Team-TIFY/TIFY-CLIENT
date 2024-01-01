@@ -6,7 +6,7 @@ import { SearchInput } from '@components/atoms/Input/SearchInput'
 import { Spacing } from '@components/atoms/Spacing'
 import FriendsListBItem from '@components/friends/FriendsListBItem'
 import FriendNotFound from '@components/friends/FriendNotFound'
-import { FriendsApi } from '@apis/friends/FriendsApi'
+import { FriendsApi } from '@apis/FriendsApi'
 import { FriendsType } from '@models/apis/FriendsType'
 import styled from '@emotion/styled'
 

@@ -1,4 +1,4 @@
-import { axiosApi } from '../axios'
+import { axiosApi } from './axios'
 
 import { OauthLoginResponse } from '@models/apis/AuthType'
 

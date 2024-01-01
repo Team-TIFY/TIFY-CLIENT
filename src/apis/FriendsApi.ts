@@ -1,4 +1,4 @@
-import { axiosApi } from '../axios'
+import { axiosApi } from './axios'
 
 import { InfiniteRequest, InfiniteResponse } from '@libs/hooks'
 import {
@@ -9,7 +9,7 @@ import {
   PokeCountType,
   SearchedFriendType,
   DailyFriendsType,
-} from '../../models/apis/FriendsType'
+} from '../models/apis/FriendsType'
 import { DataType } from '@components/friends/PresentRecommend'
 
 export const FriendsApi = {
