@@ -10,13 +10,14 @@ const useProfileMenuButtonsData = (
   type: ProfileButtonVariantType,
   friendId?: number,
 ) => {
-  const { setIsMenuOpen, setIsEditImageMenuOpen } = useSetProfileRecoilState()
   const {
+    setIsMenuOpen,
+    setIsEditImageMenuOpen,
     setIsMenuOpen: setIsFriendMenuOpen,
     setIsCutOffMenuOpen,
     setIsBlockMenuOpen,
     setIsCancelBlockMenuOpen,
-  } = useSetFriendRecoilState()
+  } = { ...useSetProfileRecoilState(), ...useSetFriendRecoilState() }
 
   const {
     reportFriendMutate,
@@ -53,6 +54,7 @@ const useProfileMenuButtonsData = (
     }
     const onClickThirdButton = () => {
       navigate('/profile/editFavorBox')
+
       setIsMenuOpen(false)
     }
     const onClickCancelButton = () => {

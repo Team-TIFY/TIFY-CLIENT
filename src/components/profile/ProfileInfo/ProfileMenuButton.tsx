@@ -17,6 +17,24 @@ const ProfileMenuButton = <T extends ProfileButtonVariantType>({
 }: ProfileMenuButtonPropsType<T>) => {
   const buttonData = useProfileMenuButtonsData(type, friendId)
 
+  const getWithProfileChildrenText = () => {
+    if (type === 'block' || type === 'cancelBlock') {
+      return `@${friendUserId} 님을`
+    } else {
+      return `원하는 경우 @${friendUserId} 님께`
+    }
+  }
+
+  const getWithProfileXlargeChildrenText = () => {
+    if (type === 'block') {
+      return `정말 차단하시겠습니까?`
+    } else if (type === 'cancelBlock') {
+      return '차단 해제하시겠습니까?'
+    } else {
+      return '친구를 다시 요청할 수 있습니다.'
+    }
+  }
+
   const renderMenuButtons = () => {
     if (type === 'report' || type === 'editProfile') {
       return (
@@ -92,18 +110,8 @@ const ProfileMenuButton = <T extends ProfileButtonVariantType>({
             subVariant="default"
             xlargeVariant="withProfile"
             imageUrl={friendImageUrl}
-            children={
-              type === 'block' || type === 'cancelBlock'
-                ? `@${friendUserId} 님을`
-                : `원하는 경우 @${friendUserId} 님께`
-            }
-            xlargeChildren={
-              type === 'block'
-                ? `정말 차단하시겠습니까?`
-                : type === 'cancelBlock'
-                ? '차단 해제하시겠습니까?'
-                : '친구를 다시 요청할 수 있습니다.'
-            }
+            children={getWithProfileChildrenText()}
+            xlargeChildren={getWithProfileXlargeChildrenText()}
             textColor="gray_200"
           />
           <SquareButton
