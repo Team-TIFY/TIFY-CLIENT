@@ -13,6 +13,7 @@ import {
   SubCategoryValueType,
 } from '@models/common/favor'
 import { TasteBoxVariantType } from '@models/apis/TasteType'
+import { KeyOfPalette } from '@styles/theme'
 
 export type SelectedPropType = {
   id: number
@@ -125,3 +126,14 @@ export type ShareProfileIconsPropsType = {
   >
   setBackgroundImage: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export type IconType = React.FC<{ fill: KeyOfPalette }>
+
+export type IconCategoryRecordType = Record<number, IconType>
+
+export type DetailCategoryRecordType = Record<string, IconCategoryRecordType>
+
+export type TagIconDataType = Record<
+  SubCategoryValueType,
+  DetailCategoryRecordType
+>
