@@ -64,10 +64,12 @@ export default WeeklyMainQuestion
 
 const WeekContainer = styled.div`
   width: 100%;
+  height: 100%;
+  padding-bottom: calc(100vh + 170px);
   display: flex;
   overflow-x: hidden;
   flex-direction: column;
-  height: calc(100vh - 80px);
+  height: 100vh;
   background-color: #2e2159;
   position: relative;
 

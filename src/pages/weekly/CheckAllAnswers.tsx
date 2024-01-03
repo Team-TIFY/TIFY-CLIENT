@@ -15,8 +15,8 @@ import { authState } from '@libs/store/auth'
 import { getNotAnswerFriends } from '@utils/getNotAnswerFriends'
 import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
-import PokeList from '@components/WeeklyQuestion/Poke/PokeList'
 import useSnackBar from '@libs/hooks/useSnackBar'
+import PokeList from '@components/WeeklyQuestion/poke/PokeList'
 
 const CheckAllAnswers = () => {
   const [question, setQuestion] = useRecoilState(questionState)
