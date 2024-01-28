@@ -14,7 +14,8 @@ import { answerState } from '@libs/store/question'
 import useStepNumberIcon from '@libs/hooks/useStepNumberIcon'
 import useSnackBar from '@libs/hooks/useSnackBar'
 import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
-import { motion } from 'framer-motion'
+import { delay, motion } from 'framer-motion'
+import { cubicBezier } from 'framer-motion'
 
 interface MultiAnswerStepProps {
   isLastAnswer?: boolean
@@ -161,10 +162,14 @@ const MultiAnswerStep = ({
       )}
       <motion.button
         style={{ position: 'absolute', bottom: '32px' }}
-        initial={{ opacity: 0, y: -5 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 5, transition: { duration: 0.3 } }}
-        whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+        animate={{ scale: 0.95 }}
+        transition={{
+          type: 'spring',
+          damping: 15,
+          stiffness: 300,
+          duration: 0.1,
+          delay: 0.12,
+        }}
       >
         <RoundButton
           variant="mediumRound"

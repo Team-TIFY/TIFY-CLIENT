@@ -14,6 +14,7 @@ import { Name } from './signup/Name'
 import { UserId } from './signup/UserId'
 import { Birth } from './signup/Birth'
 import { Gender } from './signup/Gender'
+import { motion } from 'framer-motion'
 
 export function SignUp() {
   const [infoPage, setInfoPage] = useRecoilState(onboardingPageState)
@@ -134,15 +135,26 @@ export function SignUp() {
         </div>
       </SignUpDiv>
       <BottomSticker>
-        <RoundButton
-          variant="mediumRound"
-          width={312}
-          children="다음"
-          onClick={() => {
-            gotoReg(page as keyof OnboardingBtnType)
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
           }}
-          disabled={!btnColor[page as keyof OnboardingBtnType]}
-        />
+        >
+          <RoundButton
+            variant="mediumRound"
+            width={312}
+            children="다음"
+            onClick={() => {
+              gotoReg(page as keyof OnboardingBtnType)
+            }}
+            disabled={!btnColor[page as keyof OnboardingBtnType]}
+          />
+        </motion.button>
       </BottomSticker>
     </>
   )

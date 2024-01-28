@@ -18,7 +18,7 @@ import { ChangeStatus } from '@assets/icons/ChangeStatus'
 import { theme } from '@styles/theme'
 import { useNavigate } from 'react-router-dom'
 import { profileState } from '@libs/store/profile'
-
+import { motion } from 'framer-motion'
 interface SearchResultItem {
   name: string
   onBoardingStatusId: number
@@ -179,13 +179,24 @@ export function DetailInfo({ isEdit }: { isEdit: boolean }) {
         ))}
       </RandomItemList>
       <BottomSticker>
-        <RoundButton
-          variant="mediumRound"
-          width={312}
-          children={isEdit ? '상태 변경' : '다음'}
-          onClick={isEdit ? handleClickChangeState : gotoReg}
-          disabled={!btnColor}
-        />
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
+          }}
+        >
+          <RoundButton
+            variant="mediumRound"
+            width={312}
+            children={isEdit ? '상태 변경' : '다음'}
+            onClick={isEdit ? handleClickChangeState : gotoReg}
+            disabled={!btnColor}
+          />
+        </motion.button>
       </BottomSticker>
     </DetailInfoWrapper>
   )

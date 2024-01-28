@@ -15,6 +15,7 @@ import { parseFavorBox } from '@utils/parseFavorBox'
 import { UserApi } from '@utils/apis/user/UserApi'
 import useSnackBar from '@libs/hooks/useSnackBar'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const EditFavorBox = () => {
   const auth = useRecoilValue(authState)
@@ -72,18 +73,29 @@ const EditFavorBox = () => {
       <EditHobbyFavor favorList={favorList} updateMyFavor={updateMyFavor} />
       <Spacing height={100} />
       <BottomSticker>
-        <RoundButton
-          variant="mediumRound"
-          width={312}
-          children="완료"
-          disabled={disabled}
-          onClick={() => {
-            EditFavorBoxMutation.mutate({
-              userId: auth.userProfile.id,
-              favorList: favorList.map((data) => parseFavorBox(data)),
-            })
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
           }}
-        />
+        >
+          <RoundButton
+            variant="mediumRound"
+            width={312}
+            children="완료"
+            disabled={disabled}
+            onClick={() => {
+              EditFavorBoxMutation.mutate({
+                userId: auth.userProfile.id,
+                favorList: favorList.map((data) => parseFavorBox(data)),
+              })
+            }}
+          />
+        </motion.button>
       </BottomSticker>
     </>
   )

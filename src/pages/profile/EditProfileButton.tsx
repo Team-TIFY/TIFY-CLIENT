@@ -7,6 +7,7 @@ import useProfileMutate from '@libs/hooks/useProfileMutate'
 import { authState } from '@libs/store/auth'
 import { onboardingState } from '@libs/store/onboard'
 import { profileState } from '@libs/store/profile'
+import { motion } from 'framer-motion'
 
 const EditProfileButton = () => {
   const auth = useRecoilValue(authState)
@@ -30,14 +31,25 @@ const EditProfileButton = () => {
 
   return (
     <ButtonWrapper>
-      <RoundButton
-        variant="mediumRound"
-        children="수정 완료"
-        fullWidth={true}
-        style={{ marginBottom: '9px' }}
-        onClick={handleClickEditComplete}
-        disabled={!profileStateData.isEdit}
-      />
+      <motion.button
+        animate={{ scale: 0.95 }}
+        transition={{
+          type: 'spring',
+          damping: 15,
+          stiffness: 300,
+          duration: 0.1,
+          delay: 0.12,
+        }}
+      >
+        <RoundButton
+          variant="mediumRound"
+          children="수정 완료"
+          fullWidth={true}
+          style={{ marginBottom: '9px' }}
+          onClick={handleClickEditComplete}
+          disabled={!profileStateData.isEdit}
+        />
+      </motion.button>
       <Spacing height={32} />
     </ButtonWrapper>
   )

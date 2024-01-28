@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
-
+import { motion } from 'framer-motion'
 import { theme } from '@styles/theme'
 import giftBoxImage from '@assets/image/modalGiftBox.png'
 import { Text } from '@components/atoms/Text'
@@ -18,19 +18,41 @@ const FullModal = () => {
         </Text>
       </ModalContent>
       <StickyButton>
-        <RoundButton
-          variant="xlargeRound"
-          onClick={() => navigate('/profile/newTaste')}
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
+          }}
         >
-          다른 취향도 답하러 가기
-        </RoundButton>
-        <RoundButton
-          variant="mediumRound"
-          width={312}
-          onClick={() => navigate('/profile')}
+          <RoundButton
+            variant="xlargeRound"
+            onClick={() => navigate('/profile/newTaste')}
+          >
+            다른 취향도 답하러 가기
+          </RoundButton>
+        </motion.button>
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
+          }}
         >
-          프로필 바로가기
-        </RoundButton>
+          <RoundButton
+            variant="mediumRound"
+            width={312}
+            onClick={() => navigate('/profile')}
+          >
+            프로필 바로가기
+          </RoundButton>
+        </motion.button>
       </StickyButton>
     </ModalContainer>
   )

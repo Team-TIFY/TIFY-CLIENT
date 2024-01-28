@@ -10,6 +10,7 @@ import { FileIcon } from '@assets/icons/FileIcon'
 import { RoundButton } from '@components/atoms/RoundButton'
 import { CustomerCenterApi } from '@utils/apis/setting'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 interface Options {
   title: boolean
@@ -306,13 +307,24 @@ const WriteForCustomer = () => {
         />
       </FileUpload>
       <div>
-        <RoundButton
-          variant="mediumRound"
-          fullWidth={true}
-          children="다음"
-          onClick={gotoReg}
-          disabled={!btnColor}
-        />
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
+          }}
+        >
+          <RoundButton
+            variant="mediumRound"
+            fullWidth={true}
+            children="다음"
+            onClick={gotoReg}
+            disabled={!btnColor}
+          />
+        </motion.button>
       </div>
     </Wrapper>
   )

@@ -4,9 +4,9 @@ import { useRecoilState } from 'recoil'
 import styled from '@emotion/styled'
 import { RoundButton } from '@components/atoms/RoundButton'
 import { onboardingPageState, onboardingState } from '@libs/store/onboard'
-import onBoardingImg from '@assets/image/onBoardingImg.png'
 import VideoBox from '@components/WeeklyQuestion/VideoBox'
-import { question } from '@utils/question'
+import { motion } from 'framer-motion'
+
 export function HalfSuccess() {
   const [info, setInfo] = useRecoilState(onboardingState)
   const [goNext, setGoNext] = useRecoilState(onboardingPageState)
@@ -24,12 +24,23 @@ export function HalfSuccess() {
       <Spacing height={100} />
       <VideoBox category="ME" />
       <BottomSticker>
-        <RoundButton
-          variant="mediumRound"
-          width={312}
-          children="시작"
-          onClick={goToNext}
-        />
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
+          }}
+        >
+          <RoundButton
+            variant="mediumRound"
+            width={312}
+            children="시작"
+            onClick={goToNext}
+          />
+        </motion.button>
       </BottomSticker>
     </>
   )

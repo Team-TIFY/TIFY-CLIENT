@@ -14,7 +14,7 @@ import { authState } from '@libs/store/auth'
 import { favorPriority } from '@libs/store/priority'
 import { useNavigate } from 'react-router-dom'
 import { parseFavorBox } from '@utils/parseFavorBox'
-
+import { motion } from 'framer-motion'
 export function SelectFavor() {
   const [btnColor, setBtnColor] = useState(false)
   const [info, setInfo] = useRecoilState(onboardingState)
@@ -95,13 +95,24 @@ export function SelectFavor() {
       <HobbyFavor updateMyFavor={updateMyFavor} />
       <Spacing height={100} />
       <BottomSticker>
-        <RoundButton
-          variant="mediumRound"
-          width={312}
-          children="다음"
-          disabled={!btnColor}
-          onClick={gotoReg}
-        />
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
+          }}
+        >
+          <RoundButton
+            variant="mediumRound"
+            width={312}
+            children="다음"
+            disabled={!btnColor}
+            onClick={gotoReg}
+          />
+        </motion.button>
       </BottomSticker>
     </>
   )

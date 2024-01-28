@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil'
 import { onboardingPageState } from '../../../libs/store/onboard'
 import { RoundButton } from './../../../components/atoms/RoundButton/index'
 import { theme } from '@styles/theme'
-import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 export function Agreement() {
   const [checkList, setCheckList] = useState<string[]>([])
@@ -105,13 +105,24 @@ export function Agreement() {
         <Vector linkUrl="78b9ea114e8a4fc88baa99d0072ed2be" />
       </CheckDiv>
       <BottomSticker>
-        <RoundButton
-          variant="mediumRound"
-          width={312}
-          children="다음"
-          onClick={gotoReg}
-          disabled={!btnColor}
-        />
+        <motion.button
+          animate={{ scale: 0.95 }}
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 300,
+            duration: 0.1,
+            delay: 0.12,
+          }}
+        >
+          <RoundButton
+            variant="mediumRound"
+            width={312}
+            children="다음"
+            onClick={gotoReg}
+            disabled={!btnColor}
+          />
+        </motion.button>
       </BottomSticker>
     </div>
   )

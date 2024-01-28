@@ -37,14 +37,14 @@ const CheckAllAnswers = () => {
         height: `${isBottomSheetOpen ? `calc(100vh - 80px)` : 'auto'}`,
       }}
     >
-      {/* <BottomSheet
+      <BottomSheet
         isexpanded={isBottomSheetOpen}
         bottomSheetRef={bottomSheetRef}
       >
         <PokeList />
-      </BottomSheet> */}
+      </BottomSheet>
       <DailyQuestionBox />
-      {/* <div
+      <div
         style={{
           cursor: 'pointer',
           width: '100%',
@@ -93,7 +93,7 @@ const CheckAllAnswers = () => {
           questionId={question.questionId}
           answerData={neighborAnswers ? neighborAnswers : []}
         />
-      </AnswerListContainer> */}
+      </AnswerListContainer>
     </WeekAnswersContainer>
   )
 }

@@ -95,11 +95,14 @@ const AnswerDailyQuestion = () => {
       <BottomSticker>
         {!toggled && (
           <motion.button
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 5, transition: { duration: 0.3 } }}
-            whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-            style={{ position: 'absolute', bottom: '32px' }}
+            animate={{ scale: 0.95 }}
+            transition={{
+              type: 'spring',
+              damping: 15,
+              stiffness: 300,
+              duration: 0.1,
+              delay: 0.12,
+            }}
           >
             <RoundButton
               disabled={disabled}
