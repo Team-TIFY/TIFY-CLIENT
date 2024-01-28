@@ -35,8 +35,6 @@ export const UserTagDataListItem = ({
   const handleClickPlusButton = (
     notAnsweredDetailCategories: TasteBoxVariantType[],
   ) => {
-    console.log(notAnsweredDetailCategories)
-
     navigate(`/profile/newTaste/${question[notAnsweredDetailCategories[0]]}`)
   }
 

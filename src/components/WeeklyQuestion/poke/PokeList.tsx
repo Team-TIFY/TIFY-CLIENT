@@ -72,7 +72,7 @@ const PokeList = () => {
           (friend) =>
             friend.neighborInfo.neighborUserId === knockCount.knockedUserId,
         )?.neighborInfo.neighborName}님을 ${
-          knockCount.knockCount
+          knockCount.knockCount === 0 ? 1 : knockCount.knockCount + 1
         }번 쿡 찔렀어요!`,
         type: 'info',
       })
@@ -119,10 +119,6 @@ const PokeList = () => {
                     questionId: question.questionId,
                     userId: data.neighborInfo.neighborUserId,
                   })
-                  // pokeMutation.mutate({
-                  //   questionId: question.questionId,
-                  //   userId: data.neighborInfo.neighborUserId,
-                  // })
                 }}
               >
                 {neighborId === data.neighborInfo.neighborUserId &&

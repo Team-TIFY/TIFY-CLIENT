@@ -31,21 +31,20 @@ const CheckAllAnswers = () => {
       userId: auth.userProfile.id,
     }),
   )
-
   return (
     <WeekAnswersContainer
       style={{
         height: `${isBottomSheetOpen ? `calc(100vh - 80px)` : 'auto'}`,
       }}
     >
-      <BottomSheet
+      {/* <BottomSheet
         isexpanded={isBottomSheetOpen}
         bottomSheetRef={bottomSheetRef}
       >
         <PokeList />
-      </BottomSheet>
+      </BottomSheet> */}
       <DailyQuestionBox />
-      <div
+      {/* <div
         style={{
           cursor: 'pointer',
           width: '100%',
@@ -54,7 +53,7 @@ const CheckAllAnswers = () => {
           textAlign: 'center',
         }}
       >
-        <QuestionImg className="" category={question.category} />
+        <QuestionImg category={question.category} />
       </div>
       <Spacing variant="default" height={20} />
       <AnswerListContainer>
@@ -94,7 +93,7 @@ const CheckAllAnswers = () => {
           questionId={question.questionId}
           answerData={neighborAnswers ? neighborAnswers : []}
         />
-      </AnswerListContainer>
+      </AnswerListContainer> */}
     </WeekAnswersContainer>
   )
 }

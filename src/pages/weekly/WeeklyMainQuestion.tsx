@@ -12,6 +12,7 @@ import BottomSheet from '@components/atoms/BottomSheet'
 import useBottomSheet from '@libs/hooks/useBottomSheet'
 import GreetingOnboarding from '@components/onboarding/GreetingOnboarding'
 import { media } from '@styles/theme'
+import QuestionImgBox from '@components/WeeklyQuestion/QuestionImgBox'
 
 const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
@@ -54,7 +55,7 @@ const WeeklyMainQuestion = () => {
           className="QuestionImg"
           onClick={handleAnswerQuestion}
         >
-          <QuestionImg className="QuestionImg" />
+          <QuestionImgBox />
         </div>
       </WeekWrapper>
     </WeekContainer>

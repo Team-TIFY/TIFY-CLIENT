@@ -12,6 +12,7 @@ const DailyQuestionBox = () => {
   const [date, setDate] = useRecoilState(dateState)
   const [question, setQuestion] = useRecoilState(questionState)
   const [day, setDay] = useState<string>('')
+  console.log(question)
 
   useEffect(() => {
     getDayWeek(date.selectedDate)

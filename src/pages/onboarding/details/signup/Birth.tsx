@@ -33,7 +33,6 @@ export function Birth({
 
     if (date) {
       const formattedDate = parseDate(date)
-      console.log(formattedDate.replace(/-/g, ''))
       setInfo({
         ...info,
         birth: formattedDate.replace(/-/g, ''),

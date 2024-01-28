@@ -56,7 +56,7 @@ const SearchAnswerStep = ({
       return
     }
   }
-  console.log(keyword)
+
   const submitAnswer = () => {
     setStepAnswer({
       ...step,
