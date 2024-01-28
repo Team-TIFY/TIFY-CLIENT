@@ -96,19 +96,19 @@ export const typo = {
     letter-spacing: -0.011em;
   `,
   Mont_Caption_12SB: css`
-    font-family: 'Montserrat';
+    font-family: 'Montserrat' sans-serif;
     font-size: ${calcRem(12)};
     line-height: 12px;
     font-weight: 600;
   `,
   Mont_Caption_12B: css`
-    font-family: 'Montserrat';
+    font-family: 'Montserrat' sans-serif;
     font-size: ${calcRem(12)};
     line-height: 12px;
     font-weight: 700;
   `,
   Mont_Caption_12M: css`
-    font-family: 'Montserrat';
+    font-family: 'Montserrat' sans-serif;
     font-size: ${calcRem(12)};
     line-height: 12px;
     font-weight: 500;

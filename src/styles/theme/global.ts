@@ -40,13 +40,15 @@ export const globalStyle = css`
 
   @font-face {
     font-family: 'Montserrat';
-    src: url('https://fonts.googleapis.com/css2?family=Montserrat')
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap')
       format('css2');
     font-weight: 600;
     font-style: normal;
   }
+
   body {
     font-family:
+      'Montserrat',
       'SpoqaHanSansNeo',
       SpoqaHanSansNeo,
       -apple-system,
