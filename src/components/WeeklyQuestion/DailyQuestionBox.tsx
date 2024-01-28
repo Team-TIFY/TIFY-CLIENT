@@ -60,11 +60,9 @@ const DailyQuestionBox = () => {
         <Text as="div" typo="Caption_12R" color="gray_200" className="title">
           {day}의 질문
         </Text>
-        <TextWithLineBreak
-          color="white"
-          typo="SCD_Headline_24"
-          data={question.content}
-        />
+        <Text typo="SCD_Headline_24" color="white">
+          <TextWithLineBreak data={question.content} />
+        </Text>
         <div className="ImgSpacingBox"></div>
       </FlexBox>
     </QuestionBoxContainer>

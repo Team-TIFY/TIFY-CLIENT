@@ -108,13 +108,13 @@ const MultiAnswerStep = ({
     <MultiAnswerStepWrapper>
       <FlexBox direction="column" gap={10}>
         <Spacing height={32} />
-        <Text
+
+        <TextWithLineBreak
           typo="SCD_Headline_24"
           color="white"
-          style={{ whiteSpace: 'pre' }}
-        >
-          <TextWithLineBreak data={data.contents} />
-        </Text>
+          data={data.contents}
+        />
+
         <Text typo="Caption_12R" color="gray_200">
           최대 {max}개까지 선택할 수 있어요
         </Text>
