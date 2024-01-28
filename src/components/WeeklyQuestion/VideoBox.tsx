@@ -14,7 +14,7 @@ const VideoBox = ({
 }) => {
   return (
     <ImgContainer className="ImgContainer" isToggled={isToggled}>
-      <video muted autoPlay>
+      <video muted autoPlay playsInline>
         <source src={DailyQuestionVideoCategory[category]} type="video/mp4" />
       </video>
     </ImgContainer>
