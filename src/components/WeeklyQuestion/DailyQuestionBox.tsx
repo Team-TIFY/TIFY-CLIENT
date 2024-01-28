@@ -7,6 +7,7 @@ import { dateState } from '@libs/store/date'
 import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { media } from '@styles/theme'
+import TextWithLineBreak from '@components/atoms/TextWithLineBreak'
 
 const DailyQuestionBox = () => {
   const [date, setDate] = useRecoilState(dateState)
@@ -59,9 +60,11 @@ const DailyQuestionBox = () => {
         <Text as="div" typo="Caption_12R" color="gray_200" className="title">
           {day}의 질문
         </Text>
-        <Text typo="SCD_Headline_24" color="white" className="subTitle">
-          {question.content}
-        </Text>
+        <TextWithLineBreak
+          color="white"
+          typo="SCD_Headline_24"
+          data={question.content}
+        />
         <div className="ImgSpacingBox"></div>
       </FlexBox>
     </QuestionBoxContainer>
