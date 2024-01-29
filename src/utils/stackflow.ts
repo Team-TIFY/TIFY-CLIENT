@@ -5,5 +5,10 @@ import { basicUIPlugin } from '@stackflow/plugin-basic-ui'
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
   activities: {},
-  plugins: [],
+  plugins: [
+    basicRendererPlugin(),
+    basicUIPlugin({
+      theme: 'cupertino',
+    }),
+  ],
 })

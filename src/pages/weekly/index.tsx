@@ -47,6 +47,9 @@ const WeeklyRouter = () => {
               label="투데이 질문"
               hasNav={false}
               rightChildren="actionButton"
+              customHandler={() => {
+                navigate('/')
+              }}
               rightChildrenIcon={[
                 <Svg
                   key="friendsMenuIcon"

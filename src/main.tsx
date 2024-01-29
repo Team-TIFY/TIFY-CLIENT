@@ -8,6 +8,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { globalStyle } from '@styles/theme/global'
 import { theme } from '@styles/index'
 import ScrollToTop from '@components/layouts/ScrollToTop'
+import '@stackflow/plugin-basic-ui/index.css'
+import { Stack } from '@utils/stackflow'
 
 const queryClient = new QueryClient()
 
@@ -19,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <RecoilRoot>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
+          <Stack />
           <App />
         </QueryClientProvider>
       </RecoilRoot>
