@@ -17,12 +17,13 @@ import useRecoilToggle from '@libs/hooks/useRecoilToggle'
 import { RoundButton } from '@components/atoms/RoundButton'
 import ShareIcon from '@assets/icons/ShareIcon'
 import { useNavigate } from 'react-router-dom'
+import { useAnimation } from 'framer-motion'
 
 const AllFriends = () => {
   const navigate = useNavigate()
   const [isCubeList, toggleListOption] =
     useRecoilToggle<ProfileState>(profileState)
-
+  const controls = useAnimation()
   const auth = useRecoilValue(authState)
 
   const { data: friendsList = [] } = useQuery(

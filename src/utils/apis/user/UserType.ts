@@ -48,6 +48,7 @@ export type answerContentType = {
 }
 
 export type FilteredUserTag = {
+  length: number
   smallCategory: SubCategoryType
   answerContentList: answerContentType[]
   notAnsweredDetailCategories: any[]

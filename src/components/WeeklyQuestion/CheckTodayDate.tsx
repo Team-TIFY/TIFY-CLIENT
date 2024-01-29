@@ -23,8 +23,25 @@ const CheckTodayDate = () => {
     },
   })
   useEffect(() => {
-    getTodayDate()
+    if (localStorage.getItem('date') && localStorage.getItem('date') !== '0') {
+      const dateIdx = parseInt(localStorage.getItem('date')!, 10)
+      console.log(dateIdx)
+      setNewDate(dateIdx)
+    } else {
+      getTodayDate()
+    }
   }, [])
+  // useEffect(() => {
+  //   if (localStorage.getItem('date') && localStorage.getItem('date') !== '0') {
+  //     const dateIdx = parseInt(localStorage.getItem('date')!, 10)
+  //     setNewDate(dateIdx)
+  //   } else {
+  //     getTodayDate()
+  //   }
+  // }, [])
+  // useEffect(() => {
+  //   getTodayDate()
+  // }, [])
 
   useEffect(() => {
     if (date.dateString.length > 0) getQuestionMutation.mutate(date.dateString)

@@ -1941,7 +1941,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/hash@npm:^0.9.1":
+"@emotion/hash@npm:^0.9.0, @emotion/hash@npm:^0.9.1":
   version: 0.9.1
   resolution: "@emotion/hash@npm:0.9.1"
   checksum: 716e17e48bf9047bf9383982c071de49f2615310fb4e986738931776f5a823bc1f29c84501abe0d3df91a3803c80122d24e28b57351bca9e01356ebb33d89876
@@ -2591,6 +2591,58 @@ __metadata:
   version: 0.25.24
   resolution: "@sinclair/typebox@npm:0.25.24"
   checksum: 10219c58f40b8414c50b483b0550445e9710d4fe7b2c4dccb9b66533dd90ba8e024acc776026cebe81e87f06fa24b07fdd7bc30dd277eb9cc386ec50151a3026
+  languageName: node
+  linkType: hard
+
+"@stackflow/core@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "@stackflow/core@npm:1.0.9"
+  dependencies:
+    react-fast-compare: ^3.2.0
+  checksum: 63ab378c6ebb4114ea3fe53b42a8dc839d9f21910d71c37bfe2c71e022ac380527132437f506e36f175f91f7bd8990bd7b52680979b5c80fb27a71a4c2e4ea0f
+  languageName: node
+  linkType: hard
+
+"@stackflow/plugin-basic-ui@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@stackflow/plugin-basic-ui@npm:1.5.1"
+  dependencies:
+    "@vanilla-extract/css": ^1.7.2
+    "@vanilla-extract/dynamic": ^2.0.2
+    "@vanilla-extract/private": ^1.0.3
+    "@vanilla-extract/recipes": ^0.2.5
+    ts-pattern: ^4.0.5
+  peerDependencies:
+    "@stackflow/core": ^1.0.9
+    "@stackflow/react": ^1.1.6
+    "@types/react": ">=16.8.0"
+    react: ">=16.8.0"
+  checksum: de664be94f093e73b9a5e45a3f6895a4ea3abbe4451b0d7c17fe04988f0776865ea616d3aaf02fc740e24b65112a5be9fb5706bd8fe65a28031f13b43afbeaeb
+  languageName: node
+  linkType: hard
+
+"@stackflow/plugin-renderer-basic@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@stackflow/plugin-renderer-basic@npm:1.1.6"
+  peerDependencies:
+    "@stackflow/core": ^1.0.9
+    "@stackflow/react": ^1.1.6
+    "@types/react": ">=16.8.0"
+    react: ">=16.8.0"
+  checksum: e14d9c2f84f2aab38357043cdeb3a22676bae20eb4845e1ae7b4edcdae4537229f180058a430a5a49e85d224becf984cc78bff27940f405227e0077bd81406f5
+  languageName: node
+  linkType: hard
+
+"@stackflow/react@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@stackflow/react@npm:1.1.6"
+  dependencies:
+    react-fast-compare: ^3.2.0
+  peerDependencies:
+    "@stackflow/core": ^1.0.9
+    "@types/react": ">=16.8.0"
+    react: ">=16.8.0"
+  checksum: 9ebb05043d211971a6bdfce719e26fd7270381cc712ed799b18497f94ae7904b54ee1f47c1daa462207352723fb34265576425f55a3538f568740bd59d4155fd
   languageName: node
   linkType: hard
 
@@ -4952,6 +5004,50 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vanilla-extract/css@npm:^1.7.2":
+  version: 1.14.1
+  resolution: "@vanilla-extract/css@npm:1.14.1"
+  dependencies:
+    "@emotion/hash": ^0.9.0
+    "@vanilla-extract/private": ^1.0.3
+    chalk: ^4.1.1
+    css-what: ^6.1.0
+    cssesc: ^3.0.0
+    csstype: ^3.0.7
+    deep-object-diff: ^1.1.9
+    deepmerge: ^4.2.2
+    media-query-parser: ^2.0.2
+    modern-ahocorasick: ^1.0.0
+    outdent: ^0.8.0
+  checksum: d46afaf16ad0d487fe4ad83f6ca3a08aa0c566fcaa1360d045b30282eab8853005e9bac36c969d27a06185e15832674e5c5de281afe5b3e3dcf8416d137cc819
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/dynamic@npm:^2.0.2":
+  version: 2.1.0
+  resolution: "@vanilla-extract/dynamic@npm:2.1.0"
+  dependencies:
+    "@vanilla-extract/private": ^1.0.3
+  checksum: a6f129d096286cf7e2c7c868f12866d2da2967cd7591e071eb6420f0fafccce86c58e1d408864109fc894332399e731fe8ae67e2c92d456feb4b21c602287f6d
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/private@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@vanilla-extract/private@npm:1.0.3"
+  checksum: 866a71ba6804edeb0735684e7723ba78f5cf0bb40d4fb538fe6bf7d73928099e341312337b2a510ac0ce96ff8a4b39eb7f7a5fad0c842532353dd20e7278f29b
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/recipes@npm:^0.2.5":
+  version: 0.2.5
+  resolution: "@vanilla-extract/recipes@npm:0.2.5"
+  peerDependencies:
+    "@vanilla-extract/css": ^1.0.0
+  checksum: 474ab445f4166bded294d5f77e02ba9b10ec6effe08364c03396e2802848d904a2a1dd9b20466405ebda93449c5a634c2fe99cd1d12888b0f84accf4d2d72666
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-react@npm:^3.0.1":
   version: 3.1.0
   resolution: "@vitejs/plugin-react@npm:3.1.0"
@@ -5811,7 +5907,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
+"chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -6252,6 +6348,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"css-what@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "css-what@npm:6.1.0"
+  checksum: b975e547e1e90b79625918f84e67db5d33d896e6de846c9b584094e529f0c63e2ab85ee33b9daffd05bff3a146a1916bec664e18bb76dd5f66cbff9fc13b2bbe
+  languageName: node
+  linkType: hard
+
 "cssesc@npm:^3.0.0":
   version: 3.0.0
   resolution: "cssesc@npm:3.0.0"
@@ -6265,6 +6368,13 @@ __metadata:
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.0.7":
+  version: 3.1.3
+  resolution: "csstype@npm:3.1.3"
+  checksum: 8db785cc92d259102725b3c694ec0c823f5619a84741b5c7991b8ad135dfaa66093038a1cc63e03361a6cd28d122be48f2106ae72334e067dd619a51f49eddf7
   languageName: node
   linkType: hard
 
@@ -6344,6 +6454,20 @@ __metadata:
   version: 0.1.4
   resolution: "deep-is@npm:0.1.4"
   checksum: edb65dd0d7d1b9c40b2f50219aef30e116cedd6fc79290e740972c132c09106d2e80aa0bc8826673dd5a00222d4179c84b36a790eef63a4c4bca75a37ef90804
+  languageName: node
+  linkType: hard
+
+"deep-object-diff@npm:^1.1.9":
+  version: 1.1.9
+  resolution: "deep-object-diff@npm:1.1.9"
+  checksum: ecd42455e4773f653595d28070295e7aaa8402db5f8ab21d0bec115a7cb4de5e207a5665514767da5f025c96597f1d3a0a4888aeb4dd49e03c996871a3aa05ef
+  languageName: node
+  linkType: hard
+
+"deepmerge@npm:^4.2.2":
+  version: 4.3.1
+  resolution: "deepmerge@npm:4.3.1"
+  checksum: 2024c6a980a1b7128084170c4cf56b0fd58a63f2da1660dcfe977415f27b17dbe5888668b59d0b063753f3220719d5e400b7f113609489c90160bb9a5518d052
   languageName: node
   linkType: hard
 
@@ -9438,6 +9562,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"media-query-parser@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "media-query-parser@npm:2.0.2"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+  checksum: 8ef956d9e63fe6f4041988beda69843b3a6bb48228ea2923a066f6e7c8f7c5dba75fae357318c48a97ed5beae840b8425cb7e727fc1bb77acc65f2005f8945ab
+  languageName: node
+  linkType: hard
+
 "media-typer@npm:0.3.0":
   version: 0.3.0
   resolution: "media-typer@npm:0.3.0"
@@ -9680,6 +9813,13 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
+  languageName: node
+  linkType: hard
+
+"modern-ahocorasick@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "modern-ahocorasick@npm:1.0.1"
+  checksum: ec83479f406511f37a966d66ce1c2b1701bb4a2cc2aabbbc257001178c9fbc48ce748c88eb10dfe72ba8b7f991a0bc7f1fa14683f444685edd1a9eeb32ecbc1e
   languageName: node
   linkType: hard
 
@@ -10102,6 +10242,13 @@ __metadata:
     strip-ansi: ^6.0.0
     wcwidth: ^1.0.1
   checksum: 28d476ee6c1049d68368c0dc922e7225e3b5600c3ede88fade8052837f9ed342625fdaa84a6209302587c8ddd9b664f71f0759833cbdb3a4cf81344057e63c63
+  languageName: node
+  linkType: hard
+
+"outdent@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "outdent@npm:0.8.0"
+  checksum: 72b7c1a287674317ea477999ec24e73a9eda21de35eb9429218f4a5bab899e964afaee7508265898118fee5cbee1d79397916b66dd8aeee285cd948ea5b1f562
   languageName: node
   linkType: hard
 
@@ -10852,7 +10999,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:^3.0.1":
+"react-fast-compare@npm:^3.0.1, react-fast-compare@npm:^3.2.0":
   version: 3.2.2
   resolution: "react-fast-compare@npm:3.2.2"
   checksum: 2071415b4f76a3e6b55c84611c4d24dcb12ffc85811a2840b5a3f1ff2d1a99be1020d9437ee7c6e024c9f4cbb84ceb35e48cf84f28fcb00265ad2dfdd3947704
@@ -12245,6 +12392,10 @@ __metadata:
     "@emotion/styled": ^11.11.0
     "@lottiefiles/react-lottie-player": ^3.5.3
     "@react-native-community/datetimepicker": ^7.4.1
+    "@stackflow/core": ^1.0.9
+    "@stackflow/plugin-basic-ui": ^1.5.1
+    "@stackflow/plugin-renderer-basic": ^1.1.6
+    "@stackflow/react": ^1.1.6
     "@storybook/addon-actions": ^7.0.24
     "@storybook/addon-essentials": ^7.0.18
     "@storybook/addon-interactions": ^7.0.18
@@ -12369,6 +12520,13 @@ __metadata:
   version: 2.2.0
   resolution: "ts-dedent@npm:2.2.0"
   checksum: 93ed8f7878b6d5ed3c08d99b740010eede6bccfe64bce61c5a4da06a2c17d6ddbb80a8c49c2d15251de7594a4f93ffa21dd10e7be75ef66a4dc9951b4a94e2af
+  languageName: node
+  linkType: hard
+
+"ts-pattern@npm:^4.0.5":
+  version: 4.3.0
+  resolution: "ts-pattern@npm:4.3.0"
+  checksum: f5167f6f721212c1e22f8590bb1fc21e27fd591d6fc5af0e467778f8e5b2dc1ae490cf5c633c83a3021a61283a671a53faf250b081c17c0f025e73eb775e5fe3
   languageName: node
   linkType: hard
 

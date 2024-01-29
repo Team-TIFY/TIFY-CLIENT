@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 
 const useGetDate = () => {
   const [date, setDate] = useRecoilState(dateState)
+
   const getTodayWeek = (date: string): TodayKeyType => {
     const dayOfWeek = new Date(date).getDay() as TodayKeyType
     return dayOfWeek
@@ -173,6 +174,8 @@ const useGetDate = () => {
   }
 
   return {
+    date,
+    getTodayWeek,
     getTodayDate,
     setNewDate,
     parseDateFromString,

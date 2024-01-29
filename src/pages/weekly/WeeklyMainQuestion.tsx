@@ -13,11 +13,14 @@ import useBottomSheet from '@libs/hooks/useBottomSheet'
 import GreetingOnboarding from '@components/onboarding/GreetingOnboarding'
 import { media } from '@styles/theme'
 import QuestionImgBox from '@components/WeeklyQuestion/QuestionImgBox'
-
+import useGetDate from '@libs/hooks/useGetDate'
 const WeeklyMainQuestion = () => {
   const [date, setDate] = useRecoilState(dateState)
   const [question, setQuestion] = useRecoilState(questionState)
+  const { getTodayWeek } = useGetDate()
   const navigate = useNavigate()
+
+  console.log(question)
   const { bottomSheetRef, isBottomSheetOpen } = useBottomSheet({
     initialState:
       localStorage.getItem('isOnboardingFavor') === 'true' ? true : false,
@@ -25,8 +28,13 @@ const WeeklyMainQuestion = () => {
   })
   const handleAnswerQuestion = async () => {
     const data = await WeeklyApi.ALREADY_ANSWERED(question.questionId)
+    //console.log(question.loadingData)
     if (!data) navigate('weekly/answer')
     else {
+      // localStorage.setItem(
+      //   'date',
+      //   getTodayWeek(question.loadingData.toString()).toString(),
+      // )
       navigate('weekly/answers')
     }
   }

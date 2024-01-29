@@ -12,11 +12,13 @@ import {
 } from '@utils/apis/user/UserType'
 import { getTagAnswerData } from '@utils/getTagAnswerData'
 import { useNavigate } from 'react-router-dom'
-import { questionMenu } from '@utils/questionMenu'
+import { useAnimation } from 'framer-motion'
+import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { friendState } from '@libs/store/friend'
 import { question } from '@utils/question'
 import { TasteBoxVariantType } from '@utils/apis/favor/TasteType'
+import { motion } from 'framer-motion'
 
 export interface UserTagDataProps {
   selectedProps: SelectedProps
@@ -30,7 +32,42 @@ export const UserTagDataListItem = ({
   isFriend,
 }: UserTagDataProps) => {
   const navigate = useNavigate()
+  const controlsArray = Array.from(
+    {
+      length: 15,
+    },
+    () =>
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useAnimation(),
+  )
   const setFriendStateData = useSetRecoilState(friendState)
+  const [clickedIndex, setClickedIndex] = useState(-1)
+  const handleClick = async (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    idx: number,
+  ) => {
+    setClickedIndex(idx)
+    if (Number(e.currentTarget.id) === idx) {
+      await controlsArray[idx].start({
+        scale: 0.95,
+        transition: {
+          ease: 'anticipate',
+          delay: 0.02,
+          duration: 0.1,
+        },
+      })
+      await controlsArray[idx].start({
+        scale: 1,
+        transition: {
+          type: 'spring',
+          damping: 15,
+          stiffness: 300,
+          duration: 0.1,
+          delay: 0.12,
+        },
+      })
+    } else return
+  }
 
   const handleClickPlusButton = (
     notAnsweredDetailCategories: TasteBoxVariantType[],
@@ -43,7 +80,6 @@ export const UserTagDataListItem = ({
       ...prevStateData,
       presentRecommendFilterValue: categoryValue,
     }))
-
     navigate('/friends/presentRecommend')
   }
 
@@ -61,29 +97,40 @@ export const UserTagDataListItem = ({
         const notAnsweredDetailCategories = tag[0]?.notAnsweredDetailCategories
 
         return (
-          <Category
+          <motion.div
             key={idx}
-            categoryName={categoryName}
-            isFriend={isFriend}
-            allCategoryAnswered={notAnsweredDetailCategories.length === 0}
-            onPlusButtonClick={() =>
-              handleClickPlusButton(notAnsweredDetailCategories)
-            }
-            onPresentButtonClick={() => handleClickPresentButton(categoryValue)}
-            children={tag.map((tagData, index) =>
-              tagData.answer ? (
-                <Tag
-                  key={index}
-                  colorIndex={(index % 3) as ColorIndexVariantType}
-                  iconIndex={tagData.number}
-                  children={tagData.answer}
-                  smallCategory={tagData.smallCategory}
-                  detailCategory={tagData.detailCategory}
-                  answerNumber={tagData.number}
-                />
-              ) : null,
-            )}
-          />
+            onClick={(e) => {
+              handleClick(e, idx)
+            }}
+            animate={clickedIndex === idx ? controlsArray[idx] : {}}
+            //animate={clickedIndex === idx ? controls : {}}
+            id={String(idx)}
+          >
+            <Category
+              categoryName={categoryName}
+              isFriend={isFriend}
+              allCategoryAnswered={notAnsweredDetailCategories.length === 0}
+              onPlusButtonClick={() =>
+                handleClickPlusButton(notAnsweredDetailCategories)
+              }
+              onPresentButtonClick={() =>
+                handleClickPresentButton(categoryValue)
+              }
+              children={tag.map((tagData, index) =>
+                tagData.answer ? (
+                  <Tag
+                    key={index}
+                    colorIndex={(index % 3) as ColorIndexVariantType}
+                    iconIndex={tagData.number}
+                    children={tagData.answer}
+                    smallCategory={tagData.smallCategory}
+                    detailCategory={tagData.detailCategory}
+                    answerNumber={tagData.number}
+                  />
+                ) : null,
+              )}
+            />
+          </motion.div>
         )
       })
   }
