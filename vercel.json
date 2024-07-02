@@ -1,5 +1,6 @@
 {
-  "rewrites":  [
-    {"source": "/(.*)", "destination": "/"}
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" },
+    { "source": "/api/(.*)", "destination": "https://tifyfriends.com/api/$1" }
   ]
 }
